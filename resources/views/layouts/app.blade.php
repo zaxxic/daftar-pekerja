@@ -28,7 +28,6 @@
     <link rel="stylesheet" href="{{ asset('assets/dist/libs/sweetalert2/dist/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/dist/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset("assets/dist/libs/bootstrap-duallistbox/dist/bootstrap-duallistbox.min.css")}}">
-
     @yield('style')
 
 </head>
@@ -93,7 +92,9 @@
     <script src="{{ asset('assets/dist/js/forms/select2.init.js') }}"></script>
     <script src="{{ asset('assets/dist/libs/bootstrap-switch/dist/js/bootstrap-switch.min.js') }}"></script>
     <script src="{{ asset('assets/dist/js/forms/bootstrap-switch.js') }}"></script>
-    <script src="{{ asset('assets/dist/libs/bootstrap-duallistbox/dist/jquery.bootstrap-duallistbox.min.js')}}"></script>
+    <script src="{{ asset('assets/dist/libs/bootstrap-duallistbox/dist/jquery.bootstrap-duallistbox.min.
+    js')}}"></script>
+    
     <script>
                 function handleValidate(messages, type) {
             const keys = Object.keys(messages);
