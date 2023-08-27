@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\registerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +25,5 @@ Route::get('/visi-misi', function () {
 Route::get('/cek', function () {
     return view('cek-daftar');
 });
+
+Route::resource('register', registerController::class);
