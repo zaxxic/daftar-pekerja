@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\loginController;
 use App\Http\Controllers\registerController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+
 
 Route::get('/visi-misi', function () {
     return view('visi-misi');
@@ -27,3 +26,14 @@ Route::get('/cek', function () {
 });
 
 Route::resource('register', registerController::class);
+
+Route::get('/login-admin', [loginController::class, 'showLogin'])->name('login');
+Route::post('/login', [loginController::class, 'login'])->name('fromLogin');
+
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', function () {
+        return view('index');
+    });
+});
