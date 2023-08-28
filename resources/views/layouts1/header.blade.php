@@ -36,7 +36,7 @@
                         </ul>
                         <div class="others-option">
                             <div class="get-quote" style="padding: 5px;">
-                                <a href="post-job.html" class="default-btn">Daftar Sekarang</a>
+                                <a href="{{ route('register.index') }}" class="default-btn">Daftar Sekarang</a>
                             </div>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">
