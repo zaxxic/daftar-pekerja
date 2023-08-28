@@ -25,6 +25,8 @@ Route::get('/cek', function () {
     return view('cek-daftar');
 });
 
+Route::resource('login', loginController::class);
+
 Route::resource('register', registerController::class);
 
 Route::get('/login-admin', [loginController::class, 'showLogin'])->name('login');
