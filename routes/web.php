@@ -35,23 +35,34 @@ Route::get('register' , [registerController::class , 'index'])->name('register')
 Route::post('register-store' , [registerController::class , 'store'])->name('register-store');
 
 Route::get('/login', [loginController::class, 'showLogin'])->name('login');
-Route::post('/form-login', [loginController::class, 'login'])->name('fromLogin');
+Route::post('/form-login', [loginController::class, 'login'])->name('form-login');
+Route::post('/logout', [loginController::class, 'logout'])->name('logout');
 
 
-Route::get('/profile', [ProfileController::class, 'showProfile'])->name('login');
+
+
+
+Route::group(['middleware' => ['auth', 'user_role']], function () {
+    Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
+    
+});
+
+Route::group(['middleware' => ['auth', 'admin_role']], function () {
+    Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
+    
+});
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('dashboard');
 
-Route::middleware(['auth'])->group(function () {
-});
-
-// Route::resource('register', ApprovalController::class);
-// Route::resource('approval', ApprovalController::class);
 Route::get('approval', [ApprovalController::class, 'index'])->name('approval');
 Route::patch('acc', [ApprovalController::class, 'update'])->name('acc');
 Route::patch('reject', [ApprovalController::class, 'index'])->name('reject');
 Route::get('detail-approval', [ApprovalController::class, 'show'])->name('detail-approval');
 
 Route::resource('pekerja', registerController::class);
+
+Route::get('error-403', function () {
+    return view('403');
+})->name('unauthorized');
