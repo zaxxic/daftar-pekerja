@@ -1,16 +1,13 @@
 <header class="app-header" style="position: fixed; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
     <nav class="navbar navbar-expand-xl navbar-light container-fluid px-0">
         <ul class="navbar-nav">
-
             <li class="nav-item d-none d-xl-block mr-4">
                 <a class="logo" href="index.html">
                     <img width="180px" src="assets1/images/humma.png" alt="logo">
                 </a>
             </li>
-
         </ul>
         <ul class="navbar-nav quick-links d-none d-xl-flex">
-
             <li class="nav-item dropdown-hover d-none d-xl-block">
                 <a class="nav-link" href="app-chat.html">Dashboard</a>
             </li>
