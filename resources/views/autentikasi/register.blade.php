@@ -58,25 +58,30 @@
                                         {{ session('success') }}
                                     </div>
                                 @endif
-                                <form action="{{ route('register-store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('register-store') }}" method="POST"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <div class="d-flex col-lg-12 justify-content-between">
                                         <div class="mb-3 col-lg-5">
-                                            <label for="name" class="form-label">Nama Pekerja <span
-                                                    style="color: red;">*</span></label>
-                                            <input type="text" class="form-control" id="name" name="name"
-                                                aria-describedby="textHelp" />
-                                            @error('name')
-                                                <div class="text-danger">{{ $message }}</div>
-                                            @enderror
+                                            <div class="form-group">
+                                                <label for="name">Nama <span style="color: red">*</span></label>
+                                                <input type="text" name="name"
+                                                    class="form-control @error('name') is-invalid @enderror"
+                                                    value="{{ old('name') }}">
+                                                @error('name')
+                                                    <span class="invalid-feedback">{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
                                         <div class="mb-3 col-lg-5">
                                             <label for="email" class="form-label">Email <span
                                                     style="color: red;">*</span></label>
-                                            <input type="email" class="form-control" id="email" name="email"
+                                            <input type="email"
+                                                class="form-control @error('email') is-invalid @enderror"
+                                                value="{{ old('email') }}" id="email" name="email"
                                                 aria-describedby="emailHelp" />
                                             @error('email')
-                                                <div class="text-danger">{{ $message }}</div>
+                                                <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
@@ -84,82 +89,89 @@
                                         <div class="mb-3 col-lg-5">
                                             <label for="exampleInputEmail1" class="form-label">Telephone <span
                                                     style="color: red;">*</span></label>
-                                            <input type="number" class="form-control" id="no_telp" name="no_telp"
+                                            <input type="number" class="form-control @error('no_telp') is-invalid @enderror"
+                                            value="{{ old('no_telp') }}" id="no_telp" name="no_telp"
                                                 aria-describedby="emailHelp" />
                                             @error('no_telp')
-                                                <div class="text-danger">{{ $message }}</div>
+                                                <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="mb-3 col-lg-5">
                                             <label for="exampleInputEmail1" class="form-label mb-3">Jenis Kelamin <span
                                                     style="color: red;">*</span></label>
                                             <div class="d-flex align-items-center">
-                                                <input class="text-sm me-1" type="radio" name="jenis_kelamin"
+                                                <input class="text-sm me-1" checked type="radio" name="jenis_kelamin"
                                                     id="radio1" value="laki-laki">
                                                 <label class="mb-0 me-3" for="radio1">Laki-laki</label>
-                                                <input class="text-sm me-1" type="radio" name="jenis_kelamin"
+                                                <input class="text-sm me-1"  type="radio" name="jenis_kelamin"
                                                     id="radio2" value="perempuan">
                                                 <label class="mb-0" for="radio2">Perempuan</label>
                                             </div>
                                             @error('jenis_kelamin')
-                                                <div class="text-danger">{{ $message }}</div>
+                                                <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1" class="form-label">Alamat <span
                                                 style="color: red;">*</span></label>
-                                        <textarea name="alamat" id="" cols="10" rows="5" class="form-control" id="alamat"
+                                        <textarea name="alamat" id="" cols="10" rows="5" class="form-control @error('alamat') is-invalid @enderror"
+                                        value="{{ old('alamat') }}" id="alamat"
                                             name="alamat"></textarea>
                                         @error('alamat')
-                                            <div class="text-danger">{{ $message }}</div>
+                                            <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Masukkan CV <span
                                                 style="color: red;">*</span></label>
-                                        <input type="file" class="form-control" id="cv" name="cv"
+                                        <input type="file" class="form-control @error('cv') is-invalid @enderror"
+                                        value="{{ old('cv') }}" id="cv" name="cv"
                                             aria-describedby="emailHelp" aria-label="Pilih Berkas CV" />
                                         @error('cv')
-                                            <div class="text-danger">{{ $message }}</div>
+                                            <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="d-flex col-lg-12 justify-content-between">
                                         <div class="mb-3 col-lg-5">
                                             <label for="exampleInputEmail1" class="form-label">Masukan Lamaran Kerja
                                                 <span style="color: red;">*</span></label>
-                                            <input type="file" class="form-control" id="lamaran" name="lamaran"
+                                            <input type="file" class="form-control @error('lamaran') is-invalid @enderror"
+                                                value="{{ old('lamaran') }}" id="lamaran" name="lamaran"
                                                 aria-describedby="emailHelp" />
                                             @error('lamaran')
-                                                <div class="text-danger">{{ $message }}</div>
+                                                <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="mb-4 col-lg-5">
                                             <label for="exampleInputEmail1" class="form-label">Masukan Foto Anda <span
                                                     style="color: red;">*</span></label>
-                                            <input type="file" class="form-control" id="foto" name="foto"
+                                            <input type="file" class="form-control @error('foto') is-invalid @enderror"
+                                                value="{{ old('foto') }}" id="foto" name="foto"
                                                 aria-describedby="emailHelp" />
                                             @error('foto')
-                                                <div class="text-danger">{{ $message }}</div>
+                                                <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="d-flex col-lg-12 justify-content-between">
                                         <div class="mb-3 col-lg-5">
                                             <label for="exampleInputEmail1" class="form-label">Password</label>
-                                            <input type="password" class="form-control" id="password"
+                                            <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                                 id="password"
                                                 name="password" aria-describedby="emailHelp" />
                                             @error('password')
-                                                <div class="text-danger">{{ $message }}</div>
+                                                <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="mb-3 col-lg-5">
                                             <label for="exampleInputEmail1" class="form-label">Konfirmasi
                                                 Password</label>
-                                            <input type="password" class="form-control" id="password_confirmation"
+                                            <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
+                                               id="password_confirmation"
                                                 name="password_confirmation" aria-describedby="emailHelp" />
                                             @error('password_confirmation')
-                                                <div class="text-danger">{{ $message }}</div>
+                                                <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
