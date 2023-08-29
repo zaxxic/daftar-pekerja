@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\dashboardUserController;
-use App\Http\Controllers\detailLowonganController;
+use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\registerController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,12 +30,13 @@ Route::get('/cek', function () {
 
 // Route::resource('login', loginController::class);
 
-Route::resource('register', registerController::class);
+Route::resource('lowongan', LowonganController::class);
 Route::get('register' , [registerController::class , 'index'])->name('register');
+Route::post('register-store' , [registerController::class , 'store'])->name('register-store');
 
 Route::get('/login', [loginController::class, 'showLogin'])->name('login');
-
-Route::post('/form-login', [loginController::class, 'login'])->name('fromLogin');
+Route::post('/form-login', [loginController::class, 'login'])->name('form-login');
+Route::post('/logout', [loginController::class, 'logout'])->name('logout');
 
 Route::resource('dashboard-user', dashboardUserController::class);
 Route::get('/dashboard-user', [dashboardUserController::class, 'index'])->name('dashboard-user');
@@ -44,11 +45,30 @@ route::resource('detail-lowongan', detailLowonganController::class);
 
 
 
-Route::get('/profile', [ProfileController::class, 'showProfile'])->name('login');
 
+
+
+Route::group(['middleware' => ['auth', 'user_role']], function () {
+    Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
+    
+});
+
+Route::group(['middleware' => ['auth', 'admin_role']], function () {
+    Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
+    
+});
 
 Route::get('/', function () {
     return view('index');
-});
-Route::middleware(['auth'])->group(function () {
-});
+})->name('dashboard');
+
+Route::get('approval', [ApprovalController::class, 'index'])->name('approval');
+Route::patch('acc', [ApprovalController::class, 'update'])->name('acc');
+Route::patch('reject', [ApprovalController::class, 'index'])->name('reject');
+Route::get('detail-approval', [ApprovalController::class, 'show'])->name('detail-approval');
+
+Route::resource('pekerja', registerController::class);
+
+Route::get('error-403', function () {
+    return view('403');
+})->name('unauthorized');

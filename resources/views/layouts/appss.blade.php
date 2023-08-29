@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{ asset('assets/dist/libs/sweetalert2/dist/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/dist/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset("assets/dist/libs/bootstrap-duallistbox/dist/bootstrap-duallistbox.min.css")}}">
+
     @yield('style')
 
 </head>
@@ -62,9 +63,8 @@
     <!--  Mobilenavbar -->
     @include('layouts.mobile-navbar')
     <!--  Search Bar -->
-    @include('layouts.search-bar')
     <!--  Customizer -->
-   
+
     <!--  Customizer -->
     <!--  Import Js Files -->
     <script src="{{ asset('assets/dist/libs/jquery/dist/jquery.min.js') }}"></script>
@@ -94,7 +94,7 @@
     <script src="{{ asset('assets/dist/js/forms/bootstrap-switch.js') }}"></script>
     <script src="{{ asset('assets/dist/libs/bootstrap-duallistbox/dist/jquery.bootstrap-duallistbox.min.
     js')}}"></script>
-    
+
     <script>
                 function handleValidate(messages, type) {
             const keys = Object.keys(messages);
@@ -249,6 +249,12 @@
             console.log($(this).val())
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote();
+        });
+    </script>
+
     @yield('script')
 
 </body>

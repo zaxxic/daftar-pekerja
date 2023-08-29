@@ -46,15 +46,16 @@
                                     <img src="{{ asset('assets/dist/images/hummas.png') }}" width="200"
                                         alt="" />
                                 </a>
-                                <form action="{{ route('fromLogin') }}" method="POST">
+                                <form action="{{ route('form-login') }}" method="POST">
+                                    @csrf
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1"
+                                        <input type="email" class="form-control" name="email" id="exampleInputEmail1"
                                             aria-describedby="emailHelp">
                                     </div>
                                     <div class="mb-4">
                                         <label for="exampleInputPassword1" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1">
+                                        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mb-4">
                                         <div class="form-check">
@@ -64,11 +65,10 @@
                                                 Ingat Saya
                                             </label>
                                         </div>
-                                        <a class="text-primary fw-medium"
+                                        <a class="text-primary fw-medium" 
                                             href="authentication-forgot-password.html">Lupa Password?</a>
                                     </div>
-                                    <a href="index-2.html" class="btn btn-primary w-100 py-8 mb-4 rounded-2">Login
-                                        Sekarang</a>
+                                    <button type="submit">Login</button>
                                     <div class="d-flex align-items-center justify-content-center">
                                         <p class="fs-4 mb-0 fw-medium">Belum punya akun?</p>
                                         <a class="text-primary fw-medium ms-2" href="">Daftar

@@ -13,13 +13,23 @@ class loginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            // Jika autentikasi berhasil
-            return redirect()->intended('/dashboard'); // Ganti '/dashboard' dengan rute dashboard Anda
+            $user = Auth::user();
+
+            if ($user->role === 'admin') {
+                return redirect()->intended('/');
+            } elseif ($user->role === 'user') {
+                return redirect()->intended('/profile');
+            } else {
+                // Role tidak dikenali, lakukan sesuatu sesuai kebijakan Anda
+                Auth::logout();
+                return back()->withErrors(['email' => 'Role tidak valid']);
+            }
         } else {
-            // Jika autentikasi gagal
             return back()->withErrors(['email' => 'Email atau password salah']);
         }
     }
+
+
 
     function showLogin()
     {
@@ -29,5 +39,11 @@ class loginController extends Controller
         }
 
         return view('auth.login'); // Ganti 'auth.login' dengan nama tampilan login Anda
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/'); // Ganti '/' dengan rute yang sesuai setelah logout
     }
 }
