@@ -47,6 +47,7 @@
                                         alt="" />
                                 </a>
                                 <form action="{{ route('fromLogin') }}" method="POST">
+                                    @csrf
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Email</label>
                                         <input type="email" class="form-control" id="exampleInputEmail1"
@@ -64,11 +65,10 @@
                                                 Ingat Saya
                                             </label>
                                         </div>
-                                        <a class="text-primary fw-medium"
+                                        <a class="text-primary fw-medium" 
                                             href="authentication-forgot-password.html">Lupa Password?</a>
                                     </div>
-                                    <a href="index-2.html" class="btn btn-primary w-100 py-8 mb-4 rounded-2">Login
-                                        Sekarang</a>
+                                    <button type="submit">Login</button>
                                     <div class="d-flex align-items-center justify-content-center">
                                         <p class="fs-4 mb-0 fw-medium">Belum punya akun?</p>
                                         <a class="text-primary fw-medium ms-2" href="">Daftar

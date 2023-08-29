@@ -58,7 +58,7 @@
                                         {{ session('success') }}
                                     </div>
                                 @endif
-                                <form action="{{ route('register.store') }}" method="POST">
+                                <form action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="d-flex col-lg-12 justify-content-between">
                                         <div class="mb-3 col-lg-5">
