@@ -47,16 +47,17 @@
         <!--  Main wrapper -->
         <div class="body-wrapper">
             <!--  Header Start -->
-            @include('layouts.header')
+            @include('layouts1.header')
             <!--  Header End -->
             <div class="container-fluid">
                 @yield('content')
             </div>
         </div>
     
- 
-    @include('layouts.mobile-navbar')
-  
+    <!--  Shopping Cart -->
+
+    @include('layouts1.mobile-navbar')
+    
    
     <!--  Customizer -->
     <!--  Import Js Files -->
@@ -88,6 +89,8 @@
     <script src="{{ asset('assets/dist/libs/bootstrap-duallistbox/dist/jquery.bootstrap-duallistbox.min.
     js')}}"></script>
     
+ 
+    @yield('script')
 
 </body>
 

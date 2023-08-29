@@ -13,10 +13,10 @@
     <ul class="navbar-nav quick-links d-none d-xl-flex">
      
       <li class="nav-item dropdown-hover d-none d-xl-block">
-        <a class="nav-link" href="app-chat.html">Chat</a>
+        <a class="nav-link" href="app-chat.html">Dashboard</a>
       </li>
       <li class="nav-item dropdown-hover d-none d-xl-block">
-        <a class="nav-link" href="app-calendar.html">Calendar</a>
+        <a class="nav-link" href="app-calendar.html">Profile</a>
       </li>
       <li class="nav-item dropdown-hover d-none d-xl-block">
         <a class="nav-link" href="app-email.html">Email</a>
