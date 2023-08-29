@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\registerController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,17 +26,19 @@ Route::get('/cek', function () {
     return view('cek-daftar');
 });
 
-Route::resource('login', loginController::class);
+// Route::resource('login', loginController::class);
 
 Route::resource('register', registerController::class);
 
-Route::get('/login-admin', [loginController::class, 'showLogin'])->name('login');
-Route::post('/login', [loginController::class, 'login'])->name('fromLogin');
+Route::get('/login', [loginController::class, 'showLogin'])->name('login');
+Route::post('/form-login', [loginController::class, 'login'])->name('fromLogin');
 
 
+Route::get('/profile', [ProfileController::class, 'showProfile'])->name('login');
 
+
+Route::get('/', function () {
+    return view('index');
+});
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', function () {
-        return view('index');
-    });
 });
