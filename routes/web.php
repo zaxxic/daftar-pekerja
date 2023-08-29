@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LowonganController;
@@ -31,6 +32,7 @@ Route::get('/cek', function () {
 
 Route::resource('lowongan', LowonganController::class);
 Route::get('register' , [registerController::class , 'index'])->name('register');
+Route::post('register-store' , [registerController::class , 'store'])->name('register-store');
 
 Route::get('/login', [loginController::class, 'showLogin'])->name('login');
 Route::post('/form-login', [loginController::class, 'login'])->name('fromLogin');
@@ -44,3 +46,12 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
 });
+
+// Route::resource('register', ApprovalController::class);
+// Route::resource('approval', ApprovalController::class);
+Route::get('approval', [ApprovalController::class, 'index'])->name('approval');
+Route::patch('acc', [ApprovalController::class, 'update'])->name('acc');
+Route::patch('reject', [ApprovalController::class, 'index'])->name('reject');
+Route::get('detail-approval', [ApprovalController::class, 'show'])->name('detail-approval');
+
+Route::resource('pekerja', registerController::class);

@@ -16,8 +16,8 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-        Validator::make(
-            $request->all(),
+        $this->validate(
+            $request,
             [
                 'name' => 'required',
                 'email' => 'required|unique:users,email',
@@ -45,10 +45,10 @@ class RegisterController extends Controller
                 'foto.mimes' => 'Foto Diri Harus Berformat JPG,PNG,JPEG',
                 'password.required' => 'Password harus di isi',
                 'password.min' => 'Password minimal 3 huruf',
-                'password.confirmed' => 'Konfirmasi kata sandi tidak sesuai.', 
+                'password.confirmed' => 'Konfirmasi kata sandi tidak sesuai.',
             ]
         );
-        
+
         $image = $request->file('foto');
         $image->storeAs('public/foto_user', $image->hashName());
 
