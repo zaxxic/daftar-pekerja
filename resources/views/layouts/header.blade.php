@@ -3,23 +3,24 @@
     <ul class="navbar-nav">
      
       <li class="nav-item d-none d-xl-block">
-        <a href="index.html" class="text-nowrap nav-link">
           <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/dark-logo.svg" class="dark-logo" width="180" alt="" />
           <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/light-logo.svg" class="light-logo"  width="180" alt="" />
-        </a>
       </li>
       
     </ul>
     <ul class="navbar-nav quick-links d-none d-xl-flex">
      
       <li class="nav-item dropdown-hover d-none d-xl-block">
-        <a class="nav-link" href="app-chat.html">Chat</a>
+        <a class="nav-link" href="app-chat.html">Dashboard</a>
       </li>
       <li class="nav-item dropdown-hover d-none d-xl-block">
-        <a class="nav-link" href="app-calendar.html">Calendar</a>
+        <a class="nav-link" href="{{ route('approval') }}">Approval</a>
       </li>
       <li class="nav-item dropdown-hover d-none d-xl-block">
-        <a class="nav-link" href="app-email.html">Email</a>
+        <a class="nav-link" href="{{ route('pekerja') }}">Pekerja</a>
+      </li>
+      <li class="nav-item dropdown-hover d-none d-xl-block">
+        <a class="nav-link" href="{{ route('lowongan.index') }}">Lowongan</a>
       </li>
     </ul>
     <div class="d-block d-xl-none mt-1 mb-2">

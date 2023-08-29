@@ -27,6 +27,8 @@ class User extends Authenticatable
         'cv',
         'lamaran',
         'foto',
+        'status',
+        'tanggal_wawancara',
         'password',
     ];
 
@@ -49,4 +51,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function approval()
+    {
+        return $this->approval(Approvall::class);
+    }
 }

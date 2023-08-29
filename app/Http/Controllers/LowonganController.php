@@ -64,7 +64,7 @@ class LowonganController extends Controller
      */
     public function show(Lowongan $lowongan)
     {
-        //
+        return view('admin.lowongan-detail');
     }
 
     /**
@@ -89,5 +89,10 @@ class LowonganController extends Controller
     public function destroy(Lowongan $lowongan)
     {
         //
+    }
+
+    public function detail()
+    {
+        return view('admin.lowongan-detail');
     }
 }
