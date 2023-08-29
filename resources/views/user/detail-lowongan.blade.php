@@ -1,47 +1,55 @@
 <!doctype html>
 <html lang="zxx">
 
+<!-- Mirrored from templates.envytheme.com/jubi/rtl/employers-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 26 Aug 2023 07:41:52 GMT -->
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap Min CSS -->
-    <link rel="stylesheet" href="assets1/css/bootstrap.min.css">
-    <!-- Owl Theme Default Min CSS -->
-    <link rel="stylesheet" href="assets1/css/owl.theme.default.min.css">
-    <!-- Owl Carousel Min CSS -->
-    <link rel="stylesheet" href="assets1/css/owl.carousel.min.css">
-    <!-- Animate Min CSS -->
-    <link rel="stylesheet" href="assets1/css/animate.min.css">
-    <!-- Boxicons Min CSS -->
-    <link rel="stylesheet" href="assets1/css/boxicons.min.css">
-    <!-- Magnific Popup Min CSS -->
-    <link rel="stylesheet" href="assets1/css/magnific-popup.min.css">
-    <!-- Flaticon CSS -->
-    <link rel="stylesheet" href="assets1/css/flaticon.css">
-    <!-- Meanmenu Min CSS -->
-    <link rel="stylesheet" href="assets1/css/meanmenu.min.css">
-    <!-- Nice Select Min CSS -->
-    <link rel="stylesheet" href="assets1/css/nice-select.min.css">
-    <!-- Odometer Min CSS-->
-    <link rel="stylesheet" href="assets1/css/odometer.min.css">
-    <!-- Date Picker CSS-->
-    <link rel="stylesheet" href="assets1/css/date-picker.min.css">
-    <!-- Muli Fonts Min CSS-->
-    <link rel="stylesheet" href="assets1/css/muli-fonts.css">
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="assets1/css/style.css">
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="assets1/css/responsive.css">
-    <!-- Rtl CSS -->
-    <link rel="stylesheet" href="assets1/css/rtl.css">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets1/images/favicon.png">
-    <!-- Title -->
-    <title>Dashboard User</title>
+        <!-- Bootstrap Min CSS -->
+        <link rel="stylesheet" href="assets1/css/bootstrap.min.css">
+        <!-- Owl Theme Default Min CSS -->
+        <link rel="stylesheet" href="assets1/css/owl.theme.default.min.css">
+        <!-- Owl Carousel Min CSS -->
+        <link rel="stylesheet" href="assets1/css/owl.carousel.min.css">
+        <!-- Animate Min CSS -->
+        <link rel="stylesheet" href="assets1/css/animate.min.css">
+        <!-- Boxicons Min CSS -->
+        <link rel="stylesheet" href="assets1/css/boxicons.min.css">
+        <!-- Magnific Popup Min CSS -->
+        <link rel="stylesheet" href="assets1/css/magnific-popup.min.css">
+        <!-- Flaticon CSS -->
+        <link rel="stylesheet" href="assets1/css/flaticon.css">
+        <!-- Meanmenu Min CSS -->
+        <link rel="stylesheet" href="assets1/css/meanmenu.min.css">
+        <!-- Nice Select Min CSS -->
+        <link rel="stylesheet" href="assets1/css/nice-select.min.css">
+        <!-- Odometer Min CSS-->
+        <link rel="stylesheet" href="assets1/css/odometer.min.css">
+        <!-- Date Picker CSS-->
+        <link rel="stylesheet" href="assets1/css/date-picker.min.css">
+        <!-- Muli Fonts Min CSS-->
+        <link rel="stylesheet" href="assets1/css/muli-fonts.css">
+        <!-- Style CSS -->
+        <link rel="stylesheet" href="assets1/css/style.css">
+        <!-- Responsive CSS -->
+        <link rel="stylesheet" href="assets1/css/responsive.css">
+        <!-- Rtl CSS -->
+        <link rel="stylesheet" href="assets1/css/rtl.css">
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="assets1/images/favicon.png">
+        <!-- Title -->
+        <title>Dashboard User</title>
+    </head>
+    <title>Jubi - Job Board HTML Template</title>
 </head>
 
 <body>
@@ -55,7 +63,6 @@
     <!-- End Preloader Area -->
 
     <!-- Start Header Area -->
-
     <div style="direction: ltr;">
         @include('layouts1.app')
     </div>
@@ -77,173 +84,145 @@
     <!-- Start Page Title Area -->
     <div class=" kerja" style="direction: ltr; margin-top: -20px;">
         <div class="container" style="margin-bottom: -100px; margin-left: -50px;">
-            <div class="banner-content">
-                <h1 style="margin-top: -40px;  font-weight: bolder; font-size: 50px;">Cari Lowongan
-                    Kerja</h1>
-                <ul>
-                    <li>
-                        <h5>Temukan pekerjaan yang anda sukai!!</h5>
-                    </li>
-                </ul>
+            <div class="row">
+                <div class="col sm-6">
+                    <div class="banner-content">
+                        <h1 style="margin-top: -40px;  font-weight: bolder; font-size: 50px;">Detail Lowongan
+                            Kerja</h1>
+                        <ul>
+                            <li>
+                                <h5>Temukan pekerjaan yang anda sukai!!</h5>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <!-- End Page Title Area -->
-
-    <!-- Start Employers Listing Area -->
-    <section class="employers-listing-area ptb-100" style="direction: ltr;">
+    <!-- Start Employers Details Area -->
+    <section class="employers-details-area pt-100 pb-70" style="direction: ltr;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="shorting">
-                        <div class="row">
-                            <div class="col-12 mix a s c">
-                                <div class="hot-jobs-list">
-                                    <div class="row align-items-center">
-
-                                        <div class="col-lg-12">
-                                            <div class="hot-jobs-content">
-                                                <div class="d-flex justify-content-between" style="color: black">
-                                                    <h3><a href="">IT Security</a></h3>
-                                                    <p><span class="ml-5">Berakhir Pada
-                                                            Tanggal :</span> 24 Agustus
-                                                        2023</p>
-                                                </div>
-                                                <span class="sub-title text-primary mb-1">Web Developer</span>
-                                                <ul>
-                                                    <li><span>Gaji :</span> Rp. 12.000.000</li>
-                                                    <li><span>Slot Tersedia : </span> 14</li>
-                                                    <div class="d-flex justify-content-between">
-                                                        <li><span>Tipe Kerja : </span>Kontrak</li>
-                                                        <li class="ml-auto" style="margin-left: 300px;"><button
-                                                                class="default-btn">Detail</button>
-                                                        </li>
-                                                    </div>
-                                                </ul>
-                                            </div>
-                                        </div>
-
+                    <div class="hot-jobs-list">
+                        <div class="row align-items-center">
+                            <div class="col-lg-12">
+                                <div class="hot-jobs-content">
+                                    <div class="d-flex justify-content-between" style="color: black">
+                                        <h3><a href="">IT Security</a></h3>
                                     </div>
-
-                                </div>
-                            </div>
-
-                            <div class="col-12 mix a s c">
-                                <div class="hot-jobs-list">
-                                    <div class="row align-items-center">
-
-                                        <div class="col-lg-12">
-                                            <div class="hot-jobs-content">
-                                                <div class="d-flex justify-content-between" style="color: black">
-                                                    <h3><a href="">IT Security</a></h3>
-                                                    <p><span class="ml-5">Berakhir Pada
-                                                            Tanggal :</span> 24 Agustus
-                                                        2023</p>
-                                                </div>
-                                                <span class="sub-title text-primary mb-1">Web Developer</span>
-                                                <ul>
-                                                    <li><span>Gaji :</span> Rp. 12.000.000</li>
-                                                    <li><span>Slot Tersedia : </span> 14</li>
-                                                    <div class="d-flex justify-content-between">
-                                                        <li><span>Tipe Kerja : </span>Kontrak</li>
-                                                        <li class="ml-auto" style="margin-left: 300px;"><button
-                                                                class="default-btn">Detail</button>
-                                                        </li>
-                                                    </div>
-                                                </ul>
-                                            </div>
+                                    <span class="sub-title text-primary mb-1">Web Developer</span>
+                                    <ul class="overview">
+                                        <li><span>Gaji :</span> Rp. 12.000.000</li>
+                                        <li><span>Slot Tersedia : </span> 14</li>
+                                        <div class="d-flex justify-content-between">
+                                            <li><span>Tipe Kerja : </span>Kontrak</li>
+                                            <li style="margin-left: 300px; margin-right: -25px;"><button
+                                                    class="btn btn-danger"><a href="{{ route('dashboard-user') }}"
+                                                        class="text-white">Kembali</a></button>
+                                            </li>
+                                            <li><button class="btn btn-primary">Daftar</button>
+                                            </li>
                                         </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-
-                            <div class="col-12">
-                                <div class="pagination-area">
-                                    <span class="page-numbers current" aria-current="page">1</span>
-                                    <a href="#" class="page-numbers">2</a>
-                                    <a href="#" class="page-numbers">3</a>
-
-                                    <a href="#" class="next page-numbers">
-                                        <i class="flaticon-right-arrow"></i>
-                                    </a>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="employers-details-content">
+                        <h3>Persyaratan Kerja</h3>
+                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+                            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+                            et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+                            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                            diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+                            voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Lorem ipsum dolor sit
+                            amet, consetetur</p>
+
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur consequatur quis suscipit
+                            similique totam distinctio doloribus, laboriosam numquam vero repudiandae quidem voluptas
+                            deserunt cupiditate saepe explicabo eos, ipsam ratione ullam. totam distinctio doloribus</p>
+
+                        <ul>
+                            <li>Stet clita kasd gubergren, no sea takimata sanctus</li>
+                            <li>Lorem ipsum dolor sit amet lorem ipsum dolor sit amet</li>
+                            <li>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor</li>
+                            <li>Aliquyam erat, sed diam voluptua</li>
+                        </ul>
+
+                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+                            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+                            et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+                            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                            diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+                            voluptua. At vero eos et accusam et justo duo dolores et ea rebum. dolores et ea rebum. Stet
+                            clita</p>
+
                     </div>
                 </div>
 
                 <div class="col-lg-4">
-                    <div class="employers-listing-sidebar">
-                        <h3>Cari Divisi</h3>
+                    <div class="employers-details-sidebar">
+                        <div class="employer-widget">
+                            <h3>Bagikan Lowongan Ini</h3>
 
-                        <form class="search-form">
-
-                            <div class="form-group">
-                                <label>Cari Berdasarkan Divisi</label>
-                                <select>
-                                    <option value="1">UX/UI Designer</option>
-                                    <option value="2">Web Developer</option>
-                                    <option value="3">Web Designer</option>
-                                    <option value="4">Software Developer</option>
-                                    <option value="5">SEO</option>
-                                </select>
-                            </div>
-
-                            <button class="default-btn">
-                                Search
-                            </button>
-                        </form>
-                    </div>
-
-                    <style>
-                        .status {
-                            display: inline-block;
-                            width: 92px;
-                            height: 28px;
-                            padding-left: 12px;
-                            padding-right: 20px;
-                            padding-top: 2px;
-                            padding-bottom: 1px;
-                            color: white;
-                            border-radius: 4px;
-                        }
-                    </style>
-
-                    <div class="employers-listing-sidebar mt-5">
-                        <h3>Lamaran Ditampung</h3>
-                        <div class="col-lg-12 mt-3">
-                            <div class="d-flex justify-content-between">
-                                <h5><a href="" style="color: black">IT Security</a></h5>
-                                <span class="status bg-warning">Menunggu</span>
-                            </div>
-                            <span class="sub-title text-primary mb-2">Web Developer</span>
-                            <ul>
-                                <li class="mb-2 mt-2"><span>Tanggal Wanwancara :</span> 23 Agustus 2023</li>
-                                <li class="mb-2"><span>Gaji :</span> Rp. 12.000.000</li>
-                                <li class="mb-2"><span>Slot Tersedia : </span> 14</li>
-                                <div class="d-flex justify-content-between">
-                                    <li class="mb-2"><span>Tipe Kerja : </span>Kontrak</li>
-                                    <li class="ml-auto" style="margin-left: 300px;"><button
-                                            class="btn btn-primary">Detail</button>
-                                    </li>
-                                    <li class="ml-1"><button class="btn btn-danger">Batal</button>
-                                    </li>
-                                </div>
+                            <ul class="social-icon">
+                                <li>
+                                    <a href="#">
+                                        <i class="bx bxl-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="bx bxl-instagram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="bx bxl-linkedin-square"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="bx bxl-twitter"></i>
+                                    </a>
+                                </li>
                             </ul>
-
                         </div>
+
+                        <div class="employer-widget">
+                            <h3>Detail Lowongan Perusahaan</h3>
+
+                            <ul class="overview">
+                                <li>
+                                    Divisi
+                                    <span>: Web Developer</span>
+                                </li>
+                                <li>
+                                    Gaji
+                                    <span>: 23 Desember 2023</span>
+                                </li>
+                                <li>
+                                    Tipe Kerja
+                                    <span>: Kontrak</span>
+                                </li>
+                                <li>
+                                    Lokasi
+                                    <span>: Jakarta Barat</span>
+                                </li>
+
+                            </ul>
+                        </div>
+
+
                     </div>
                 </div>
-
-
             </div>
         </div>
     </section>
-    <!-- End Employers Listing Area -->
+    <!-- End Employers Details Area -->
 
     <!-- Start Subscribe Area -->
 
@@ -378,11 +357,12 @@
     </div>
     <!-- End Footer Area -->
 
+
     <!-- Start Copy Right Area -->
     <div class="copy-right-area">
         <div class="container">
             <p>
-                © 2021 Jubi Is Proudly Created By
+                © 2020 Jubi Is Proudly Created By
                 <a href="https://envytheme.com/" target="_blank">EnvyTheme</a>
             </p>
         </div>
@@ -395,8 +375,6 @@
         <i class="bx bx-chevrons-up"></i>
     </div>
     <!-- End Go Top Area -->
-
-
     <!-- Jquery Min JS -->
     <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="assets1/js/jquery.min.js"></script>
@@ -433,5 +411,7 @@
     <!-- Custom JS -->
     <script src="assets1/js/custom.js"></script>
 </body>
+
+<!-- Mirrored from templates.envytheme.com/jubi/rtl/employers-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 26 Aug 2023 07:41:52 GMT -->
 
 </html>

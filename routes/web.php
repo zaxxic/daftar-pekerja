@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\dashboardUserController;
+use App\Http\Controllers\detailLowonganController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\registerController;
@@ -32,7 +34,14 @@ Route::resource('register', registerController::class);
 Route::get('register' , [registerController::class , 'index'])->name('register');
 
 Route::get('/login', [loginController::class, 'showLogin'])->name('login');
+
 Route::post('/form-login', [loginController::class, 'login'])->name('fromLogin');
+
+Route::resource('dashboard-user', dashboardUserController::class);
+Route::get('/dashboard-user', [dashboardUserController::class, 'index'])->name('dashboard-user');
+
+route::resource('detail-lowongan', detailLowonganController::class);
+
 
 
 Route::get('/profile', [ProfileController::class, 'showProfile'])->name('login');
