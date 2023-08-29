@@ -64,7 +64,8 @@
                                     <div class="d-flex col-lg-12 justify-content-between">
                                         <div class="mb-3 col-lg-5">
                                             <div class="form-group">
-                                                <label for="name">Nama <span style="color: red">*</span></label>
+                                                <label for="email" class="form-label">Nama <span
+                                                    style="color: red;">*</span></label>
                                                 <input type="text" name="name"
                                                     class="form-control @error('name') is-invalid @enderror"
                                                     value="{{ old('name') }}">
@@ -123,7 +124,7 @@
                                         @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Masukkan CV <span
+                                        <label for="exampleInputEmail1" class="form-label">Masukkan CV (wajib pdf)<span
                                                 style="color: red;">*</span></label>
                                         <input type="file" class="form-control @error('cv') is-invalid @enderror"
                                         value="{{ old('cv') }}" id="cv" name="cv"
@@ -134,7 +135,7 @@
                                     </div>
                                     <div class="d-flex col-lg-12 justify-content-between">
                                         <div class="mb-3 col-lg-5">
-                                            <label for="exampleInputEmail1" class="form-label">Masukan Lamaran Kerja
+                                            <label for="exampleInputEmail1" class="form-label">Masukan Lamaran Kerja (wajib pdf)
                                                 <span style="color: red;">*</span></label>
                                             <input type="file" class="form-control @error('lamaran') is-invalid @enderror"
                                                 value="{{ old('lamaran') }}" id="lamaran" name="lamaran"

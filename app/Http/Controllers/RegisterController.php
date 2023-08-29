@@ -32,7 +32,7 @@ class RegisterController extends Controller
             ],
             [
                 'name.required' => 'Nama Wajib Diisi',
-                
+                'alamat.rewuired'=>'Alamat wajib di isi',
                 'email.required' => 'Email Wajib Diisi',
                 'email.unique' => 'Email Sudah Terdaftar',
                 'jenis_kelamin.required' => 'Jenis Kelamin Wajib Diisi',
@@ -73,6 +73,6 @@ class RegisterController extends Controller
             'role' => $request->role,
             'password' => Hash::make($request->password),
         ]);
-        return redirect('register')->with('success', 'Tunggu akun anda diterima ketika sudah di kirim email');
+        return redirect('login')->with('success', 'Akun Anda berhasil dibuat. Silakan masuk dengan akun yang baru saja Anda buat.');
     }
 }
