@@ -29,6 +29,7 @@ Route::get('/cek', function () {
 // Route::resource('login', loginController::class);
 
 Route::resource('register', registerController::class);
+Route::get('register' , [registerController::class , 'index'])->name('register');
 
 Route::get('/login', [loginController::class, 'showLogin'])->name('login');
 Route::post('/form-login', [loginController::class, 'login'])->name('fromLogin');

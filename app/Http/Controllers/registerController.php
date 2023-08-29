@@ -16,7 +16,8 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-        Validator::make($request->all(),
+        Validator::make(
+            $request->all(),
             [
                 'name' => 'required',
                 'email' => 'required|unique:users,email',
@@ -48,6 +49,9 @@ class RegisterController extends Controller
             ]
         );
         
+        $image = $request->file('foto');
+        $image->storeAs('public/foto_user', $image->hashName());
+
         User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -56,7 +60,7 @@ class RegisterController extends Controller
             'no_telp' => $request->no_telp,
             'cv' => $request->cv,
             'lamaran' => $request->lamaran,
-            'foto' => $request->foto,
+            'foto' => $image,
             'role' => $request->role,
             'password' => Hash::make($request->password),
         ]);
