@@ -30,3 +30,4 @@ Route::get('/cek', function () {
 Route::resource('login', loginController::class);
 
 Route::resource('register', registerController::class);
+Route::get('register' , [registerController::class , 'index'])->name('register');

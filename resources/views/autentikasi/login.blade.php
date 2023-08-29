@@ -46,15 +46,17 @@
                                     <img src="{{ asset('assets/dist/images/hummas.png') }}" width="200"
                                         alt="" />
                                 </a>
-                                <form>
+                                <form action="" method="POST">
+                                    @csrf
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Username</label>
+                                        <label for="exampleInputEmail1" class="form-label">Email</label>
                                         <input type="email" class="form-control" id="exampleInputEmail1"
-                                            aria-describedby="emailHelp">
+                                            aria-describedby="emailHelp" name="email">
                                     </div>
                                     <div class="mb-4">
-                                        <label for="exampleInputPassword1" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="exampleInputPassword1">
+                                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="exampleInputPassword1"
+                                            name="password">
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mb-4">
                                         <div class="form-check">
