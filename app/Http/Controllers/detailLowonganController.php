@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lowongan;
 use Illuminate\Http\Request;
 
 class detailLowonganController extends Controller
@@ -10,8 +11,7 @@ class detailLowonganController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('user.detail-lowongan');
+    { 
     }
 
     /**
@@ -35,7 +35,8 @@ class detailLowonganController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $lowongan = Lowongan::findOrFail($id);
+        return view('user.detail-lowongan', compact('lowongan'));
     }
 
     /**

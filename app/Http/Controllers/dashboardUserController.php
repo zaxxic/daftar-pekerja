@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Divisi;
+use App\Models\Lowongan;
 use Illuminate\Http\Request;
 
 class dashboardUserController extends Controller
@@ -11,7 +13,9 @@ class dashboardUserController extends Controller
      */
     public function index()
     {
-        return view('user.index');
+
+        $lowongan = Lowongan::all();
+        return view('user.index', compact('lowongan'));
     }
 
     /**
@@ -35,7 +39,7 @@ class dashboardUserController extends Controller
      */
     public function show(string $id)
     {
-        //
+    
     }
 
     /**

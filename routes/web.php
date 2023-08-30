@@ -49,6 +49,7 @@ Route::resource('dashboard-user', dashboardUserController::class);
 Route::get('/dashboard-user', [dashboardUserController::class, 'index'])->name('dashboard-user');
 
 route::resource('detail-lowongan', detailLowonganController::class);
+Route::get('/detail-lowongan{id}', [detailLowonganController::class, 'show'])->name('detailLowongan');
 
 
 

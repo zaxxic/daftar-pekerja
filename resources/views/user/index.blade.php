@@ -90,6 +90,10 @@
     </div>
     <!-- End Page Title Area -->
 
+    @php
+        use Carbon\Carbon;
+    @endphp
+
     <!-- Start Employers Listing Area -->
     <section class="employers-listing-area ptb-100" style="direction: ltr;">
         <div class="container">
@@ -97,67 +101,45 @@
                 <div class="col-lg-8">
                     <div class="shorting">
                         <div class="row">
-                            <div class="col-12 mix a s c">
-                                <div class="hot-jobs-list">
-                                    <div class="row align-items-center">
-
-                                        <div class="col-lg-12">
-                                            <div class="hot-jobs-content">
-                                                <div class="d-flex justify-content-between" style="color: black">
-                                                    <h3><a href="">IT Security</a></h3>
-                                                    <p><span class="ml-5">Berakhir Pada
-                                                            Tanggal :</span> 24 Agustus
-                                                        2023</p>
-                                                </div>
-                                                <span class="sub-title text-primary mb-1">Web Developer</span>
-                                                <ul>
-                                                    <li><span>Gaji :</span> Rp. 12.000.000</li>
-                                                    <li><span>Slot Tersedia : </span> 14</li>
-                                                    <div class="d-flex justify-content-between">
-                                                        <li><span>Tipe Kerja : </span>Kontrak</li>
-                                                        <li class="ml-auto" style="margin-left: 300px;"><button
-                                                                class="default-btn">Detail</button>
-                                                        </li>
+                            @forelse ($lowongan as $item)
+                                <div class="col-12 mix a s c">
+                                    <div class="hot-jobs-list">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-12">
+                                                <div class="hot-jobs-content">
+                                                    <div class="d-flex justify-content-between" style="color: black">
+                                                        <h3><a href="">{{ $item->judul }}</a></h3>
+                                                        <p><span class="ml-5 mr-1">Berakhir Pada
+                                                                Tanggal
+                                                                :
+                                                            </span>{{ Carbon::parse($item->batas)->format('d M Y') }}
+                                                        </p>
                                                     </div>
-                                                </ul>
+                                                    <span
+                                                        class="sub-title text-primary mb-1">{{ $item->Divisi->divisi }}
+                                                    </span>
+                                                    <ul>
+                                                        <li><span>Gaji :</span> Rp. {{ $item->gaji }}</li>
+                                                        <li><span>Slot Tersedia : </span>{{ $item->slot }}</li>
+                                                        <div class="d-flex justify-content-between">
+                                                            <li><span>Tipe Kerja : </span>{{ $item->tipe }}</li>
+                                                            <li class="ml-auto" style="margin-left: 300px;"><button
+                                                                    class="default-btn"><a
+                                                                        href="{{ route('detailLowongan', $item->id) }}"
+                                                                        class="text-white">Detail</a></button>
+                                                            </li>
+                                                        </div>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
 
                                     </div>
-
                                 </div>
-                            </div>
 
-                            <div class="col-12 mix a s c">
-                                <div class="hot-jobs-list">
-                                    <div class="row align-items-center">
+                            @empty
+                            @endforelse
 
-                                        <div class="col-lg-12">
-                                            <div class="hot-jobs-content">
-                                                <div class="d-flex justify-content-between" style="color: black">
-                                                    <h3><a href="">IT Security</a></h3>
-                                                    <p><span class="ml-5">Berakhir Pada
-                                                            Tanggal :</span> 24 Agustus
-                                                        2023</p>
-                                                </div>
-                                                <span class="sub-title text-primary mb-1">Web Developer</span>
-                                                <ul>
-                                                    <li><span>Gaji :</span> Rp. 12.000.000</li>
-                                                    <li><span>Slot Tersedia : </span> 14</li>
-                                                    <div class="d-flex justify-content-between">
-                                                        <li><span>Tipe Kerja : </span>Kontrak</li>
-                                                        <li class="ml-auto" style="margin-left: 300px;"><button
-                                                                class="default-btn">Detail</button>
-                                                        </li>
-                                                    </div>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
 
 
 
