@@ -73,7 +73,7 @@
                                         Sekarang</a>
                                     <div class="d-flex align-items-center justify-content-center">
                                         <p class="fs-4 mb-0 fw-medium">Belum punya akun?</p>
-                                        <a class="text-primary fw-medium ms-2" href="">Daftar
+                                        <a class="text-primary fw-medium ms-2" href="{{ route('register') }}">Daftar
                                             Sekarang</a>
                                     </div>
                                 </form>

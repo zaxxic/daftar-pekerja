@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Vacancy;
+use App\Models\Division;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class dashboardAdminController extends Controller
 {
@@ -11,8 +15,43 @@ class dashboardAdminController extends Controller
      */
     public function index()
     {
-        //
+        $menunggu = User::where('status','menunggu')->count();
+        $terima = User::where('status','diterima')->count();
+        $tolak = User::where('status','ditolak')->count();
+        $divisi = Division::all()->count();
+        $lowongan = Vacancy::all()->count();
+
+        $data = User::select(
+            DB::raw('MONTH(created_at) as month'),
+            DB::raw('YEAR(created_at) as year'),
+            'status',
+            DB::raw('count(*) as total')
+        )
+        ->whereIn('status', ['menunggu', 'diterima', 'ditolak'])
+        ->groupBy('year', 'month', 'status')
+        ->get();
+    
+        $processedData = [];
+    
+        foreach ($data as $item) {
+            $yearMonth = $item->year . '-' . str_pad($item->month, 2, '0', STR_PAD_LEFT);
+            if (!isset($processedData[$yearMonth])) {
+                $processedData[$yearMonth] = [
+                    'month' => $yearMonth,
+                    'menunggu' => 0,
+                    'diterima' => 0,
+                    'ditolak' => 0,
+                ];
+            }
+            $processedData[$yearMonth][$item->status] = $item->total;
+        }
+    
+        $chartData = array_values($processedData);
+    
+
+        return view('admin-dashboard.index', compact('menunggu', 'terima', 'tolak', 'divisi', 'lowongan', 'chartData'));
     }
+
 
     /**
      * Show the form for creating a new resource.

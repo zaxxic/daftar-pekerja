@@ -5,6 +5,7 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\DivisiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApprovalController;
+use App\Http\Controllers\dashboardAdminController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\PekerjaController;
 use App\Http\Controllers\PekerjaDitolakController;
@@ -29,9 +30,8 @@ use App\Models\Lowongan;
 Route::get('/visi-misi', function () {
     return view('visi-misi');
 });
-Route::get('/dashboard-admin', function () {
-    return view('admin-dashboard.index');
-});
+
+Route::get('/dashboard-admin', [dashboardAdminController::class, 'index'])->name('dashboard-user');
 
 Route::get('/cek', function () {
     return view('cek-daftar');
