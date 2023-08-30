@@ -189,8 +189,7 @@
                             <div class="form-group">
                                 <label>Cari Berdasarkan Tipe Pekerjaan</label>
                                 <select>
-                                    <option value="1">Kontrak</option>
-                                    <option value="2">Permanen</option>
+                                    <option value=""></option>
                                 </select>
                             </div>
 
