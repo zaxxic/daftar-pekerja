@@ -1,4 +1,4 @@
-<header class="app-header" style="position: fixed; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+<header class="app-header" style=" box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
     <nav class="navbar navbar-expand-xl navbar-light container-fluid px-0">
         <ul class="navbar-nav">
             <li class="nav-item d-none d-xl-block mr-4">

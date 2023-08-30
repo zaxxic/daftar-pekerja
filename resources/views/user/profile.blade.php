@@ -57,7 +57,7 @@
                                     <h5 class="card-title fw-semibold">Ubah Prifile</h5>
                                     <p class="card-subtitle mb-4">Ubah photo profile silahkan masukkan di sini</p>
                                     <div class="text-center">
-                                        <img src="assets/dist/images/profile/user-1.jpg" alt=""
+                                        <img src="{{asset('storage/ . $user->photo')}}" alt=""
                                             class="img-fluid rounded-circle" width="120" height="120">
                                         <div class="d-flex align-items-center justify-content-center my-4 gap-3">
                                             <input type="file" name="foto" class="form-control"
