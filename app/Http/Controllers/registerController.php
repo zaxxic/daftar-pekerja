@@ -47,7 +47,7 @@ class RegisterController extends Controller
                 'foto.required' => 'Foto Diri Wajib Diisi',
                 'foto.mimes' => 'Foto Diri Harus Berformat JPG,PNG,JPEG',
                 'password.required' => 'Password harus di isi',
-                'password.min' => 'Password minimal 6 karakter',
+                'password.min' => 'Password minimal 3 huruf',
                 'password.confirmed' => 'Konfirmasi kata sandi tidak sesuai.',
             ]
         );
@@ -60,17 +60,7 @@ class RegisterController extends Controller
         }
 
         $image = $request->file('foto');
-        $randomFileName = uniqid() . '.' . $image->getClientOriginalExtension();
-        $image->storeAs('public/foto_user', $randomFileName);
-
-        $cv = $request->file('cv');
-        $randomCvName = uniqid() . '.' . $cv->getClientOriginalExtension();
-        $cv->storeAs('public/cv', $randomCvName);
-
-        $lamaran = $request->file('lamaran');
-        $randomLamaranName = uniqid() . '.' . $lamaran->getClientOriginalExtension();
-        $lamaran->storeAs('public/lamaran', $randomLamaranName);
-
+        $image->storeAs('public/foto_user', $image->hashName());
 
         User::create([
             'name' => $request->name,
@@ -78,9 +68,9 @@ class RegisterController extends Controller
             'alamat' => $request->alamat,
             'jenis_kelamin' => $request->jenis_kelamin,
             'no_telp' => $request->no_telp,
-            'cv' => $randomCvName,
-            'lamaran' => $randomLamaranName,
-            'foto' => $randomFileName,
+            'cv' => $request->cv,
+            'lamaran' => $request->lamaran,
+            'foto' => $image,
             'role' => $request->role,
             'password' => Hash::make($request->password),
         ]);
