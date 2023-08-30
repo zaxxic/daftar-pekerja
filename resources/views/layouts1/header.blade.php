@@ -50,7 +50,7 @@
                             aria-labelledby="drop1">
                             <div class="profile-dropdown position-relative" data-simplebar>
                                 <div class="py-3 px-7 pb-0">
-                                    <h5 class="mb-0 fs-5 fw-semibold">User Profile</h5>
+                                    <h5 class="mb-0 fs-5 fw-semibold">User Profil</h5>
                                 </div>
                                 <div class="d-flex align-items-center py-9 mx-7 border-bottom">
                                     <img src="assets/dist/images/profile/user-1.jpg" class="rounded-circle"
@@ -70,32 +70,7 @@
                                             <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-account.svg"
                                                 alt="" width="24" height="24">
                                         </span>
-                                        <div class="w-75 d-inline-block v-middle ps-3">
-                                            <h6 class="mb-1 bg-hover-primary fw-semibold"> My Profile </h6>
-                                            <span class="d-block text-dark">Account Settings</span>
-                                        </div>
-                                    </a>
-                                    <a href="app-email.html" class="py-8 px-7 d-flex align-items-center">
-                                        <span
-                                            class="d-flex align-items-center justify-content-center bg-light rounded-1 p-6">
-                                            <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-inbox.svg"
-                                                alt="" width="24" height="24">
-                                        </span>
-                                        <div class="w-75 d-inline-block v-middle ps-3">
-                                            <h6 class="mb-1 bg-hover-primary fw-semibold">My Inbox</h6>
-                                            <span class="d-block text-dark">Messages & Emails</span>
-                                        </div>
-                                    </a>
-                                    <a href="app-notes.html" class="py-8 px-7 d-flex align-items-center">
-                                        <span
-                                            class="d-flex align-items-center justify-content-center bg-light rounded-1 p-6">
-                                            <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-tasks.svg"
-                                                alt="" width="24" height="24">
-                                        </span>
-                                        <div class="w-75 d-inline-block v-middle ps-3">
-                                            <h6 class="mb-1 bg-hover-primary fw-semibold">My Task</h6>
-                                            <span class="d-block text-dark">To-do and Daily Tasks</span>
-                                        </div>
+
                                     </a>
                                 </div>
                                 <div class="d-grid py-4 px-7 pt-8">

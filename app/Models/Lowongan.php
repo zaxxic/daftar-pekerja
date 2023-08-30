@@ -14,6 +14,6 @@ class Lowongan extends Model
     ];
     public function Divisi()
     {
-        return $this->belongsTo(Divisi::class, 'Devisi_id');
+        return $this->belongsTo(Divisi::class, 'devisi_id');
     }
 }

@@ -6,6 +6,8 @@ use App\Http\Controllers\DivisiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\LowonganController;
+use App\Http\Controllers\PekerjaController;
+use App\Http\Controllers\PekerjaDitolakController;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\dashboardUserController;
 use App\Http\Controllers\detailLowonganController;
@@ -49,11 +51,7 @@ Route::resource('dashboard-user', dashboardUserController::class);
 Route::get('/dashboard-user', [dashboardUserController::class, 'index'])->name('dashboard-user');
 
 route::resource('detail-lowongan', detailLowonganController::class);
-
-
-
-
-
+Route::get('/detail-lowongan{id}', [detailLowonganController::class, 'show'])->name('detailLowongan');
 
 Route::group(['middleware' => ['auth', 'user_role']], function () {
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
@@ -69,17 +67,20 @@ Route::get('/', function () {
     return view('index');
 })->name('dashboard');
 
-
 Route::get('approval', [ApprovalController::class, 'index'])->name('approval');
 Route::patch('acc/{id}', [ApprovalController::class, 'update'])->name('acc');
-Route::patch('reject', [ApprovalController::class, 'index'])->name('reject');
+Route::patch('reject/{id}', [ApprovalController::class, 'reject'])->name('reject');
 Route::get('detail-approval', [ApprovalController::class, 'show'])->name('detail-approval');
 
+//Pekerja yang sudah diterima / berstatus diterima
 Route::get('pekerja', [PekerjaController::class, 'index'])->name('pekerja');
+Route::patch('nonactive/{id}', [PekerjaController::class, 'update'])->name('nonactive');
+Route::get('detail-pekerja', [ApprovalController::class, 'show'])->name('detail-pekerja');
+
+//Pekerja yang ditolak dan dinonaktifkan / berstatus ditolak
+Route::get('pekerja-ditolak', [PekerjaDitolakController::class, 'index'])->name('pekerja-ditolak');
 
 Route::get('error-403', function () {
     return view('403');
 })->name('unauthorized');
-Route::get('pekerja', [PekerjaController::class, 'index'])->name('pekerja');
 
-Route::get('detail', [LowonganController::class, 'detail'])->name('detail');

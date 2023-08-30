@@ -20,6 +20,9 @@
         <a class="nav-link" href="{{ route('pekerja') }}">Pekerja</a>
       </li>
       <li class="nav-item dropdown-hover d-none d-xl-block">
+        <a class="nav-link" href="{{ route('pekerja-ditolak') }}">Pekerja Ditolak</a>
+      </li>
+      <li class="nav-item dropdown-hover d-none d-xl-block">
         <a class="nav-link" href="{{ route('lowongan.index') }}">Lowongan</a>
       </li>
     </ul>
