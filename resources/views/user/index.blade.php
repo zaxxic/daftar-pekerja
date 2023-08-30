@@ -75,7 +75,7 @@
     </style>
 
     <!-- Start Page Title Area -->
-    <div class=" kerja" style="direction: ltr; margin-top: -20px;">
+    <div class=" kerja" style="direction: ltr; margin-top: -45px;">
         <div class="container" style="margin-bottom: -100px; margin-left: -50px;">
             <div class="banner-content">
                 <h1 style="margin-top: -40px;  font-weight: bolder; font-size: 50px;">Cari Lowongan

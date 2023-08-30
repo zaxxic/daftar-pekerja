@@ -3,7 +3,7 @@
 
 <head>
     <!--  Title -->
-    <title>Mischool</title>
+    <title>Dashboard-Admin</title>
     <!--  Required Meta Tag -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -91,7 +91,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
     <script>
-        CKEDITOR.replace( 'content' );
+        CKEDITOR.replace('content');
     </script>
 
 

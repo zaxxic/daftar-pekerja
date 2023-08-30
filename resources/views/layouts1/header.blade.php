@@ -9,10 +9,10 @@
         </ul>
         <ul class="navbar-nav quick-links d-none d-xl-flex">
             <li class="nav-item dropdown-hover d-none d-xl-block">
-                <a class="nav-link" href="app-chat.html">Dashboard</a>
+                <a class="nav-link" href="">Dashboard</a>
             </li>
             <li class="nav-item dropdown-hover d-none d-xl-block">
-                <a class="nav-link" href="app-calendar.html">Profile</a>
+                <a class="nav-link" href="{{ route('profile') }}">Profile</a>
             </li>
         </ul>
         <div class="d-block d-xl-none mt-1 mb-2">
@@ -59,36 +59,13 @@
                                         <h5 class="mb-1 fs-3">Mathew Anderson</h5>
                                         <span class="mb-1 d-block text-dark">Designer</span>
                                         <p class="mb-0 d-flex text-dark align-items-center gap-2">
-                                            <i class="ti ti-mail fs-4"></i> info@modernize.com
+                                            <i class="ti ti-mail fs-5"></i> info@modernize.com
                                         </p>
                                     </div>
                                 </div>
-                                <div class="message-body">
-                                    <a href="page-user-profile.html" class="py-8 px-7 mt-8 d-flex align-items-center">
-                                        <span
-                                            class="d-flex align-items-center justify-content-center bg-light rounded-1 p-6">
-                                            <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-account.svg"
-                                                alt="" width="24" height="24">
-                                        </span>
 
-                                    </a>
-                                </div>
                                 <div class="d-grid py-4 px-7 pt-8">
-                                    <div
-                                        class="upgrade-plan bg-light-primary position-relative overflow-hidden rounded-4 p-4 mb-9">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <h5 class="fs-4 mb-3 w-50 fw-semibold text-dark">Unlimited Access</h5>
-                                                <button class="btn btn-primary text-white">Upgrade</button>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="m-n4">
-                                                    <img src="../../dist/images/backgrounds/unlimited-bg.png"
-                                                        alt="" class="w-100">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                                         @csrf
                                         <button type="submit" class="btn btn-outline-primary">Log Out</button>
