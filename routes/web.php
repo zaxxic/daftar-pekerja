@@ -56,6 +56,7 @@ Route::get('/detail-lowongan{id}', [detailLowonganController::class, 'show'])->n
 Route::group(['middleware' => ['auth', 'user_role']], function () {
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
     Route::post('/ubah-password', [ProfileController::class, 'updatePassword'])->name('ubah-password');
+    Route::put('/ubah-profile', [ProfileController::class, 'updateProfile'])->name('ubah-profile');
     
 });
 
