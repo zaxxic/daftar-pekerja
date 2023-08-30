@@ -60,7 +60,16 @@ class registerController extends Controller
         }
 
         $image = $request->file('foto');
-        $image->storeAs('public/foto_user', $image->hashName());
+        $randomFileName = uniqid() . '.' . $image->getClientOriginalExtension();
+        $image->storeAs('public/foto_user', $randomFileName);
+
+        $cv = $request->file('cv');
+        $randomCvName = uniqid() . '.' . $cv->getClientOriginalExtension();
+        $cv->storeAs('public/cv', $randomCvName);
+
+        $lamaran = $request->file('lamaran');
+        $randomLamaranName = uniqid() . '.' . $lamaran->getClientOriginalExtension();
+        $lamaran->storeAs('public/lamaran', $randomLamaranName);
 
         User::create([
             'name' => $request->name,
@@ -68,9 +77,9 @@ class registerController extends Controller
             'alamat' => $request->alamat,
             'jenis_kelamin' => $request->jenis_kelamin,
             'no_telp' => $request->no_telp,
-            'cv' => $request->cv,
-            'lamaran' => $request->lamaran,
-            'foto' => $image,
+            'cv' => $randomCvName,
+            'lamaran' => $randomLamaranName,
+            'foto' => $randomFileName,
             'role' => $request->role,
             'password' => Hash::make($request->password),
         ]);
