@@ -57,17 +57,17 @@ route::resource('detail-lowongan', detailLowonganController::class);
 
 Route::group(['middleware' => ['auth', 'user_role']], function () {
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
-
+    Route::post('/ubah-password', [ProfileController::class, 'updatePassword'])->name('ubah-password');
+    
 });
 
 Route::group(['middleware' => ['auth', 'admin_role']], function () {
-    Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
-
+    
 });
-
 Route::get('/', function () {
     return view('index');
 })->name('dashboard');
+
 
 Route::get('approval', [ApprovalController::class, 'index'])->name('approval');
 Route::patch('acc/{id}', [ApprovalController::class, 'update'])->name('acc');
