@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class RegisterController extends Controller
+class registerController extends Controller
 {
     public function index()
     {
@@ -25,15 +25,15 @@ class RegisterController extends Controller
                 'email' => 'required|unique:users,email',
                 'alamat' => 'required',
                 'jenis_kelamin' => 'required',
-                'no_telp' => 'required|numeric|regex:/^[0-9]+$/',
+                'no_telp' => 'required|numeric|regex:/^\d*$/',
                 'cv' => 'required|mimes:pdf',
                 'lamaran' => 'required|mimes:pdf',
                 'foto' => 'required|mimes:png,jpg,jpeg',
-                'password' => ['required', 'string', 'min:6', 'confirmed'],
+                'password' => ['required', 'string', 'min:3', 'confirmed'],
             ],
             [
                 'name.required' => 'Nama Wajib Diisi',
-                'alamat.rewuired' => 'Alamat wajib di isi',
+                'alamat.rewuired'=>'Alamat wajib di isi',
                 'email.required' => 'Email Wajib Diisi',
                 'email.unique' => 'Email Sudah Terdaftar',
                 'jenis_kelamin.required' => 'Jenis Kelamin Wajib Diisi',
@@ -47,7 +47,7 @@ class RegisterController extends Controller
                 'foto.required' => 'Foto Diri Wajib Diisi',
                 'foto.mimes' => 'Foto Diri Harus Berformat JPG,PNG,JPEG',
                 'password.required' => 'Password harus di isi',
-                'password.min' => 'Password minimal 6 karakter',
+                'password.min' => 'Password minimal 3 huruf',
                 'password.confirmed' => 'Konfirmasi kata sandi tidak sesuai.',
             ]
         );
@@ -60,17 +60,7 @@ class RegisterController extends Controller
         }
 
         $image = $request->file('foto');
-        $randomFileName = uniqid() . '.' . $image->getClientOriginalExtension();
-        $image->storeAs('public/foto_user', $randomFileName);
-
-        $cv = $request->file('cv');
-        $randomCvName = uniqid() . '.' . $cv->getClientOriginalExtension();
-        $cv->storeAs('public/cv', $randomCvName);
-
-        $lamaran = $request->file('lamaran');
-        $randomLamaranName = uniqid() . '.' . $lamaran->getClientOriginalExtension();
-        $lamaran->storeAs('public/lamaran', $randomLamaranName);
-
+        $image->storeAs('public/foto_user', $image->hashName());
 
         User::create([
             'name' => $request->name,
@@ -78,12 +68,14 @@ class RegisterController extends Controller
             'alamat' => $request->alamat,
             'jenis_kelamin' => $request->jenis_kelamin,
             'no_telp' => $request->no_telp,
-            'cv' => $randomCvName,
-            'lamaran' => $randomLamaranName,
-            'foto' => $randomFileName,
+            'cv' => $request->cv,
+            'lamaran' => $request->lamaran,
+            'foto' => $image,
             'role' => $request->role,
             'password' => Hash::make($request->password),
         ]);
         return redirect('login')->with('success', 'Akun Anda berhasil dibuat. Silakan masuk dengan akun yang baru saja Anda buat.');
     }
+
+
 }

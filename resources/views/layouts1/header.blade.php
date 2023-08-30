@@ -1,4 +1,4 @@
-<header class="app-header" style="position: fixed; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+<header class="app-header" style=" box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
     <nav class="navbar navbar-expand-xl navbar-light container-fluid px-0">
         <ul class="navbar-nav">
             <li class="nav-item d-none d-xl-block mr-4">
@@ -74,7 +74,25 @@
                                     </a>
                                 </div>
                                 <div class="d-grid py-4 px-7 pt-8">
-                                    <a href="authentication-login.html" class="btn btn-outline-primary">Log Out</a>
+                                    <div
+                                        class="upgrade-plan bg-light-primary position-relative overflow-hidden rounded-4 p-4 mb-9">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h5 class="fs-4 mb-3 w-50 fw-semibold text-dark">Unlimited Access</h5>
+                                                <button class="btn btn-primary text-white">Upgrade</button>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="m-n4">
+                                                    <img src="../../dist/images/backgrounds/unlimited-bg.png"
+                                                        alt="" class="w-100">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                                        @csrf
+                                        <button type="submit" class="btn btn-outline-primary">Log Out</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
