@@ -50,7 +50,7 @@
                     <div class="col-lg-6 d-flex align-items-stretch">
                         <div class="card w-100 position-relative overflow-hidden">
                             <div class="card-body p-4">
-                                <form action="" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('ubah-profile') }}" method="POST" enctype="multipart/form-data">
                                     {{-- <form action="{{ route('update-profile') }}" method="POST"> --}}
                                     @method('PUT')
                                     @csrf
@@ -117,7 +117,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="d-flex align-items-center justify-content-end mt-4 gap-3">
-                                        <button class="btn btn-primary">Save</button>
+                                        <button type="submit" class="btn btn-primary">Save</button>
                                         <button class="btn btn-light-danger text-danger">Cancel</button>
                                     </div>
                                 </div>
