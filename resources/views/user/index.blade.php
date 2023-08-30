@@ -199,6 +199,25 @@
                         </form>
                     </div>
 
+                    <div class="employers-listing-sidebar mt-5">
+                        <h3>Cari Tipe Kerja</h3>
+
+                        <form class="search-form">
+
+                            <div class="form-group">
+                                <label>Cari Berdasarkan Tipe Pekerjaan</label>
+                                <select>
+                                    <option value="1">Kontrak</option>
+                                    <option value="2">Permanen</option>
+                                </select>
+                            </div>
+
+                            <button class="default-btn">
+                                Search
+                            </button>
+                        </form>
+                    </div>
+
                     <style>
                         .status {
                             display: inline-block;
