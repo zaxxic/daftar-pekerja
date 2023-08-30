@@ -7,6 +7,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\registerController;
+use App\Http\Controllers\dashboardUserController;
+use App\Http\Controllers\detailLowonganController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,7 +70,7 @@ Route::get('/', function () {
 })->name('dashboard');
 
 Route::get('approval', [ApprovalController::class, 'index'])->name('approval');
-Route::patch('acc', [ApprovalController::class, 'update'])->name('acc');
+Route::patch('acc/{id}', [ApprovalController::class, 'update'])->name('acc');
 Route::patch('reject', [ApprovalController::class, 'index'])->name('reject');
 Route::get('detail-approval', [ApprovalController::class, 'show'])->name('detail-approval');
 
@@ -77,3 +79,6 @@ Route::get('pekerja', [PekerjaController::class, 'index'])->name('pekerja');
 Route::get('error-403', function () {
     return view('403');
 })->name('unauthorized');
+Route::get('pekerja', [PekerjaController::class, 'index'])->name('pekerja');
+
+Route::get('detail', [LowonganController::class, 'detail'])->name('detail');
