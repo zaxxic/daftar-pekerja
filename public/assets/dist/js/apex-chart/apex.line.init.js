@@ -93,6 +93,10 @@ $(function () {
         name: "Low - 2013",
         data: [12, 11, 14, 18, 17, 13, 13],
       },
+      {
+        name: "mid - 2013",
+        data: [18, 16, 19, 40, 19, 17, 15],
+      },
     ],
     chart: {
       fontFamily: '"Nunito Sans",sans-serif',
@@ -112,7 +116,7 @@ $(function () {
     },
     colors: ["var(--bs-primary)", "var(--bs-secondary)"],
     dataLabels: {
-      enabled: true,
+      enabled: false,
     },
     stroke: {
       curve: "smooth",
@@ -120,7 +124,7 @@ $(function () {
     grid: {
       borderColor: "transparent",
       row: {
-        colors: ["rgba(0,0,0,0.2)", "transparent"], // takes an array which will be repeated on columns
+        colors: [ "transparent"], // takes an array which will be repeated on columns
         opacity: 0.5,
       },
     },
@@ -186,33 +190,14 @@ $(function () {
   // Zoomable Line Chart -------> LINE CHART
   var options_zoomable = {
     series: [{
-      name: "XYZ MOTORS",
-      data: [{
-          x: "02-10-2017 GMT",
-          y: 34,
-        },
-        {
-          x: "02-11-2017 GMT",
-          y: 43,
-        },
-        {
-          x: "02-12-2017 GMT",
-          y: 31,
-        },
-        {
-          x: "02-13-2017 GMT",
-          y: 43,
-        },
-        {
-          x: "02-14-2017 GMT",
-          y: 33,
-        },
-        {
-          x: "02-15-2017 GMT",
-          y: 52,
-        },
-      ],
-    }, ],
+        name: "High - 2013",
+        data: [28, 29, 33, 36, 32, 32, 33],
+      },
+      {
+        name: "Low - 2013",
+        data: [12, 11, 14, 18, 17, 13, 13],
+      },
+    ],
     chart: {
       fontFamily: '"Nunito Sans",sans-serif',
       type: "area",
@@ -296,7 +281,7 @@ $(function () {
     options_zoomable
   );
   chart_line_zoomable.render();
-
+//  end
   // Gradient Line Chart -------> LINE CHART
   var options_gradient = {
     series: [{
@@ -434,7 +419,7 @@ $(function () {
     }
   }
 
-  getDayWiseTimeSeries(new Date("11 Feb 2017 GMT").getTime(), 10, {
+  getDayWiseTimeSeries(new Date("12 Aug 2017 GMT").getTime(), 10, {
     min: 10,
     max: 90,
   });
@@ -476,15 +461,15 @@ $(function () {
         enabled: true,
         easing: "linear",
         dynamicAnimation: {
-          speed: 1000,
+          speed: 10000,
         },
       },
       toolbar: {
-        show: false,
+        show: true,
       },
 
       zoom: {
-        enabled: false,
+        enabled: true,
       },
     },
     grid: {

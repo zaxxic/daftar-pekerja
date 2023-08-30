@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\ApprovalController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\DivisiController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ApprovalController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\registerController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/visi-misi', function () {
     return view('visi-misi');
 });
+Route::get('/dashboard-admin', function () {
+    return view('admin-dashboard.index');
+});
 
 Route::get('/cek', function () {
     return view('cek-daftar');
@@ -31,6 +35,7 @@ Route::get('/cek', function () {
 // Route::resource('login', loginController::class);
 
 Route::resource('lowongan', LowonganController::class);
+Route::resource('divisi', DivisiController::class);
 Route::get('register' , [registerController::class , 'index'])->name('register');
 Route::post('register-store' , [registerController::class , 'store'])->name('register-store');
 
@@ -50,12 +55,12 @@ route::resource('detail-lowongan', detailLowonganController::class);
 
 Route::group(['middleware' => ['auth', 'user_role']], function () {
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
-    
+
 });
 
 Route::group(['middleware' => ['auth', 'admin_role']], function () {
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
-    
+
 });
 
 Route::get('/', function () {
@@ -67,7 +72,7 @@ Route::patch('acc', [ApprovalController::class, 'update'])->name('acc');
 Route::patch('reject', [ApprovalController::class, 'index'])->name('reject');
 Route::get('detail-approval', [ApprovalController::class, 'show'])->name('detail-approval');
 
-Route::resource('pekerja', registerController::class);
+Route::get('pekerja', [PekerjaController::class, 'index'])->name('pekerja');
 
 Route::get('error-403', function () {
     return view('403');
