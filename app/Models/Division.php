@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Divisi extends Model
+class Division extends Model
 {
     use HasFactory;
     protected $fillable = [
-       'divisi'
-    ];
+        'divisi'
+     ];
 
-    public function Lowongan()
-    {
-        return $this->hasMany(Lowongan::class);
-    }
+     public function Vacancy()
+     {
+         return $this->hasMany(Vacancy::class);
+     }
 }

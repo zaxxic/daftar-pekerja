@@ -11,6 +11,7 @@ use App\Http\Controllers\PekerjaDitolakController;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\dashboardUserController;
 use App\Http\Controllers\detailLowonganController;
+use App\Models\Lowongan;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,7 @@ Route::get('/cek', function () {
 
 Route::resource('lowongan', LowonganController::class);
 Route::resource('divisi', DivisiController::class);
+Route::delete('hapus-lowongan', [LowonganController::class, 'hapus'])->name('hapus-lowongan');
 Route::get('register' , [registerController::class , 'index'])->name('register');
 Route::post('register-store' , [registerController::class , 'store'])->name('register-store');
 
@@ -57,11 +59,11 @@ Route::group(['middleware' => ['auth', 'user_role']], function () {
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
     Route::post('/ubah-password', [ProfileController::class, 'updatePassword'])->name('ubah-password');
     Route::put('/ubah-profile', [ProfileController::class, 'updateProfile'])->name('ubah-profile');
-    
+
 });
 
 Route::group(['middleware' => ['auth', 'admin_role']], function () {
-    
+
 });
 Route::get('/', function () {
     return view('index');
@@ -84,3 +86,4 @@ Route::get('error-403', function () {
     return view('403');
 })->name('unauthorized');
 
+Route::get('detail', [LowonganController::class, 'detail'])->name('detail');

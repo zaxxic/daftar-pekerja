@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Lowongan;
+use App\Models\Vacancy;
+use App\Models\Division;
 use App\Http\Requests\StoreLowonganRequest;
 use App\Http\Requests\UpdateLowonganRequest;
 use App\Models\Divisi;
@@ -15,8 +16,8 @@ class LowonganController extends Controller
      */
     public function index()
     {
-        $divisi = Divisi::all();
-        $data = Lowongan::all();
+        $divisi = Division::all();
+        $data = Vacancy::all();
         return view('admin-lowongan.lowongan', compact('data','divisi'));
     }
 
@@ -25,7 +26,8 @@ class LowonganController extends Controller
      */
     public function create()
     {
-        return view('admin.lowongan-create');
+        $divisi = Division::all();
+        return view('admin-lowongan.lowongan-create', compact('divisi'));
     }
 
     /**
@@ -46,7 +48,7 @@ class LowonganController extends Controller
         ]);
         $isi = 'kontrak';
         // dd($request);
-        Lowongan::create([
+        Vacancy::create([
             'judul'=>$request->judul,
             'devisi'=>$request->devisi,
             'batas'=>$request->batas,
@@ -64,9 +66,10 @@ class LowonganController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Lowongan $lowongan)
+    public function show()
     {
-        return view('admin.lowongan-detail');
+        dd("aebejwfjghjb");
+        return view('admin-lowongan.lowongan-detail');
     }
 
     /**
@@ -74,7 +77,9 @@ class LowonganController extends Controller
      */
     public function edit(Lowongan $lowongan)
     {
-        return view('admin.lowongan-edit');
+        $divisi = Division::all();
+        $lowongan = Vacancy::find($id);
+        return view('admin-lowongan.lowongan-edit',compact('lowongan','divisi'));
     }
 
     /**
@@ -82,19 +87,53 @@ class LowonganController extends Controller
      */
     public function update(UpdateLowonganRequest $request, Lowongan $lowongan)
     {
-        //
+        $this->validate($request, [
+            'judul'=>'required',
+            'devisi'=>'required',
+            'batas' =>'required',
+            'pekerjaan'=> 'required',
+            'slot' => 'required',
+            'gaji'=> 'required',
+            'tipe'=>'required',
+            'lokasi'=>'required',
+            'content'=>'required'
+        ]);
+        $data = Vacancy::find($id);
+        $data->update([
+            'judul'=>$request->judul,
+            'devisi_id'=>$request->devisi,
+            'batas'=>$request->batas,
+            'pekerja'=>$request->pekerjaan,
+            'slot'=>$request->slot,
+            'gaji'=>$request->gaji,
+            'tipe'=>$request->tipe,
+            'lokasi'=>$request->lokasi,
+            'syarat'=>$request->content
+
+        ]);
+        return redirect()->route('lowongan.index');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Lowongan $lowongan)
+    public function destroy( $id)
     {
-        //
+        $lowongan = Vacancy::find($id);
+        $lowongan->delete();
+        return redirect()->back();
     }
+    // public function delete(Lowongan $lowongan, $id)
+    // {
+    //     dd('awoakwoqk');
+    //     $Vacancy::find($id);
+    //     $lowongan->delete();
+    //     return redirect()->back();
+    // }
 
-    public function detail()
-    {
-        return view('admin.lowongan-detail');
-    }
+    // public function detail()
+    // {
+    //     return view('admin.lowongan-detail');
+    // }
 }
