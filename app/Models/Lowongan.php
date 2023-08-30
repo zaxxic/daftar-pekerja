@@ -10,6 +10,10 @@ class Lowongan extends Model
     use HasFactory;
     // protected $table = 'lowongans';
     protected $fillable = [
-        'judul','devisi','batas','pekerja','slot','gaji','tipe','lokasi','syarat','pembuat'
+        'judul','devisi_id','batas','pekerja','slot','gaji','tipe','lokasi','syarat','pembuat'
     ];
+    public function Divisi()
+    {
+        return $this->belongsTo(Divisi::class, 'Devisi_id');
+    }
 }

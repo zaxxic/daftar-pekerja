@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -28,11 +29,11 @@ class RegisterController extends Controller
                 'cv' => 'required|mimes:pdf',
                 'lamaran' => 'required|mimes:pdf',
                 'foto' => 'required|mimes:png,jpg,jpeg',
-                'password' => ['required', 'string', 'min:3', 'confirmed'],
+                'password' => ['required', 'string', 'min:6', 'confirmed'],
             ],
             [
                 'name.required' => 'Nama Wajib Diisi',
-                'alamat.rewuired'=>'Alamat wajib di isi',
+                'alamat.rewuired' => 'Alamat wajib di isi',
                 'email.required' => 'Email Wajib Diisi',
                 'email.unique' => 'Email Sudah Terdaftar',
                 'jenis_kelamin.required' => 'Jenis Kelamin Wajib Diisi',
@@ -46,7 +47,7 @@ class RegisterController extends Controller
                 'foto.required' => 'Foto Diri Wajib Diisi',
                 'foto.mimes' => 'Foto Diri Harus Berformat JPG,PNG,JPEG',
                 'password.required' => 'Password harus di isi',
-                'password.min' => 'Password minimal 3 huruf',
+                'password.min' => 'Password minimal 6 karakter',
                 'password.confirmed' => 'Konfirmasi kata sandi tidak sesuai.',
             ]
         );
@@ -59,7 +60,17 @@ class RegisterController extends Controller
         }
 
         $image = $request->file('foto');
-        $image->storeAs('public/foto_user', $image->hashName());
+        $randomFileName = uniqid() . '.' . $image->getClientOriginalExtension();
+        $image->storeAs('public/foto_user', $randomFileName);
+
+        $cv = $request->file('cv');
+        $randomCvName = uniqid() . '.' . $cv->getClientOriginalExtension();
+        $cv->storeAs('public/cv', $randomCvName);
+
+        $lamaran = $request->file('lamaran');
+        $randomLamaranName = uniqid() . '.' . $lamaran->getClientOriginalExtension();
+        $lamaran->storeAs('public/lamaran', $randomLamaranName);
+
 
         User::create([
             'name' => $request->name,
@@ -67,9 +78,9 @@ class RegisterController extends Controller
             'alamat' => $request->alamat,
             'jenis_kelamin' => $request->jenis_kelamin,
             'no_telp' => $request->no_telp,
-            'cv' => $request->cv,
-            'lamaran' => $request->lamaran,
-            'foto' => $image,
+            'cv' => $randomCvName,
+            'lamaran' => $randomLamaranName,
+            'foto' => $randomFileName,
             'role' => $request->role,
             'password' => Hash::make($request->password),
         ]);

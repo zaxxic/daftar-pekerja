@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Lowongan;
+use App\Models\Divisi;
 use App\Http\Requests\StoreLowonganRequest;
 use App\Http\Requests\UpdateLowonganRequest;
 
@@ -14,8 +15,9 @@ class LowonganController extends Controller
      */
     public function index()
     {
+        $divisi = Divisi::all();
         $data = Lowongan::all();
-        return view('admin.lowongan', compact('data'));
+        return view('admin-lowongan.lowongan', compact('data','divisi'));
     }
 
     /**
@@ -23,7 +25,8 @@ class LowonganController extends Controller
      */
     public function create()
     {
-        return view('admin.lowongan-create');
+        $divisi = Divisi::all();
+        return view('admin-lowongan.lowongan-create', compact('divisi'));
     }
 
     /**
@@ -42,16 +45,15 @@ class LowonganController extends Controller
             'lokasi'=>'required',
             'content'=>'required'
         ]);
-        $isi = 'kontrak';
         // dd($request);
         Lowongan::create([
             'judul'=>$request->judul,
-            'devisi'=>$request->devisi,
+            'devisi_id'=>$request->devisi,
             'batas'=>$request->batas,
             'pekerja'=>$request->pekerjaan,
             'slot'=>$request->slot,
             'gaji'=>$request->gaji,
-            'tipe'=>$isi,
+            'tipe'=>$request->tipe,
             'lokasi'=>$request->lokasi,
             'syarat'=>$request->content,
             'pembuat'=>'admin'
@@ -70,17 +72,44 @@ class LowonganController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Lowongan $lowongan)
+    public function edit( $id)
     {
-        return view('admin.lowongan-edit');
+        $divisi = Divisi::all();
+        $lowongan = Lowongan::find($id);
+        return view('admin-lowongan.lowongan-edit',compact('lowongan','divisi'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateLowonganRequest $request, Lowongan $lowongan)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'judul'=>'required',
+            'devisi'=>'required',
+            'batas' =>'required',
+            'pekerjaan'=> 'required',
+            'slot' => 'required',
+            'gaji'=> 'required',
+            'tipe'=>'required',
+            'lokasi'=>'required',
+            'content'=>'required'
+        ]);
+        $data = Lowongan::find($id);
+        $data->update([
+            'judul'=>$request->judul,
+            'devisi_id'=>$request->devisi,
+            'batas'=>$request->batas,
+            'pekerja'=>$request->pekerjaan,
+            'slot'=>$request->slot,
+            'gaji'=>$request->gaji,
+            'tipe'=>$request->tipe,
+            'lokasi'=>$request->lokasi,
+            'syarat'=>$request->content
+
+        ]);
+        return redirect()->route('lowongan.index');
+
     }
 
     /**

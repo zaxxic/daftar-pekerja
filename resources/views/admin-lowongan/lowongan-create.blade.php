@@ -9,7 +9,7 @@
         </div>
         <div class="col-md-6 col-lg-6 d-flex justify-content-end">
             <div>
-                <a href="javascript:void(0)" class="btn btn-danger rounded-2" > <p class="mb-0 ">Batal</p></a>
+                <a href="{{route('lowongan.index')}}" class="btn btn-danger rounded-2" > <p class="mb-0 ">Batal</p></a>
                 <button type="submit" class="btn btn-primary rounded-2"> <p class="mb-0">Simpan</p></button>
             </div>
         </div>
@@ -17,46 +17,46 @@
     <div class="row">
         <div class="col-6">
             <label class="mt-5" for="judul">Judul Lowongan </label> <br>
-            <input class="col-10" type="text" name="judul" id="">
+            <input class="col-10 rounded-1" type="text" name="judul" id="">
         </div>
         <div class="col-6">
             <label class="mt-5" for="devisi">Divisi </label> <br>
-            <select name="devisi" class="col-10" style="" id="">
-            <option value="a">aa</option>
-            <option value="b">b</option>
-            <option value="c">c</option>
+            <select name="devisi" class="col-10 rounded-1" style="" id="">
+            @foreach ( $divisi as $data )
+            <option value="{{$data->id}}">{{$data->divisi}}</option>
+            @endforeach
             </select>
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">Batas Lowongan </label> <br>
-            <input class="col-10" type="text" name="batas" id="">
+            <input class="col-10 rounded-1" type="date" name="batas" id="">
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">Pekerjaan </label> <br>
-            <input class="col-10" type="text" name="pekerjaan" id="">
+            <input class="col-10 rounded-1" type="text" name="pekerjaan" id="">
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">Slot</label> <br>
-            <input class="col-10" type="text" name="slot" id="">
+            <input class="col-10 rounded-1" type="text" name="slot" id="">
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul"> Gaji </label> <br>
-            <input class="col-10" type="text" name="gaji" id="">
+            <input class="col-10 rounded-1" type="text" name="gaji" id="">
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">Tipe pekerjaan  </label> <br>
-            <select name="tipe" class="col-10" style="" id="">
-                <option value="kontrak">aa</option>
-                <option value="permanen">b</option>
+            <select name="tipe" class="col-10 rounded-1" style="" id="">
+                <option value="kontrak">kontrak</option>
+                <option value="permanen">permanen</option>
                 </select>
         </div>
         <div class="col-6">
-            <label class="mt-5" for="judul">lokasi </label> <br>
-            <input class="col-10" type="text" name="lokasi" id="">
+            <label class="mt-5" for="judul">Lokasi </label> <br>
+            <input class="col-10 rounded-1" type="text" name="lokasi" id="">
         </div>
         <div class="form-group col-12">
-            <label class="mt-5" for="judul">syarat </label> <br>
-            <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Masukkan Konten Post">{{ old('content') }}</textarea>            {{-- <input class="col-10" type="text" name="lokasi" id=""> --}}
+            <label class="mt-5" for="judul">Syarat </label> <br>
+            <textarea class="form-control rounded-1 @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Masukkan Konten Post">{{ old('content') }}</textarea>            {{-- <input class="col-10" type="text" name="lokasi" id=""> --}}
         </div>
 
     </div>
