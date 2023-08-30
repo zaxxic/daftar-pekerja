@@ -86,4 +86,5 @@ Route::get('error-403', function () {
     return view('403');
 })->name('unauthorized');
 
-Route::get('detail', [LowonganController::class, 'detail'])->name('detail');
+Route::get('/user/{id}/cv', [ApprovalController::class, 'cv'])->name('user.cv');
+Route::get('/user/{id}/lamaran', [ApprovalController::class, 'lamaran'])->name('user.lamaran');

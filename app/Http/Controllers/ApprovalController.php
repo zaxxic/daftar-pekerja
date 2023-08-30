@@ -7,6 +7,7 @@ use App\Models\Pesan;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -19,6 +20,18 @@ class ApprovalController extends Controller
     {
         $user = User::where('status', 'menunggu')->get();
         return view('admin-pekerja.approval.index', compact('user'));
+    }
+
+    public function cv($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin-pekerja.approval.user-cv', compact('user'));
+    }
+
+    public function lamaran($id)
+    {
+        $user = User::findOrFail($id);
+        return view('admin-pekerja.approval.user-lamaran', compact('user'));
     }
 
     /**

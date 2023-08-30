@@ -1,98 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/table-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Jul 2023 02:00:44 GMT -->
-
-<head>
-    <!-- --------------------------------------------------- -->
-    <!-- Title -->
-    <!-- --------------------------------------------------- -->
-    <title>Mordenize</title>
-    <!-- --------------------------------------------------- -->
-    <!-- Required Meta Tag -->
-    <!-- --------------------------------------------------- -->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="handheldfriendly" content="true" />
-    <meta name="MobileOptimized" content="width" />
-    <meta name="description" content="Mordenize" />
-    <meta name="author" content="" />
-    <meta name="keywords" content="Mordenize" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- --------------------------------------------------- -->
-    <!-- Favicon -->
-    <!-- --------------------------------------------------- -->
-    <link rel="stylesheet" href="assets1/css/bootstrap.min.css">
-    <!-- Owl Theme Default Min CSS -->
-    <link rel="stylesheet" href="assets1/css/owl.theme.default.min.css">
-    <!-- Owl Carousel Min CSS -->
-    <link rel="stylesheet" href="assets1/css/owl.carousel.min.css">
-    <!-- Animate Min CSS -->
-    <link rel="stylesheet" href="assets1/css/animate.min.css">
-    <!-- Boxicons Min CSS -->
-    <link rel="stylesheet" href="assets1/css/boxicons.min.css">
-    <!-- Magnific Popup Min CSS -->
-    <link rel="stylesheet" href="assets1/css/magnific-popup.min.css">
-    <!-- Flaticon CSS -->
-    <link rel="stylesheet" href="assets1/css/flaticon.css">
-    <!-- Meanmenu Min CSS -->
-    <link rel="stylesheet" href="assets1/css/meanmenu.min.css">
-    <!-- Nice Select Min CSS -->
-    <link rel="stylesheet" href="assets1/css/nice-select.min.css">
-    <!-- Odometer Min CSS-->
-    <link rel="stylesheet" href="assets1/css/odometer.min.css">
-    <!-- Date Picker CSS-->
-    <link rel="stylesheet" href="assets1/css/date-picker.min.css">
-    <!-- Muli Fonts Min CSS-->
-    <link rel="stylesheet" href="assets1/css/muli-fonts.css">
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="assets1/css/style.css">
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="assets1/css/responsive.css">
-    <!-- Rtl CSS -->
-
-    <link rel="shortcut icon" type="image/png" href="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico" />
-    <!-- --------------------------------------------------- -->
-    <!-- Owl Carousel -->
-    <!-- --------------------------------------------------- -->
-    <link rel="stylesheet" href="{{ asset('assets/dist/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}">
-    <!-- --------------------------------------------------- -->
-    <!-- Prism Js -->
-    <!-- --------------------------------------------------- -->
-    <link rel="stylesheet" href="{{ asset('assets/dist/libs/prismjs/themes/prism-okaidia.min.css') }}">
-    <!-- --------------------------------------------------- -->
-    <!-- Core Css -->
-    <!-- --------------------------------------------------- -->
-    <link id="themeColors" rel="stylesheet" href="{{ asset('assets/dist/css/style.min.css') }}" />
-</head>
-
-<body>
-
-    <!-- Preloader -->
-    <!-- <div class="preloader">
-      <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico" alt="loader" class="lds-ripple img-fluid" />
-    </div> -->
-    <!-- --------------------------------------------------- -->
-    <!-- Body Wrapper -->
-    <!-- --------------------------------------------------- -->
-
-    <!-- --------------------------------------------------- -->
-    <!-- Sidebar -->
-    <!-- --------------------------------------------------- -->
-
-    <!-- --------------------------------------------------- -->
-    <!-- Main Wrapper -->
-    <!-- --------------------------------------------------- -->
-    <div class="body-wrapper">
-        <!-- --------------------------------------------------- -->
-        <!-- Header Start -->
-        <!-- --------------------------------------------------- -->
-        @include('layouts.app')
-        <!-- --------------------------------------------------- -->
-        <!-- Header End -->
-        <!-- --------------------------------------------------- -->
-        <div class="container-content">
-            <div class="container-fluid px-5">
+@extends('layouts.app')
+@section('content')
+     <div class="container-fluid">
                 <!-- --------------------------------------------------- -->
                 <!--  Form Basic Start -->
                 <!-- --------------------------------------------------- -->
@@ -151,7 +60,7 @@
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <img src="{{ asset('storage/' . $row->foto) }}" class="rounded-circle" width="40" height="40" />
+                                                <img src="{{ asset('storage/public/foto_user/' . $row->foto) }}" class="rounded-circle" width="40" height="40" />
                                                 <div class="ms-3">
                                                     <h6 class="fs-4 fw-semibold mb-0">{{ $row->name }}</h6>
                                                 </div>
@@ -229,7 +138,7 @@
                                                 <div class="modal-body col-lg-12">
                                                     <div class="d-flex">
                                                         <div class="col-lg-4">
-                                                            <img src="../../dist/images/profile/user-3.jpg" class="rounded-circle" width="180" height="180" />
+                                                            <img src="{{ asset('storage/public/foto_user/' . $row->foto) }}" class="rounded-circle" width="180" height="180" />
                                                         </div>
                                                         <div class="col-lg-8">
                                                             <div class="card">
@@ -238,25 +147,25 @@
                                                                     <div class="d-flex mb-1">
                                                                         <span class="me-3" style="font-weight: 600;">Nama
                                                                             :</span>
-                                                                        <span>Trisqi Tegar Valenzi</span>
+                                                                        <span>{{ $row->name }}</span>
                                                                     </div>
                                                                     <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                                                     <div class="d-flex mb-1">
                                                                         <span class="me-3" style="font-weight: 600;">Jenis
                                                                             Kelamin :</span>
-                                                                        <span>Laki-Laki</span>
+                                                                        <span>{{ $row->jenis_kelamin }}</span>
                                                                     </div>
                                                                     <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                                                     <div class="d-flex mb-1">
                                                                         <span class="me-3" style="font-weight: 600;">No.
                                                                             Handphome :</span>
-                                                                        <span>085607338154</span>
+                                                                        <span>{{ $row->no_telp }}</span>
                                                                     </div>
                                                                     <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                                                     <div class="d-flex mb-1">
                                                                         <span class="me-3" style="font-weight: 600;">Email
                                                                             :</span>
-                                                                        <span>trisqitegarv@gmail</span>
+                                                                        <span>{{ $row->email }}</span>
                                                                     </div>
                                                                     <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                                                     <div class="d-flex mb-1">
@@ -281,16 +190,7 @@
                                                                         :</span>
                                                                 </div>
                                                                 <div class="col-lg-10">
-                                                                    <span>Jl. Lesti Utara Gg Makam, No. 179, RT
-                                                                        07 RW 03, Kelurahan Ngaglik, Kecamatan
-                                                                        Batu, Kota Batu, Jawa Timur, Indonesia
-                                                                        Jl. Lesti Utara Gg Makam, No. 179, RT 07
-                                                                        RW 03, Kelurahan Ngaglik, Kecamatan
-                                                                        Batu, Kota Batu, Jawa Timur, Indonesia
-                                                                        Jl. Lesti Utara Gg Makam, No. 179, RT 07
-                                                                        RW 03, Kelurahan Ngaglik, Kecamatan
-                                                                        Batu, Kota Batu, Jawa Timur,
-                                                                        Indonesia</span>
+                                                                    <span>{{ $row->alamat }}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -345,67 +245,4 @@
                 <!--  Form Basic End -->
                 <!-- --------------------------------------------------- -->
             </div>
-        </div>
-    </div>
-    <!-- ---------------------------------------------- -->
-    <!-- Customizer -->
-    <!-- ---------------------------------------------- -->
-    <!-- ---------------------------------------------- -->
-    <!-- Import Js Files -->
-    <!-- ---------------------------------------------- -->
-    <script src="{{ asset('assets/dist/libs/jquery/dist/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/dist/libs/simplebar/dist/simplebar.min.js') }}"></script>
-    <script src="{{ asset('assets/dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- ---------------------------------------------- -->
-    <!-- core files -->
-    <!-- ---------------------------------------------- -->
-    <script src="{{ asset('assets/dist/js/app.min.js') }}"></script>
-    <script src="{{ asset('assets/dist/js/app.init.js') }}"></script>
-    <script src="{{ asset('assets/dist/js/app-style-switcher.js') }}"></script>
-    <script src="{{ asset('assets/dist/js/sidebarmenu.js') }}"></script>
-
-    <script src="{{ asset('assets/dist/js/custom.js') }}"></script>
-    <script src="{{ asset('assets/dist/libs/prismjs/prism.js') }}"></script>
-    <!-- Jquery Min JS -->
-    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script src="assets1/js/jquery.min.js"></script>
-    <!-- Popper Min JS -->
-    <script src="assets1/js/popper.min.js"></script>
-    <!-- Bootstrap Min JS -->
-    <script src="assets1/js/bootstrap.min.js"></script>
-    <!-- Meanmenu Min JS -->
-    <script src="assets1/js/meanmenu.min.js"></script>
-    <!-- Wow Min JS -->
-    <script src="assets1/js/wow.min.js"></script>
-    <!-- Owl Carousel Min JS -->
-    <script src="assets1/js/owl.carousel.min.js"></script>
-    <!-- Nice Select Min JS -->
-    <script src="assets1/js/nice-select.min.js"></script>
-    <!-- Magnific Popup Min JS -->
-    <script src="assets1/js/magnific-popup.min.js"></script>
-    <!-- Mixitup JS -->
-    <script src="assets1/js/jquery.mixitup.min.js"></script>
-    <!-- Appear Min JS -->
-    <script src="assets1/js/appear.min.js"></script>
-    <!-- Odometer Min JS -->
-    <script src="assets1/js/odometer.min.js"></script>
-    <!-- Range Slider Min JS -->
-    <script src="assets1/js/range-slider.min.js"></script>
-    <!-- Datepicker Min JS -->
-    <script src="assets1/js/bootstrap-datepicker.min.js"></script>
-    <!-- Form Validator Min JS -->
-    <script src="assets1/js/form-validator.min.js"></script>
-    <!-- Contact JS -->
-    <script src="assets1/js/contact-form-script.js"></script>
-    <!-- Ajaxchimp Min JS -->
-    <script src="assets1/js/ajaxchimp.min.js"></script>
-    <!-- Custom JS -->
-    <script src="assets1/js/custom.js"></script>
-    <!-- ---------------------------------------------- -->
-    <!-- current page js files -->
-    <!-- ---------------------------------------------- -->
-</body>
-
-<!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/table-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Jul 2023 02:00:44 GMT -->
-
-</html>
+@endsection

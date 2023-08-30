@@ -1,69 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/table-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Jul 2023 02:00:44 GMT -->
-
-<head>
-    <!-- --------------------------------------------------- -->
-    <!-- Title -->
-    <!-- --------------------------------------------------- -->
-    <title>Mordenize</title>
-    <!-- --------------------------------------------------- -->
-    <!-- Required Meta Tag -->
-    <!-- --------------------------------------------------- -->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="handheldfriendly" content="true" />
-    <meta name="MobileOptimized" content="width" />
-    <meta name="description" content="Mordenize" />
-    <meta name="author" content="" />
-    <meta name="keywords" content="Mordenize" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- --------------------------------------------------- -->
-    <!-- Favicon -->
-    <!-- --------------------------------------------------- -->
-    <link rel="shortcut icon" type="image/png" href="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico" />
-    <!-- --------------------------------------------------- -->
-    <!-- Owl Carousel -->
-    <!-- --------------------------------------------------- -->
-    <link rel="stylesheet" href="{{ asset ('assets/dist/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}">
-    <!-- --------------------------------------------------- -->
-    <!-- Prism Js -->
-    <!-- --------------------------------------------------- -->
-    <link rel="stylesheet" href="{{ asset ('assets/dist/libs/prismjs/themes/prism-okaidia.min.css') }}">
-    <!-- --------------------------------------------------- -->
-    <!-- Core Css -->
-    <!-- --------------------------------------------------- -->
-    <link id="themeColors" rel="stylesheet" href="{{ asset('assets/dist/css/style.min.css') }}" />
-</head>
-
-<body>
-
-    <!-- Preloader -->
-    <!-- <div class="preloader">
-      <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico" alt="loader" class="lds-ripple img-fluid" />
-    </div> -->
-    <!-- --------------------------------------------------- -->
-    <!-- Body Wrapper -->
-    <!-- --------------------------------------------------- -->
-
-    <!-- --------------------------------------------------- -->
-    <!-- Sidebar -->
-    <!-- --------------------------------------------------- -->
-
-    <!-- --------------------------------------------------- -->
-    <!-- Main Wrapper -->
-    <!-- --------------------------------------------------- -->
-    <div class="body-wrapper">
-        <!-- --------------------------------------------------- -->
-        <!-- Header Start -->
-        <!-- --------------------------------------------------- -->
-        @include('layouts.app')
-        <!-- --------------------------------------------------- -->
-        <!-- Header End -->
-        <!-- --------------------------------------------------- -->
-        <div class="container-content">
-            <div class="container-fluid px-5">
+@extends('layouts.app')
+@section('content')
+<div class="container-fluid">
                 <!-- --------------------------------------------------- -->
                 <!--  Form Basic Start -->
                 <!-- --------------------------------------------------- -->
@@ -242,32 +180,4 @@
                 <!--  Form Basic End -->
                 <!-- --------------------------------------------------- -->
             </div>
-        </div>
-    </div>
-    <!-- ---------------------------------------------- -->
-    <!-- Customizer -->
-    <!-- ---------------------------------------------- -->
-    <!-- ---------------------------------------------- -->
-    <!-- Import Js Files -->
-    <!-- ---------------------------------------------- -->
-    <script src="{{ asset('assets/dist/libs/jquery/dist/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/dist/libs/simplebar/dist/simplebar.min.js') }}"></script>
-    <script src="{{ asset('assets/dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- ---------------------------------------------- -->
-    <!-- core files -->
-    <!-- ---------------------------------------------- -->
-    <script src="{{ asset('assets/dist/js/app.min.js') }}"></script>
-    <script src="{{ asset('assets/dist/js/app.init.js') }}"></script>
-    <script src="{{ asset('assets/dist/js/app-style-switcher.js') }}"></script>
-    <script src="{{ asset('assets/dist/js/sidebarmenu.js') }}"></script>
-
-    <script src="{{ asset('assets/dist/js/custom.js') }}"></script>
-    <script src="{{ asset('assets/dist/libs/prismjs/prism.js') }}"></script>
-    <!-- ---------------------------------------------- -->
-    <!-- current page js files -->
-    <!-- ---------------------------------------------- -->
-</body>
-
-<!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/table-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Jul 2023 02:00:44 GMT -->
-
-</html>
+@endsection

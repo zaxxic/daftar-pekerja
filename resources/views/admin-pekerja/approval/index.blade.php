@@ -42,7 +42,7 @@
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
-                                <img src="{{ asset('storage/' . $row->foto) }}" class="rounded-circle" width="40" height="40" />
+                                <img src="{{ asset('storage/public/foto_user/' . $row->foto) }}" class="rounded-circle" width="40" height="40" />
                                     <div class="ms-3">
                                         <h6 class="fs-4 fw-semibold mb-0">{{ $row->name }}</h6>
                                     </div>
@@ -54,8 +54,12 @@
                             <td>
                                 <p class="mb-0 fw-normal">{{ $row->jenis_kelamin}}</p>
                             </td>
-                            <td><button class="btn btn-primary">CV</button></td>
-                            <td><button class="btn btn-primary">Lamaran</button></td>
+                            <td>
+                                <a href="{{ route('user.cv', $row->id) }}" target="_blank" class="btn btn-primary" target="_blank">CV</a>
+                            </td>
+                            <td>
+                                <a href="{{ route('user.lamaran', $row->id) }}" target="_blank" class="btn btn-primary" target="_blank">Lamaran</a>
+                            </td>
                             <td>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="27" height="26" viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#reject-user-{{ $row->id }}">
                                     <g fill="#FA896B">
@@ -161,7 +165,7 @@
                                     <div class="modal-body col-lg-12">
                                         <div class="d-flex">
                                             <div class="col-lg-4">
-                                                <img src="../../dist/images/profile/user-3.jpg" class="rounded-circle" width="180" height="180" />
+                                                <img src="{{ asset('storage/public/foto_user/' . $row->foto) }}" class="rounded-circle" width="180" height="180" />
                                             </div>
                                             <div class="col-lg-8">
                                                 <div class="card">
@@ -198,14 +202,14 @@
                                                 <div class="col-lg-5">
                                                     <div class="card">
                                                         <div class="card-body d-flex justify-content-center align-items-center">
-                                                            <button class="btn btn-primary">CV</button>
+                                                        <a href="{{ route('user.cv', $row->id) }}" target="_blank" class="btn btn-primary" target="_blank">CV</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-5">
                                                     <div class="card">
                                                         <div class="card-body d-flex justify-content-center align-items-center">
-                                                            <button class="btn btn-primary">Lamaran</button>
+                                                        <a href="{{ route('user.lamaran', $row->id) }}" target="_blank" class="btn btn-primary" target="_blank">Lamaran</a>
                                                         </div>
                                                     </div>
                                                 </div>
