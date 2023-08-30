@@ -30,6 +30,7 @@ class User extends Authenticatable
         'status',
         'tanggal_wawancara',
         'password',
+        'devision_id',
     ];
 
     /**
@@ -55,5 +56,13 @@ class User extends Authenticatable
     public function message()
     {
         return $this->hasMany(Message::class);
+    }
+    public function Devision()
+    {
+        return $this->hasMany(Division::class, 'devision_id');
+    }
+    public function Registration()
+    {
+        return $this->hasMany(Registration::class);
     }
 }

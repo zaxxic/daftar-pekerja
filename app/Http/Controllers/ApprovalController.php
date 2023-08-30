@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\daftar;
+use App\Models\Registration;
+
 
 class ApprovalController extends Controller
 {
@@ -18,7 +22,7 @@ class ApprovalController extends Controller
      */
     public function index()
     {
-        $user = User::where('status', 'menunggu')->get();
+        $user = Registration::where('status', 'menunggu')->get();
         return view('admin-pekerja.approval.index', compact('user'));
     }
 
@@ -57,10 +61,24 @@ class ApprovalController extends Controller
         );
 
         $data = User::find($id);
+        $item= Registration::where('users_id',$id)->first();
+        $tanggal = $request->tanggal_wawancara;
+        $datas =   [
+                'pesan' => "Persiapkan anda untuk wawancara pada tanggal ". $tanggal,
+                'status' => "terima",
+                'judul' => " Selamat anda diterima di lowongan ". $item->Vacancy->judul
+                ];
+
+        Mail::to($data->email)->send(new daftar($datas));
         $data->update([
             'status' => 'diterima',
-            'tanggal_wawancara' => $request->tanggal_wawancara,
+            'devision_id' =>$item->Vacancy->divisi_id,
+            'tanggal_wawancara' => $request->tanggal_wawancara
         ]);
+        $item->update([
+            'status' => 'diterima'
+        ]);
+
 
         return redirect()->route('approval')->with('sukses', 'Data Berhasil Di Perbarui');
     }
@@ -81,6 +99,19 @@ class ApprovalController extends Controller
         );
 
         $user = User::find($id);
+        $item= Registration::where('users_id',$id)->first();
+        $pesan = $request->pesan;
+        $datas =   [
+                'pesan' => "Anda ditolak karena alasan ini ". $pesan,
+                'status' => "tolak",
+                'judul' => " Maaf  anda ditolak di lowongan ". $item->Vacancy->judul
+                ];
+
+        Mail::to($user->email)->send(new daftar($datas));
+
+        $item->update([
+            'status' => 'ditolak'
+        ]);
 
         $pesan = new Message([
             'pesan' => $request->pesan,

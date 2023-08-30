@@ -52,13 +52,14 @@ Route::post('/logout', [loginController::class, 'logout'])->name('logout');
 Route::get('/dashboard-user', [dashboardUserController::class, 'index'])->name('dashboard-user');
 Route::post('/dashboard-filter', [dashboardUserController::class, 'filterLowongan'])->name('dashboard-filter');
 
-route::resource('detail-lowongan', detailLowonganController::class);
-Route::get('/detail-lowongan{id}', [detailLowonganController::class, 'show'])->name('detailLowongan');
+
 
 Route::group(['middleware' => ['auth', 'user_role']], function () {
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
     Route::post('/ubah-password', [ProfileController::class, 'updatePassword'])->name('ubah-password');
     Route::put('/ubah-profile', [ProfileController::class, 'updateProfile'])->name('ubah-profile');
+    route::resource('detail-lowongan', detailLowonganController::class);
+    Route::get('/detail-lowongan{id}', [detailLowonganController::class, 'show'])->name('detailLowongan');
 
 });
 

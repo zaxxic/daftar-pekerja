@@ -7,12 +7,7 @@
         <div class="col-md-6 col-lg-6 mt-">
             <h5> Buat Lowongan</h5>
         </div>
-        <div class="col-md-6 col-lg-6 d-flex justify-content-end">
-            <div>
-                <a href="{{route('lowongan.index')}}" class="btn btn-danger rounded-2" > <p class="mb-0 ">Batal</p></a>
-                <button type="submit" class="btn btn-primary rounded-2"> <p class="mb-0">Simpan</p></button>
-            </div>
-        </div>
+
     </div>
     <div class="row">
         <div class="col-6">
@@ -59,6 +54,12 @@
             <textarea class="form-control rounded-1 @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Masukkan Konten Post">{{ old('content') }}</textarea>            {{-- <input class="col-10" type="text" name="lokasi" id=""> --}}
         </div>
 
+    </div>
+    <div class="col-md-12 col-lg-12 d-flex justify-content-end">
+        <div>
+            <a href="{{route('lowongan.index')}}" class="btn btn-danger rounded-2" > <p class="mb-0 ">Batal</p></a>
+            <button type="submit" class="btn btn-primary rounded-2"> <p class="mb-0">Simpan</p></button>
+        </div>
     </div>
     </form>
 </div>

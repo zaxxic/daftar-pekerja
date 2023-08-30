@@ -12,13 +12,13 @@ use Illuminate\Queue\SerializesModels;
 class daftar extends Mailable
 {
     use Queueable, SerializesModels;
-    public $data;
+    public $datas;
     /**
      * Create a new message instance.
      */
-    public function __construct($data)
+    public function __construct($datas)
     {
-        $this->data = $data;
+        $this->datas = $datas;
     }
 
     /**
