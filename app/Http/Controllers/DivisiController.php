@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Divisi;
+use App\Models\Division;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoredivisiRequest;
-use App\Http\Requests\UpdatedivisiRequest;
+
 
 class DivisiController extends Controller
 {
@@ -34,7 +33,7 @@ class DivisiController extends Controller
             'divisi' =>'required'
         ]
         );
-        Divisi::create([
+        Division::create([
             'divisi'=>$request->divisi
         ]);
         return redirect()->back();
@@ -43,7 +42,7 @@ class DivisiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(divisi $divisi)
+    public function show(Division $divisi)
     {
         //
     }
@@ -51,7 +50,7 @@ class DivisiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(divisi $divisi)
+    public function edit(Division $divisi)
     {
         //
     }
@@ -59,7 +58,7 @@ class DivisiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatedivisiRequest $request, divisi $divisi)
+    public function update( $request, Division $divisi)
     {
         //
     }
@@ -67,8 +66,10 @@ class DivisiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(divisi $divisi)
+    public function destroy( $id)
     {
-        //
+        $divisi = Division::find($id);
+        $divisi->delete();
+        return redirect()->back();
     }
 }

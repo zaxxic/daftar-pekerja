@@ -18,11 +18,11 @@
     <div class="row">
         <div class="col-6">
             <label class="mt-5" for="judul">Judul Lowongan </label> <br>
-            <input class="col-10" type="text" name="judul" value="{{$lowongan->judul}}" id="">
+            <input class="col-10 form-control" type="text" name="judul" value="{{$lowongan->judul}}" id="">
         </div>
         <div class="col-6">
             <label class="mt-5" for="devisi">Divisi </label> <br>
-            <select name="devisi" class="col-10" style="" id="">
+            <select name="devisi" class="col-10 form-control" style="" id="">
             @foreach ( $divisi as $data )
             <option value="{{ $data->id }}" {{ ( $data->id === $lowongan->devisi_id) ? 'selected' : '' }}> {{ $data->divisi}}</option>
             @endforeach
@@ -30,34 +30,34 @@
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">Batas Lowongan </label> <br>
-            <input class="col-10" type="text" name="batas" value="{{$lowongan->batas}}" id="">
+            <input class="col-10 form-control" type="text" name="batas" value="{{$lowongan->batas}}" id="">
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">Pekerjaan </label> <br>
-            <input class="col-10" type="text" name="pekerjaan" value="{{$lowongan->pekerja}}" id="">
+            <input class="col-10 form-control" type="text" name="pekerjaan" value="{{$lowongan->pekerja}}" id="">
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">Slot</label> <br>
-            <input class="col-10" type="text" name="slot"  value="{{$lowongan->slot}}" id="">
+            <input class="col-10 form-control" type="text" name="slot"  value="{{$lowongan->slot}}" id="">
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul"> Gaji </label> <br>
-            <input class="col-10" type="text" name="gaji" value="{{$lowongan->gaji}}" id="">
+            <input class="col-10 form-control" type="text" name="gaji" value="{{$lowongan->gaji}}" id="">
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">Tipe pekerjaan  </label> <br>
-            <select name="tipe" class="col-10" style="" id="">
+            <select name="tipe" class="col-10 form-control" style="" id="">
                 <option value="kontrak">aa</option>
                 <option value="permanen">b</option>
                 </select>
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">lokasi </label> <br>
-            <input class="col-10" type="text" name="lokasi"value="{{$lowongan->lokasi}}" id="">
+            <input class="col-10 form-control" type="text" name="lokasi"value="{{$lowongan->lokasi}}" id="">
         </div>
         <div class="form-group col-12">
             <label class="mt-5" for="judul">syarat </label> <br>
-            <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Masukkan Konten Post">{!!$lowongan->syarat!!}</textarea>            {{-- <input class="col-10" type="text" name="lokasi" id=""> --}}
+            <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Masukkan Konten Post">{!!$lowongan->syarat!!}</textarea>            {{-- <input class="col-10 form-control" type="text" name="lokasi" id=""> --}}
         </div>
 
     </div>

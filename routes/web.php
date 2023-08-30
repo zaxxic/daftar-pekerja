@@ -9,6 +9,7 @@ use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\dashboardUserController;
 use App\Http\Controllers\detailLowonganController;
+use App\Models\Lowongan;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::get('/cek', function () {
 
 Route::resource('lowongan', LowonganController::class);
 Route::resource('divisi', DivisiController::class);
+Route::delete('hapus-lowongan', [LowonganController::class, 'hapus'])->name('hapus-lowongan');
 Route::get('register' , [registerController::class , 'index'])->name('register');
 Route::post('register-store' , [registerController::class , 'store'])->name('register-store');
 
