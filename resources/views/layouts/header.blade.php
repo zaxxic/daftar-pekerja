@@ -1,13 +1,12 @@
 <header class="app-header">
   <nav class="navbar navbar-expand-xl navbar-light container-fluid px-0">
-    <ul class="navbar-nav">
-     
-      <li class="nav-item d-none d-xl-block">
-          <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/dark-logo.svg" class="dark-logo" width="180" alt="" />
-          <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/light-logo.svg" class="light-logo"  width="180" alt="" />
-      </li>
-      
-    </ul>
+  <ul class="navbar-nav">
+            <li class="nav-item d-none d-xl-block mr-4">
+                <a class="logo" href="index.html">
+                    <img width="180px" src="assets1/images/humma.png" alt="logo">
+                </a>
+            </li>
+        </ul>
     <ul class="navbar-nav quick-links d-none d-xl-flex">
      
       <li class="nav-item dropdown-hover d-none d-xl-block">

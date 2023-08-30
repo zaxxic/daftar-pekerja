@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Vacancy;
 use App\Models\Division;
-use App\Http\Requests\StoreLowonganRequest;
 use App\Http\Requests\UpdateLowonganRequest;
-use App\Models\Divisi;
 
 class LowonganController extends Controller
 {

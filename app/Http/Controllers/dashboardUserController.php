@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Divisi;
+use App\Models\Division;
 use App\Models\Lowongan;
+use App\Models\Vacancy;
 use Illuminate\Http\Request;
 
 class dashboardUserController extends Controller
@@ -13,56 +15,24 @@ class dashboardUserController extends Controller
      */
     public function index()
     {
-
-        $lowongan = Lowongan::all();
-        return view('user.index', compact('lowongan'));
+        $selectedDivision = 'semua';
+        $lowongan = Vacancy::all();
+        $divisi = Division::all();
+        return view('user.index', compact('lowongan', 'divisi','selectedDivision'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function filterLowongan(Request $request)
     {
-        //
-    }
+        $selectedDivision = $request->input('division');
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $lowongan = Vacancy::when($selectedDivision, function ($query) use ($selectedDivision) {
+            return $query->whereHas('division', function ($subQuery) use ($selectedDivision) {
+                $subQuery->where('divisi', $selectedDivision);
+            });
+        })->get();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-    
-    }
+        $divisi = Division::all();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return view('user.index', compact('lowongan', 'divisi', 'selectedDivision'));
     }
 }
