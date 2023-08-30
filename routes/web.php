@@ -40,7 +40,7 @@ Route::get('/cek', function () {
 // Route::resource('login', loginController::class);
 
 Route::resource('lowongan', LowonganController::class);
-Route::resource('divisi', DivisiController::class);
+Route::resource('divisi', DivisiController::class)->except(['show', 'update','edit']);
 Route::delete('hapus-lowongan', [LowonganController::class, 'hapus'])->name('hapus-lowongan');
 Route::get('register' , [registerController::class , 'index'])->name('register');
 Route::post('register-store' , [registerController::class , 'store'])->name('register-store');
@@ -49,8 +49,8 @@ Route::get('/login', [loginController::class, 'showLogin'])->name('login');
 Route::post('/form-login', [loginController::class, 'login'])->name('form-login');
 Route::post('/logout', [loginController::class, 'logout'])->name('logout');
 
-Route::resource('dashboard-user', dashboardUserController::class);
 Route::get('/dashboard-user', [dashboardUserController::class, 'index'])->name('dashboard-user');
+Route::post('/dashboard-filter', [dashboardUserController::class, 'filterLowongan'])->name('dashboard-filter');
 
 route::resource('detail-lowongan', detailLowonganController::class);
 Route::get('/detail-lowongan{id}', [detailLowonganController::class, 'show'])->name('detailLowongan');

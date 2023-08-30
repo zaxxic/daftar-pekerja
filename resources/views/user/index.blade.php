@@ -12,10 +12,7 @@
     <!-- Owl Theme Default Min CSS -->
     <link rel="stylesheet" href="assets1/css/owl.theme.default.min.css">
     <!-- Owl Carousel Min CSS -->
-    <link rel="stylesheet" href="assets1/css/owl.carousel.min.css">
-    <!-- Animate Min CSS -->
-    <link rel="stylesheet" href="assets1/css/animate.min.css">
-    <!-- Boxicons Min CSS -->
+
     <link rel="stylesheet" href="assets1/css/boxicons.min.css">
     <!-- Magnific Popup Min CSS -->
     <link rel="stylesheet" href="assets1/css/magnific-popup.min.css">
@@ -25,11 +22,7 @@
     <link rel="stylesheet" href="assets1/css/meanmenu.min.css">
     <!-- Nice Select Min CSS -->
     <link rel="stylesheet" href="assets1/css/nice-select.min.css">
-    <!-- Odometer Min CSS-->
-    <link rel="stylesheet" href="assets1/css/odometer.min.css">
-    <!-- Date Picker CSS-->
-    <link rel="stylesheet" href="assets1/css/date-picker.min.css">
-    <!-- Muli Fonts Min CSS-->
+  
     <link rel="stylesheet" href="assets1/css/muli-fonts.css">
     <!-- Style CSS -->
     <link rel="stylesheet" href="assets1/css/style.css">
@@ -116,7 +109,7 @@
                                                         </p>
                                                     </div>
                                                     <span
-                                                        class="sub-title text-primary mb-1">{{ $item->Divisi->divisi }}
+                                                        class="sub-title text-primary mb-1">{{ $item->Division->divisi }}
                                                     </span>
                                                     <ul>
                                                         <li><span>Gaji :</span> Rp. {{ $item->gaji }}</li>
@@ -162,20 +155,23 @@
                     <div class="employers-listing-sidebar">
                         <h3>Cari Divisi</h3>
 
-                        <form class="search-form">
-
+                        <form class="search-form" action="{{ route('dashboard-filter') }}" method="POST">
+                            @csrf
                             <div class="form-group">
                                 <label>Cari Berdasarkan Divisi</label>
-                                <select>
-                                    <option value="1">UX/UI Designer</option>
-                                    <option value="2">Web Developer</option>
-                                    <option value="3">Web Designer</option>
-                                    <option value="4">Software Developer</option>
-                                    <option value="5">SEO</option>
+                                <select name="division">
+                                    <option value="" @if (!$selectedDivision) selected @endif>Semua
+                                    </option>
+                                    @foreach ($divisi as $item)
+                                        <option value="{{ $item->divisi }}"
+                                            @if ($selectedDivision === $item->divisi) selected @endif>
+                                            {{ $item->divisi }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
 
-                            <button class="default-btn">
+                            <button type="submit" class="default-btn">
                                 Search
                             </button>
                         </form>

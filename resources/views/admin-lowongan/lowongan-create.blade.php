@@ -21,7 +21,7 @@
         </div>
         <div class="col-6">
             <label class="mt-5" for="devisi">Divisi </label> <br>
-            <select name="devisi" class="col-10 rounded-1 form-control" style="" id="">
+            <select name="devisi_id" class="col-10 rounded-1 form-control" style="" id="">
             @foreach ( $divisi as $data )
             <option value="{{$data->id}}">{{$data->divisi}}</option>
             @endforeach
