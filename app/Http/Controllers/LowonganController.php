@@ -48,7 +48,7 @@ class LowonganController extends Controller
         // dd($request);
         Vacancy::create([
             'judul'=>$request->judul,
-            'devisi'=>$request->devisi,
+            'devisi_id'=>$request->devisi,
             'batas'=>$request->batas,
             'pekerja'=>$request->pekerjaan,
             'slot'=>$request->slot,
@@ -56,6 +56,7 @@ class LowonganController extends Controller
             'tipe'=>$isi,
             'lokasi'=>$request->lokasi,
             'syarat'=>$request->content,
+            'status' => 'aktif',
             'pembuat'=>'admin'
         ]);
         return redirect()->route('lowongan.index');
@@ -66,14 +67,13 @@ class LowonganController extends Controller
      */
     public function show()
     {
-        dd("aebejwfjghjb");
         return view('admin-lowongan.lowongan-detail');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Lowongan $lowongan)
+    public function edit( $id)
     {
         $divisi = Division::all();
         $lowongan = Vacancy::find($id);
@@ -83,7 +83,7 @@ class LowonganController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateLowonganRequest $request, Lowongan $lowongan)
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
             'judul'=>'required',
@@ -134,4 +134,30 @@ class LowonganController extends Controller
     // {
     //     return view('admin.lowongan-detail');
     // }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function active(Request $request, string $id)
+    {
+        $data = Vacancy::find($id);
+        $data->update([
+            'status' => 'aktif',
+        ]);
+
+        return redirect()->route('lowongan.index')->with('sukses', 'Data Berhasil Di Perbarui');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function nonactive(Request $request, string $id)
+    {
+        $data = Vacancy::find($id);
+        $data->Update([
+            'status' => 'nonaktif'
+        ]);
+
+        return redirect()->route('lowongan.index')->with('sukses', 'Data Berhasil Di Perbarui');
+    }
 }

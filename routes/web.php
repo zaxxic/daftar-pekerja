@@ -82,6 +82,10 @@ Route::get('detail-pekerja', [ApprovalController::class, 'show'])->name('detail-
 //Pekerja yang ditolak dan dinonaktifkan / berstatus ditolak
 Route::get('pekerja-ditolak', [PekerjaDitolakController::class, 'index'])->name('pekerja-ditolak');
 
+//Lowongan aktif / nonaktif
+Route::patch('nonactive-lowongan/{id}', [LowonganController::class, 'nonactive'])->name('nonactive-lowongan');
+Route::patch('active-lowongan/{id}', [LowonganController::class, 'active'])->name('active-lowongan');
+
 Route::get('error-403', function () {
     return view('403');
 })->name('unauthorized');

@@ -9,7 +9,7 @@ class Vacancy extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'judul','devisi_id','batas','pekerja','slot','gaji','tipe','lokasi','syarat','pembuat'
+        'judul','devisi_id','batas','pekerja','slot','gaji','tipe','lokasi','syarat', 'status', 'pembuat'
     ];
     public function Division()
     {

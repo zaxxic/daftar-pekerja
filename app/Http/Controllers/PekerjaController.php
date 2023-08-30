@@ -76,7 +76,7 @@ class PekerjaController extends Controller
             'status' => 'ditolak',
         ]);
 
-        return redirect()->route('approval')->with('sukses', 'Data Berhasil Di Perbarui');
+        return redirect()->route('pekerja')->with('sukses', 'Data Berhasil Di Perbarui');
     }
 
     /**

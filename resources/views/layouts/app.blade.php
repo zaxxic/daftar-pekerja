@@ -45,7 +45,7 @@
     <link rel="icon" type="image/png" href="assets1/images/favicon.png">
     <!-- Title -->
     <!--  Favicon -->
-    <link rel="shortcut icon" type="image/png')}}" href="{{ asset('assets/favicon.ico') }}" />
+    <link rel="shortcut icon" type="image/png')}}" href="{{ asset('assets/logo.png') }}" />
     <!-- Owl Carousel  -->
     <link rel="stylesheet" href="{{ asset('assets/dist/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}">
     <!-- Core Css -->
@@ -53,11 +53,9 @@
     <link id="themeColors" rel="stylesheet" href="{{ asset('assets/dist/css/style.min.css') }}" />
     <link id="themeColors" rel="stylesheet" href="{{ asset('assets/dist/css/app.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/dist/libs/prismjs/themes/prism-okaidia.min.css') }}">
-
-    <link rel="stylesheet" href="{{ asset('assets/dist/libs/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/dist/libs/sweetalert2/dist/sweetalert2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/dist/css/app.css') }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css" rel="stylesheet">
+
     @yield('style')
 </head>
 
@@ -118,6 +116,7 @@
     <script src="{{ asset('assets/dist/js/dashboard5.js') }}"></script>
     <script src="{{ asset('assets/dist/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/dist/js/apex-chart/apex.pie.init.js') }}"></script>
+    <script src="{{ asset('assets/dist/js/forms/sweet-alert.init.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
@@ -161,7 +160,13 @@
     <script>
         CKEDITOR.replace('content');
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <script>
+        CKEDITOR.replace('content');
+    </script>
 
     @yield('script')
 </body>

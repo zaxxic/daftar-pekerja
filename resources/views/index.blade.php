@@ -234,6 +234,138 @@
             </div>
         </div>
     </section>
+    <!-- End Who We Are Area -->
+
+    <!-- Start Working Area -->
+    <section class="working-area bg-color pt-100 pb-70">
+        <div class="container">
+            <div class="section-title">
+                <h2>Bagaimana Alur Kerja Hummatech</h2>
+            </div>
+
+            <div class="row"> 
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-working">
+                        <i class="flaticon-find-my-friend"></i>
+                        <h3>Daftarkan Diri</h3>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-working">
+                        <i class="flaticon-company"></i>
+                        <h3>Menunggu Di terima</h3>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-working">
+                        <i class="flaticon-salary"></i>
+                        <h3>Mengerjakan Project</h3>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-working">
+                        <i class="flaticon-submit"></i>
+                        <h3>Terima Gaji Projek</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Working Area -->
+
+    <!-- Start Global Talent Area -->
+    <section class="global-talent-area bg-color pb-100">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 col-md-6">
+                    <div class="global-talent-content">
+                        <h2>Kami Menunggu Lamaran Dari Anda</h2>
+
+                        <ul>
+                            <li>
+                                <img src="assets1/images/talent-dot/talent-dot-1.png" alt="Image">
+                                Bekerja tanpa kontrak
+                            </li>
+
+                            <li>
+                                <img src="assets1/images/talent-dot/talent-dot-2.png" alt="Image">
+                                Bisa menjadi frelance kantor
+                            </li>
+
+                            <li>
+                                <img src="assets1/images/talent-dot/talent-dot-3.png" alt="Image">
+                                Tempat kerja di manapun
+                            </li>
+                        </ul>
+
+                        
+                    </div>
+                </div>
+
+                <div class="col-lg-5 col-md-6">
+                    <div class="jubi-site-status">
+                        <h3>Jubi Site Status</h3>
+
+                        <div class="site-status">
+                            <div class="row">
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="single-counter">
+                                        <i class="flaticon-job-seeker"></i>
+
+                                        <h2>
+                                            <span class="odometer" data-count="10523">00</span>
+                                        </h2>
+
+                                        <p>Projek</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="single-counter">
+                                        <i class="flaticon-organization"></i>
+
+                                        <h2>
+                                            <span class="odometer" data-count="123843">00</span>
+                                        </h2>
+
+                                        <p>Perusahaan</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="single-counter">
+                                        <i class="flaticon-profile"></i>
+
+                                        <h2>
+                                            <span class="odometer" data-count="20537">00</span>
+                                        </h2>
+
+                                        <p>Client</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-sm-6">
+                                    <div class="single-counter">
+                                        <i class="flaticon-community"></i>
+
+                                        <h2>
+                                            <span class="odometer" data-count="18523">00</span>
+                                        </h2>
+
+                                        <p>Pekerja</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Global Talent Area -->
 
     <!-- Start Testimonials Area -->
     <section class="testimonials-area pb-100 mt-5">
