@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
+use App\Models\Pesan;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -15,40 +17,8 @@ class ApprovalController extends Controller
      */
     public function index()
     {
-        $user = User::where('status', 0)->get();
-        return view('admin.approval.index', compact('user'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        $user = User::where('status', 'menunggu')->get();
+        return view('admin-pekerja.approval.index', compact('user'));
     }
 
     /**
@@ -61,20 +31,54 @@ class ApprovalController extends Controller
             [
                 'tanggal_wawancara' => [
                     'required',
-                    Rule::after(Carbon::yesterday()), // Tanggal setelah kemarin
+                    function ($attribute, $value, $fail) {
+                        if (Carbon::parse($value)->isBefore(Carbon::now()->subDay())) {
+                            $fail('Tanggal Wawancara tidak boleh hari kemarin');
+                        }
+                    },
                 ],
             ],
             [
                 'tanggal_wawancara.required' => 'Tanggal Wawancara Wajib Diisi',
-                'tanggal_wawancara.date' => 'Format tanggal tidak valid',
-                'tanggal_wawancara.after' => 'Tanggal Wawancara harus setelah kemarin',
             ]
         );
+
         $data = User::find($id);
         $data->update([
-            'status' => 1,
+            'status' => 'diterima',
             'tanggal_wawancara' => $request->tanggal_wawancara,
         ]);
+
+        return redirect()->route('approval')->with('sukses', 'Data Berhasil Di Perbarui');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function reject(Request $request, string $id)
+    {
+        $this->validate(
+            $request,
+            [
+                'pesan' => 'required',
+            ],
+            [
+                'pesan.required' => 'Pesan Wajib Diisi',
+            ]
+        );
+
+        $user = User::find($id);
+
+        $pesan = new Message([
+            'pesan' => $request->pesan,
+        ]);
+
+        $user->message()->save($pesan);
+
+        $user->update([
+            'status' => 'ditolak',
+        ]);
+
         return redirect()->route('approval')->with('sukses', 'Data Berhasil Di Perbarui');
     }
 

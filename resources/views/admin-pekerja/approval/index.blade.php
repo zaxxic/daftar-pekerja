@@ -42,7 +42,7 @@
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ $row->foto }}" class="rounded-circle" width="40" height="40" />
+                                <img src="{{ asset('storage/' . $row->foto) }}" class="rounded-circle" width="40" height="40" />
                                     <div class="ms-3">
                                         <h6 class="fs-4 fw-semibold mb-0">{{ $row->name }}</h6>
                                     </div>
@@ -127,19 +127,24 @@
                                     </div>
                                     <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
                                     <div class="modal-body">
-                                        <form>
+                                        <form action="/reject/{{ $row->id }}" method="POST">
+                                            @method('PATCH')
+                                            @csrf
                                             <div class="mb-3">
                                                 <label for="message-text" class="control-label">Pesan <span style="color: red;">*</span></label>
-                                                <textarea class="form-control" id="message-text1" placeholder="Masukkan pesan"></textarea>
+                                                <textarea class="form-control" id="message-text1" placeholder="Masukkan pesan" name="pesan"></textarea>
+                                                @error('pesan')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
                                                 <small id="name" class="form-text text-muted">Masukkan alasan kenapa pekerja tersebut ditolak.</small>
                                             </div>
-                                        </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger">
+                                        <button type="submit" class="btn btn-danger">
                                             Tolak
                                         </button>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -164,22 +169,22 @@
                                                         <h5 class="mb-3">Data Diri Pekerja</h5>
                                                         <div class="d-flex mb-1">
                                                             <span class="me-3" style="font-weight: 600;">Nama :</span>
-                                                            <span>Trisqi Tegar Valenzi</span>
+                                                            <span>{{ $row->name }}</span>
                                                         </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                                         <div class="d-flex mb-1">
                                                             <span class="me-3" style="font-weight: 600;">Jenis Kelamin :</span>
-                                                            <span>Laki-Laki</span>
+                                                            <span>{{ $row->jenis_kelamin }}</span>
                                                         </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                                         <div class="d-flex mb-1">
                                                             <span class="me-3" style="font-weight: 600;">No. Handphome :</span>
-                                                            <span>085607338154</span>
+                                                            <span>{{ $row->no_telp }}</span>
                                                         </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                                         <div class="d-flex mb-1">
                                                             <span class="me-3" style="font-weight: 600;">Email :</span>
-                                                            <span>trisqitegarv@gmail</span>
+                                                            <span>{{ $row->email }}</span>
                                                         </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                                     </div>
@@ -242,7 +247,7 @@
                                                         <span class="me-3" style="font-weight: 600;">Alamat :</span>
                                                     </div>
                                                     <div class="col-lg-10">
-                                                        <span>Jl. Lesti Utara Gg Makam, No. 179, RT 07 RW 03, Kelurahan Ngaglik, Kecamatan Batu, Kota Batu, Jawa Timur, Indonesia Jl. Lesti Utara Gg Makam, No. 179, RT 07 RW 03, Kelurahan Ngaglik, Kecamatan Batu, Kota Batu, Jawa Timur, Indonesia Jl. Lesti Utara Gg Makam, No. 179, RT 07 RW 03, Kelurahan Ngaglik, Kecamatan Batu, Kota Batu, Jawa Timur, Indonesia</span>
+                                                        <span>{{ $row->alamat }}</span>
                                                     </div>
                                                 </div>
                                             </div>

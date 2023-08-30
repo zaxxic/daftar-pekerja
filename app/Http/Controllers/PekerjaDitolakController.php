@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Divisi;
-use App\Models\Lowongan;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class dashboardUserController extends Controller
+class PekerjaDitolakController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
-        $lowongan = Lowongan::all();
-        return view('user.index', compact('lowongan'));
+        $user = User::where('status', 'ditolak')->get();
+        return view('admin-pekerja.pekerja-ditolak.index', compact('user'));
     }
 
     /**
@@ -39,7 +37,7 @@ class dashboardUserController extends Controller
      */
     public function show(string $id)
     {
-    
+        //
     }
 
     /**

@@ -110,14 +110,14 @@
                             <div class="col-lg-12">
                                 <div class="hot-jobs-content">
                                     <div class="d-flex justify-content-between" style="color: black">
-                                        <h3><a href="">IT Security</a></h3>
+                                        <h3><a href="">{{ $lowongan->judul }}</a></h3>
                                     </div>
-                                    <span class="sub-title text-primary mb-1">Web Developer</span>
+                                    <span class="sub-title text-primary mb-1">{{ $lowongan->Divisi->divisi }}</span>
                                     <ul class="overview">
-                                        <li><span>Gaji :</span> Rp. 12.000.000</li>
-                                        <li><span>Slot Tersedia : </span> 14</li>
+                                        <li><span>Gaji :</span>{{ $lowongan->gaji }}</li>
+                                        <li><span>Slot Tersedia : </span> {{ $lowongan->slot }}</li>
                                         <div class="d-flex justify-content-between">
-                                            <li><span>Tipe Kerja : </span>Kontrak</li>
+                                            <li><span>Tipe Kerja : </span>{{ $lowongan->tipe }}</li>
                                             <li style="margin-left: 300px; margin-right: -25px;"><button
                                                     class="btn btn-danger"><a href="{{ route('dashboard-user') }}"
                                                         class="text-white">Kembali</a></button>
@@ -133,32 +133,7 @@
 
                     <div class="employers-details-content">
                         <h3>Persyaratan Kerja</h3>
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-                            et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                            diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                            voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Lorem ipsum dolor sit
-                            amet, consetetur</p>
-
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur consequatur quis suscipit
-                            similique totam distinctio doloribus, laboriosam numquam vero repudiandae quidem voluptas
-                            deserunt cupiditate saepe explicabo eos, ipsam ratione ullam. totam distinctio doloribus</p>
-
-                        <ul>
-                            <li>Stet clita kasd gubergren, no sea takimata sanctus</li>
-                            <li>Lorem ipsum dolor sit amet lorem ipsum dolor sit amet</li>
-                            <li>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor</li>
-                            <li>Aliquyam erat, sed diam voluptua</li>
-                        </ul>
-
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                            invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-                            et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                            diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                            voluptua. At vero eos et accusam et justo duo dolores et ea rebum. dolores et ea rebum. Stet
-                            clita</p>
+                        <p>{!! $lowongan->syarat !!}</p>
 
                     </div>
                 </div>
@@ -198,19 +173,19 @@
                             <ul class="overview">
                                 <li>
                                     Divisi
-                                    <span>: Web Developer</span>
+                                    <span>: {{ $lowongan->Divisi->divisi }}</span>
                                 </li>
                                 <li>
                                     Gaji
-                                    <span>: 23 Desember 2023</span>
+                                    <span>: {{ $lowongan->gaji }}</span>
                                 </li>
                                 <li>
                                     Tipe Kerja
-                                    <span>: Kontrak</span>
+                                    <span>: {{ $lowongan->tipe }}</span>
                                 </li>
                                 <li>
                                     Lokasi
-                                    <span>: Jakarta Barat</span>
+                                    <span>: {{ $lowongan->lokasi }}</span>
                                 </li>
 
                             </ul>

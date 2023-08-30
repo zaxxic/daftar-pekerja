@@ -17,12 +17,12 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->text('alamat');
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
-            $table->integer('no_telp');
+            $table->string('no_telp');
             $table->string('cv');
             $table->string('lamaran');
             $table->string('foto');
             $table->string('role')->default('user');
-            $table->boolean('status')->default(0);
+            $table->enum('status', ['menunggu', 'ditolak', 'diterima'])->default('menunggu');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->date('tanggal_wawancara')->nullable();

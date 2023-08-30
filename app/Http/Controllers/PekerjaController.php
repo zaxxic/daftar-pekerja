@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -12,8 +13,8 @@ class PekerjaController extends Controller
      */
     public function index()
     {
-        $user = User::where('status', 1)->get();
-        return view('admin.pekerja.index', compact('user'));
+        $user = User::where('status', 'diterima')->get();
+        return view('admin-pekerja.pekerja.index', compact('user'));
     }
 
     /**
@@ -53,7 +54,29 @@ class PekerjaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->validate(
+            $request,
+            [
+                'pesan' => 'required',
+            ],
+            [
+                'pesan.required' => 'Pesan Wajib Diisi',
+            ]
+        );
+
+        $user = User::find($id);
+
+        $pesan = new Message([
+            'pesan' => $request->pesan,
+        ]);
+
+        $user->message()->save($pesan);
+
+        $user->update([
+            'status' => 'ditolak',
+        ]);
+
+        return redirect()->route('approval')->with('sukses', 'Data Berhasil Di Perbarui');
     }
 
     /**

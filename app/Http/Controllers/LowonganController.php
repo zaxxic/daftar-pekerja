@@ -7,6 +7,7 @@ use App\Models\Vacancy;
 use App\Models\Division;
 use App\Http\Requests\StoreLowonganRequest;
 use App\Http\Requests\UpdateLowonganRequest;
+use App\Models\Divisi;
 
 class LowonganController extends Controller
 {
@@ -45,15 +46,16 @@ class LowonganController extends Controller
             'lokasi'=>'required',
             'content'=>'required'
         ]);
+        $isi = 'kontrak';
         // dd($request);
         Vacancy::create([
             'judul'=>$request->judul,
-            'devisi_id'=>$request->devisi,
+            'devisi'=>$request->devisi,
             'batas'=>$request->batas,
             'pekerja'=>$request->pekerjaan,
             'slot'=>$request->slot,
             'gaji'=>$request->gaji,
-            'tipe'=>$request->tipe,
+            'tipe'=>$isi,
             'lokasi'=>$request->lokasi,
             'syarat'=>$request->content,
             'pembuat'=>'admin'
@@ -73,7 +75,7 @@ class LowonganController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( $id)
+    public function edit(Lowongan $lowongan)
     {
         $divisi = Division::all();
         $lowongan = Vacancy::find($id);
@@ -83,7 +85,7 @@ class LowonganController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(UpdateLowonganRequest $request, Lowongan $lowongan)
     {
         $this->validate($request, [
             'judul'=>'required',
