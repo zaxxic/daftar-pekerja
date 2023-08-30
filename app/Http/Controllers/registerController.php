@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class RegisterController extends Controller
+class registerController extends Controller
 {
     public function index()
     {
@@ -25,15 +25,15 @@ class RegisterController extends Controller
                 'email' => 'required|unique:users,email',
                 'alamat' => 'required',
                 'jenis_kelamin' => 'required',
-                'no_telp' => 'required|numeric|regex:/^[0-9]+$/',
+                'no_telp' => 'required|numeric|regex:/^\d*$/',
                 'cv' => 'required|mimes:pdf',
                 'lamaran' => 'required|mimes:pdf',
                 'foto' => 'required|mimes:png,jpg,jpeg',
-                'password' => ['required', 'string', 'min:6', 'confirmed'],
+                'password' => ['required', 'string', 'min:3', 'confirmed'],
             ],
             [
                 'name.required' => 'Nama Wajib Diisi',
-                'alamat.rewuired' => 'Alamat wajib di isi',
+                'alamat.rewuired'=>'Alamat wajib di isi',
                 'email.required' => 'Email Wajib Diisi',
                 'email.unique' => 'Email Sudah Terdaftar',
                 'jenis_kelamin.required' => 'Jenis Kelamin Wajib Diisi',
@@ -76,4 +76,6 @@ class RegisterController extends Controller
         ]);
         return redirect('login')->with('success', 'Akun Anda berhasil dibuat. Silakan masuk dengan akun yang baru saja Anda buat.');
     }
+
+
 }
