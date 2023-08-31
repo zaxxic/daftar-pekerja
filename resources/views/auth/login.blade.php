@@ -43,34 +43,38 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="index-2.html" class="text-nowrap logo-img text-center d-block mb-5 w-100">
-                                    <img src="{{ asset('assets/hummas.png') }}" width="200"
-                                        alt="" />
+                                    <img src="{{ asset('assets/hummas.png') }}" width="200" alt="" />
                                 </a>
                                 <form action="{{ route('form-login') }}" method="POST">
                                     @csrf
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Email</label>
-                                        <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                        <input type="email" class="form-control" id="exampleInputEmail1"
+                                            aria-describedby="emailHelp" name="email">
                                     </div>
                                     <div class="mb-4">
                                         <label for="exampleInputPassword1" class="form-label">Password</label>
-                                        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                                        <input type="password" class="form-control" id="exampleInputPassword1"
+                                            name="password">
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mb-4">
                                         <div class="form-check">
-                                            <input class="form-check-input primary" type="checkbox" value="" id="flexCheckChecked" checked>
+                                            <input class="form-check-input primary" type="checkbox" value=""
+                                                id="flexCheckChecked" checked>
                                             <label class="form-check-label text-dark" for="flexCheckChecked">
                                                 Ingat Saya
                                             </label>
                                         </div>
-                                        <a class="text-primary fw-medium" href="authentication-forgot-password.html">Lupa Password?</a>
+                                        <a class="text-primary fw-medium"
+                                            href="authentication-forgot-password.html">Lupa Password?</a>
                                     </div>
-                                    <div class="d-grid">
-                                        <button class="btn btn-primary btn-lg" type="submit">Login</button>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-center">
-                                        <p class="fs-4 mb-0 fw-medium">Belum punya akun?</p>
-                                        <a class="text-primary fw-medium ms-2" href="">Daftar Sekarang</a>
+                                    <a href="index-2.html" class="btn btn-primary w-100 py-8 mb-4 rounded-2">Login
+                                        Sekarang</a>
+                                    <div class="d-flex align-items-center justify-content-center mt-1">
+                                        <p class="fs-4 mb-0 fw-medium mt-3">Belum punya akun?</p>
+                                        <a class="text-primary fw-medium ms-2 mt-3"
+                                            href="{{ route('register') }}">Daftar
+                                            Sekarang</a>
                                     </div>
                                 </form>
                             </div>

@@ -26,7 +26,7 @@ use App\Models\Lowongan;
 */
 
 
-Route::get('/dashboard-admin', [dashboardAdminController::class, 'index'])->name('dashboard-admin');
+;
 
 
 // Route::resource('login', loginController::class);
@@ -41,7 +41,7 @@ Route::post('/logout', [loginController::class, 'logout'])->name('logout');
 
 
 
-
+// middleware user
 Route::group(['middleware' => ['auth', 'user_role']], function () {
     Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
     Route::post('/ubah-password', [ProfileController::class, 'updatePassword'])->name('ubah-password');
@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth', 'user_role']], function () {
 
 });
 
+// middleware admin
 Route::group(['middleware' => ['auth', 'admin_role']], function () {
 
 });
