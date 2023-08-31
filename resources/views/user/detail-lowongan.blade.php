@@ -12,6 +12,8 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
         <!-- Bootstrap Min CSS -->
         <link rel="stylesheet" href="assets1/css/bootstrap.min.css">
@@ -47,6 +49,9 @@
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="assets1/images/favicon.png">
         <!-- Title -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <title>Dashboard User</title>
     </head>
     <title>Jubi - Job Board HTML Template</title>
@@ -134,13 +139,8 @@
                                                         class="text-white">Kembali</a></button>
                                             </li>
                                             <li>
-                                                <form action="{{ route('detail-lowongan.store') }}" method="post"
-                                                    id="myform">
-                                                    @csrf
-                                                    <input type="hidden" name="lowongan" value="" id="lowongan">
-                                                    <button type="button" onclick="isi()"
-                                                        class="btn btn-primary">Daftar</button>
-                                                </form>
+                                                <button type="button" class="btn btn-primary "
+                                                    id="daftar">Daftar</button>
                                             </li>
                                         </div>
                                     </ul>
@@ -162,23 +162,23 @@
                             <h3>Bagikan Lowongan Ini</h3>
 
                             <ul class="social-icon">
-                                <li>
-                                    <a href="#">
+                                <li id="shareFacebook">
+                                    <a>
                                         <i class="bx bxl-facebook"></i>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="bx bxl-instagram"></i>
+                                <li id="shareWhatsapp">
+                                    <a>
+                                        <i class="bx bxl-whatsapp"></i>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
+                                <li id="shareLinkedin">
+                                    <a>
                                         <i class="bx bxl-linkedin-square"></i>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#">
+                                <li id="shareTwitter">
+                                    <a>
                                         <i class="bx bxl-twitter"></i>
                                     </a>
                                 </li>
@@ -241,7 +241,7 @@
 
                                     <ul class="social-icon">
                                         <li>
-                                            <a href="#">
+                                            <a href="" id="shareFacebook">
                                                 <i class="bx bxl-facebook"></i>
                                             </a>
                                         </li>
@@ -405,12 +405,103 @@
     <script src="assets1/js/ajaxchimp.min.js"></script>
     <!-- Custom JS -->
     <script src="assets1/js/custom.js"></script>
+
     <script>
+        << << << < HEAD
+
         function isi() {
             var x = document.getElementById("lowongan").value = {!! $lowongan->id !!};
             var y = document.getElementById("myform");
             y.submit();
-        }
+        } ===
+        === =
+        document.getElementById('shareFacebook').addEventListener('click', function() {
+            var currentUrl = window.location.href;
+            var facebookLink = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(currentUrl);
+            window.open(facebookLink, '_blank');
+        });
+    </script>
+    <script>
+        document.getElementById('shareWhatsapp').addEventListener('click', function() {
+            var currentUrl = window.location.href;
+            var message = encodeURIComponent('Ini adalah tautan dari halaman: ' + currentUrl);
+            var whatsappLink = 'https://api.whatsapp.com/send?text=' + message;
+            window.open(whatsappLink, '_blank');
+        });
+    </script>
+    <script>
+        document.getElementById('shareLinkedin').addEventListener('click', function() {
+            var currentUrl = window.location.href;
+            var linkedinLink = 'https://www.linkedin.com/shareArticle?mini=true&url=' + encodeURIComponent(
+                currentUrl);
+            window.open(linkedinLink, '_blank');
+        });
+    </script>
+    <script>
+        document.getElementById('shareTwitter').addEventListener('click', function() {
+            var currentUrl = window.location.href;
+            var tweetText = 'Ini adalah tautan dari halaman: ' + currentUrl;
+            var twitterLink = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweetText);
+            window.open(twitterLink, '_blank');
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('#daftar').on('click', function() {
+                var url = "{{ route('detail-lowongan.store') }}";
+                var formData = "{{ $lowongan->id }}";
+
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: {
+                        id: formData,
+                    },
+                    success: function(response) {
+                        if (response.status === 'sukses') {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Sukses',
+                                text: 'Terima kasih anda telah mendaftar di lowongan ini'
+                            });
+                        }
+                        if (response.status === 'sudah') {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'error',
+                                text: 'Anda sudah terdaftar di lowongan ini'
+                            });
+                        }
+                        // Tanggapan berhasil
+
+                        // Tampilkan pesan sukses dengan SweetAlert
+
+                    },
+                    error: function(error) {
+                        // Tanggapan error
+                        console.log(error);
+                        // Tampilkan pesan error dengan SweetAlert
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Terjadi kesalahan. Data tidak dapat disimpan.'
+                        });
+                    }
+                });
+            });
+
+
+
+
+        }); >>>
+        >>> > a16c9a02ca4756ee43a6afe891e144b16948af3a
     </script>
 </body>
 

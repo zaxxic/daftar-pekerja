@@ -49,12 +49,12 @@ class LowonganController extends Controller
             'batas' =>['required',
             function ($attribute, $value, $fail) {
                 if (Carbon::parse($value)->isBefore(Carbon::now()->subDay())) {
-                    $fail('Tanggal Wawancara tidak boleh hari kemarin');
+                    $fail('Tanggal tenggat tidak boleh hari kemarin');
                 }
             },],
             'pekerjaan'=> 'required',
-            'slot' => 'required|min:0',
-            'gaji'=> 'required|min:0',
+            'slot' => 'required|numeric|min:0',
+            'gaji'=> 'required|numeric|min:0',
             'tipe'=>'required',
             'lokasi'=>'required',
             'content'=>'required'
@@ -64,12 +64,14 @@ class LowonganController extends Controller
             'batas.required' => 'batas harus di isi',
             'pekerjaan.required' => 'pekerjaan harus di isi',
             'slot.required' => 'slot harus di isi',
+            'slot.min' => 'slot tidak boleh min',
             'gaji.required' => 'gaji harus di isi',
+            'gaji.min' => 'gaji tidak boleh min',
             'tipe.required' => 'tipe harus di isi',
             'lokasi.required' => 'lokasi harus di isi',
             'content.required' => 'syarat harus di isi',
         ]);
-        // dd($request);
+
         Vacancy::create([
             'judul'=>$request->judul,
             'devisi_id'=>$request->devisi,
@@ -89,9 +91,10 @@ class LowonganController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show($id)
     {
-        return view('admin-lowongan.lowongan-detail');
+        $data = Vacancy::find($id);
+        return view('admin-lowongan.lowongan-detail', compact('data'));
     }
 
     /**
@@ -112,14 +115,32 @@ class LowonganController extends Controller
         $this->validate($request, [
             'judul'=>'required',
             'devisi'=>'required',
-            'batas' =>'required',
+            'batas' =>['required',
+            function ($attribute, $value, $fail) {
+                if (Carbon::parse($value)->isBefore(Carbon::now()->subDay())) {
+                    $fail('Tanggal tenggat tidak boleh hari kemarin');
+                }
+            },],
             'pekerjaan'=> 'required',
-            'slot' => 'required',
-            'gaji'=> 'required',
+            'slot' => 'required|numeric|min:0',
+            'gaji'=> 'required|numeric|min:0',
             'tipe'=>'required',
             'lokasi'=>'required',
             'content'=>'required'
+        ],[
+            'judul.required' => 'judul harus di isi',
+            'devisi.required' => 'devisi harus di isi',
+            'batas.required' => 'batas harus di isi',
+            'pekerjaan.required' => 'pekerjaan harus di isi',
+            'slot.required' => 'slot harus di isi',
+            'slot.min' => 'slot tidak boleh min',
+            'gaji.required' => 'gaji harus di isi',
+            'gaji.min' => 'gaji tidak boleh min',
+            'tipe.required' => 'tipe harus di isi',
+            'lokasi.required' => 'lokasi harus di isi',
+            'content.required' => 'syarat harus di isi',
         ]);
+
         $data = Vacancy::find($id);
         $data->update([
             'judul'=>$request->judul,

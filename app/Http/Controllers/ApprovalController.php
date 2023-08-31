@@ -59,9 +59,10 @@ class ApprovalController extends Controller
             [
                 'tanggal_wawancara' => [
                     'required',
+                    'date_format:Y-m-d\TH:i', // Format tanggal dan waktu
                     function ($attribute, $value, $fail) {
-                        if (Carbon::parse($value)->isBefore(Carbon::now()->subDay())) {
-                            $fail('Tanggal Wawancara tidak boleh hari kemarin');
+                        if (Carbon::parse($value)->isBefore(Carbon::now())) {
+                            $fail('Tanggal dan Waktu Wawancara tidak boleh hari dan jam kemarin');
                         }
                     },
                 ],

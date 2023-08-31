@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Divisi;
 use App\Models\Division;
-use App\Models\Lowongan;
+use App\Models\Registration;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
 
@@ -16,9 +17,10 @@ class dashboardUserController extends Controller
     public function index()
     {
         $selectedDivision = 'semua';
-        $divisi = Division::all();
         $lowongan = Vacancy::latest()->paginate(5);
-        return view('user.index', compact('lowongan', 'divisi','selectedDivision'));
+        $registration = Registration::where('users_id', Auth()->User()->id)->get();
+        $divisi = Division::all();
+        return view('user.index', compact('lowongan', 'divisi','selectedDivision','registration'));
     }
 
     public function filterLowongan(Request $request)

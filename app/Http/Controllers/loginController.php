@@ -41,7 +41,6 @@ class loginController extends Controller
         if (Auth::check()) {
             return redirect('login'); // Ganti '/dashboard' dengan rute dashboard Anda
         }
-
         return view('auth.login'); // Ganti 'auth.login' dengan nama tampilan login Anda
     }
 

@@ -120,7 +120,7 @@
                                                 style="color: red;">*</span></label>
                                         <textarea name="alamat" id="" cols="10" rows="5"
                                             class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat') }}" id="alamat"
-                                            name="alamat"></textarea>
+                                            name="alamat">{{ old('alamat') }}</textarea>
                                         @error('alamat')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -187,10 +187,10 @@
                                         Sekarang</button>
                                     <div class="d-flex align-items-center">
                                         <p class="fs-4 mb-0 text-dark">
-                                            Already have an Account?
+                                            Sudah mempunyai akun?
                                         </p>
-                                        <a class="text-primary fw-medium ms-2" href="authentication-login.html">Sign
-                                            In</a>
+                                        <a class="text-primary fw-medium ms-2" href="{{ route('login')}}">
+                                            Login</a>
                                     </div>
                                 </form>
                             </div>

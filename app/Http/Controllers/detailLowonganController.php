@@ -29,20 +29,18 @@ class detailLowonganController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'lowongan' => 'required'
-        ]);
-        $cek = Registration::Where('users_id',Auth()->User()->id)->where('status', ["diterima","mununggu"])->exists();
+        $cek = Registration::Where('users_id' , Auth()->User()->id)->whereIn('status', ['diterima','menunggu'])->exists();
         if ($cek){
-            return redirect()->back()->with('error', 'anda sudah mendaftar di lowongan ini');
+            return response()->json(['status' => 'sudah']);
         }
 
         Registration::create([
             'status' => 'menunggu',
             'users_id' => Auth()->user()->id,
-            'vacancie_id' => $request->lowongan
+            'vacancie_id' => $request->id
         ]);
-        return redirect()->back()->with('sukses', 'berhasail mendaftar pada lowongan ini silakan menunggu untuk di cek olah admin data anda');
+        return response()->json(['status' => 'sukses']);
+        // return redirect()->back()->with('sukses', 'berhasail mendaftar pada lowongan ini silakan menunggu untuk di cek olah admin data anda');
     }
 
     /**
@@ -75,6 +73,12 @@ class detailLowonganController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+    }
+    public function batalkan(Request $request) {
+        $data = $request->id;
+        $lowongan = Registration::Where('users_id', $data)->first();
+        $lowongan->delete();
+        return response()->json(['status' => 'sukses', 'pesan'=>'pendaftaran anda telah di batalkan anda bisa mencari lowongan yang lain']);
     }
 }
