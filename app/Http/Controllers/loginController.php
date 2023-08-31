@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 
 class loginController extends Controller
@@ -38,7 +39,7 @@ class loginController extends Controller
     function showLogin()
     {
         if (Auth::check()) {
-            return redirect('/'); // Ganti '/dashboard' dengan rute dashboard Anda
+            return redirect('login'); // Ganti '/dashboard' dengan rute dashboard Anda
         }
 
         return view('auth.login'); // Ganti 'auth.login' dengan nama tampilan login Anda
@@ -47,6 +48,10 @@ class loginController extends Controller
     public function logout()
     {
         Auth::logout();
+    
+        // Menghapus semua data sesi yang terkait dengan pengguna
+        Session::flush();
+    
         return redirect('/'); // Ganti '/' dengan rute yang sesuai setelah logout
     }
 }

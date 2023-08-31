@@ -20,9 +20,20 @@ class ApprovalController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = Registration::where('status', ['menunggu','ditolak'])->get();
+        if ($request->has('cari')) {
+            $keyword = $request->cari;
+            $user = Registration::whereHas('user', function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', '%' . $keyword . '%');
+            })->where('status', '!=', 'diterima') // Tampilkan hanya status bukan "disetujui"
+            ->paginate(8);
+    
+            $user->appends(['cari' => $keyword]);
+            return view('admin-pekerja.approval.index', compact('user'));
+        }
+    
+        $user = Registration::where('status', ['menunggu','ditolak'])->paginate(8);
         return view('admin-pekerja.approval.index', compact('user'));
     }
 

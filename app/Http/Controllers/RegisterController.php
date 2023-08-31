@@ -25,7 +25,7 @@ class registerController extends Controller
             $request->all(),
             [
                 'name' => 'required',
-                'email' => 'required|unique:users,email',
+                'email' => 'required|email|unique:users,email',
                 'alamat' => 'required',
                 'jenis_kelamin' => 'required',
                 'no_telp' => 'required|numeric|regex:/^\d*$/',
@@ -38,6 +38,7 @@ class registerController extends Controller
                 'name.required' => 'Nama Wajib Diisi',
                 'alamat.rewuired' => 'Alamat wajib di isi',
                 'email.required' => 'Email Wajib Diisi',
+                'email.email' => 'Harus Menginputkan Data yang Bertipe Email',
                 'email.unique' => 'Email Sudah Terdaftar',
                 'jenis_kelamin.required' => 'Jenis Kelamin Wajib Diisi',
                 'no_telp.required' => 'No Telephone Wajib Diisi',
@@ -89,7 +90,7 @@ class registerController extends Controller
             'role' => $request->role,
             'password' => Hash::make($request->password),
         ]);
-        return redirect('login')->with('success', 'Akun Anda berhasil dibuat. Silakan masuk dengan akun yang baru saja Anda buat.');
+        return redirect()->route('login')->with('success', 'Akun Anda berhasil dibuat. Silakan masuk dengan akun yang baru saja Anda buat.');
     }
 
 

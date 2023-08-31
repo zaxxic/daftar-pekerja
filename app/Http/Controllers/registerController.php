@@ -90,7 +90,7 @@ class registerController extends Controller
             'role' => $request->role,
             'password' => Hash::make($request->password),
         ]);
-        return redirect('login')->with('success', 'Akun Anda berhasil dibuat. Silakan masuk dengan akun yang baru saja Anda buat.');
+        return redirect()->route('login')->with('success', 'Akun Anda berhasil dibuat. Silakan masuk dengan akun yang baru saja Anda buat.');
     }
 
 

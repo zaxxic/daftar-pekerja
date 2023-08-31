@@ -42,7 +42,7 @@
                     <div class="col-md-8 col-lg-6 col-xxl-3">
                         <div class="card mb-0">
                             <div class="card-body">
-                                <a href="index-2.html" class="text-nowrap logo-img text-center d-block mb-5 w-100">
+                                <a href="" class="text-nowrap logo-img text-center d-block mb-5 w-100">
                                     <img src="{{ asset('assets/hummas.png') }}" width="200" alt="" />
                                 </a>
                                 <form action="{{ route('form-login') }}" method="POST">
@@ -68,8 +68,8 @@
                                         <a class="text-primary fw-medium"
                                             href="authentication-forgot-password.html">Lupa Password?</a>
                                     </div>
-                                    <a href="index-2.html" class="btn btn-primary w-100 py-8 mb-4 rounded-2">Login
-                                        Sekarang</a>
+                                    <button type="submit" class="btn btn-primary w-100 py-8 mb-4 rounded-2">Login
+                                        Sekarang</button>
                                     <div class="d-flex align-items-center justify-content-center mt-1">
                                         <p class="fs-4 mb-0 fw-medium mt-3">Belum punya akun?</p>
                                         <a class="text-primary fw-medium ms-2 mt-3"

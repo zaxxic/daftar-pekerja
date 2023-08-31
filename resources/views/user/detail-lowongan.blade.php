@@ -81,9 +81,9 @@
         }
     </style>
     @if (session()->has('sukses'))
-    <script>
-        alert("anda sudah terdaftar")
-    </script>
+        <script>
+            alert("anda sudah terdaftar")
+        </script>
     @endif
     @if (session()->has('error'))
         <script>
@@ -93,7 +93,7 @@
 
 
     <!-- Start Page Title Area -->
-    <div class=" kerja" style="direction: ltr; margin-top: -20px;">
+    <div class=" kerja" style="direction: ltr; margin-top: -45px;">
         <div class="container" style="margin-bottom: -100px; margin-left: -50px;">
             <div class="row">
                 <div class="col sm-6">
@@ -129,15 +129,17 @@
                                         <li><span>Slot Tersedia : </span> {{ $lowongan->slot }}</li>
                                         <div class="d-flex justify-content-between">
                                             <li><span>Tipe Kerja : </span>{{ $lowongan->tipe }}</li>
-                                            <li style="margin-left: 300px; margin-right: -25px;"><button
+                                            <li style="margin-left: 30%; margin-right: -19%;"><button
                                                     class="btn btn-danger"><a href="{{ route('dashboard-user') }}"
                                                         class="text-white">Kembali</a></button>
                                             </li>
                                             <li>
-                                                <form action="{{route('detail-lowongan.store')}}" method="post" id="myform">
+                                                <form action="{{ route('detail-lowongan.store') }}" method="post"
+                                                    id="myform">
                                                     @csrf
                                                     <input type="hidden" name="lowongan" value="" id="lowongan">
-                                                    <button type="button" onclick="isi()"  class="btn btn-primary">Daftar</button>
+                                                    <button type="button" onclick="isi()"
+                                                        class="btn btn-primary">Daftar</button>
                                                 </form>
                                             </li>
                                         </div>
@@ -185,6 +187,7 @@
 
                         <div class="employer-widget">
                             <h3>Detail Lowongan Perusahaan</h3>
+
 
 
                             <ul class="overview">
@@ -403,8 +406,8 @@
     <!-- Custom JS -->
     <script src="assets1/js/custom.js"></script>
     <script>
-        function isi(){
-            var x = document.getElementById("lowongan").value = {!!$lowongan->id!!};
+        function isi() {
+            var x = document.getElementById("lowongan").value = {!! $lowongan->id !!};
             var y = document.getElementById("myform");
             y.submit();
         }

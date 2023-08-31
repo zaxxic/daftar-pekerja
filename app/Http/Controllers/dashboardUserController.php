@@ -16,8 +16,8 @@ class dashboardUserController extends Controller
     public function index()
     {
         $selectedDivision = 'semua';
-        $lowongan = Vacancy::all();
         $divisi = Division::all();
+        $lowongan = Vacancy::latest()->paginate(5);
         return view('user.index', compact('lowongan', 'divisi','selectedDivision'));
     }
 

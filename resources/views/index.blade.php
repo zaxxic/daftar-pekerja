@@ -66,7 +66,7 @@
                         <div class="header-right-content">
                             <ul class="log-in">
                                 <li>
-                                    <a href="log-in-register.html">
+                                    <a href="{{ route('login') }}">
                                         <i class="bx bxs-lock"></i>
                                         Log In
                                     </a>
@@ -243,7 +243,7 @@
                 <h2>Bagaimana Alur Kerja Hummatech</h2>
             </div>
 
-            <div class="row"> 
+            <div class="row">
                 <div class="col-lg-3 col-sm-6">
                     <div class="single-working">
                         <i class="flaticon-find-my-friend"></i>
@@ -301,7 +301,7 @@
                             </li>
                         </ul>
 
-                        
+
                     </div>
                 </div>
 

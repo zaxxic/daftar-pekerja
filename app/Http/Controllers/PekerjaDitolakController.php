@@ -10,9 +10,18 @@ class PekerjaDitolakController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = User::where('status', 'ditolak')->get();
+        if ($request->has('cari')) {
+            $keyword = $request->cari;
+            $user = User::where('name', 'LIKE', '%' . $keyword . '%')
+                        ->where('status', 'ditolak')
+                        ->paginate(8);
+            $user->appends(['cari' => $keyword]);
+            return view('admin-pekerja.pekerja-ditolak.index', compact('user'));
+        }
+
+        $user = User::where('status', 'ditolak')->latest()->paginate(8);
         return view('admin-pekerja.pekerja-ditolak.index', compact('user'));
     }
 

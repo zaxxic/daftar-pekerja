@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="assets1/css/meanmenu.min.css">
     <!-- Nice Select Min CSS -->
     <link rel="stylesheet" href="assets1/css/nice-select.min.css">
-  
+
     <link rel="stylesheet" href="assets1/css/muli-fonts.css">
     <!-- Style CSS -->
     <link rel="stylesheet" href="assets1/css/style.css">
@@ -132,19 +132,9 @@
 
                             @empty
                             @endforelse
-
-
-
-
                             <div class="col-12">
                                 <div class="pagination-area">
-                                    <span class="page-numbers current" aria-current="page">1</span>
-                                    <a href="#" class="page-numbers">2</a>
-                                    <a href="#" class="page-numbers">3</a>
-
-                                    <a href="#" class="next page-numbers">
-                                        <i class="flaticon-right-arrow"></i>
-                                    </a>
+                                    {{ $lowongan->links() }}
                                 </div>
                             </div>
                         </div>

@@ -14,9 +14,19 @@ class PekerjaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = User::where('status', 'diterima')->get();
+        if ($request->has('cari')) {
+            $keyword = $request->cari;
+            $user = User::where('name', 'LIKE', '%' . $keyword . '%')
+                        ->where('status', 'diterima')
+                        ->paginate(8);
+    
+            $user->appends(['cari' => $keyword]);
+            return view('admin-pekerja.pekerja.index', compact('user'));
+        }
+
+        $user = User::where('status', 'diterima')->latest()->paginate(8);
         return view('admin-pekerja.pekerja.index', compact('user'));
     }
 

@@ -8,17 +8,25 @@ use App\Models\Division;
 use Carbon\Carbon;
 
 use App\Http\Requests\UpdateLowonganRequest;
+use App\Models\User;
 
 class LowonganController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->has('cari')) {
+            $keyword = $request->cari;
+            $data = Vacancy::where('judul', 'LIKE', '%' . $keyword . '%')->paginate(8);
+            $data->appends(['cari' => $keyword]);
+            return view('admin-lowongan.lowongan', compact('data'));
+        }
+        $user = User::all();
         $divisi = Division::all();
-        $data = Vacancy::all();
-        return view('admin-lowongan.lowongan', compact('data','divisi'));
+        $data = Vacancy::latest()->paginate(8);
+        return view('admin-lowongan.lowongan', compact('data','divisi','user'));
     }
 
     /**
