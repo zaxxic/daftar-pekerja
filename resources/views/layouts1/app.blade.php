@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <!--  Title -->
-    <title>Mischool</title>
+    <title>User</title>
     <!--  Required Meta Tag -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,7 +13,7 @@
     <meta name="keywords" content="Mordenize" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!--  Favicon -->
-    <link rel="shortcut icon" type="{{asset('image/png')}}" href="{{ asset('assets/favicon.ico') }}" />
+    <link rel="shortcut icon" type="{{asset('image/png')}}" href="{{ asset('assets/logo.png') }}" />
     <!-- Owl Carousel  -->
     <link rel="stylesheet" href="{{ asset('assets/dist/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}">
     <!-- Core Css -->
