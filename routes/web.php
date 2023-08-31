@@ -84,7 +84,7 @@ Route::get('pekerja-ditolak', [PekerjaDitolakController::class, 'index'])->name(
 //Lowongan aktif / nonaktif
 Route::patch('nonactive-lowongan/{id}', [LowonganController::class, 'nonactive'])->name('nonactive-lowongan');
 Route::patch('active-lowongan/{id}', [LowonganController::class, 'active'])->name('active-lowongan');
-Route::get('/dashboard-admin', [dashboardAdminController::class, 'index'])->name('dashboard-user');
+Route::get('/dashboard-admin', [dashboardAdminController::class, 'index'])->name('dashboard-admin');
 Route::get('/', function () {
     return view('index');
 })->name('dashboard');

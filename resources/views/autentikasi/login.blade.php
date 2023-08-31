@@ -71,9 +71,10 @@
                                     </div>
                                     <a href="index-2.html" class="btn btn-primary w-100 py-8 mb-4 rounded-2">Login
                                         Sekarang</a>
-                                    <div class="d-flex align-items-center justify-content-center">
-                                        <p class="fs-4 mb-0 fw-medium">Belum punya akun?</p>
-                                        <a class="text-primary fw-medium ms-2" href="{{ route('register') }}">Daftar
+                                    <div class="d-flex align-items-center justify-content-center mt-3">
+                                        <p class="fs-4 mb-0 fw-medium mt-3">Belum punya akun?</p>
+                                        <a class="text-primary fw-medium ms-2 mt-3"
+                                            href="{{ route('register') }}">Daftar
                                             Sekarang</a>
                                     </div>
                                 </form>

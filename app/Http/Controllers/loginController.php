@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class loginController extends Controller
 {
+    public function index(){
+        return view('autentikasi.login');
+    }
+
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
@@ -33,7 +37,6 @@ class loginController extends Controller
 
     function showLogin()
     {
-
         if (Auth::check()) {
             return redirect('/'); // Ganti '/dashboard' dengan rute dashboard Anda
         }
