@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
+use App\Models\Registration;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\daftar;
 
 class PekerjaController extends Controller
 {
@@ -71,12 +74,20 @@ class PekerjaController extends Controller
         ]);
 
         $user->message()->save($pesan);
-
+        $data = Registration::where('users_id',$id)->first();
+        $data->delete();
         $user->update([
             'status' => 'ditolak',
         ]);
+        $datas =   [
+            'pesan' => "Akun anda di nonaktifkan ",
+            'status' => "nonaktif",
+            'judul' => " Anda di nonkatifkan karena alasan ". $request->pesan . " dan anda bisa daftar di lowongan lainnya"
+            ];
 
-        return redirect()->route('approval')->with('sukses', 'Data Berhasil Di Perbarui');
+        Mail::to($user->email)->send(new daftar($datas));
+
+        return redirect()->route('pekerja')->with('sukses', 'Data Berhasil Di Perbarui');
     }
 
     /**

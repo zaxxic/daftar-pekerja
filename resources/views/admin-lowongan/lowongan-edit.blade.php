@@ -8,12 +8,7 @@
         <div class="col-md-6 col-lg-6 mt-">
             <h5> Edit Lowongan</h5>
         </div>
-        <div class="col-md-6 col-lg-6 d-flex justify-content-end">
-            <div>
-                <a href="javascript:void(0)" class="btn btn-danger rounded-2" > <p class="mb-0 ">Batal</p></a>
-                <button type="submit" class="btn btn-primary rounded-2"> <p class="mb-0">Simpan</p></button>
-            </div>
-        </div>
+
     </div>
     <div class="row">
         <div class="col-6">
@@ -60,6 +55,12 @@
             <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Masukkan Konten Post">{!!$lowongan->syarat!!}</textarea>            {{-- <input class="col-10 form-control" type="text" name="lokasi" id=""> --}}
         </div>
 
+    </div>
+    <div class="col-md-12 col-lg-12 d-flex justify-content-end">
+        <div>
+            <a href="javascript:void(0)" class="btn btn-danger rounded-2" > <p class="mb-0 ">Batal</p></a>
+            <button type="submit" class="btn btn-primary rounded-2"> <p class="mb-0">Simpan</p></button>
+        </div>
     </div>
     </form>
 </div>

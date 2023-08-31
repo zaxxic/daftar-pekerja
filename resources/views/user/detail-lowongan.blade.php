@@ -80,6 +80,17 @@
             box-sizing: border-box;
         }
     </style>
+    @if (session()->has('sukses'))
+    <script>
+        alert("anda sudah terdaftar")
+    </script>
+    @endif
+    @if (session()->has('error'))
+        <script>
+            alert("anda tidak bisa daftar kembali")
+        </script>
+    @endif
+
 
     <!-- Start Page Title Area -->
     <div class=" kerja" style="direction: ltr; margin-top: -20px;">
@@ -112,7 +123,7 @@
                                     <div class="d-flex justify-content-between" style="color: black">
                                         <h3><a href="">{{ $lowongan->judul }}</a></h3>
                                     </div>
-                                    <span class="sub-title text-primary mb-1">{{ $lowongan->Divisi->divisi }}</span>
+                                    <span class="sub-title text-primary mb-1">{{ $lowongan->Division->divisi }}</span>
                                     <ul class="overview">
                                         <li><span>Gaji :</span>{{ $lowongan->gaji }}</li>
                                         <li><span>Slot Tersedia : </span> {{ $lowongan->slot }}</li>
@@ -122,7 +133,12 @@
                                                     class="btn btn-danger"><a href="{{ route('dashboard-user') }}"
                                                         class="text-white">Kembali</a></button>
                                             </li>
-                                            <li><button class="btn btn-primary">Daftar</button>
+                                            <li>
+                                                <form action="{{route('detail-lowongan.store')}}" method="post" id="myform">
+                                                    @csrf
+                                                    <input type="hidden" name="lowongan" value="" id="lowongan">
+                                                    <button type="button" onclick="isi()"  class="btn btn-primary">Daftar</button>
+                                                </form>
                                             </li>
                                         </div>
                                     </ul>
@@ -170,10 +186,11 @@
                         <div class="employer-widget">
                             <h3>Detail Lowongan Perusahaan</h3>
 
+
                             <ul class="overview">
                                 <li>
                                     Divisi
-                                    <span>: {{ $lowongan->Divisi->divisi }}</span>
+                                    <span>: {{ $lowongan->Division->divisi }}</span>
                                 </li>
                                 <li>
                                     Gaji
@@ -385,6 +402,13 @@
     <script src="assets1/js/ajaxchimp.min.js"></script>
     <!-- Custom JS -->
     <script src="assets1/js/custom.js"></script>
+    <script>
+        function isi(){
+            var x = document.getElementById("lowongan").value = {!!$lowongan->id!!};
+            var y = document.getElementById("myform");
+            y.submit();
+        }
+    </script>
 </body>
 
 <!-- Mirrored from templates.envytheme.com/jubi/rtl/employers-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 26 Aug 2023 07:41:52 GMT -->

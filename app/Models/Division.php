@@ -16,4 +16,8 @@ class Division extends Model
      {
          return $this->hasMany(Vacancy::class);
      }
+     public function User()
+     {
+         return $this->hasMany(User::class);
+     }
 }
