@@ -244,7 +244,7 @@
     });
 </script>
 <script>
-    const status = '{{ $item->status }}'; // Ganti dengan status sebenarnya dari data
+    const status = '{{ $item->status ?? ""}}'; // Ganti dengan status sebenarnya dari data
 
     function updateButtonAppearance(status) {
         const nonaktifButton = document.getElementById('formnonactive');
