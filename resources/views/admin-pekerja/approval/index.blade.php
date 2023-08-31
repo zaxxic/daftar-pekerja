@@ -166,7 +166,7 @@
                                     <div class="modal-body col-lg-12">
                                         <div class="d-flex">
                                             <div class="col-lg-4">
-                                                <img src="{{ asset('storage/public/foto_user/' . $row->foto) }}" class="rounded-circle" width="180" height="180" />
+                                                <img src="{{ asset('storage/public/foto_user/' . $row->User->foto) }}" class="rounded-circle" width="180" height="180" />
                                             </div>
                                             <div class="col-lg-8">
                                                 <div class="card">
@@ -174,22 +174,22 @@
                                                         <h5 class="mb-3">Data Diri Pekerja</h5>
                                                         <div class="d-flex mb-1">
                                                             <span class="me-3" style="font-weight: 600;">Nama :</span>
-                                                            <span>{{ $row->name }}</span>
+                                                            <span>{{ $row->User->name }}</span>
                                                         </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                                         <div class="d-flex mb-1">
                                                             <span class="me-3" style="font-weight: 600;">Jenis Kelamin :</span>
-                                                            <span>{{ $row->jenis_kelamin }}</span>
+                                                            <span>{{ $row->User->jenis_kelamin }}</span>
                                                         </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                                         <div class="d-flex mb-1">
                                                             <span class="me-3" style="font-weight: 600;">No. Handphome :</span>
-                                                            <span>{{ $row->no_telp }}</span>
+                                                            <span>{{ $row->User->no_telp }}</span>
                                                         </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                                         <div class="d-flex mb-1">
                                                             <span class="me-3" style="font-weight: 600;">Email :</span>
-                                                            <span>{{ $row->email }}</span>
+                                                            <span>{{ $row->User->email }}</span>
                                                         </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                                     </div>
@@ -203,14 +203,14 @@
                                                 <div class="col-lg-5">
                                                     <div class="card">
                                                         <div class="card-body d-flex justify-content-center align-items-center">
-                                                        <a href="{{ route('user.cv', $row->User->id) }}" target="_blank" class="btn btn-primary" target="_blank">CV</a>
+                                                        <a href="{{ route('user.cv', $row->User->User->id) }}" target="_blank" class="btn btn-primary" target="_blank">CV</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-5">
                                                     <div class="card">
                                                         <div class="card-body d-flex justify-content-center align-items-center">
-                                                        <a href="{{ route('user.lamaran', $row->User->id) }}" target="_blank" class="btn btn-primary" target="_blank">Lamaran</a>
+                                                        <a href="{{ route('user.lamaran', $row->User->User->id) }}" target="_blank" class="btn btn-primary" target="_blank">Lamaran</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -252,7 +252,7 @@
                                                         <span class="me-3" style="font-weight: 600;">Alamat :</span>
                                                     </div>
                                                     <div class="col-lg-10">
-                                                        <span>{{ $row->alamat }}</span>
+                                                        <span>{{ $row->User->alamat }}</span>
                                                     </div>
                                                 </div>
                                             </div>

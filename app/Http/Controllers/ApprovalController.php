@@ -70,9 +70,10 @@ class ApprovalController extends Controller
                 ];
 
         Mail::to($data->email)->send(new daftar($datas));
+        // dd($item->Vacancy->devisi_id);
         $data->update([
             'status' => 'diterima',
-            'devision_id' =>$item->Vacancy->divisi_id,
+            'devision_id' =>$item->Vacancy->devisi_id,
             'tanggal_wawancara' => $request->tanggal_wawancara
         ]);
         $item->update([
