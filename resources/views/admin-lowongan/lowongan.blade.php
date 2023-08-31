@@ -16,7 +16,7 @@
                         <h4 class="modal-title" id="myLargeModalLabel">
                             Tambah Devisi
                         </h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="submitBtn" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form id="createDivisiForm" method="post">
                         @csrf
@@ -26,7 +26,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" id="subm  itBtn" class="btn btn-light-success text-success font-medium waves-effect text-start">
+                            <button type="button" id="submitBtn" class="btn btn-light-success text-success font-medium waves-effect text-start">
                                 Simpan
                             </button>
                         </div>
@@ -123,6 +123,7 @@
 @endsection
 @section('script')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
     $(document).ready(function() {

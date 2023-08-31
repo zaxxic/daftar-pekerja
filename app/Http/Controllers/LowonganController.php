@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Vacancy;
 use App\Models\Division;
+use Carbon\Carbon;
+
 use App\Http\Requests\UpdateLowonganRequest;
 
 class LowonganController extends Controller
@@ -36,10 +38,15 @@ class LowonganController extends Controller
         $this->validate($request, [
             'judul'=>'required',
             'devisi'=>'required',
-            'batas' =>'required',
+            'batas' =>['required',
+            function ($attribute, $value, $fail) {
+                if (Carbon::parse($value)->isBefore(Carbon::now()->subDay())) {
+                    $fail('Tanggal Wawancara tidak boleh hari kemarin');
+                }
+            },],
             'pekerjaan'=> 'required',
-            'slot' => 'required',
-            'gaji'=> 'required',
+            'slot' => 'required|min:0',
+            'gaji'=> 'required|min:0',
             'tipe'=>'required',
             'lokasi'=>'required',
             'content'=>'required'
