@@ -42,10 +42,8 @@
     <link rel="stylesheet" href="assets1/css/responsive.css">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets1/images/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/dist/images/logo.png') }}" />
     <!-- Title -->
-    <!--  Favicon -->
-    <link rel="shortcut icon" type="image/png')}}" href="{{ asset('assets/favicon.ico') }}" />
     <!-- Owl Carousel  -->
     <link rel="stylesheet" href="{{ asset('assets/dist/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}">
     <!-- Core Css -->

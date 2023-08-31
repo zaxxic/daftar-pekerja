@@ -127,7 +127,7 @@
                     type: 'bar',
                     responsive: true,
                     width: '100%',
-                    height: '100%'
+                    height: '150%'
                 },
                 plotOptions: {
                     bar: {
@@ -135,7 +135,8 @@
                         columnWidth: '10%',
                         endingShape: 'rounded',
                         borderRadius: 7,
-
+                        barPercentage: 0.8, // Atur lebar batang relatif terhadap lebar kategori
+                        categoryPercentage: 0.9, // Atur jarak antara kategori
                     },
                 },
                 dataLabels: {

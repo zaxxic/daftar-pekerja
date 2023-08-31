@@ -67,7 +67,7 @@ class registerController extends Controller
             'body' => 'Testing Kirim Email di Santri Koding'
         ];
 
-        Mail::to('rahmatmahendra888@gmail.com.com')->send(new daftar($data));
+        // Mail::to('rahmatmahendra888@gmail.com.com')->send(new daftar($data));
 
         $image = $request->file('foto');
         $randomFileName = uniqid() . '.' . $image->getClientOriginalExtension();
