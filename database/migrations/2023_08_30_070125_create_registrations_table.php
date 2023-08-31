@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('registrations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('vacancie_id')->references('id')->on('vacancies')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignUuid('vacancie_id')->references('id')->on('vacancies')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('users_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->string('status');
             $table->timestamps();

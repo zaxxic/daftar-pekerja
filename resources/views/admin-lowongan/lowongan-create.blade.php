@@ -12,73 +12,73 @@
     <div class="row">
         <div class="col-6">
             <label class="mt-5" for="judul">Judul Lowongan </label> <br>
-            <input class="col-10 rounded-1 form-control" type="text" name="judul" id="">
+            <input class="col-10 rounded-1 form-control" type="text" name="judul" value="{{old('judul')}}" id="">
             @error('judul')
-                <p>{{$message}}</p>
+                <p  class="text-danger">{{$message}}</p>
             @enderror
         </div>
         <div class="col-6">
             <label class="mt-5" for="devisi">Divisi </label> <br>
             <select name="devisi" class="col-10 rounded-1 form-control" style="" id="">
             @foreach ( $divisi as $data )
-            <option value="{{$data->id}}">{{$data->divisi}}</option>
+            <option value="{{$data->id}}" {{ ( $data->id === old('id')) ? 'selected' : '' }}>{{$data->divisi}}</option>
             @endforeach
             </select>
             @error('devisi')
-            <p>{{$message}}</p>
+            <p class="text-danger">{{$message}}</p>
             @enderror
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">Batas Lowongan </label> <br>
-            <input class="col-10 rounded-1 form-control" type="date" name="batas" id="">
+            <input class="col-10 rounded-1 form-control" type="date" name="batas" value="{{old('batas')}}" id="">
             @error('batas')
-            <p>{{$message}}</p>
+            <p class="text-danger">{{$message}}</p>
             @enderror
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">Pekerjaan </label> <br>
-            <input class="col-10 rounded-1 form-control" type="text" name="pekerjaan" id="">
+            <input class="col-10 rounded-1 form-control" type="text" name="pekerjaan" value="{{old('pekerjaan')}}" id="">
             @error('pekerjaan')
-            <p>{{$message}}</p>
+            <p class="text-danger">{{$message}}</p>
             @enderror
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">Slot</label> <br>
-            <input class="col-10 rounded-1 form-control" type="text" name="slot" id="">
+            <input class="col-10 rounded-1 form-control" type="text" name="slot" min="0" value="{{old('slot')}}" id="">
             @error('slot')
-            <p>{{$message}}</p>
+            <p class="text-danger">{{$message}}</p>
             @enderror
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul"> Gaji </label> <br>
-            <input class="col-10 rounded-1 form-control" type="text" name="gaji" id="">
+            <input class="col-10 rounded-1 form-control" type="text" name="gaji" min="0"  value="{{old('gaji')}}">
             @error('gaji')
-            <p>{{$message}}</p>
+            <p class="text-danger">{{$message}}</p>
             @enderror
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">Tipe pekerjaan  </label> <br>
             <select name="tipe" class="col-10 rounded-1 form-control" style="" id="">
-                <option value="kontrak">kontrak</option>
-                <option value="permanen">permanen</option>
+                <option value="kontrak" {{ ( "kontrak" === old('tipe')) ? 'selected' : '' }}>kontrak</option>
+                <option value="permanen"  {{ ( "permanen" === old('tipe')) ? 'selected' : '' }}>permanen</option>
                 </select>
                 @error('tipe')
-                <p>{{$message}}</p>
+                <p class="text-danger">{{$message}}</p>
                 @enderror
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">Lokasi </label> <br>
-            <input class="col-10 rounded-1 form-control" type="text" name="lokasi" id="">
+            <input class="col-10 rounded-1 form-control" type="text" name="lokasi" value="{{old('lokasi')}}" id="">
             @error('lokasi')
-            <p>{{$message}}</p>
+            <p class="text-danger">{{$message}}</p>
             @enderror
         </div>
         <div class="form-group col-12">
             <label class="mt-5" for="judul">Syarat </label> <br>
             @error('content')
-            <p>{{$message}}</p>
+            <p class="text-danger">{{$message}}</p>
             @enderror
-            <textarea class="form-control rounded-1 @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Masukkan Konten Post">{{ old('content') }}</textarea>
+        <textarea class="form-control rounded-1 @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Masukkan Konten Post">{{ old('content') }}</textarea>
         </div>
 
     </div>

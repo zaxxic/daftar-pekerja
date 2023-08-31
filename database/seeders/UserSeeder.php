@@ -25,10 +25,7 @@ class UserSeeder extends Seeder
             'lamaran' => 'laki-laki',
             'foto' => 'laki-laki',
             'role' => 'admin',
-            'jenis_kelamin' => 'laki-laki',
-            'jenis_kelamin' => 'laki-laki',
-            'jenis_kelamin' => 'laki-laki',
-            'jenis_kelamin' => 'laki-laki',
+            'status' => 'menunggu',
         ]);
     }
 }

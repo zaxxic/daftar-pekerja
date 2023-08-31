@@ -58,10 +58,11 @@
     </div>
     <div class="col-md-12 col-lg-12 d-flex justify-content-end">
         <div>
-            <a href="javascript:void(0)" class="btn btn-danger rounded-2" > <p class="mb-0 ">Batal</p></a>
+            <a href="{{route('lowongan.index')}}" class="btn btn-danger rounded-2" > <p class="mb-0 ">Batal</p></a>
             <button type="submit" class="btn btn-primary rounded-2"> <p class="mb-0">Simpan</p></button>
         </div>
     </div>
     </form>
+   
 </div>
 @endsection

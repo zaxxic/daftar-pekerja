@@ -75,13 +75,13 @@
                                 <p class="mb-0 fw-normal ellipsis"></p>{{ $row->email }}
                             </td>
                             <td>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="27" height="26" viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#nonaktif-user-{{ $row->id }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#nonaktif-user-{{ $row->id }}">
                                     <g fill="#FA896B">
                                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                                         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8L4.646 5.354a.5.5 0 0 1 0-.708z" />
                                     </g>
                                 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#detail-user-{{ $row->id }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="25" viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#detail-user-{{ $row->id }}">
                                     <g fill="#5D87FF">
                                         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
                                         <path d="M8 5.5a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0a3.5 3.5 0 0 1-7 0z" />
@@ -109,7 +109,7 @@
                                             <div class="mb-3">
                                                 <label for="message-text" class="control-label">Pesan
                                                     <span style="color: red;">*</span></label>
-                                                <textarea class="form-control" id="message-text1" placeholder="Masukkan pesan" name="pesan"></textarea>
+                                                <textarea class="form-control" id="pesan" placeholder="Masukkan pesan" name="pesan"></textarea>
                                                 @error('pesan')
                                                 <small class="text-danger">{{ $message }}</small>
                                                 @enderror
@@ -174,7 +174,7 @@
                                                         <div class="d-flex mb-1">
                                                             <span class="me-3" style="font-weight: 600;">Divisi
                                                                 :</span>
-                                                            <span>Dokumenter</span>
+                                                            <span>{{$row->Devision->divisi}}</span>
                                                         </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                                     </div>
@@ -259,6 +259,9 @@
                 buttonsStyling: false,
             });
 
+
+
+            console.log( $("#pesan").innerHTML );
             swalWithBootstrapButtons
                 .fire({
                     title: "Apakah Anda Yakin?",

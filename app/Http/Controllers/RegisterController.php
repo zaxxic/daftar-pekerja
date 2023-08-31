@@ -25,7 +25,7 @@ class registerController extends Controller
             $request->all(),
             [
                 'name' => 'required',
-                'email' => 'required|unique:users,email',
+                'email' => 'required|email|unique:users,email',
                 'alamat' => 'required',
                 'jenis_kelamin' => 'required',
                 'no_telp' => 'required|numeric|regex:/^\d*$/',
@@ -38,6 +38,7 @@ class registerController extends Controller
                 'name.required' => 'Nama Wajib Diisi',
                 'alamat.rewuired' => 'Alamat wajib di isi',
                 'email.required' => 'Email Wajib Diisi',
+                'email.email' => 'Harus Menginputkan Data yang Bertipe Email',
                 'email.unique' => 'Email Sudah Terdaftar',
                 'jenis_kelamin.required' => 'Jenis Kelamin Wajib Diisi',
                 'no_telp.required' => 'No Telephone Wajib Diisi',
@@ -64,17 +65,24 @@ class registerController extends Controller
 
        
 
-        $image = $request->file('foto');
-        $randomFileName = uniqid() . '.' . $image->getClientOriginalExtension();
-        $image->storeAs('public/foto_user', $randomFileName);
-
-        $cv = $request->file('cv');
-        $randomCvName = uniqid() . '.' . $cv->getClientOriginalExtension();
-        $cv->storeAs('public/cv', $randomCvName);
-
-        $lamaran = $request->file('lamaran');
-        $randomLamaranName = uniqid() . '.' . $lamaran->getClientOriginalExtension();
-        $lamaran->storeAs('public/lamaran', $randomLamaranName);
+        if ($request->hasFile('foto')) {
+            $image = $request->file('foto');
+            $randomFileName = $image->hashName();
+            $image->storeAs('foto_user', $randomFileName);
+        }
+        
+        if ($request->hasFile('cv')) {
+            $cv = $request->file('cv');
+            $randomCvName = $cv->hashName();
+            $cv->storeAs('cv', $randomCvName);
+        }
+        
+        if ($request->hasFile('lamaran')) {
+            $lamaran = $request->file('lamaran');
+            $randomLamaranName = $lamaran->hashName();
+            $lamaran->storeAs('lamaran', $randomLamaranName);
+        }
+        
 
 
         User::create([

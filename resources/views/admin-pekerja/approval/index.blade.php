@@ -62,19 +62,19 @@
                                 <a href="{{ route('user.lamaran', $row->User->id) }}" target="_blank" class="btn btn-primary" target="_blank">Lamaran</a>
                             </td>
                             <td>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="27" height="26" viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#reject-user-{{ $row->User->id }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#reject-user-{{ $row->User->id }}">
                                     <g fill="#FA896B">
                                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                                         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8L4.646 5.354a.5.5 0 0 1 0-.708z" />
                                     </g>
                                 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="33   " viewBox="0 0 16 16" data-bs-toggle="modal" data-id="{{ $row->User->id }}" data-bs-target="#acc-user-{{ $row->User->id }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="28" viewBox="0 0 16 16" data-bs-toggle="modal" data-id="{{ $row->User->id }}" data-bs-target="#acc-user-{{ $row->User->id }}">
                                     <g fill="#13DEB9">
                                         <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764a.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0a5.5 5.5 0 1 1-11 0z" />
                                         <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293L5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z" />
                                     </g>
                                 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#detail-user-{{ $row->User->id }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="25" viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#detail-user-{{ $row->User->id }}">
                                     <g fill="#5D87FF">
                                         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
                                         <path d="M8 5.5a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0a3.5 3.5 0 0 1-7 0z" />
@@ -222,17 +222,17 @@
                                                         <h5 class="mb-3">Data Daftar Lowongan</h5>
                                                         <div class="d-flex mb-1">
                                                             <span class="me-3" style="font-weight: 600;">Lowongan :</span>
-                                                            <span>Pemrograman web</span>
+                                                            <span>{{$row->Vacancy->judul}}</span>
                                                         </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                                         <div class="d-flex mb-1">
                                                             <span class="me-3" style="font-weight: 600;">Divisi :</span>
-                                                            <span>Web Developer</span>
+                                                            <span>{{$row->Vacancy->devisi}}</span>
                                                         </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                                         <div class="d-flex mb-1">
                                                             <span class="me-3" style="font-weight: 600;">Gaji :</span>
-                                                            <span>Rp 120.000.00</span>
+                                                            <span>Rp {{$row->Vacancy->gaji}}</span>
                                                         </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                                     </div>

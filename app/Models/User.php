@@ -59,7 +59,7 @@ class User extends Authenticatable
     }
     public function Devision()
     {
-        return $this->hasMany(Division::class, 'devision_id');
+        return $this->belongsTo(Division::class, 'devision_id');
     }
     public function Registration()
     {
