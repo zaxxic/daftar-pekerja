@@ -127,7 +127,7 @@
                     type: 'bar',
                     responsive: true,
                     width: '100%',
-                    height: '150%'
+                    height: '180%'
                 },
                 plotOptions: {
                     bar: {
