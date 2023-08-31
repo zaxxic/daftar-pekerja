@@ -43,12 +43,13 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <div class="d-flex">
-                                            <a href="index-2.html" class="text-nowrap logo-img d-block mb-5 w-100">
-                                                <img src="{{ asset('assets/dist/images/hummas.png') }}" width="200"
+                                        <div class="d-flex justify-content-between">
+                                            <a href="index-2.html" class="text-nowrap logo-img d-block mb-5 w-100"
+                                                style="margin-top: -8px;">
+                                                <img src="{{ asset('assets/hummas.png') }}" width="200"
                                                     alt="" />
                                             </a>
-                                            <h4>REGISTER</h4>
+                                            <h4 style="font-weight: bolder">REGISTER</h4>
                                         </div>
                                     </div>
                                 </div>
