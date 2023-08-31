@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="{{ asset('assets1/css/rtl.css') }}">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/dist/images/logo.png') }}" />
+    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/logo.png') }}" />
     <!-- Title -->
     <title>Halaman Utama</title>
 </head>
@@ -66,7 +66,7 @@
                         <div class="header-right-content">
                             <ul class="log-in">
                                 <li>
-                                    <a href="log-in-register.html">
+                                    <a href="{{ route('login')}}">
                                         <i class="bx bxs-lock"></i>
                                         Log In
                                     </a>

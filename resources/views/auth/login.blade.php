@@ -5,7 +5,7 @@
 
 <head>
     <!--  Title -->
-    <title>Login - Loker Indonesia</title>
+    <title>Login</title>
     <!--  Required Meta Tag -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,7 +16,7 @@
     <meta name="keywords" content="Mordenize" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!--  Favicon -->
-    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/dist/images/logo.png') }}" />
+    <link rel="shortcut icon" type="image/png" href="{{ asset('assets/logo.png') }}" />
     <!-- Core Css -->
     <link id="themeColors" rel="stylesheet" href="{{ asset('assets/dist/css/style.min.css') }}" />
 </head>
@@ -50,11 +50,17 @@
                                     @csrf
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Email</label>
-                                        <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                        <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ old('email') }}">
+                                        @error('email')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                     <div class="mb-4">
                                         <label for="exampleInputPassword1" class="form-label">Password</label>
                                         <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                                        @error('password')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mb-4">
                                         <div class="form-check">
@@ -70,7 +76,7 @@
                                     </div>
                                     <div class="d-flex align-items-center justify-content-center">
                                         <p class="fs-4 mb-0 fw-medium">Belum punya akun?</p>
-                                        <a class="text-primary fw-medium ms-2" href="">Daftar Sekarang</a>
+                                        <a class="text-primary fw-medium ms-2" href="{{ route('register') }}">Daftar Sekarang</a>
                                     </div>
                                 </form>
                             </div>

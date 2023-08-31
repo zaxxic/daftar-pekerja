@@ -103,7 +103,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="recipient-name" class="control-label" style="color: black;">Tanggal <span style="color: red;">*</span></label>
-                                                <input type="date" class="form-control" id="recipient-name1" name="tanggal_wawancara" />
+                                                <input type="datetime-local" class="form-control" id="recipient-name1" name="tanggal_wawancara" />
                                                 @error('tanggal_wawancara')
                                                 <small class="text-danger">{{ $message }}</small>
                                                 @enderror
