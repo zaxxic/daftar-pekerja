@@ -39,9 +39,7 @@ Route::get('/cek', function () {
 
 // Route::resource('login', loginController::class);
 
-Route::resource('lowongan', LowonganController::class);
-Route::resource('divisi', DivisiController::class)->except(['show', 'update','edit']);
-Route::delete('hapus-lowongan', [LowonganController::class, 'hapus'])->name('hapus-lowongan');
+
 Route::get('register' , [registerController::class , 'index'])->name('register');
 Route::post('register-store' , [registerController::class , 'store'])->name('register-store');
 
@@ -49,8 +47,6 @@ Route::get('/login', [loginController::class, 'showLogin'])->name('login');
 Route::post('/form-login', [loginController::class, 'login'])->name('form-login');
 Route::post('/logout', [loginController::class, 'logout'])->name('logout');
 
-Route::get('/dashboard-user', [dashboardUserController::class, 'index'])->name('dashboard-user');
-Route::post('/dashboard-filter', [dashboardUserController::class, 'filterLowongan'])->name('dashboard-filter');
 
 
 
@@ -60,15 +56,17 @@ Route::group(['middleware' => ['auth', 'user_role']], function () {
     Route::put('/ubah-profile', [ProfileController::class, 'updateProfile'])->name('ubah-profile');
     route::resource('detail-lowongan', detailLowonganController::class);
     Route::get('/detail-lowongan{id}', [detailLowonganController::class, 'show'])->name('detailLowongan');
+    Route::get('/dashboard-user', [dashboardUserController::class, 'index'])->name('dashboard-user');
+    Route::post('/dashboard-filter', [dashboardUserController::class, 'filterLowongan'])->name('dashboard-filter');
 
 });
 
 Route::group(['middleware' => ['auth', 'admin_role']], function () {
 
 });
-Route::get('/', function () {
-    return view('index');
-})->name('dashboard');
+Route::resource('lowongan', LowonganController::class);
+Route::resource('divisi', DivisiController::class)->except(['show', 'update','edit']);
+Route::delete('hapus-lowongan', [LowonganController::class, 'hapus'])->name('hapus-lowongan');
 
 Route::get('approval', [ApprovalController::class, 'index'])->name('approval');
 Route::patch('acc/{id}', [ApprovalController::class, 'update'])->name('acc');
@@ -86,6 +84,11 @@ Route::get('pekerja-ditolak', [PekerjaDitolakController::class, 'index'])->name(
 //Lowongan aktif / nonaktif
 Route::patch('nonactive-lowongan/{id}', [LowonganController::class, 'nonactive'])->name('nonactive-lowongan');
 Route::patch('active-lowongan/{id}', [LowonganController::class, 'active'])->name('active-lowongan');
+Route::get('/dashboard-admin', [dashboardAdminController::class, 'index'])->name('dashboard-user');
+Route::get('/', function () {
+    return view('index');
+})->name('dashboard');
+
 
 Route::get('error-403', function () {
     return view('403');

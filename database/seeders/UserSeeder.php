@@ -18,6 +18,17 @@ class UserSeeder extends Seeder
             'name' => 'John Doe',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('password'),
+            'alamat' => 'lorem',
+            'jenis_kelamin' => 'laki-laki',
+            'no_telp' => 'laki-laki',
+            'cv' => 'laki-laki',
+            'lamaran' => 'laki-laki',
+            'foto' => 'laki-laki',
+            'role' => 'admin',
+            'jenis_kelamin' => 'laki-laki',
+            'jenis_kelamin' => 'laki-laki',
+            'jenis_kelamin' => 'laki-laki',
+            'jenis_kelamin' => 'laki-laki',
         ]);
     }
 }
