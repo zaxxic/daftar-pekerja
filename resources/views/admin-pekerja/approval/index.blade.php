@@ -203,14 +203,14 @@
                                                 <div class="col-lg-5">
                                                     <div class="card">
                                                         <div class="card-body d-flex justify-content-center align-items-center">
-                                                        <a href="{{ route('user.cv', $row->User->User->id) }}" target="_blank" class="btn btn-primary" target="_blank">CV</a>
+                                                        <a href="{{ route('user.cv', $row->User->id) }}" target="_blank" class="btn btn-primary" target="_blank">CV</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-5">
                                                     <div class="card">
                                                         <div class="card-body d-flex justify-content-center align-items-center">
-                                                        <a href="{{ route('user.lamaran', $row->User->User->id) }}" target="_blank" class="btn btn-primary" target="_blank">Lamaran</a>
+                                                        <a href="{{ route('user.lamaran', $row->User->id) }}" target="_blank" class="btn btn-primary" target="_blank">Lamaran</a>
                                                         </div>
                                                     </div>
                                                 </div>

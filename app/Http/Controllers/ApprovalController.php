@@ -22,7 +22,7 @@ class ApprovalController extends Controller
      */
     public function index()
     {
-        $user = Registration::where('status', 'menunggu')->get();
+        $user = Registration::where('status', ['menunggu','ditolak'])->get();
         return view('admin-pekerja.approval.index', compact('user'));
     }
 
