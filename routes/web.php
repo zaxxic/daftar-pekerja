@@ -31,7 +31,7 @@ Route::get('/visi-misi', function () {
     return view('visi-misi');
 });
 
-
+Route::get('/dashboard-admin', [dashboardAdminController::class, 'index'])->name('dashboard-admin');
 
 Route::get('/cek', function () {
     return view('cek-daftar');
