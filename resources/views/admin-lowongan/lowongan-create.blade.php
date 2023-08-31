@@ -13,30 +13,48 @@
         <div class="col-6">
             <label class="mt-5" for="judul">Judul Lowongan </label> <br>
             <input class="col-10 rounded-1 form-control" type="text" name="judul" id="">
+            @error('judul')
+                <p>{{$message}}</p>
+            @enderror
         </div>
         <div class="col-6">
             <label class="mt-5" for="devisi">Divisi </label> <br>
-            <select name="devisi_id" class="col-10 rounded-1 form-control" style="" id="">
+            <select name="devisi" class="col-10 rounded-1 form-control" style="" id="">
             @foreach ( $divisi as $data )
             <option value="{{$data->id}}">{{$data->divisi}}</option>
             @endforeach
             </select>
+            @error('devisi')
+            <p>{{$message}}</p>
+            @enderror
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">Batas Lowongan </label> <br>
             <input class="col-10 rounded-1 form-control" type="date" name="batas" id="">
+            @error('batas')
+            <p>{{$message}}</p>
+            @enderror
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">Pekerjaan </label> <br>
             <input class="col-10 rounded-1 form-control" type="text" name="pekerjaan" id="">
+            @error('pekerjaan')
+            <p>{{$message}}</p>
+            @enderror
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">Slot</label> <br>
             <input class="col-10 rounded-1 form-control" type="text" name="slot" id="">
+            @error('slot')
+            <p>{{$message}}</p>
+            @enderror
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul"> Gaji </label> <br>
             <input class="col-10 rounded-1 form-control" type="text" name="gaji" id="">
+            @error('gaji')
+            <p>{{$message}}</p>
+            @enderror
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">Tipe pekerjaan  </label> <br>
@@ -44,14 +62,23 @@
                 <option value="kontrak">kontrak</option>
                 <option value="permanen">permanen</option>
                 </select>
+                @error('tipe')
+                <p>{{$message}}</p>
+                @enderror
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">Lokasi </label> <br>
             <input class="col-10 rounded-1 form-control" type="text" name="lokasi" id="">
+            @error('lokasi')
+            <p>{{$message}}</p>
+            @enderror
         </div>
         <div class="form-group col-12">
             <label class="mt-5" for="judul">Syarat </label> <br>
-            <textarea class="form-control rounded-1 @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Masukkan Konten Post">{{ old('content') }}</textarea>            {{-- <input class="col-10" type="text" name="lokasi" id=""> --}}
+            @error('content')
+            <p>{{$message}}</p>
+            @enderror
+            <textarea class="form-control rounded-1 @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Masukkan Konten Post">{{ old('content') }}</textarea>
         </div>
 
     </div>

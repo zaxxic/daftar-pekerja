@@ -43,8 +43,17 @@ class LowonganController extends Controller
             'tipe'=>'required',
             'lokasi'=>'required',
             'content'=>'required'
+        ],[
+            'judul.required' => 'judul harus di isi',
+            'devisi.required' => 'devisi harus di isi',
+            'batas.required' => 'batas harus di isi',
+            'pekerjaan.required' => 'pekerjaan harus di isi',
+            'slot.required' => 'slot harus di isi',
+            'gaji.required' => 'gaji harus di isi',
+            'tipe.required' => 'tipe harus di isi',
+            'lokasi.required' => 'lokasi harus di isi',
+            'content.required' => 'syarat harus di isi',
         ]);
-        $isi = 'kontrak';
         // dd($request);
         Vacancy::create([
             'judul'=>$request->judul,
@@ -53,7 +62,7 @@ class LowonganController extends Controller
             'pekerja'=>$request->pekerjaan,
             'slot'=>$request->slot,
             'gaji'=>$request->gaji,
-            'tipe'=>$isi,
+            'tipe'=>$request->tipe,
             'lokasi'=>$request->lokasi,
             'syarat'=>$request->content,
             'status' => 'aktif',
