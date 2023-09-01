@@ -49,9 +49,7 @@
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="assets1/images/favicon.png">
         <!-- Title -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <title>Dashboard User</title>
     </head>
     <title>Jubi - Job Board HTML Template</title>
@@ -86,14 +84,14 @@
         }
     </style>
     @if (session()->has('sukses'))
-        <script>
-            alert("anda sudah terdaftar")
-        </script>
+    <script>
+        alert("anda sudah terdaftar")
+    </script>
     @endif
     @if (session()->has('error'))
-        <script>
-            alert("anda tidak bisa daftar kembali")
-        </script>
+    <script>
+        alert("anda tidak bisa daftar kembali")
+    </script>
     @endif
 
 
@@ -134,13 +132,10 @@
                                         <li><span>Slot Tersedia : </span> {{ $lowongan->slot }}</li>
                                         <div class="d-flex justify-content-between">
                                             <li><span>Tipe Kerja : </span>{{ $lowongan->tipe }}</li>
-                                            <li style="margin-left: 30%; margin-right: -19%;"><button
-                                                    class="btn btn-danger"><a href="{{ route('dashboard-user') }}"
-                                                        class="text-white">Kembali</a></button>
+                                            <li style="margin-left: 30%; margin-right: -19%;"><button class="btn btn-danger"><a href="{{ route('dashboard-user') }}" class="text-white">Kembali</a></button>
                                             </li>
                                             <li>
-                                                <button type="button" class="btn btn-primary "
-                                                    id="daftar">Daftar</button>
+                                                <button type="button" class="btn btn-primary " id="daftar">Daftar</button>
                                             </li>
                                         </div>
                                     </ul>
@@ -277,10 +272,7 @@
                                         <li class="mb-3" s>
                                             <i class="bx bx-envelope"></i>
                                             <span>Email:</span>
-                                            <a
-                                                href="https://templates.envytheme.com/cdn-cgi/l/email-protection#80e8e5ececefc0eaf5e2e9aee3efed"><span
-                                                    class="__cf_email__"
-                                                    data-cfemail="f098959c9c9fb09a859299de939f9d">hummasoft.tech@gmail.com</span></a>
+                                            <a href="https://templates.envytheme.com/cdn-cgi/l/email-protection#80e8e5ececefc0eaf5e2e9aee3efed"><span class="__cf_email__" data-cfemail="f098959c9c9fb09a859299de939f9d">hummasoft.tech@gmail.com</span></a>
                                         </li>
                                         <li class="location">
                                             <i class="bx bx-location-plus"></i>
@@ -407,14 +399,14 @@
     <script src="assets1/js/custom.js"></script>
 
     <script>
-        << << << < HEAD
-
         function isi() {
-            var x = document.getElementById("lowongan").value = {!! $lowongan->id !!};
+            var x = document.getElementById("lowongan").value = {
+                !!$lowongan - > id!!
+            };
             var y = document.getElementById("myform");
             y.submit();
-        } ===
-        === =
+        }
+
         document.getElementById('shareFacebook').addEventListener('click', function() {
             var currentUrl = window.location.href;
             var facebookLink = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(currentUrl);
@@ -457,28 +449,23 @@
             });
             $('#daftar').on('click', function() {
                 const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: 'btn btn-success',
-                    cancelButton: 'btn btn-danger'
-                },
-                buttonsStyling: false
-                })
+                    customClass: {
+                        confirmButton: 'mr-2 btn btn-success',
+                        cancelButton: ' btn btn-danger'
+                    },
+                    buttonsStyling: false
+                });
 
                 swalWithBootstrapButtons.fire({
-                title: 'Apa kamu yakin',
-                text: "Ingin mendaftar di lowongan ini",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'iya',
-                cancelButtonText: 'tidak',
-                reverseButtons: true
+                    title: 'Apa kamu yakin',
+                    text: "Ingin mendaftar di lowongan ini",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'iya',
+                    cancelButtonText: 'tidak',
+                    reverseButtons: true
                 }).then((result) => {
-                if (result.isConfirmed) {
-                    swalWithBootstrapButtons.fire(
-                    'Terkirim!',
-                    'Data pendaftaran anda sudah terkirim',
-                    'success'
-                    ).then( () => {
+                    if (result.isConfirmed) {
                         var url = "{{ route('detail-lowongan.store') }}";
                         var formData = "{{$lowongan->id}}";
 
@@ -486,32 +473,31 @@
                             type: 'POST',
                             url: url,
                             data: {
-                            id : formData,
+                                id: formData,
                             },
                             success: function(response) {
-                                if(response.status === 'sukses'){
+                                if (response.status === 'sukses') {
                                     Swal.fire({
                                         icon: 'success',
                                         title: 'Sukses',
                                         text: 'Terima kasih anda telah mendaftar di lowongan ini'
                                     });
-                                }
-                                if(response.status === 'sudah'){
+                                } else if (response.status === 'sudah') {
                                     Swal.fire({
                                         icon: 'error',
-                                        title: 'error',
+                                        title: 'Error',
                                         text: 'Anda sudah terdaftar di lowongan ini'
                                     });
+                                } else if (response.status === 'penuh') {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Maaf',
+                                        text: 'Slot lowongan sudah penuh. Tidak bisa mendaftar.'
+                                    });
                                 }
-                                // Tanggapan berhasil
-
-                                // Tampilkan pesan sukses dengan SweetAlert
-
                             },
                             error: function(error) {
-                                // Tanggapan error
                                 console.log(error);
-                                // Tampilkan pesan error dengan SweetAlert
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Error',
@@ -519,23 +505,18 @@
                                 });
                             }
                         });
-                    })
-                } else if (
-                    /* Read more about handling dismissals below */
-                    result.dismiss === Swal.DismissReason.cancel
-                ) {
-                    swalWithBootstrapButtons.fire(
-                    'Batal',
-                    'Coba untuk berpikir lebih yakin untuk mendaftar :)',
-                    'error'
-                    )
-                }
-                })
+                    } else if (
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        swalWithBootstrapButtons.fire(
+                            'Batal',
+                            'Coba untuk berpikir lebih yakin untuk mendaftar :)',
+                            'error'
+                        );
+                    }
+                });
 
             });
-
-
-
 
         });
     </script>

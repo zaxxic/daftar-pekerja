@@ -29,18 +29,30 @@ class detailLowonganController extends Controller
      */
     public function store(Request $request)
     {
-        $cek = Registration::Where('users_id' , Auth()->User()->id)->whereIn('status', ['diterima','menunggu'])->exists();
-        if ($cek){
-            return response()->json(['status' => 'sudah']);
-        }
+        $vacancy = Vacancy::findOrFail($request->id);
 
-        Registration::create([
-            'status' => 'menunggu',
-            'users_id' => Auth()->user()->id,
-            'vacancie_id' => $request->id
-        ]);
-        return response()->json(['status' => 'sukses']);
-        // return redirect()->back()->with('sukses', 'berhasail mendaftar pada lowongan ini silakan menunggu untuk di cek olah admin data anda');
+        if ($vacancy->slot > 0) {
+            $cek = Registration::where('users_id', Auth()->user()->id)
+                ->whereIn('status', ['diterima', 'menunggu'])
+                ->exists();
+
+            if ($cek) {
+                return response()->json(['status' => 'sudah']);
+            }
+
+            Registration::create([
+                'status' => 'menunggu',
+                'users_id' => Auth()->user()->id,
+                'vacancie_id' => $request->id
+            ]);
+
+            // Kurangi jumlah slot yang tersedia
+            $vacancy->decrement('slot');
+
+            return response()->json(['status' => 'sukses']);
+        } else {
+            return response()->json(['status' => 'penuh']);
+        }
     }
 
     /**
@@ -73,12 +85,12 @@ class detailLowonganController extends Controller
      */
     public function destroy(string $id)
     {
-
     }
-    public function batalkan(Request $request) {
+    public function batalkan(Request $request)
+    {
         $data = $request->id;
         $lowongan = Registration::Where('users_id', $data)->first();
         $lowongan->delete();
-        return response()->json(['status' => 'sukses', 'pesan'=>'pendaftaran anda telah di batalkan anda bisa mencari lowongan yang lain']);
+        return response()->json(['status' => 'sukses', 'pesan' => 'pendaftaran anda telah di batalkan anda bisa mencari lowongan yang lain']);
     }
 }

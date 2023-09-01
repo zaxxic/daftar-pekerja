@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-xl navbar-light container-fluid px-0">
         <ul class="navbar-nav">
             <li class="nav-item d-none d-xl-block mr-4">
-                <a class="logo" href="">
+                <a class="logo" href="{{ route('dashboard') }}">
                     <img width="180px" src="assets1/images/humma.png" alt="logo">
                 </a>
             </li>
