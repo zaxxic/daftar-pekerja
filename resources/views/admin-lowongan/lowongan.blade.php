@@ -46,11 +46,13 @@
                     </div>
                 </div>
             </div>
+            <div>
+                <a href="javascript:void(0)" class="btn text-white" style="background-color: #13DEB9" data-bs-toggle="modal"
+                    data-bs-target="#staBackdrop">Divisi</a>
+            </div>
         </div>
 
-        <div>
-            <a href="javascript:void(0)" class="btn text-white" style="background-color: #13DEB9" data-bs-toggle="modal" data-bs-target="#staBackdrop">Divisi</a>
-        </div>
+
         <div class="modal fade" id="staBackdrop" tabindex="-1" aria-labelledby="exampleModalLabel1">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
