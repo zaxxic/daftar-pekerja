@@ -432,102 +432,96 @@
                                                             </div>
                                                             <!-- /.modal-dialog -->
                                                         </div>
-                                                    @empty
-                                                        <div class="container">
-                                                            <div class="row d-flex">
-                                                                <div class="col">
-                                                                    <tr>
-                                                                        <td class="text-center" colspan="6">
-                                                                            <img src="/assets/dist/images/nodatas.png"
-                                                                                alt="" width="280px">
-                                                                        </td>
-                                                                    </tr>
-
-                                                                    <div class="d-flex justify-content-between">
-                                                                        <div class=" row">
-                                                                            <h5 style="margin-top: 6%; margin-left: 23%;"
-                                                                                class="mb-0">Data Dokumen</h5>
-                                                                            <div class="col-lg-5">
-                                                                                <div class="card">
-                                                                                    <div
-                                                                                        class="card-body d-flex justify-content-center align-items-center">
-                                                                                        <a href="{{ route('user.cv', $row->User->id) }}"
-                                                                                            target="_blank"
-                                                                                            class="btn btn-primary"
-                                                                                            target="_blank">CV</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-lg-5">
-                                                                                <div class="card">
-                                                                                    <div
-                                                                                        class="card-body d-flex justify-content-center align-items-center">
-                                                                                        <a href="{{ route('user.lamaran', $row->User->id) }}"
-                                                                                            target="_blank"
-                                                                                            class="btn btn-primary"
-                                                                                            target="_blank">Lamaran</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="col-lg-5">
-                                                                            <div class="card">
-                                                                                <div class="card-body">
-                                                                                    <h5 class="mb-3">Data Daftar Lowongan
-                                                                                    </h5>
-                                                                                    <div class="d-flex mb-1">
-                                                                                        <span class="me-3"
-                                                                                            style="font-weight: 600;">Lowongan
-                                                                                            :</span>
-                                                                                        <span>{{ $row->Vacancy->judul }}</span>
-                                                                                    </div>
-                                                                                    <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                                                        class="mt-0">
-                                                                                    <div class="d-flex mb-1">
-                                                                                        <span class="me-3"
-                                                                                            style="font-weight: 600;">Divisi
-                                                                                            :</span>
-                                                                                        <span>{{ $row->Vacancy->devisi }}</span>
-                                                                                    </div>
-                                                                                    <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                                                        class="mt-0">
-                                                                                    <div class="d-flex mb-1">
-                                                                                        <span class="me-3"
-                                                                                            style="font-weight: 600;">Gaji
-                                                                                            :</span>
-                                                                                        <span>Rp
-                                                                                            {{ $row->Vacancy->gaji }}</span>
-                                                                                    </div>
-                                                                                    <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                                                        class="mt-0">
-                                                                                </div>
-                                                                            </div>
+                                                        <div class="d-flex justify-content-between">
+                                                            <div class=" row">
+                                                                <h5 style="margin-top: 6%; margin-left: 23%;"
+                                                                    class="mb-0">Data Dokumen</h5>
+                                                                <div class="col-lg-5">
+                                                                    <div class="card">
+                                                                        <div
+                                                                            class="card-body d-flex justify-content-center align-items-center">
+                                                                            <a href="{{ route('user.cv', $row->User->id) }}"
+                                                                                target="_blank" class="btn btn-primary"
+                                                                                target="_blank">CV</a>
                                                                         </div>
                                                                     </div>
-
-
-
-
-
+                                                                </div>
+                                                                <div class="col-lg-5">
                                                                     <div class="card">
-                                                                        <div class="card-body">
-                                                                            <h5 class="mb-3">Alamat Pekerja</h5>
-                                                                            <div class="d-flex mb-1">
-                                                                                <div class="col-lg-1.5">
-                                                                                    <span class="me-3"
-                                                                                        style="font-weight: 600;">Alamat
-                                                                                        :</span>
-                                                                                </div>
-                                                                                <div class="col-lg-10">
-                                                                                    <span>{{ $row->User->alamat }}</span>
-                                                                                </div>
-                                                                            </div>
+                                                                        <div
+                                                                            class="card-body d-flex justify-content-center align-items-center">
+                                                                            <a href="{{ route('user.lamaran', $row->User->id) }}"
+                                                                                target="_blank" class="btn btn-primary"
+                                                                                target="_blank">Lamaran</a>
                                                                         </div>
-
                                                                     </div>
                                                                 </div>
                                                             </div>
+
+                                                            <div class="col-lg-5">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <h5 class="mb-3">Data Daftar Lowongan
+                                                                        </h5>
+                                                                        <div class="d-flex mb-1">
+                                                                            <span class="me-3"
+                                                                                style="font-weight: 600;">Lowongan
+                                                                                :</span>
+                                                                            <span>{{ $row->Vacancy->judul }}</span>
+                                                                        </div>
+                                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
+                                                                            class="mt-0">
+                                                                        <div class="d-flex mb-1">
+                                                                            <span class="me-3"
+                                                                                style="font-weight: 600;">Divisi
+                                                                                :</span>
+                                                                            <span>{{ $row->Vacancy->devisi }}</span>
+                                                                        </div>
+                                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
+                                                                            class="mt-0">
+                                                                        <div class="d-flex mb-1">
+                                                                            <span class="me-3"
+                                                                                style="font-weight: 600;">Gaji
+                                                                                :</span>
+                                                                            <span>Rp
+                                                                                {{ $row->Vacancy->gaji }}</span>
+                                                                        </div>
+                                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
+                                                                            class="mt-0">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <h5 class="mb-3">Alamat Pekerja</h5>
+                                                                <div class="d-flex mb-1">
+                                                                    <div class="col-lg-1.5">
+                                                                        <span class="me-3"
+                                                                            style="font-weight: 600;">Alamat
+                                                                            :</span>
+                                                                    </div>
+                                                                    <div class="col-lg-10">
+                                                                        <span>{{ $row->User->alamat }}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @empty
+                                                    <div class="container">
+                                                        <div class="row d-flex">
+                                                            <div class="col">
+                                                                <tr>
+                                                                    <td class="text-center" colspan="6">
+                                                                        <img src="/assets/dist/images/nodatas.png"
+                                                                            alt="" width="280px">
+                                                                    </td>
+                                                                </tr>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                             @endforelse
 
                         </tbody>

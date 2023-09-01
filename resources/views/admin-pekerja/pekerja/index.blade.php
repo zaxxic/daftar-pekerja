@@ -374,100 +374,61 @@
         <!--  Form Basic End -->
         <!-- --------------------------------------------------- -->
     </div>
-    <<<<<<< HEAD <script>
+    <script>
         function klikNonaktif() {
             $("#nonaktif").click(function() {
-                        const swalWithBootstrapButtons = Swal.mixin({
-                                    ===
-                                    === =
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: "btn btn-success",
+                        cancelButton: "mr-2 btn btn-danger",
+                    },
+                    buttonsStyling: false,
+                });
 
-
-
-
-                                    <
-                                    !-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- - -- >
-                                    <
-                                    !--Form Basic End-- >
-                                    <
-                                    !-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- - -- >
-                                    <
-                                    /div> <
-                                    script >
-                                    function klikNonaktif() {
-                                        $("#nonaktif").click(function() {
-                                            const swalWithBootstrapButtons = Swal.mixin({
-                                                customClass: {
-                                                    confirmButton: "btn btn-success",
-                                                    cancelButton: "mr-2 btn btn-danger",
-                                                },
-                                                buttonsStyling: false,
-                                            });
-
-
-
-                                            console.log($("#pesan").innerHTML);
-                                            swalWithBootstrapButtons
-                                                .fire({
-                                                    title: "Apakah Anda Yakin?",
-                                                    text: "Anda ingin menonaktifkan akun ini!",
-                                                    type: "warning",
-                                                    showCancelButton: true,
-                                                    confirmButtonText: "Iya!",
-                                                    cancelButtonText: "Tidak!",
-                                                    reverseButtons: true,
-                                                    >>>
-                                                    >>> > a16c9a02ca4756ee43a6afe891e144b16948af3a
-                                                    customClass: {
-                                                        confirmButton: "btn btn-success",
-                                                        cancelButton: "mr-2 btn btn-danger",
-                                                    },
-                                                    buttonsStyling: false,
-                                                }); <<
-                                            << << < HEAD
-
-                                            swalWithBootstrapButtons
-                                                .fire({
-                                                    title: "Apakah Anda Yakin?",
-                                                    text: "Anda ingin menonaktifkan akun ini!",
-                                                    type: "warning",
-                                                    showCancelButton: true,
-                                                    confirmButtonText: "Iya!",
-                                                    cancelButtonText: "Tidak!",
-                                                    reverseButtons: true,
-                                                    customClass: {
-                                                        confirmButton: "btn btn-success",
-                                                        cancelButton: "btn btn-danger me-3",
-                                                    },
-                                                    buttonsStyling: false,
-                                                    width: "25rem", // You can adjust the width as needed
-                                                    padding: "1rem", // You can adjust the padding as needed
-                                                    customContainerClass: "swal-custom", // Define a custom class for styling
-                                                })
-                                                .then((result) => {
-                                                    if (result.value) {
-                                                        swalWithBootstrapButtons.fire(
-                                                            "Berhasil!",
-                                                            "Anda berhasil menonaktifkan akun tersebut.",
-                                                            "success"
-                                                        );
-                                                        var form = document.getElementById("formnonactive");
-                                                        form.submit();
-                                                    } else if (
-                                                        result.dismiss === Swal.DismissReason.cancel
-                                                    ) {
-                                                        swalWithBootstrapButtons.fire(
-                                                            "Batal",
-                                                            "Selamat akun tersebut masih selamat. :)",
-                                                            "error"
-                                                        );
-                                                    }
-                                                });
-                                        });
-                                    }
+                if ($("#pesan").val() !== "") {
+                    $('#error').html('')
+                    swalWithBootstrapButtons
+                        .fire({
+                            title: "Apakah Anda Yakin?",
+                            text: "Anda ingin menonaktifkan akun ini!",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonText: "Iya!",
+                            cancelButtonText: "Tidak!",
+                            reverseButtons: true,
+                            customClass: {
+                                confirmButton: "btn btn-success",
+                                cancelButton: "btn btn-danger me-3",
+                            },
+                            buttonsStyling: false,
+                            width: "25rem", // You can adjust the width as needed
+                            padding: "1rem", // You can adjust the padding as needed
+                            customContainerClass: "swal-custom", // Define a custom class for styling
+                        })
+                        .then((result) => {
+                            if (result.value) {
+                                swalWithBootstrapButtons.fire(
+                                    "Berhasil!",
+                                    "Anda berhasil menonaktifkan akun tersebut.",
+                                    "success"
+                                );
+                                var form = document.getElementById("formnonactive");
+                                form.submit();
+                            } else if (
+                                result.dismiss === Swal.DismissReason.cancel
+                            ) {
+                                swalWithBootstrapButtons.fire(
+                                    "Batal",
+                                    "Selamat akun tersebut masih selamat. :)",
+                                    "error"
+                                );
+                            }
+                        });
+                } else {
+                    $('#error').text("pesan harus di isi");
+                    console.log("gagal bg");
+                }
+            });
+        }
     </script>
-    =======
-    });
-    }
-    </script>
-    >>>>>>> a16c9a02ca4756ee43a6afe891e144b16948af3a
 @endsection

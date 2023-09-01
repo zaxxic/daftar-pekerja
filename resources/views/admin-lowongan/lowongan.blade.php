@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="row">
-        <div class="mb-4 d-flex gap-2 justify-content-start col-md-8 lg-8">
+        <div class="mb-4 d-flex justify-content-start col-md-12 lg-12">
             <a href="{{ route('lowongan.create') }}" class="btn btn-primary">Tambah</a>
             <form action="">
                 <div class="mb-4 d-flex justify-content-end align-items-center position-relative">
@@ -9,7 +9,7 @@
                 </div>
             </form>
         </div>
-        <div class="d-flex justify-content-end gap-2 col-md-6  ">
+        <div class="d-flex justify-content-end gap-2 col-md-6 ">
             <div>
                 <a href="javascript:void(0)" class="btn btn-primary" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">Tambah Divisi</a>

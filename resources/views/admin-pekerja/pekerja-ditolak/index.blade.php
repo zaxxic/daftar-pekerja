@@ -179,6 +179,21 @@
                                         <!-- /.modal-content -->
                                     </div>
                                     <!-- /.modal-dialog -->
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="mb-3">Alamat Pekerja</h5>
+
+                                            <div class="d-flex mb-1">
+                                                <div class="col-lg-1.5">
+                                                    <span class="me-3" style="font-weight: 600;">Alamat :</span>
+                                                </div>
+                                                <div class="col-lg-10">
+                                                    <span>{{ $row->alamat }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
                             @empty
                                 <div class="container">
@@ -190,25 +205,9 @@
                                                         width="280px">
                                                 </td>
                                             </tr>
-
-
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h5 class="mb-3">Alamat Pekerja</h5>
-
-                                                    <div class="d-flex mb-1">
-                                                        <div class="col-lg-1.5">
-                                                            <span class="me-3" style="font-weight: 600;">Alamat :</span>
-                                                        </div>
-                                                        <div class="col-lg-10">
-                                                            <span>{{ $row->alamat }}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
                                         </div>
                                     </div>
+                                </div>
                             @endforelse
                         </tbody>
                     </table>
@@ -230,9 +229,5 @@
         <!--  Form Basic End -->
         <!-- --------------------------------------------------- -->
     </div>
-    <<<<<<< HEAD=======<!-- --------------------------------------------------- -->
-        <!--  Form Basic End -->
-        <!-- --------------------------------------------------- -->
-        </div>
-        >>>>>>> a16c9a02ca4756ee43a6afe891e144b16948af3a
-    @endsection
+    </div>
+@endsection
