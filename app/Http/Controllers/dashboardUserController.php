@@ -17,8 +17,8 @@ class dashboardUserController extends Controller
     public function index()
     {
         $selectedDivision = 'semua';
+        $registration = Registration::where('users_id', Auth()->User()->id)->latest()->paginate(5);
         $lowongan = Vacancy::latest()->paginate(5);
-        $registration = Registration::where('users_id', Auth()->User()->id)->get();
         $divisi = Division::all();
         return view('user.index', compact('lowongan', 'divisi','selectedDivision','registration'));
     }
