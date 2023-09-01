@@ -82,11 +82,11 @@
                         <h5 class="card-title">{{ $item->judul }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted d-flex align-items-center">{{ $item->pekerja }}</h6>
                         <p class="card-text pt-2">
-                            {!! $item->syarat !!}
+                        {!! str_replace('<p>', '<p class="ellipsis1">', $item->syarat) !!}
                         </p>
-                        <p class="card-text pt-2"> Gaji : {{ $item->gaji }}</p>
+                        <p class="card-text pt-2"> Gaji : {{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}</p>
                         <p class="card-text pt-2">
-                            {{ $item->batas }}
+                        {{ \Carbon\Carbon::parse($item->batas)->locale('id')->isoFormat('D MMMM Y ') }}
                         </p>
                         <div class="row">
                             <div class="col-6">

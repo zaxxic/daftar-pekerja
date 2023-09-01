@@ -135,7 +135,7 @@ class ApprovalController extends Controller
         $user->update([
             'status' => 'ditolak',
             'devision_id' => $item->Vacancy->devision_id,
-        ]);
+         ]);
 
         return redirect()->route('approval')->with('sukses', 'Data Berhasil Di Perbarui');
     }
