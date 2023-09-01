@@ -55,7 +55,7 @@
                     <div class="col-lg-6 col-md-6">
                         <ul class="header-left-content">
                             <li>
-                                <a class="navbar-brand" href="index.html">
+                                <a class="navbar-brand">
                                     <img width="180px" src="assets1/images/humma.png" alt="logo">
                                 </a>
                             </li>

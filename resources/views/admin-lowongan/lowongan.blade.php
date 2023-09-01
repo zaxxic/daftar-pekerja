@@ -46,20 +46,22 @@
                     </div>
                 </div>
             </div>
-            <div>
-                <a href="javascript:void(0)" class="btn text-white" style="background-color: #13DEB9" data-bs-toggle="modal"
-                    data-bs-target="#staBackdrop">Divisi</a>
-            </div>
-            <div class="modal fade" style="height: auto" id="staBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header d-flex align-items-center">
-                            <h4 class="modal-title" id="myLargeModalLabel">
-                                Devisi Yang Ada
-                            </h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
+        </div>
+
+        <div>
+            <a href="javascript:void(0)" class="btn text-white" style="background-color: #13DEB9" data-bs-toggle="modal" data-bs-target="#staBackdrop">Divisi</a>
+        </div>
+        <div class="modal fade" id="staBackdrop" tabindex="-1" aria-labelledby="exampleModalLabel1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header d-flex align-items-center">
+                        <h4 class="modal-title" id="exampleModalLabel1">
+                            Divisi Yang Ada
+                        </h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
+                    <div class="modal-body">
                         <div class="row p-3 " id="divisiContainer">
 
                         </div>
@@ -241,13 +243,13 @@
                         $.each(response.divisi, function(index, item) {
                             var divisiHtml = `
                                 <div class="col-4 flex justify-content-center">
-                                    <div class="col-12 d-flex justify-content-between border border-2">
+                                    <div class="col-12 d-flex justify-content-between border border-2" style="padding: 3px;">
                                         ${item.divisi}
                                         <form class="text-danger delete-form" data-id="${item.id}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="button" class="btn-delete border-0" style="background:none;">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="" width="18" height="18" viewBox="0 0 24 24">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="text-danger" width="18" height="18" viewBox="0 0 24 24">
                                                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                         d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3" />
                                                 </svg>
