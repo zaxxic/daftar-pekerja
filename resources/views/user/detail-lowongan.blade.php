@@ -449,59 +449,95 @@
 
     <script>
         $(document).ready(function() {
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
             $('#daftar').on('click', function() {
-                var url = "{{ route('detail-lowongan.store') }}";
-                var formData = "{{ $lowongan->id }}";
+                const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+                })
 
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    data: {
-                        id: formData,
-                    },
-                    success: function(response) {
-                        if (response.status === 'sukses') {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Sukses',
-                                text: 'Terima kasih anda telah mendaftar di lowongan ini'
-                            });
-                        }
-                        if (response.status === 'sudah') {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'error',
-                                text: 'Anda sudah terdaftar di lowongan ini'
-                            });
-                        }
-                        // Tanggapan berhasil
+                swalWithBootstrapButtons.fire({
+                title: 'Apa kamu yakin',
+                text: "Ingin mendaftar di lowongan ini",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'iya',
+                cancelButtonText: 'tidak',
+                reverseButtons: true
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    swalWithBootstrapButtons.fire(
+                    'Terkirim!',
+                    'Data pendaftaran anda sudah terkirim',
+                    'success'
+                    ).then( () => {
+                        var url = "{{ route('detail-lowongan.store') }}";
+                        var formData = "{{$lowongan->id}}";
 
-                        // Tampilkan pesan sukses dengan SweetAlert
+                        $.ajax({
+                            type: 'POST',
+                            url: url,
+                            data: {
+                            id : formData,
+                            },
+                            success: function(response) {
+                                if(response.status === 'sukses'){
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Sukses',
+                                        text: 'Terima kasih anda telah mendaftar di lowongan ini'
+                                    });
+                                }
+                                if(response.status === 'sudah'){
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'error',
+                                        text: 'Anda sudah terdaftar di lowongan ini'
+                                    });
+                                }
+                                // Tanggapan berhasil
 
-                    },
-                    error: function(error) {
-                        // Tanggapan error
-                        console.log(error);
-                        // Tampilkan pesan error dengan SweetAlert
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: 'Terjadi kesalahan. Data tidak dapat disimpan.'
+                                // Tampilkan pesan sukses dengan SweetAlert
+
+                            },
+                            error: function(error) {
+                                // Tanggapan error
+                                console.log(error);
+                                // Tampilkan pesan error dengan SweetAlert
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'Terjadi kesalahan. Data tidak dapat disimpan.'
+                                });
+                            }
                         });
-                    }
-                });
+                    })
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                    'Batal',
+                    'Coba untuk berpikir lebih yakin untuk mendaftar :)',
+                    'error'
+                    )
+                }
+                })
+
             });
 
 
 
 
-        }); >>>
-        >>> > a16c9a02ca4756ee43a6afe891e144b16948af3a
+        });
     </script>
 </body>
 
