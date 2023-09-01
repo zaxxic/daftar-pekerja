@@ -418,8 +418,8 @@
     <script src="assets1/js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="
-                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                "></script>
+                        https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                        "></script>
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
     " rel="stylesheet">
@@ -431,11 +431,11 @@
                 }
             });
             $('#batal').on('click', function() {
-                var url = "{{ route('hapus-lowongan') }}";
+                var url = "{{ route('batalkan-lowongan') }}";
                 var formData = "{{ Auth()->User()->id }}";
 
                 $.ajax({
-                    type: 'Delete',
+                    type: 'POST',
                     url: url,
                     data: {
                         id: formData,
