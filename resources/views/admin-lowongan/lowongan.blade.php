@@ -296,9 +296,10 @@
                 });
             });
 
-            $(document).on('click', '.btn-delete', function() {
-                var form = $(this).closest('.delete-form');
-                var id = form.data('id');
+        $(document).on('click', '.btn-delete', function() {
+            var form = $(this).closest('.delete-form');
+            var id = form.data('id');
+            // sweet aler
 
                 $.ajax({
                     type: 'DELETE',
