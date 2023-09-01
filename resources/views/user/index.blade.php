@@ -418,8 +418,8 @@
     <script src="assets1/js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="
-                        https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                        "></script>
+                                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                "></script>
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
     " rel="stylesheet">
@@ -431,43 +431,72 @@
                 }
             });
             $('#batal').on('click', function() {
-                var url = "{{ route('batalkan-lowongan') }}";
-                var formData = "{{ Auth()->User()->id }}";
 
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    data: {
-                        id: formData,
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'mr-2 btn btn-success',
+                        cancelButton: ' btn btn-danger'
                     },
-                    success: function(response) {
-                        if (response.status === 'sukses') {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Sukses',
-                                text: response.pesan,
-                            });
-                            $('#lowongan').empty();
-                            let kosong = `<div> <div>`;
-                            $('#lowongan').append(kosong);
+                    buttonsStyling: false
+                });
 
-                        }
-                        console.log(response);
+                swalWithBootstrapButtons.fire({
+                    title: 'Apa kamu yakin',
+                    text: "Ingin mendaftar di lowongan ini",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'iya',
+                    cancelButtonText: 'tidak',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var url = "{{ route('batalkan-lowongan') }}";
+                        var formData = "{{ Auth()->User()->id }}";
 
-                        // Tanggapan berhasil
+                        $.ajax({
+                            type: 'POST',
+                            url: url,
+                            data: {
+                                id: formData,
+                            },
+                            success: function(response) {
+                                if (response.status === 'sukses') {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Sukses',
+                                        text: response.pesan,
+                                    });
+                                    $('#lowongan').empty();
+                                    let kosong = `<div> <div>`;
+                                    $('#lowongan').append(kosong);
 
-                        // Tampilkan pesan sukses dengan SweetAlert
+                                }
+                                console.log(response);
 
-                    },
-                    error: function(error) {
-                        // Tanggapan error
-                        console.log(error);
-                        // Tampilkan pesan error dengan SweetAlert
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: 'Terjadi kesalahan. Data tidak dapat dihapus.'
+                                // Tanggapan berhasil
+
+                                // Tampilkan pesan sukses dengan SweetAlert
+
+                            },
+                            error: function(error) {
+                                // Tanggapan error
+                                console.log(error);
+                                // Tampilkan pesan error dengan SweetAlert
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'Terjadi kesalahan. Data tidak dapat dihapus.'
+                                });
+                            }
                         });
+                    } else if (
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        swalWithBootstrapButtons.fire(
+                            'Batal',
+                            'Coba untuk berpikir lebih yakin untuk mendaftar :)',
+                            'error'
+                        );
                     }
                 });
             });
