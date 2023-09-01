@@ -3,7 +3,7 @@
         <ul class="navbar-nav">
             <li class="nav-item d-none d-xl-block mr-4">
                 <a class="logo" href="{{ route('dashboard') }}">
-                    <img width="180px" src="assets1/images/humma.png" alt="logo">
+                    <img width="180px" src="assets/hummas.png" alt="logo">
                 </a>
             </li>
         </ul>
