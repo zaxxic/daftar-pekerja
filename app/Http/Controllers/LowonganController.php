@@ -26,7 +26,7 @@ class LowonganController extends Controller
         $user = User::all();
         $divisi = Division::all();
         $data = Vacancy::latest()->paginate(8);
-        return view('admin-lowongan.lowongan', compact('data','divisi','user'));
+        return view('admin-lowongan.lowongan', compact('data', 'divisi', 'user'));
     }
 
     /**
@@ -44,21 +44,23 @@ class LowonganController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'judul'=>'required',
-            'devisi'=>'required',
-            'batas' =>['required',
-            function ($attribute, $value, $fail) {
-                if (Carbon::parse($value)->isBefore(Carbon::now()->subDay())) {
-                    $fail('Tanggal tenggat tidak boleh hari kemarin');
-                }
-            },],
-            'pekerjaan'=> 'required',
+            'judul' => 'required',
+            'devisi' => 'required',
+            'batas' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    if (Carbon::parse($value)->isBefore(Carbon::now()->subDay())) {
+                        $fail('Tanggal tenggat tidak boleh hari kemarin');
+                    }
+                },
+            ],
+            'pekerjaan' => 'required',
             'slot' => 'required|numeric|min:0',
-            'gaji'=> 'required|numeric|min:0',
-            'tipe'=>'required',
-            'lokasi'=>'required',
-            'content'=>'required'
-        ],[
+            'gaji' => 'required|numeric|min:0',
+            'tipe' => 'required',
+            'lokasi' => 'required',
+            'content' => 'required'
+        ], [
             'judul.required' => 'judul harus di isi',
             'devisi.required' => 'devisi harus di isi',
             'batas.required' => 'batas harus di isi',
@@ -73,17 +75,17 @@ class LowonganController extends Controller
         ]);
 
         Vacancy::create([
-            'judul'=>$request->judul,
-            'devisi_id'=>$request->devisi,
-            'batas'=>$request->batas,
-            'pekerja'=>$request->pekerjaan,
-            'slot'=>$request->slot,
-            'gaji'=>$request->gaji,
-            'tipe'=>$request->tipe,
-            'lokasi'=>$request->lokasi,
-            'syarat'=>$request->content,
+            'judul' => $request->judul,
+            'devisi_id' => $request->devisi,
+            'batas' => $request->batas,
+            'pekerja' => $request->pekerjaan,
+            'slot' => $request->slot,
+            'gaji' => $request->gaji,
+            'tipe' => $request->tipe,
+            'lokasi' => $request->lokasi,
+            'syarat' => $request->content,
             'status' => 'aktif',
-            'pembuat'=>'admin'
+            'pembuat' => 'admin'
         ]);
         return redirect()->route('lowongan.index');
     }
@@ -100,11 +102,11 @@ class LowonganController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( $id)
+    public function edit($id)
     {
         $divisi = Division::all();
         $lowongan = Vacancy::find($id);
-        return view('admin-lowongan.lowongan-edit',compact('lowongan','divisi'));
+        return view('admin-lowongan.lowongan-edit', compact('lowongan', 'divisi'));
     }
 
     /**
@@ -113,29 +115,31 @@ class LowonganController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'judul'=>'required',
-            'devisi'=>'required',
-            'batas' =>['required',
-            function ($attribute, $value, $fail) {
-                if (Carbon::parse($value)->isBefore(Carbon::now()->subDay())) {
-                    $fail('Tanggal tenggat tidak boleh hari kemarin');
-                }
-            },],
-            'pekerjaan'=> 'required',
+            'judul' => 'required',
+            'devisi' => 'required',
+            'batas' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    if (Carbon::parse($value)->isBefore(Carbon::now()->subDay())) {
+                        $fail('Tanggal tenggat tidak boleh hari kemarin');
+                    }
+                },
+            ],
+            'pekerjaan' => 'required',
             'slot' => 'required|numeric|min:0',
-            'gaji'=> 'required|numeric|min:0',
-            'tipe'=>'required',
-            'lokasi'=>'required',
-            'content'=>'required'
-        ],[
+            'gaji' => 'required|numeric|min:0', // Gaji maksimal 10 digit
+            'tipe' => 'required',
+            'lokasi' => 'required',
+            'content' => 'required',
+        ], [
             'judul.required' => 'judul harus di isi',
             'devisi.required' => 'devisi harus di isi',
             'batas.required' => 'batas harus di isi',
             'pekerjaan.required' => 'pekerjaan harus di isi',
             'slot.required' => 'slot harus di isi',
-            'slot.min' => 'slot tidak boleh min',
+            'slot.min' => 'slot tidak boleh kurang dari 0',
             'gaji.required' => 'gaji harus di isi',
-            'gaji.min' => 'gaji tidak boleh min',
+            'gaji.min' => 'gaji tidak boleh kurang dari 0',
             'tipe.required' => 'tipe harus di isi',
             'lokasi.required' => 'lokasi harus di isi',
             'content.required' => 'syarat harus di isi',
@@ -143,25 +147,24 @@ class LowonganController extends Controller
 
         $data = Vacancy::find($id);
         $data->update([
-            'judul'=>$request->judul,
-            'devisi_id'=>$request->devisi,
-            'batas'=>$request->batas,
-            'pekerja'=>$request->pekerjaan,
-            'slot'=>$request->slot,
-            'gaji'=>$request->gaji,
-            'tipe'=>$request->tipe,
-            'lokasi'=>$request->lokasi,
-            'syarat'=>$request->content
+            'judul' => $request->judul,
+            'devisi_id' => $request->devisi,
+            'batas' => $request->batas,
+            'pekerja' => $request->pekerjaan,
+            'slot' => $request->slot,
+            'gaji' => $request->gaji,
+            'tipe' => $request->tipe,
+            'lokasi' => $request->lokasi,
+            'syarat' => $request->content
 
         ]);
         return redirect()->route('lowongan.index');
-
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
         $lowongan = Vacancy::find($id);
         $lowongan->delete();

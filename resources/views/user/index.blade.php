@@ -216,7 +216,7 @@
 
                             </div>
                         @empty
-                            <div class="col-lg-12 mt-3" id="lowongan">
+                            <div class="col-lg-12 mt-3 ml-5" id="lowongan">
                                 <img src="/assets/dist/images/nodatas.png" alt="" width="180px">
                             </div>
                         @endforelse
