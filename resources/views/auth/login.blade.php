@@ -19,6 +19,14 @@
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/logo.png') }}" />
     <!-- Core Css -->
     <link id="themeColors" rel="stylesheet" href="{{ asset('assets/dist/css/style.min.css') }}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+    "></script>
+    <link href="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
+    " rel="stylesheet">
 </head>
 
 <body>
@@ -33,6 +41,18 @@
             alt="loader" class="lds-ripple img-fluid" />
     </div> --}}
     <!--  Body Wrapper -->
+    @if (session('success'))
+    {{-- <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+    </div> --}}
+    <script>
+          Swal.fire({
+            icon: 'success',
+            title: 'Sukses',
+            text: "{{session('success')}}",
+        });
+    </script>
+    @endif
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <div
@@ -53,7 +73,7 @@
                                             id="exampleInputEmail1" aria-describedby="emailHelp"
                                             value="{{ old('email') }}">
                                         @error('email')
-                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="mb-4">
@@ -61,7 +81,7 @@
                                         <input type="password" name="password" class="form-control"
                                             id="exampleInputPassword1">
                                         @error('password')
-                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mb-4">

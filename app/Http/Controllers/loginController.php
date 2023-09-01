@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 
 class loginController extends Controller
@@ -15,6 +16,19 @@ class loginController extends Controller
 
     public function login(Request $request)
     {
+        $this->validate($request, [
+            'email' => 'required|email|exists:users,email|max:255',
+            'password' => 'required|min:6|max:255',
+        ],[
+            'email.required' => 'Email Wajib Diisi',
+            'email.exists' => 'Email Yang Anda Masukkan Belum Terdaftar !!',
+            'email.email' => 'Harus Menginputkan Data yang Bertipe Email',
+            'email.max' => 'makasimal inputan adalah 255',
+            'password.max' => 'maksimal inputan adalah 255',
+            'password.required' => 'Password harus di isi',
+            'password.min' => 'Password minimal 6 karakter',
+
+        ]);
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
@@ -47,10 +61,10 @@ class loginController extends Controller
     public function logout()
     {
         Auth::logout();
-    
+
         // Menghapus semua data sesi yang terkait dengan pengguna
         Session::flush();
-    
+
         return redirect('/'); // Ganti '/' dengan rute yang sesuai setelah logout
     }
 }

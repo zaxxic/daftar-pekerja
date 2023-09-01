@@ -75,8 +75,10 @@ class ApprovalController extends Controller
         $data = User::find($id);
         $item= Registration::where('users_id',$id)->first();
         $tanggal = $request->tanggal_wawancara;
+        $timestamp = strtotime($tanggal);
+        $tanggal_format = date('d-m-Y', $timestamp);
         $datas =   [
-                'pesan' => "Persiapkan anda untuk wawancara pada tanggal ". $tanggal,
+                'pesan' => "Persiapkan anda untuk wawancara pada tanggal ". $tanggal_format,
                 'status' => "terima",
                 'judul' => " Selamat anda diterima di lowongan ". $item->Vacancy->judul
                 ];
