@@ -31,11 +31,11 @@ class ProfileController extends Controller
             ]
         );
 
-        $user = Auth::user();
+        $user = Auth::user();   
 
         // Memeriksa apakah password lama sesuai.
         if (!Hash::check($request->current_password, $user->password)) {
-            return redirect()->back()->with('error', 'Password lama salah');
+            return redirect()->back()->with('error','Password lama anda tidak sesuai');
         }
 
         // Memperbarui password baru
@@ -89,8 +89,7 @@ class ProfileController extends Controller
         $user->email = $request->input('email');
         $user->no_telp = $request->input('no_telp');
         $user->alamat = $request->input('alamat');
-        $user->lamaran = $request->input('lamaran');
-        $user->cv = $request->input('cv');
+
 
         // Update user photo
         if ($request->hasFile('foto')) {
@@ -113,7 +112,7 @@ class ProfileController extends Controller
                     unlink($oldLamaranPath);
                 }
             }
-            $lamaranPath = $request->file('lamaran')->store('lamaran');
+            $lamaranPath = $request->file('lamaran')->storeAs('public/lamaran');
             $user->lamaran = basename($lamaranPath);
         }
 
@@ -124,7 +123,7 @@ class ProfileController extends Controller
                     unlink($oldCvPath);
                 }
             }
-            $cvPath = $request->file('cv')->store('cv');
+            $cvPath = $request->file('cv')->storeAs('public/cv');
             $user->cv = basename($cvPath);
         }
 

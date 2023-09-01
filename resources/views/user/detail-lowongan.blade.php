@@ -49,7 +49,9 @@
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="assets1/images/favicon.png">
         <!-- Title -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <title>Dashboard User</title>
     </head>
     <title>Jubi - Job Board HTML Template</title>
@@ -84,14 +86,14 @@
         }
     </style>
     @if (session()->has('sukses'))
-    <script>
-        alert("anda sudah terdaftar")
-    </script>
+        <script>
+            alert("anda sudah terdaftar")
+        </script>
     @endif
     @if (session()->has('error'))
-    <script>
-        alert("anda tidak bisa daftar kembali")
-    </script>
+        <script>
+            alert("anda tidak bisa daftar kembali")
+        </script>
     @endif
 
 
@@ -132,10 +134,13 @@
                                         <li><span>Slot Tersedia : </span> {{ $lowongan->slot }}</li>
                                         <div class="d-flex justify-content-between">
                                             <li><span>Tipe Kerja : </span>{{ $lowongan->tipe }}</li>
-                                            <li style="margin-left: 30%; margin-right: -19%;"><button class="btn btn-danger"><a href="{{ route('dashboard-user') }}" class="text-white">Kembali</a></button>
+                                            <li style="margin-left: 30%; margin-right: -19%;"><button
+                                                    class="btn btn-danger"><a href="{{ route('dashboard-user') }}"
+                                                        class="text-white">Kembali</a></button>
                                             </li>
                                             <li>
-                                                <button type="button" class="btn btn-primary " id="daftar">Daftar</button>
+                                                <button type="button" class="btn btn-primary "
+                                                    id="daftar">Daftar</button>
                                             </li>
                                         </div>
                                     </ul>
@@ -144,7 +149,7 @@
                         </div>
                     </div>
 
-                    <div class="employers-details-content">
+                    <div class="employers-details-content mb-5">
                         <h3>Persyaratan Kerja</h3>
                         <p>{!! $lowongan->syarat !!}</p>
 
@@ -272,7 +277,10 @@
                                         <li class="mb-3" s>
                                             <i class="bx bx-envelope"></i>
                                             <span>Email:</span>
-                                            <a href="https://templates.envytheme.com/cdn-cgi/l/email-protection#80e8e5ececefc0eaf5e2e9aee3efed"><span class="__cf_email__" data-cfemail="f098959c9c9fb09a859299de939f9d">hummasoft.tech@gmail.com</span></a>
+                                            <a
+                                                href="https://templates.envytheme.com/cdn-cgi/l/email-protection#80e8e5ececefc0eaf5e2e9aee3efed"><span
+                                                    class="__cf_email__"
+                                                    data-cfemail="f098959c9c9fb09a859299de939f9d">hummasoft.tech@gmail.com</span></a>
                                         </li>
                                         <li class="location">
                                             <i class="bx bx-location-plus"></i>
@@ -467,7 +475,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         var url = "{{ route('detail-lowongan.store') }}";
-                        var formData = "{{$lowongan->id}}";
+                        var formData = "{{ $lowongan->id }}";
 
                         $.ajax({
                             type: 'POST',

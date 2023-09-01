@@ -216,7 +216,7 @@
 
                             </div>
                         @empty
-                            <div class="col-lg-12 mt-3" id="lowongan">
+                            <div class="col-lg-12 mt-3 ml-5" id="lowongan">
                                 <img src="/assets/dist/images/nodatas.png" alt="" width="180px">
                             </div>
                         @endforelse
@@ -418,8 +418,8 @@
     <script src="assets1/js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="
-                                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                "></script>
+                                            https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                            "></script>
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
     " rel="stylesheet">
