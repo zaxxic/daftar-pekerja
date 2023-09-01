@@ -46463,6 +46463,15 @@ ul {
     word-break: break-word!important;
 }
 
+.ellipsis1{
+    text-overflow: ellipsis!important;
+    overflow: hidden!important;
+    -webkit-line-clamp: 3!important;
+    -webkit-box-orient: vertical!important;
+    display: -webkit-box!important;
+    word-break: break-word!important;
+}
+
 .container-content {
     padding-left: 20px; /* Sesuaikan nilai padding kiri yang Anda inginkan */
     padding-right: 20px; /* Sesuaikan nilai padding kanan yang Anda inginkan */

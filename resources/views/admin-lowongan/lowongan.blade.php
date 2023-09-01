@@ -2,16 +2,20 @@
 @section('content')
     <div class="row">
         <div class="mb-4 d-flex justify-content-start col-md-6 lg-6">
-            <a href="{{ route('lowongan.create') }}" class="btn btn-primary">Tambah</a>
+            <button style="background-color: white;">
+                <a href="{{ route('lowongan.create') }}" class="btn text-white me-2"
+                    style="background-color: #007bff; margin-top: -10px;">Tambah</a>
+            </button>
             <form action="">
                 <div class="mb-4 d-flex justify-content-end align-items-center position-relative">
-                    <input type="search" class="form-control mt-3" name="cari" placeholder="Cari pekerja...">
+                    <input type="search" class="form-control mt-3" name="cari" placeholder="Cari Lowongan..."
+                        style="height: 4%;">
                 </div>
             </form>
         </div>
         <div class="mb-4 d-flex justify-content-end col-md-6 lg-6">
             <div>
-                <a href="javascript:void(0)" class="btn btn-primary" data-bs-toggle="modal"
+                <a href="javascript:void(0)" class="btn btn-primary me-3" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">Tambah Divisi</a>
             </div>
             <div class="modal fade" style="height: auto" id="staticBackdrop" data-bs-backdrop="static"
@@ -146,13 +150,9 @@
             </div>
         @empty
             <div class="container">
-                <div class="row justify-content-center">
+                <div class="row text-center">
                     <div class="col">
-                        <tr>
-                            <td>
-                                <img src="/assets/dist/images/nodatas.png" alt="" width="280px">
-                            </td>
-                        </tr>
+                        <img src="/assets/dist/images/nodatas.png" alt="" width="280px">
                     </div>
                 </div>
             </div>
