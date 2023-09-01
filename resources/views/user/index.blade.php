@@ -118,7 +118,9 @@
                                                         class="sub-title text-primary mb-1">{{ $item->Division->divisi }}
                                                     </span>
                                                     <ul>
-                                                        <li><span>Gaji :</span> Rp. {{ $item->gaji }}</li>
+                                                        <li><span>Gaji
+                                                                :</span>{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}
+                                                        </li>
                                                         <li><span>Slot Tersedia : </span>{{ $item->slot }}</li>
                                                         <div class="d-flex justify-content-between">
                                                             <li><span>Tipe Kerja : </span>{{ $item->tipe }}</li>
@@ -137,6 +139,11 @@
                                 </div>
 
                             @empty
+                                <div class="row">
+                                    <div class="col-lg-12 mt-5 text-center" id="lowongan">
+                                        <img src="/assets/dist/images/nodatas.png" alt="" width="350px">
+                                    </div>
+                                </div>
                             @endforelse
                             <div class="col-12">
                                 <div class="pagination-area">
@@ -209,7 +216,8 @@
                                                     Detail</button>
                                             </a>
                                         </li>
-                                        <li class="ml-1" id="batal"><button class="btn btn-danger">Batal</button>
+                                        <li class="ml-1" id="batal"><button
+                                                class="btn btn-danger">Batal</button>
                                         </li>
                                     </div>
                                 </ul>
@@ -418,8 +426,8 @@
     <script src="assets1/js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="
-    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-    "></script>
+                                                    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                    "></script>
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
     " rel="stylesheet">
