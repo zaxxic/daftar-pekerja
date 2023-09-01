@@ -162,7 +162,8 @@
                                     </div>
                                     <div class="d-flex col-lg-12 justify-content-between">
                                         <div class="mb-3 col-lg-5">
-                                            <label for="exampleInputEmail1" class="form-label">Password</label>
+                                            <label for="exampleInputEmail1" class="form-label">Password
+                                            <span style="color: red;">*</span></label>
                                             <input type="password"
                                                 class="form-control @error('password') is-invalid @enderror"
                                                 id="password" name="password" aria-describedby="emailHelp" />
@@ -172,11 +173,13 @@
                                         </div>
                                         <div class="mb-3 col-lg-5">
                                             <label for="exampleInputEmail1" class="form-label">Konfirmasi
-                                                Password</label>
+                                                Password
+                                                <span style="color: red;">*</span></label>
                                             <input type="password"
                                                 class="form-control @error('password_confirmation') is-invalid @enderror"
                                                 id="password_confirmation" name="password_confirmation"
                                                 aria-describedby="emailHelp" />
+
                                             @error('password_confirmation')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror

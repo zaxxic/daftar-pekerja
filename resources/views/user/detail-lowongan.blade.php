@@ -130,18 +130,28 @@
                                     </div>
                                     <span class="sub-title text-primary mb-1">{{ $lowongan->Division->divisi }}</span>
                                     <ul class="overview">
-                                        <li><span>Gaji :</span>{{ $lowongan->gaji }}</li>
+                                        <li><span>Gaji :</span>{{ 'Rp ' . number_format($lowongan->gaji, 0, ',','.')}}</li>
                                         <li><span>Slot Tersedia : </span> {{ $lowongan->slot }}</li>
                                         <div class="d-flex justify-content-between">
                                             <li><span>Tipe Kerja : </span>{{ $lowongan->tipe }}</li>
-                                            <li style="margin-left: 30%; margin-right: -19%;"><button
-                                                    class="btn btn-danger"><a href="{{ route('dashboard-user') }}"
-                                                        class="text-white">Kembali</a></button>
-                                            </li>
-                                            <li>
-                                                <button type="button" class="btn btn-primary "
-                                                    id="daftar">Daftar</button>
-                                            </li>
+                                            <div class="d-flex justify-content-end  ">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <li style="margin-left: 30%; margin-right: -19%;"><button
+                                                            class="btn btn-danger"><a href="{{ route('dashboard-user') }}"
+                                                                class="text-white">Kembali</a></button>
+                                                        </li>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <li>
+                                                            <button type="button" class="btn btn-primary "
+                                                                id="daftar">Daftar</button>
+                                                        </li>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
                                         </div>
                                     </ul>
                                 </div>
@@ -151,7 +161,7 @@
 
                     <div class="employers-details-content mb-5">
                         <h3>Persyaratan Kerja</h3>
-                        <p>{!! $lowongan->syarat !!}</p>
+                        <p >{!! $lowongan->syarat !!} <br></p>
 
                     </div>
                 </div>
