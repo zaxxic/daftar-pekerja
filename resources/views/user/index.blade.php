@@ -35,7 +35,9 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets1/images/favicon.png">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Title -->
     <title>Dashboard User</title>
@@ -187,34 +189,36 @@
                     </style>
                     <div class="employers-listing-sidebar mt-5">
                         <h3>Lamaran Ditampung</h3>
-                    @forelse ($registration as $item )
-                        <div class="col-lg-12 mt-3" id="lowongan">
-                            <div class="d-flex justify-content-between">
-                                <h5><a href="" style="color: black">{{$item->Vacancy->judul}}</a></h5>
-                                <span class="status bg-warning">{{$item->status}}</span>
-                            </div>
-                            <span class="sub-title text-primary mb-2">{{$item->Vacancy->pekerja}}</span>
-                            <ul>
-                                <li class="mb-2 mt-2"><span>Tanggal Wanwancara :</span> {{$item->User->tanggal_wawancara}}</li>
-                                <li class="mb-2"><span>Gaji :</span> {{$item->Vacancy->gaji}}</li>
-                                <li class="mb-2"><span>Slot Tersedia : </span> {{$item->Vacancy->slot}}</li>
+                        @forelse ($registration as $item)
+                            <div class="col-lg-12 mt-3" id="lowongan">
                                 <div class="d-flex justify-content-between">
-                                    <li class="mb-2"><span>Tipe Kerja : </span>{{$item->Vacancy->tipe}}</li>
-                                    <li class="ml-auto" style="margin-left: 300px;">
-                                        <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
-                                            <button
-                                            class="btn btn-primary">
-                                            Detail</button>
-                                        </a>
-                                    </li>
-                                    <li class="ml-1" id="batal"><button class="btn btn-danger">Batal</button>
-                                    </li>
+                                    <h5><a href="" style="color: black">{{ $item->Vacancy->judul }}</a></h5>
+                                    <span class="status bg-warning">{{ $item->status }}</span>
                                 </div>
-                            </ul>
+                                <span class="sub-title text-primary mb-2">{{ $item->Vacancy->pekerja }}</span>
+                                <ul>
+                                    <li class="mb-2 mt-2"><span>Tanggal Wanwancara :</span>
+                                        {{ $item->User->tanggal_wawancara }}</li>
+                                    <li class="mb-2"><span>Gaji :</span> {{ $item->Vacancy->gaji }}</li>
+                                    <li class="mb-2"><span>Slot Tersedia : </span> {{ $item->Vacancy->slot }}</li>
+                                    <div class="d-flex justify-content-between">
+                                        <li class="mb-2"><span>Tipe Kerja : </span>{{ $item->Vacancy->tipe }}</li>
+                                        <li class="ml-auto" style="margin-left: 300px;">
+                                            <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
+                                                <button class="btn btn-primary">
+                                                    Detail</button>
+                                            </a>
+                                        </li>
+                                        <li class="ml-1" id="batal"><button class="btn btn-danger">Batal</button>
+                                        </li>
+                                    </div>
+                                </ul>
 
-                        </div>
+                            </div>
                         @empty
-
+                            <div class="col-lg-12 mt-3" id="lowongan">
+                                <img src="/assets/dist/images/nodatas.png" alt="" width="180px">
+                            </div>
                         @endforelse
                     </div>
                 </div>
@@ -414,8 +418,8 @@
     <script src="assets1/js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="
-    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-    "></script>
+        https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+        "></script>
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
     " rel="stylesheet">
@@ -428,23 +432,23 @@
             });
             $('#batal').on('click', function() {
                 var url = "{{ route('hapus-lowongan') }}";
-                var formData = "{{Auth()->User()->id}}";
+                var formData = "{{ Auth()->User()->id }}";
 
                 $.ajax({
                     type: 'POST',
                     url: url,
                     data: {
-                       id : formData,
+                        id: formData,
                     },
                     success: function(response) {
-                        if(response.status === 'sukses'){
+                        if (response.status === 'sukses') {
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Sukses',
                                 text: response.pesan,
                             });
                             $('#lowongan').empty();
-                            let kosong =`<div> <div>`;
+                            let kosong = `<div> <div>`;
                             $('#lowongan').append(kosong);
 
                         }

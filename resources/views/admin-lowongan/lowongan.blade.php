@@ -1,15 +1,15 @@
 @extends('layouts.app')
 @section('content')
     <div class="row">
-        <div class="mb-4 d-flex justify-content-start col-md-12 lg-12">
+        <div class="mb-4 d-flex justify-content-start col-md-6 lg-6">
             <a href="{{ route('lowongan.create') }}" class="btn btn-primary">Tambah</a>
             <form action="">
                 <div class="mb-4 d-flex justify-content-end align-items-center position-relative">
-                    <input type="search" class="form-control mt-3" name="cari" placeholder="Cari pekerjaa...">
+                    <input type="search" class="form-control mt-3" name="cari" placeholder="Cari pekerja...">
                 </div>
             </form>
         </div>
-        <div class="d-flex justify-content-end gap-2 col-md-6 ">
+        <div class="mb-4 d-flex justify-content-end col-md-6 lg-6">
             <div>
                 <a href="javascript:void(0)" class="btn btn-primary" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">Tambah Divisi</a>
@@ -39,14 +39,12 @@
                                 </button>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
-
             <div>
                 <a href="javascript:void(0)" class="btn text-white" style="background-color: #13DEB9" data-bs-toggle="modal"
-                    data-bs-target="#staBackdrop">DIvisi</a>
+                    data-bs-target="#staBackdrop">Divisi</a>
             </div>
             <div class="modal fade" style="height: auto" id="staBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -169,89 +167,6 @@
     </div>
     </div>
 
-
-    <div class="row">
-        @forelse ($data as $item)
-            <div class="col-md-6 col-lg-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $item->judul }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted d-flex align-items-center">{{ $item->pekerja }}</h6>
-                        <p class="card-text pt-2">
-                            {!! $item->syarat !!}
-                        </p>
-                        <p class="card-text pt-2"> Gaji : {{ $item->gaji }}</p>
-                        <p class="card-text pt-2">
-                            {{ $item->batas }}
-                        </p>
-                        <div class="row">
-                            <div class="col-6">
-                                <form action="{{ route('lowongan.destroy', $item->id) }}" method="POST"
-                                    style="display: inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="button" class="text-danger delete-button"
-                                        style="background: none; border: none; padding: 0;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23"
-                                            viewBox="0 0 24 24">
-                                            <path fill="none" stroke="currentColor" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="2"
-                                                d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3" />
-                                        </svg>
-                                    </button>
-                                </form>
-
-                                <a href="{{ route('lowongan.show', $item->id) }}" class="text-info"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="23" height="23"
-                                        viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                            d="M12 6.5a9.77 9.77 0 0 1 8.82 5.5c-1.65 3.37-5.02 5.5-8.82 5.5S4.83 15.37 3.18 12A9.77 9.77 0 0 1 12 6.5m0-2C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 5a2.5 2.5 0 0 1 0 5a2.5 2.5 0 0 1 0-5m0-2c-2.48 0-4.5 2.02-4.5 4.5s2.02 4.5 4.5 4.5s4.5-2.02 4.5-4.5s-2.02-4.5-4.5-4.5z" />
-                                    </svg></a>
-                                <a href="{{ route('lowongan.edit', $item->id) }}" class="text-warning"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="23" height="23"
-                                        viewBox="0 0 24 24">
-                                        <path fill="none" stroke="currentColor" stroke-linecap="round"
-                                            stroke-linejoin="round" stroke-width="2"
-                                            d="M4 20h4L18.5 9.5a2.828 2.828 0 1 0-4-4L4 16v4m9.5-13.5l4 4" />
-                                    </svg></a>
-                            </div>
-                            <div class="col-6 d-flex justify-content-end ">
-                                <form action="{{ route('nonactive-lowongan', $item->id) }}" method="POST"
-                                    style="display: inline;" id="formnonactive">
-                                    @csrf
-                                    @method('PATCH')
-                                    <button type="button" style="background: none; border: none; padding: 0;"
-                                        class="text-danger" onclick="klikNonaktif()" id="nonaktif">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23"
-                                            viewBox="0 0 24 24">
-                                            <path fill="none" stroke="currentColor" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="2"
-                                                d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3" />
-                                        </svg>
-                                    </button>
-                                </form>
-                                <form action="{{ route('active-lowongan', $item->id) }}" method="POST"
-                                    style="display: inline;" id="formactive">
-                                    @csrf
-                                    @method('PATCH')
-                                    <button type="button" style="background: none; border: none; padding: 0;"
-                                        class="text-success" onclick="klikAktif()" id="aktif">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23"
-                                            viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M20 12a8 8 0 0 1-8 8a8 8 0 0 1-8-8a8 8 0 0 1 8-8c.76 0 1.5.11 2.2.31l1.57-1.57A9.822 9.822 0 0 0 12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10M7.91 10.08L6.5 11.5L11 16L21 6l-1.41-1.42L11 13.17l-3.09-3.09Z" />
-                                        </svg>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @empty
-            belum ada data
-        @endforelse
-
     </div>
 @endsection
 @section('script')
@@ -296,10 +211,10 @@
                 });
             });
 
-        $(document).on('click', '.btn-delete', function() {
-            var form = $(this).closest('.delete-form');
-            var id = form.data('id');
-            // sweet aler
+            $(document).on('click', '.btn-delete', function() {
+                var form = $(this).closest('.delete-form');
+                var id = form.data('id');
+                // sweet aler
 
                 $.ajax({
                     type: 'DELETE',
