@@ -101,7 +101,7 @@
                     <div class="shorting">
                         <div class="row">
                             @forelse ($lowongan as $item)
-                                <div class="col-12 mix a s c">
+                                <div class="col-12 sm-12 mix a s c">
                                     <div class="hot-jobs-list">
                                         <div class="row align-items-center">
                                             <div class="col-lg-12">
@@ -418,8 +418,8 @@
     <script src="assets1/js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="
-        https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-        "></script>
+                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                "></script>
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
     " rel="stylesheet">
@@ -435,7 +435,7 @@
                 var formData = "{{ Auth()->User()->id }}";
 
                 $.ajax({
-                    type: 'POST',
+                    type: 'Delete',
                     url: url,
                     data: {
                         id: formData,

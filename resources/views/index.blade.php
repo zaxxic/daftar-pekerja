@@ -34,8 +34,7 @@
     <link rel="stylesheet" href="{{ asset('assets1/css/style.css') }}">
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="{{ asset('assets1/css/responsive.css') }}">
-    <!-- Rtl CSS -->
-    <link rel="stylesheet" href="{{ asset('assets1/css/rtl.css') }}">
+
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/logo.png') }}" />

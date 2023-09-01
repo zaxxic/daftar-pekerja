@@ -32,9 +32,9 @@ use App\Models\Lowongan;
 // Route::resource('login', loginController::class);
 
 
-Route::get('register' , [registerController::class , 'index'])->name('register');
+Route::get('register' , [registerController::class , 'index'])->name('register')->middleware('guest');
 Route::post('register-store' , [registerController::class , 'store'])->name('register-store');
-Route::get('/login', [loginController::class, 'showLogin'])->name('login');
+Route::get('/login', [loginController::class, 'showLogin'])->name('login')->middleware('guest');
 Route::post('/form-login', [loginController::class, 'login'])->name('form-login');
 Route::post('/logout', [loginController::class, 'logout'])->name('logout');
 
@@ -45,27 +45,27 @@ Route::middleware('checkLogin')->group(function () {
     Route::resource('lowongan', LowonganController::class);
     Route::resource('divisi', DivisiController::class)->except(['show', 'update','edit']);
     Route::delete('hapus-lowongan', [LowonganController::class, 'hapus'])->name('hapus-lowongan');
-    
+
     Route::get('approval', [ApprovalController::class, 'index'])->name('approval');
     Route::patch('acc/{id}', [ApprovalController::class, 'update'])->name('acc');
     Route::patch('reject/{id}', [ApprovalController::class, 'reject'])->name('reject');
     Route::get('detail-approval', [ApprovalController::class, 'show'])->name('detail-approval');
-    
+
     //Pekerja yang sudah diterima / berstatus diterima
     Route::get('pekerja', [PekerjaController::class, 'index'])->name('pekerja');
     Route::patch('nonactive/{id}', [PekerjaController::class, 'update'])->name('nonactive');
     Route::get('detail-pekerja', [ApprovalController::class, 'show'])->name('detail-pekerja');
-    
+
     //Pekerja yang ditolak dan dinonaktifkan / berstatus ditolak
     Route::get('pekerja-ditolak', [PekerjaDitolakController::class, 'index'])->name('pekerja-ditolak');
-    
+
     //Lowongan aktif / nonaktif
     Route::patch('nonactive-lowongan/{id}', [LowonganController::class, 'nonactive'])->name('nonactive-lowongan');
     Route::patch('active-lowongan/{id}', [LowonganController::class, 'active'])->name('active-lowongan');
     Route::get('/dashboard-admin', [dashboardAdminController::class, 'index'])->name('dashboard-admin');
     });
 
-      
+
     Route::middleware(['role:user'])->group(function () {
         // user
         Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
@@ -75,7 +75,7 @@ Route::middleware('checkLogin')->group(function () {
         Route::get('/detail-lowongan{id}', [detailLowonganController::class, 'show'])->name('detailLowongan');
         Route::get('/dashboard-user', [dashboardUserController::class, 'index'])->name('dashboard-user');
         Route::post('/dashboard-filter', [dashboardUserController::class, 'filterLowongan'])->name('dashboard-filter');
-    
+
     });
     });
 
