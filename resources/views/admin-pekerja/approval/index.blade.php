@@ -741,7 +741,7 @@
                                     "Anda berhasil menolak akun tersebut.",
                                     "success"
                                 );
-                                var form = document.getElementById("pesan_terima");
+                                var form = document.getElementById("pesan_tolak");
                                 form.submit();
                             } else if (
                                 result.dismiss === Swal.DismissReason.cancel
@@ -794,7 +794,7 @@
                                     "Anda berhasil menerima akun tersebut.",
                                     "success"
                                 );
-                                var form = document.getElementById("pesan_tolak");
+                                var form = document.getElementById("pesan_terima");
                                 form.submit();
                             } else if (
                                 result.dismiss === Swal.DismissReason.cancel

@@ -240,7 +240,7 @@
                         $.each(response.divisi, function(index, item) {
                             var divisiHtml = `
                                 <div class="col-4 flex justify-content-center">
-                                    <div class="col-12 d-flex justify-content-between border border-2" style="padding: 3px;">
+                                    <div class="col-12 d-flex justify-content-between border border-2" style="padding: 10px;">
                                         ${item.divisi}
                                         <form class="text-danger delete-form" data-id="${item.id}">
                                             @csrf

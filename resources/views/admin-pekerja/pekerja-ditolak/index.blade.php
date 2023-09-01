@@ -167,7 +167,7 @@
                                                             class="mt-0">
                                                         <div class="d-flex mb-1">
                                                             <span class="me-3" style="font-weight: 600;">Divisi :</span>
-                                                            <span>{{ $row->Devision->divisi }}</span>
+                                                            <span>{{$row->Devision->divisi}}</span>
                                                         </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;"
                                                             class="mt-0">
