@@ -124,12 +124,7 @@
                                     @method('PATCH')
                                     <button type="button" style="background: none; border: none; padding: 0;"
                                         class="text-danger" onclick="klikNonaktif()" id="nonaktif">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
-                                            viewBox="0 0 24 24">
-                                            <path fill="none" stroke="currentColor" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="2"
-                                                d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3" />
-                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8c1.85 0 3.55.63 4.9 1.69L5.69 16.9A7.902 7.902 0 0 1 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1A7.902 7.902 0 0 1 20 12c0 4.42-3.58 8-8 8z"/></svg>
                                     </button>
                                 </form>
                                 <form action="{{ route('active-lowongan', $item->id) }}" method="POST"
