@@ -64,22 +64,32 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="header-right-content">
                             <ul class="log-in">
-                                <li>
-                                    <a href="{{ route('login') }}">
-                                        <i class="bx bxs-lock"></i>
-                                        Log In
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="{{ route('register') }}">
-                                        <i class="bx bxs-user"></i>
-                                        Register
-                                    </a>
-                                </li>
+                                @auth
+                                    <li>
+                                        <a href="{{ route('login') }}">
+                                            <i class="bx bxs-dashboard"></i>
+                                            Dashboard
+                                        </a>
+                                    </li>
+                                @else
+                                    <li>
+                                        <a href="{{ route('login') }}">
+                                            <i class="bx bxs-lock"></i>
+                                            Log In
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('register') }}">
+                                            <i class="bx bxs-user"></i>
+                                            Register
+                                        </a>
+                                    </li>
+                                @endauth
                             </ul>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>

@@ -28,11 +28,11 @@ class ApprovalController extends Controller
                 $query->where('name', 'LIKE', '%' . $keyword . '%');
             })->where('status', '!=', 'diterima') // Tampilkan hanya status bukan "disetujui"
             ->paginate(8);
-    
+
             $user->appends(['cari' => $keyword]);
             return view('admin-pekerja.approval.index', compact('user'));
         }
-    
+
         $user = Registration::where('status', ['menunggu','ditolak'])->paginate(8);
         return view('admin-pekerja.approval.index', compact('user'));
     }
@@ -52,7 +52,7 @@ class ApprovalController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update($id, Request $request)
     {
         $this->validate(
             $request,

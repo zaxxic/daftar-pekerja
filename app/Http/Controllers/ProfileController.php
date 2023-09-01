@@ -101,7 +101,7 @@ class ProfileController extends Controller
                     unlink($oldFotoPath);
                 }
             }
-            $fotoPath = $request->file('foto')->store('foto_user');
+            $fotoPath = $request->file('foto')->storeAs('public/foto_user');
             $user->foto = basename($fotoPath); // Mengambil hanya nama file tanpa path
         }
 

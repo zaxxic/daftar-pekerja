@@ -214,6 +214,7 @@
                 var form = $(this).closest('.delete-form');
                 var id = form.data('id');
                 // sweet aler
+                alert('apakah anda yakin ingin menghapus devisi ini? ');
 
                 $.ajax({
                     type: 'DELETE',

@@ -21,7 +21,7 @@ class PekerjaController extends Controller
             $user = User::where('name', 'LIKE', '%' . $keyword . '%')
                         ->where('status', 'diterima')
                         ->paginate(8);
-    
+
             $user->appends(['cari' => $keyword]);
             return view('admin-pekerja.pekerja.index', compact('user'));
         }
