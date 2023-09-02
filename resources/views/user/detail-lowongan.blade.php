@@ -49,9 +49,7 @@
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="assets1/images/favicon.png">
         <!-- Title -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <title>Dashboard User</title>
     </head>
     <title>Jubi - Job Board HTML Template</title>
@@ -86,14 +84,14 @@
         }
     </style>
     @if (session()->has('sukses'))
-        <script>
-            alert("anda sudah terdaftar")
-        </script>
+    <script>
+        alert("anda sudah terdaftar")
+    </script>
     @endif
     @if (session()->has('error'))
-        <script>
-            alert("anda tidak bisa daftar kembali")
-        </script>
+    <script>
+        alert("anda tidak bisa daftar kembali")
+    </script>
     @endif
 
 
@@ -136,20 +134,33 @@
                                         <div class="d-flex justify-content-between">
                                             <li><span>Tipe Kerja : </span>{{ $lowongan->tipe }}</li>
                                             <div class="d-flex justify-content-end  ">
-                                                <div class="row gap-5">
-                                                    <div class="col-4">
-                                                        <li style="margin-left: 30%; margin-right: -19%;"><button
-                                                                class="btn btn-danger"><a
-                                                                    href="{{ route('dashboard-user') }}"
-                                                                    class="text-white">Kembali</a></button>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <li style="margin-right: -19%;"><button class="btn btn-danger"><a href="{{ route('dashboard-user') }}" class="text-white">Kembali</a></button>
                                                         </li>
                                                     </div>
-                                                    <div class="col-4">
+                                                    <div class="col-6">
+                                                        @if(Auth::check()) <!-- Periksa apakah pengguna sudah login -->
+                                                        @if($registrations !== null) <!-- Periksa apakah pengguna telah mendaftar lowongan -->
                                                         <li>
-                                                            <button type="button" class="btn btn-primary "
-                                                                id="daftar">Daftar</button>
+                                                            <button type="button" class="btn btn-danger" id="batal">Batal</button>
                                                         </li>
+                                                        @else
+                                                        <li>
+                                                            <button type="button" class="btn btn-primary" id="daftar">Daftar</button>
+                                                        </li>
+                                                        @endif
+                                                        @else
+                                                        <!-- Tampilkan tombol "Daftar" jika pengguna belum login -->
+                                                        <li>
+                                                            <button type="button" class="btn btn-primary" id="daftar">Daftar</button>
+                                                        </li>
+                                                        @endif
+
+
+
                                                     </div>
+
                                                 </div>
                                             </div>
 
@@ -289,10 +300,7 @@
                                         <li class="mb-3" s>
                                             <i class="bx bx-envelope"></i>
                                             <span>Email:</span>
-                                            <a
-                                                href="https://templates.envytheme.com/cdn-cgi/l/email-protection#80e8e5ececefc0eaf5e2e9aee3efed"><span
-                                                    class="__cf_email__"
-                                                    data-cfemail="f098959c9c9fb09a859299de939f9d">hummasoft.tech@gmail.com</span></a>
+                                            <a href="https://templates.envytheme.com/cdn-cgi/l/email-protection#80e8e5ececefc0eaf5e2e9aee3efed"><span class="__cf_email__" data-cfemail="f098959c9c9fb09a859299de939f9d">hummasoft.tech@gmail.com</span></a>
                                         </li>
                                         <li class="location">
                                             <i class="bx bx-location-plus"></i>
@@ -537,6 +545,89 @@
                 });
 
             });
+
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('#batal').on('click', function() {
+
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'mr-2 btn btn-success',
+                        cancelButton: ' btn btn-danger'
+                    },
+                    buttonsStyling: false
+                });
+
+                swalWithBootstrapButtons.fire({
+                    title: 'Apa kamu yakin',
+                    text: "Ingin membatalkan di lowongan ini",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'iya',
+                    cancelButtonText: 'tidak',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var url = "{{ route('batalkan-lowongan') }}";
+                        var formData = "{{ Auth()->User()->id }}";
+
+                        $.ajax({
+                            type: 'POST',
+                            url: url,
+                            data: {
+                                id: formData,
+                            },
+                            success: function(response) {
+                                if (response.status === 'sukses') {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Sukses',
+                                        text: response.pesan,
+                                    });
+                                    $('#lowongan').empty();
+                                    let kosong = `<div> <div>`;
+                                    $('#lowongan').append(kosong);
+
+                                }
+                                console.log(response);
+
+                                // Tanggapan berhasil
+
+                                // Tampilkan pesan sukses dengan SweetAlert
+
+                            },
+                            error: function(error) {
+                                // Tanggapan error
+                                console.log(error);
+                                // Tampilkan pesan error dengan SweetAlert
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'Terjadi kesalahan. Data tidak dapat dihapus.'
+                                });
+                            }
+                        });
+                    } else if (
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        swalWithBootstrapButtons.fire(
+                            'Batal',
+                            'Coba untuk berpikir lebih yakin untuk mendaftar :)',
+                            'error'
+                        );
+                    }
+                });
+            });
+
+
+
 
         });
     </script>

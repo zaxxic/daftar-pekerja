@@ -61,7 +61,17 @@ class detailLowonganController extends Controller
     public function show(string $id)
     {
         $lowongan = Vacancy::findOrFail($id);
-        return view('user.detail-lowongan', compact('lowongan'));
+        $loggedInUser = Auth()->user(); // Mengambil pengguna yang sudah login
+
+        if ($loggedInUser) {
+            $registrations = Registration::where('users_id', $loggedInUser->id)
+                ->where('vacancie_id', $lowongan->id)
+                ->first(); // Mengambil data registrasi pengguna pada lowongan tertentu
+        } else {
+            $registrations = null; // Jika pengguna belum login, set registrasi menjadi null
+        }
+
+        return view('user.detail-lowongan', compact('lowongan', 'registrations'));
     }
 
     /**
