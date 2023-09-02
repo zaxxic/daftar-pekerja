@@ -509,6 +509,8 @@
                                         icon: 'success',
                                         title: 'Sukses',
                                         text: 'Terima kasih anda telah mendaftar di lowongan ini'
+                                    }).then(() => {
+                                        window.location.reload();
                                     });
                                 } else if (response.status === 'sudah') {
                                     Swal.fire({
@@ -590,10 +592,12 @@
                                         icon: 'success',
                                         title: 'Sukses',
                                         text: response.pesan,
-                                    });
-                                    $('#lowongan').empty();
-                                    let kosong = `<div> <div>`;
-                                    $('#lowongan').append(kosong);
+                                    }).then(() => {
+                                        window.location.reload();
+                                    });;
+                                    // $('#lowongan').empty();
+                                    // let kosong = `<div> <div>`;
+                                    // $('#lowongan').append(kosong);
 
                                 }
                                 console.log(response);
