@@ -120,7 +120,7 @@
                                                 style="color: red;">*</span></label>
                                         <textarea name="alamat" id="" cols="10" rows="5"
                                             class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat') }}" id="alamat"
-                                            name="alamat">{{ old('alamat') }}</textarea>
+                                            name="alamat"></textarea>
                                         @error('alamat')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -162,8 +162,7 @@
                                     </div>
                                     <div class="d-flex col-lg-12 justify-content-between">
                                         <div class="mb-3 col-lg-5">
-                                            <label for="exampleInputEmail1" class="form-label">Password
-                                            <span style="color: red;">*</span></label>
+                                            <label for="exampleInputEmail1" class="form-label">Password</label>
                                             <input type="password"
                                                 class="form-control @error('password') is-invalid @enderror"
                                                 id="password" name="password" aria-describedby="emailHelp" />
@@ -173,13 +172,11 @@
                                         </div>
                                         <div class="mb-3 col-lg-5">
                                             <label for="exampleInputEmail1" class="form-label">Konfirmasi
-                                                Password
-                                                <span style="color: red;">*</span></label>
+                                                Password</label>
                                             <input type="password"
                                                 class="form-control @error('password_confirmation') is-invalid @enderror"
                                                 id="password_confirmation" name="password_confirmation"
                                                 aria-describedby="emailHelp" />
-
                                             @error('password_confirmation')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -190,10 +187,10 @@
                                         Sekarang</button>
                                     <div class="d-flex align-items-center">
                                         <p class="fs-4 mb-0 text-dark">
-                                            Sudah mempunyai akun?
+                                            Already have an Account?
                                         </p>
-                                        <a class="text-primary fw-medium ms-2" href="{{ route('login')}}">
-                                            Login</a>
+                                        <a class="text-primary fw-medium ms-2" href="{{ route('login') }}">Sign
+                                            In</a>
                                     </div>
                                 </form>
                             </div>

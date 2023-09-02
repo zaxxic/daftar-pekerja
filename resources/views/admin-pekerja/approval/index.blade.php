@@ -103,168 +103,161 @@
                     </table>
                 </div>
 
-                                <!-- Modal -->
-                                <div class="modal fade" id="acc-user-{{ $row->User->id }}" tabindex="-1"
-                                    aria-labelledby="exampleModalLabel1">
-                                    <div class="modal-dialog" role="document">
+                <!-- Modal -->
+                <div class="modal fade" id="acc-user-{{ $row->User->id }}" tabindex="-1"
+                    aria-labelledby="exampleModalLabel1">
+                    <div class="modal-dialog" role="document">
 
-                                        <form action="acc/{{ $row->User->id }}" method="POST" id="pesan_terima">
-                                            @method('PATCH')
-                                            @csrf
-                                            <div class="modal-content">
-                                                <div class="modal-header d-flex align-items-center">
-                                                    <h4 class="modal-title" id="exampleModalLabel1">
-                                                        Terima Pekerja
-                                                    </h4>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
-                                                <div class="modal-body">
-                                                    <div class="mb-3">
-                                                        <span style="color: black;" for="recipient-name"
-                                                            class="control-label">Apakah anda yakin untuk menerima pekerja
-                                                            tersebut?</span>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="recipient-name" class="control-label"
-                                                            style="color: black;">Tanggal <span
-                                                                style="color: red;">*</span></label>
-                                                        <input type="datetime-local" class="form-control" id="tanggal"
-                                                            name="tanggal_wawancara" />
-                                                        <span class="text-danger" id="error"></span>
-                                                        @error('tanggal_wawancara')
-                                                            <small class="text-danger">{{ $message }}</small>
-                                                        @enderror
-                                                        <br>
-                                                        <small id="name" class="form-text text-muted">Setelah anda
-                                                            yakin ingin menerima pekerja tersebut, anda bisa mengirimkan
-                                                            tanggal untuk jadwal wawancara si pekerja.</small>
+                        <form action="acc/{{ $row->User->id }}" method="POST" id="pesan_terima">
+                            @method('PATCH')
+                            @csrf
+                            <div class="modal-content">
+                                <div class="modal-header d-flex align-items-center">
+                                    <h4 class="modal-title" id="exampleModalLabel1">
+                                        Terima Pekerja
+                                    </h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <span style="color: black;" for="recipient-name" class="control-label">Apakah anda
+                                            yakin untuk menerima pekerja
+                                            tersebut?</span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="recipient-name" class="control-label" style="color: black;">Tanggal
+                                            <span style="color: red;">*</span></label>
+                                        <input type="datetime-local" class="form-control" id="tanggal"
+                                            name="tanggal_wawancara" />
+                                        <span class="text-danger" id="error"></span>
+                                        @error('tanggal_wawancara')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                        <br>
+                                        <small id="name" class="form-text text-muted">Setelah anda
+                                            yakin ingin menerima pekerja tersebut, anda bisa mengirimkan
+                                            tanggal untuk jadwal wawancara si pekerja.</small>
 
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" id="terima" class="btn btn-success">
-                                                        Terima
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
                                     </div>
                                 </div>
-                                <div class="modal fade" id="reject-user-{{ $row->User->id }}" tabindex="-1"
-                                    aria-labelledby="exampleModalLabel1">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header d-flex align-items-center">
-                                                <h4 class="modal-title" id="exampleModalLabel1">
-                                                    Tolak Pekerja
-                                                </h4>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
-                                            <div class="modal-body">
-                                                <form action="/reject/{{ $row->User->id }}" method="POST"
-                                                    id="pesan_tolak">
-                                                    @method('PATCH')
-                                                    @csrf
-                                                    <div class="mb-3">
-                                                        <label for="message-text" class="control-label">Pesan <span
-                                                                style="color: red;">*</span></label>
-                                                        <textarea class="form-control" id="pesan" placeholder="Masukkan pesan" name="pesan"></textarea>
-                                                        <span class="text-danger" id="error"></span>
-                                                        @error('pesan')
-                                                            <small class="text-danger">{{ $message }}</small>
-                                                        @enderror
-                                                        <small id="name" class="form-text text-muted">Masukkan alasan
-                                                            kenapa pekerja tersebut ditolak.</small>
-                                                    </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button id="tolak" type="button" class="btn btn-danger">
-                                                    Tolak
-                                                </button>
-                                            </div>
-                                            </form>
-                                        </div>
-                                    </div>
+                                <div class="modal-footer">
+                                    <button type="button" id="terima" class="btn btn-success">
+                                        Terima
+                                    </button>
                                 </div>
-                                <div id="detail-user-{{ $row->User->id }}" class="modal fade" tabindex="-1"
-                                    aria-labelledby="bs-example-modal-md" aria-hidden="true">
-                                    <div class="modal-dialog  modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-header d-flex align-items-center">
-                                                <h4 class="modal-title" id="myModalLabel">
-                                                    Detail Pekerja
-                                                </h4>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
-                                            <div class="modal-body col-lg-12" style="height: auto">
-                                                <div class="d-flex">
-                                                    <div class="col-lg-4">
-                                                        <img src="{{ asset('storage/public/foto_user/' . $row->User->foto) }}"
-                                                            class="rounded-circle" width="180" height="180" />
-                                                    </div>
-                                                    <div class="col-lg-8">
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <h5 class="mb-3">Data Diri Pekerja</h5>
-                                                                <div class="d-flex mb-1">
-                                                                    <span class="me-3" style="font-weight: 600;">Nama
-                                                                        :</span>
-                                                                    <span>{{ $row->User->name }}</span>
-                                                                </div>
-                                                                <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                                    class="mt-0">
-                                                                <div class="d-flex mb-1">
-                                                                    <span class="me-3" style="font-weight: 600;">Jenis
-                                                                        Kelamin :</span>
-                                                                    <span>{{ $row->User->jenis_kelamin }}</span>
-                                                                </div>
-                                                                <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                                    class="mt-0">
-                                                                <div class="d-flex mb-1">
-                                                                    <span class="me-3" style="font-weight: 600;">No.
-                                                                        Handphome :</span>
-                                                                    <span>{{ $row->User->no_telp }}</span>
-                                                                </div>
-                                                                <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                                    class="mt-0">
-                                                                <div class="d-flex mb-1">
-                                                                    <span class="me-3" style="font-weight: 600;">Email
-                                                                        :</span>
-                                                                    <span>{{ $row->User->email }}</span>
-                                                                </div>
-                                                                <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                                    class="mt-0">
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal fade" id="reject-user-{{ $row->User->id }}" tabindex="-1"
+                    aria-labelledby="exampleModalLabel1">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header d-flex align-items-center">
+                                <h4 class="modal-title" id="exampleModalLabel1">
+                                    Tolak Pekerja
+                                </h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
+                            <div class="modal-body">
+                                <form action="/reject/{{ $row->User->id }}" method="POST" id="pesan_tolak">
+                                    @method('PATCH')
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label for="message-text" class="control-label">Pesan <span
+                                                style="color: red;">*</span></label>
+                                        <textarea class="form-control" id="pesan" placeholder="Masukkan pesan" name="pesan"></textarea>
+                                        <span class="text-danger" id="error"></span>
+                                        @error('pesan')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                        <small id="name" class="form-text text-muted">Masukkan alasan
+                                            kenapa pekerja tersebut ditolak.</small>
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="tolak" type="button" class="btn btn-danger">
+                                    Tolak
+                                </button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="detail-user-{{ $row->User->id }}" class="modal fade" tabindex="-1"
+                    aria-labelledby="bs-example-modal-md" aria-hidden="true">
+                    <div class="modal-dialog  modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header d-flex align-items-center">
+                                <h4 class="modal-title" id="myModalLabel">
+                                    Detail Pekerja
+                                </h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
+                            <div class="modal-body col-lg-12" style="height: auto">
+                                <div class="d-flex">
+                                    <div class="col-lg-4">
+                                        <img src="{{ asset('storage/public/foto_user/' . $row->User->foto) }}"
+                                            class="rounded-circle" width="180" height="180" />
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="mb-3">Data Diri Pekerja</h5>
+                                                <div class="d-flex mb-1">
+                                                    <span class="me-3" style="font-weight: 600;">Nama
+                                                        :</span>
+                                                    <span>{{ $row->User->name }}</span>
                                                 </div>
+                                                <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                                <div class="d-flex mb-1">
+                                                    <span class="me-3" style="font-weight: 600;">Jenis
+                                                        Kelamin :</span>
+                                                    <span>{{ $row->User->jenis_kelamin }}</span>
+                                                </div>
+                                                <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                                <div class="d-flex mb-1">
+                                                    <span class="me-3" style="font-weight: 600;">No.
+                                                        Handphome :</span>
+                                                    <span>{{ $row->User->no_telp }}</span>
+                                                </div>
+                                                <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                                <div class="d-flex mb-1">
+                                                    <span class="me-3" style="font-weight: 600;">Email
+                                                        :</span>
+                                                    <span>{{ $row->User->email }}</span>
+                                                </div>
+                                                <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            @empty
-                                <div class="container">
-                                    <div class="row d-flex">
-                                        <div class="col">
-                                            <tr>
-                                                <td class="text-center" colspan="6">
-                                                    <img src="/assets/dist/images/nodatas.png" alt=""
-                                                        width="280px">
-                                                </td>
-                                            </tr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <div class="container">
+                    <div class="row d-flex">
+                        <div class="col">
+                            <tr>
+                                <td class="text-center" colspan="6">
+                                    <img src="/assets/dist/images/nodatas.png" alt="" width="280px">
+                                </td>
+                            </tr>
 
-                                            
-                                        </div>
-                                    </div>
-                            @endforelse
 
-                        </tbody>
+                        </div>
+                    </div>
+                    @endforelse
+
+                    </tbody>
                     </table>
                     <div class="col-lg-12">
                         <nav aria-label="Page navigation example" class="mt-3 justify-content-end">
@@ -299,6 +292,9 @@
     <script>
         $(document).ready(function() {
             $('#tolak').click(function() {
+                // Menutup modal yang ada sebelumnya (jika ada)
+                $('.modal').modal('hide');
+
                 const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
                         confirmButton: "btn btn-success",
@@ -352,6 +348,9 @@
                 }
             });
             $('#terima').click(function() {
+                // Menutup modal yang ada sebelumnya (jika ada)
+                $('.modal').modal('hide');
+
                 const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
                         confirmButton: "btn btn-success",
@@ -361,7 +360,7 @@
                 });
 
                 if ($("#tanggal").val() !== "") {
-                    $('#error').html('')
+                    $('#error').html('');
                     swalWithBootstrapButtons
                         .fire({
                             title: "Apakah Anda Yakin?",
@@ -376,9 +375,9 @@
                                 cancelButton: "btn btn-danger me-3",
                             },
                             buttonsStyling: false,
-                            width: "25rem", // You can adjust the width as needed
-                            padding: "1rem", // You can adjust the padding as needed
-                            customContainerClass: "swal-custom", // Define a custom class for styling
+                            width: "25rem",
+                            padding: "1rem",
+                            customContainerClass: "swal-custom",
                         })
                         .then((result) => {
                             if (result.value) {
@@ -404,6 +403,7 @@
                     console.log("gagal bg");
                 }
             });
+
 
         });
     </script>
