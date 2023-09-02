@@ -136,15 +136,15 @@
                                         <div class="d-flex justify-content-between">
                                             <li><span>Tipe Kerja : </span>{{ $lowongan->tipe }}</li>
                                             <div class="d-flex justify-content-end  ">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <li style="margin-left: 15%; margin-right: -19%;"><button
+                                                <div class="row gap-5">
+                                                    <div class="col-4">
+                                                        <li style="margin-left: 30%; margin-right: -19%;"><button
                                                                 class="btn btn-danger"><a
                                                                     href="{{ route('dashboard-user') }}"
                                                                     class="text-white">Kembali</a></button>
                                                         </li>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-4">
                                                         <li>
                                                             <button type="button" class="btn btn-primary "
                                                                 id="daftar">Daftar</button>

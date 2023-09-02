@@ -97,35 +97,35 @@
                                                                 <div class="d-flex mb-1">
                                                                     <span class="me-3" style="font-weight: 600;">Nama
                                                                         :</span>
-                                                                    <span>Trisqi Tegar Valenzi</span>
+                                                                        <span>{{ $row->name }}</span>
                                                                 </div>
                                                                 <hr style="width: 100%; border-top: 1px solid #000000;"
                                                                     class="mt-0">
                                                                 <div class="d-flex mb-1">
                                                                     <span class="me-3" style="font-weight: 600;">Jenis
                                                                         Kelamin :</span>
-                                                                    <span>Laki-Laki</span>
+                                                                        <span>{{ $row->jenis_kelamin }}</span>
                                                                 </div>
                                                                 <hr style="width: 100%; border-top: 1px solid #000000;"
                                                                     class="mt-0">
                                                                 <div class="d-flex mb-1">
                                                                     <span class="me-3" style="font-weight: 600;">No.
-                                                                        Handphome :</span>
-                                                                    <span>085607338154</span>
+                                                                        Handphone :</span>
+                                                                        <span>{{ $row->no_telp }}</span>
                                                                 </div>
                                                                 <hr style="width: 100%; border-top: 1px solid #000000;"
                                                                     class="mt-0">
                                                                 <div class="d-flex mb-1">
                                                                     <span class="me-3" style="font-weight: 600;">Email
                                                                         :</span>
-                                                                    <span>trisqitegarv@gmail</span>
+                                                                        <span>{{ $row->email }}</span>
                                                                 </div>
                                                                 <hr style="width: 100%; border-top: 1px solid #000000;"
                                                                     class="mt-0">
                                                                 <div class="d-flex mb-1">
                                                                     <span class="me-3" style="font-weight: 600;">Divisi
                                                                         :</span>
-                                                                    <span>Dokumenter</span>
+                                                                        <span>{{$row->Devision->divisi}}</span>
                                                                 </div>
                                                                 <hr style="width: 100%; border-top: 1px solid #000000;"
                                                                     class="mt-0">
@@ -134,66 +134,28 @@
                                                     </div>
                                                 </div>
 
-
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <h5 class="mb-3">Alamat Pekerja</h5>
 
                                                         <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">Nama :</span>
-                                                            <span>{{ $row->name }}</span>
+                                                            <div class="col-lg-1.5">
+                                                                <span class="me-3" style="font-weight: 600;">Alamat :</span>
+                                                            </div>
+                                                            <div class="col-lg-10">
+                                                                <span>{{ $row->alamat }}</span>
+                                                            </div>
                                                         </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">Jenis Kelamin
-                                                                :</span>
-                                                            <span>{{ $row->jenis_kelamin }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">No. Handphome
-                                                                :</span>
-                                                            <span>{{ $row->no_telp }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">Email :</span>
-                                                            <span>{{ $row->email }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">Divisi :</span>
-                                                            <span>{{$row->Devision->divisi}}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
                                                     </div>
 
                                                 </div>
+
                                             </div>
                                         </div>
                                         <!-- /.modal-content -->
                                     </div>
                                     <!-- /.modal-dialog -->
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="mb-3">Alamat Pekerja</h5>
 
-                                            <div class="d-flex mb-1">
-                                                <div class="col-lg-1.5">
-                                                    <span class="me-3" style="font-weight: 600;">Alamat :</span>
-                                                </div>
-                                                <div class="col-lg-10">
-                                                    <span>{{ $row->alamat }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
                                 </div>
                             @empty
                                 <div class="container">

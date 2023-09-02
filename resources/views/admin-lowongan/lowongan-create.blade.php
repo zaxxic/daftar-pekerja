@@ -59,7 +59,7 @@
                     <input class="col-10 rounded-1 form-control" type="text" name="gaji" min="0"
                         value="{{ old('gaji') }}" placeholder=" "min="5000" max="100000"
                         oninvalid="$this.setCustomValidity('gaji minimal 5000 maksimal 100000')"
-                        oninput="setCustomValidity('')"> 
+                        oninput="setCustomValidity('')">
                     @error('gaji')
                         <p class="text-danger">{{ $message }}</p>
                     @enderror

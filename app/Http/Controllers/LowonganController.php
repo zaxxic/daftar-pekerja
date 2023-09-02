@@ -56,7 +56,7 @@ class LowonganController extends Controller
             ],
             'pekerjaan' => 'required',
             'slot' => 'required|numeric|min:0',
-            'gaji' => 'required|numeric|min:0|max:10',
+            'gaji' => 'required|numeric|min:100000|',
             'tipe' => 'required',
             'lokasi' => 'required',
             'content' => 'required'
@@ -68,7 +68,7 @@ class LowonganController extends Controller
             'slot.required' => 'slot harus di isi',
             'slot.min' => 'slot tidak boleh min',
             'gaji.required' => 'gaji harus di isi',
-            'gaji.min' => 'gaji tidak boleh minus',
+            'gaji.min' => 'gaji tidak boleh kurang dari 100.000',
             'gaji.max' => 'gaji tidak boleh lebih dari 10 angka',
             'tipe.required' => 'tipe harus di isi',
             'lokasi.required' => 'lokasi harus di isi',
@@ -128,7 +128,7 @@ class LowonganController extends Controller
             ],
             'pekerjaan' => 'required',
             'slot' => 'required|numeric|min:0',
-            'gaji' => 'required|numeric|min:0|max:10', // Gaji maksimal 10 digit
+            'gaji' => 'required|numeric|min:100000', // Gaji maksimal 10 digit
             'tipe' => 'required',
             'lokasi' => 'required',
             'content' => 'required',
@@ -140,7 +140,7 @@ class LowonganController extends Controller
             'slot.required' => 'slot harus di isi',
             'slot.min' => 'slot tidak boleh kurang dari 0',
             'gaji.required' => 'gaji harus di isi',
-            'gaji.min' => 'gaji tidak boleh minus',
+            'gaji.min' => 'gaji tidak boleh kurang dari 100.000',
             'gaji.max' => 'gaji tidak bole lebi dari 10 angka',
             'tipe.required' => 'tipe harus di isi',
             'lokasi.required' => 'lokasi harus di isi',
