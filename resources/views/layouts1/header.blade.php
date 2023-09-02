@@ -56,7 +56,11 @@
                         <a class="nav-link pe-0" href="javascript:void(0)" id="drop1" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="d-flex align-items-center">
                                 <div class="user-profile-img">
-                                    <img src="{{ asset('foto_user/' .  Auth()->user()->foto) }}" class="rounded-circle" width="35" height="35" alt="" />
+                                    <div style="width: 35px; height: 35px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px;">
+                                        <img src="{{ asset('foto_user/' .  Auth()->user()->foto) }}" style="max-width: 100%; max-height: 100%; vertical-align: middle;" alt="" />
+                                    </div>
+
+
                                 </div>
                             </div>
                         </a>
@@ -66,7 +70,9 @@
                                     <h5 class="mb-0 fs-5 fw-semibold">User Profil</h5>
                                 </div>
                                 <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                                    <img src="{{ url('foto_user/' . Auth()->user()->foto) }}" class="rounded-circle" width="80" height="80" alt="" />
+                                    <div style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; text-align: center; display: flex; justify-content: center; align-items: center;">
+                                        <img src="{{ asset('foto_user/' .  Auth()->user()->foto) }}" style="max-width: 125%; max-height: 125%;" alt="" />
+                                    </div>
 
                                     <div class="ms-3">
                                         <h5 class="mb-1 fs-3">{{ Auth()->user()->name }}</h5>
@@ -74,6 +80,7 @@
                                             <i class="ti ti-mail fs-5"></i>{{ Auth()->user()->email }}
                                         </p>
                                     </div>
+
                                 </div>
 
                                 <div class="d-grid py-4 px-7 pt-8">

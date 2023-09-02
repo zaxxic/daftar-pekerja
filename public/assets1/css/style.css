@@ -1128,6 +1128,10 @@ Working Area Style
           box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.05);
 }
 
+.rounded-circle {
+  border-radius: 50% !important;
+}
+
 .working-area.working-area-two .single-working i {
   -webkit-transition: all ease 0.5s;
   transition: all ease 0.5s;
