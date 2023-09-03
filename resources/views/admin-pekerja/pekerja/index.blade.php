@@ -18,12 +18,12 @@
                                 </div>
                             </form>
                             <div class="employers-listing-sidebar">
-                                <form class="search-form">
+                                <form class="search-form" id="form_filter">
                                     <div class="form-group">
                                         <span>Cari Berdasarkan Divisi</span>
-                                        <select class="form-control mt-3" style="height: 4%;">
+                                        <select id="filter" class="form-control mt-3" name="filter" style="height: 4%;">
                                             @foreach ($user as $item)
-                                                <option value="1">{{ $item->Vacancy->divisi }}</option>
+                                                <option  value="{{ $item->Vacancy->Division->id }}">{{ $item->Vacancy->Division->divisi }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -322,6 +322,15 @@
             searchInput.value = '';
 
             // Selanjutnya, Anda dapat memicu pencarian ulang atau tindakan lain yang sesuai.
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+      $(document).ready(function(){
+        console.log("dokumen siap");
+            $(document).on('change', '#filter', function(){
+                console.log("awookaowk");
+            });
         });
     </script>
 @endsection

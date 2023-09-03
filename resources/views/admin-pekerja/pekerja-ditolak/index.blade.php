@@ -41,26 +41,26 @@
                                 <tr>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <img src="{{ asset('foto_user/' .  $row->foto) }}" class="rounded-circle"
+                                            <img src="{{ asset('foto_user/' .  $row->User->foto) }}" class="rounded-circle"
                                                 width="40" height="40" />
                                             <div class="ms-3">
-                                                <h6 class="fs-4 fw-semibold mb-0">{{ $row->name }}</h6>
+                                                <h6 class="fs-4 fw-semibold mb-0">{{ $row->User->name }}</h6>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <p class="mb-0 fw-normal">{{ $row->no_telp }}</p>
+                                        <p class="mb-0 fw-normal">{{ $row->User->no_telp }}</p>
                                     </td>
                                     <td>
-                                        <p class="mb-0 fw-normal">{{ $row->jenis_kelamin }}</p>
+                                        <p class="mb-0 fw-normal">{{ $row->User->jenis_kelamin }}</p>
                                     </td>
                                     <td>
-                                        <p class="mb-0 fw-normal ellipsis"></p>{{ $row->email }}
+                                        <p class="mb-0 fw-normal ellipsis"></p>{{ $row->User->email }}
                                     </td>
                                     <td>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30"
                                             viewBox="0 0 16 16" data-bs-toggle="modal"
-                                            data-bs-target="#detail-user-{{ $row->id }}">
+                                            data-bs-target="#detail-user-{{ $row->User->id }}">
                                             <g fill="#5D87FF">
                                                 <path
                                                     d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
@@ -72,7 +72,7 @@
                                 </tr>
 
                                 <!-- Modal -->
-                                <div id="detail-user-{{ $row->id }}" class="modal fade" tabindex="-1"
+                                <div id="detail-user-{{ $row->User->id }}" class="modal fade" tabindex="-1"
                                     aria-labelledby="bs-example-modal-md" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable modal-lg">
                                         <div class="modal-content">
@@ -87,7 +87,7 @@
                                             <div class="modal-body col-lg-12">
                                                 <div class="d-flex">
                                                     <div class="col-lg-4">
-                                                        <img src="../../dist/images/profile/user-3.jpg"
+                                                        <img src="{{ asset('foto_user/' .  $row->User->foto) }}"
                                                             class="rounded-circle" width="180" height="180" />
                                                     </div>
                                                     <div class="col-lg-8">
@@ -97,35 +97,35 @@
                                                                 <div class="d-flex mb-1">
                                                                     <span class="me-3" style="font-weight: 600;">Nama
                                                                         :</span>
-                                                                        <span>{{ $row->name }}</span>
+                                                                        <span>{{ $row->User->name }}</span>
                                                                 </div>
                                                                 <hr style="width: 100%; border-top: 1px solid #000000;"
                                                                     class="mt-0">
                                                                 <div class="d-flex mb-1">
                                                                     <span class="me-3" style="font-weight: 600;">Jenis
                                                                         Kelamin :</span>
-                                                                        <span>{{ $row->jenis_kelamin }}</span>
+                                                                        <span>{{ $row->User->jenis_kelamin }}</span>
                                                                 </div>
                                                                 <hr style="width: 100%; border-top: 1px solid #000000;"
                                                                     class="mt-0">
                                                                 <div class="d-flex mb-1">
                                                                     <span class="me-3" style="font-weight: 600;">No.
                                                                         Handphone :</span>
-                                                                        <span>{{ $row->no_telp }}</span>
+                                                                        <span>{{ $row->User->no_telp }}</span>
                                                                 </div>
                                                                 <hr style="width: 100%; border-top: 1px solid #000000;"
                                                                     class="mt-0">
                                                                 <div class="d-flex mb-1">
                                                                     <span class="me-3" style="font-weight: 600;">Email
                                                                         :</span>
-                                                                        <span>{{ $row->email }}</span>
+                                                                        <span>{{ $row->User->email }}</span>
                                                                 </div>
                                                                 <hr style="width: 100%; border-top: 1px solid #000000;"
                                                                     class="mt-0">
                                                                 <div class="d-flex mb-1">
                                                                     <span class="me-3" style="font-weight: 600;">Divisi
                                                                         :</span>
-                                                                        <span>{{$row->Devision->divisi}}</span>
+                                                                        <span>{{$row->Vacancy->Division->divisi}}</span>
                                                                 </div>
                                                                 <hr style="width: 100%; border-top: 1px solid #000000;"
                                                                     class="mt-0">
@@ -143,7 +143,7 @@
                                                                 <span class="me-3" style="font-weight: 600;">Alamat :</span>
                                                             </div>
                                                             <div class="col-lg-10">
-                                                                <span>{{ $row->alamat }}</span>
+                                                                <span>{{ $row->User->alamat }}</span>
                                                             </div>
                                                         </div>
                                                     </div>

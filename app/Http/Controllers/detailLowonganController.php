@@ -65,7 +65,7 @@ class detailLowonganController extends Controller
 
         if ($loggedInUser) {
             $registrations = Registration::where('users_id', $loggedInUser->id)
-                ->where('vacancie_id', $lowongan->id)
+                ->where('vacancie_id', $lowongan->id)->where('status', ['menunggu','diterima'])
                 ->first(); // Mengambil data registrasi pengguna pada lowongan tertentu
         } else {
             $registrations = null; // Jika pengguna belum login, set registrasi menjadi null

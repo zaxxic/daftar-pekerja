@@ -27,7 +27,7 @@ class ApprovalController extends Controller
             $keyword = $request->cari;
             $user = Registration::whereHas('user', function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', '%' . $keyword . '%');
-            })->where('status', '!=', 'diterima') // Tampilkan hanya status bukan "disetujui"
+            })->where('status', '!==', 'diterima') // Tampilkan hanya status bukan "disetujui"
             ->paginate(8);
 
             $user->appends(['cari' => $keyword]);
