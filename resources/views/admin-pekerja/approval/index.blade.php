@@ -329,9 +329,10 @@
                                     "Berhasil!",
                                     "Anda berhasil menolak akun tersebut.",
                                     "success"
-                                );
-                                var form = document.getElementById("pesan_tolak");
-                                form.submit();
+                                ).then(() => {
+                                    var form = document.getElementById("pesan_tolak");
+                                    form.submit();
+                                });
                             } else if (
                                 result.dismiss === Swal.DismissReason.cancel
                             ) {
@@ -385,9 +386,10 @@
                                     "Berhasil!",
                                     "Anda berhasil menerima akun tersebut.",
                                     "success"
-                                );
-                                var form = document.getElementById("pesan_terima");
-                                form.submit();
+                                ).then(() => {
+                                    var form = document.getElementById("pesan_terima");
+                                    form.submit();
+                                });
                             } else if (
                                 result.dismiss === Swal.DismissReason.cancel
                             ) {

@@ -206,9 +206,10 @@
                                         "Berhasil!",
                                         "Anda berhasil menonaktifkan akun tersebut.",
                                         "success"
-                                    );
-                                    var form = document.getElementById("formnonactive");
-                                    form.submit();
+                                    ).then(() => {
+                                        var form = document.getElementById("formnonactive");
+                                        form.submit();
+                                    });
                                 } else if (
                                     result.dismiss === Swal.DismissReason.cancel
                                 ) {

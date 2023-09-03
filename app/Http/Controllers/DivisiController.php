@@ -12,6 +12,8 @@ class DivisiController extends Controller
     {
         $this->validate($request, [
             'divisi' => 'required'
+        ],[
+            'divisi.required' => "divisi tidak boleh kosong"
         ]);
 
         $division = Division::create([
