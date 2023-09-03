@@ -60,7 +60,7 @@
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset('storage/public/foto_user/' . $row->foto) }}" class="rounded-circle" width="40" height="40" />
+                                    <img src="{{ asset('foto_user/' .  $row->foto) }}" class="rounded-circle" width="40" height="40" />
                                     <div class="ms-3">
                                         <h6 class="fs-4 fw-semibold mb-0">{{ $row->name }}</h6>
                                     </div>

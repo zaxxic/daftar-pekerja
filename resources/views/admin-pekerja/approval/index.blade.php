@@ -45,7 +45,7 @@
                             <td>
 
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset('storage/public/foto_user/' . $row->foto) }}" class="rounded-circle" width="40" height="40" />
+                                    <img src="{{ asset('foto_user/' .  $row->User->foto) }}" class="rounded-circle" width="40" height="40" />
                                     <div class="ms-3">
                                         <h6 class="fs-4 fw-semibold mb-0">{{ $row->User->name }}</h6>
                                     </div>
@@ -180,7 +180,7 @@
                         <div class="modal-body col-lg-12" style="height: auto">
                             <div class="d-flex">
                                 <div class="col-lg-4">
-                                    <img src="{{ asset('storage/public/foto_user/' . $row->User->foto) }}" class="rounded-circle" width="180" height="180" />
+                                    <img src="{{ asset('foto_user/' .  $row->User->foto) }}" class="rounded-circle" width="180" height="180" />
                                 </div>
                                 <div class="col-lg-8">
                                     <div class="card">
