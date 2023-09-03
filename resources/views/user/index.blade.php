@@ -35,9 +35,7 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/logo.png">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Title -->
     <title>Dashboard User</title>
@@ -90,7 +88,7 @@
     <!-- End Page Title Area -->
 
     @php
-        use Carbon\Carbon;
+    use Carbon\Carbon;
     @endphp
 
     <!-- Start Employers Listing Area -->
@@ -101,49 +99,45 @@
                     <div class="shorting">
                         <div class="row">
                             @forelse ($lowongan as $item)
-                                <div class="col-12 sm-12 mix a s c">
-                                    <div class="hot-jobs-list">
-                                        <div class="row align-items-center">
-                                            <div class="col-lg-12">
-                                                <div class="hot-jobs-content">
-                                                    <div class="d-flex justify-content-between" style="color: black">
-                                                        <h3><a href="">{{ $item->judul }}</a></h3>
-                                                        <p><span class="ml-5 mr-1">Berakhir Pada
-                                                                Tanggal
-                                                                :
-                                                            </span>{{ Carbon::parse($item->batas)->format('d M Y') }}
-                                                        </p>
-                                                    </div>
-                                                    <span
-                                                        class="sub-title text-primary mb-1">{{ $item->Division->divisi }}
-                                                    </span>
-                                                    <ul>
-                                                        <li><span>Gaji
-                                                                :</span>{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}
-                                                        </li>
-                                                        <li><span>Slot Tersedia : </span>{{ $item->slot }}</li>
-                                                        <div class="d-flex justify-content-between">
-                                                            <li><span>Tipe Kerja : </span>{{ $item->tipe }}</li>
-                                                            <li class="ml-auto" style="margin-left: 300px;"><button
-                                                                    class="default-btn"><a
-                                                                        href="{{ route('detailLowongan', $item->id) }}"
-                                                                        class="text-white">Detail</a></button>
-                                                            </li>
-                                                        </div>
-                                                    </ul>
+                            <div class="col-12 sm-12 mix a s c">
+                                <div class="hot-jobs-list">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-12">
+                                            <div class="hot-jobs-content">
+                                                <div class="d-flex justify-content-between" style="color: black">
+                                                    <h3><a href="">{{ $item->judul }}</a></h3>
+                                                    <p><span class="ml-5 mr-1">Berakhir Pada
+                                                            Tanggal
+                                                            :
+                                                        </span>{{ Carbon::parse($item->batas)->format('d M Y') }}
+                                                    </p>
                                                 </div>
+                                                <span class="sub-title text-primary mb-1">{{ $item->Division->divisi }}
+                                                </span>
+                                                <ul>
+                                                    <li><span>Gaji
+                                                            :</span>{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}
+                                                    </li>
+                                                    <li><span>Slot Tersedia : </span>{{ $item->slot }}</li>
+                                                    <div class="d-flex justify-content-between">
+                                                        <li><span>Tipe Kerja : </span>{{ $item->tipe }}</li>
+                                                        <li class="ml-auto" style="margin-left: 300px;"><button class="default-btn"><a href="{{ route('detailLowongan', $item->id) }}" class="text-white">Detail</a></button>
+                                                        </li>
+                                                    </div>
+                                                </ul>
                                             </div>
                                         </div>
-
                                     </div>
+
                                 </div>
+                            </div>
 
                             @empty
-                                <div class="row">
-                                    <div class="col-lg-12 mt-5 text-center" id="lowongan">
-                                        <img src="/assets/dist/images/nodatas.png" alt="" width="350px">
-                                    </div>
+                            <div class="row">
+                                <div class="col-lg-12 mt-5 text-center" id="lowongan">
+                                    <img src="/assets/dist/images/nodatas.png" alt="" width="350px">
                                 </div>
+                            </div>
                             @endforelse
                             <div class="col-12">
                                 <div class="pagination-area">
@@ -166,10 +160,9 @@
                                     <option value="" @if (!$selectedDivision) selected @endif>Semua
                                     </option>
                                     @foreach ($divisi as $item)
-                                        <option value="{{ $item->divisi }}"
-                                            @if ($selectedDivision === $item->divisi) selected @endif>
-                                            {{ $item->divisi }}
-                                        </option>
+                                    <option value="{{ $item->divisi }}" @if ($selectedDivision===$item->divisi) selected @endif>
+                                        {{ $item->divisi }}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -197,36 +190,36 @@
                     <div class="employers-listing-sidebar mt-5">
                         <h3>Lamaran Ditampung</h3>
                         @forelse ($registration as $item)
-                            <div class="col-lg-12 mt-3" id="lowongan">
+                        <div class="col-lg-12 mt-3" id="lowongan">
+                            <div class="d-flex justify-content-between">
+                                <h5><a href="" style="color: black">{{ $item->Vacancy->judul }}</a></h5>
+                                <span class="status bg-warning">{{ $item->status }}</span>
+                            </div>
+                            <span class="sub-title text-primary mb-2">{{ $item->Vacancy->pekerja }}</span>
+                            <ul>
+                                <li class="mb-2 mt-2"><span>Tanggal Wanwancara :</span>
+                                    {{ $item->User->tanggal_wawancara }}
+                                </li>
+                                <li class="mb-2"><span>Gaji :</span> {{ $item->Vacancy->gaji }}</li>
+                                <li class="mb-2"><span>Slot Tersedia : </span> {{ $item->Vacancy->slot }}</li>
                                 <div class="d-flex justify-content-between">
-                                    <h5><a href="" style="color: black">{{ $item->Vacancy->judul }}</a></h5>
-                                    <span class="status bg-warning">{{ $item->status }}</span>
+                                    <li class="mb-2"><span>Tipe Kerja : </span>{{ $item->Vacancy->tipe }}</li>
+                                    <li class="ml-auto" style="margin-left: 300px;">
+                                        <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
+                                            <button class="btn btn-primary">
+                                                Detail</button>
+                                        </a>
+                                    </li>
+                                    <li class="ml-1" id="batal"><button class="btn btn-danger">Batal</button>
+                                    </li>
                                 </div>
-                                <span class="sub-title text-primary mb-2">{{ $item->Vacancy->pekerja }}</span>
-                                <ul>
-                                    <li class="mb-2 mt-2"><span>Tanggal Wanwancara :</span>
-                                        {{ $item->User->tanggal_wawancara }}</li>
-                                    <li class="mb-2"><span>Gaji :</span> {{ $item->Vacancy->gaji }}</li>
-                                    <li class="mb-2"><span>Slot Tersedia : </span> {{ $item->Vacancy->slot }}</li>
-                                    <div class="d-flex justify-content-between">
-                                        <li class="mb-2"><span>Tipe Kerja : </span>{{ $item->Vacancy->tipe }}</li>
-                                        <li class="ml-auto" style="margin-left: 300px;">
-                                            <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
-                                                <button class="btn btn-primary">
-                                                    Detail</button>
-                                            </a>
-                                        </li>
-                                        <li class="ml-1" id="batal"><button
-                                                class="btn btn-danger">Batal</button>
-                                        </li>
-                                    </div>
-                                </ul>
+                            </ul>
 
-                            </div>
+                        </div>
                         @empty
-                            <div class="col-lg-12 mt-3 ml-5" id="lowongan">
-                                <img src="/assets/dist/images/nodatas.png" alt="" width="180px">
-                            </div>
+                        <div class="col-lg-12 mt-3 ml-5" id="lowongan">
+                            <img src="/assets/dist/images/nodatas.png" alt="" width="180px">
+                        </div>
                         @endforelse
                         {{ $registration->links() }}
                     </div>
@@ -296,10 +289,7 @@
                                         <li class="mb-3" s>
                                             <i class="bx bx-envelope"></i>
                                             <span>Email:</span>
-                                            <a
-                                                href="https://templates.envytheme.com/cdn-cgi/l/email-protection#80e8e5ececefc0eaf5e2e9aee3efed"><span
-                                                    class="__cf_email__"
-                                                    data-cfemail="f098959c9c9fb09a859299de939f9d">hummasoft.tech@gmail.com</span></a>
+                                            <a href="https://templates.envytheme.com/cdn-cgi/l/email-protection#80e8e5ececefc0eaf5e2e9aee3efed"><span class="__cf_email__" data-cfemail="f098959c9c9fb09a859299de939f9d">hummasoft.tech@gmail.com</span></a>
                                         </li>
                                         <li class="location">
                                             <i class="bx bx-location-plus"></i>
