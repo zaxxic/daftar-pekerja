@@ -22,6 +22,7 @@ class ApprovalController extends Controller
      */
     public function index(Request $request)
     {
+        $keyword = $request->input('cari');
         if ($request->has('cari')) {
             $keyword = $request->cari;
             $user = Registration::whereHas('user', function ($query) use ($keyword) {
@@ -30,11 +31,13 @@ class ApprovalController extends Controller
             ->paginate(8);
 
             $user->appends(['cari' => $keyword]);
-            return view('admin-pekerja.approval.index', compact('user'));
+            // return view('admin-pekerja.approval.index', compact('user'));
+        } else {
+            $user = Registration::where('status', ['menunggu','ditolak'])->paginate(8); // Ubah 'IN' menjadi '='
         }
 
-        $user = Registration::where('status', ['menunggu','ditolak'])->paginate(8);
-        return view('admin-pekerja.approval.index', compact('user'));
+        // $user = Registration::where('status', ['menunggu','ditolak'])->paginate(8);
+        return view('admin-pekerja.approval.index', compact('user', 'keyword'));
     }
 
     public function cv($id)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
@@ -31,11 +32,11 @@ class ProfileController extends Controller
             ]
         );
 
-        $user = Auth::user();   
+        $user = Auth::user();
 
         // Memeriksa apakah password lama sesuai.
         if (!Hash::check($request->current_password, $user->password)) {
-            return redirect()->back()->with('error','Password lama anda tidak sesuai');
+            return redirect()->back()->with('error', 'Password lama anda tidak sesuai');
         }
 
         // Memperbarui password baru
@@ -51,7 +52,6 @@ class ProfileController extends Controller
 
         $request->validate(
             [
-                'foto' => 'image|mimes:jpeg,png,jpg|max:5120', // Max size: 5MB
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|max:255|unique:users,email,' . $user->id,
                 'no_telp' => 'required|numeric|regex:/^\d*$/',
@@ -60,9 +60,6 @@ class ProfileController extends Controller
                 'cv' => 'file|mimes:pdf|max:5120', // Max size: 5MB
             ],
             [
-                'foto.image' => 'Foto harus berupa file gambar (jpeg, png, jpg).',
-                'foto.mimes' => 'Format foto harus jpeg, png, atau jpg.',
-                'foto.max' => 'Ukuran foto tidak boleh lebih dari 5MB.',
                 'name.required' => 'Nama harus diisi.',
                 'name.string' => 'Format nama tidak valid.',
                 'name.max' => 'Nama tidak boleh lebih dari 255 karakter.',
@@ -90,20 +87,6 @@ class ProfileController extends Controller
         $user->no_telp = $request->input('no_telp');
         $user->alamat = $request->input('alamat');
 
-
-        // Update user photo
-        if ($request->hasFile('foto')) {
-            if ($user->foto) {
-                // Menghapus foto lama jika ada
-                $oldFotoPath = public_path('storage/foto_user/' . $user->foto);
-                if (file_exists($oldFotoPath)) {
-                    unlink($oldFotoPath);
-                }
-            }
-            $fotoPath = $request->file('foto')->storeAs('public/foto_user');
-            $user->foto = basename($fotoPath); // Mengambil hanya nama file tanpa path
-        }
-
         // Update lamaran and cv files
         if ($request->hasFile('lamaran')) {
             if ($user->lamaran) {
@@ -130,5 +113,35 @@ class ProfileController extends Controller
         $user->save(); // Save the changes to the user model
 
         return redirect()->back()->with('success', 'Profile berhasil diperbarui.');
+    }
+
+    public function updateFoto(Request $request)
+    {
+        $user = Auth::user();
+
+        // Validasi file yang diunggah (misalnya, tipe file, ukuran maksimal, dll.)
+        $request->validate([
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Ganti sesuai kebutuhan Anda
+        ]);
+
+        // Simpan file foto ke direktori yang sesuai
+        if ($request->hasFile('foto')) {
+            $image = $request->file('foto');
+            $fileName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('foto_user'), $fileName);
+
+            // Hapus foto lama jika ada
+            if ($user->foto && file_exists(public_path('foto_user/' . $user->foto))) {
+                unlink(public_path('foto_user/' . $user->foto));
+            }
+
+            // Update kolom 'foto' pada model User atau Registration
+            // Sesuaikan dengan model yang Anda gunakan
+            $user->foto = $fileName;
+            $user->save();
+        }
+
+        // Redirect kembali ke halaman profil
+        return redirect()->route('profile')->with('success', 'Foto berhasil diunggah.');
     }
 }

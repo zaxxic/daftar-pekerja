@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Registration;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -12,17 +13,21 @@ class PekerjaDitolakController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->has('cari')) {
-            $keyword = $request->cari;
-            $user = User::where('name', 'LIKE', '%' . $keyword . '%')
-                        ->where('status', 'ditolak')
-                        ->paginate(8);
+        $keyword = $request->input('cari'); // Ambil nilai dari query string 'cari'
+
+        if (!empty($keyword)) {
+            $user = Registration::whereHas('user', function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', '%' . $keyword . '%');
+            })->where('status', '=', 'ditolak') // Ubah '!=' menjadi '='
+                ->paginate(8);
+
             $user->appends(['cari' => $keyword]);
-            return view('admin-pekerja.pekerja-ditolak.index', compact('user'));
+        } else {
+            $user = Registration::where('status', '=', 'ditolak')->paginate(8); // Ubah 'IN' menjadi '='
         }
 
-        $user = User::where('status', 'ditolak')->latest()->paginate(8);
-        return view('admin-pekerja.pekerja-ditolak.index', compact('user'));
+        return view('admin-pekerja.pekerja-ditolak.index', compact('user', 'keyword')); // Kirimkan $keyword ke view
+
     }
 
     /**

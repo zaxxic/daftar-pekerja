@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('pembuat');
             $table->string('judul');
-            $table->foreignId('devisi_id')->references('id')->on('divisions')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('devisi_id')->references('id')->on('divisions')->onDelete('restrict')->onUpdate('cascade');
             $table->string('batas');
             $table->string('pekerja');
             $table->string('slot');

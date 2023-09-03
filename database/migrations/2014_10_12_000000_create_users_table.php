@@ -26,7 +26,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->datetime('tanggal_wawancara')->nullable();
-            $table->foreignId('devision_id')->nullable()->references('id')->on('divisions')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('devision_id')->nullable()->references('id')->on('divisions')->onUpdate('cascade')->onDelete('restrict');
             $table->rememberToken();
             $table->timestamps();
         });

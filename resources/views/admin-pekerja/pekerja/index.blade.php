@@ -1,37 +1,37 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container-fluid">
-        <!-- --------------------------------------------------- -->
-        <!--  Form Basic Start -->
-        <!-- --------------------------------------------------- -->
+<div class="container-fluid">
+    <!-- --------------------------------------------------- -->
+    <!--  Form Basic Start -->
+    <!-- --------------------------------------------------- -->
 
-        <div class="card w-100 position-relative overflow-hidden">
+    <div class="card w-100 position-relative overflow-hidden">
 
-            <div class="card-body p-4">
-                <div class="row">
-                    <div class="col">
-                        <div class="d-flex justify-content-between mb-2">
-                            <form action="">
-                                <div class="col mb-4 d-flex justify-content-end align-items-center position-relative">
-                                    <input type="search" class="form-control py-2 ps-3 mt-3" name="cari"
-                                        placeholder="Cari pekerjaa...">
+        <div class="card-body p-4">
+            <div class="row">
+                <div class="col">
+                    <div class="d-flex justify-content-between mb-2">
+                        <form action="">
+                            <div class="col mb-4 d-flex justify-content-end align-items-center position-relative">
+                                <input type="search" class="form-control mt-3" name="cari" placeholder="Cari pekerja..." style="height: 4%;" value="{{ $keyword }}">
+                            </div>
+                        </form>
+                        <div class="employers-listing-sidebar">
+                            <form class="search-form">
+                                <div class="form-group">
+                                    <span>Cari Berdasarkan Divisi</span>
+                                    <select class="form-control mt-3" style="height: 4%;">
+                                        @foreach ($user as $item )
+                                        <option value="1">{{$item->Devision->divisi}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </form>
-                            <div class="employers-listing-sidebar">
-                                <form class="search-form">
-                                    <div class="form-group">
-                                        <span>Cari Berdasarkan Divisi</span>
-                                        <select class="form-control">
-                                            @foreach ($user as $item )
-                                            <option value="1">{{$item->Devision->divisi}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </form>
-                            </div>
                         </div>
                     </div>
                 </div>
+
+            </div>
 
             <div class="table-responsive rounded-2 mb-4">
                 <table class="table border text-nowrap customize-table mb-0 align-middle">
@@ -93,139 +93,145 @@
                     </tbody>
                 </table>
 
+            </div>
+            <div class="modal fade" id="nonaktif-user-{{ $row->id }}" tabindex="-1" aria-labelledby="exampleModalLabel1">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header d-flex align-items-center">
+                            <h4 class="modal-title" id="exampleModalLabel1">
+                                Nonaktif Pekerja
+                            </h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal fade" id="nonaktif-user-{{ $row->id }}" tabindex="-1" aria-labelledby="exampleModalLabel1">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header d-flex align-items-center">
-                                        <h4 class="modal-title" id="exampleModalLabel1">
-                                            Nonaktif Pekerja
-                                        </h4>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
-                                    <div class="modal-body">
-                                        <form action="/nonactive/{{ $row->id }}" method="POST" id="formnonactive">
-                                            @method('PATCH')
-                                            @csrf
-                                            <div class="mb-3">
-                                                <label for="message-text" class="control-label">Pesan
-                                                    <span style="color: red;">*</span></label>
-                                                <textarea class="form-control" id="pesan" placeholder="Masukkan pesan" name="pesan"></textarea>
-                                                <span id="error" class="text-danger"></span>
-                                                @error('pesan')
-                                                <small class="text-danger">{{ $message }}</small>
-                                                @enderror
-                                                <br>
-                                                <small id="name" class="form-text text-muted">Masukkan alasan
-                                                    kenapa pekerja tersebut dinonaktifkan.</small>
-                                            </div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" onclick="klikNonaktif()" class="btn btn-danger img-fluid model_img" id="nonaktif">
-                                            Nonaktif
-                                        </button>
-                                    </div>
-                                    </form>
+                        <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
+                        <div class="modal-body">
+                            <form action="/nonactive/{{ $row->id }}" method="POST" id="formnonactive">
+                                @method('PATCH')
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="message-text" class="control-label">Pesan
+                                        <span style="color: red;">*</span></label>
+                                    <textarea class="form-control" id="pesan" placeholder="Masukkan pesan" name="pesan"></textarea>
+                                    <span id="error" class="text-danger"></span>
+                                    @error('pesan')
+                                    <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                    <br>
+                                    <small id="name" class="form-text text-muted">Masukkan alasan
+                                        kenapa pekerja tersebut dinonaktifkan.</small>
                                 </div>
-                            </div>
+
                         </div>
-
-
-
-
-                          @empty
-                                <div class="container">
-                                    <div class="row d-flex">
-                                        <div class="col">
-                                            <tr>
-                                                <td class="text-center" colspan="5">
-                                                    <img src="/assets/dist/images/nodatas.png"
-                                                        alt="" width="280px">
-                                                </td>
-                                            </tr>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforelse
-
-
-                    <div class="col-lg-12">
-                        <nav aria-label="Page navigation example" class="mt-3 justify-content-end">
-                            <ul class="pagination justify-content-end">
-                                {{ $user->appends(['cari' => request('cari')])->links() }}
-                            </ul>
-                        </nav>
+                        <div class="modal-footer">
+                            <button type="button" onclick="klikNonaktif()" class="btn btn-danger img-fluid model_img" id="nonaktif">
+                                Nonaktif
+                            </button>
+                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
+
+            @empty
+            <div class="container">
+                <div class="row d-flex">
+                    <div class="col">
+                        <tr>
+                            <td class="text-center" colspan="5">
+                                <img src="/assets/dist/images/nodatas.png" alt="" width="280px">
+                            </td>
+                        </tr>
+                    </div>
+                </div>
+            </div>
+            @endforelse
+
+
+            <div class="col-lg-12">
+                <nav aria-label="Page navigation example" class="mt-3 justify-content-end">
+                    <ul class="pagination justify-content-end">
+                        {{ $user->appends(['cari' => request('cari')])->links() }}
+                    </ul>
+                </nav>
+            </div>
         </div>
-
-
-
-
-        <!-- --------------------------------------------------- -->
-        <!--  Form Basic End -->
-        <!-- --------------------------------------------------- -->
     </div>
-    <script>
-        function klikNonaktif() {
-            $("#nonaktif").click(function() {
-                    const swalWithBootstrapButtons = Swal.mixin({
-                            customClass: {
-                                confirmButton: "btn btn-success",
-                                cancelButton: "mr-2 btn btn-danger",
-                            },
-                            buttonsStyling: false,
-                        });
+</div>
 
-                    if ( $("#pesan").val() !== "" ){
-                        $('#error').html('')
-                        swalWithBootstrapButtons
-                            .fire({
-                                title: "Apakah Anda Yakin?",
-                                text: "Anda ingin menonaktifkan akun ini!",
-                                type: "warning",
-                                showCancelButton: true,
-                                confirmButtonText: "Iya!",
-                                cancelButtonText: "Tidak!",
-                                reverseButtons: true,
-                                customClass: {
-                                    confirmButton: "btn btn-success",
-                                    cancelButton: "btn btn-danger me-3",
-                                },
-                                buttonsStyling: false,
-                                width: "25rem", // You can adjust the width as needed
-                                padding: "1rem", // You can adjust the padding as needed
-                                customContainerClass: "swal-custom", // Define a custom class for styling
-                            })
-                            .then((result) => {
-                                if (result.value) {
-                                    swalWithBootstrapButtons.fire(
-                                        "Berhasil!",
-                                        "Anda berhasil menonaktifkan akun tersebut.",
-                                        "success"
-                                    ).then(() => {
-                                        var form = document.getElementById("formnonactive");
-                                        form.submit();
-                                    });
-                                } else if (
-                                    result.dismiss === Swal.DismissReason.cancel
-                                ) {
-                                    swalWithBootstrapButtons.fire(
-                                        "Batal",
-                                        "Selamat akun tersebut masih selamat. :)",
-                                        "error"
-                                    );
-                                }
-                            });
-                    }else{
-                        $('#error').text("pesan harus di isi");
-                        console.log("gagal bg");
-                    }
-              });
+
+
+
+<!-- --------------------------------------------------- -->
+<!--  Form Basic End -->
+<!-- --------------------------------------------------- -->
+</div>
+<script>
+    function klikNonaktif() {
+        $("#nonaktif").click(function() {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "mr-2 btn btn-danger",
+                },
+                buttonsStyling: false,
+            });
+
+            if ($("#pesan").val() !== "") {
+                $('#error').html('')
+                swalWithBootstrapButtons
+                    .fire({
+                        title: "Apakah Anda Yakin?",
+                        text: "Anda ingin menonaktifkan akun ini!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Iya!",
+                        cancelButtonText: "Tidak!",
+                        reverseButtons: true,
+                        customClass: {
+                            confirmButton: "btn btn-success",
+                            cancelButton: "btn btn-danger me-3",
+                        },
+                        buttonsStyling: false,
+                        width: "25rem", // You can adjust the width as needed
+                        padding: "1rem", // You can adjust the padding as needed
+                        customContainerClass: "swal-custom", // Define a custom class for styling
+                    })
+                    .then((result) => {
+                        if (result.value) {
+                            swalWithBootstrapButtons.fire(
+                                "Berhasil!",
+                                "Anda berhasil menonaktifkan akun tersebut.",
+                                "success"
+                            );
+                            var form = document.getElementById("formnonactive");
+                            form.submit();
+                        } else if (
+                            result.dismiss === Swal.DismissReason.cancel
+                        ) {
+                            swalWithBootstrapButtons.fire(
+                                "Batal",
+                                "Selamat akun tersebut masih selamat. :)",
+                                "error"
+                            );
+                        }
+                    });
+            } else {
+                $('#error').text("pesan harus di isi");
+                console.log("gagal bg");
+            }
+        });
     }
-    </script>
+</script>
+<script>
+    // Ambil elemen input pencarian
+    const searchInput = document.querySelector('input[name="cari"]');
 
+    // Tambahkan event listener untuk mendengarkan peristiwa klik pada ikon "x"
+    searchInput.addEventListener('search', function(event) {
+        // Setel nilai input pencarian menjadi kosong
+        searchInput.value = '';
+
+        // Selanjutnya, Anda dapat memicu pencarian ulang atau tindakan lain yang sesuai.
+    });
+</script>
 @endsection
