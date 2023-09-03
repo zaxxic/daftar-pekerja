@@ -102,28 +102,31 @@
         <div class="container">
             <div class="row">
                 <label>Cari Berdasarkan Divisi</label>
-                <div class="form-group">
-                    <select class="select2 form-control" id="division-select" name="division"
-                        style="width: 100%; height: 36px">
-                        <option value="" @if (!$selectedDivision) selected @endif>Semua</option>
-                        @foreach ($divisi as $item)
-                            <option value="{{ $item->id }}" @if ($selectedDivision === $item->id) selected @endif>
-                                {{ $item->divisi }}
-                            </option>
-                        @endforeach
-                    </select>
+                <div class="form-group ">
+                    <form action="" class="d-flex gap-5">
+                        <select class="select2 form-control" style="height: 30px" id="division-select" name="division"
+                            style="width: 100%; height: 36px">
+                            <option value="" @if (!$selectedDivision) selected @endif>Semua</option>
+                            @foreach ($divisi as $item)
+                                <option value="{{ $item->id }}" name="cari" @if ($selectedDivision === $item->id) selected @endif>
+                                    {{ $item->divisi }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <button class="mx-2 default-btn" style="padding:0px 10px; " type="submit">cari</button>
+                    </form>
                 </div>
 
-                <script>
+                {{-- <script>
                     $(document).ready(function() {
-                        $("#division-select").on("keyup", function() {
-                            var value = $(this).val().toLowerCase();
+                        $("#division-select").on("click", function() {
+                            var value = $(this).val();
                             $("#card #card2").filter(function() {
-                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                $(this).toggle($(this).text().indexOf(value) > -1)
                             });
                         });
                     });
-                </script>
+                </script> --}}
 
                 <div class="shorting">
                     <div class="row" id="card">
