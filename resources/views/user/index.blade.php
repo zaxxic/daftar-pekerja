@@ -95,59 +95,6 @@
     <section class="employers-listing-area ptb-100" style="direction: ltr;">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8">
-                    <div class="shorting">
-                        <div class="row">
-                            @forelse ($lowongan as $item)
-                            <div class="col-12 sm-12 mix a s c">
-                                <div class="hot-jobs-list">
-                                    <div class="row align-items-center">
-                                        <div class="col-lg-12">
-                                            <div class="hot-jobs-content">
-                                                <div class="d-flex justify-content-between" style="color: black">
-                                                    <h3><a href="">{{ $item->judul }}</a></h3>
-                                                    <p><span class="ml-5 mr-1">Berakhir Pada
-                                                            Tanggal
-                                                            :
-                                                        </span>{{ Carbon::parse($item->batas)->format('d M Y') }}
-                                                    </p>
-                                                </div>
-                                                <span class="sub-title text-primary mb-1">{{ $item->Division->divisi }}
-                                                </span>
-                                                <ul>
-                                                    <li><span>Gaji
-                                                            :</span>{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}
-                                                    </li>
-                                                    <li><span>Slot Tersedia : </span>{{ $item->slot }}</li>
-                                                    <div class="d-flex justify-content-between">
-                                                        <li><span>Tipe Kerja : </span>{{ $item->tipe }}</li>
-                                                        <li class="ml-auto" style="margin-left: 300px;"><button class="default-btn"><a href="{{ route('detailLowongan', $item->id) }}" class="text-white">Detail</a></button>
-                                                        </li>
-                                                    </div>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            @empty
-                            <div class="row">
-                                <div class="col-lg-12 mt-5 text-center" id="lowongan">
-                                    <img src="/assets/dist/images/nodatas.png" alt="" width="350px">
-                                </div>
-                            </div>
-                            @endforelse
-                            <div class="col-12">
-                                <div class="pagination-area">
-                                    {{ $lowongan->links() }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="col-lg-4">
                     <div class="employers-listing-sidebar">
                         <h3>Cari Divisi</h3>
@@ -224,6 +171,60 @@
                         {{ $registration->links() }}
                     </div>
                 </div>
+                <div class="col-lg-8">
+                    <div class="shorting">
+                        <div class="row">
+                            @forelse ($lowongan as $item)
+                            <div class="col-12 sm-12 mix a s c">
+                                <div class="hot-jobs-list">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-12">
+                                            <div class="hot-jobs-content">
+                                                <div class="d-flex justify-content-between" style="color: black">
+                                                    <h3><a href="">{{ $item->judul }}</a></h3>
+                                                    <p><span class="ml-5 mr-1">Berakhir Pada
+                                                            Tanggal
+                                                            :
+                                                        </span>{{ Carbon::parse($item->batas)->format('d M Y') }}
+                                                    </p>
+                                                </div>
+                                                <span class="sub-title text-primary mb-1">{{ $item->Division->divisi }}
+                                                </span>
+                                                <ul>
+                                                    <li><span>Gaji
+                                                            :</span>{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}
+                                                    </li>
+                                                    <li><span>Slot Tersedia : </span>{{ $item->slot }}</li>
+                                                    <div class="d-flex justify-content-between">
+                                                        <li><span>Tipe Kerja : </span>{{ $item->tipe }}</li>
+                                                        <li class="ml-auto" style="margin-left: 300px;"><button class="default-btn"><a href="{{ route('detailLowongan', $item->id) }}" class="text-white">Detail</a></button>
+                                                        </li>
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            @empty
+                            <div class="row">
+                                <div class="col-lg-12 mt-5 text-center" id="lowongan">
+                                    <img src="/assets/dist/images/nodatas.png" alt="" width="350px">
+                                </div>
+                            </div>
+                            @endforelse
+                            <div class="col-12">
+                                <div class="pagination-area">
+                                    {{ $lowongan->links() }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
 
 
             </div>
