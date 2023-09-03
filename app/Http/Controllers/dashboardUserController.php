@@ -23,6 +23,21 @@ class dashboardUserController extends Controller
         return view('user.index', compact('lowongan', 'divisi','selectedDivision','registration'));
     }
 
+    public function lowongan(Request $request){
+        $selectedDivision = $request->input('division', 'semua');  
+        $lowonganQuery = Vacancy::when($request->division, function ($q) use ($request)
+        {
+            $q->where('devisi_id', $request->division);
+        })->latest();
+    
+    
+        $lowongan = $lowonganQuery->paginate(5);
+        $divisi = Division::all();
+    
+        return view('user.lowongan', compact('lowongan', 'divisi', 'selectedDivision'));
+    }
+    
+
     public function filterLowongan(Request $request)
     {
         $selectedDivision = $request->input('division');

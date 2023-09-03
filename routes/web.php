@@ -75,6 +75,7 @@ Route::middleware('checkLogin')->group(function () {
         route::post('batalkan-lowongan',[ detailLowonganController::class, 'batalkan'])->name('batalkan-lowongan');
         Route::get('/detail-lowongan{id}', [detailLowonganController::class, 'show'])->name('detailLowongan');
         Route::get('/dashboard-user', [dashboardUserController::class, 'index'])->name('dashboard-user');
+        Route::get('/lowongan-user', [dashboardUserController::class, 'lowongan'])->name('lowongan-user');
         Route::post('/dashboard-filter', [dashboardUserController::class, 'filterLowongan'])->name('dashboard-filter');
 
     });

@@ -49,7 +49,9 @@
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="assets1/images/favicon.png">
         <!-- Title -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <title>Dashboard User</title>
     </head>
     <title>Jubi - Job Board HTML Template</title>
@@ -84,14 +86,14 @@
         }
     </style>
     @if (session()->has('sukses'))
-    <script>
-        alert("anda sudah terdaftar")
-    </script>
+        <script>
+            alert("anda sudah terdaftar")
+        </script>
     @endif
     @if (session()->has('error'))
-    <script>
-        alert("anda tidak bisa daftar kembali")
-    </script>
+        <script>
+            alert("anda tidak bisa daftar kembali")
+        </script>
     @endif
 
 
@@ -136,25 +138,34 @@
                                             <div class="d-flex justify-content-end  ">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <li style="margin-right: -19%;"><button class="btn btn-danger"><a href="{{ route('dashboard-user') }}" class="text-white">Kembali</a></button>
+                                                        <li style="margin-right: -19%;"><button
+                                                                class="btn btn-warning"><a
+                                                                    href="{{ route('dashboard-user') }}"
+                                                                    class="text-white">Kembali</a></button>
                                                         </li>
                                                     </div>
                                                     <div class="col-6">
-                                                        @if(Auth::check()) <!-- Periksa apakah pengguna sudah login -->
-                                                        @if($registrations !== null) <!-- Periksa apakah pengguna telah mendaftar lowongan -->
-                                                        <li>
-                                                            <button type="button" class="btn btn-danger" id="batal">Batal</button>
-                                                        </li>
+                                                        @if (Auth::check())
+                                                            <!-- Periksa apakah pengguna sudah login -->
+                                                            @if ($registrations !== null)
+                                                                <!-- Periksa apakah pengguna telah mendaftar lowongan -->
+                                                                <li>
+                                                                    <button type="button" class="btn btn-danger"
+                                                                        id="batal">Batal</button>
+                                                                </li>
+                                                            @else
+                                                                <li>
+                                                                    <button type="button" class="btn btn-primary"
+                                                                        style="background-color: #2042e3"
+                                                                        id="daftar">Daftar</button>
+                                                                </li>
+                                                            @endif
                                                         @else
-                                                        <li>
-                                                            <button type="button" class="btn btn-primary" id="daftar">Daftar</button>
-                                                        </li>
-                                                        @endif
-                                                        @else
-                                                        <!-- Tampilkan tombol "Daftar" jika pengguna belum login -->
-                                                        <li>
-                                                            <button type="button" class="btn btn-primary" id="daftar">Daftar</button>
-                                                        </li>
+                                                            <!-- Tampilkan tombol "Daftar" jika pengguna belum login -->
+                                                            <li>
+                                                                <button type="button" class="btn btn-primary"
+                                                                    id="daftar">Daftar</button>
+                                                            </li>
                                                         @endif
 
 
@@ -300,7 +311,10 @@
                                         <li class="mb-3" s>
                                             <i class="bx bx-envelope"></i>
                                             <span>Email:</span>
-                                            <a href="https://templates.envytheme.com/cdn-cgi/l/email-protection#80e8e5ececefc0eaf5e2e9aee3efed"><span class="__cf_email__" data-cfemail="f098959c9c9fb09a859299de939f9d">hummasoft.tech@gmail.com</span></a>
+                                            <a
+                                                href="https://templates.envytheme.com/cdn-cgi/l/email-protection#80e8e5ececefc0eaf5e2e9aee3efed"><span
+                                                    class="__cf_email__"
+                                                    data-cfemail="f098959c9c9fb09a859299de939f9d">hummasoft.tech@gmail.com</span></a>
                                         </li>
                                         <li class="location">
                                             <i class="bx bx-location-plus"></i>
