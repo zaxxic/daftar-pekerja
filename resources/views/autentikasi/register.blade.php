@@ -86,15 +86,16 @@
                                         <div class="mb-3 col-lg-5">
                                             <label for="exampleInputEmail1" class="form-label mb-3">Jenis Kelamin <span style="color: red;">*</span></label>
                                             <div class="d-flex align-items-center">
-                                                <input class="text-sm me-1" checked type="radio" name="jenis_kelamin" id="radio1" value="laki-laki">
+                                                <input class="text-sm me-1" type="radio" name="jenis_kelamin" id="radio1" value="laki-laki" {{ old('jenis_kelamin') == 'laki-laki' ? 'checked' : '' }}>
                                                 <label class="mb-0 me-3" for="radio1">Laki-laki</label>
-                                                <input class="text-sm me-1" type="radio" name="jenis_kelamin" id="radio2" value="perempuan">
+                                                <input class="text-sm me-1" type="radio" name="jenis_kelamin" id="radio2" value="perempuan" {{ old('jenis_kelamin') == 'perempuan' ? 'checked' : '' }}>
                                                 <label class="mb-0" for="radio2">Perempuan</label>
                                             </div>
                                             @error('jenis_kelamin')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
+
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputPassword1" class="form-label">Alamat <span style="color: red;">*</span></label>
@@ -139,8 +140,7 @@
                                         </div>
                                         <div class="mb-3 col-lg-5">
                                             <label for="exampleInputEmail1" class="form-label">Konfirmasi Password</label>
-                                            <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation" 
-                                            aria-describedby="emailHelp" />
+                                            <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation" aria-describedby="emailHelp" />
                                             @error('password_confirmation')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
