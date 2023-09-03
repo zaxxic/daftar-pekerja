@@ -12,6 +12,8 @@ use App\Http\Controllers\PekerjaDitolakController;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\dashboardUserController;
 use App\Http\Controllers\detailLowonganController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ResetPasswordController;
 use App\Models\Lowongan;
 
 /*
@@ -37,6 +39,11 @@ Route::post('register-store' , [registerController::class , 'store'])->name('reg
 Route::get('/login', [loginController::class, 'showLogin'])->name('login')->middleware('guest');
 Route::post('/form-login', [loginController::class, 'login'])->name('form-login');
 Route::post('/logout', [loginController::class, 'logout'])->name('logout');
+
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 
 
 
