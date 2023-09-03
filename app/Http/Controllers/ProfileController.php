@@ -89,26 +89,35 @@ class ProfileController extends Controller
 
         // Update lamaran and cv files
         if ($request->hasFile('lamaran')) {
-            if ($user->lamaran) {
-                $oldLamaranPath = public_path('storage/lamaran/' . $user->lamaran);
-                if (file_exists($oldLamaranPath)) {
-                    unlink($oldLamaranPath);
-                }
+            $lamaran = $request->file('lamaran');
+            $lamaranFileName = time() . '.' . $lamaran->getClientOriginalExtension();
+            $lamaran->move(public_path('lamaran'), $lamaranFileName);
+
+            if ($user->lamaran && file_exists(public_path('lamaran/' . $user->lamaran))) {
+                unlink(public_path('lamaran' . $user->lamaran));
             }
-            $lamaranPath = $request->file('lamaran')->storeAs('public/lamaran');
-            $user->lamaran = basename($lamaranPath);
+
+            $user->lamaran = $lamaranFileName;
+          
         }
 
         if ($request->hasFile('cv')) {
-            if ($user->cv) {
-                $oldCvPath = public_path('storage/cv/' . $user->cv);
-                if (file_exists($oldCvPath)) {
-                    unlink($oldCvPath);
-                }
+            // Simpan file CV ke direktori yang sesuai
+            $cv = $request->file('cv');
+            $cvFileName = time() . '.' . $cv->getClientOriginalExtension();
+            $cv->move(public_path('cv'), $cvFileName);
+        
+            // Hapus CV lama jika ada
+            if ($user->cv && file_exists(public_path('cv/' . $user->cv))) {
+                unlink(public_path('cv/' . $user->cv));
             }
-            $cvPath = $request->file('cv')->storeAs('public/cv');
-            $user->cv = basename($cvPath);
+        
+            // Update kolom 'cv' pada model User atau Registration
+            // Sesuaikan dengan model yang Anda gunakan
+            $user->cv = $cvFileName;
+         
         }
+        
 
         $user->save(); // Save the changes to the user model
 
