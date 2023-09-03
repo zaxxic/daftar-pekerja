@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Vacancy;
 use App\Models\Division;
+use App\Models\Registration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,13 +16,13 @@ class dashboardAdminController extends Controller
      */
     public function index()
     {
-        $menunggu = User::where('status','menunggu')->count();
-        $terima = User::where('status','diterima')->count();
-        $tolak = User::where('status','ditolak')->count();
+        $menunggu = Registration::where('status','menunggu')->count();
+        $terima = Registration::where('status','diterima')->count();
+        $tolak = Registration::where('status','ditolak')->count();
         $divisi = Division::all()->count();
         $lowongan = Vacancy::all()->count();
 
-        $data = User::select(
+        $data = Registration::select(
             DB::raw('MONTH(created_at) as month'),
             DB::raw('YEAR(created_at) as year'),
             'status',
