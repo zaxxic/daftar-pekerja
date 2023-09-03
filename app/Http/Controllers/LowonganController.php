@@ -67,6 +67,8 @@ class LowonganController extends Controller
             'pekerjaan.required' => 'pekerjaan harus di isi',
             'slot.required' => 'slot harus di isi',
             'slot.min' => 'slot tidak boleh min',
+            'slot.numeric' => 'slot hanya boleh angka',
+            'gaji.numeric' => 'gaji hanya boleh angka',
             'gaji.required' => 'gaji harus di isi',
             'gaji.min' => 'gaji tidak boleh kurang dari 100.000',
             'gaji.max' => 'gaji tidak boleh lebih dari 10 angka',
