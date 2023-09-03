@@ -26,7 +26,7 @@
                             <h4 class="modal-title" id="myLargeModalLabel">
                                 Tambah Devisi
                             </h4>
-                            <button type="button" class="submitBtn" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form id="createDivisiForm" method="post">
                             @csrf
@@ -34,6 +34,7 @@
                                 <div class="d-flex justify-content-center">
                                     <input type="text" name="divisi" id="devisi" class="form-control" autofocus
                                         placeholder="masukan " style="width: 95%">
+                                        <span class="text-danger" id="error"></span>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -81,9 +82,9 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $item->judul }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted d-flex align-items-center">{{ $item->pekerja }}</h6>
-                        <p class="card-text pt-2">
-                        {!! str_replace('<p>', '<p class="ellipsis1">', $item->syarat) !!}
-                        </p>
+                        <div style="height: 80px; overflow: hidden;">
+                            {!! str_replace('<p>', '<p class="ellipsis1">', $item->syarat) !!}
+                        </div>
                         <p class="card-text pt-2"> Gaji : {{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}</p>
                         <p class="card-text pt-2">
                         {{ \Carbon\Carbon::parse($item->batas)->locale('id')->isoFormat('D MMMM Y ') }}
@@ -177,58 +178,88 @@
     <script>
         $(document).ready(function() {
             $('#submitBtn').on('click', function() {
-                var formData = $('#createDivisiForm').serialize();
-                var url = "{{ route('divisi.store') }}"; // Mengambil URL dari route
+                var divisi = $('#devisi').val();
+                console.log(divisi);
 
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    data: formData,
-                    success: function(response) {
-                        // Tanggapan berhasil
-                        console.log(response);
-                        // Tampilkan pesan sukses dengan SweetAlert
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Sukses',
-                            text: 'Data berhasil disimpan.'
-                        });
-                        $('#devisi').val('');
-                        $('#staticBackdrop').removeClass('show');
-                        $('#staticBackdrop').modal('hide');
-                    },
-                    error: function(error) {
-                        // Tanggapan error
-                        console.log(error);
-                        // Tampilkan pesan error dengan SweetAlert
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error',
-                            text: 'Terjadi kesalahan. Data tidak dapat disimpan.'
-                        });
-                    }
-                });
+                if(divisi !== null){
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    var formData = $('#devisi').val();
+                    var url = "{{ route('divisi.store') }}"; // Mengambil URL dari route
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: {
+                            divisi : formData,
+                        },
+                        success: function(response) {
+                            // Tanggapan berhasil
+                            // Tampilkan pesan sukses dengan SweetAlert
+                            $('#devisi').val('');
+                            $('#staticBackdrop').removeClass('show');
+                            $('#staticBackdrop').modal('hide');
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Sukses',
+                                text: 'Data berhasil disimpan.'
+                            });
+                        },
+                        error: function(response) {
+                            // Tanggapan error
+
+                            // Tampilkan pesan error dengan SweetAlert
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: response.responseJSON.message
+                            });
+                        }
+                    });
+                }else{
+                    $('#error').html("devisi tidak boleh kosong");
+                };
+
             });
 
             $(document).on('click', '.btn-delete', function() {
                 var form = $(this).closest('.delete-form');
                 var id = form.data('id');
                 // sweet aler
-                alert('apakah anda yakin ingin menghapus devisi ini? ');
+                Swal.fire({
+                        title: 'Konfirmasi Hapus',
+                        text: 'Anda yakin ingin menghapus item ini?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Ya, hapus',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        Swal.fire(
+                            "Berhasil!",
+                            "Anda berhasil menonaktifkan lowongan tersebut.",
+                            "success"
+                        ).then(() => {
+                            $.ajax({
+                            type: 'DELETE',
+                            url: "/divisi/" + id,
+                            data: {
+                                "_token": "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                form.closest('.col-4').remove(); // Hapus elemen dari tampilan
+                            },
+                            error: function(error) {
+                                console.log(error);
+                            }
+                        });
+                        });
+                    });
 
-                $.ajax({
-                    type: 'DELETE',
-                    url: "/divisi/" + id,
-                    data: {
-                        "_token": "{{ csrf_token() }}"
-                    },
-                    success: function(response) {
-                        form.closest('.col-4').remove(); // Hapus elemen dari tampilan
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                });
+
             });
 
             $('#staBackdrop').on('show.bs.modal', function() {

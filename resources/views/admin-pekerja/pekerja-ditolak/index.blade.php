@@ -10,7 +10,7 @@
             <div class="card-body p-4">
                 <form action="">
                     <div class="col-3 mb-4 d-flex justify-content-end align-items-center position-relative">
-                        <input type="search" class="form-control py-2 ps-3 mt-3" name="cari" placeholder="Cari pekerjaa...">
+                        <input type="search" class="form-control mt-3" name="cari" placeholder="Cari pekerja..." style="height: 4%;" value="{{ $keyword }}">
                     </div>
                 </form>
 
@@ -192,4 +192,16 @@
         <!-- --------------------------------------------------- -->
     </div>
     </div>
+    <script>
+    // Ambil elemen input pencarian
+    const searchInput = document.querySelector('input[name="cari"]');
+
+    // Tambahkan event listener untuk mendengarkan peristiwa klik pada ikon "x"
+    searchInput.addEventListener('search', function(event) {
+        // Setel nilai input pencarian menjadi kosong
+        searchInput.value = '';
+
+        // Selanjutnya, Anda dapat memicu pencarian ulang atau tindakan lain yang sesuai.
+    });
+</script>
 @endsection

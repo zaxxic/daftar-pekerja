@@ -71,6 +71,7 @@ Route::middleware('checkLogin')->group(function () {
         Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile');
         Route::post('/ubah-password', [ProfileController::class, 'updatePassword'])->name('ubah-password');
         Route::patch('/ubah-profile', [ProfileController::class, 'updateProfile'])->name('ubah-profile');
+        Route::patch('/ubah-foto', [ProfileController::class, 'updateFoto'])->name('ubah-foto');
         route::resource('detail-lowongan', detailLowonganController::class);
         route::post('batalkan-lowongan',[ detailLowonganController::class, 'batalkan'])->name('batalkan-lowongan');
         Route::get('/detail-lowongan{id}', [detailLowonganController::class, 'show'])->name('detailLowongan');

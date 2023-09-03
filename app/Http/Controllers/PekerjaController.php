@@ -16,6 +16,7 @@ class PekerjaController extends Controller
      */
     public function index(Request $request)
     {
+        $keyword = $request->input('cari');
         if ($request->has('cari')) {
             $keyword = $request->cari;
             $user = User::where('name', 'LIKE', '%' . $keyword . '%')
@@ -23,11 +24,12 @@ class PekerjaController extends Controller
                         ->paginate(8);
 
             $user->appends(['cari' => $keyword]);
-            return view('admin-pekerja.pekerja.index', compact('user'));
-        }
+            // return view('admin-pekerja.pekerja.index', compact('user'));
+        } else {
+                $user = Registration::where('status', '=', 'diterima')->paginate(8); // Ubah 'IN' menjadi '='
+            }
 
-        $user = User::where('status', 'diterima')->latest()->paginate(8);
-        return view('admin-pekerja.pekerja.index', compact('user'));
+        return view('admin-pekerja.pekerja.index', compact('user', 'keyword'));
     }
 
     /**
@@ -84,7 +86,7 @@ class PekerjaController extends Controller
         ]);
 
         $user->message()->save($pesan);
-        $data = Registration::where('users_id',$id)->first();
+        $data = Registration::where('users_id', $id)->first();
         $data->delete();
         $user->update([
             'status' => 'ditolak',
@@ -92,8 +94,8 @@ class PekerjaController extends Controller
         $datas =   [
             'pesan' => "Akun anda di nonaktifkan ",
             'status' => "nonaktif",
-            'judul' => " Anda di nonkatifkan karena alasan ". $request->pesan . " dan anda bisa daftar di lowongan lainnya"
-            ];
+            'judul' => " Anda di nonkatifkan karena alasan " . $request->pesan . " dan anda bisa daftar di lowongan lainnya"
+        ];
 
         Mail::to($user->email)->send(new daftar($datas));
 

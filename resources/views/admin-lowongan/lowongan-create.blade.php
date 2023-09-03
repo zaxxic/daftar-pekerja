@@ -48,7 +48,7 @@
                 </div>
                 <div class="col-6">
                     <label class="mt-5" for="judul">Slot</label> <br>
-                    <input class="col-10 rounded-1 form-control" type="text" name="slot" min="0"
+                    <input class="col-10 rounded-1 form-control" type="number" name="slot" min="0"
                         value="{{ old('slot') }}" id="">
                     @error('slot')
                         <p class="text-danger">{{ $message }}</p>
@@ -56,10 +56,8 @@
                 </div>
                 <div class="col-6">
                     <label class="mt-5" for="judul"> Gaji </label> <br>
-                    <input class="col-10 rounded-1 form-control" type="text" name="gaji" min="0"
-                        value="{{ old('gaji') }}" placeholder=" "min="5000" max="100000"
-                        oninvalid="$this.setCustomValidity('gaji minimal 5000 maksimal 100000')"
-                        oninput="setCustomValidity('')">
+                    <input class="col-10 rounded-1 form-control" type="number" name="gaji" min="0"
+                        value="{{ old('gaji') }}" placeholder=" ">
                     @error('gaji')
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
