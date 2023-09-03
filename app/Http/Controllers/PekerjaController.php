@@ -19,9 +19,10 @@ class PekerjaController extends Controller
         $keyword = $request->input('cari');
         if ($request->has('cari')) {
             $keyword = $request->cari;
-            $user = User::where('name', 'LIKE', '%' . $keyword . '%')
-                        ->where('status', 'diterima')
-                        ->paginate(8);
+            $user = Registration::whereHas('user', function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', '%' . $keyword . '%');
+            })->where('status', 'diterima') // Tampilkan hanya status bukan "disetujui"
+            ->paginate(8);
 
             $user->appends(['cari' => $keyword]);
             // return view('admin-pekerja.pekerja.index', compact('user'));
