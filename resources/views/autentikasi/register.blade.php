@@ -20,7 +20,7 @@
     <link id="themeColors" rel="stylesheet" href="{{ asset('assets/dist/css/style.min.css') }}" />
 </head>
 
-<body>
+<body class="bg-light">
     {{-- <!-- Preloader -->
     <div class="preloader">
         <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico"
@@ -39,7 +39,7 @@
             <div class="d-flex align-items-center justify-content-center w-100">
                 <div class="row justify-content-center w-100">
                     <div class="col-md-8 col-lg-10">
-                        <div class="card mb-0">
+                        <div class="card mb-0 shadow">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
@@ -162,7 +162,8 @@
                                     </div>
                                     <div class="d-flex col-lg-12 justify-content-between">
                                         <div class="mb-3 col-lg-5">
-                                            <label for="exampleInputEmail1" class="form-label">Password</label>
+                                            <label for="exampleInputEmail1" class="form-label">Password<span
+                                                    style="color: red;">*</span></label>
                                             <input type="password"
                                                 class="form-control @error('password') is-invalid @enderror"
                                                 id="password" name="password" aria-describedby="emailHelp" />
@@ -172,7 +173,7 @@
                                         </div>
                                         <div class="mb-3 col-lg-5">
                                             <label for="exampleInputEmail1" class="form-label">Konfirmasi
-                                                Password</label>
+                                                Password<span style="color: red;">*</span></label>
                                             <input type="password"
                                                 class="form-control @error('password_confirmation') is-invalid @enderror"
                                                 id="password_confirmation" name="password_confirmation"
