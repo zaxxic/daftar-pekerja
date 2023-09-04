@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 
 class loginController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('autentikasi.login');
     }
 
@@ -19,7 +21,7 @@ class loginController extends Controller
         $this->validate($request, [
             'email' => 'required|email|exists:users,email|max:255',
             'password' => 'required|min:6|max:255',
-        ],[
+        ], [
             'email.required' => 'Email Wajib Diisi',
             'email.exists' => 'Email Yang Anda Masukkan Belum Terdaftar !!',
             'email.email' => 'Harus Menginputkan Data yang Bertipe Email',
@@ -66,5 +68,50 @@ class loginController extends Controller
         Session::flush();
 
         return redirect('/'); // Ganti '/' dengan rute yang sesuai setelah logout
+    }
+
+    public function showForgetPassword()
+    {
+        return view('autentikasi.forget_password');
+    }
+
+    public function forgetPassword(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+
+        return $status === Password::RESET_LINK_SENT
+            ? back()->with('status', __($status))
+            : back()->withErrors(['email' => __($status)]);
+    }
+
+    public function showResetPasswordForm($token)
+    {
+        return view('auth.reset-password', ['token' => $token]);
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:8',
+            'token' => 'required',
+        ]);
+
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user, $password) {
+                $user->forceFill([
+                    'password' => bcrypt($password),
+                ])->save();
+            }
+        );
+
+        return $status == Password::PASSWORD_RESET
+            ? redirect()->route('login')->with('success', 'Password has been reset!')
+            : back()->withErrors(['email' => [__($status)]]);
     }
 }

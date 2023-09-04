@@ -84,7 +84,7 @@
                                             </label>
                                         </div>
                                         <a class="text-primary fw-medium"
-                                            href="authentication-forgot-password.html">Lupa Password?</a>
+                                            href="{{ route('password.request') }}">Lupa Password?</a>
                                     </div>
                                     <a href="index-2.html" class="btn btn-primary w-100 py-8 mb-4 rounded-2">Login
                                         Sekarang</a>
