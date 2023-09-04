@@ -21,15 +21,17 @@
                                 <form class="search-form" id="form_filter">
                                     <div class="form-group">
                                         <span>Cari Berdasarkan Divisi</span>
-                                        <select id="filter" class="form-control mt-3" name="filter" style="height: 4%;">
-                                            @foreach ($user as $item)
-<<<<<<< Updated upstream
-                                                <option  value="{{ $item->Vacancy->Division->id }}">{{ $item->Vacancy->Division->divisi }}</option>
-=======
-                                                <option value="1">{{ $item->Vacancy->Division->divisi }}</option>
->>>>>>> Stashed changes
-                                            @endforeach
-                                        </select>
+                                        <div class="d-flex gap-2">
+                                            <select id="filter" class="form-control" name="filter" style="height: 4%;">
+                                                <option value="">semua</option>
+                                                @foreach ($divisi as $item)
+                                                <option value="{{ $item->id }}" @if ($item->id == $value_filter) selected @endif>
+                                                    {{ $item->divisi }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                            <button class="btn btn-primary" style="padding:" type="submit">Cari</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -334,7 +336,7 @@
     <script>
       $(document).ready(function(){
         console.log("dokumen siap");
-            $(document).on('change', '#filter', function(){
+            $('#filter').click( function(){
                 console.log("awookaowk");
             });
         });

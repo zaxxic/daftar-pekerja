@@ -55,7 +55,7 @@
                                     {{ session('success') }}
                                 </div>
                                 @endif
-                                <form action="{{ route('register-store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('register-store') }}" method="POST" enctype="multipart/form-data" id="form">
                                     @csrf
                                     <div class="d-flex col-lg-12 justify-content-between">
                                         <div class="mb-3 col-lg-5">
@@ -86,9 +86,9 @@
                                         <div class="mb-3 col-lg-5">
                                             <label for="exampleInputEmail1" class="form-label mb-3">Jenis Kelamin <span style="color: red;">*</span></label>
                                             <div class="d-flex align-items-center">
-                                                <input class="text-sm me-1" type="radio" name="jenis_kelamin" id="radio1" value="laki-laki" {{ old('jenis_kelamin') == 'laki-laki' ? 'checked' : '' }}>
+                                                <input id="kelamin" class="text-sm me-1" type="radio" name="jenis_kelamin" id="radio1" value="laki-laki" {{ old('jenis_kelamin') == 'laki-laki' ? 'checked' : '' }}>
                                                 <label class="mb-0 me-3" for="radio1">Laki-laki</label>
-                                                <input class="text-sm me-1" type="radio" name="jenis_kelamin" id="radio2" value="perempuan" {{ old('jenis_kelamin') == 'perempuan' ? 'checked' : '' }}>
+                                                <input id="kelamin" class="text-sm me-1" type="radio" name="jenis_kelamin" id="radio2" value="perempuan" {{ old('jenis_kelamin') == 'perempuan' ? 'checked' : '' }}>
                                                 <label class="mb-0" for="radio2">Perempuan</label>
                                             </div>
                                             @error('jenis_kelamin')
@@ -148,14 +148,14 @@
                                     </div>
 
 
-                                    <button type="submit" class="btn btn-primary w-100 py-2 mb-4 rounded-2">Daftar
+                                    <button type="submit" id="register" class="btn btn-primary w-100 py-2 mb-4 rounded-2">Daftar
                                         Sekarang</button>
                                     <div class="d-flex align-items-center">
                                         <p class="fs-4 mb-0 text-dark">
-                                            Already have an Account?
+                                            Sudah punya akun ?
                                         </p>
-                                        <a class="text-primary fw-medium ms-2" href="{{ route('login') }}">Sign
-                                            In</a>
+                                        <a class="text-primary fw-medium ms-2" href="{{ route('login') }}">login
+                                            </a>
                                     </div>
                                 </form>
                             </div>
@@ -177,6 +177,9 @@
     <script src="{{ asset('assets/dist/js/sidebarmenu.js') }}"></script>
 
     <script src="{{ asset('assets/dist/js/custom.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
 </body>
 
 <!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/authentication-register2.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Jul 2023 02:01:04 GMT -->

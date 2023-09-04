@@ -25,7 +25,8 @@ class registerController extends Controller
                 'name' => 'required',
                 'email' => 'required|unique:users,email',
                 'alamat' => 'required',
-                'jenis_kelamin' => ['required', 'in:' . implode(',', [
+                'jenis_kelamin' => ['required',
+                'in:' . implode(',', [
                     JenisKelaminEnum::LAKI_LAKI,
                     JenisKelaminEnum::PEREMPUAN,
                 ])],
@@ -41,6 +42,7 @@ class registerController extends Controller
                 'email.required' => 'Email Wajib Diisi',
                 'email.unique' => 'Email Sudah Terdaftar',
                 'jenis_kelamin.required' => 'Jenis Kelamin Wajib Diisi',
+                'jenis_kelamin.in' => 'Jenis Kelamin Wajib Diisi',
                 'no_telp.required' => 'No Telephone Wajib Diisi',
                 'no_telp.numeric' => 'No Telephone Wajib Diisi Angka',
                 'no_telp.regex' => 'No Telephone Tidak Boleh Minus',

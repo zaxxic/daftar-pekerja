@@ -11,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -166,7 +167,8 @@
                                                 <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                            <a href="{{ route('user.lamaran', $user->id) }}" target="_blank" class="btn btn-primary" target="_blank">Lihat Lamaran</a>
+                                            <a  data-bs-toggle="modal"
+                                            data-bs-target="#detail-cv-{{ Auth()->User()->cv }}" class="btn btn-primary" >Lihat Lamaran</a>
                                         </div>
                                     </div>
                                     <div class="mb-4">
@@ -179,7 +181,8 @@
                                                 <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                            <a href="{{ route('user.cv', $user->id) }}" target="_blank" class="btn btn-primary" target="_blank">Lihat CV</a>
+                                            <a  data-bs-toggle="modal"
+                                                data-bs-target="#detail-cv-{{ Auth()->User()->cv }}" class="btn btn-primary" >Lihat CV</a>
                                         </div>
                                     </div>
                                 </div>
@@ -211,4 +214,42 @@
         });
     }
 </script>
+<div class="modal fade" id="detail-cv-{{Auth()->User()->cv}}" tabindex="-1" aria-labelledby="detail-cv-{{Auth()->User()->cv}}" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Cv pekerja</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <embed src="{{ asset('cv/' . Auth()->User()->cv) }}" type="application/pdf" width="100%" height="100%">
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+        </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="detail-lamaran-{{Auth()->User()->cv}}" tabindex="-1" aria-labelledby="detail-lamaran-{{Auth()->User()->cv}}" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Lamaran pekerja</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <embed src="{{ asset('lamaran/' . Auth()->User()->lamaran) }}" type="application/pdf" width="100%" height="100%">
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+        </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 @endsection
