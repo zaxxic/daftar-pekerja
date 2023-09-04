@@ -93,7 +93,7 @@
                                 <div class="d-grid py-4 px-7 pt-8"> <!-- Tombol logout memanjang -->
                                     <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                                         @csrf
-                                        <button type="submit" class="btn btn-outline-primary btn-block">Log Out</button>
+                                        <button type="submit" class="btn btn-outline-primary btn-block">Keluar</button>
                                     </form>
                                 </div>
                             </div>
