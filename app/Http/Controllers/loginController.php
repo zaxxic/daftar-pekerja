@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
-
-class loginController extends Controller
+class LoginController extends Controller
 {
     public function index()
     {

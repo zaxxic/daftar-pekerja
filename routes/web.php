@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\loginController;
 use App\Http\Controllers\DivisiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApprovalController;
@@ -9,10 +8,11 @@ use App\Http\Controllers\dashboardAdminController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\PekerjaController;
 use App\Http\Controllers\PekerjaDitolakController;
-use App\Http\Controllers\registerController;
 use App\Http\Controllers\dashboardUserController;
 use App\Http\Controllers\detailLowonganController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Models\Lowongan;
 
@@ -34,11 +34,11 @@ use App\Models\Lowongan;
 // Route::resource('login', loginController::class);
 
 
-Route::get('register' , [registerController::class , 'index'])->name('register')->middleware('guest');
-Route::post('register-store' , [registerController::class , 'store'])->name('register-store');
-Route::get('/login', [loginController::class, 'showLogin'])->name('login')->middleware('guest');
-Route::post('/form-login', [loginController::class, 'login'])->name('form-login');
-Route::post('/logout', [loginController::class, 'logout'])->name('logout');
+Route::get('register' , [RegisterController::class , 'index'])->name('register')->middleware('guest');
+Route::post('register-store' , [RegisterController::class , 'store'])->name('register-store');
+Route::get('/login', [LoginController::class, 'showLogin'])->name('login')->middleware('guest');
+Route::post('/form-login', [LoginController::class, 'login'])->name('form-login');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
