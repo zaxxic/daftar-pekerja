@@ -102,7 +102,9 @@
                                 <path fill="none" stroke="currentColor" strok e-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 20h4L18.5 9.5a2.828 2.828 0 1 0-4-4L4 16v4m9.5-13.5l4 4" />
                             </svg></a>
                     </div>
+
                     <div class="col-6 d-flex justify-content-end">
+                        @if ($item->status === "aktif")
                         <form action="{{ route('nonactive-lowongan', $item->id) }}" method="POST" style="display: inline;" id="formnonactive-{{ $item->id }}">
                             @csrf
                             @method('PATCH')
@@ -120,6 +122,8 @@
                                 <span id="formnonactive-text-{{ $item->id }}"></span>
                             </button>
                         </form>
+
+                        @elseif ($item->status === "nonaktif")
                         <form action="{{ route('active-lowongan', $item->id) }}" method="POST" style="display: inline;" id="formactive-{{ $item->id }}">
                             @csrf
                             @method('PATCH')
@@ -137,6 +141,7 @@
                                 <span id="formactive-text-{{ $item->id }}" style="display: none;"></span>
                             </button>
                         </form>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -291,160 +296,7 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const deleteButtons = document.querySelectorAll('.delete-button');
 
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                Swal.fire({
-                    title: 'Konfirmasi Hapus',
-                    text: 'Anda yakin ingin menghapus item ini?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Ya, hapus',
-                    cancelButtonText: 'Batal'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Submit form after confirmation
-                        button.closest('form').submit();
-                    }
-                });
-            });
-        });
-    });
-</script>
-<!-- <script>
-        const status = '{{ $item->status ?? '' }}'; // Ganti dengan status sebenarnya dari data
-
-        function updateButtonAppearance(status) {
-            const nonaktifButton = document.getElementById('formnonactive');
-            const aktifButton = document.getElementById('formactive');
-
-            if (status === 'aktif') {
-                nonaktifButton.style.display = 'inline';
-                aktifButton.style.display = 'none';
-            } else if (status === 'nonaktif') {
-                nonaktifButton.style.display = 'none';
-                aktifButton.style.display = 'inline';
-            }
-        }
-
-        // Panggil fungsi saat halaman dimuat untuk pertama kali
-        window.onload = function() {
-            updateButtonAppearance(status);
-        };
-
-        function klikNonaktif() {
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: "btn btn-success",
-                    cancelButton: "mr-2 btn btn-danger",
-                },
-                buttonsStyling: false,
-            });
-
-            swalWithBootstrapButtons
-                .fire({
-                    title: "Apakah Anda Yakin?",
-                    text: "Anda ingin menonaktifkan lowongan ini!",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonText: "Iya!",
-                    cancelButtonText: "Tidak!",
-                    reverseButtons: true,
-                    customClass: {
-                        confirmButton: "btn btn-success",
-                        cancelButton: "btn btn-danger me-3",
-                    },
-                    buttonsStyling: false,
-                    width: "25rem", // You can adjust the width as needed
-                    padding: "1rem", // You can adjust the padding as needed
-                    customContainerClass: "swal-custom", // Define a custom class for styling
-                })
-                .then((result) => {
-                    if (result.value) {
-                        swalWithBootstrapButtons.fire(
-                            "Berhasil!",
-                            "Anda berhasil menonaktifkan lowongan tersebut.",
-                            "success"
-                        );
-                        var form = document.getElementById("formnonactive");
-                        form.submit();
-                    } else if (
-                        result.dismiss === Swal.DismissReason.cancel
-                    ) {
-                        swalWithBootstrapButtons.fire(
-                            "Batal",
-                            "Lowongan tersebut dibatalkan. :)",
-                            "error"
-                        );
-                    }
-                });
-        }
-
-        function klikAktif() {
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: "btn btn-success",
-                    cancelButton: "mr-2 btn btn-danger",
-                },
-                buttonsStyling: false,
-            });
-
-            swalWithBootstrapButtons
-                .fire({
-                    title: "Apakah Anda Yakin?",
-                    text: "Anda ingin mengaktifkan lowongan ini!",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonText: "Iya!",
-                    cancelButtonText: "Tidak!",
-                    reverseButtons: true,
-                    customClass: {
-                        confirmButton: "btn btn-success",
-                        cancelButton: "btn btn-danger me-3",
-                    },
-                    buttonsStyling: false,
-                    width: "25rem", // You can adjust the width as needed
-                    padding: "1rem", // You can adjust the padding as needed
-                    customContainerClass: "swal-custom", // Define a custom class for styling
-                })
-                .then((result) => {
-                    if (result.value) {
-                        swalWithBootstrapButtons.fire(
-                            "Berhasil!",
-                            "Anda berhasil mengaktifkan lowongan tersebut.",
-                            "success"
-                        );
-                        var form = document.getElementById("formactive");
-                        form.submit();
-                    } else if (
-                        result.dismiss === Swal.DismissReason.cancel
-                    ) {
-                        swalWithBootstrapButtons.fire(
-                            "Batal",
-                            "Lowongan tersebut dibatalkan. :)",
-                            "error"
-                        );
-                    }
-                });
-        }
-    </script> -->
-<script>
-    function updateButtonAppearance(status, itemId) {
-        const nonaktifButton = document.getElementById('formnonactive-' + itemId);
-        const aktifButton = document.getElementById('formactive-' + itemId);
-
-        if (status === 'formactive') {
-            nonaktifButton.style.display = 'inline';
-            aktifButton.style.display = 'none';
-        } else if (status === 'formnonactive') {
-            nonaktifButton.style.display = 'none';
-            aktifButton.style.display = 'inline';
-        }
-    }
 
 
     function klikNonaktif(itemId) {
@@ -539,18 +391,12 @@
             });
     }
 
-    // Panggil fungsi saat halaman dimuat untuk pertama kali
-    window.onload = function() {
-        // Ambil semua elemen dengan class 'item-status'
-        const statusElements = document.getElementsByClassName('item-status');
 
-        // Loop melalui setiap elemen dan perbarui tampilan tombol
-        for (let i = 0; i < statusElements.length; i++) {
-            const element = statusElements[i];
-            const status = element.dataset.status;
-            const itemId = element.dataset.itemId;
-            updateButtonAppearance(status, itemId);
-        }
-    };
+</script>
+
+<script>
+    $(document).load(function() {
+        var status =
+    })
 </script>
 @endsection

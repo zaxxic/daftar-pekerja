@@ -18,7 +18,7 @@ class dashboardUserController extends Controller
     {
         $selectedDivision = 'semua';
         $registration = Registration::where('users_id', Auth()->User()->id)->where('status', 'menunggu')->latest()->paginate(5);
-        $lowongan = Vacancy::latest()->paginate(5);
+        $lowongan = Vacancy::where('status', 'aktif')->latest()->paginate(5);
         $divisi = Division::all();
         return view('user.index', compact('lowongan', 'divisi','selectedDivision','registration'));
     }
@@ -38,7 +38,7 @@ class dashboardUserController extends Controller
         })->latest();
 
 
-        $lowongan = $lowonganQuery->paginate(5);
+        $lowongan = $lowonganQuery->where('status', 'aktif')->paginate(5);
         $divisi = Division::all();
 
         return view('user.lowongan', compact('lowongan', 'divisi', 'selectedDivision'));
