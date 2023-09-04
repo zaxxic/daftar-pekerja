@@ -9,9 +9,9 @@ use App\Models\Registration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class dashboardAdminController extends Controller
+class DashboardAdminController extends Controller
 {
-    /**
+      /**
      * Display a listing of the resource.
      */
     public function index()
@@ -31,9 +31,9 @@ class dashboardAdminController extends Controller
         ->whereIn('status', ['menunggu', 'diterima', 'ditolak'])
         ->groupBy('year', 'month', 'status')
         ->get();
-    
+
         $processedData = [];
-    
+
         foreach ($data as $item) {
             $yearMonth = $item->year . '-' . str_pad($item->month, 2, '0', STR_PAD_LEFT);
             if (!isset($processedData[$yearMonth])) {
@@ -46,9 +46,9 @@ class dashboardAdminController extends Controller
             }
             $processedData[$yearMonth][$item->status] = $item->total;
         }
-    
+
         $chartData = array_values($processedData);
-    
+
 
         return view('admin-dashboard.index', compact('menunggu', 'terima', 'tolak', 'divisi', 'lowongan', 'chartData'));
     }
