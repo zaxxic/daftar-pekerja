@@ -145,7 +145,7 @@
                                                         </li>
                                                     </div>
                                                     <div class="col-6">
-                                                        @if (Auth::check())
+                                                        {{-- @if (Auth::check())
                                                             <!-- Periksa apakah pengguna sudah login -->
                                                             @if ($registrations !== null && $registrations->status !== 'menunggu')
                                                                 <!-- Pengguna telah mendaftar pada lowongan lain -->
@@ -166,6 +166,26 @@
                                                                 <button type="button" class="btn btn-primary"
                                                                     id="daftar">Daftar</button>
                                                             </li>
+                                                        @endif --}}
+                                                        @if ($status === "sudah")
+                                                        <li>
+                                                            <p>Anda sudah mendaftar pada lowongan lain.</p>
+                                                        </li>
+                                                        @elseif ($status === "belum")
+                                                            <button type="button" class="btn btn-primary"
+                                                            style="background-color: #2042e3"
+                                                            id="daftar">Daftar</button>
+                                                        @elseif ($status === "disini")
+                                                        <li>
+                                                            <button type="button" class="btn btn-danger"
+                                                                id="batal">Batal</button>
+                                                        </li>
+                                                        @elseif ($status === "diterima_disini")
+                                                        <li>
+                                                            <p>anda di terima di lowongan ini </p>
+                                                        </li>
+                                                        @else
+                                                        <li><p>anda sudah di terima pada lowongan lain</p></li>
                                                         @endif
                                                     </div>
 

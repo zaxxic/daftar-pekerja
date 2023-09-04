@@ -265,26 +265,26 @@
                                 })
                             </script>
 
-                            <div class="mt-3 text-center
-                        
+                            <div class="mt-3 text-center">
+
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
 
-            <!--  Import Js Files -->
-            <script src="{{ asset('assets/dist/libs/jquery/dist/jquery.min.js') }}"></script>
-            <script src="{{ asset('assets/dist/libs/simplebar/dist/simplebar.min.js') }}"></script>
-            <script src="{{ asset('assets/dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-            <!--  core files -->
-            <script src="{{ asset('assets/dist/js/app.min.js') }}"></script>
-            <script src="{{ asset('assets/dist/js/app.init.js') }}"></script>
-            <script src="{{ asset('assets/dist/js/app-style-switcher.js') }}"></script>
-            <script src="{{ asset('assets/dist/js/sidebarmenu.js') }}"></script>
+                    <!--  Import Js Files -->
+                    <script src="{{ asset('assets/dist/libs/jquery/dist/jquery.min.js') }}"></script>
+                    <script src="{{ asset('assets/dist/libs/simplebar/dist/simplebar.min.js') }}"></script>
+                    <script src="{{ asset('assets/dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+                    <!--  core files -->
+                    <script src="{{ asset('assets/dist/js/app.min.js') }}"></script>
+                    <script src="{{ asset('assets/dist/js/app.init.js') }}"></script>
+                    <script src="{{ asset('assets/dist/js/app-style-switcher.js') }}"></script>
+                    <script src="{{ asset('assets/dist/js/sidebarmenu.js') }}"></script>
 
-            <script src="{{ asset('assets/dist/js/custom.js') }}"></script>
-        </body>
+                    <script src="{{ asset('assets/dist/js/custom.js') }}"></script>
+</body>
 
-        <!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/authentication-login2.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Jul 2023 02:01:04 GMT -->
+<!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/authentication-login2.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Jul 2023 02:01:04 GMT -->
 
-        </html>
+</html>

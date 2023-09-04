@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use App\Models\Registration;
+use App\Models\Devision;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\daftar;
+use App\Models\Division;
 
 class PekerjaController extends Controller
 {
@@ -16,7 +18,9 @@ class PekerjaController extends Controller
      */
     public function index(Request $request)
     {
+        $divisi = Division::all();
         $keyword = $request->input('cari');
+        $value_filter  = $request->input('filter');
         if ($request->has('cari')) {
             $keyword = $request->cari;
             $user = Registration::whereHas('user', function ($query) use ($keyword) {
@@ -26,11 +30,24 @@ class PekerjaController extends Controller
 
             $user->appends(['cari' => $keyword]);
             // return view('admin-pekerja.pekerja.index', compact('user'));
-        } else {
+        } else if($request->has('filter')) {
+            $keyword = $request->filter;
+            $user = Registration::whereRelation('User', function ($query) use ($keyword) {
+                $query->where('devision_id', 'LIKE', '%' . $keyword . '%');
+            })->where('status', 'diterima') // Tampilkan hanya status bukan "disetujui"
+            ->paginate(8);
+
+            // dd($user);
+            $value_filter = $keyword;
+            $user->appends(['user' => $keyword]);
+            $keyword = "";
+            }
+         else {
+
                 $user = Registration::where('status', '=', 'diterima')->paginate(8); // Ubah 'IN' menjadi '='
             }
 
-        return view('admin-pekerja.pekerja.index', compact('user', 'keyword'));
+        return view('admin-pekerja.pekerja.index', compact('user', 'keyword','divisi', 'value_filter'));
     }
 
     /**

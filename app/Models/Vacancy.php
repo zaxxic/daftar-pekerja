@@ -20,6 +20,9 @@ class Vacancy extends Model
             $model->id = uuid_create(UUID_TYPE_RANDOM);
         });
     }
+    protected $enumCasts = [
+        'status' => 'enum:aktif,nonaktif',
+    ];
 
     protected $fillable = [
         'judul','devisi_id','batas','pekerja','slot','gaji','tipe','lokasi','syarat', 'status', 'pembuat'
