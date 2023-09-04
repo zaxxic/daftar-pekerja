@@ -225,13 +225,13 @@
             <embed src="{{ asset('cv/' . $user->cv) }}" type="application/pdf" width="100%" height="100%">
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
             {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
         </div>
         </div>
     </div>
 </div>
-<div class="modal fade" id="detail-lamaran-{{Auth()->User()->cv}}" tabindex="-1" aria-labelledby="detail-lamaran-{{Auth()->User()->cv}}" aria-hidden="true">
+<div class="modal fade" id="detail-lamaran-{{Auth()->User()->lamaran}}" tabindex="-1" aria-labelledby="detail-lamaran-{{Auth()->User()->cv}}" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
         <div class="modal-header">
@@ -242,7 +242,7 @@
             <embed src="{{ asset('lamaran/'. $user->lamaran) }}" type="application/pdf" width="100%" height="100%">
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
             {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
         </div>
         </div>
