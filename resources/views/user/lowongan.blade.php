@@ -105,10 +105,11 @@
                 <div class="col-5">
                     <div class="form-group ">
                         <form action="" class="d-flex gap-5">
-                            <select class="select2 form-control" id="division-select" name="division">
+                            <select class="select2 form-control" id="division-select" name="division"
+                                style="height: 50px; padding: 20px;">
                                 <option value="" @if (!$selectedDivision) selected @endif>Semua</option>
                                 @foreach ($divisi as $item)
-                                    <option value="{{ $item->id }}" name="cari"
+                                    <option value="{{ $item->id }}" name="cari" selected
                                         @if ($selectedDivision === $item->id) selected @endif>
                                         {{ $item->divisi }}
                                     </option>
@@ -385,8 +386,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
         src="
-                                                                                                                                                                                                                                                                                    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                                                                                                                                                                                                                                                                    ">
+                                                                                                                                                                                                                                                                                                    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                                                                                                                                                                                                                                                                    ">
     </script>
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
