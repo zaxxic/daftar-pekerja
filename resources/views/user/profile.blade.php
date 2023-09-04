@@ -168,7 +168,7 @@
                                                 @enderror
                                             </div>
                                             <a  data-bs-toggle="modal"
-                                            data-bs-target="#detail-cv-{{ Auth()->User()->cv }}" class="btn btn-primary" >Lihat Lamaran</a>
+                                            data-bs-target="#detail-lamaran-{{ Auth()->User()->lamaran }}" class="btn btn-primary" >Lihat Lamaran</a>
                                         </div>
                                     </div>
                                     <div class="mb-4">
@@ -222,7 +222,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <embed src="{{ asset('cv/' . Auth()->User()->cv) }}" type="application/pdf" width="100%" height="100%">
+            <embed src="{{ asset('cv/' . $user->cv) }}" type="application/pdf" width="100%" height="100%">
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -239,7 +239,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <embed src="{{ asset('lamaran/' . Auth()->User()->lamaran) }}" type="application/pdf" width="100%" height="100%">
+            <embed src="{{ asset('lamaran/'. $user->lamaran) }}" type="application/pdf" width="100%" height="100%">
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

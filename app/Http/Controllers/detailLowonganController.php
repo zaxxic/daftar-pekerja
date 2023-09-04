@@ -63,15 +63,40 @@ class detailLowonganController extends Controller
         $lowongan = Vacancy::findOrFail($id);
         $loggedInUser = Auth()->user(); // Mengambil pengguna yang sudah login
 
-        if ($loggedInUser) {
-            $registrations = Registration::where('users_id', $loggedInUser->id)
-                ->where('vacancie_id', $lowongan->id)->where('status', ['menunggu','diterima'])
-                ->first(); // Mengambil data registrasi pengguna pada lowongan tertentu
-        } else {
-            $registrations = null; // Jika pengguna belum login, set registrasi menjadi null
-        }
+        $registrations = Registration::where('users_id', $loggedInUser->id)
+            ->where('status', 'menunggu')
+            ->exists();
 
-        return view('user.detail-lowongan', compact('lowongan', 'registrations'));
+
+            if ($registrations) {
+                $registrations = Registration::where('users_id', $loggedInUser->id)
+                    ->where('vacancie_id', $id)
+                    ->exists();
+                    if ($registrations){
+                        $status = 'disini';
+                    }else{
+                        $status = 'sudah';
+                    }
+            } else {
+                $registrations = Registration::where('users_id', $loggedInUser->id)
+                ->where('status', 'diterima')
+                ->exists();
+                if ($registrations){
+                    $registrations = Registration::where('users_id', $loggedInUser->id)
+                    ->where('vacancie_id', $id)
+                    ->exists();
+                    if ($registrations){
+                        $status = 'diterima_disini';
+                    }else{
+                        $status = 'terima';
+                    }
+                }else{
+                    $status = 'belum';
+                }
+            }
+
+
+        return view('user.detail-lowongan', compact('lowongan', 'registrations', 'status'));
     }
 
     /**
