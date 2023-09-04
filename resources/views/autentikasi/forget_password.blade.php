@@ -74,9 +74,6 @@
                             <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
                         </div>
-                        @error('email')
-                        <div class="text-danger">{{ $message }}</div>
-                        @enderror
                         <button type="submit" class="btn btn-primary w-100 py-2 mb-4 rounded-2">Kirim
                         </button>
                         <div class="mt-3 text-center text-sm">

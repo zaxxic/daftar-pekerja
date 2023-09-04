@@ -100,8 +100,6 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                         <div class="mb-4 form-check">
-                            <input type="checkbox" class="form-check-input" id="remember-checkbox">
-                            <label class="form-check-label" for="remember-checkbox">Ingat Saya</label>
                             <a href="{{ route('password.request') }}" class="text-sm float-end">Lupa Password?</a>
                         </div>
                         <button type="submit" class="btn btn-primary w-100 py-2 mb-4 rounded-2">Login
