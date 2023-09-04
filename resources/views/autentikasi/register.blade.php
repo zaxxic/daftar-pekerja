@@ -80,7 +80,7 @@
                     <img class="w-100 gambar d-none d-md-block" style="margin-left: -10%; "
                         src="{{ asset('assets/loginn.svg') }}" alt="image">
                 </div>
-                <div class="col-lg-6 col-4 col-8">
+                <div class="col-lg-6 col-md-4 col-12">
                     <div class="card shadow h-100 mt-5">
                         <div class="card-body h-100" style="height: 100%;">
                             <div class="text-center mt-2">
@@ -159,35 +159,37 @@
                                     <label for="exampleInputEmail1" class="form-label col-12">Masukkan CV,Lamaran
                                         (wajib
                                         pdf)<span style="color: red;">*</span></label>
-                                    <div class="col-md-4 col-4">
+                                    <div class="col-md-4 col-12">
                                         <div class="mb-3">
                                             <button id="cv" name="cv" type="button"
-                                                class="btn btn-primary col-12">cv</button>
+                                                class="btn btn-primary col-12">CV</button>
                                             <input type="file" name="cv" hidden id="file_cv">
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-4">
+                                    <div class="col-md-4 col-12">
                                         <div class="mb-3">
-                                            <button id="lamaran" class="btn btn-primary col-12" type="button">Lamaran</button>
+                                            <button id="lamaran" class="btn btn-primary col-12"
+                                                type="button">Lamaran</button>
                                             <input type="file" name="lamaran" hidden id="file_lamaran">
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-4">
+                                    <div class="col-md-4 col-12">
                                         <div class="mb-3">
-                                            <button id="foto" class="btn btn-primary col-12" type="button">Foto</button>
+                                            <button id="foto" class="btn btn-primary col-12"
+                                                type="button">Foto</button>
                                             <input type="file" name="foto" hidden id="file_foto">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row mb-3">
                                     @error('cv')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                     @error('lamaran')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                     @error('foto')
-                                        <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
 
