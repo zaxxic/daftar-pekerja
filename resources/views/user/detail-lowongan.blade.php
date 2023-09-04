@@ -147,17 +147,17 @@
                                                     <div class="col-6">
                                                         @if (Auth::check())
                                                             <!-- Periksa apakah pengguna sudah login -->
-                                                            @if ($registrations !== null)
-                                                                <!-- Periksa apakah pengguna telah mendaftar lowongan -->
-                                                                <li>
-                                                                    <button type="button" class="btn btn-danger"
-                                                                        id="batal">Batal</button>
-                                                                </li>
-                                                            @else
+                                                            @if ($registrations !== null && $registrations->status !== 'menunggu')
+                                                                <!-- Pengguna telah mendaftar pada lowongan lain -->
                                                                 <li>
                                                                     <button type="button" class="btn btn-primary"
                                                                         style="background-color: #2042e3"
                                                                         id="daftar">Daftar</button>
+                                                                </li>
+                                                            @else
+                                                                <!-- Pengguna belum mendaftar pada lowongan ini -->
+                                                                <li>
+                                                                    <p>Anda sudah mendaftar pada lowongan lain.</p>
                                                                 </li>
                                                             @endif
                                                         @else
@@ -167,10 +167,9 @@
                                                                     id="daftar">Daftar</button>
                                                             </li>
                                                         @endif
-
-
-
                                                     </div>
+
+
 
                                                 </div>
                                             </div>
