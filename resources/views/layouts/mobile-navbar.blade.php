@@ -1,160 +1,62 @@
 <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="mobilenavbar" aria-labelledby="offcanvasWithBothOptionsLabel">
-    <nav class="sidebar-nav scroll-sidebar">
-      <div class="offcanvas-header justify-content-between">
-        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico" alt="" class="img-fluid">
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body profile-dropdown mobile-navbar" data-simplebar=""  data-simplebar>
-        <ul id="sidebarnav">
-          <li class="sidebar-item">
-            <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
-              <span>
-                <i class="ti ti-apps"></i>
-              </span>
-              <span class="hide-menu">Apps</span>
-            </a>
-            <ul aria-expanded="false" class="collapse first-level my-3">
-              <li class="sidebar-item py-2">
-                <a href="#" class="d-flex align-items-center">
-                  <div class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-chat.svg" alt="" class="img-fluid" width="24" height="24">
-                  </div>
-                  <div class="d-inline-block">
-                    <h6 class="mb-1 bg-hover-primary">Chat Application</h6>
-                    <span class="fs-2 d-block fw-normal text-muted">New messages arrived</span>
-                  </div>
-                </a>
-              </li>
-              <li class="sidebar-item py-2">
-                <a href="#" class="d-flex align-items-center">
-                  <div class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-invoice.svg" alt="" class="img-fluid" width="24" height="24">
-                  </div>
-                  <div class="d-inline-block">
-                    <h6 class="mb-1 bg-hover-primary">Invoice App</h6>
-                    <span class="fs-2 d-block fw-normal text-muted">Get latest invoice</span>
-                  </div>
-                </a>
-              </li>
-              <li class="sidebar-item py-2">
-                <a href="#" class="d-flex align-items-center">
-                  <div class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-mobile.svg" alt="" class="img-fluid" width="24" height="24">
-                  </div>
-                  <div class="d-inline-block">
-                    <h6 class="mb-1 bg-hover-primary">Contact Application</h6>
-                    <span class="fs-2 d-block fw-normal text-muted">2 Unsaved Contacts</span>
-                  </div>
-                </a>
-              </li>
-              <li class="sidebar-item py-2">
-                <a href="#" class="d-flex align-items-center">
-                  <div class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-message-box.svg" alt="" class="img-fluid" width="24" height="24">
-                  </div>
-                  <div class="d-inline-block">
-                    <h6 class="mb-1 bg-hover-primary">Email App</h6>
-                    <span class="fs-2 d-block fw-normal text-muted">Get new emails</span>
-                  </div>
-                </a>
-              </li>
-              <li class="sidebar-item py-2">
-                <a href="#" class="d-flex align-items-center">
-                  <div class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-cart.svg" alt="" class="img-fluid" width="24" height="24">
-                  </div>
-                  <div class="d-inline-block">
-                    <h6 class="mb-1 bg-hover-primary">User Profile</h6>
-                    <span class="fs-2 d-block fw-normal text-muted">learn more information</span>
-                  </div>
-                </a>
-              </li>
-              <li class="sidebar-item py-2">
-                <a href="#" class="d-flex align-items-center">
-                  <div class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-date.svg" alt="" class="img-fluid" width="24" height="24">
-                  </div>
-                  <div class="d-inline-block">
-                    <h6 class="mb-1 bg-hover-primary">Calendar App</h6>
-                    <span class="fs-2 d-block fw-normal text-muted">Get dates</span>
-                  </div>
-                </a>
-              </li>
-              <li class="sidebar-item py-2">
-                <a href="#" class="d-flex align-items-center">
-                  <div class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-lifebuoy.svg" alt="" class="img-fluid" width="24" height="24">
-                  </div>
-                  <div class="d-inline-block">
-                    <h6 class="mb-1 bg-hover-primary">Contact List Table</h6>
-                    <span class="fs-2 d-block fw-normal text-muted">Add new contact</span>
-                  </div>
-                </a>
-              </li>
-              <li class="sidebar-item py-2">
-                <a href="#" class="d-flex align-items-center">
-                  <div class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
-                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-dd-application.svg" alt="" class="img-fluid" width="24" height="24">
-                  </div>
-                  <div class="d-inline-block">
-                    <h6 class="mb-1 bg-hover-primary">Notes Application</h6>
-                    <span class="fs-2 d-block fw-normal text-muted">To-do and Daily tasks</span>
-                  </div>
-                </a>
-              </li>
-              <ul class="px-8 mt-7 mb-4">
-                <li class="sidebar-item mb-3">
-                  <h5 class="fs-5 fw-semibold">Quick Links</h5>
-                </li>
-                <li class="sidebar-item py-2">
-                  <a class="fw-semibold text-dark" href="#">Pricing Page</a>
-                </li>
-                <li class="sidebar-item py-2">
-                  <a class="fw-semibold text-dark" href="#">Authentication Design</a>
-                </li>
-                <li class="sidebar-item py-2">
-                  <a class="fw-semibold text-dark" href="#">Register Now</a>
-                </li>
-                <li class="sidebar-item py-2">
-                  <a class="fw-semibold text-dark" href="#">404 Error Page</a>
-                </li>
-                <li class="sidebar-item py-2">
-                  <a class="fw-semibold text-dark" href="#">Notes App</a>
-                </li>
-                <li class="sidebar-item py-2">
-                  <a class="fw-semibold text-dark" href="#">User Application</a>
-                </li>
-                <li class="sidebar-item py-2">
-                  <a class="fw-semibold text-dark" href="#">Account Settings</a>
-                </li>
-              </ul>
-            </ul>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="app-chat.html" aria-expanded="false">
-              <span>
-                <i class="ti ti-message-dots"></i>
-              </span>
-              <span class="hide-menu">Chat</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="app-calendar.html" aria-expanded="false">
-              <span>
-                <i class="ti ti-calendar"></i>
-              </span>
-              <span class="hide-menu">Calendar</span>
-            </a>
-          </li>
-          <li class="sidebar-item">
-            <a class="sidebar-link" href="app-email.html" aria-expanded="false">
-              <span>
-                <i class="ti ti-mail"></i>
-              </span>
-              <span class="hide-menu">Email</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </div>
+  <nav class="sidebar-nav scroll-sidebar">
+    <div class="offcanvas-header justify-content-between">
+      <img width="200" src="{{asset('assets/hummas.png')}}" alt="" class="img-fluid">
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body profile-dropdown mobile-navbar" data-simplebar="" data-simplebar>
+      <ul id="sidebarnav">
+        <li class="sidebar-item">
+          <a class="sidebar-link nav-link {{ request()->routeIs('dashboard-admin') ? 'active' : '' }}" href="{{ route('dashboard-admin') }}" aria-expanded="false">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M3 3h8v8H3V3Zm2 2v4v-4Zm8-2h8v8h-8V3Zm2 2v4v-4ZM3 13h8v8H3v-8Zm2 2v4v-4Zm11-2h2v3h3v2h-3v3h-2v-3h-3v-2h3v-3Zm-1-8v4h4V5h-4ZM5 5v4h4V5H5Zm0 10v4h4v-4H5Z" />
+              </svg>
+            </span>
+            <span class="hide-menu">Dashboard</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link nav-link {{ request()->routeIs('approval') ? 'active' : '' }}" href="{{ route('approval') }}" aria-expanded="false">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M22 5.18L10.59 16.6l-4.24-4.24l1.41-1.41l2.83 2.83l10-10L22 5.18zm-2.21 5.04c.13.57.21 1.17.21 1.78c0 4.42-3.58 8-8 8s-8-3.58-8-8s3.58-8 8-8c1.58 0 3.04.46 4.28 1.25l1.44-1.44A9.9 9.9 0 0 0 12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10c0-1.19-.22-2.33-.6-3.39l-1.61 1.61z" />
+              </svg>
+            </span>
+            <span class="hide-menu">Approval</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link nav-link {{ request()->routeIs('pekerja') ? 'active' : '' }}" href="{{ route('pekerja') }}" aria-expanded="false">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12 6c1.1 0 2 .9 2 2s-.9 2-2 2s-2-.9-2-2s.9-2 2-2m0 10c2.7 0 5.8 1.29 6 2H6c.23-.72 3.31-2 6-2m0-12C9.79 4 8 5.79 8 8s1.79 4 4 4s4-1.79 4-4s-1.79-4-4-4zm0 10c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+              </svg>
+            </span>
+            <span class="hide-menu">Pekerja</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link nav-link {{ request()->routeIs('pekerja-ditolak') ? 'active' : '' }}" href="{{ route('pekerja-ditolak') }}" aria-expanded="false">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8c1.85 0 3.55.63 4.9 1.69L5.69 16.9A7.902 7.902 0 0 1 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1A7.902 7.902 0 0 1 20 12c0 4.42-3.58 8-8 8z" />
+              </svg>
+            </span>
+            <span class="hide-menu">Pekerja Ditolak</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link nav-link {{ request()->routeIs('lowogan.index') ? 'active' : '' }}" href="{{ route('lowongan.index') }}" aria-expanded="false">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                <path fill="currentColor" d="m11.99 18.54l-7.37-5.73L3 14.07l9 7l9-7l-1.63-1.27zM12 16l7.36-5.73L21 9l-9-7l-9 7l1.63 1.27L12 16zm0-11.47L17.74 9L12 13.47L6.26 9L12 4.53z" />
+              </svg>
+            </span>
+            <span class="hide-menu">Lowongan</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
