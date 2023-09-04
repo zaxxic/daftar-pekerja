@@ -50,14 +50,26 @@
                 text: "{{ session('success') }}",
             });
         </script>
+        <style>
+            @media (max-width: 767px) {
+                .gambar {
+                    display: none;
+                    /* Menyembunyikan gambar dengan class "gambar" */
+                }
+
+                .wadah {
+                    margin-top: 250px;
+                }
+            }
+        </style>
     @endif
     <div id="root" class="min-h-100vh d-flex flex-column bg-light">
 
         <div class="container mt-5 bg-light">
             <div class="row align-items-center bg-light">
                 <div class="col-lg-6">
-                    <img class="w-100" style="margin-left: -10%;" src="{{ asset('assets/loginn.svg') }}"
-                        alt="image">
+                    <img class="w-100 gambar d-none d-md-block" style="margin-left: -10%;"
+                        src="{{ asset('assets/loginn.svg') }}" alt="image">
                 </div>
                 <div class="col-lg-6 shadow bg-white p-5">
                     <div class="text-center mt-2">
@@ -65,7 +77,7 @@
                             Selamat Datang
                         </h2>
                         <p class="text-slate-400 dark:text-navy-300">
-                            di Hummasoft Technology
+                            di Hummatech Technology
                         </p>
                     </div>
 

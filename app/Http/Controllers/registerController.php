@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\JenisKelaminEnum;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
 class registerController extends Controller
 {
@@ -24,7 +25,10 @@ class registerController extends Controller
                 'name' => 'required',
                 'email' => 'required|unique:users,email',
                 'alamat' => 'required',
-                'jenis_kelamin' => 'required',
+                'jenis_kelamin' => ['required', 'in:' . implode(',', [
+                    JenisKelaminEnum::LAKI_LAKI,
+                    JenisKelaminEnum::PEREMPUAN,
+                ])],
                 'no_telp' => 'required|numeric|regex:/^\d*$/',
                 'cv' => 'required|mimes:pdf',
                 'lamaran' => 'required|mimes:pdf',
@@ -33,7 +37,7 @@ class registerController extends Controller
             ],
             [
                 'name.required' => 'Nama Wajib Diisi',
-                'alamat.rewuired' => 'Alamat wajib di isi',
+                'alamat.required' => 'Alamat wajib di isi',
                 'email.required' => 'Email Wajib Diisi',
                 'email.unique' => 'Email Sudah Terdaftar',
                 'jenis_kelamin.required' => 'Jenis Kelamin Wajib Diisi',
@@ -49,6 +53,7 @@ class registerController extends Controller
                 'password.required' => 'Password harus di isi',
                 'password.min' => 'Password minimal 6 huruf',
                 'password.confirmed' => 'Konfirmasi kata sandi tidak sesuai.',
+                'jenis_kelamin.in' => 'Pilih salah satu dari "laki-laki" atau "perempuan" untuk jenis kelamin.',
             ]
         );
 
