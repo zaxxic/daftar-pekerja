@@ -28,7 +28,7 @@ class dashboardUserController extends Controller
 
         $selectedDivision = $request->input('division', 'semua');
         if($request->cari){
-            $lowongan = Vacancy::where('devisi_id', $request->cari)->paginate(5);
+            $lowongan = Vacancy::where('devisi_id', $request->cari)->where('status', 'aktif')->paginate(5);
             $divisi = Division::all();
             return view('user.lowongan', compact('lowongan', 'divisi', 'selectedDivision'));
         }
@@ -53,10 +53,11 @@ class dashboardUserController extends Controller
             return $query->whereHas('division', function ($subQuery) use ($selectedDivision) {
                 $subQuery->where('divisi', $selectedDivision);
             });
-        })->get();
+        })->latest()->paginate(5);
+        $registration = Registration::where('users_id', Auth()->User()->id)->where('status', 'menunggu')->latest()->paginate(5);
 
         $divisi = Division::all();
 
-        return view('user.index', compact('lowongan', 'divisi', 'selectedDivision'));
+        return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration'));
     }
 }
