@@ -45,7 +45,9 @@
                             <td>
 
                                 <div class="d-flex align-items-center">
-                                    <img src="{{ asset('foto_user/' .  $row->User->foto) }}" class="rounded-circle" width="40" height="40" />
+                                    <div style="border-radius: 50%; overflow: hidden; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center;">
+                                        <img src="{{ asset('foto_user/'. $row->User->foto) }}" style="max-width: 150%; max-height: 150%;" alt="" />
+                                    </div>
                                     <div class="ms-3">
                                         <h6 class="fs-4 fw-semibold mb-0">{{ $row->User->name }}</h6>
                                     </div>
@@ -115,8 +117,8 @@
     </div>
 </div>
 @foreach ($user as $item )
-  <!-- Modal -->
-  <div class="modal fade" id="acc-user-{{ $item->User->id }}" tabindex="-1" aria-labelledby="exampleModalLabel1">
+<!-- Modal -->
+<div class="modal fade" id="acc-user-{{ $item->User->id }}" tabindex="-1" aria-labelledby="exampleModalLabel1">
     <div class="modal-dialog" role="document">
 
         <form action="acc/{{ $item->User->id }}" method="POST" id="pesan_terima">
@@ -207,7 +209,9 @@
             <div class="modal-body col-lg-12" style="height: auto">
                 <div class="d-flex">
                     <div class="col-lg-4">
-                        <img src="{{ asset('foto_user/' .  $item->User->foto) }}" class="rounded-circle" width="180" height="180" />
+                    <div style="border-radius: 50%; overflow: hidden; width: 180px; height: 180px; display: flex; justify-content: center; align-items: center;">
+                                    <img src="{{ asset('foto_user/'. $row->User->foto) }}" style="max-width: 150%; max-height: 150%;" alt="" />
+                                </div>
                     </div>
                     <div class="col-lg-8">
                         <div class="card">
