@@ -28,7 +28,7 @@ class ResetPasswordMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('vendor.mail.password-reset');
+        return $this->markdown('auth.password.reset');
     }
     
     /**
@@ -47,7 +47,7 @@ class ResetPasswordMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.reset-password',
+            view: 'auth.password.reset',
         );
     }
 
