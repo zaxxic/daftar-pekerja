@@ -161,20 +161,20 @@
                                         pdf)<span style="color: red;">*</span></label>
                                     <div class="col-md-4 col-4">
                                         <div class="mb-3">
-                                            <button id="cv" name="cv"
+                                            <button id="cv" name="cv" type="button"
                                                 class="btn btn-primary col-12">cv</button>
                                             <input type="file" name="cv" hidden id="file_cv">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-4">
                                         <div class="mb-3">
-                                            <button id="lamaran" class="btn btn-primary col-12">Lamaran</button>
+                                            <button id="lamaran" class="btn btn-primary col-12" type="button">Lamaran</button>
                                             <input type="file" name="lamaran" hidden id="file_lamaran">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-4">
                                         <div class="mb-3">
-                                            <button id="foto" class="btn btn-primary col-12">Foto</button>
+                                            <button id="foto" class="btn btn-primary col-12" type="button">Foto</button>
                                             <input type="file" name="foto" hidden id="file_foto">
                                         </div>
                                     </div>
@@ -273,7 +273,7 @@
 
 
                     <!--  Import Js Files -->
-                    <script src="{{ asset('assets/dist/libs/jquery/dist/jquery.min.js') }}"></script>
+                    {{-- <script src="{{ asset('assets/dist/libs/jquery/dist/jquery.min.js') }}"></script>
                     <script src="{{ asset('assets/dist/libs/simplebar/dist/simplebar.min.js') }}"></script>
                     <script src="{{ asset('assets/dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
                     <!--  core files -->
@@ -282,7 +282,7 @@
                     <script src="{{ asset('assets/dist/js/app-style-switcher.js') }}"></script>
                     <script src="{{ asset('assets/dist/js/sidebarmenu.js') }}"></script>
 
-                    <script src="{{ asset('assets/dist/js/custom.js') }}"></script>
+                    <script src="{{ asset('assets/dist/js/custom.js') }}"></script> --}}
 </body>
 
 <!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/authentication-login2.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Jul 2023 02:01:04 GMT -->
