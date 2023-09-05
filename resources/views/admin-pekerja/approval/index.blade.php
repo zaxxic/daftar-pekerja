@@ -18,7 +18,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="mb-3 d-flex justify-content-end col-md-6 lg-6">
+                    <div class="mb-3 d-flex justify-content-end col-md-6 lg-6 mt-3">
                         <form id="form_filter">
                             <div class="mb-3 d-flex">
                                 <select id="filter" name="filter" class="form-select me-3">
