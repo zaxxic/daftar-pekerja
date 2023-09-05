@@ -31,6 +31,9 @@
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="assets1/css/responsive.css">
 
+    <link id="themeColors" rel="stylesheet" href="assets/dist/css/style.min.css" />
+    <link rel="stylesheet" href="assets/dist/libs/select2/dist/css/select2.min.css">
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
@@ -101,24 +104,34 @@
     <section class="employers-listing-area ptb-100" style="direction: ltr;">
         <div class="container">
             <div class="row">
-                <label>Cari Berdasarkan Divisi</label>
-                <div class="col-5">
-                    <div class="form-group ">
-                        <form action="" class="d-flex gap-5">
-                            <select class="select2 form-control" id="division-select" name="division"
-                                style="height: 50px; padding: 20px;">
-                                <option value="" @if (!$selectedDivision) selected @endif>Semua</option>
-                                @foreach ($divisi as $item)
-                                    <option value="{{ $item->id }}" name="cari" selected
-                                        @if ($selectedDivision === $item->id) selected @endif>
-                                        {{ $item->divisi }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <button class="default-btn mb-5" style="padding:7px; margin-left: -45px;"
-                                type="submit">cari</button>
+                <label class="fs-5 fw-bold">Cari Berdasarkan Divisi :</label>
+                <div class="col-6">
+                    <div class="form-group">
+                        <form action="" class="search-form d-flex">
+                            <div class="form-group">
+                                <div style="width: 360px;"> <!-- Mengatur lebar form secara keseluruhan -->
+                                    <select class="select2 form-control me-2" id="division-select" name="division"
+                                        style="width: 100%; height: 360px; margin-right: 10px;">
+                                        <!-- Mengatur width, height, dan margin -->
+                                        <option value="" @if (!$selectedDivision) selected @endif>Semua
+                                        </option>
+                                        @foreach ($divisi as $item)
+                                            <option value="{{ $item->id }}"
+                                                @if ($selectedDivision == $item->id) selected @endif>
+                                                {{ $item->divisi }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="default-btn ms-1" type="submit"
+                                style="height: 34px; display: flex; align-items: center;">
+                                <span>Cari Divisi</span>
+                            </button>
+
                         </form>
                     </div>
+
                 </div>
 
                 {{-- <script>
@@ -386,8 +399,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
         src="
-                                                                                                                                                                                                                                                                                                    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                                                                                                                                                                                                                                                                                    ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                            https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                                                                                                                                                                                                                                                                                                                                                                                                            ">
     </script>
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
