@@ -256,9 +256,12 @@
                             @endforelse
                             <div class="col-12">
                                 <div class="pagination-area">
+                                    @if ($cek > 0)
+                                        <button class="default-btn"><a href="{{ route('lowongan-user', $item->id) }}"
+                                                class="text-white">Lihat Selengkapnya</a></button>
+                                    @endif
                                     {{-- {{ $lowongan->links() }} --}}
-                                    <button class="default-btn"><a href="{{ route('lowongan-user', $item->id) }}"
-                                            class="text-white">Lihat Selengkapnya</a></button>
+
                                 </div>
                             </div>
                         </div>
@@ -462,8 +465,8 @@
     <script src="assets1/js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="
-                                        https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                        "></script>
+                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                "></script>
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
     " rel="stylesheet">

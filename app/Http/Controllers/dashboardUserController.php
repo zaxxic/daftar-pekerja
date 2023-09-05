@@ -21,7 +21,8 @@ class DashboardUserController extends Controller
         $registration = Registration::where('users_id', Auth()->User()->id)->where('status', 'menunggu')->latest()->paginate(5);
         $lowongan = Vacancy::where('status', 'aktif')->whereDate('batas', '>=', Carbon::today())->latest()->paginate(5);
         $divisi = Division::all();
-        return view('user.index', compact('lowongan', 'divisi','selectedDivision','registration'));
+        $cek = Vacancy::where('status', 'aktif')->count();
+        return view('user.index', compact('lowongan', 'divisi','selectedDivision','registration', 'cek'));
     }
 
     public function lowongan(Request $request){
