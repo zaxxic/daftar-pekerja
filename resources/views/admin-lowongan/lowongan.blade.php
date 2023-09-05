@@ -81,35 +81,42 @@
                 <div class="card">
                     <div class="card-header bg-info d-flex align-items-center">
                         <h4 class="card-title text-white mb-0">{{ $item->judul }}</h4>
-                        <div class="card-actions cursor-pointer ms-auto d-flex button-group">
-                            <a href="{{ route('lowongan.edit', $item->id) }}" class="text-warning"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="26" class="text-white me-1" height="26"
-                                    viewBox="0 0 24 24">
-                                    <path fill="none" stroke="currentColor" strok e-linecap="round"
-                                        stroke-linejoin="round" stroke-width="2"
-                                        d="M4 20h4L18.5 9.5a2.828 2.828 0 1 0-4-4L4 16v4m9.5-13.5l4 4" />
-                                </svg></a>
-                            <form action="{{ route('lowongan.destroy', $item->id) }}" method="POST"
-                                style="display: inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submitx" class="text-danger delete-button me-1"
-                                    style="background: none; border: none; padding: 0;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" class="text-white me-1"
-                                        height="26" viewBox="0 0 24 24">
-                                        <path fill="none" stroke="currentColor" stroke-linecap="round"
-                                            stroke-linejoin="round" stroke-width="2"
-                                            d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3" />
-                                    </svg>
-                                </button>
-                            </form>
+                        <div class="ms-auto">
+                            <div class="dropdown dropstart">
+                              <a href="#" class="link text-dark" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="fs-7">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="text-white" viewBox="0 0 21 21"><g fill="currentColor" fill-rule="evenodd"><circle cx="10.5" cy="10.5" r="1"/><circle cx="10.5" cy="5.5" r="1"/><circle cx="10.5" cy="15.5" r="1"/></g></svg>
+                                </i>
+                              </a>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li class="d-flex">
+                                    <a href="{{ route('lowongan.edit', $item->id) }}" class="dropdown-item text-warning">
 
-                            <a href="{{ route('lowongan.show', $item->id) }}" class="text-info"><svg
-                                    xmlns="http://www.w3.org/2000/svg" class="text-white" width="26" height="26"
-                                    viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M12 6.5a9.77 9.77 0 0 1 8.82 5.5c-1.65 3.37-5.02 5.5-8.82 5.5S4.83 15.37 3.18 12A9.77 9.77 0 0 1 12 6.5m0-2C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 5a2.5 2.5 0 0 1 0 5a2.5 2.5 0 0 1 0-5m0-2c-2.48 0-4.5 2.02-4.5 4.5s2.02 4.5 4.5 4.5s4.5-2.02 4.5-4.5s-2.02-4.5-4.5-4.5z" />
-                                </svg></a>
+                                    Edit
+                                    </a>
+                                </li>
+                                <li class="d-flex">
+                                    <form action="{{ route('lowongan.destroy', $item->id) }}" method="POST"
+                                        style="display: inline;" class="dropdown-item">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submitx" class=" delete-button me-1 dropdown-item text-danger"
+                                            style="background: none; border: none; padding: 0;">
+
+                                            Hapus
+                                        </button>
+                                    </form>
+                                </li>
+                                <li class="d-flex">
+                                    <a href="{{ route('lowongan.show', $item->id) }}" class="dropdown-item text-primary">
+
+                                    Detail
+                                    </a>
+                                </li>
+
+                              </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body collapse show">

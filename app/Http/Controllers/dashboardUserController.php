@@ -63,7 +63,7 @@ class DashboardUserController extends Controller
         $registration = Registration::where('users_id', Auth()->User()->id)->where('status', 'menunggu')->latest()->paginate(3);
 
         $divisi = Division::all();
-
-        return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration'));
+        $cek = Vacancy::where('status', 'aktif')->count();
+        return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration', 'cek'   ));
     }
 }
