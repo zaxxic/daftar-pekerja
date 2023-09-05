@@ -181,7 +181,7 @@
                                     <li class="mb-2 mt-2"><span>Tanggal Wanwancara :</span>
                                         {{ $item->User->tanggal_wawancara }}
                                     </li>
-                                    <li class="mb-2"><span>Gaji :</span> {{ $item->Vacancy->gaji }}</li>
+                                    <li class="mb-2"><span>Posisi :</span>{{ $item->pekerja }}</li>
                                     <li class="mb-2"><span>Slot Tersedia : </span> {{ $item->Vacancy->slot }}</li>
                                     <div class="d-flex justify-content-between">
                                         <li class="mb-2"><span>Tipe Kerja : </span>{{ $item->Vacancy->tipe }}</li>
@@ -223,13 +223,14 @@
                                                         </p>
                                                     </div>
                                                     <span
-                                                        class="sub-title text-primary mb-1">{{ $item->Division->divisi }}
+                                                        class="sub-title text-primary mb-3">{{ $item->Division->divisi }}
                                                     </span>
                                                     <ul>
-                                                        <li><span>Gaji
-                                                                :</span>{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}
+                                                        <li class="mb-3"><span>Posisi
+                                                                :</span>{{ $item->pekerja }}
                                                         </li>
-                                                        <li><span>Slot Tersedia : </span>{{ $item->slot }}</li>
+                                                        <li class="mb-3"><span>Slot Tersedia :
+                                                            </span>{{ $item->slot }}</li>
                                                         <div class="d-flex justify-content-between">
                                                             <li><span>Tipe Kerja : </span>{{ $item->tipe }}</li>
                                                             <li class="ml-auto" style="margin-left: 300px;"><button
@@ -255,7 +256,9 @@
                             @endforelse
                             <div class="col-12">
                                 <div class="pagination-area">
-                                    {{ $lowongan->links() }}
+                                    {{-- {{ $lowongan->links() }} --}}
+                                    <button class="default-btn"><a href="{{ route('lowongan-user', $item->id) }}"
+                                            class="text-white">Lihat Selengkapnya</a></button>
                                 </div>
                             </div>
                         </div>
@@ -459,8 +462,8 @@
     <script src="assets1/js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="
-        https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-        "></script>
+                                        https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                        "></script>
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
     " rel="stylesheet">

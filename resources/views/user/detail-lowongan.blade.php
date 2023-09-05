@@ -126,13 +126,12 @@
                             <div class="col-lg-12">
                                 <div class="hot-jobs-content">
                                     <div class="d-flex justify-content-between" style="color: black">
-                                        <h3><a href="">{{ $lowongan->judul }}</a></h3>
+                                        <h3 class="mb-3"><a href="">{{ $lowongan->judul }}</a></h3>
                                     </div>
-                                    <span class="sub-title text-primary mb-1">{{ $lowongan->Division->divisi }}</span>
+                                    <span class="sub-title text-primary mb-3">{{ $lowongan->Division->divisi }}</span>
                                     <ul class="overview">
-                                        <li><span>Gaji :</span>{{ 'Rp ' . number_format($lowongan->gaji, 0, ',', '.') }}
-                                        </li>
-                                        <li><span>Slot Tersedia : </span> {{ $lowongan->slot }}</li>
+                                        <li class="mb-3"><span>Posisi : </span> {{ $lowongan->pekerja }}</li>
+                                        <li class="mb-3"><span>Slot Tersedia : </span> {{ $lowongan->slot }}</li>
                                         <div class="d-flex justify-content-between">
                                             <li><span>Tipe Kerja : </span>{{ $lowongan->tipe }}</li>
                                             <div class="d-flex justify-content-end  ">
