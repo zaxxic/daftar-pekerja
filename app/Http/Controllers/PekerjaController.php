@@ -35,7 +35,7 @@ class PekerjaController extends Controller
             $user = Registration::whereRelation('User', function ($query) use ($keyword) {
                 $query->where('devision_id', 'LIKE', '%' . $keyword . '%');
             })->where('status', 'diterima') // Tampilkan hanya status bukan "disetujui"
-            ->paginate(8);
+            ->paginate(1);
 
             // dd($user);
             $value_filter = $keyword;
