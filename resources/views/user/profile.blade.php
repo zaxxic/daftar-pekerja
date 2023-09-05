@@ -168,7 +168,7 @@
                                                 @enderror
                                             </div>
                                             <a  data-bs-toggle="modal"
-                                            data-bs-target="#detail-lamaran-{{ Auth()->User()->lamaran }}" class="btn btn-primary d-flex  " style="padding: 0; font-size:80%, align-items:center;" >Lihat Lamaran</a>
+                                            data-bs-target="#detail-lamaran-{{ Auth()->User()->lamaran }}" class="btn btn-primary" >Lihat Lamaran</a>
                                         </div>
                                     </div>
                                     <div class="mb-4">

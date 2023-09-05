@@ -25,7 +25,8 @@ class DashboardUserController extends Controller
             $vacancy->update(['status' => 'nonaktif']);
         }
         $divisi = Division::all();
-        return view('user.index', compact('lowongan', 'divisi','selectedDivision','registration'));
+        $cek = Vacancy::where('status', 'aktif')->count();
+        return view('user.index', compact('lowongan', 'divisi','selectedDivision','registration', 'cek'));
     }
 
     public function lowongan(Request $request){
