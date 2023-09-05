@@ -48,15 +48,8 @@
             text: "{{ session('success') }}",
         });
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                icon: 'success',
-                title: 'Sukses',
-                text: 'Berhasil mereset password.',
-            });
-        });
-    </script>
+
+
     <style>
         @media (max-width: 767px) {
             .gambar {
@@ -69,6 +62,15 @@
             }
         }
     </style>
+    @endif
+    @if(session('reset'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Sukses',
+            text: "{{ session('reset') }}",
+        });
+    </script>
     @endif
     <div id="root" class="min-h-100vh d-flex flex-column bg-light">
 

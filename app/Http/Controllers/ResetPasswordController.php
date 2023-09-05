@@ -49,7 +49,7 @@ class ResetPasswordController extends Controller
         );
 
         if ($response == Password::PASSWORD_RESET) {
-            return redirect()->route('login')->with('success', trans($response));
+            return redirect()->route('login')->with('reset', 'Berhasil, memperbarui password.');
         } else {
             return back()->withErrors(['email' => trans($response)]);
         }

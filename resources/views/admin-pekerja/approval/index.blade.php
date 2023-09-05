@@ -22,10 +22,10 @@
                                 <h6 class="fs-4 fw-semibold mb-0">User</h6>
                             </th>
                             <th>
-                                <h6 class="fs-4 fw-semibold mb-0">No.Handphone</h6>
+                                <h6 class="fs-4 fw-semibold mb-0">Divisi</h6>
                             </th>
                             <th>
-                                <h6 class="fs-4 fw-semibold mb-0">Jenis Kelamin</h6>
+                                <h6 class="fs-4 fw-semibold mb-0">Posisi</h6>
                             </th>
                             <th>
                                 <h6 class="fs-4 fw-semibold mb-0">CV</h6>
@@ -54,10 +54,10 @@
                                 </div>
                             </td>
                             <td>
-                                <p class="mb-0 fw-normal">{{ $row->User->no_telp }}</p>
+                                <p class="mb-0 fw-normal">{{ $row->Vacancy->Division->divisi }}</p>
                             </td>
                             <td>
-                                <p class="mb-0 fw-normal">{{ $row->User->jenis_kelamin }}</p>
+                                <p class="mb-0 fw-normal">{{ $row->Vacancy->pekerja }}</p>
                             </td>
                             <td>
                                 <a data-bs-toggle="modal" data-bs-target="#detail-cv-{{ $row->User->cv }}" class="btn btn-primary">CV</a>
@@ -245,6 +245,17 @@
                                     <span style="font-weight: 600;">Alamat:</span>
                                     <span class="ms-2">{{ $item->User->alamat }}</span>
                                 </div>
+                                <div class="d-flex mb-1">
+                                    <span style="font-weight: 600;">Divisi:</span>
+                                    <span class="ms-2">{{ $item->Vacancy->Division->divisi }}</span>
+                                </div>
+                                <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                <div class="d-flex mb-1">
+                                    <span class="me-3" style="font-weight: 600;">Posisi
+                                        :</span>
+                                    <span>{{ $item->Vacancy->pekerja }}</span>
+                                </div>
+                                <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
 
                                 <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                             </div>
@@ -276,17 +287,17 @@
 <div class="modal fade" id="detail-cv-{{$row->User->cv}}" tabindex="-1" aria-labelledby="detail-cv-{{$row->User->cv}}" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Cv pekerja</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <embed src="{{ asset('cv/' . $row ->User->cv) }}" type="application/pdf" width="100%" height="100%">
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-            {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
-        </div>
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Cv pekerja</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <embed src="{{ asset('cv/' . $row ->User->cv) }}" type="application/pdf" width="100%" height="100%">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+            </div>
         </div>
     </div>
 </div>
