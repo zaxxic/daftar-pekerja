@@ -147,9 +147,8 @@
                                     @endforeach
                                 </select>
                             </div>
-
                             <button type="submit" class="default-btn">
-                                Search
+                                Cari Devisi
                             </button>
                         </form>
                     </div>

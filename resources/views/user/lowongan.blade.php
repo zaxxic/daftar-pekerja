@@ -78,6 +78,9 @@
             /* Sesuaikan ukuran padding sesuai keinginan */
             box-sizing: border-box;
         }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            height: 120px; /* Sesuaikan tinggi sesuai kebutuhan Anda */
+        }
     </style>
 
     <!-- Start Page Title Area -->
@@ -110,8 +113,8 @@
                         <form action="" class="search-form d-flex">
                             <div class="form-group">
                                 <div style="width: 360px;"> <!-- Mengatur lebar form secara keseluruhan -->
-                                    <select class="select2 form-control me-2" id="division-select" name="division"
-                                        style="width: 100%; height: 360px; margin-right: 10px;">
+                                    <select class="select2 " id="division-select" name="division"
+                                        style="width: 100%; height:  margin-right: 10px;">
                                         <!-- Mengatur width, height, dan margin -->
                                         <option value="" @if (!$selectedDivision) selected @endif>Semua
                                         </option>
@@ -125,8 +128,8 @@
                                 </div>
                             </div>
                             <button class="default-btn ms-1" type="submit"
-                                style="height: 34px; display: flex; align-items: center;">
-                                <span>Cari Divisi</span>
+                                style="height: 20px; display: flex; align-items: center;">
+                                <span style="font-size: 10px">Cari Divisi</span>
                             </button>
 
                         </form>
