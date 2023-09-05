@@ -29,30 +29,26 @@ class DetailLowonganController extends Controller
      */
     public function store(Request $request)
     {
-        $vacancy = Vacancy::findOrFail($request->id);
 
-        if ($vacancy->slot > 0) {
-            $cek = Registration::where('users_id', Auth()->user()->id)
-                ->whereIn('status', ['diterima', 'menunggu'])
-                ->exists();
 
-            if ($cek) {
-                return response()->json(['status' => 'sudah']);
-            }
+        $cek = Registration::where('users_id', Auth()->user()->id)
+            ->whereIn('status', ['diterima', 'menunggu'])
+            ->exists();
 
-            Registration::create([
-                'status' => 'menunggu',
-                'users_id' => Auth()->user()->id,
-                'vacancie_id' => $request->id
-            ]);
-
-            // Kurangi jumlah slot yang tersedia
-            $vacancy->decrement('slot');
-
-            return response()->json(['status' => 'sukses']);
-        } else {
-            return response()->json(['status' => 'penuh']);
+        if ($cek) {
+            return response()->json(['status' => 'sudah']);
         }
+
+        Registration::create([
+            'status' => 'menunggu',
+            'users_id' => Auth()->user()->id,
+            'vacancie_id' => $request->id
+        ]);
+
+        // Kurangi jumlah slot yang tersedia
+        // $vacancy->decrement('slot');
+
+     
     }
 
     /**

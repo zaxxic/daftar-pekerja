@@ -8,6 +8,7 @@ use App\Models\Division;
 use Carbon\Carbon;
 
 use App\Http\Requests\UpdateLowonganRequest;
+use App\Models\Registration;
 use App\Models\User;
 
 class LowonganController extends Controller
@@ -192,6 +193,7 @@ class LowonganController extends Controller
      */
     public function active(Request $request, string $id)
     {
+
         $data = Vacancy::find($id);
         $data->update([
             'status' => 'aktif',
@@ -205,6 +207,11 @@ class LowonganController extends Controller
      */
     public function nonactive(Request $request, string $id)
     {
+        $registation = Registration::where('vacancie_id', $id)->where('status', 'menunggu')->first();
+        
+        $registation->delete();
+
+
         $data = Vacancy::find($id);
         $data->Update([
             'status' => 'nonaktif'

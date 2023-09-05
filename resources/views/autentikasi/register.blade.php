@@ -181,6 +181,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                @if($errors->has('cv') || $errors->has('lamaran') || $errors->has('foto'))
+                                    <div class="text-danger">Mohon untuk mengisi ulang formulir yang ada dan jangan mengosongkan kolom-kolom yang wajib diisi.</div>
+                                @endif
+                                <span id="error_cv" class="text-danger"></span> <br>
+                                <span id="error_lamaran" class="text-danger"></span> <br>
+                                <span id="error_foto" class="text-danger"></span>
                                 <div class="row mb-3">
                                     @error('cv')
                                         <div class="text-danger">{{ $message }}</div>
@@ -237,7 +243,7 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary w-100 py-2 mb-4 rounded-2">Daftar
+                                <button type="submit" id="daftar" class="btn btn-primary w-100 py-2 mb-4 rounded-2">Daftar
                                     Sekarang</button>
                                 <div class="d-flex align-items-center">
                                     <p class="fs-4 mb-0 text-dark">
@@ -251,20 +257,79 @@
                                 $(document).ready(function() {
                                     $('#cv').click(function() {
                                         $('#file_cv').trigger('click');
+                                        $('#file_cv').on('change', function() {
+                                        // Memeriksa apakah input file 'file_cv' memiliki nilai (file telah dipilih)
+                                        if ($(this).val()) {
+                                            var filename = $(this).val();
+                                            var fileExtension = filename.split('.').pop().toLowerCase();
+                                            if (fileExtension === 'pdf') {
+                                                $('#cv').css('background-color', 'green');
+                                                $('#error_cv').html('');
+                                            } else {
+                                                $('#cv').css('background-color', 'red');
+                                                $('#error_cv').html('isikan file CV dengan format yang sesuai (PDF)');
+
+
+
+                                            }
+                                        } else {
+                                            $('#cv').css('background-color', '');
+                                        }
+                                    });
+
                                     })
                                 })
-
                                 $(document).ready(function() {
                                     $('#lamaran').click(function() {
                                         $('#file_lamaran').trigger('click');
+                                        $('#file_lamaran').on('change', function() {
+                                        // Memeriksa apakah input file 'file_lamaran' memiliki nilai (file telah dipilih)
+                                        if ($(this).val()) {
+                                            var filename = $(this).val();
+                                            var fileExtension = filename.split('.').pop().toLowerCase();
+                                            if (fileExtension === 'pdf') {
+                                                $('#lamaran').css('background-color', 'green');
+                                                $('#error_lamaran').html('');
+                                            } else {
+                                                $('#lamaran').css('background-color', 'red');
+                                                $('#error_lamaran').html('isikan file lamaran dengan format yang sesuai (PDF)');
+
+
+                                            }
+                                        } else {
+                                            $('#lamaran').css('background-color', '');
+                                        }
+                                    });
+
                                     })
                                 })
-
                                 $(document).ready(function() {
                                     $('#foto').click(function() {
                                         $('#file_foto').trigger('click');
+                                        $('#file_foto').on('change', function() {
+                                        if ($(this).val()) {
+                                            console.log("foto");
+                                            var filename = $(this).val();
+                                            var fileExtension = filename.split('.').pop().toLowerCase();
+                                            if (['png', 'jpg', 'jpeg'].includes(fileExtension)) {
+                                                $('#foto').css('background-color', 'green');
+                                                $('#error_foto').html('');
+                                            } else {
+                                                $('#foto').css('background-color', 'red');
+                                                $('#error_foto').html('isikan file foto dengan format yang sesuai (jpg,png,jpeg)');
+
+
+
+                                            }
+                                        } else {
+                                            $('#foto').css('background-color', '');
+                                        }
+                                    });
+
                                     })
                                 })
+
+
                             </script>
 
                             <div class="mt-3 text-center">

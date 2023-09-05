@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-12 col-md-6">
                     <label class="mt-5" for="judul">Judul Lowongan </label> <br>
-                    <input class="col-12 col-md-10 rounded-1 form-control" type="text" name="judul"
+                    <input placeholder="judul lowongan" class="col-12 col-md-10 rounded-1 form-control" type="text" name="judul"
                         value="{{ old('judul') }}" id="">
                     @error('judul')
                         <p class="text-danger">{{ $message }}</p>
@@ -32,15 +32,15 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mt-5" for="judul">Batas Lowongan </label> <br>
-                    <input class="col-12 col-md-10 rounded-1 form-control" type="date" name="batas"
+                    <input placeholder="batas lowongan" class="col-12 col-md-10 rounded-1 form-control" type="date" name="batas"
                         value="{{ old('batas') }}" id="">
                     @error('batas')
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="col-12 col-md-6">
-                    <label class="mt-5" for="judul">Pekerjaan </label> <br>
-                    <input class="col-12 col-md-10 rounded-1 form-control" type="text" name="pekerjaan"
+                    <label class="mt-5" for="judul">Posisi </label> <br>
+                    <input placeholder="Posisi" class="col-12 col-md-10 rounded-1 form-control" type="text" name="pekerjaan"
                         value="{{ old('pekerjaan') }}" id="">
                     @error('pekerjaan')
                         <p class="text-danger">{{ $message }}</p>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mt-5" for="judul">Slot</label> <br>
-                    <input class="col-12 col-md-10 rounded-1 form-control" type="number" name="slot" min="0"
+                    <input placeholder="Solt " class="col-12 col-md-10 rounded-1 form-control" type="number" name="slot" min="0"
                         value="{{ old('slot') }}" id="">
                     @error('slot')
                         <p class="text-danger">{{ $message }}</p>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mt-5" for="judul"> Gaji </label> <br>
-                    <input class="col-12 col-md-10 rounded-1 form-control" type="number" name="gaji" min="0"
+                    <input placeholder="Gaji" class="col-12 col-md-10 rounded-1 form-control" type="number" name="gaji" min="0"
                         value="{{ old('gaji') }}" placeholder=" ">
                     @error('gaji')
                         <p class="text-danger">{{ $message }}</p>
@@ -74,7 +74,7 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mt-5" for="judul">Lokasi </label> <br>
-                    <input class="col-12 col-md-10 rounded-1 form-control" type="text" name="lokasi"
+                    <input placeholder="Lokasi" class="col-12 col-md-10 rounded-1 form-control" type="text" name="lokasi"
                         value="{{ old('lokasi') }}" id="">
                     @error('lokasi')
                         <p class="text-danger">{{ $message }}</p>

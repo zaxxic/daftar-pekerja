@@ -58,7 +58,7 @@
                 </div>
                 <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
                 <div class="modal-body">
-                    <div class="row p-3 " id="divisiContainer">
+                    <div class="row  " id="divisiContainer">
 
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                         <form action="{{ route('lowongan.destroy', $item->id) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="button" class="text-danger delete-button" style="background: none; border: none; padding: 0;">
+                            <button type="submitx" class="text-danger delete-button" style="background: none; border: none; padding: 0;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24">
                                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3" />
                                 </svg>
@@ -266,8 +266,8 @@
                         .empty(); // Kosongkan kontainer sebelum menambahkan data baru
                     $.each(response.divisi, function(index, item) {
                         var divisiHtml = `
-                                <div class="col-4 flex justify-content-center">
-                                    <div class="col-12 d-flex justify-content-between border border-2" style="padding: 10px;">
+                                <div class="col-4 flex mb-2  justify-content-center ">
+                                    <div class="col-12 rounded rounded-2  d-flex justify-content-between border border-2" style="padding: 10px;">
                                         ${item.divisi}
                                         <form class="text-danger delete-form" data-id="${item.id}">
                                             @csrf

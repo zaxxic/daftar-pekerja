@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-6">
             <label class="mt-5" for="judul">Judul Lowongan </label> <br>
-            <input class="col-10 form-control" type="text" name="judul" value="{{$lowongan->judul}}" id="">
+            <input placeholder="Judul" class="col-10 form-control" type="text" name="judul" value="{{$lowongan->judul}}" id="">
             @error('judul')
             <p class="text-danger">{{ $message }}</p>
         @enderror
@@ -31,28 +31,28 @@
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">Batas Lowongan </label> <br>
-            <input class="col-10 form-control" type="text" name="batas" value="{{$lowongan->batas}}" id="">
+            <input placeholder="Batas" class="col-10 form-control" type="text" name="batas" value="{{$lowongan->batas}}" id="">
             @error('batas')
             <p class="text-danger">{{ $message }}</p>
         @enderror
         </div>
         <div class="col-6">
-            <label class="mt-5" for="judul">Pekerjaan </label> <br>
-            <input class="col-10 form-control" type="text" name="pekerjaan" value="{{$lowongan->pekerja}}" id="">
+            <label class="mt-5" for="judul">Posisi </label> <br>
+            <input placeholder="Posisi" class="col-10 form-control" type="text" name="pekerjaan" value="{{$lowongan->pekerja}}" id="">
             @error('pekerjaan')
             <p class="text-danger">{{ $message }}</p>
         @enderror
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">Slot</label> <br>
-            <input class="col-10 form-control" type="number" name="slot"  value="{{$lowongan->slot}}" id="">
+            <input placeholder="Slot" class="col-10 form-control" type="number" name="slot"  value="{{$lowongan->slot}}" id="">
             @error('slot')
             <p class="text-danger">{{ $message }}</p>
         @enderror
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul"> Gaji </label> <br>
-            <input class="col-10 form-control" type="number" name="gaji" value="{{$lowongan->gaji}}" id="">
+            <input placeholder="Gaji" class="col-10 form-control" type="number" name="gaji" value="{{$lowongan->gaji}}" id="">
             @error('gaji')
             <p class="text-danger">{{ $message }}</p>
         @enderror
@@ -69,7 +69,7 @@
         </div>
         <div class="col-6">
             <label class="mt-5" for="judul">lokasi </label> <br>
-            <input class="col-10 form-control" type="text" name="lokasi"value="{{$lowongan->lokasi}}" id="">
+            <input placeholder="Lokasi" class="col-10 form-control" type="text" name="lokasi"value="{{$lowongan->lokasi}}" id="">
             @error('lokasi')
             <p class="text-danger">{{ $message }}</p>
         @enderror
@@ -79,7 +79,7 @@
             @error('content')
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
-            <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Masukkan Konten Post">{!!$lowongan->syarat!!}</textarea>            {{-- <input class="col-10 form-control" type="text" name="lokasi" id=""> --}}
+            <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Masukkan Konten Post">{!!$lowongan->syarat!!}</textarea>            {{-- <input placeholder="" class="col-10 form-control" type="text" name="lokasi" id=""> --}}
         </div>
 
     </div>
