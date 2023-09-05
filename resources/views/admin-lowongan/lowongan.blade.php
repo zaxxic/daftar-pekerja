@@ -192,7 +192,7 @@
         <div class="col-lg-12">
             <nav aria-label="Page navigation example" class="mt-3 justify-content-end">
                 <ul class="pagination justify-content-end">
-                    {{ $data->appends(['cari' => request('cari')])->links() }}
+                    {{ $data->appends(['cari' => request('cari')])->onEachSide(1)->links() }}
                 </ul>
             </nav>
         </div>

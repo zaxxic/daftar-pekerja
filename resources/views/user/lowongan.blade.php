@@ -193,7 +193,7 @@
                         @endforelse
                         <div class="col-12">
                             <div class="pagination-area">
-                                {{ $lowongan->links() }}
+                            {{ $lowongan->appends(['cari' => request('cari')])->onEachSide(1)->links() }}
                             </div>
                         </div>
                     </div>
