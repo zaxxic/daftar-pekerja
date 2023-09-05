@@ -76,12 +76,9 @@
                             aria-expanded="false">
                             <div class="d-flex align-items-center">
                                 <div class="user-profile-img">
-                                    <div
-                                        style="width: 35px; height: 35px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px;">
-                                        <img src="{{ asset('assets/dist/images/profile/user-1.jpg') }}"
-                                            style="max-width: 110%; max-height: 110%; vertical-align: middle;"
-                                            alt="" />
-                                    </div>
+                                    
+                                        <img src="{{ asset('assets/logo.png') }}"
+                                           style="width: 35px; height: 35px;"/>
 
 
                                 </div>

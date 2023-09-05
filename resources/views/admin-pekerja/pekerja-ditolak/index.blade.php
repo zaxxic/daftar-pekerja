@@ -8,11 +8,17 @@
     <div class="card w-100 position-relative overflow-hidden">
 
         <div class="card-body p-4">
-            <form action="">
-                <div class="col-3 mb-4 d-flex justify-content-end align-items-center position-relative">
-                    <input type="search" class="form-control mt-3" name="cari" placeholder="Cari pekerja..." style="height: 4%;" value="{{ $keyword }}">
+            <div class="row">
+                <div class="mb-3 d-flex justify-content-start col-md-6 lg-6">
+                    <form action="">
+                        <div class="mb-3 d-flex justify-content-end align-items-center position-relative">
+                            <input type="search" class="form-control mt-3" name="cari" placeholder="Cari Pekerja..." style="height: 4%;" value="{{ $keyword }}">
+                        </div>
+                    </form>
                 </div>
-            </form>
+               
+
+            </div>
 
             <div class="table-responsive rounded-2 mb-4">
                 <table class="table border text-nowrap customize-table mb-0 align-middle">

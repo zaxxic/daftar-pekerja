@@ -7,6 +7,7 @@ use App\Models\Division;
 use App\Models\Registration;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Vacancy;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardUserController extends Controller
@@ -17,8 +18,8 @@ class DashboardUserController extends Controller
     public function index()
     {
         $selectedDivision = 'semua';
-        $registration = Registration::where('users_id', Auth()->User()->id)->where('status', 'menunggu')->latest()->paginate(3);
-        $lowongan = Vacancy::where('status', 'aktif')->latest()->paginate(3);
+        $registration = Registration::where('users_id', Auth()->User()->id)->where('status', 'menunggu')->latest()->paginate(5);
+        $lowongan = Vacancy::where('status', 'aktif')->whereDate('batas', '>=', Carbon::today())->latest()->paginate(5);
         $divisi = Division::all();
         return view('user.index', compact('lowongan', 'divisi','selectedDivision','registration'));
     }

@@ -8,11 +8,54 @@
     <div class="card w-100 position-relative overflow-hidden">
 
         <div class="card-body p-4">
-            <form action="">
-                <div class="col-lg-3 mb-4 d-flex justify-content-end align-items-center position-relative">
-                    <input type="search" class="form-control mt-3 ms-0" name="cari" placeholder="Cari pekerja..." style="height: 4%;" value="{{ $keyword }}">
+            <!-- <div class="col-12 d-flex">
+                <form action="">
+                    <div class="col-lg-3 mb-4 d-flex align-items-center position-relative">
+                        <input type="search" class="form-control mt-3 ms-0" name="cari" placeholder="Cari pekerja..." style="height: 4%;" value="{{ $keyword }}">
+                    </div>
+                </form>
+                <div class="">
+                    <form id="form_filter">
+                        <div class="mb-3 d-flex">
+                            <select id="filter" name="filter" class="form-select me-3">
+                                <option value="">Semua</option>
+                                @foreach ($divisi as $item)
+                                <option value="{{ $item->id }}" @if ($item->id == $value_filter) selected @endif>
+                                    {{ $item->divisi }}
+                                </option>
+                                @endforeach
+                            </select>
+                            <button class="btn btn-primary" style="height: 4%; width: 40%;" type="submit">Cari</button>
+                        </div>
+                    </form>
+
                 </div>
-            </form>
+            </div> -->
+            <div class="row">
+                <div class="mb-3 d-flex justify-content-start col-md-6 lg-6">
+                    <form action="">
+                        <div class="mb-3 d-flex justify-content-end align-items-center position-relative">
+                            <input type="search" class="form-control mt-3" name="cari" placeholder="Cari Pekerja..." style="height: 4%;" value="{{ $keyword }}">
+                        </div>
+                    </form>
+                </div>
+                <div class="mb-3 d-flex justify-content-end col-md-6 lg-6">
+                    <form id="form_filter">
+                        <div class="mb-3 d-flex">
+                            <select id="filter" name="filter" class="form-select me-3">
+                                <option value="">Semua</option>
+                                @foreach ($divisi as $item)
+                                <option value="{{ $item->id }}" @if ($item->id == $value_filter) selected @endif>
+                                    {{ $item->divisi }}
+                                </option>
+                                @endforeach
+                            </select>
+                            <button class="btn btn-primary" style="height: 4%; width: 40%;" type="submit">Cari</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
 
             <div class="table-responsive rounded-2 mb-4">
                 <table class="table border text-nowrap customize-table mb-0 align-middle">
@@ -439,6 +482,15 @@
         searchInput.value = '';
 
         // Selanjutnya, Anda dapat memicu pencarian ulang atau tindakan lain yang sesuai.
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function() {
+        console.log("dokumen siap");
+        $('#filter').click(function() {
+            console.log("awookaowk");
+        });
     });
 </script>
 
