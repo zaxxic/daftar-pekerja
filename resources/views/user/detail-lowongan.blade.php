@@ -167,25 +167,27 @@
                                                                     id="daftar">Daftar</button>
                                                             </li>
                                                         @endif --}}
-                                                        @if ($status === "sudah")
-                                                        <li>
-                                                            <p>Anda sudah mendaftar pada lowongan lain.</p>
-                                                        </li>
-                                                        @elseif ($status === "belum")
+                                                        @if ($status === 'sudah')
+                                                            <li>
+                                                                <p>Anda sudah mendaftar pada lowongan lain.</p>
+                                                            </li>
+                                                        @elseif ($status === 'belum')
                                                             <button type="button" class="btn btn-primary"
-                                                            style="background-color: #2042e3"
-                                                            id="daftar">Daftar</button>
-                                                        @elseif ($status === "disini")
-                                                        <li>
-                                                            <button type="button" class="btn btn-danger"
-                                                                id="batal">Batal</button>
-                                                        </li>
-                                                        @elseif ($status === "diterima_disini")
-                                                        <li>
-                                                            <p>anda di terima di lowongan ini </p>
-                                                        </li>
+                                                                style="background-color: #2042e3"
+                                                                id="daftar">Daftar</button>
+                                                        @elseif ($status === 'disini')
+                                                            <li>
+                                                                <button type="button" class="btn btn-danger"
+                                                                    id="batal">Batal</button>
+                                                            </li>
+                                                        @elseif ($status === 'diterima_disini')
+                                                            <li>
+                                                                <p>anda di terima di lowongan ini </p>
+                                                            </li>
                                                         @else
-                                                        <li><p>anda sudah di terima pada lowongan lain</p></li>
+                                                            <li>
+                                                                <p>anda sudah di terima pada lowongan lain</p>
+                                                            </li>
                                                         @endif
                                                     </div>
 
@@ -250,7 +252,7 @@
                                 </li>
                                 <li>
                                     Gaji
-                                    <span>: {{ $lowongan->gaji }}</span>
+                                    <span>: {{ 'Rp ' . number_format($lowongan->gaji, 0, ',', '.') }}</span>
                                 </li>
                                 <li>
                                     Tipe Kerja

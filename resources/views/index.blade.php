@@ -163,24 +163,15 @@
                 <div class="container-fluid">
                     <div class="row align-items-center mt-3">
                         <div class="col-lg-7">
-                            <div class="banner-content">
+                            <div class="banner-content fs-5">
                                 <h1>Kembangkan Karir Anda Bersama Kami</h1>
                                 <p>Lebih dari 1000++ Orang Telah Bergabung</p>
-
-
-
                             </div>
                         </div>
 
                         <div class="col-lg-5">
                             <div class="banner-img">
-                                <img src="assets1/images/banner/banner-img.png" alt="Image">
-
-                                <div class="video-content">
-                                    <a href="https://www.youtube.com/watch?v=BVnMXNW_grk" class="popup-youtube">
-                                        <i class="flaticon-play-button-1"></i>
-                                    </a>
-                                </div>
+                                <img src="assets1/images/Ip.jpg" alt="Image">
                             </div>
                         </div>
                     </div>
@@ -213,31 +204,17 @@
 
                             </div>
                         </div>
-                        <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                            no sea
-                            takimata sanctus est Lorem ipsum dolor sit amet. consetetur sadipscing elitr, sed
-                            diam nonumy
-                            eirmod tempor invidunt labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+                        <p>Hummasoft merupakan sebuah perusahaan yang bergerak dibidang IT (Information Technology) yang
+                            memiliki beberapa divisi layanan, diantaranya: Software Development (Website Application,
+                            Desktop Application, and Mobile Application), IT Course, IT Training, IT Research, and IT
+                            Services.</p>
 
-                        <div class="row">
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="who-we-are-single-item">
-                                    <h3>What we believe</h3>
-                                    <p>Lorem ipsum dolor sit amet, consec tetur adipiscing elit, sed do eiusmod
-                                        tempor
-                                        incididunt.</p>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6 col-sm-6">
-                                <div class="who-we-are-single-item">
-                                    <h3>What We Offer</h3>
-                                    <p>Lorem ipsum dolor sit amet, consec tetur adipiscing elit, sed do eiusmod
-                                        tempor
-                                        incididunt.</p>
-                                </div>
-                            </div>
-                        </div>
+                        <p>
+                            Hummasoft berdiri sejak 21 Mei 2013. Perusahaan Hummasoft ini dibawah naungan badan usaha
+                            yang bernama Hummasoft Komputindo dan kemudian beralih menjadi Hummasoft Technology pada
+                            Oktober 2019. Proyek-proyek perangkat lunak yang telah dikerjakan oleh perusahaan kami ini
+                            dalam lingkup perorangan, perusahaan, instansi sekolah, bahkan lembaga pemerintahan.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -286,94 +263,7 @@
     <!-- End Working Area -->
 
     <!-- Start Global Talent Area -->
-    <section class="global-talent-area bg-color pb-100">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-7 col-md-6">
-                    <div class="global-talent-content">
-                        <h2>Kami Menunggu Lamaran Dari Anda</h2>
 
-                        <ul>
-                            <li>
-                                <img src="assets1/images/talent-dot/talent-dot-1.png" alt="Image">
-                                Bekerja tanpa kontrak
-                            </li>
-
-                            <li>
-                                <img src="assets1/images/talent-dot/talent-dot-2.png" alt="Image">
-                                Bisa menjadi frelance kantor
-                            </li>
-
-                            <li>
-                                <img src="assets1/images/talent-dot/talent-dot-3.png" alt="Image">
-                                Tempat kerja di manapun
-                            </li>
-                        </ul>
-
-
-                    </div>
-                </div>
-
-                <div class="col-lg-5 col-md-6">
-                    <div class="jubi-site-status">
-                        <h3>Jubi Site Status</h3>
-
-                        <div class="site-status">
-                            <div class="row">
-                                <div class="col-lg-6 col-sm-6">
-                                    <div class="single-counter">
-                                        <i class="flaticon-job-seeker"></i>
-
-                                        <h2>
-                                            <span class="odometer" data-count="10523">00</span>
-                                        </h2>
-
-                                        <p>Projek</p>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-sm-6">
-                                    <div class="single-counter">
-                                        <i class="flaticon-organization"></i>
-
-                                        <h2>
-                                            <span class="odometer" data-count="123843">00</span>
-                                        </h2>
-
-                                        <p>Perusahaan</p>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-sm-6">
-                                    <div class="single-counter">
-                                        <i class="flaticon-profile"></i>
-
-                                        <h2>
-                                            <span class="odometer" data-count="20537">00</span>
-                                        </h2>
-
-                                        <p>Client</p>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6 col-sm-6">
-                                    <div class="single-counter">
-                                        <i class="flaticon-community"></i>
-
-                                        <h2>
-                                            <span class="odometer" data-count="18523">00</span>
-                                        </h2>
-
-                                        <p>Pekerja</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- End Global Talent Area -->
 
     <!-- Start Testimonials Area -->
@@ -455,10 +345,8 @@
                                     <a class="logo" href="index.html">
                                         <img width="180px" src="assets1/images/humma.png" alt="logo">
                                     </a>
-                                    <p>Lorem ipsum dolor sit amet, consec tetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut
-                                        labore et dolore magna aliqua consec tetur.</p>
-
+                                    <p>Hummasoft merupakan sebuah perusahaan yang bergerak dibidang IT (Information
+                                        Technology)
                                     <ul class="social-icon">
                                         <li>
                                             <a href="#">
