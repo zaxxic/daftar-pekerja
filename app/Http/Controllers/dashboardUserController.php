@@ -17,8 +17,8 @@ class DashboardUserController extends Controller
     public function index()
     {
         $selectedDivision = 'semua';
-        $registration = Registration::where('users_id', Auth()->User()->id)->where('status', 'menunggu')->latest()->paginate(5);
-        $lowongan = Vacancy::where('status', 'aktif')->latest()->paginate(5);
+        $registration = Registration::where('users_id', Auth()->User()->id)->where('status', 'menunggu')->latest()->paginate(3);
+        $lowongan = Vacancy::where('status', 'aktif')->latest()->paginate(3);
         $divisi = Division::all();
         return view('user.index', compact('lowongan', 'divisi','selectedDivision','registration'));
     }
@@ -53,8 +53,8 @@ class DashboardUserController extends Controller
             return $query->whereHas('division', function ($subQuery) use ($selectedDivision) {
                 $subQuery->where('divisi', $selectedDivision);
             });
-        })->latest()->paginate(5);
-        $registration = Registration::where('users_id', Auth()->User()->id)->where('status', 'menunggu')->latest()->paginate(5);
+        })->latest()->paginate(3);
+        $registration = Registration::where('users_id', Auth()->User()->id)->where('status', 'menunggu')->latest()->paginate(3);
 
         $divisi = Division::all();
 
