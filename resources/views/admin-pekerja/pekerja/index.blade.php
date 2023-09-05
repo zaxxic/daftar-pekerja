@@ -78,7 +78,7 @@
                                 <p class="mb-0 fw-normal">{{ $row->Vacancy->pekerja }}</p>
                             </td>
                             <td>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#nonaktif-user-{{ $row->User->id }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#nonaktif-user-{{ $row->User->id }}" >
                                     <g fill="#FA896B">
                                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                                         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8L4.646 5.354a.5.5 0 0 1 0-.708z" />
@@ -135,38 +135,6 @@
                                 <div class="col-lg-8">
                                     <div class="card">
                                         <div class="card-body">
-                                        <h5 class="mb-3">Data Divisi</h5>
-                                            <div class="d-flex mb-1">
-                                                <span style="font-weight: 600;">Divisi:</span>
-                                                <span class="ms-2">{{ $item->Vacancy->Division->divisi }}</span>
-                                            </div>
-                                            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
-                                            <div class="d-flex mb-1">
-                                                <span class="me-3" style="font-weight: 600;">Posisi
-                                                    :</span>
-                                                <span>{{ $item->Vacancy->pekerja }}</span>
-                                            </div>
-                                            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
-                                            <div class="d-flex mb-1">
-                                                <span class="me-3" style="font-weight: 600;">Tipe Pekrjaan
-                                                    :</span>
-                                                <span>{{ $item->Vacancy->tipe }}</span>
-                                            </div>
-                                            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
-                                            <div class="d-flex mb-1">
-                                                <span class="me-3" style="font-weight: 600;">Lokasi
-                                                    :</span>
-                                                <span>{{ $item->Vacancy->lokasi }}</span>
-                                            </div>
-                                            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-body">
                                             <h5 class="mb-3">Data Diri Pekerja</h5>
                                             <div class="d-flex mb-1">
                                                 <span class="me-3" style="font-weight: 600;">Nama
@@ -197,10 +165,21 @@
                                                 <span class="ms-2">{{ $item->User->alamat }}</span>
                                             </div>
                                             <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                            <div class="d-flex mb-1">
+                                                <span style="font-weight: 600;">Divisi:</span>
+                                                <span class="ms-2">{{ $item->Vacancy->Division->divisi }}</span>
+                                            </div>
+                                            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                            <div class="d-flex mb-1">
+                                                <span class="me-3" style="font-weight: 600;">Posisi
+                                                    :</span>
+                                                <span>{{ $item->Vacancy->pekerja }}</span>
+                                            </div>
+                                            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                         </div>
                                     </div>
-
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -26,7 +26,7 @@ class PekerjaController extends Controller
             $user = Registration::whereHas('user', function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', '%' . $keyword . '%');
             })->where('status', 'diterima') // Tampilkan hanya status bukan "disetujui"
-            ->paginate(8);
+            ->paginate(1);
 
             $user->appends(['cari' => $keyword]);
             // return view('admin-pekerja.pekerja.index', compact('user'));
@@ -35,7 +35,7 @@ class PekerjaController extends Controller
             $user = Registration::whereRelation('User', function ($query) use ($keyword) {
                 $query->where('devision_id', 'LIKE', '%' . $keyword . '%');
             })->where('status', 'diterima') // Tampilkan hanya status bukan "disetujui"
-            ->paginate(8);
+            ->paginate(1);
 
             // dd($user);
             $value_filter = $keyword;
@@ -44,7 +44,7 @@ class PekerjaController extends Controller
             }
          else {
 
-            $user = Registration::where('status', 'diterima')->paginate(8);
+            $user = Registration::where('status', 'diterima')->paginate(1);
             }
 
         return view('admin-pekerja.pekerja.index', compact('user', 'keyword','divisi', 'value_filter'));
