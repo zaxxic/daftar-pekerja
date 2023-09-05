@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Division;
 use Illuminate\Http\Request;
 use App\Models\Vacancy;
+use App\Models\User;
 use App\Models\Registration;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
@@ -31,7 +32,9 @@ class DetailLowonganController extends Controller
      */
     public function store(Request $request)
     {
-        
+
+        $vacancy = Vacancy::find($request->id);
+
 
         $cek = Registration::where('users_id', Auth()->user()->id)
             ->whereIn('status', ['diterima', 'menunggu'])
@@ -40,12 +43,33 @@ class DetailLowonganController extends Controller
         if ($cek) {
             return response()->json(['status' => 'sudah']);
         }
+        $user = User::find(Auth()->User()->id);
 
-        Registration::create([
-            'status' => 'menunggu',
-            'users_id' => Auth()->user()->id,
-            'vacancie_id' => $request->id
+        $user->update([
+            'devision_id' => $vacancy->devisi_id
         ]);
+
+        $ceking = Registration::where('users_id', Auth()->user()->id)
+        ->where('status', 'ditolak')
+        ->exists();
+
+        if($ceking){
+            $ceking = Registration::where('users_id', Auth()->user()->id)
+            ->where('status', 'ditolak')->first();
+            $ceking->update([
+                'status' => 'menunggu',
+                'vacancie_id' => $request->id
+            ]);
+        }else{
+            Registration::create([
+                'status' => 'menunggu',
+                'users_id' => Auth()->user()->id,
+                'vacancie_id' => $request->id
+            ]);
+        }
+
+
+
         return response()->json(['status' => 'sukses']);
         // Kurangi jumlah slot yang tersedia
         // $vacancy->decrement('slot');

@@ -8,29 +8,7 @@
         <div class="card w-100 position-relative overflow-hidden">
 
             <div class="card-body p-4">
-                <!-- <div class="col-12 d-flex">
-                                <form action="">
-                                    <div class="col-lg-3 mb-4 d-flex align-items-center position-relative">
-                                        <input type="search" class="form-control mt-3 ms-0" name="cari" placeholder="Cari pekerja..." style="height: 4%;" value="{{ $keyword }}">
-                                    </div>
-                                </form>
-                                <div class="">
-                                    <form id="form_filter">
-                                        <div class="mb-3 d-flex">
-                                            <select id="filter" name="filter" class="form-select me-3">
-                                                <option value="">Semua</option>
-                                                @foreach ($divisi as $item)
-    <option value="{{ $item->id }}" @if ($item->id == $value_filter) selected @endif>
-                                                    {{ $item->divisi }}
-                                                </option>
-    @endforeach
-                                            </select>
-                                            <button class="btn btn-primary" style="height: 4%; width: 40%;" type="submit">Cari</button>
-                                        </div>
-                                    </form>
-
-                                </div>
-                            </div> -->
+         
                 <div class="row">
                     <div class="mb-3 d-flex justify-content-start col-md-6 lg-6">
                         <form action="">

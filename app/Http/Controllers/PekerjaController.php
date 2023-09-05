@@ -108,8 +108,7 @@ class PekerjaController extends Controller
             'status' => 'menunggu',
             'devision_id' => null
         ]);
-        $data = Registration::where('users_id', $id)->first();
-        $data->delete();
+        $data = Registration::where('users_id', $id)->delete();
         $datas =   [
             'pesan' => "Akun anda di nonaktifkan ",
             'status' => "nonaktif",

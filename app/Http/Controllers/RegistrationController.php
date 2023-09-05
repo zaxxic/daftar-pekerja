@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Registration;
-use App\Http\Requests\StoreRegistrationRequest;
-use App\Http\Requests\UpdateRegistrationRequest;
 
 class RegistrationController extends Controller
 {
@@ -27,7 +25,7 @@ class RegistrationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRegistrationRequest $request)
+    public function store( $request)
     {
         //
     }
@@ -51,7 +49,7 @@ class RegistrationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRegistrationRequest $request, Registration $registration)
+    public function update( $request, Registration $registration)
     {
         //
     }

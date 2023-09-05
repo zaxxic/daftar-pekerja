@@ -37,7 +37,7 @@ class ApprovalController extends Controller
             // return view('admin-pekerja.approval.index', compact('user'));
         } else if ($request->has('filter')) {
             $keyword = $request->filter;
-            $user = Registration::wherehas('user', function ($query) use ($keyword) {
+            $user = Registration::whereHas('User', function ($query) use ($keyword) {
                 $query->where('devision_id', 'LIKE', '%' . $keyword . '%');
             })->where('status', ['menunggu']) // Tampilkan hanya status bukan "disetujui"
                 ->paginate(1);
@@ -105,7 +105,6 @@ class ApprovalController extends Controller
         // dd($item->Vacancy->devisi_id);
         $data->update([
             'status' => 'diterima',
-            'devision_id' => $item->Vacancy->devisi_id,
             'tanggal_wawancara' => $request->tanggal_wawancara
         ]);
         $item->update([
