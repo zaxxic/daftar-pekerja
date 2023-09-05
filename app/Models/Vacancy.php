@@ -30,7 +30,7 @@ class Vacancy extends Model
     ];
     public function Division()
     {
-        return $this->hasMany(Division::class, 'devisi_id');
+        return $this->belongsTo(Division::class, 'devisi_id');
     }
     public function Registration()
     {

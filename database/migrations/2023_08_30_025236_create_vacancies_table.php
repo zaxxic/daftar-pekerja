@@ -23,7 +23,7 @@ return new class extends Migration
             $table->enum('tipe',['kontrak','permanen']);
             $table->longText('lokasi');
             $table->longText('syarat');
-            $table->enum('status', ['aktif', 'nonaktif'])->default('aktif');
+            $table->enum('status', ['aktif', 'nonaktif','dihapus'])->default('aktif');
             $table->timestamps();
             $table->softDeletes();
         });

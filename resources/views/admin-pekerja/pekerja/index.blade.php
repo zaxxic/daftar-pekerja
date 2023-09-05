@@ -186,7 +186,7 @@
                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                         <div class="d-flex mb-1">
                                             <span style="font-weight: 600;">Divisi:</span>
-                                            <span class="ms-2">{{ $item->Vacancy->devisi_id }}</span>
+                                            <span class="ms-2">{{ $item->Vacancy->Division->divisi }}</span>
                                         </div>
                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                         <div class="d-flex mb-1">

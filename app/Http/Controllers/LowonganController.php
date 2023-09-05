@@ -26,7 +26,7 @@ class LowonganController extends Controller
         }
         $user = User::all();
         $divisi = Division::all();
-        $data = Vacancy::latest()->paginate(8);
+        $data = Vacancy::where('status', ['aktif','nonaktif'])->latest()->paginate(8);
         return view('admin-lowongan.lowongan', compact('data', 'divisi', 'user'));
     }
 
@@ -172,7 +172,9 @@ class LowonganController extends Controller
     public function destroy($id)
     {
         $lowongan = Vacancy::find($id);
-        $lowongan->delete();
+        $lowongan->update([
+            'status' => 'dihapus'
+        ]);
         return redirect()->back();
     }
     // public function delete(Lowongan $lowongan, $id)
@@ -208,7 +210,7 @@ class LowonganController extends Controller
     public function nonactive(Request $request, string $id)
     {
         $registation = Registration::where('vacancie_id', $id)->where('status', 'menunggu')->first();
-        
+
         $registation->delete();
 
 

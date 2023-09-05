@@ -44,11 +44,11 @@ class DetailLowonganController extends Controller
             'users_id' => Auth()->user()->id,
             'vacancie_id' => $request->id
         ]);
-
+        return response()->json(['status' => 'sukses']);
         // Kurangi jumlah slot yang tersedia
         // $vacancy->decrement('slot');
 
-     
+
     }
 
     /**
