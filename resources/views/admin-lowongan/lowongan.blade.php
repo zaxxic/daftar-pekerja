@@ -28,7 +28,7 @@
                         @csrf
                         <div class="modal-body">
                             <div class="d-flex justify-content-center">
-                                <input type="text" name="divisi" id="devisi" class="form-control" autofocus placeholder="masukan " style="width: 95%">
+                                <input type="text" name="divisi" id="devisi" class="form-control" autofocus placeholder="masukan nama lowongan " style="width: 95%">
                                 <span class="text-danger" id="error"></span>
                             </div>
                         </div>
@@ -98,10 +98,10 @@
                                 </a>
                             </li>
                             <li class="d-flex">
-                                <form action="{{ route('lowongan.destroy', $item->id) }}" method="POST" style="display: inline;" class="dropdown-item">
+                                <form action="{{ route('lowongan.destroy', $item->id) }}" method="POST" style="display: inline;" class="dropdown-item" id="formdelete-{{ $item->id }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submitx" class=" delete-button me-1 dropdown-item text-primary" style="background: none; border: none; padding: 0;">
+                                    <button type="button" class=" delete-button me-1 dropdown-item text-primary" onclick="klikDelete('{{ $item->id }}')" style="background: none; border: none; padding: 0;">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="text-primary me-2" width="20" height="20" style="margin-bottom: 3px;" viewBox="0 0 24 24">
                                             <path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4z" />
                                         </svg>
@@ -387,6 +387,52 @@
                         "success"
                     );
                     var form = document.getElementById("formnonactive-" + itemId);
+                    form.submit();
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire(
+                        "Batal",
+                        "Lowongan tersebut dibatalkan. :)",
+                        "error"
+                    );
+                }
+            });
+    }
+
+    function klikDelete(itemId) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "mr-2 btn btn-danger",
+            },
+            buttonsStyling: false,
+        });
+
+        swalWithBootstrapButtons
+            .fire({
+                title: "Apakah Anda Yakin?",
+                text: "Anda ingin menghapus lowongan ini!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Iya!",
+                cancelButtonText: "Tidak!",
+                reverseButtons: true,
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger me-3",
+                },
+                buttonsStyling: false,
+                width: "25rem",
+                padding: "1rem",
+                customContainerClass: "swal-custom",
+            })
+            .then((result) => {
+                if (result.value) {
+                    swalWithBootstrapButtons.fire(
+                        "Berhasil!",
+                        "Anda berhasil menghapus lowongan tersebut.",
+                        "success"
+                    );
+                    var form = document.getElementById("formdelete-" + itemId);
                     form.submit();
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                     swalWithBootstrapButtons.fire(
