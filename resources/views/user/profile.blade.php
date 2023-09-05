@@ -88,9 +88,9 @@
                         <div class="card-body p-4">
 
                             <h5 class="card-title fw-semibold">Ubah Profile</h5>
-                            <p class="card-subtitle mb-4">Ubah photo profile silahkan masukkan di sini</p>
+                            <p class="card-subtitle mb-5">Ubah photo profile silahkan masukkan di sini</p>
                             <div class="text-center">
-                                <img src="{{ asset('foto_user/' . $user->foto) }}" alt="" class="img-fluid rounded-circle" style="width: 120px; height:120px;">
+                                <img src="{{ asset('foto_user/' . $user->foto) }}" alt="" class="img-fluid rounded-circle mb-3" style="width: 120px; height:120px;">
                                 <!-- <div class="d-flex align-items-center justify-content-center my-4 gap-3">
                                         <input type="file" name="foto" class="form-control" id="exampleInputResume">
                                         @error('foto')
@@ -102,10 +102,10 @@
                                     @csrf
                                     <input type="file" style="display: none" name="foto" id="foto">
                                     <ul class="error-text"></ul>
-                                    <button class="btn btn-primary" type="button" onclick="show()" id="btn-upload">Upload</button>
+                                    <button class="btn btn-primary" type="button" onclick="show()" id="btn-upload">Unggah</button>
                                     <button type="submit" style="display: none" id="submit-button">Save</button>
                                 </form>
-                                <p class="mb-0">Dibolehkan JPG atau PNG. Ukuran maksimal photo 5Mb</p>
+                                <p class="mb-0 mt-3">Dibolehkan JPG atau PNG. Ukuran maksimal photo 5Mb</p>
                             </div>
                         </div>
                     </div>
@@ -189,8 +189,8 @@
                             </div>
                             <div class="col-12">
                                 <div class="d-flex align-items-center justify-content-end mt-4 gap-3">
-                                    <button class="btn btn-primary">Save</button>
-                                    <button class="btn btn-light-danger text-danger"><a href="{{ route('dashboard-user') }}">Cancel</a></button>
+                                    <button class="btn btn-primary">Simpan</button>
+                                    <button class="btn btn-light-danger text-danger"><a href="{{ route('dashboard-user') }}">Kembali</a></button>
                                 </div>
                             </div>
                         </form>
@@ -225,13 +225,13 @@
             <embed src="{{ asset('cv/' . $user->cv) }}" type="application/pdf" width="100%" height="100%">
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
             {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
         </div>
         </div>
     </div>
 </div>
-<div class="modal fade" id="detail-lamaran-{{Auth()->User()->cv}}" tabindex="-1" aria-labelledby="detail-lamaran-{{Auth()->User()->cv}}" aria-hidden="true">
+<div class="modal fade" id="detail-lamaran-{{Auth()->User()->lamaran}}" tabindex="-1" aria-labelledby="detail-lamaran-{{Auth()->User()->cv}}" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
         <div class="modal-header">
@@ -242,7 +242,7 @@
             <embed src="{{ asset('lamaran/'. $user->lamaran) }}" type="application/pdf" width="100%" height="100%">
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
             {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
         </div>
         </div>

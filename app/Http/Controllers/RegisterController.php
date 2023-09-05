@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class registerController extends Controller
+class RegisterController extends Controller
 {
     public function index()
     {

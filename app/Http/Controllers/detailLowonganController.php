@@ -7,9 +7,9 @@ use App\Models\Vacancy;
 use App\Models\Registration;
 use Illuminate\Support\Facades\Auth;
 
-class detailLowonganController extends Controller
+class DetailLowonganController extends Controller
 {
-    /**
+      /**
      * Display a listing of the resource.
      */
     public function index()

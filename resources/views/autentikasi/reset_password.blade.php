@@ -77,7 +77,7 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100 py-2 mb-4 rounded-2">Update</button>
+                        <button type="submit" class="btn btn-primary w-100 py-2 mb-4 rounded-2">Simpan</button>
 
                         <div class="mt-3 text-center text-sm">
                             <p>Kembali ke halaman login? <a href="{{ route('login') }}">Login</a></p>

@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
 
-class dashboardUserController extends Controller
+class DashboardUserController extends Controller
 {
-    /**
+      /**
      * Display a listing of the resource.
      */
     public function index()

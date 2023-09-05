@@ -1,18 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\loginController;
 use App\Http\Controllers\DivisiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ApprovalController;
-use App\Http\Controllers\dashboardAdminController;
+use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\PekerjaController;
 use App\Http\Controllers\PekerjaDitolakController;
-use App\Http\Controllers\registerController;
-use App\Http\Controllers\dashboardUserController;
-use App\Http\Controllers\detailLowonganController;
+use App\Http\Controllers\DashboardUserController;
+use App\Http\Controllers\DetailLowonganController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Models\Lowongan;
 
@@ -34,11 +34,11 @@ use App\Models\Lowongan;
 // Route::resource('login', loginController::class);
 
 
-Route::get('register' , [registerController::class , 'index'])->name('register')->middleware('guest');
-Route::post('register-store' , [registerController::class , 'store'])->name('register-store');
-Route::get('/login', [loginController::class, 'showLogin'])->name('login')->middleware('guest');
-Route::post('/form-login', [loginController::class, 'login'])->name('form-login');
-Route::post('/logout', [loginController::class, 'logout'])->name('logout');
+Route::get('register' , [RegisterController::class , 'index'])->name('register')->middleware('guest');
+Route::post('register-store' , [RegisterController::class , 'store'])->name('register-store');
+Route::get('/login', [LoginController::class, 'showLogin'])->name('login')->middleware('guest');
+Route::post('/form-login', [LoginController::class, 'login'])->name('form-login');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
@@ -69,7 +69,10 @@ Route::middleware('checkLogin')->group(function () {
     //Lowongan aktif / nonaktif
     Route::patch('nonactive-lowongan/{id}', [LowonganController::class, 'nonactive'])->name('nonactive-lowongan');
     Route::patch('active-lowongan/{id}', [LowonganController::class, 'active'])->name('active-lowongan');
-    Route::get('/dashboard-admin', [dashboardAdminController::class, 'index'])->name('dashboard-admin');
+    Route::get('/dashboard-admin', [DashboardAdminController::class, 'index'])->name('dashboard-admin');
+
+    Route::get('/user/{id}/cv', [ApprovalController::class, 'cv'])->name('user.cv');
+    Route::get('/user/{id}/lamaran', [ApprovalController::class, 'lamaran'])->name('user.lamaran');
     });
 
 
@@ -79,12 +82,12 @@ Route::middleware('checkLogin')->group(function () {
         Route::post('/ubah-password', [ProfileController::class, 'updatePassword'])->name('ubah-password');
         Route::patch('/ubah-profile', [ProfileController::class, 'updateProfile'])->name('ubah-profile');
         Route::patch('/ubah-foto', [ProfileController::class, 'updateFoto'])->name('ubah-foto');
-        route::resource('detail-lowongan', detailLowonganController::class);
-        route::post('batalkan-lowongan',[ detailLowonganController::class, 'batalkan'])->name('batalkan-lowongan');
-        Route::get('/detail-lowongan{id}', [detailLowonganController::class, 'show'])->name('detailLowongan');
-        Route::get('/dashboard-user', [dashboardUserController::class, 'index'])->name('dashboard-user');
-        Route::get('/lowongan-user', [dashboardUserController::class, 'lowongan'])->name('lowongan-user');
-        Route::post('/dashboard-filter', [dashboardUserController::class, 'filterLowongan'])->name('dashboard-filter');
+        route::resource('detail-lowongan', DetailLowonganController::class);
+        route::post('batalkan-lowongan',[ DetailLowonganController::class, 'batalkan'])->name('batalkan-lowongan');
+        Route::get('/detail-lowongan{id}', [DetailLowonganController::class, 'show'])->name('detailLowongan');
+        Route::get('/dashboard-user', [DashboardUserController::class, 'index'])->name('dashboard-user');
+        Route::get('/lowongan-user', [DashboardUserController::class, 'lowongan'])->name('lowongan-user');
+        Route::post('/dashboard-filter', [DashboardUserController::class, 'filterLowongan'])->name('dashboard-filter');
 
     });
     });
@@ -100,5 +103,3 @@ Route::get('error-403', function () {
     return view('403');
 })->name('unauthorized');
 
-Route::get('/user/{id}/cv', [ApprovalController::class, 'cv'])->name('user.cv');
-Route::get('/user/{id}/lamaran', [ApprovalController::class, 'lamaran'])->name('user.lamaran');

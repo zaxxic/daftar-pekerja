@@ -60,10 +60,10 @@
                                 <p class="mb-0 fw-normal">{{ $row->User->jenis_kelamin }}</p>
                             </td>
                             <td>
-                                <a href="{{ route('user.cv', $row->User->id) }}" target="_blank" class="btn btn-primary" target="_blank">CV</a>
+                                <a data-bs-toggle="modal" data-bs-target="#detail-cv-{{ $row->User->cv }}" class="btn btn-primary">CV</a>
                             </td>
                             <td>
-                                <a href="{{ route('user.lamaran', $row->User->id) }}" target="_blank" class="btn btn-primary" target="_blank">Lamaran</a>
+                                <a data-bs-toggle="modal" data-bs-target="#detail-lamaran-{{ $row->User->lamaran }}" class="btn btn-primary">Lamaran</a>
                             </td>
                             <td>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#reject-user-{{ $row->User->id }}">
@@ -209,9 +209,9 @@
             <div class="modal-body col-lg-12" style="height: auto">
                 <div class="d-flex">
                     <div class="col-lg-4">
-                    <div style="border-radius: 50%; overflow: hidden; width: 180px; height: 180px; display: flex; justify-content: center; align-items: center;">
-                                    <img src="{{ asset('foto_user/'. $row->User->foto) }}" style="max-width: 150%; max-height: 150%;" alt="" />
-                                </div>
+                        <div style="border-radius: 50%; overflow: hidden; width: 180px; height: 180px; display: flex; justify-content: center; align-items: center;">
+                            <img src="{{ asset('foto_user/'. $row->User->foto) }}" style="max-width: 150%; max-height: 150%;" alt="" />
+                        </div>
                     </div>
                     <div class="col-lg-8">
                         <div class="card">
@@ -252,6 +252,41 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="detail-lamaran-{{$row->User->lamaran}}" tabindex="-1" aria-labelledby="detail-lamaran-{{$row->User->lamaran}}" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Lamaran pekerja</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <embed src="{{ asset('lamaran/'. $row->User->lamaran) }}" type="application/pdf" width="100%" height="100%">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="detail-cv-{{$row->User->cv}}" tabindex="-1" aria-labelledby="detail-cv-{{$row->User->cv}}" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Cv pekerja</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <embed src="{{ asset('cv/' . $row ->User->cv) }}" type="application/pdf" width="100%" height="100%">
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+        </div>
         </div>
     </div>
 </div>
