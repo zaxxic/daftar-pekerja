@@ -207,16 +207,21 @@
     </div>
 @endsection
 @section('script')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <script>
-        $(document).ready(function() {
-            $('#submitBtn').on('click', function() {
-                var divisi = $('#devisi').val();
-                console.log(divisi);
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
+    .ellipsis {
+        white-space: nowrap;        /* Mencegah teks untuk melompat ke baris berikutnya */
+        overflow: hidden;           /* Menyembunyikan teks yang melebihi lebar elemen */
+        text-overflow: ellipsis;    /* Menambahkan efek ellipsis */
+        width: 100%;                /* Atur lebar elemen sesuai kebutuhan Anda */
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        $('#submitBtn').on('click', function() {
+            var divisi = $('#devisi').val();
+            console.log(divisi);
 
                 if (divisi !== null) {
                     $.ajaxSetup({
@@ -309,8 +314,8 @@
                             var divisiHtml = `
                                 <div class="col-4 flex mb-2  justify-content-center ">
                                     <div class="col-12 rounded rounded-2  d-flex justify-content-between border border-2" style="padding: 10px;">
-                                        ${item.divisi}
-                                        <form class="text-danger delete-form" data-id="${item.id}">
+                                        <div class="col-8 ellipsis">${item.divisi}</div>...
+                                        <form class="text-danger delete-form col-3" data-id="${item.id}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="button" class="btn-delete border-0" style="background:none;">

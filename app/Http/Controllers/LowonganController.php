@@ -171,6 +171,11 @@ class LowonganController extends Controller
      */
     public function destroy($id)
     {
+        $registation = Registration::where('vacancie_id', $id)->where('status', 'menunggu')->first();
+
+        if ($registation) {
+            $registation->delete();
+        }
         $lowongan = Vacancy::find($id);
         $lowongan->update([
             'status' => 'dihapus'
@@ -211,7 +216,9 @@ class LowonganController extends Controller
     {
         $registation = Registration::where('vacancie_id', $id)->where('status', 'menunggu')->first();
 
-        $registation->delete();
+        if ($registation) {
+            $registation->delete();
+        }
 
 
         $data = Vacancy::find($id);

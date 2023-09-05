@@ -16,7 +16,7 @@
                         </div>
                     </form>
                 </div>
-               
+
 
             </div>
 
@@ -53,7 +53,7 @@
                                 </div>
                             </td>
                             <td>
-                                <p class="mb-0 fw-normal">{{ $row->Vacancy->Devision->divisi }}</p>
+                                <p class="mb-0 fw-normal">{{ $row->Vacancy->Division->divisi }}</p>
                             </td>
                             <td>
                                 <p class="mb-0 fw-normal">{{ $row->Vacancy->pekerja }}</p>
@@ -116,13 +116,13 @@
                                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                                         <div class="d-flex mb-1">
                                                             <span style="font-weight: 600;">Divisi:</span>
-                                                            <span class="ms-2">{{ $item->Vacancy->Division->divisi }}</span>
+                                                            <span class="ms-2">{{ $row->Vacancy->Division->divisi }}</span>
                                                         </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                                         <div class="d-flex mb-1">
                                                             <span class="me-3" style="font-weight: 600;">Posisi
                                                                 :</span>
-                                                            <span>{{ $item->Vacancy->pekerja }}</span>
+                                                            <span>{{ $row->Vacancy->pekerja }}</span>
                                                         </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                                     </div>

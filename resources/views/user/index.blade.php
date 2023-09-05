@@ -257,7 +257,7 @@
                             <div class="col-12">
                                 <div class="pagination-area">
                                     {{-- {{ $lowongan->links() }} --}}
-                                    <button class="default-btn"><a href="{{ route('lowongan-user', $item->id) }}"
+                                    <button class="default-btn"><a href="{{ route('lowongan-user') }}"
                                             class="text-white">Lihat Selengkapnya</a></button>
                                 </div>
                             </div>

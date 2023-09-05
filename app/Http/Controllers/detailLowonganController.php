@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Division;
 use Illuminate\Http\Request;
 use App\Models\Vacancy;
 use App\Models\Registration;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 class DetailLowonganController extends Controller
 {
@@ -29,7 +31,7 @@ class DetailLowonganController extends Controller
      */
     public function store(Request $request)
     {
-
+        
 
         $cek = Registration::where('users_id', Auth()->user()->id)
             ->whereIn('status', ['diterima', 'menunggu'])
@@ -58,6 +60,9 @@ class DetailLowonganController extends Controller
     {
         $lowongan = Vacancy::findOrFail($id);
         $loggedInUser = Auth()->user(); // Mengambil pengguna yang sudah login
+        if($lowongan->batas <= Carbon::today()){
+            return redirect()->route('dashboard-user');
+        }
 
         $registrations = Registration::where('users_id', $loggedInUser->id)
             ->where('status', 'menunggu')
