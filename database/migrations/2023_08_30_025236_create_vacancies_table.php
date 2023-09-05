@@ -25,6 +25,7 @@ return new class extends Migration
             $table->longText('syarat');
             $table->enum('status', ['aktif', 'nonaktif'])->default('aktif');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

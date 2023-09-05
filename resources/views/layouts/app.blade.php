@@ -30,7 +30,7 @@
     <!-- Meanmenu Min CSS -->
     <link rel="stylesheet" href="{{asset('assets1/css/meanmenu.min.css')}}">
     <!-- Nice Select Min CSS -->
-    <link rel="stylesheet" href="{{asset('assets1/css/nice-select.min.css')}}">
+    <!-- <link rel="stylesheet" href="{{asset('assets1/css/nice-select.min.css')}}"> -->
     <!-- Odometer Min CSS-->
     <link rel="stylesheet" href="{{asset('assets1/css/odometer.min.css')}}">
     <!-- Date Picker CSS-->
@@ -126,7 +126,7 @@
     <!-- Owl Carousel Min JS -->
     <script src="{{asset('assets1/js/owl.carousel.min.js')}}"></script>
     <!-- Nice Select Min JS -->
-    <script src="{{asset('assets1/js/nice-select.min.js')}}"></script>
+    <!-- <script src="{{asset('assets1/js/nice-select.min.js')}}"></script> -->
     <!-- Magnific Popup Min JS -->
     <script src="{{asset('assets1/js/magnific-popup.min.js')}}"></script>
     <!-- Mixitup JS -->

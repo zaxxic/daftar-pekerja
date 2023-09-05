@@ -44,8 +44,13 @@ class PekerjaController extends Controller
             }
          else {
 
-                $user = Registration::where('status', '=', 'diterima')->paginate(8); // Ubah 'IN' menjadi '='
+            $user = Registration::where('status', 'diterima')
+            ->WhereHas('Vacancy', function ($query) {
+                $query->withTrashed();
+            })
+            ->paginate(8);
             }
+                // dd($user);
 
         return view('admin-pekerja.pekerja.index', compact('user', 'keyword','divisi', 'value_filter'));
     }

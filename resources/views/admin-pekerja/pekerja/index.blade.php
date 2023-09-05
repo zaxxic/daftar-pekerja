@@ -13,15 +13,15 @@
                     <div class="d-flex justify-content-between mb-2">
                         <form action="">
                             <div class="col mb-4 d-flex justify-content-end align-items-center position-relative">
-                                <input type="search" class="form-control mt-3" name="cari" placeholder="Cari pekerja..." style="height: 4%;" value="{{ $keyword }}">
+                                <input type="search" class="form-control mt-3" name="cari" placeholder="Cari pekerja..." style="height: 5%;" value="{{ $keyword }}">
                             </div>
                         </form>
                         <div class="employers-listing-sidebar">
-                            <form class="search-form" id="form_filter">
-                                <div class="form-group">
+                            <form id="form_filter">
+                                <!-- <div class="" style="height: 4%;">
                                     <span>Cari Berdasarkan Divisi</span>
                                     <div class="d-flex gap-2">
-                                        <select id="filter" class="form-control" name="filter" style="height: 4%;">
+                                        <select id="filter" class="form-control" name="filter" style="height: 4%; width: 40%;">
                                             <option value="">semua</option>
                                             @foreach ($divisi as $item)
                                             <option value="{{ $item->id }}" @if ($item->id == $value_filter) selected @endif>
@@ -29,10 +29,22 @@
                                             </option>
                                             @endforeach
                                         </select>
-                                        <button class="btn btn-primary" style="padding:" type="submit">Cari</button>
+                                        <button class="btn btn-primary" style="height: 4%; width: 40%;" type="submit">Cari</button>
                                     </div>
+                                </div> -->
+                                <div class="mb-3 d-flex">
+                                    <select class="form-select me-3">
+                                        <option>Semua</option>
+                                        @foreach ($divisi as $item)
+                                        <option id="filter" value="{{ $item->id }}" @if ($item->id == $value_filter) selected @endif>
+                                            {{ $item->divisi }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                    <button class="btn btn-primary" style="height: 4%; width: 40%;" type="submit">Cari</button>
                                 </div>
                             </form>
+
                         </div>
                     </div>
 
@@ -53,13 +65,10 @@
                             <h6 class="fs-4 fw-semibold mb-0">User</h6>
                         </th>
                         <th>
-                            <h6 class="fs-4 fw-semibold mb-0">No.Handphone</h6>
+                            <h6 class="fs-4 fw-semibold mb-0">Divisi</h6>
                         </th>
                         <th>
-                            <h6 class="fs-4 fw-semibold mb-0">Jenis Kelamin</h6>
-                        </th>
-                        <th>
-                            <h6 class="fs-4 fw-semibold mb-0">Email</h6>
+                            <h6 class="fs-4 fw-semibold mb-0">Posisi</h6>
                         </th>
                         <th>
                             <h6 class="fs-4 fw-semibold mb-0">Aksi</h6>
@@ -73,7 +82,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>
                             <div class="d-flex align-items-center">
-                            <div style="border-radius: 50%; overflow: hidden; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center;">
+                                <div style="border-radius: 50%; overflow: hidden; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center;">
                                     <img src="{{ asset('foto_user/'. $row->User->foto) }}" style="max-width: 150%; max-height: 150%;" alt="" />
                                 </div>
                                 <div class="ms-3">
@@ -82,13 +91,10 @@
                             </div>
                         </td>
                         <td>
-                            <p class="mb-0 fw-normal">{{ $row->User->no_telp }}</p>
+                            <p class="mb-0 fw-normal">{{ $row->Vacancy->Division->divisi }}</p>
                         </td>
                         <td>
-                            <p class="mb-0 fw-normal">{{ $row->User->jenis_kelamin }}</p>
-                        </td>
-                        <td>
-                            <p class="mb-0 fw-normal ellipsis"></p>{{ $row->User->email }}
+                            <p class="mb-0 fw-normal">{{ $row->Vacancy->pekerja }}</p>
                         </td>
                         <td>
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#nonaktif-user-{{ $row->User->id }}">
@@ -180,9 +186,14 @@
                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                         <div class="d-flex mb-1">
                                             <span style="font-weight: 600;">Divisi:</span>
-                                            <span class="ms-2">{{ $item->Vacancy->Division->divisi }}</span>
+                                            <span class="ms-2">{{ $item->Vacancy->devisi_id }}</span>
                                         </div>
-
+                                        <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                        <div class="d-flex mb-1">
+                                            <span class="me-3" style="font-weight: 600;">Posisi
+                                                :</span>
+                                            <span>{{ $item->Vacancy->pekerja }}</span>
+                                        </div>
                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                     </div>
                                 </div>

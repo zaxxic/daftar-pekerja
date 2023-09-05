@@ -22,13 +22,10 @@
                                 <h6 class="fs-4 fw-semibold mb-0">User</h6>
                             </th>
                             <th>
-                                <h6 class="fs-4 fw-semibold mb-0">No.Handphone</h6>
+                                <h6 class="fs-4 fw-semibold mb-0">Divisi</h6>
                             </th>
                             <th>
-                                <h6 class="fs-4 fw-semibold mb-0">Jenis Kelamin</h6>
-                            </th>
-                            <th>
-                                <h6 class="fs-4 fw-semibold mb-0">Email</h6>
+                                <h6 class="fs-4 fw-semibold mb-0">Posisi</h6>
                             </th>
                             <th>
                                 <h6 class="fs-4 fw-semibold mb-0">Aksi</h6>
@@ -50,13 +47,10 @@
                                 </div>
                             </td>
                             <td>
-                                <p class="mb-0 fw-normal">{{ $row->User->no_telp }}</p>
+                                <p class="mb-0 fw-normal">{{ $row->Vacancy->Devision->divisi }}</p>
                             </td>
                             <td>
-                                <p class="mb-0 fw-normal">{{ $row->User->jenis_kelamin }}</p>
-                            </td>
-                            <td>
-                                <p class="mb-0 fw-normal ellipsis"></p>{{ $row->User->email }}
+                                <p class="mb-0 fw-normal">{{ $row->Vacancy->pekerja }}</p>
                             </td>
                             <td>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#detail-user-{{ $row->User->id }}">
@@ -115,9 +109,14 @@
                                                         </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                                         <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">Divisi
+                                                            <span style="font-weight: 600;">Divisi:</span>
+                                                            <span class="ms-2">{{ $item->Vacancy->Division->divisi }}</span>
+                                                        </div>
+                                                        <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                                        <div class="d-flex mb-1">
+                                                            <span class="me-3" style="font-weight: 600;">Posisi
                                                                 :</span>
-                                                            <span>{{$row->Vacancy->Division->divisi}}</span>
+                                                            <span>{{ $item->Vacancy->pekerja }}</span>
                                                         </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                                     </div>
