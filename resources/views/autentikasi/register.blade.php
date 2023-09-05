@@ -122,18 +122,16 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label mb-3">Jenis Kelamin <span style="color: red;">*</span></label>
-                                            <div class="d-flex align-items-center">
-                                                <input class="text-sm me-1" type="radio" name="jenis_kelamin" id="radio1" value="laki-laki" {{ old('jenis_kelamin') == 'laki-laki' ? 'checked' : '' }}>
-                                                <label class="mb-0 me-3" for="radio1">Laki-laki</label>
-                                                <input class="text-sm me-1" type="radio" name="jenis_kelamin" id="radio2" value="perempuan" {{ old('jenis_kelamin') == 'perempuan' ? 'checked' : '' }}>
-                                                <label class="mb-0" for="radio2">Perempuan</label>
-                                            </div>
-                                            @error('jenis_kelamin')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
+                                        <label for="exampleInputEmail1" class="form-label mb-3">Jenis Kelamin <span style="color: red;">*</span></label>
+                                        <div class="radio-container">
+                                            <input class="text-sm me-1" type="radio" name="jenis_kelamin" id="radio1" value="laki-laki" {{ old('jenis_kelamin') == 'laki-laki' ? 'checked' : '' }}>
+                                            <label class="mb-0 me-3" for="radio1">Laki-laki</label>
+                                            <input class="text-sm me-1" type="radio" name="jenis_kelamin" id="radio2" value="perempuan" {{ old('jenis_kelamin') == 'perempuan' ? 'checked' : '' }}>
+                                            <label class="mb-0" for="radio2">Perempuan</label>
                                         </div>
+                                        @error('jenis_kelamin')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="row">
@@ -158,7 +156,7 @@
                                     </div>
                                 </div>
                                 @if($errors->has('cv') || $errors->has('lamaran') || $errors->has('foto'))
-                                    <div class="text-danger">Mohon untuk mengisi ulang formulir yang ada dan jangan mengosongkan kolom-kolom yang wajib diisi.</div>
+                                <div class="text-danger">Mohon untuk mengisi ulang formulir yang ada dan jangan mengosongkan kolom-kolom yang wajib diisi.</div>
                                 @endif
                                 <span id="error_cv" class="text-danger"></span> <br>
                                 <span id="error_lamaran" class="text-danger"></span> <br>
@@ -225,24 +223,24 @@
                                     $('#cv').click(function() {
                                         $('#file_cv').trigger('click');
                                         $('#file_cv').on('change', function() {
-                                        // Memeriksa apakah input file 'file_cv' memiliki nilai (file telah dipilih)
-                                        if ($(this).val()) {
-                                            var filename = $(this).val();
-                                            var fileExtension = filename.split('.').pop().toLowerCase();
-                                            if (fileExtension === 'pdf') {
-                                                $('#cv').css('background-color', 'green');
-                                                $('#error_cv').html('');
+                                            // Memeriksa apakah input file 'file_cv' memiliki nilai (file telah dipilih)
+                                            if ($(this).val()) {
+                                                var filename = $(this).val();
+                                                var fileExtension = filename.split('.').pop().toLowerCase();
+                                                if (fileExtension === 'pdf') {
+                                                    $('#cv').css('background-color', 'green');
+                                                    $('#error_cv').html('');
+                                                } else {
+                                                    $('#cv').css('background-color', 'red');
+                                                    $('#error_cv').html('isikan file CV dengan format yang sesuai (PDF)');
+
+
+
+                                                }
                                             } else {
-                                                $('#cv').css('background-color', 'red');
-                                                $('#error_cv').html('isikan file CV dengan format yang sesuai (PDF)');
-
-
-
+                                                $('#cv').css('background-color', '');
                                             }
-                                        } else {
-                                            $('#cv').css('background-color', '');
-                                        }
-                                    });
+                                        });
 
                                     })
                                 })
@@ -250,23 +248,23 @@
                                     $('#lamaran').click(function() {
                                         $('#file_lamaran').trigger('click');
                                         $('#file_lamaran').on('change', function() {
-                                        // Memeriksa apakah input file 'file_lamaran' memiliki nilai (file telah dipilih)
-                                        if ($(this).val()) {
-                                            var filename = $(this).val();
-                                            var fileExtension = filename.split('.').pop().toLowerCase();
-                                            if (fileExtension === 'pdf') {
-                                                $('#lamaran').css('background-color', 'green');
-                                                $('#error_lamaran').html('');
+                                            // Memeriksa apakah input file 'file_lamaran' memiliki nilai (file telah dipilih)
+                                            if ($(this).val()) {
+                                                var filename = $(this).val();
+                                                var fileExtension = filename.split('.').pop().toLowerCase();
+                                                if (fileExtension === 'pdf') {
+                                                    $('#lamaran').css('background-color', 'green');
+                                                    $('#error_lamaran').html('');
+                                                } else {
+                                                    $('#lamaran').css('background-color', 'red');
+                                                    $('#error_lamaran').html('isikan file lamaran dengan format yang sesuai (PDF)');
+
+
+                                                }
                                             } else {
-                                                $('#lamaran').css('background-color', 'red');
-                                                $('#error_lamaran').html('isikan file lamaran dengan format yang sesuai (PDF)');
-
-
+                                                $('#lamaran').css('background-color', '');
                                             }
-                                        } else {
-                                            $('#lamaran').css('background-color', '');
-                                        }
-                                    });
+                                        });
 
                                     })
                                 })
@@ -274,29 +272,27 @@
                                     $('#foto').click(function() {
                                         $('#file_foto').trigger('click');
                                         $('#file_foto').on('change', function() {
-                                        if ($(this).val()) {
-                                            console.log("foto");
-                                            var filename = $(this).val();
-                                            var fileExtension = filename.split('.').pop().toLowerCase();
-                                            if (['png', 'jpg', 'jpeg'].includes(fileExtension)) {
-                                                $('#foto').css('background-color', 'green');
-                                                $('#error_foto').html('');
+                                            if ($(this).val()) {
+                                                console.log("foto");
+                                                var filename = $(this).val();
+                                                var fileExtension = filename.split('.').pop().toLowerCase();
+                                                if (['png', 'jpg', 'jpeg'].includes(fileExtension)) {
+                                                    $('#foto').css('background-color', 'green');
+                                                    $('#error_foto').html('');
+                                                } else {
+                                                    $('#foto').css('background-color', 'red');
+                                                    $('#error_foto').html('isikan file foto dengan format yang sesuai (jpg,png,jpeg)');
+
+
+
+                                                }
                                             } else {
-                                                $('#foto').css('background-color', 'red');
-                                                $('#error_foto').html('isikan file foto dengan format yang sesuai (jpg,png,jpeg)');
-
-
-
+                                                $('#foto').css('background-color', '');
                                             }
-                                        } else {
-                                            $('#foto').css('background-color', '');
-                                        }
-                                    });
+                                        });
 
                                     })
                                 })
-
-
                             </script>
 
                             <div class="mt-3 text-center">

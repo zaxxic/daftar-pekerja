@@ -36,7 +36,7 @@
                                     <select class="form-select me-3">
                                         <option>Semua</option>
                                         @foreach ($divisi as $item)
-                                        <option value="{{ $item->id }}" @if ($item->id == $value_filter) selected @endif>
+                                        <option id="filter" value="{{ $item->id }}" @if ($item->id == $value_filter) selected @endif>
                                             {{ $item->divisi }}
                                         </option>
                                         @endforeach
