@@ -7,11 +7,89 @@
 
         <div class="card w-100 position-relative overflow-hidden">
 
-            <div class="card-body p-4">
-                <!-- <div class="col-12 d-flex">
-                                <form action="">
-                                    <div class="col-lg-3 mb-4 d-flex align-items-center position-relative">
-                                        <input type="search" class="form-control mt-3 ms-0" name="cari" placeholder="Cari pekerja..." style="height: 4%;" value="{{ $keyword }}">
+        <div class="card-body p-4">
+            <!-- <div class="col-12 d-flex">
+                <form action="">
+                    <div class="col-lg-3 mb-4 d-flex align-items-center position-relative">
+                        <input type="search" class="form-control mt-3 ms-0" name="cari" placeholder="Cari pekerja..." style="height: 4%;" value="{{ $keyword }}">
+                    </div>
+                </form>
+                <div class="">
+                    <form id="form_filter">
+                        <div class="mb-3 d-flex">
+                            <select id="filter" name="filter" class="form-select me-3">
+                                <option value="">Semua</option>
+                                @foreach ($divisi as $item)
+                                <option value="{{ $item->id }}" @if ($item->id == $value_filter) selected @endif>
+                                    {{ $item->divisi }}
+                                </option>
+                                @endforeach
+                            </select>
+                            <button class="btn btn-primary" style="height: 4%; width: 40%;" type="submit">Cari</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div> -->
+            <div class="row">
+                <div class="mb-3 d-flex justify-content-start col-md-6 lg-6">
+                    <form action="">
+                        <div class="mb-3 d-flex justify-content-end align-items-center position-relative">
+                            <input type="search" class="form-control mt-3" name="cari" placeholder="Cari Pekerja..." style="height: 4%;" value="{{ $keyword }}">
+                        </div>
+                    </form>
+                </div>
+                <div class="mb-3 d-flex justify-content-end col-md-6 lg-6 mt-3">
+                    <form id="form_filter">
+                        <div class="mb-3 d-flex">
+                            <select id="filter" name="filter" class="form-select me-3">
+                                <option value="">Semua</option>
+                                @foreach ($divisi as $item)
+                                <option value="{{ $item->id }}" @if ($item->id == $value_filter) selected @endif>
+                                    {{ $item->divisi }}
+                                </option>
+                                @endforeach
+                            </select>
+                            <button class="btn btn-primary" style="height: 4%; width: 40%;" type="submit">Cari</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="table-responsive rounded-2 mb-4">
+                <table class="table border text-nowrap customize-table mb-0 align-middle">
+                    <thead class="text-dark fs-4">
+                        <tr>
+                            <th>
+                                <h6 class="fs-4 fw-semibold mb-0">User</h6>
+                            </th>
+                            <th>
+                                <h6 class="fs-4 fw-semibold mb-0">Divisi</h6>
+                            </th>
+                            <th>
+                                <h6 class="fs-4 fw-semibold mb-0">Posisi</h6>
+                            </th>
+                            <th>
+                                <h6 class="fs-4 fw-semibold mb-0">CV</h6>
+                            </th>
+                            <th>
+                                <h6 class="fs-4 fw-semibold mb-0">Lamaran</h6>
+                            </th>
+                            <th>
+                                <h6 class="fs-4 fw-semibold mb-0">Aksi</h6>
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($user as $row)
+                        <tr>
+                            <td>
+
+                                <div class="d-flex align-items-center">
+                                    <div style="border-radius: 50%; overflow: hidden; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center;">
+                                        <img src="{{ asset('foto_user/'. $row->User->foto) }}" style="max-width: 150%; max-height: 150%;" alt="" />
                                     </div>
                                 </form>
                                 <div class="">
