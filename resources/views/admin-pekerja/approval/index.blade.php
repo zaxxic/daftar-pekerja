@@ -7,182 +7,185 @@
 
         <div class="card w-100 position-relative overflow-hidden">
 
-        <div class="card-body p-4">
-            <!-- <div class="col-12 d-flex">
-                <form action="">
-                    <div class="col-lg-3 mb-4 d-flex align-items-center position-relative">
-                        <input type="search" class="form-control mt-3 ms-0" name="cari" placeholder="Cari pekerja..." style="height: 4%;" value="{{ $keyword }}">
+            <div class="card-body p-4">
+                <!-- <div class="col-12 d-flex">
+                                <form action="">
+                                    <div class="col-lg-3 mb-4 d-flex align-items-center position-relative">
+                                        <input type="search" class="form-control mt-3 ms-0" name="cari" placeholder="Cari pekerja..." style="height: 4%;" value="{{ $keyword }}">
+                                    </div>
+                                </form>
+                                <div class="">
+                                    <form id="form_filter">
+                                        <div class="mb-3 d-flex">
+                                            <select id="filter" name="filter" class="form-select me-3">
+                                                <option value="">Semua</option>
+                                                @foreach ($divisi as $item)
+    <option value="{{ $item->id }}" @if ($item->id == $value_filter) selected @endif>
+                                                    {{ $item->divisi }}
+                                                </option>
+    @endforeach
+                                            </select>
+                                            <button class="btn btn-primary" style="height: 4%; width: 40%;" type="submit">Cari</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div> -->
+                <div class="row">
+                    <div class="mb-3 d-flex justify-content-start col-md-6 lg-6">
+                        <form action="">
+                            <div class="mb-3 d-flex justify-content-end align-items-center position-relative">
+                                <input type="search" class="form-control mt-3" name="cari" placeholder="Cari Pekerja..."
+                                    style="height: 4%;" value="{{ $keyword }}">
+                            </div>
+                        </form>
                     </div>
-                </form>
-                <div class="">
-                    <form id="form_filter">
-                        <div class="mb-3 d-flex">
-                            <select id="filter" name="filter" class="form-select me-3">
-                                <option value="">Semua</option>
-
-                            </select>
-                            <button class="btn btn-primary" style="height: 4%; width: 40%;" type="submit">Cari</button>
-                        </div>
-                    </form>
+                    <div class="mb-3 d-flex justify-content-end col-md-6 lg-6">
+                        <form id="form_filter">
+                            <div class="mb-3 d-flex">
+                                <select id="filter" name="filter" class="form-select me-3">
+                                    <option value="">Semua</option>
+                                    @foreach ($divisi as $item)
+                                        <option value="{{ $item->id }}"
+                                            @if ($item->id == $value_filter) selected @endif>
+                                            {{ $item->divisi }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <button class="btn btn-primary" style="height: 4%; width: 40%;" type="submit">Cari</button>
+                            </div>
+                        </form>
+                    </div>
 
                 </div>
-            </div> -->
-            <div class="row">
-                <div class="mb-3 d-flex justify-content-start col-md-6 lg-6">
-                    <form action="">
-                        <div class="mb-3 d-flex justify-content-end align-items-center position-relative">
-                            <input type="search" class="form-control mt-3" name="cari" placeholder="Cari Pekerja..." style="height: 4%;" value="{{ $keyword }}">
-                        </div>
-                    </form>
-                </div>
-                <div class="mb-3 d-flex justify-content-end col-md-6 lg-6 mt-3">
-                    <form id="form_filter">
-                        <div class="mb-3 d-flex">
-                            <select id="filter" name="filter" class="form-select me-3">
-                                <option value="">Semua</option>
-                                @foreach ($divisi as $item)
-                                <option value="{{ $item->id }}" @if ($item->id == $value_filter) selected @endif>
-                                    {{ $item->divisi }}
-                                </option>
-                                @endforeach
-                            </select>
-                            <button class="btn btn-primary" style="height: 4%; width: 40%;" type="submit">Cari</button>
-                        </div>
-                    </form>
-                </div>
 
-            </div>
-
-
-
-
-                    <div class="table-responsive rounded-2 mb-4">
-                        <table class="table border text-nowrap customize-table mb-0 align-middle">
-                            <thead class="text-dark fs-4">
+                <div class="table-responsive rounded-2 mb-4">
+                    <table class="table border text-nowrap customize-table mb-0 align-middle">
+                        <thead class="text-dark fs-4">
+                            <tr>
+                                <th>
+                                    <h6 class="fs-4 fw-semibold mb-0">User</h6>
+                                </th>
+                                <th>
+                                    <h6 class="fs-4 fw-semibold mb-0">Divisi</h6>
+                                </th>
+                                <th>
+                                    <h6 class="fs-4 fw-semibold mb-0">Posisi</h6>
+                                </th>
+                                <th>
+                                    <h6 class="fs-4 fw-semibold mb-0">CV</h6>
+                                </th>
+                                <th>
+                                    <h6 class="fs-4 fw-semibold mb-0">Lamaran</h6>
+                                </th>
+                                <th>
+                                    <h6 class="fs-4 fw-semibold mb-0">Aksi</h6>
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($user as $row)
                                 <tr>
-                                    <th>
-                                        <h6 class="fs-4 fw-semibold mb-0">User</h6>
-                                    </th>
-                                    <th>
-                                        <h6 class="fs-4 fw-semibold mb-0">Divisi</h6>
-                                    </th>
-                                    <th>
-                                        <h6 class="fs-4 fw-semibold mb-0">Posisi</h6>
-                                    </th>
-                                    <th>
-                                        <h6 class="fs-4 fw-semibold mb-0">CV</h6>
-                                    </th>
-                                    <th>
-                                        <h6 class="fs-4 fw-semibold mb-0">Lamaran</h6>
-                                    </th>
-                                    <th>
-                                        <h6 class="fs-4 fw-semibold mb-0">Aksi</h6>
-                                    </th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($user as $row)
-                                    <tr>
-                                        <td>
+                                    <td>
 
-                                            <div class="d-flex align-items-center">
-                                                <div
-                                                    style="border-radius: 50%; overflow: hidden; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center;">
-                                                    <img src="{{ asset('foto_user/' . $row->User->foto) }}"
-                                                        style="max-width: 150%; max-height: 150%;" alt="" />
-                                                </div>
-                                                <div class="ms-3">
-                                                    <h6 class="fs-4 fw-semibold mb-0">{{ $row->User->name }}</h6>
-                                                </div>
+                                        <div class="d-flex align-items-center">
+                                            <div
+                                                style="border-radius: 50%; overflow: hidden; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center;">
+                                                <img src="{{ asset('foto_user/' . $row->User->foto) }}"
+                                                    style="max-width: 150%; max-height: 150%;" alt="" />
                                             </div>
-                                        </td>
-                                        <td>
-                                            <p class="mb-0 fw-normal">{{ $row->Vacancy->Division->divisi }}</p>
-                                        </td>
-                                        <td>
-                                            <p class="mb-0 fw-normal">{{ $row->Vacancy->pekerja }}</p>
-                                        </td>
-                                        <td>
-                                            <a data-bs-toggle="modal" data-bs-target="#detail-cv-{{ $row->User->cv }}"
-                                                class="btn btn-primary">CV</a>
-                                        </td>
-                                        <td>
-                                            <a data-bs-toggle="modal"
-                                                data-bs-target="#detail-lamaran-{{ $row->User->lamaran }}"
-                                                class="btn btn-primary">Lamaran</a>
-                                        </td>
-                                        <td>
-                                            <button type="button" title="tolak pekerja" style="background-color: transparent;">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21"
-                                                    title="Tolak Pekerja" viewBox="0 0 16 16" data-bs-toggle="modal"
-                                                    data-bs-target="#reject-user-{{ $row->User->id }}">
-                                                    <g fill="#FA896B">
-                                                        <path
-                                                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                                        <path
-                                                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8L4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                                    </g>
-                                                </svg>
-                                            </button>
-                                            <button type="button" title="terima pekerja"
-                                                style="background-color: transparent;">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="28"
-                                                    viewBox="0 0 16 16" data-bs-toggle="modal" data-id="{{ $row->User->id }}"
-                                                    data-bs-target="#acc-user-{{ $row->User->id }}">
-                                                    <g fill="#13DEB9">
-                                                        <path
-                                                            d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764a.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0a5.5 5.5 0 1 1-11 0z" />
-                                                        <path
-                                                            d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293L5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z" />
-                                                    </g>
-                                                </svg>
-                                            </button>
-                                            <button type="button" title="lihat pekerja" style="background-color: transparent;">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="25"
-                                                    viewBox="0 0 16 16" data-bs-toggle="modal"
-                                                    data-bs-target="#detail-user-{{ $row->User->id }}">
-                                                    <g fill="#5D87FF">
-                                                        <path
-                                                            d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                                                        <path
-                                                            d="M8 5.5a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0a3.5 3.5 0 0 1-7 0z" />
-                                                    </g>
-                                                </svg>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <div class="container">
-                                        <div class="row d-flex">
-                                            <div class="col">
-                                                <tr>
-                                                    <td class="text-center" colspan="6">
-                                                        <img src="/assets/dist/images/nodatas.png" alt=""
-                                                            width="280px">
-                                                    </td>
-                                                </tr>
-
-
+                                            <div class="ms-3">
+                                                <h6 class="fs-4 fw-semibold mb-0">{{ $row->User->name }}</h6>
                                             </div>
                                         </div>
+                                    </td>
+                                    <td>
+                                        <p class="mb-0 fw-normal">{{ $row->Vacancy->Division->divisi }}</p>
+                                    </td>
+                                    <td>
+                                        <p class="mb-0 fw-normal">{{ $row->Vacancy->pekerja }}</p>
+                                    </td>
+                                    <td>
+                                        <a data-bs-toggle="modal" data-bs-target="#detail-cv-{{ $row->User->cv }}"
+                                            class="btn btn-primary">CV</a>
+                                    </td>
+                                    <td>
+                                        <a data-bs-toggle="modal"
+                                            data-bs-target="#detail-lamaran-{{ $row->User->lamaran }}"
+                                            class="btn btn-primary">Lamaran</a>
+                                    </td>
+                                    <td>
+                                        <button type="button" title="tolak pekerja" style="background-color: transparent;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21"
+                                                title="Tolak Pekerja" viewBox="0 0 16 16" data-bs-toggle="modal"
+                                                data-bs-target="#reject-user-{{ $row->User->id }}">
+                                                <g fill="#FA896B">
+                                                    <path
+                                                        d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                    <path
+                                                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8L4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                                </g>
+                                            </svg>
+                                        </button>
+                                        <button type="button" title="terima pekerja"
+                                            style="background-color: transparent;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="28"
+                                                viewBox="0 0 16 16" data-bs-toggle="modal" data-id="{{ $row->User->id }}"
+                                                data-bs-target="#acc-user-{{ $row->User->id }}">
+                                                <g fill="#13DEB9">
+                                                    <path
+                                                        d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764a.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0a5.5 5.5 0 1 1-11 0z" />
+                                                    <path
+                                                        d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293L5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z" />
+                                                </g>
+                                            </svg>
+                                        </button>
+                                        <button type="button" title="lihat pekerja" style="background-color: transparent;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="25"
+                                                viewBox="0 0 16 16" data-bs-toggle="modal"
+                                                data-bs-target="#detail-user-{{ $row->User->id }}">
+                                                <g fill="#5D87FF">
+                                                    <path
+                                                        d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                                    <path
+                                                        d="M8 5.5a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0a3.5 3.5 0 0 1-7 0z" />
+                                                </g>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @empty
+                                <div class="container">
+                                    <div class="row d-flex">
+                                        <div class="col">
+                                            <tr>
+                                                <td class="text-center" colspan="6">
+                                                    <img src="/assets/dist/images/nodatas.png" alt=""
+                                                        width="280px">
+                                                </td>
+                                            </tr>
+
+
+                                        </div>
                                     </div>
-                                @endforelse
+                                </div>
+                            @endforelse
 
-                            </tbody>
-                        </table>
-                        <div class="col-lg-12">
-                            <nav aria-label="Page navigation example" class="mt-3 justify-content-end">
-                                <ul class="pagination justify-content-end">
-                                {{ $user->appends(['cari' => request('cari')])->onEachSide(1)->links() }}
-                                </ul>
-                            </nav>
-                        </div>
-
+                        </tbody>
+                    </table>
+                    <div class="col-lg-12">
+                        <nav aria-label="Page navigation example" class="mt-3 justify-content-end">
+                            <ul class="pagination justify-content-end">
+                                {{ $user->appends(['cari' => request('cari')])->links() }}
+                            </ul>
+                        </nav>
                     </div>
+
                 </div>
             </div>
         </div>
+    </div>
     @foreach ($user as $item)
         <!-- Modal -->
         <div class="modal fade" id="acc-user-{{ $item->User->id }}" tabindex="-1"
@@ -342,7 +345,44 @@
             </div>
         </div>
 
-
+        <div class="modal fade" id="detail-lamaran-{{ $row->User->lamaran }}" tabindex="-1"
+            aria-labelledby="detail-lamaran-{{ $row->User->lamaran }}" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Lamaran pekerja</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <embed src="{{ asset('lamaran/' . $row->User->lamaran) }}" type="application/pdf" width="100%"
+                            height="100%">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="detail-cv-{{ $row->User->cv }}" tabindex="-1"
+            aria-labelledby="detail-cv-{{ $row->User->cv }}" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Cv pekerja</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <embed src="{{ asset('cv/' . $row->User->cv) }}" type="application/pdf" width="100%"
+                            height="100%">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                    </div>
+                </div>
+            </div>
+        </div>
     @endforeach
 
 
