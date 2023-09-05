@@ -31,7 +31,7 @@ class ApprovalController extends Controller
             $user = Registration::whereHas('user', function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', '%' . $keyword . '%');
             })->where('status', ['menunggu']) // Tampilkan hanya status bukan "disetujui"
-                ->paginate(8);
+                ->paginate(1);
 
             $user->appends(['cari' => $keyword]);
             // return view('admin-pekerja.approval.index', compact('user'));
@@ -48,7 +48,7 @@ class ApprovalController extends Controller
             $keyword = "";
         } else {
 
-            $user = Registration::where('status', ['menunggu'])->paginate(8);
+            $user = Registration::where('status', ['menunggu'])->paginate(1);
         }
 
         // $user = Registration::where('status', ['menunggu','ditolak'])->paginate(8);

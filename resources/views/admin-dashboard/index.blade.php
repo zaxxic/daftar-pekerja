@@ -157,21 +157,29 @@
                     speed: 450
                 }
             },
-            series: [{
+            series: [
+                {
                     name: 'Menunggu',
-                    data: chartData.map(data => data.menunggu)
+                    data: chartData.map(data => parseInt(data.menunggu)) // Menggunakan parseInt() di sini
                 },
                 {
                     name: 'Diterima',
-                    data: chartData.map(data => data.diterima)
+                    data: chartData.map(data => parseInt(data.diterima)) // Menggunakan parseInt() di sini
                 },
                 {
                     name: 'Ditolak',
-                    data: chartData.map(data => data.ditolak)
+                    data: chartData.map(data => parseInt(data.ditolak)) // Menggunakan parseInt() di sini
                 }
             ],
             xaxis: {
                 categories: chartData.map(data => data.month)
+            },
+            tooltip: {
+                y: {
+                    formatter: function (val) {
+                        return Math.round(val); // Menampilkan angka sebagai bilangan bulat pada tooltip
+                    }
+                }
             }
         };
 
@@ -179,6 +187,7 @@
         var chart = new ApexCharts(document.querySelector("#chart-line-with-data-labell"), options);
         chart.render();
     </script>
+
 
 
 </div>

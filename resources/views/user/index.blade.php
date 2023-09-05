@@ -261,7 +261,6 @@
                                                 class="text-white">Lihat Selengkapnya</a></button>
                                     @endif
                                     {{-- {{ $lowongan->links() }} --}}
-
                                 </div>
                             </div>
                         </div>
