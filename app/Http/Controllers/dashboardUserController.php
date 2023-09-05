@@ -18,8 +18,8 @@ class DashboardUserController extends Controller
     public function index()
     {
         $selectedDivision = 'semua';
-        $registration = Registration::where('users_id', Auth()->User()->id)->where('status', 'menunggu')->latest()->paginate(5);
-        $lowongan = Vacancy::where('status', 'aktif')->whereDate('batas', '>=', Carbon::today())->latest()->paginate(5);
+        $registration = Registration::where('users_id', Auth()->User()->id)->where('status', 'menunggu')->latest()->paginate(3);
+        $lowongan = Vacancy::where('status', 'aktif')->whereDate('batas', '>=', Carbon::today())->latest()->paginate(3);
         $data = Vacancy::whereDate('batas', '<=', Carbon::today())->where('status', 'aktif')->get();
         foreach ($data as $vacancy) {
             $vacancy->update(['status' => 'nonaktif']);
