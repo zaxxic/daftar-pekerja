@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Vacancy;
 use App\Models\Division;
 use Carbon\Carbon;
-
+use App\Mail\daftar;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\UpdateLowonganRequest;
 use App\Models\Registration;
 use App\Models\User;
@@ -174,6 +175,14 @@ class LowonganController extends Controller
         $registation = Registration::where('vacancie_id', $id)->where('status', 'menunggu')->first();
 
         if ($registation) {
+            $data = $registation->User->email;
+            $datas =   [
+                'pesan' => "lowongan yang anda daftar sudah tidak tersedia ",
+                'status' => "terima",
+                'judul' => " Pemberitahuan tentang pendaftaran"
+            ];
+
+            Mail::to($data)->send(new daftar($datas));
             $registation->delete();
         }
         $lowongan = Vacancy::find($id);
