@@ -55,7 +55,7 @@
                         <ul class="header-left-content">
                             <li>
                                 <a class="navbar-brand">
-                                    <img width="180px" src="assets1/images/humma.png" alt="logo">
+                                    <img width="180px" src="{{asset('assets/hummatech.png')}}" alt="logo">
                                 </a>
                             </li>
                         </ul>
@@ -101,7 +101,7 @@
                     <div class="mobile-menu">
                         <div class="logo">
                             <a href="index.html">
-                                <img src="assets1/images/logo.png" alt="logo">
+                                <img src="{{asset('assets/hummatech.png')}}" alt="logo">
                             </a>
                         </div>
                     </div>
@@ -200,7 +200,7 @@
                         </div>
                         <div class="container">
                             <div class="row">
-                                <h4 style="margin-right: 280px;" class="text-primary">Hummatech Technology</h4>
+                                <h4 style="margin-right: 280px;" class="text-primary">Hummatech Digital Indonesia</h4>
 
                             </div>
                         </div>
@@ -279,7 +279,7 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="single-footer-widget single-bg">
                                     <a class="logo" href="index.html">
-                                        <img width="180px" src="assets1/images/humma.png" alt="logo">
+                                        <img width="180px" src="{{asset('assets/hummatech.png')}}" alt="logo">
                                     </a>
                                     <p>Hummasoft merupakan sebuah perusahaan yang bergerak dibidang IT (Information
                                         Technology)
