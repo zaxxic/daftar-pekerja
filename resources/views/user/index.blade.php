@@ -61,15 +61,31 @@
     <!-- End Header Area -->
 
     <style>
+         @media (max-width: 600px){
+            .judul{
+                font-size: small;
+                /* padding-left: 90px; */
+            }
+            .kerja{
+                display: none;
+            }
+        }
         .kerja {
             background-image: url("assets1/images/banner/banner-bg.jpg");
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
-            padding: 170px;
+
+            padding-top: 150px;
+            padding-right: 150px;
+            padding-bottom: 150px;
+            padding-left: 90px;
             /* Sesuaikan ukuran padding sesuai keinginan */
             box-sizing: border-box;
         }
+
+
+
 
         @media (max-width: 768px) {
 
@@ -107,7 +123,7 @@
             <div class="row">
                 <div class="col-12 md-6">
                     <div class="banner-content">
-                        <h2 style="margin-top: -60px; font-size: 450%;  font-weight: bolder;" class="h2-responsive">Cari
+                        <h2 style="margin-top: -60px; font-size: 450%;  font-weight: bolder;" class="h2-responsive judul">Cari
                             Lowongan
                             Kerja</h2>
                         <ul>
@@ -218,43 +234,40 @@
                     <div class="shorting">
                         <div class="row">
                             @forelse ($lowongan as $item)
-                                <div class="col-12 col-sm-12 mix a s c">
-                                    <div class="hot-jobs-list">
-                                        <div class="row align-items-center">
-                                            <div class="col-lg-12 col-sm-6 col-md-12">
-                                                <div class="hot-jobs-content">
-                                                    <div class="d-flex justify-content-between" style="color: black">
-                                                        <h3><a href="">{{ $item->judul }}</a></h3>
-                                                        <p><span class="ml-5 mr-1">Berakhir Pada
-                                                                Tanggal
-                                                                :
-                                                            </span>{{ Carbon::parse($item->batas)->format('d M Y') }}
-                                                        </p>
-                                                    </div>
-                                                    <span
-                                                        class="sub-title text-primary mb-3">{{ $item->Division->divisi }}
-                                                    </span>
-                                                    <ul>
-                                                        <li class="mb-3"><span>Posisi
-                                                                :</span>{{ $item->pekerja }}
-                                                        </li>
-                                                        <li class="mb-3"><span>Slot Tersedia :
-                                                            </span>{{ $item->slot }}</li>
-                                                        <div class="d-flex justify-content-between">
-                                                            <li><span>Tipe Kerja : </span>{{ $item->tipe }}</li>
-                                                            <li class="ml-auto" style="margin-left: 300px;"><button
-                                                                    class="default-btn"><a
-                                                                        href="{{ route('detailLowongan', $item->id) }}"
-                                                                        class="text-white">Detail</a></button>
-                                                            </li>
-                                                        </div>
-                                                    </ul>
+                            <div class=" mix a s c" id="card2">
+                                <div class="hot-jobs-list col-md-6 col-12">
+                                    <div class="row align-items-center">
+                                        <div class="col-12">
+                                            <div class="hot-jobs-content">
+                                                <div class="row" style="color: black">
+                                                    <h3 class=" col-12 col-md-4 "><a href="">{{ $item->judul }}</a></h3>
+                                                    <p class="col-12 col-md-8  d-flex justify-content-center" ><span class="">Berakhir Pada
+                                                            Tanggal
+                                                            :  {{ Carbon::parse($item->batas)->format('d M Y') }}
+                                                        </span>
+                                                    </p>
                                                 </div>
+                                                <span
+                                                    class="sub-title text-primary mb-1">{{ $item->Division->divisi }}</span>
+                                                <ul>
+                                                    <li><span>Gaji
+                                                            :</span>{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}
+                                                    </li>
+                                                    <li><span>Slot Tersedia : </span>{{ $item->slot }}</li>
+                                                    <div class="row ">
+                                                        <li class="col-12 col-md-6"><span>Tipe Kerja : </span>{{ $item->tipe }}</li>
+                                                        <li class="d-flex col-12 col-md-5 justify-content-end " style="margin-right: 0px;"><button
+                                                                class="default-btn"><a
+                                                                    href="{{ route('detailLowongan', $item->id) }}"
+                                                                    class="text-white">Detail</a></button>
+                                                        </li>
+                                                    </div>
+                                                </ul>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
+                            </div>
 
                             @empty
                                 <div class="row">

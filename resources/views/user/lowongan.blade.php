@@ -89,7 +89,7 @@
             box-sizing: border-box;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 640px) {
 
             /* Atur breakpoint sesuai kebutuhan */
             .kerja h1 {
