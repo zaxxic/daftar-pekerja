@@ -209,11 +209,12 @@
                                                     Detail</button>
                                             </a>
                                         </li>
-                                        @if ($item->status === 'menunggu' || $item->status === 'ditolak')
+                                        @if ($item->status === 'menunggu')
                                             <li class="ml-1" id="batal"><button
                                                     class="btn btn-danger">Batal</button>
                                             </li>
                                         @endif
+
                                     </div>
                                 </ul>
 
@@ -487,8 +488,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
         src="
-                                                                                                                                                                                                        https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                                                                                                                                                                                        ">
+                                                                                                                                                                                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                                                                                                                                                                                ">
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
