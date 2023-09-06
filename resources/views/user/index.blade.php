@@ -85,10 +85,10 @@
                 text-align: center;
             }
 
-            .banner-content h1 {
+            .banner-content h2 {
                 font-size: 1%;
                 /* Ubah ukuran font sesuai keinginan */
-                margin-top: 0;
+                margin-top: 15px;
             }
 
             .banner-content h5 {
@@ -101,13 +101,15 @@
     </style>
 
     <!-- Start Page Title Area -->
+
     <div class=" kerja" style="direction: ltr; margin-top: -45px;">
         <div class="container" style="margin-bottom: -100px; margin-left: -50px;">
             <div class="row">
                 <div class="col-12 md-6">
                     <div class="banner-content">
-                        <h1 style="margin-top: -40px;  font-weight: bolder; font-size: 50px;">Cari Lowongan
-                            Kerja</h1>
+                        <h2 style="margin-top: -60px; font-size: 450%;  font-weight: bolder;" class="h2-responsive">Cari
+                            Lowongan
+                            Kerja</h2>
                         <ul>
                             <li>
                                 <h5>Temukan pekerjaan yang anda sukai!!</h5>
@@ -166,8 +168,9 @@
                             color: white;
                             border-radius: 4px;
                         }
+
                         #pp {
-                           
+
                             border-top-right-radius: 30px;
                             border-bottom-right-radius: 30px;
                             background-color: #fff;
@@ -215,10 +218,10 @@
                     <div class="shorting">
                         <div class="row">
                             @forelse ($lowongan as $item)
-                                <div class="col-12 sm-12 mix a s c">
+                                <div class="col-12 col-sm-12 mix a s c">
                                     <div class="hot-jobs-list">
                                         <div class="row align-items-center">
-                                            <div class="col-lg-12">
+                                            <div class="col-lg-12 col-sm-6 col-md-12">
                                                 <div class="hot-jobs-content">
                                                     <div class="d-flex justify-content-between" style="color: black">
                                                         <h3><a href="">{{ $item->judul }}</a></h3>
@@ -469,9 +472,11 @@
     <!-- Custom JS -->
     <script src="assets1/js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="
-                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                                "></script>
+    <script
+        src="
+                                                                                                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                                                                                                ">
+    </script>
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
     " rel="stylesheet">

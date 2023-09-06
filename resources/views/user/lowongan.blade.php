@@ -78,8 +78,30 @@
             /* Sesuaikan ukuran padding sesuai keinginan */
             box-sizing: border-box;
         }
+
+        @media (max-width: 768px) {
+
+            /* Atur breakpoint sesuai kebutuhan */
+            .kerja h1 {
+                background-size: contain;
+                /* Gambar akan menyesuaikan ukuran sesuai lebar */
+                padding: 60px 15px;
+                display: none;
+                /* Ubah ukuran padding sesuai keinginan */
+            }
+
+            .lowongan {
+                font-size: 10px;
+            }
+
+            .banner-content h1 {
+                font-size: 5px;
+            }
+        }
+
         .select2-container--default .select2-selection--single .select2-selection__rendered {
-            height: 120px; /* Sesuaikan tinggi sesuai kebutuhan Anda */
+            height: 120px;
+            /* Sesuaikan tinggi sesuai kebutuhan Anda */
         }
     </style>
 
@@ -87,7 +109,7 @@
     <div class=" kerja" style="direction: ltr; margin-top: -45px;">
         <div class="container" style="margin-bottom: -100px; margin-left: -50px;">
             <div class="banner-content">
-                <h1 style="margin-top: -40px;  font-weight: bolder; font-size: 50px;">Daftar Lowongan
+                <h1 style="margin-top: -40px;  font-weight: bolder; font-size: 50px;" class="lowongan">Daftar Lowongan
                     Kerja</h1>
                 <ul>
                     <li>
@@ -108,7 +130,7 @@
         <div class="container">
             <div class="row">
                 <label class="fs-5 fw-bold">Cari Berdasarkan Divisi :</label>
-                <div class="col-6">
+                <div class="col-6 col-sm-12">
                     <div class="form-group">
                         <form action="" class="search-form d-flex">
                             <div class="form-group">
@@ -134,8 +156,8 @@
 
                         </form>
                     </div>
-
                 </div>
+
 
                 {{-- <script>
                     $(document).ready(function() {
@@ -151,56 +173,47 @@
                 <div class="shorting">
                     <div class="row" id="card">
                         @forelse ($lowongan as $item)
-                            <div class="col-6 sm-12 mix a s c" id="card2">
+                            <div class="col-12 col-md-6 mix a s c" id="card2">
                                 <div class="hot-jobs-list">
                                     <div class="row align-items-center">
-                                        <div class="col-lg-12">
+                                        <div class="col-12">
                                             <div class="hot-jobs-content">
                                                 <div class="d-flex justify-content-between" style="color: black">
-                                                    <h3><a href="">{{ $item->judul }}</a></h3>
-                                                    <p><span class="ml-5 mr-1">Berakhir Pada
-                                                            Tanggal
-                                                            :
-                                                        </span>{{ Carbon::parse($item->batas)->format('d M Y') }}
-                                                    </p>
+                                                    <h3><a href="#">{{ $item->judul }}</a></h3>
+                                                    <p><span class="ml-3">Berakhir Pada Tanggal:</span>
+                                                        {{ Carbon::parse($item->batas)->format('d M Y') }}</p>
                                                 </div>
-                                                <span class="sub-title text-primary mb-1">{{ $item->Division->divisi }}
-                                                </span>
+                                                <span
+                                                    class="sub-title text-primary mb-1">{{ $item->Division->divisi }}</span>
                                                 <ul>
-                                                    <li><span>Gaji
-                                                            :</span>{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}
-                                                    </li>
-                                                    <li><span>Slot Tersedia : </span>{{ $item->slot }}</li>
+                                                    <li><span>Gaji :</span>
+                                                        {{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}</li>
+                                                    <li><span>Slot Tersedia :</span> {{ $item->slot }}</li>
                                                     <div class="d-flex justify-content-between">
-                                                        <li><span>Tipe Kerja : </span>{{ $item->tipe }}</li>
-                                                        <li class="ml-auto" style="margin-left: 300px;"><button
-                                                                class="default-btn"><a
-                                                                    href="{{ route('detailLowongan', $item->id) }}"
-                                                                    class="text-white">Detail</a></button>
-                                                        </li>
+                                                        <li><span>Tipe Kerja :</span> {{ $item->tipe }}</li>
+                                                        <li class="ml-auto"><a
+                                                                href="{{ route('detailLowongan', $item->id) }}"
+                                                                class="btn btn-primary">Detail</a></li>
                                                     </div>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
-
                         @empty
-                            <div class="row">
-                                <div class="col-lg-12 mt-5 text-center" id="lowongan">
-                                    <img src="/assets/dist/images/nodatas.png" alt="" width="350px">
-                                </div>
+                            <div class="col-12 mt-5 text-center" id="lowongan">
+                                <img src="/assets/dist/images/nodatas.png" alt="" width="350px">
                             </div>
                         @endforelse
                         <div class="col-12">
                             <div class="pagination-area">
-                            {{ $lowongan->appends(['cari' => request('cari')])->onEachSide(1)->links() }}
+                                {{ $lowongan->appends(['cari' => request('cari')])->onEachSide(1)->links() }}
                             </div>
                         </div>
                     </div>
                 </div>
+
 
 
 
@@ -402,8 +415,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
         src="
-                                                                                                                                                                                                                                                                                                                                                                                                                                            https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                                                                                                                                                                                                                                                                                                                                                                                                                            ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ">
     </script>
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
