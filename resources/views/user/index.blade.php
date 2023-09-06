@@ -166,8 +166,15 @@
                             color: white;
                             border-radius: 4px;
                         }
+                        #pp {
+                           
+                            border-top-right-radius: 30px;
+                            border-bottom-right-radius: 30px;
+                            background-color: #fff;
+                            box-shadow: 0px 10px 10px rgba(245, 246, 253, 1);
+                        }
                     </style>
-                    <div class="employers-listing-sidebar mt-5">
+                    <div class="employers-listing-sidebar mt-5 " id="pp">
                         <h3>Lamaran Ditampung</h3>
                         @forelse ($registration as $item)
                             <div class="col-lg-12 mt-3" id="lowongan">
@@ -204,14 +211,14 @@
                         {{ $registration->links() }}
                     </div>
                 </div>
-                <div class="col-lg-8 mb-4">
-                    <div class="shorting mb-4">
-                        <div class="row mb-4">
+                <div class="col-lg-8">
+                    <div class="shorting">
+                        <div class="row">
                             @forelse ($lowongan as $item)
-                                <div class="col-12 sm-12 mix a s c mb-4">
+                                <div class="col-12 sm-12 mix a s c">
                                     <div class="hot-jobs-list">
                                         <div class="row align-items-center">
-                                            <div class="col-lg-12 mb-4">
+                                            <div class="col-lg-12">
                                                 <div class="hot-jobs-content">
                                                     <div class="d-flex justify-content-between" style="color: black">
                                                         <h3><a href="">{{ $item->judul }}</a></h3>
@@ -463,8 +470,8 @@
     <script src="assets1/js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="
-                                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                                                "></script>
+                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                "></script>
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
     " rel="stylesheet">

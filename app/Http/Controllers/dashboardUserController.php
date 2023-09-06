@@ -18,36 +18,61 @@ class DashboardUserController extends Controller
     public function index()
     {
         $selectedDivision = 'semua';
-        $registration = Registration::where('users_id', Auth()->User()->id)->where('status', 'menunggu')->latest()->paginate(3);
-        $lowongan = Vacancy::where('status', 'aktif')->whereDate('batas', '>=', Carbon::today())->latest()->paginate(3);
-        $data = Vacancy::whereDate('batas', '<=', Carbon::today())->where('status', 'aktif')->get();
+        $registration = Registration::where('users_id', Auth()->user()->id)
+            ->where('status', 'menunggu')
+            ->latest()
+            ->paginate(5);
+
+        $lowongan = Vacancy::where('status', 'aktif')
+            ->whereDate('batas', '>=', Carbon::today())
+            ->orderByRaw('DATEDIFF(batas, CURDATE())') // Mengurutkan berdasarkan perbedaan antara batas tanggal dan tanggal hari ini
+            ->latest()
+            ->paginate(5);
+
+        $data = Vacancy::whereDate('batas', '<=', Carbon::today())
+            ->where('status', 'aktif')
+            ->get();
+
         foreach ($data as $vacancy) {
             $vacancy->update(['status' => 'nonaktif']);
         }
+
         $divisi = Division::all();
         $cek = Vacancy::where('status', 'aktif')->count();
-        return view('user.index', compact('lowongan', 'divisi','selectedDivision','registration', 'cek'));
+
+        return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration', 'cek'));
     }
+
 
     public function lowongan(Request $request){
 
 
         $selectedDivision = $request->input('division', 'semua');
-        if($request->cari){
-            $lowongan = Vacancy::where('devisi_id', $request->cari)->where('status', 'aktif')->paginate(5);
+
+        if ($request->has('cari')) {
+            $lowongan = Vacancy::where('devisi_id', $request->cari)
+                ->where('status', 'aktif')
+                ->orderByRaw('ABS(DATEDIFF(batas, CURDATE()))') // Mengurutkan berdasarkan perbedaan antara batas tanggal dan tanggal hari ini
+                ->paginate(5);
             $divisi = Division::all();
             return view('user.lowongan', compact('lowongan', 'divisi', 'selectedDivision'));
         }
-        $lowonganQuery = Vacancy::when($request->division, function ($q) use ($request)
-        {
-            $q->where('devisi_id', $request->division);
-        })->latest();
 
+        $lowonganQuery = Vacancy::query();
 
-        $lowongan = $lowonganQuery->where('status', 'aktif')->paginate(5);
+        if ($request->division) {
+            $lowonganQuery->where('devisi_id', $request->division);
+        }
+
+        $lowongan = $lowonganQuery->where('status', 'aktif')
+            ->orderByRaw('ABS(DATEDIFF(batas, CURDATE()))') // Mengurutkan berdasarkan perbedaan antara batas tanggal dan tanggal hari ini
+            ->latest()
+            ->paginate(5);
+
         $divisi = Division::all();
 
         return view('user.lowongan', compact('lowongan', 'divisi', 'selectedDivision'));
+
     }
 
 
