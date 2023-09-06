@@ -106,6 +106,7 @@ class PekerjaController extends Controller
         $user->message()->save($pesan);
         $user->update([
             'status' => 'menunggu',
+            'tanggal_wawancara' => null,
             'devision_id' => null
         ]);
         $data = Registration::where('users_id', $id)->delete();
