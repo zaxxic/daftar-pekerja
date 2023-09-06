@@ -518,67 +518,83 @@
                     buttonsStyling: false
                 });
 
-                swalWithBootstrapButtons.fire({
-                    title: 'Apa kamu yakin',
-                    text: "Ingin mendaftar di lowongan ini",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'iya',
-                    cancelButtonText: 'tidak',
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        var url = "{{ route('detail-lowongan.store') }}";
-                        var formData = "{{ $lowongan->id }}";
+                var cv = '{{Auth()->user()->cv}}';
+                var lamaran = '{{Auth()->user()->lamaran}}';
+                var foto_user = '{{Auth()->user()->foto}}';
 
-                        $.ajax({
-                            type: 'POST',
-                            url: url,
-                            data: {
-                                id: formData,
-                            },
-                            success: function(response) {
-                                if (response.status === 'sukses') {
-                                    Swal.fire({
-                                        icon: 'success',
-                                        title: 'Sukses',
-                                        text: 'Terima kasih anda telah mendaftar di lowongan ini'
-                                    }).then(() => {
-                                        window.location.reload();
-                                    });
-                                } else if (response.status === 'sudah') {
-                                    Swal.fire({
+                if(foto_user !== 'default.png' && (cv !== 'default.png' && lamaran !== 'default.png')) {
+                    swalWithBootstrapButtons.fire({
+                        title: 'Apa kamu yakin',
+                        text: "Ingin mendaftar di lowongan ini",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'iya',
+                        cancelButtonText: 'tidak',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            var url = "{{ route('detail-lowongan.store') }}";
+                            var formData = "{{ $lowongan->id }}";
+
+                            $.ajax({
+                                type: 'POST',
+                                url: url,
+                                data: {
+                                    id: formData,
+                                },
+                                success: function(response) {
+                                    if (response.status === 'sukses') {
+                                        swalWithBootstrapButtons.fire({
+                                            icon: 'success',
+                                            title: 'Sukses',
+                                            text: 'Terima kasih anda telah mendaftar di lowongan ini'
+                                        }).then(() => {
+                                            window.location.reload();
+                                        });
+                                    } else if (response.status === 'sudah') {
+                                        swalWithBootstrapButtons.fire({
+                                            icon: 'error',
+                                            title: 'Error',
+                                            text: 'Anda sudah terdaftar di lowongan ini'
+                                        });
+                                    } else if (response.status === 'penuh') {
+                                        swalWithBootstrapButtons.fire({
+                                            icon: 'error',
+                                            title: 'Maaf',
+                                            text: 'Slot lowongan sudah penuh. Tidak bisa mendaftar.'
+                                        });
+                                    }
+                                },
+                                error: function(error) {
+                                    console.log(error);
+                                    swalWithBootstrapButtons.fire({
                                         icon: 'error',
                                         title: 'Error',
-                                        text: 'Anda sudah terdaftar di lowongan ini'
-                                    });
-                                } else if (response.status === 'penuh') {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Maaf',
-                                        text: 'Slot lowongan sudah penuh. Tidak bisa mendaftar.'
+                                        text: 'Terjadi kesalahan. Data tidak dapat disimpan.'
                                     });
                                 }
-                            },
-                            error: function(error) {
-                                console.log(error);
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Error',
-                                    text: 'Terjadi kesalahan. Data tidak dapat disimpan.'
-                                });
-                            }
-                        });
-                    } else if (
-                        result.dismiss === Swal.DismissReason.cancel
-                    ) {
-                        swalWithBootstrapButtons.fire(
-                            'Batal',
-                            'Coba untuk berpikir lebih yakin untuk mendaftar :)',
-                            'error'
-                        );
-                    }
-                });
+                            });
+                        } else if (
+                            result.dismiss === Swal.DismissReason.cancel
+                        ) {
+                            swalWithBootstrapButtons.fire(
+                                'Batal',
+                                'Coba untuk berpikir lebih yakin untuk mendaftar :)',
+                                'error'
+                            );
+                        }
+                    });
+                }else{
+                    swalWithBootstrapButtons.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Lengkapi data cv, lamaran, dan foto anda di halaman profile'
+                    }).then(() => {
+                        window.location.href = "{{ route('profile') }}";
+                    });
+                    // console.log("pppp");
+
+                }
 
             });
 
