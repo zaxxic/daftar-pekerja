@@ -58,7 +58,7 @@
                 </div>
                 <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
                 <div class="modal-body">
-                    <div class="row  " id="divisiContainer">
+                    <div class="row" id="divisiContainer">
 
                     </div>
                 </div>
@@ -324,7 +324,7 @@
                         var divisiHtml = `
                                 <div class="col-4 flex mb-2  justify-content-center ">
                                     <div class="col-12 rounded rounded-2  d-flex justify-content-between border border-2" style="padding: 10px;">
-                                        <div class="col-8 ellipsis">${item.divisi}</div>...
+                                        <div class="col-8 ellipsis">${item.divisi}</div>
                                         <form class="text-danger delete-form col-3" data-id="${item.id}">
                                             @csrf
                                             @method('DELETE')
