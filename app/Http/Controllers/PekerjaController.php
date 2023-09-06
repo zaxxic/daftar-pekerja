@@ -105,7 +105,7 @@ class PekerjaController extends Controller
 
         $user->message()->save($pesan);
         $user->update([
-            'status' => 'nonaktif',
+            'status' => 'menunggu',
             'tanggal_wawancara' => null,
             'devision_id' => null
         ]);

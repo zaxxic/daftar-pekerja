@@ -522,7 +522,7 @@
                 var lamaran = '{{Auth()->user()->lamaran}}';
                 var foto_user = '{{Auth()->user()->foto}}';
 
-                if(foto_user !== 'default.png' && (cv !== 'default.png' && lamaran !== 'default.png')) {
+                if(foto_user !== 'default/default.png' && (cv !== 'default/default.png' && lamaran !== 'default/default.png')) {
                     swalWithBootstrapButtons.fire({
                         title: 'Apa kamu yakin',
                         text: "Ingin mendaftar di lowongan ini",

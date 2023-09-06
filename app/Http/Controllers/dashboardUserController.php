@@ -12,14 +12,14 @@ use Illuminate\Http\Request;
 
 class DashboardUserController extends Controller
 {
-      /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $selectedDivision = 'semua';    
         $registration = Registration::where('users_id', Auth()->user()->id)
-            ->whereIn('status', ['menunggu', 'diterima', 'ditolak']) // Menggunakan whereIn untuk beberapa nilai status
+            ->whereIn('status', ['menunggu', 'diterima', 'ditolak', 'nonaktif']) // Menggunakan whereIn untuk beberapa nilai status
             ->latest()
             ->paginate(5);
 
@@ -43,8 +43,8 @@ class DashboardUserController extends Controller
         return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration', 'cek'));
     }
 
-
-    public function lowongan(Request $request){
+    public function lowongan(Request $request)
+    {
 
 
         $selectedDivision = $request->input('division', 'semua');
@@ -72,7 +72,6 @@ class DashboardUserController extends Controller
         $divisi = Division::all();
 
         return view('user.lowongan', compact('lowongan', 'divisi', 'selectedDivision'));
-
     }
 
 
@@ -84,11 +83,20 @@ class DashboardUserController extends Controller
             return $query->whereHas('division', function ($subQuery) use ($selectedDivision) {
                 $subQuery->where('divisi', $selectedDivision);
             });
-        })->whereDate('batas', '>=', Carbon::today())->latest()->paginate(3);
-        $registration = Registration::where('users_id', Auth()->User()->id)->where('status', 'menunggu')->latest()->paginate(3);
+        })
+            ->whereDate('batas', '>=', Carbon::today()->toDateString()) // Memastikan hanya lowongan yang berakhir pada hari ini dan seterusnya yang ditampilkan
+            ->orderByRaw('ABS(DATEDIFF(batas, CURDATE()))')
+            ->latest()
+            ->paginate(3);
+
+        $registration = Registration::where('users_id', Auth()->User()->id)
+            ->where('status', 'menunggu')
+            ->latest()
+            ->paginate(3);
 
         $divisi = Division::all();
         $cek = Vacancy::where('status', 'aktif')->count();
-        return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration', 'cek'   ));
+
+        return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration', 'cek'));
     }
 }

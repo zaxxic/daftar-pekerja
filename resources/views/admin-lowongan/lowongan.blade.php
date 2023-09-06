@@ -279,7 +279,7 @@
         $(document).on('click', '.btn-delete', function() {
             var form = $(this).closest('.delete-form');
             var id = form.data('id');
-            // sweet aler
+            // sweet alert
             Swal.fire({
                 title: 'Konfirmasi Hapus',
                 text: 'Anda yakin ingin menghapus item ini?',
@@ -290,26 +290,34 @@
                 confirmButtonText: 'Ya, hapus',
                 cancelButtonText: 'Batal'
             }).then((result) => {
-                Swal.fire(
-                    "Berhasil!",
-                    "Anda berhasil menonaktifkan lowongan tersebut.",
-                    "success"
-                ).then(() => {
-                    $.ajax({
-                        type: 'DELETE',
-                        url: "/divisi/" + id,
-                        data: {
-                            "_token": "{{ csrf_token() }}"
-                        },
-                        success: function(response) {
-                            form.closest('.col-4')
-                                .remove(); // Hapus elemen dari tampilan
-                        },
-                        error: function(error) {
-                            console.log(error);
-                        }
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        "Berhasil!",
+                        "Anda berhasil menghapus item tersebut.",
+                        "success"
+                    ).then(() => {
+                        $.ajax({
+                            type: 'DELETE',
+                            url: "/divisi/" + id,
+                            data: {
+                                "_token": "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                form.closest('.col-4')
+                                    .remove(); // Hapus elemen dari tampilan
+                            },
+                            error: function(error) {
+                                console.log(error);
+                            }
+                        });
                     });
-                });
+                } else {
+                    Swal.fire(
+                        "Batal",
+                        "Data Anda tidak jadi dihapus.",
+                        "info"
+                    );
+                }
             });
         });
 
