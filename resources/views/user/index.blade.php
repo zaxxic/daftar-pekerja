@@ -63,8 +63,24 @@
     <style>
         @media (max-width: 600px) {
             .judul {
-                font-size: small;
-                /* padding-left: 90px; */
+                font-size: 16px;
+                /* Ubah ukuran font sesuai keinginan Anda */
+                margin-top: 10px;
+                /* Sesuaikan margin-top sesuai keinginan Anda */
+                text-align: center;
+                /* Teks akan menjadi lurus horizontal */
+            }
+
+            .kerja {
+                padding: 30px 15px;
+                /* Sesuaikan ukuran padding sesuai keinginan Anda */
+            }
+
+            .banner-content h5 {
+                font-size: 12px;
+                /* Ubah ukuran font sesuai keinginan Anda */
+                text-align: center;
+                /* Teks akan menjadi lurus horizontal */
             }
         }
 
@@ -88,7 +104,7 @@
             .kerja h1 {
                 background-size: contain;
                 /* Gambar akan menyesuaikan ukuran sesuai lebar */
-                padding: 60px 15px;
+
                 display: none;
                 /* Ubah ukuran padding sesuai keinginan */
             }
@@ -100,6 +116,7 @@
             .banner-content h1 {
                 font-size: 5px;
             }
+
         }
 
         .select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -215,6 +232,7 @@
                                             </li>
                                         @endif
 
+
                                     </div>
                                 </ul>
 
@@ -236,11 +254,11 @@
                                         <div class="row align-items-center">
                                             <div class="col-12 col-lg-12">
                                                 <div class="hot-jobs-content">
-                                                    <div class="row" style="color: black">
+                                                    <div class="row d-flex justify-content-between"
+                                                        style="color: black">
                                                         <h3 class=" col-12 col-md-4 "><a
                                                                 href="">{{ $item->judul }}</a></h3>
-                                                        <p class="col-12 col-md-8  d-flex justify-content-center"><span
-                                                                class="">Berakhir Pada
+                                                        <p class="col-12 col-md-8"><span class="">Berakhir Pada
                                                                 Tanggal
                                                                 : {{ Carbon::parse($item->batas)->format('d M Y') }}
                                                             </span>
@@ -488,8 +506,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
         src="
-                                                                                                                                                                                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                                                                                                                                                                                                ">
+                                                                                                                                                                                                                                                            https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                                                                                                                                                                                                                            ">
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>

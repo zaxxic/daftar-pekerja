@@ -17,7 +17,7 @@ class DashboardUserController extends Controller
      */
     public function index()
     {
-        $selectedDivision = 'semua';
+        $selectedDivision = 'semua';    
         $registration = Registration::where('users_id', Auth()->user()->id)
             ->whereIn('status', ['menunggu', 'diterima', 'ditolak']) // Menggunakan whereIn untuk beberapa nilai status
             ->latest()
