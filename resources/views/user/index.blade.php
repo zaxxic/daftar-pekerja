@@ -186,14 +186,20 @@
                             <div class="col-lg-12 mt-3" id="lowongan">
                                 <div class="d-flex justify-content-between">
                                     <h5><a href="" style="color: black">{{ $item->Vacancy->judul }}</a></h5>
-                                    <span class="status bg-warning">{{ $item->status }}</span>
+                                    @if ($item->status === 'diterima')
+                                        <span class="status bg-success" style="width: 79px;">{{ $item->status }}</span>
+                                    @elseif($item->status === 'ditolak')
+                                        <span class="status bg-danger" style="width: 70px;">{{ $item->status }}</span>
+                                    @else
+                                        <span class="status bg-warning" style="align-items: center;"><span
+                                                style="margin-right: -50px;">{{ $item->status }}</span></span>
+                                    @endif
                                 </div>
-                                <span class="sub-title text-primary mb-2">{{ $item->Vacancy->pekerja }}</span>
                                 <ul>
                                     <li class="mb-2 mt-2"><span>Tanggal Wanwancara :</span>
                                         {{ $item->User->tanggal_wawancara }}
                                     </li>
-                                    <li class="mb-2"><span>Posisi :</span>{{ $item->pekerja }}</li>
+                                    <li class="mb-2"><span>Posisi :</span>{{ $item->Vacancy->pekerja }}</li>
                                     <li class="mb-2"><span>Slot Tersedia : </span> {{ $item->Vacancy->slot }}</li>
                                     <div class="d-flex justify-content-between">
                                         <li class="mb-2"><span>Tipe Kerja : </span>{{ $item->Vacancy->tipe }}</li>
@@ -203,8 +209,11 @@
                                                     Detail</button>
                                             </a>
                                         </li>
-                                        <li class="ml-1" id="batal"><button class="btn btn-danger">Batal</button>
-                                        </li>
+                                        @if ($item->status === 'menunggu' || $item->status === 'ditolak')
+                                            <li class="ml-1" id="batal"><button
+                                                    class="btn btn-danger">Batal</button>
+                                            </li>
+                                        @endif
                                     </div>
                                 </ul>
 
@@ -476,19 +485,14 @@
     <!-- Custom JS -->
     <script src="assets1/js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <<<<<<< Updated upstream <script
+    <script
         src="
-                                                                                                                                            https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                                                                                                                            ">
+                                                                                                                                                                                                        https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                                                                                                                                                                        ">
     </script>
-    =======
-    <script src="
-                                                                                    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                                                                    "></script>
-    >>>>>>> Stashed changes
-    <link href="
-    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
-    " rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css" rel="stylesheet">
     <script>
         $(document).ready(function() {
             $.ajaxSetup({
@@ -508,7 +512,7 @@
 
                 swalWithBootstrapButtons.fire({
                     title: 'Apa kamu yakin',
-                    text: "Ingin mendaftar di lowongan ini",
+                    text: "Ingin membatalkan pendaftaran ini",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonText: 'iya',

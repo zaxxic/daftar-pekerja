@@ -19,7 +19,7 @@ class DashboardUserController extends Controller
     {
         $selectedDivision = 'semua';
         $registration = Registration::where('users_id', Auth()->user()->id)
-            ->where('status', 'menunggu')
+            ->whereIn('status', ['menunggu', 'diterima', 'ditolak']) // Menggunakan whereIn untuk beberapa nilai status
             ->latest()
             ->paginate(5);
 
