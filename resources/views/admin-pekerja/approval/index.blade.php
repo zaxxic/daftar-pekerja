@@ -298,10 +298,6 @@
                                         </div>
                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                         <div class="d-flex mb-1">
-                                            <span style="font-weight: 600;">Alamat:</span>
-                                            <span class="ms-2">{{ $item->User->alamat }}</span>
-                                        </div>
-                                        <div class="d-flex mb-1">
                                             <span style="font-weight: 600;">Divisi:</span>
                                             <span class="ms-2">{{ $item->Vacancy->Division->divisi }}</span>
                                         </div>
@@ -311,9 +307,15 @@
                                                 :</span>
                                             <span>{{ $item->Vacancy->pekerja }}</span>
                                         </div>
-                                        <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+
 
                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                        <div class="d-flex mb-1">
+                                            <span style="font-weight: 600;">Alamat:</span>
+                                            <span class="ms-2">{{ $item->User->alamat }}</span>
+                                        </div>
+                                        <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+
                                     </div>
                                 </div>
                             </div>
