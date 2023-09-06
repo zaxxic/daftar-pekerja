@@ -3,7 +3,7 @@
 <div class="row">
     <div class="mb-4 d-flex justify-content-start col-md-6 lg-6">
         <button style="background-color: white;">
-            <a href="{{ route('lowongan.create') }}" class="btn text-white me-2" style="background-color: #007bff; margin-top: -10px;">Tambah</a>
+            <a href="{{ route('lowongan.create') }}" class="btn btn-primary me-3" style=" margin-top: -10px;">Tambah</a>
         </button>
         <form action="">
             <div class="mb-4 d-flex justify-content-end align-items-center position-relative">
@@ -33,7 +33,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" id="submitBtn" class="btn btn-light-success text-success font-medium waves-effect text-start">
+                            <button type="button" id="submitBtn" class="btn btn-success">
                                 Simpan
                             </button>
                         </div>
