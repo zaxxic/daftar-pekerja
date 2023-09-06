@@ -134,44 +134,7 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <label for="exampleInputEmail1" class="form-label col-12">Masukkan CV, Lamaran (wajib pdf)<span style="color: red;">*</span></label>
-                                    <div class="col-md-4 col-12">
-                                        <div class="mb-3">
-                                            <button id="cv" name="cv" type="button" class="btn btn-primary col-12" value="CV">CV</button>
-                                            <input type="file" name="cv" hidden id="file_cv">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-12">
-                                        <div class="mb-3">
-                                            <button id="lamaran" class="btn btn-primary col-12" type="button" value="Lamaran">Lamaran</button>
-                                            <input type="file" name="lamaran" hidden id="file_lamaran">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-12">
-                                        <div class="mb-3">
-                                            <button id="foto" class="btn btn-primary col-12" type="button" value="Foto">Foto</button>
-                                            <input type="file" name="foto" hidden id="file_foto">
-                                        </div>
-                                    </div>
-                                </div>
-                                @if($errors->has('cv') || $errors->has('lamaran') || $errors->has('foto'))
-                                <div class="text-danger">Mohon untuk mengisi ulang formulir yang ada dan jangan mengosongkan kolom-kolom yang wajib diisi.</div>
-                                @endif
-                                <span id="error_cv" class="text-danger"></span> <br>
-                                <span id="error_lamaran" class="text-danger"></span> <br>
-                                <span id="error_foto" class="text-danger"></span>
-                                <div class="row mb-3">
-                                    @error('cv')
-                                    <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                    @error('lamaran')
-                                    <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                    @error('foto')
-                                    <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                                
 
                                 <div class="row">
                                     <div class="col-md-12">
@@ -217,83 +180,7 @@
                                     <a class="text-primary fw-medium ms-2" href="{{ route('login') }}">login</a>
                                 </div>
                             </form>
-                            <script>
-                                $(document).ready(function() {
-                                    $('#cv').click(function() {
-                                        $('#file_cv').trigger('click');
-                                        $('#file_cv').on('change', function() {
-                                            // Memeriksa apakah input file 'file_cv' memiliki nilai (file telah dipilih)
-                                            if ($(this).val()) {
-                                                var filename = $(this).val();
-                                                var fileExtension = filename.split('.').pop().toLowerCase();
-                                                if (fileExtension === 'pdf') {
-                                                    $('#cv').css('background-color', 'green');
-                                                    $('#error_cv').html('');
-                                                } else {
-                                                    $('#cv').css('background-color', 'red');
-                                                    $('#error_cv').html('isikan file CV dengan format yang sesuai (PDF)');
-
-
-
-                                                }
-                                            } else {
-                                                $('#cv').css('background-color', '');
-                                            }
-                                        });
-
-                                    })
-                                })
-                                $(document).ready(function() {
-                                    $('#lamaran').click(function() {
-                                        $('#file_lamaran').trigger('click');
-                                        $('#file_lamaran').on('change', function() {
-                                            // Memeriksa apakah input file 'file_lamaran' memiliki nilai (file telah dipilih)
-                                            if ($(this).val()) {
-                                                var filename = $(this).val();
-                                                var fileExtension = filename.split('.').pop().toLowerCase();
-                                                if (fileExtension === 'pdf') {
-                                                    $('#lamaran').css('background-color', 'green');
-                                                    $('#error_lamaran').html('');
-                                                } else {
-                                                    $('#lamaran').css('background-color', 'red');
-                                                    $('#error_lamaran').html('isikan file lamaran dengan format yang sesuai (PDF)');
-
-
-                                                }
-                                            } else {
-                                                $('#lamaran').css('background-color', '');
-                                            }
-                                        });
-
-                                    })
-                                })
-                                $(document).ready(function() {
-                                    $('#foto').click(function() {
-                                        $('#file_foto').trigger('click');
-                                        $('#file_foto').on('change', function() {
-                                            if ($(this).val()) {
-                                                console.log("foto");
-                                                var filename = $(this).val();
-                                                var fileExtension = filename.split('.').pop().toLowerCase();
-                                                if (['png', 'jpg', 'jpeg'].includes(fileExtension)) {
-                                                    $('#foto').css('background-color', 'green');
-                                                    $('#error_foto').html('');
-                                                } else {
-                                                    $('#foto').css('background-color', 'red');
-                                                    $('#error_foto').html('isikan file foto dengan format yang sesuai (jpg,png,jpeg)');
-
-
-
-                                                }
-                                            } else {
-                                                $('#foto').css('background-color', '');
-                                            }
-                                        });
-
-                                    })
-                                })
-                            </script>
-
+                           
                             <div class="mt-3 text-center">
 
                             </div>
