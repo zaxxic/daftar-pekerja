@@ -167,6 +167,7 @@
                                                 <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
+
                                             <a  data-bs-toggle="modal"
                                             data-bs-target="#detail-lamaran-{{ Auth()->User()->lamaran }}" class="btn btn-primary" >Lihat Lamaran</a>
                                         </div>
@@ -222,7 +223,15 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+            @if (Auth()->User()->cv === "default/default.png")
+            <div class="row">
+                <div class="col-lg-12 mt-5 text-center" id="lowongan">
+                    <img src="/assets/dist/images/nodatas.png" alt="" width="350px">
+                </div>
+            </div>
+            @else
             <embed src="{{ asset('cv/' . $user->cv) }}" type="application/pdf" width="100%" height="100%">
+            @endif
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -239,7 +248,15 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+            @if (Auth()->User()->lamaran === 'default/default.png')
+            <div class="row">
+                <div class="col-lg-12 mt-5 text-center" id="lowongan">
+                    <img src="/assets/dist/images/nodatas.png" alt="" width="350px">
+                </div>
+            </div>
+            @else
             <embed src="{{ asset('lamaran/'. $user->lamaran) }}" type="application/pdf" width="100%" height="100%">
+            @endif
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
