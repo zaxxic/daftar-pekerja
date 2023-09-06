@@ -8,7 +8,7 @@
         <div class="card w-100 position-relative overflow-hidden">
 
             <div class="card-body p-4">
-         
+
                 <div class="row">
                     <div class="mb-3 d-flex justify-content-start col-md-6 lg-6">
                         <form action="">
@@ -189,7 +189,7 @@
                                     tersebut?</span>
                             </div>
                             <div class="mb-3">
-                                <label for="recipient-name" class="control-label" style="color: black;">Tanggal
+                                <label for="recipient-name" class="control-label" style="color: black;">Tanggal Wawancara
                                     <span style="color: red;">*</span></label>
                                 <input type="datetime-local" class="form-control" id="tanggal"
                                     name="tanggal_wawancara" />
@@ -298,10 +298,6 @@
                                         </div>
                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                         <div class="d-flex mb-1">
-                                            <span style="font-weight: 600;">Alamat:</span>
-                                            <span class="ms-2">{{ $item->User->alamat }}</span>
-                                        </div>
-                                        <div class="d-flex mb-1">
                                             <span style="font-weight: 600;">Divisi:</span>
                                             <span class="ms-2">{{ $item->Vacancy->Division->divisi }}</span>
                                         </div>
@@ -311,9 +307,15 @@
                                                 :</span>
                                             <span>{{ $item->Vacancy->pekerja }}</span>
                                         </div>
-                                        <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+
 
                                         <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                        <div class="d-flex mb-1">
+                                            <span style="font-weight: 600;">Alamat:</span>
+                                            <span class="ms-2">{{ $item->User->alamat }}</span>
+                                        </div>
+                                        <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+
                                     </div>
                                 </div>
                             </div>

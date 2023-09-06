@@ -212,10 +212,9 @@
                                     Sekarang</button>
                                 <div class="d-flex align-items-center">
                                     <p class="fs-4 mb-0 text-dark">
-                                        Already have an Account?
+                                        Sudah punya akun?
                                     </p>
-                                    <a class="text-primary fw-medium ms-2" href="{{ route('login') }}">Sign
-                                        In</a>
+                                    <a class="text-primary fw-medium ms-2" href="{{ route('login') }}">login</a>
                                 </div>
                             </form>
                             <script>

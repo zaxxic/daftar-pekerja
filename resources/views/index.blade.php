@@ -267,71 +267,7 @@
     <!-- End Global Talent Area -->
 
     <!-- Start Testimonials Area -->
-    <section class="testimonials-area pb-100 mt-5">
-        <div class="container">
-            <div class="row align-items-center mt-5">
-                <div class="col-lg-5">
-                    <div class="testimonials-img">
-                        <img src="{{ asset('assets1/images/testimonials/testimonials-img.png') }}" alt="Image">
-
-                        <h3>Testimonials</h3>
-
-                        <div class="testimonials-1">
-                            <img src="{{ asset('assets1/images/testimonials/testimonials-1.jpg') }}" alt="Image">
-                        </div>
-
-                        <div class="testimonials-2">
-                            <img src="{{ asset('assets1/images/testimonials/testimonials-2.jpg') }}" alt="Image">
-                        </div>
-
-                        <div class="testimonials-3">
-                            <img src="{{ asset('assets1/images/testimonials/testimonials-3.jpg') }}" alt="Image">
-                        </div>
-
-                        <div class="testimonials-4">
-                            <img src="{{ asset('assets1/images/testimonials/testimonials-4.jpg') }}" alt="Image">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-7">
-                    <div class="testimonials">
-                        <div class="testimonials-slider owl-carousel owl-theme">
-                            <div class="testimonials-item">
-                                <i class="flaticon-quote"></i>
-                                <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna. Quis ipsum suspendisse ultrices gravida. Risus
-                                    viverra maecenas accumsan lacus vel facilisis.”</p>
-
-                                <h3>Allan norris</h3>
-                                <span>Software Engineer</span>
-                            </div>
-
-                            <div class="testimonials-item">
-                                <i class="flaticon-quote"></i>
-                                <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna. Quis ipsum suspendisse ultrices gravida. Risus
-                                    viverra maecenas accumsan lacus vel facilisis.”</p>
-
-                                <h3>Tammie King</h3>
-                                <span>Founder</span>
-                            </div>
-
-                            <div class="testimonials-item">
-                                <i class="flaticon-quote"></i>
-                                <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna. Quis ipsum suspendisse ultrices gravida. Risus
-                                    viverra maecenas accumsan lacus vel facilisis.”</p>
-
-                                <h3>Juhon Anderson</h3>
-                                <span>Manager</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+ 
 
     <!-- Start Footer Area -->
     <div class="container">

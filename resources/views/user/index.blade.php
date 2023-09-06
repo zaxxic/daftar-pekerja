@@ -150,7 +150,7 @@
                                 </select>
                             </div>
                             <button type="submit" class="default-btn">
-                                Cari Devisi
+                                Cari Divisi
                             </button>
                         </form>
                     </div>

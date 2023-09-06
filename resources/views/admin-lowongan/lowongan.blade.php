@@ -3,7 +3,7 @@
 <div class="row">
     <div class="mb-4 d-flex justify-content-start col-md-6 lg-6">
         <button style="background-color: white;">
-            <a href="{{ route('lowongan.create') }}" class="btn text-white me-2" style="background-color: #007bff; margin-top: -10px;">Tambah</a>
+            <a href="{{ route('lowongan.create') }}" class="btn btn-primary me-3" style=" margin-top: -10px;">Tambah</a>
         </button>
         <form action="">
             <div class="mb-4 d-flex justify-content-end align-items-center position-relative">
@@ -20,7 +20,7 @@
                 <div class="modal-content">
                     <div class="modal-header d-flex align-items-center">
                         <h4 class="modal-title" id="myLargeModalLabel">
-                            Tambah Devisi
+                            Tambah Divisi
                         </h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -28,12 +28,12 @@
                         @csrf
                         <div class="modal-body">
                             <div class="d-flex justify-content-center">
-                                <input type="text" name="divisi" id="devisi" class="form-control" autofocus placeholder="masukan nama lowongan " style="width: 95%">
+                                <input type="text" name="divisi" id="devisi" class="form-control" autofocus placeholder="Masukan Divisi " style="width: 95%">
                                 <span class="text-danger" id="error"></span>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" id="submitBtn" class="btn btn-light-success text-success font-medium waves-effect text-start">
+                            <button type="button" id="submitBtn" class="btn btn-success">
                                 Simpan
                             </button>
                         </div>
@@ -58,7 +58,7 @@
                 </div>
                 <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
                 <div class="modal-body">
-                    <div class="row  " id="divisiContainer">
+                    <div class="row" id="divisiContainer">
 
                     </div>
                 </div>
@@ -271,7 +271,7 @@
                     }
                 });
             } else {
-                $('#error').html("devisi tidak boleh kosong");
+                $('#error').html("divisi tidak boleh kosong");
             };
 
         });
@@ -324,7 +324,7 @@
                         var divisiHtml = `
                                 <div class="col-4 flex mb-2  justify-content-center ">
                                     <div class="col-12 rounded rounded-2  d-flex justify-content-between border border-2" style="padding: 10px;">
-                                        <div class="col-8 ellipsis">${item.divisi}</div>...
+                                        <div class="col-8 ellipsis">${item.divisi}</div>
                                         <form class="text-danger delete-form col-3" data-id="${item.id}">
                                             @csrf
                                             @method('DELETE')
