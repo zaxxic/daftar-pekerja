@@ -3,7 +3,7 @@
         <ul class="navbar-nav">
             <li class="nav-item d-none d-xl-block mr-4">
                 <a class="logo" href="{{ route('dashboard') }}">
-                    <img width="180px" src="{{ asset('assets/hummas.png') }}" alt="logo">
+                    <img width="180px" src="{{ asset('assets/hummatech.png') }}" alt="logo">
                 </a>
             </li>
         </ul>
@@ -76,9 +76,8 @@
                             aria-expanded="false">
                             <div class="d-flex align-items-center">
                                 <div class="user-profile-img">
-                                    
-                                        <img src="{{ asset('assets/logo.png') }}"
-                                           style="width: 35px; height: 35px;"/>
+
+                                    <img src="{{ asset('assets/logo.png') }}" style="width: 35px; height: 35px;" />
 
 
                                 </div>
