@@ -88,8 +88,30 @@
             /* Sesuaikan ukuran padding sesuai keinginan */
             box-sizing: border-box;
         }
+
+        @media (max-width: 768px) {
+
+            /* Atur breakpoint sesuai kebutuhan */
+            .kerja h1 {
+                background-size: contain;
+                /* Gambar akan menyesuaikan ukuran sesuai lebar */
+                padding: 60px 15px;
+                display: none;
+                /* Ubah ukuran padding sesuai keinginan */
+            }
+
+            .lowongan {
+                font-size: 10px;
+            }
+
+            .banner-content h1 {
+                font-size: 5px;
+            }
+        }
+
         .select2-container--default .select2-selection--single .select2-selection__rendered {
-            height: 120px; /* Sesuaikan tinggi sesuai kebutuhan Anda */
+            height: 120px;
+            /* Sesuaikan tinggi sesuai kebutuhan Anda */
         }
     </style>
 
@@ -118,7 +140,7 @@
         <div class="container">
             <div class="row">
                 <label class="fs-5 fw-bold">Cari Berdasarkan Divisi :</label>
-                <div class="col-6">
+                <div class="col-6 col-sm-12">
                     <div class="form-group">
                         <form action="" class="search-form  d-flex">
                             <div class="form-group  ">
@@ -145,8 +167,8 @@
 
                         </form>
                     </div>
-
                 </div>
+
 
                 {{-- <script>
                     $(document).ready(function() {
@@ -165,7 +187,7 @@
                             <div class=" mix a s c" id="card2">
                                 <div class="hot-jobs-list col-md-6 col-12">
                                     <div class="row align-items-center">
-                                        <div class="col-lg-12">
+                                        <div class="col-12">
                                             <div class="hot-jobs-content">
                                                 <div class="row" style="color: black">
                                                     <h3 class=" col-12 col-md-4 "><a href="">{{ $item->judul }}</a></h3>
@@ -175,8 +197,8 @@
                                                         </span>
                                                     </p>
                                                 </div>
-                                                <span class="sub-title text-primary mb-1">{{ $item->Division->divisi }}
-                                                </span>
+                                                <span
+                                                    class="sub-title text-primary mb-1">{{ $item->Division->divisi }}</span>
                                                 <ul>
                                                     <li><span>Gaji
                                                             :</span>{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}
@@ -194,24 +216,21 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
-
                         @empty
-                            <div class="row">
-                                <div class="col-lg-12 mt-5 text-center" id="lowongan">
-                                    <img src="/assets/dist/images/nodatas.png" alt="" width="350px">
-                                </div>
+                            <div class="col-12 mt-5 text-center" id="lowongan">
+                                <img src="/assets/dist/images/nodatas.png" alt="" width="350px">
                             </div>
                         @endforelse
                         <div class="col-12">
                             <div class="pagination-area">
-                            {{ $lowongan->appends(['cari' => request('cari')])->onEachSide(1)->links() }}
+                                {{ $lowongan->appends(['cari' => request('cari')])->onEachSide(1)->links() }}
                             </div>
                         </div>
                     </div>
                 </div>
+
 
 
 
@@ -233,7 +252,7 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="single-footer-widget single-bg">
                                     <a class="logo" href="index.html">
-                                        <img width="180px" src="assets1/images/humma.png" alt="logo">
+                                        <img width="180px" src="{{asset('assets/hummatech.png')}}" alt="logo">
                                     </a>
                                     <p>Lorem ipsum dolor sit amet, consec tetur adipiscing elit, sed do eiusmod tempor
                                         incididunt ut
@@ -413,8 +432,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
         src="
-                                                                                                                                                                                                                                                                                                                                                                                                                                            https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                                                                                                                                                                                                                                                                                                                                                                                                                            ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ">
     </script>
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
