@@ -222,7 +222,7 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="single-footer-widget single-bg">
                                     <a class="logo" href="index.html">
-                                        <img width="180px" src="assets1/images/humma.png" alt="logo">
+                                        <img width="180px" src="{{asset('assets/hummatech.png')}}" alt="logo">
                                     </a>
                                     <p>Lorem ipsum dolor sit amet, consec tetur adipiscing elit, sed do eiusmod tempor
                                         incididunt ut
