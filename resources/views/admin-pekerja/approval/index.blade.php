@@ -8,7 +8,7 @@
         <div class="card w-100 position-relative overflow-hidden">
 
             <div class="card-body p-4">
-         
+
                 <div class="row">
                     <div class="mb-3 d-flex justify-content-start col-md-6 lg-6">
                         <form action="">
@@ -189,7 +189,7 @@
                                     tersebut?</span>
                             </div>
                             <div class="mb-3">
-                                <label for="recipient-name" class="control-label" style="color: black;">Tanggal
+                                <label for="recipient-name" class="control-label" style="color: black;">Tanggal Wawancara
                                     <span style="color: red;">*</span></label>
                                 <input type="datetime-local" class="form-control" id="tanggal"
                                     name="tanggal_wawancara" />

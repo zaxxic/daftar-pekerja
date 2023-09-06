@@ -148,7 +148,7 @@
                                 </select>
                             </div>
                             <button type="submit" class="default-btn">
-                                Cari Devisi
+                                Cari Divisi
                             </button>
                         </form>
                     </div>
@@ -167,7 +167,7 @@
                             border-radius: 4px;
                         }
                         #pp {
-                           
+
                             border-top-right-radius: 30px;
                             border-bottom-right-radius: 30px;
                             background-color: #fff;

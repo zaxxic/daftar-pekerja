@@ -20,7 +20,7 @@
                 <div class="modal-content">
                     <div class="modal-header d-flex align-items-center">
                         <h4 class="modal-title" id="myLargeModalLabel">
-                            Tambah Devisi
+                            Tambah Divisi
                         </h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -28,7 +28,7 @@
                         @csrf
                         <div class="modal-body">
                             <div class="d-flex justify-content-center">
-                                <input type="text" name="divisi" id="devisi" class="form-control" autofocus placeholder="masukan nama lowongan " style="width: 95%">
+                                <input type="text" name="divisi" id="devisi" class="form-control" autofocus placeholder="Masukan Divisi " style="width: 95%">
                                 <span class="text-danger" id="error"></span>
                             </div>
                         </div>
@@ -271,7 +271,7 @@
                     }
                 });
             } else {
-                $('#error').html("devisi tidak boleh kosong");
+                $('#error').html("divisi tidak boleh kosong");
             };
 
         });
