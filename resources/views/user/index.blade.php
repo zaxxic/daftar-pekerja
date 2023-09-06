@@ -196,6 +196,18 @@
                             background-color: #fff;
                             box-shadow: 0px 10px 10px rgba(245, 246, 253, 1);
                         }
+
+                        /* Gaya untuk tampilan desktop (lebar layar lebih dari 767px) */
+                        @media (min-width: 768px) {
+                            .tanggal {
+                                text-align: right;
+                                /* Teks berakhir pada tanggal akan diatur ke kanan */
+                            }
+
+                            .detail {
+                                text-align: right;
+                            }
+                        }
                     </style>
                     <div class="employers-listing-sidebar mt-5 " id="pp">
                         <h3>Lamaran Ditampung</h3>
@@ -256,12 +268,12 @@
                                                 <div class="hot-jobs-content">
                                                     <div class="row d-flex justify-content-between"
                                                         style="color: black">
-                                                        <h3 class=" col-12 col-md-4 "><a
+                                                        <h3 class="col-12 col-md-4"><a
                                                                 href="">{{ $item->judul }}</a></h3>
-                                                        <p class="col-12 col-md-8"><span class="">Berakhir Pada
-                                                                Tanggal
-                                                                : {{ Carbon::parse($item->batas)->format('d M Y') }}
-                                                            </span>
+                                                        <p class="col-12 col-md-8 tanggal">
+                                                            <span class="text-center text-md-left">Berakhir Pada
+                                                                Tanggal:
+                                                                {{ Carbon::parse($item->batas)->format('d M Y') }}</span>
                                                         </p>
                                                     </div>
                                                     <span
@@ -274,9 +286,9 @@
                                                         <div class="row ">
                                                             <li class="col-12 col-md-6"><span>Tipe Kerja :
                                                                 </span>{{ $item->tipe }}</li>
-                                                            <li class="d-flex col-12 col-md-5 justify-content-end "
-                                                                style="margin-right: 0px;"><button
-                                                                    class="default-btn"><a
+                                                            <li
+                                                                class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end">
+                                                                <button class="default-btn"><a
                                                                         href="{{ route('detailLowongan', $item->id) }}"
                                                                         class="text-white">Detail</a></button>
                                                             </li>
@@ -506,8 +518,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
         src="
-                                                                                                                                                                                                                                                            https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                                                                                                                                                                                                                                            ">
+                                                                                                                                                                                                                                                                                                                                        https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                                                                                                                                                                                                                                                                                                        ">
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
