@@ -68,13 +68,23 @@
     <!-- End Header Area -->
 
     <style>
+
+        @media (max-width: 600px){
+            .judul{
+                font-size: small;
+                /* padding-left: 90px; */
+            }
+        }
         .kerja {
             background-image: url("assets1/images/banner/banner-bg.jpg");
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
 
-            padding: 170px;
+            padding-top: 150px;
+            padding-right: 150px;
+            padding-bottom: 150px;
+            padding-left: 90px;
             /* Sesuaikan ukuran padding sesuai keinginan */
             box-sizing: border-box;
         }
@@ -87,11 +97,11 @@
     <div class=" kerja" style="direction: ltr; margin-top: -45px;">
         <div class="container" style="margin-bottom: -100px; margin-left: -50px;">
             <div class="banner-content">
-                <h1 style="margin-top: -40px;  font-weight: bolder; font-size: 50px;">Daftar Lowongan
-                    Kerja</h1>
+                <h2 style="margin-top: -40px;  font-weight: bolder; font-size: 35px; " class="judul">Daftar Lowongan
+                    Kerja</h2>
                 <ul>
                     <li>
-                        <h5>Temukan pekerjaan yang anda sukai!!</h5>
+                        <h5 >Temukan pekerjaan yang anda sukai!!</h5>
                     </li>
                 </ul>
             </div>
@@ -110,9 +120,9 @@
                 <label class="fs-5 fw-bold">Cari Berdasarkan Divisi :</label>
                 <div class="col-6">
                     <div class="form-group">
-                        <form action="" class="search-form d-flex">
-                            <div class="form-group">
-                                <div style="width: 360px;"> <!-- Mengatur lebar form secara keseluruhan -->
+                        <form action="" class="search-form  d-flex">
+                            <div class="form-group  ">
+                                <div style="width: 200px"> <!-- Mengatur lebar form secara keseluruhan -->
                                     <select class="select2 " id="division-select" name="division"
                                         style="width: 100%; height:  margin-right: 10px;">
                                         <!-- Mengatur width, height, dan margin -->
@@ -127,10 +137,11 @@
                                     </select>
                                 </div>
                             </div>
-                            <button class="default-btn ms-1" type="submit"
-                                style="height: 20px; display: flex; align-items: center;">
-                                <span style="font-size: 10px">Cari Divisi</span>
-                            </button>
+                            <button class="btn btn-primary text-center" style="height:30px"> <p class="text-center"></p>Cari</button>
+                            {{-- <button class="default-btn " type="submit"
+                                style="height: 15px; display: flex; align-items:;">
+                                <span style="font-size: 15px">Cari Divisi</span>
+                            </button> --}}
 
                         </form>
                     </div>
@@ -151,17 +162,17 @@
                 <div class="shorting">
                     <div class="row" id="card">
                         @forelse ($lowongan as $item)
-                            <div class="col-6 sm-12 mix a s c" id="card2">
-                                <div class="hot-jobs-list">
+                            <div class=" mix a s c" id="card2">
+                                <div class="hot-jobs-list col-md-6 col-12">
                                     <div class="row align-items-center">
                                         <div class="col-lg-12">
                                             <div class="hot-jobs-content">
-                                                <div class="d-flex justify-content-between" style="color: black">
-                                                    <h3><a href="">{{ $item->judul }}</a></h3>
-                                                    <p><span class="ml-5 mr-1">Berakhir Pada
+                                                <div class="row" style="color: black">
+                                                    <h3 class=" col-12 col-md-4 "><a href="">{{ $item->judul }}</a></h3>
+                                                    <p class="col-12 col-md-8  d-flex justify-content-center" ><span class="">Berakhir Pada
                                                             Tanggal
-                                                            :
-                                                        </span>{{ Carbon::parse($item->batas)->format('d M Y') }}
+                                                            :  {{ Carbon::parse($item->batas)->format('d M Y') }}
+                                                        </span>
                                                     </p>
                                                 </div>
                                                 <span class="sub-title text-primary mb-1">{{ $item->Division->divisi }}
@@ -171,9 +182,9 @@
                                                             :</span>{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}
                                                     </li>
                                                     <li><span>Slot Tersedia : </span>{{ $item->slot }}</li>
-                                                    <div class="d-flex justify-content-between">
-                                                        <li><span>Tipe Kerja : </span>{{ $item->tipe }}</li>
-                                                        <li class="ml-auto" style="margin-left: 300px;"><button
+                                                    <div class="row ">
+                                                        <li class="col-12 col-md-6"><span>Tipe Kerja : </span>{{ $item->tipe }}</li>
+                                                        <li class="d-flex col-12 col-md-5 justify-content-end " style="margin-right: 0px;"><button
                                                                 class="default-btn"><a
                                                                     href="{{ route('detailLowongan', $item->id) }}"
                                                                     class="text-white">Detail</a></button>
