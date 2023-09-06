@@ -188,7 +188,7 @@
                                     <h5><a href="" style="color: black">{{ $item->Vacancy->judul }}</a></h5>
                                     @if ($item->status === 'diterima')
                                         <span class="status bg-success" style="width: 79px;">{{ $item->status }}</span>
-                                    @elseif($item->status === 'ditolak')
+                                    @elseif($item->status === ['ditolak', 'nonaktif'])
                                         <span class="status bg-danger" style="width: 70px;">{{ $item->status }}</span>
                                     @else
                                         <span class="status bg-warning" style="align-items: center;"><span
