@@ -265,7 +265,7 @@
                             @endforelse
                             <div class="col-12">
                                 <div class="pagination-area">
-                                    @if ($cek > 0)
+                                    @if ($cek > 2)
                                         <button class="default-btn"><a href="{{ route('lowongan-user', $item->id) }}"
                                                 class="text-white">Lihat Selengkapnya</a></button>
                                     @endif
@@ -472,11 +472,17 @@
     <!-- Custom JS -->
     <script src="assets1/js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<<<<<<< Updated upstream
     <script
         src="
                                                                                                                                 https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
                                                                                                                                 ">
     </script>
+=======
+    <script src="
+                                                                        https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                                        "></script>
+>>>>>>> Stashed changes
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
     " rel="stylesheet">
