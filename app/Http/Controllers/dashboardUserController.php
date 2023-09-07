@@ -69,7 +69,7 @@ class DashboardUserController extends Controller
             ->latest()
             ->paginate(5);
 
-        $divisi = Division::all();
+            $divisi = Division::where('status', 'aktif')->get();
 
         return view('user.lowongan', compact('lowongan', 'divisi', 'selectedDivision'));
     }
