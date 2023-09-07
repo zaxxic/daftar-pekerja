@@ -40,7 +40,7 @@ class LowonganController extends Controller
      */
     public function create()
     {
-        $divisi = Division::all();
+        $divisi = Division::where('status', 'aktif')->get();
         return view('admin-lowongan.lowongan-create', compact('divisi'));
     }
 

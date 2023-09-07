@@ -23,7 +23,7 @@ class ApprovalController extends Controller
      */
     public function index(Request $request)
     {
-        $divisi = Division::all();
+        $divisi = Division::where('status', 'aktif')->get();
         $keyword = $request->input('cari');
         $value_filter  = $request->input('filter');
 
