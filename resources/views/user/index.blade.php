@@ -235,7 +235,8 @@
                                         <li class="ml-auto" style="margin-left: 300px;">
                                             <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
                                                 <button class="btn btn-primary">
-                                                    Detail</button>
+                                                    Detail
+                                                </button>
                                             </a>
                                         </li>
                                         @if ($item->status === 'menunggu')
@@ -288,9 +289,9 @@
                                                                 </span>{{ $item->tipe }}</li>
                                                             <li
                                                                 class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end">
-                                                                <button class="default-btn"><a
-                                                                        href="{{ route('detailLowongan', $item->id) }}"
-                                                                        class="text-white">Detail</a></button>
+                                                                <a  href="{{ route('detailLowongan', $item->id) }}" class="text-white">
+                                                                    <button class="default-btn">Detail</button>
+                                                                </a>
                                                             </li>
                                                         </div>
                                                     </ul>

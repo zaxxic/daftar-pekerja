@@ -159,7 +159,7 @@
                                     </div>
                                     <div class="mb-4">
                                         <label for="exampleInputResume" class="form-label fw-semibold">Masukkan
-                                            Lamaran</label>
+                                            Lamaran (format harus PDF)</label>
                                         <div class=" d-flex justify-content-between">
                                             <div class="col-9">
                                                 <input type="file" name="lamaran" class="form-control" id="lamaran">
@@ -174,7 +174,7 @@
                                     </div>
                                     <div class="mb-4">
                                         <label for="exampleInputCV" class="form-label fw-semibold">Masukkan
-                                            CV</label>
+                                            CV (format harus PDF)</label>
                                         <div class=" d-flex justify-content-between">
                                             <div class="col-9">
                                                 <input type="file" name="cv" class="form-control" id="cv">
