@@ -1,3 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+</head>
+
+<body>
+
+</body>
+
+</html>
 @extends('layouts.app')
 @section('content')
     <div class="container-fluid">
@@ -68,11 +90,12 @@
                                     <td>
 
                                         <div class="d-flex align-items-center">
-                                            <div
+                                            <a href="{{ asset('foto_user/' . $row->User->foto) }}" data-lightbox="image-1"
+                                                data-title="Gambar Profil Anda"
                                                 style="border-radius: 50%; overflow: hidden; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center;">
                                                 <img src="{{ asset('foto_user/' . $row->User->foto) }}"
                                                     style="max-width: 150%; max-height: 150%;" alt="" />
-                                            </div>
+                                            </a>
                                             <div class="ms-3">
                                                 <h6 class="fs-4 fw-semibold mb-0">{{ $row->User->name }}</h6>
                                             </div>
@@ -89,8 +112,7 @@
                                             class="btn btn-primary">CV</a>
                                     </td>
                                     <td>
-                                        <a data-bs-toggle="modal"
-                                            data-bs-target="#detail-lamaran-{{ $row->User->lamaran }}"
+                                        <a data-bs-toggle="modal" data-bs-target="#detail-lamaran-{{ $row->User->lamaran }}"
                                             class="btn btn-primary">Lamaran</a>
                                     </td>
                                     <td>

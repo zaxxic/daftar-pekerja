@@ -71,8 +71,19 @@
                     /* Menyembunyikan gambar dengan class "gambar" */
                 }
 
-                .wadah {
-                    margin-top: 250px;
+                .container {
+                    margin-top: 2500%;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+
+            @media (max-width: 600px) {
+
+                .container {
+                    margin-top: 2500%;
+                    justify-content: center;
+                    align-items: center;
                 }
             }
         </style>
@@ -90,7 +101,7 @@
 
         <div class="container mt-5 bg-light">
             <div class="row align-items-center bg-light">
-                <div class="col-lg-6">
+                <div class="col-lg-6 wadah">
                     <img class="w-100 gambar d-none d-lg-block" style="margin-left: -10%;"
                         src="{{ asset('assets/loginn.svg') }}" alt="image">
                 </div>
@@ -108,8 +119,8 @@
                         @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">Email <span style="color: red;">*</span></label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email Anda"
-                                required>
+                            <input type="email" class="form-control" id="email" name="email"
+                                placeholder="Masukkan Email Anda" required>
                         </div>
                         @error('email')
                             <div class="text-danger">{{ $message }}</div>
