@@ -230,7 +230,7 @@
                                                     <li class="col-12 col-md-6"><span>Tipe Kerja
                                                             :</span>{{ $item->tipe }}</li>
                                                     <li class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end">
-                                                        <button class="default-btn"><a href="{{ route('detailLowongan', $item->id) }}" class="text-white">Detail</a></button>
+                                                         <a href="{{ route('detailLowongan', $item->id) }}" class="text-white"><button class="default-btn">Detail</button></a>
                                                     </li>
                                                 </div>
                                             </ul>
