@@ -182,7 +182,18 @@
                         });
                     });
                 </script> --}}
+                <style>
+                    @media (min-width: 768px) {
+                        .tanggal {
+                            text-align: right;
+                            /* Teks berakhir pada tanggal akan diatur ke kanan */
+                        }
 
+                        .detail {
+                            text-align: right;
+                        }
+                    }
+                </style>
 
                 <div class="shorting">
                     <div class="row" id="card">
@@ -196,8 +207,9 @@
                                                     <div class="col-12 col-md-4">
                                                         <h3><a href="">{{ $item->judul }}</a></h3>
                                                     </div>
-                                                    <div class="col-12 col-md-8 d-flex justify-content-center">
-                                                        <span>Berakhir Pada Tanggal:
+                                                    <div class="col-12 col-md-8 tanggal">
+                                                        <span class="text-center text-md-left">Berakhir Pada
+                                                            Tanggal:
                                                             {{ Carbon::parse($item->batas)->format('d M Y') }}</span>
                                                     </div>
                                                 </div>
@@ -444,8 +456,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
         src="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ">
     </script>
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
