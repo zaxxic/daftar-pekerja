@@ -114,7 +114,7 @@
                                                     style="color: red;">*</span></label>
                                             <input type="text" name="name"
                                                 class="form-control @error('name') is-invalid @enderror"
-                                                value="{{ old('name') }}">
+                                                value="{{ old('name') }}" placeholder="Masukan Nama Anda">
                                             @error('name')
                                                 <span class="invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -127,7 +127,7 @@
                                             <input type="email"
                                                 class="form-control @error('email') is-invalid @enderror"
                                                 value="{{ old('email') }}" id="email" name="email"
-                                                aria-describedby="emailHelp" />
+                                                aria-describedby="emailHelp" placeholder="Masukan Email Anda"/>
                                             @error('email')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -142,13 +142,13 @@
                                             <input type="number"
                                                 class="form-control @error('no_telp') is-invalid @enderror"
                                                 value="{{ old('no_telp') }}" id="no_telp" name="no_telp"
-                                                aria-describedby="emailHelp" />
+                                                aria-describedby="emailHelp" placeholder="Masukan No.Telephone Anda"/>
                                             @error('no_telp')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3">
                                         <label for="exampleInputEmail1" class="form-label mb-3">Jenis Kelamin <span
                                                 style="color: red;">*</span></label>
                                         <div class="radio-container">
@@ -175,7 +175,7 @@
                                                     style="color: red;">*</span></label>
                                             <textarea name="alamat" id="" cols="2" rows="2"
                                                 class="form-control @error('alamat') is-invalid @enderror" value="{{ old('alamat') }}" id="alamat"
-                                                name="alamat">{{ old('alamat') }}</textarea>
+                                                name="alamat" placeholder="Masukan Alamat Anda">{{ old('alamat') }}</textarea>
                                             @error('alamat')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -190,7 +190,7 @@
                                                     style="color: red;">*</span></label></label>
                                             <input type="password"
                                                 class="form-control @error('password') is-invalid @enderror"
-                                                id="password" name="password" aria-describedby="emailHelp" />
+                                                id="password" name="password" aria-describedby="emailHelp" placeholder="Masukan Password Anda"/>
                                             @error('password')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -204,7 +204,7 @@
                                             <input type="password"
                                                 class="form-control @error('password_confirmation') is-invalid @enderror"
                                                 id="password_confirmation" name="password_confirmation"
-                                                aria-describedby="emailHelp" />
+                                                aria-describedby="emailHelp" placeholder="Konfirmasi Password Anda"/>
                                             @error('password_confirmation')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
