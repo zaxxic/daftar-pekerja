@@ -159,7 +159,8 @@
                                     </select>
                                 </div>
                             </div>
-                            <button class="btn btn-primary text-center" style="height:30px">
+                            <button class="btn btn-primary text-center ms-2
+                            " style="height:30px">
                                 <p class="text-center" style="margin-top: -5px;"></p>Cari
                             </button>
                             {{-- <button class="default-btn " type="submit"

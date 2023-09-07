@@ -70,10 +70,10 @@
                 <div class="col-lg-6 shadow bg-white p-5">
                     <div class="text-center mt-2">
                         <h2 class="text-2xl">
-                            Lupa Dengan Password Anda?
+                            Reset Password?
                         </h2>
                         <p class="text-slate-400 dark:text-navy-300">
-                            Silahkan masukkan email anda.
+                            Silahkan reset password anda.
                         </p>
                     </div>
 
@@ -83,7 +83,7 @@
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email"
                                 value="{{ old('email') }}" required>
                             @error('email')
                                 <div class="text-danger">{{ $message }}</div>
@@ -92,8 +92,9 @@
 
                         <div class="mb-3">
                             <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
-                            <input type="password" class="form-control" id="password" name="password"
+                            <input type="password" class="form-control" id="password" name="Masukkan Password"
                                 placeholder="Password" required>
+                                <small>Silahkan masukan password baru Anda.</small>
                             @error('password')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -104,6 +105,7 @@
                                     class="text-danger">*</span></label>
                             <input type="password" class="form-control" id="password_confirmation"
                                 name="password_confirmation" placeholder="Konfirmasi Password" required>
+                                <small>Silahkan masukkan konfirmasi password baru Anda.</small>
                             @error('password_confirmation')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
