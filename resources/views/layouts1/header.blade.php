@@ -72,14 +72,14 @@
                                         <div
                                             style="width: 35px; height: 35px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px;">
                                             <img src="{{ asset('foto_user/default/default.png') }}"
-                                                style="max-width: 100%; max-height: 100%; vertical-align: middle;"
+                                            class="img-fluid rounded-circle" style="width: 100%; height: 100%"
                                                 alt="" />
                                         </div>
                                     @else
                                         <div
                                             style="width: 35px; height: 35px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px;">
                                             <img src="{{ asset('foto_user/' . Auth()->user()->foto) }}"
-                                                style="max-width: 100%; max-height: 100%; vertical-align: middle;"
+                                                class="img-fluid rounded-circle" style="width: 100%; height: 100%;"
                                                 alt="" />
                                         </div>
                                     @endif
@@ -99,7 +99,7 @@
                                     <div
                                         style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; text-align: center; display: flex; justify-content: center; align-items: center;">
                                         <img src="{{ asset('foto_user/' . Auth()->user()->foto) }}"
-                                            style="max-width: 125%; max-height: 125%;" alt="" />
+                                        class="img-fluid rounded-circle" style="width: 120px; height: 120px;" alt="" />
                                     </div>
 
                                     <div class="ms-3">
