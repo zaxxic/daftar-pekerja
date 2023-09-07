@@ -18,9 +18,9 @@ return new class extends Migration
             $table->text('alamat');
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
             $table->string('no_telp');
-            $table->string('cv')->default('default.png');
-            $table->string('lamaran')->default('default.png');
-            $table->string('foto')->default('default.png');
+            $table->string('cv');
+            $table->string('lamaran');
+            $table->string('foto');
             $table->string('role')->default('user');
             $table->enum('status', ['menunggu', 'ditolak', 'diterima'])->default('menunggu');
             $table->timestamp('email_verified_at')->nullable();

@@ -18,12 +18,17 @@ class PekerjaDitolakController extends Controller
         if (!empty($keyword)) {
             $user = Registration::whereHas('user', function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', '%' . $keyword . '%');
-            })->where('status', '=', 'ditolak') // Ubah '!=' menjadi '='
+            })->whereHas('vacancy', function ($query) {
+                $query->where('status', '=', 'aktif'); // Filter berdasarkan status lowongan 'aktif'
+            })->where('status', '=', 'ditolak')
                 ->paginate(8);
 
             $user->appends(['cari' => $keyword]);
         } else {
-            $user = Registration::where('status', '=', 'ditolak')->paginate(8); // Ubah 'IN' menjadi '='
+            $user = Registration::whereHas('vacancy', function ($query) {
+                $query->where('status', '=', 'aktif'); // Filter berdasarkan status lowongan 'aktif'
+            })->where('status', '=', 'ditolak')
+                ->paginate(8);
         }
 
         return view('admin-pekerja.pekerja-ditolak.index', compact('user', 'keyword')); // Kirimkan $keyword ke view

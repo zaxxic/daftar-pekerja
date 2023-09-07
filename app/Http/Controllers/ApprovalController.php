@@ -26,32 +26,36 @@ class ApprovalController extends Controller
         $divisi = Division::all();
         $keyword = $request->input('cari');
         $value_filter  = $request->input('filter');
+
         if ($request->has('cari')) {
             $keyword = $request->cari;
             $user = Registration::whereHas('user', function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', '%' . $keyword . '%');
-            })->where('status', ['menunggu']) // Tampilkan hanya status bukan "disetujui"
-                ->paginate(1);
+            })->whereHas('vacancy', function ($query) {
+                $query->where('status', '=', 'aktif'); // Filter berdasarkan status lowongan 'aktif'
+            })->whereIn('status', ['menunggu'])
+                ->paginate(8);
 
             $user->appends(['cari' => $keyword]);
-            // return view('admin-pekerja.approval.index', compact('user'));
         } else if ($request->has('filter')) {
             $keyword = $request->filter;
-            $user = Registration::whereHas('User', function ($query) use ($keyword) {
+            $user = Registration::whereHas('user', function ($query) use ($keyword) {
                 $query->where('devision_id', 'LIKE', '%' . $keyword . '%');
-            })->where('status', ['menunggu']) // Tampilkan hanya status bukan "disetujui"
-                ->paginate(1);
+            })->whereHas('vacancy', function ($query) {
+                $query->where('status', '=', 'aktif'); // Filter berdasarkan status lowongan 'aktif'
+            })->whereIn('status', ['menunggu'])
+                ->paginate(8);
 
-            // dd($user);
             $value_filter = $keyword;
-            $user->appends(['user' => $keyword]);
+            $user->appends(['filter' => $keyword]);
             $keyword = "";
         } else {
-
-            $user = Registration::where('status', ['menunggu'])->paginate(1);
+            $user = Registration::whereHas('vacancy', function ($query) {
+                $query->where('status', '=', 'aktif'); // Filter berdasarkan status lowongan 'aktif'
+            })->whereIn('status', ['menunggu'])
+                ->paginate(8);
         }
 
-        // $user = Registration::where('status', ['menunggu','ditolak'])->paginate(8);
         return view('admin-pekerja.approval.index', compact('user', 'keyword', 'divisi', 'value_filter'));
     }
 

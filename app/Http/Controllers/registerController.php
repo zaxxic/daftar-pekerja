@@ -7,6 +7,7 @@ use App\JenisKelaminEnum;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -25,15 +26,14 @@ class RegisterController extends Controller
                 'name' => 'required',
                 'email' => 'required|unique:users,email',
                 'alamat' => 'required',
-                'jenis_kelamin' => ['required',
-                'in:' . implode(',', [
-                    JenisKelaminEnum::LAKI_LAKI,
-                    JenisKelaminEnum::PEREMPUAN,
-                ])],
+                'jenis_kelamin' => [
+                    'required',
+                    'in:' . implode(',', [
+                        JenisKelaminEnum::LAKI_LAKI,
+                        JenisKelaminEnum::PEREMPUAN,
+                    ]),
+                ],
                 'no_telp' => 'required|numeric|regex:/^\d*$/',
-                'cv' => 'required|mimes:pdf',
-                'lamaran' => 'required|mimes:pdf',
-                'foto' => 'required|mimes:png,jpg,jpeg',
                 'password' => ['required', 'string', 'min:6', 'confirmed'],
             ],
             [
@@ -46,12 +46,6 @@ class RegisterController extends Controller
                 'no_telp.required' => 'No Telephone Wajib Diisi',
                 'no_telp.numeric' => 'No Telephone Wajib Diisi Angka',
                 'no_telp.regex' => 'No Telephone Tidak Boleh Minus',
-                'cv.required' => 'CV Wajib Diisi',
-                'cv.mimes' => 'CV Harus Berformat PDF',
-                'lamaran.required' => 'Lamaran Wajib Diisi',
-                'lamaran.mimes' => 'Lamaran Harus Berformat PDF',
-                'foto.required' => 'Foto Diri Wajib Diisi',
-                'foto.mimes' => 'Foto Diri Harus Berformat JPG,PNG,JPEG',
                 'password.required' => 'Password harus di isi',
                 'password.min' => 'Password minimal 6 huruf',
                 'password.confirmed' => 'Konfirmasi kata sandi tidak sesuai.',
@@ -66,17 +60,9 @@ class RegisterController extends Controller
                 ->withInput();
         }
 
-        $image = $request->file('foto');
-        $randomFileName = uniqid() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('foto_user'), $randomFileName);
-
-        $cv = $request->file('cv');
-        $randomCvName = uniqid() . '.' . $cv->getClientOriginalExtension();
-        $cv->move(public_path('cv'), $randomCvName);
-
-        $lamaran = $request->file('lamaran');
-        $randomLamaranName = uniqid() . '.' . $lamaran->getClientOriginalExtension();
-        $lamaran->move(public_path('lamaran'), $randomLamaranName);
+        $defaultFoto = 'default/default.png';
+        $defaultLamaran = 'default/default.png'; 
+        $defaultCV = 'default/default.png';
 
         User::create([
             'name' => $request->name,
@@ -84,12 +70,13 @@ class RegisterController extends Controller
             'alamat' => $request->alamat,
             'jenis_kelamin' => $request->jenis_kelamin,
             'no_telp' => $request->no_telp,
-            'cv' => $randomCvName,
-            'lamaran' => $randomLamaranName,
-            'foto' => $randomFileName,
+            'cv' => $defaultCV,
+            'lamaran' => $defaultLamaran,
+            'foto' => $defaultFoto,
             'role' => $request->role,
             'password' => Hash::make($request->password),
         ]);
+
         return redirect('login')->with('success', 'Akun Anda berhasil dibuat. Silakan masuk dengan akun yang baru saja Anda buat.');
     }
 }
