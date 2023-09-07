@@ -21,7 +21,7 @@ class LowonganController extends Controller
     {
         if ($request->has('cari')) {
             $keyword = $request->cari;
-            $data = Vacancy::where('judul', 'LIKE', '%' . $keyword . '%')->paginate(8);
+            $data = Vacancy::where('status','aktif')->where('judul', 'LIKE', '%' . $keyword . '%')->paginate(8);
             $data->appends(['cari' => $keyword]);
             return view('admin-lowongan.lowongan', compact('data'));
         }

@@ -21,33 +21,37 @@ class PekerjaController extends Controller
         $divisi = Division::all();
         $keyword = $request->input('cari');
         $value_filter  = $request->input('filter');
+
         if ($request->has('cari')) {
             $keyword = $request->cari;
             $user = Registration::whereHas('user', function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', '%' . $keyword . '%');
-            })->where('status', 'diterima') // Tampilkan hanya status bukan "disetujui"
-            ->paginate(1);
+            })->whereHas('vacancy', function ($query) {
+                $query->where('status', '=', 'aktif'); // Filter berdasarkan status lowongan 'aktif'
+            })->where('status', 'diterima')
+                ->paginate(8);
 
             $user->appends(['cari' => $keyword]);
-            // return view('admin-pekerja.pekerja.index', compact('user'));
-        } else if($request->has('filter')) {
+        } else if ($request->has('filter')) {
             $keyword = $request->filter;
-            $user = Registration::whereRelation('User', function ($query) use ($keyword) {
+            $user = Registration::whereHas('user', function ($query) use ($keyword) {
                 $query->where('devision_id', 'LIKE', '%' . $keyword . '%');
-            })->where('status', 'diterima') // Tampilkan hanya status bukan "disetujui"
-            ->paginate(1);
+            })->whereHas('vacancy', function ($query) {
+                $query->where('status', '=', 'aktif'); // Filter berdasarkan status lowongan 'aktif'
+            })->where('status', 'diterima')
+                ->paginate(8);
 
-            // dd($user);
             $value_filter = $keyword;
-            $user->appends(['user' => $keyword]);
+            $user->appends(['filter' => $keyword]);
             $keyword = "";
-            }
-         else {
+        } else {
+            $user = Registration::whereHas('vacancy', function ($query) {
+                $query->where('status', '=', 'aktif'); // Filter berdasarkan status lowongan 'aktif'
+            })->where('status', 'diterima')
+                ->paginate(8);
+        }
 
-            $user = Registration::where('status', 'diterima')->paginate(1);
-            }
-
-        return view('admin-pekerja.pekerja.index', compact('user', 'keyword','divisi', 'value_filter'));
+        return view('admin-pekerja.pekerja.index', compact('user', 'keyword', 'divisi', 'value_filter'));
     }
 
     /**
