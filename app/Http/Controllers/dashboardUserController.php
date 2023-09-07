@@ -94,7 +94,6 @@ class DashboardUserController extends Controller
             ->latest()
             ->paginate(5);
 
-
         $divisi = Division::where('status', 'aktif')->get();
         $cek = Vacancy::where('status', 'aktif')->count();
 
