@@ -68,11 +68,12 @@
                             <div class="d-flex align-items-center">
                                 <div class="user-profile-img">
 
-                                    @if (Auth::user()->foto == 'default.jpg')
-                                        <div class="img-fluid rounded-circle"
-                                            style="width: 120px; height: 120px; overflow: hidden;">
-                                            <img src="{{ asset('foto_user/default/default.jpg') }}" class="img-fluid"
-                                                style="width: 100%; height: auto;" alt="" />
+                                    @if (Auth::user()->foto == 'default.png')
+                                        <div
+                                            style="width: 35px; height: 35px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px;">
+                                            <img src="{{ asset('foto_user/default/default.png') }}"
+                                                style="max-width: 100%; max-height: 100%; vertical-align: middle;"
+                                                alt="" />
                                         </div>
                                     @else
                                         <div
