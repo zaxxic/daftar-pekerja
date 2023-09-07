@@ -49,10 +49,18 @@
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="assets1/images/favicon.png">
         <!-- Title -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <title>Dashboard User</title>
+        <style>
+            .highlight-box {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                background-color: #5d87ff;
+                margin-right: 5px;
+                vertical-align: middle;
+            }
+        </style>
     </head>
     <title>Jubi - Job Board HTML Template</title>
 </head>
@@ -86,14 +94,14 @@
         }
     </style>
     @if (session()->has('sukses'))
-        <script>
-            alert("anda sudah terdaftar")
-        </script>
+    <script>
+        alert("anda sudah terdaftar")
+    </script>
     @endif
     @if (session()->has('error'))
-        <script>
-            alert("anda tidak bisa daftar kembali")
-        </script>
+    <script>
+        alert("anda tidak bisa daftar kembali")
+    </script>
     @endif
 
 
@@ -137,10 +145,7 @@
                                             <div class="d-flex justify-content-end  ">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <li style="margin-right: -19%;"><button
-                                                                class="btn btn-warning"><a
-                                                                    href="{{ route('dashboard-user') }}"
-                                                                    class="text-white">Kembali</a></button>
+                                                        <li style="margin-right: -19%;"><button class="btn btn-warning"><a href="{{ route('dashboard-user') }}" class="text-white">Kembali</a></button>
                                                         </li>
                                                     </div>
                                                     <div class="col-6">
@@ -167,26 +172,23 @@
                                                             </li>
                                                         @endif --}}
                                                         @if ($status === 'sudah')
-                                                            <li>
-                                                                <p>Anda sudah mendaftar pada lowongan lain.</p>
-                                                            </li>
+                                                        <li>
+                                                            <p>Anda sudah mendaftar pada lowongan lain.</p>
+                                                        </li>
                                                         @elseif ($status === 'belum')
-                                                            <button type="button" class="btn btn-primary"
-                                                                style="background-color: #2042e3"
-                                                                id="daftar">Daftar</button>
+                                                        <button type="button" class="btn btn-primary" style="background-color: #2042e3" id="daftar">Daftar</button>
                                                         @elseif ($status === 'disini')
-                                                            <li>
-                                                                <button type="button" class="btn btn-danger"
-                                                                    id="batal">Batal</button>
-                                                            </li>
+                                                        <li>
+                                                            <button type="button" class="btn btn-danger" id="batal">Batal</button>
+                                                        </li>
                                                         @elseif ($status === 'diterima_disini')
-                                                            <li>
-                                                                <p>anda di terima di lowongan ini </p>
-                                                            </li>
+                                                        <li>
+                                                            <p>anda di terima di lowongan ini </p>
+                                                        </li>
                                                         @else
-                                                            <li>
-                                                                <p>anda sudah di terima pada lowongan lain</p>
-                                                            </li>
+                                                        <li>
+                                                            <p>anda sudah di terima pada lowongan lain</p>
+                                                        </li>
                                                         @endif
                                                     </div>
 
@@ -287,30 +289,28 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="single-footer-widget single-bg">
                                     <a class="logo" href="index.html">
-                                        <img width="180px" src="assets1/images/humma.png" alt="logo">
+                                        <img width="180px" src="{{asset('assets/hummatech.png')}}" alt="logo">
                                     </a>
-                                    <p>Lorem ipsum dolor sit amet, consec tetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut
-                                        labore et dolore magna aliqua consec tetur.</p>
+                                    <p>Hummasoft merupakan sebuah perusahaan yang bergerak dibidang IT (Information Technology).</p>
 
                                     <ul class="social-icon">
                                         <li>
-                                            <a href="" id="shareFacebook">
+                                            <a href="https://www.facebook.com/hummasoft?locale=id_ID" target="_blank">
                                                 <i class="bx bxl-facebook"></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="https://www.instagram.com/hummasoft" target="_blank">
                                                 <i class="bx bxl-instagram"></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="https://id.linkedin.com/in/hummasoft-technology-2476a8241" target="_blank">
                                                 <i class="bx bxl-linkedin-square"></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="https://twitter.com/hummasoft">
                                                 <i class="bx bxl-twitter"></i>
                                             </a>
                                         </li>
@@ -331,10 +331,7 @@
                                         <li class="mb-3" s>
                                             <i class="bx bx-envelope"></i>
                                             <span>Email:</span>
-                                            <a
-                                                href="https://templates.envytheme.com/cdn-cgi/l/email-protection#80e8e5ececefc0eaf5e2e9aee3efed"><span
-                                                    class="__cf_email__"
-                                                    data-cfemail="f098959c9c9fb09a859299de939f9d">hummasoft.tech@gmail.com</span></a>
+                                            <a href="https://templates.envytheme.com/cdn-cgi/l/email-protection#80e8e5ececefc0eaf5e2e9aee3efed"><span class="__cf_email__" data-cfemail="f098959c9c9fb09a859299de939f9d">hummasoft.tech@gmail.com</span></a>
                                         </li>
                                         <li class="location">
                                             <i class="bx bx-location-plus"></i>
@@ -347,26 +344,42 @@
 
                             <div class="col-lg-3 col-md-6">
                                 <div class="single-footer-widget">
-                                    <h3>Helpful Resources</h3>
+                                    <h3>Layanan Kami</h3>
 
                                     <ul class="import-link">
                                         <li>
-                                            <a href="#">Create Account</a>
+                                            <div class="d-flex">
+                                                <div>
+                                                    <div class="highlight-box"></div>
+                                                </div>
+                                                <a>Kelas Industri</a>
+
+                                            </div>
                                         </li>
                                         <li>
-                                            <a href="#">Contact Us</a>
+                                            <div class="d-flex">
+                                                <div>
+                                                    <div class="highlight-box"></div>
+                                                </div>
+                                                <a>Pengembangan Perangkat Lunak</a>
+                                            </div>
                                         </li>
                                         <li>
-                                            <a href="#">Site Map</a>
+                                            <div class="d-flex">
+                                                <div>
+                                                    <div class="highlight-box"></div>
+                                                </div>
+                                                <a>Pelatihan Upskilling/Reskilling Berbasis Industri</a>
+
+                                            </div>
                                         </li>
                                         <li>
-                                            <a href="#">Terms of Use</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Privacy Centre</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Blog</a>
+                                            <div class="d-flex">
+                                                <div>
+                                                    <div class="highlight-box"></div>
+                                                </div>
+                                                <a>Riset dan Intership/Magang</a>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
@@ -374,26 +387,40 @@
 
                             <div class="col-lg-3 col-md-6">
                                 <div class="single-footer-widget">
-                                    <h3>Job Seekers</h3>
+                                    <h3>Benefit Kami</h3>
 
                                     <ul class="import-link">
                                         <li>
-                                            <a href="#">Create Account</a>
+                                            <div class="d-flex">
+                                                <div>
+                                                    <div class="highlight-box"></div>
+                                                </div>
+                                                <a>Lingkungan Kerja Berbasis Proyek dan Teamwork</a>
+                                            </div>
                                         </li>
                                         <li>
-                                            <a href="#">Browse Jobs</a>
+                                            <div class="d-flex">
+                                                <div>
+                                                    <div class="highlight-box"></div>
+                                                </div>
+                                                <a>Memperluas Jejaring / Networking IT</a>
+                                            </div>
                                         </li>
                                         <li>
-                                            <a href="#">Upload CV</a>
+                                            <div class="d-flex">
+                                                <div>
+                                                    <div class="highlight-box"></div>
+                                                </div>
+                                                <a>Menambah Pengalaman dan Portofolio</a>
+                                            </div>
                                         </li>
                                         <li>
-                                            <a href="#">Company Profile</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">International Jobs</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">FAQ</a>
+                                            <div class="d-flex">
+                                                <div>
+                                                    <div class="highlight-box"></div>
+                                                </div>
+                                                <a>Proyek Skala Nasional dan Internasional</a>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
@@ -411,8 +438,8 @@
     <div class="copy-right-area">
         <div class="container">
             <p>
-                © 2020 Jubi Is Proudly Created By
-                <a href="https://envytheme.com/" target="_blank">EnvyTheme</a>
+                © 2023 Hummatech Technology Created By
+                <a href="https://envytheme.com/" target="_blank">Eternal Glory</a>
             </p>
         </div>
     </div>
@@ -522,7 +549,7 @@
                 var lamaran = '{{Auth()->user()->lamaran}}';
                 var foto_user = '{{Auth()->user()->foto}}';
 
-                if(foto_user !== 'default/default.png' && (cv !== 'default/default.png' && lamaran !== 'default/default.png')) {
+                if (foto_user !== 'default/default.png' && (cv !== 'default/default.png' && lamaran !== 'default/default.png')) {
                     swalWithBootstrapButtons.fire({
                         title: 'Apa kamu yakin',
                         text: "Ingin mendaftar di lowongan ini",
@@ -584,7 +611,7 @@
                             );
                         }
                     });
-                }else{
+                } else {
                     swalWithBootstrapButtons.fire({
                         icon: 'error',
                         title: 'Error',
