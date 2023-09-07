@@ -103,7 +103,7 @@
                                     </div>
 
                                     <div class="ms-3">
-                                        <h5 class="mb-1 fs-3">{{ Auth()->user()->name }}</h5>
+                                        <h5 class="mb-1 fs-3"> <i class="ti ti-user fs-5 me-1"></i>{{ Auth()->user()->name }}</h5>
                                         <p class="mb-0 d-flex text-dark align-items-center gap-2">
                                             <i class="ti ti-mail fs-5"></i>{{ Auth()->user()->email }}
                                         </p>

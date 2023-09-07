@@ -216,7 +216,7 @@
                             }
                         }
                     </style>
-                    <div class="employers-listing-sidebar mt-5 " id="pp">
+                    <div class="employers-listing-sidebar mt-5 mb-5 " id="pp">
                         <h3>Lamaran Ditampung</h3>
                         @forelse ($registration as $item)
                         <div class="col-lg-12 mt-3" id="lowongan">
