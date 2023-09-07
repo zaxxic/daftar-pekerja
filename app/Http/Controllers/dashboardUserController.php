@@ -89,10 +89,11 @@ class DashboardUserController extends Controller
             ->latest()
             ->paginate(3);
 
-        $registration = Registration::where('users_id', Auth()->User()->id)
-            ->where('status', 'menunggu')
+         $registration = Registration::where('users_id', Auth()->user()->id)
+            ->whereIn('status', ['menunggu', 'diterima', 'ditolak', 'nonaktif']) // Menggunakan whereIn untuk beberapa nilai status
             ->latest()
-            ->paginate(3);
+            ->paginate(5);
+
 
         $divisi = Division::all();
         $cek = Vacancy::where('status', 'aktif')->count();
