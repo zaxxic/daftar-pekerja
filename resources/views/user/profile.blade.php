@@ -160,30 +160,33 @@
                                     <div class="mb-4">
                                         <label for="exampleInputResume" class="form-label fw-semibold">Masukkan
                                             Lamaran (format harus PDF)</label>
-                                        <div class=" d-flex justify-content-between">
-                                            <div class="col-9">
+                                        <div class=" row gap-2">
+                                            <div class="col-12 col-md-6">
                                                 <input type="file" name="lamaran" class="form-control" id="lamaran">
                                                 @error('lamaran')
                                                 <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
-
-                                            <a  data-bs-toggle="modal"
-                                            data-bs-target="#detail-lamaran-{{ Auth()->User()->lamaran }}" class="btn btn-primary" >Lihat Lamaran</a>
+                                            <div class="col-12 col-md-5 d-flex justify-content-end ">
+                                                <a  data-bs-toggle="modal"
+                                                data-bs-target="#detail-lamaran-{{ Auth()->User()->lamaran }}" class="btn btn-primary col-8 col-md-12 " >Lihat Lamaran</a>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="mb-4">
                                         <label for="exampleInputCV" class="form-label fw-semibold">Masukkan
                                             CV (format harus PDF)</label>
-                                        <div class=" d-flex justify-content-between">
-                                            <div class="col-9">
+                                        <div class=" row gap-2">
+                                            <div class="col-12 col-md-8">
                                                 <input type="file" name="cv" class="form-control" id="cv">
                                                 @error('cv')
                                                 <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
+                                            <div class="col-12 col-md-3 d-flex justify-content-end ">
                                             <a  data-bs-toggle="modal"
-                                                data-bs-target="#detail-cv-{{ Auth()->User()->cv }}" class="btn btn-primary" >Lihat CV</a>
+                                                data-bs-target="#detail-cv-{{ Auth()->User()->cv }}" class="btn btn-primary col-6 col-md-12" >Lihat CV</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

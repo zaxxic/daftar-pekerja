@@ -54,7 +54,7 @@ class DashboardUserController extends Controller
                 ->where('status', 'aktif')
                 ->orderByRaw('ABS(DATEDIFF(batas, CURDATE()))') // Mengurutkan berdasarkan perbedaan antara batas tanggal dan tanggal hari ini
                 ->paginate(5);
-            $divisi = Division::all();
+            $divisi = Division::where('status', 'aktif')->get();
             return view('user.lowongan', compact('lowongan', 'divisi', 'selectedDivision'));
         }
 

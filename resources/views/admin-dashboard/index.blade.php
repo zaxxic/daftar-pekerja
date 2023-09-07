@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="row gap-5">
-        <div class="col-10 rounded-2 col-md-2 p-3" style="background-color: #ECF2FF">
+        <div class="col-12 rounded-2 col-md-2 p-3" style="background-color: #ECF2FF">
             <div class="d-flex gap-2">
                 <div class="p-1 align-self-center rounded" style="background-color: #5D87FF">
                     <svg class="text-light" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
@@ -21,7 +21,7 @@
                 <span style="" class="fw-bold">{{ $menunggu }}</span>
             </div>
         </div>
-        <div class="col-10 rounded-2 col-md-2 p-3" style="background-color: #E6FFFA">
+        <div class="col-12 rounded-2 col-md-2 p-3" style="background-color: #E6FFFA">
             <div class="d-flex gap-2">
                 <div class="p-1 align-self-center rounded" style="background-color: #13DEB9">
                     <!-- <svg class="text-light" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
@@ -44,7 +44,7 @@
                 <span style="" class="fw-bold">{{ $terima }}</span>
             </div>
         </div>
-        <div class="col-10 rounded-2 col-md-2 p-3" style="background-color: #FBF2EF">
+        <div class="col-12 rounded-2 col-md-2 p-3" style="background-color: #FBF2EF">
             <div class="d-flex gap-2">
                 <div class="p-1 align-self-center rounded" style="background-color: #FA896B">
                     <!-- <svg class="text-light" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
@@ -68,7 +68,7 @@
                 <span style="" class="fw-bold">{{ $tolak }}</span>
             </div>
         </div>
-        <div class="col-10 rounded-2 col-md-2 p-3" style="background-color: #E6FFFA">
+        <div class="col-12 rounded-2 col-md-2 p-3" style="background-color: #E6FFFA">
             <div class="d-flex gap-2">
                 <div class="p-1 align-self-center rounded" style="background-color: #67E6E6">
                     <!-- <svg class="text-light" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
@@ -91,7 +91,7 @@
                 <span style="" class="fw-bold">{{ $divisi }}</span>
             </div>
         </div>
-        <div class="col-10 rounded-2 col-md-2 p-3" style="background-color: #ECF2FF">
+        <div class="col-12 rounded-2 col-md-2 p-3" style="background-color: #ECF2FF">
             <div class="d-flex gap-2">
                 <div class="p-1 align-self-center rounded" style="background-color: #6d5dff">
                     <!-- <svg class="text-light" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">

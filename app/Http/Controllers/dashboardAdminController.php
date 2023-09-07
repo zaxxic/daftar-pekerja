@@ -19,8 +19,8 @@ class DashboardAdminController extends Controller
         $menunggu = Registration::where('status','menunggu')->count();
         $terima = Registration::where('status','diterima')->count();
         $tolak = Registration::where('status','ditolak')->count();
-        $divisi = Division::all()->count();
-        $lowongan = Vacancy::all()->count();
+        $divisi = Division::where('status', 'aktif')->count();
+        $lowongan = Vacancy::where('status', 'aktif')->count();
 
         $data = Registration::select(
             DB::raw('MONTH(created_at) as month'),
