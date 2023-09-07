@@ -151,13 +151,6 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="mb-4">
-                                        <label for="exampleInputAddress" class="form-label fw-semibold">Alamat</label>
-                                        <textarea name="alamat" class="form-control" id="exampleInputAddress" placeholder="Jalan Pegangsaan Timur Nomor 14, RT 04 RW 05 Kel. Senayan, Kec. Kebayoran Baru, Jakarta Selatan, 10450">{{ $user->alamat }}</textarea>
-                                        @error('alamat')
-                                        <div class="text-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="mb-4">
                                         <label for="exampleInputResume" class="form-label fw-semibold">Masukkan
                                             Lamaran (format harus PDF)</label>
                                         <div class=" d-flex justify-content-between">
@@ -168,8 +161,7 @@
                                                 @enderror
                                             </div>
 
-                                            <a  data-bs-toggle="modal"
-                                            data-bs-target="#detail-lamaran-{{ Auth()->User()->lamaran }}" class="btn btn-primary" >Lihat Lamaran</a>
+                                            <a data-bs-toggle="modal" data-bs-target="#detail-lamaran-{{ Auth()->User()->lamaran }}" class="btn btn-primary">Lihat Lamaran</a>
                                         </div>
                                     </div>
                                     <div class="mb-4">
@@ -182,10 +174,17 @@
                                                 <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                            <a  data-bs-toggle="modal"
-                                                data-bs-target="#detail-cv-{{ Auth()->User()->cv }}" class="btn btn-primary" >Lihat CV</a>
+                                            <a data-bs-toggle="modal" data-bs-target="#detail-cv-{{ Auth()->User()->cv }}" class="btn btn-primary">Lihat CV</a>
                                         </div>
                                     </div>
+                                    <div class="mb-4">
+                                        <label for="exampleInputAddress" class="form-label fw-semibold">Alamat</label>
+                                        <textarea name="alamat" class="form-control" id="exampleInputAddress" placeholder="Jalan Pegangsaan Timur Nomor 14, RT 04 RW 05 Kel. Senayan, Kec. Kebayoran Baru, Jakarta Selatan, 10450">{{ $user->alamat }}</textarea>
+                                        @error('alamat')
+                                        <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="col-12">
@@ -218,50 +217,50 @@
 <div class="modal fade" id="detail-cv-{{Auth()->User()->cv}}" tabindex="-1" aria-labelledby="detail-cv-{{Auth()->User()->cv}}" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Cv pekerja</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            @if (Auth()->User()->cv === "default/default.png")
-            <div class="row">
-                <div class="col-lg-12 mt-5 text-center" id="lowongan">
-                    <img src="/assets/dist/images/nodatas.png" alt="" width="350px">
-                </div>
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Cv pekerja</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            @else
-            <embed src="{{ asset('cv/' . $user->cv) }}" type="application/pdf" width="100%" height="100%">
-            @endif
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-            {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
-        </div>
+            <div class="modal-body">
+                @if (Auth()->User()->cv === "default/default.png")
+                <div class="row">
+                    <div class="col-lg-12 mt-5 text-center" id="lowongan">
+                        <img src="/assets/dist/images/nodatas.png" alt="" width="350px">
+                    </div>
+                </div>
+                @else
+                <embed src="{{ asset('cv/' . $user->cv) }}" type="application/pdf" width="100%" height="100%">
+                @endif
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+            </div>
         </div>
     </div>
 </div>
 <div class="modal fade" id="detail-lamaran-{{Auth()->User()->lamaran}}" tabindex="-1" aria-labelledby="detail-lamaran-{{Auth()->User()->cv}}" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Lamaran pekerja</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            @if (Auth()->User()->lamaran === 'default/default.png')
-            <div class="row">
-                <div class="col-lg-12 mt-5 text-center" id="lowongan">
-                    <img src="/assets/dist/images/nodatas.png" alt="" width="350px">
-                </div>
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Lamaran pekerja</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            @else
-            <embed src="{{ asset('lamaran/'. $user->lamaran) }}" type="application/pdf" width="100%" height="100%">
-            @endif
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-            {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
-        </div>
+            <div class="modal-body">
+                @if (Auth()->User()->lamaran === 'default/default.png')
+                <div class="row">
+                    <div class="col-lg-12 mt-5 text-center" id="lowongan">
+                        <img src="/assets/dist/images/nodatas.png" alt="" width="350px">
+                    </div>
+                </div>
+                @else
+                <embed src="{{ asset('lamaran/'. $user->lamaran) }}" type="application/pdf" width="100%" height="100%">
+                @endif
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+            </div>
         </div>
     </div>
 </div>

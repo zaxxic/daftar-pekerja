@@ -107,17 +107,17 @@
                     <form method="POST" action="{{ route('form-login') }}">
                         @csrf
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                            <label for="email" class="form-label">Email <span style="color: red;">*</span></label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email Anda"
                                 required>
                         </div>
                         @error('email')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                         <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
+                            <label for="password" class="form-label">Password <span style="color: red;">*</span></label>
                             <input type="password" class="form-control" id="password" name="password"
-                                placeholder="Password" required>
+                                placeholder="Masukkan Password Anda" required>
                         </div>
                         @error('password')
                             <div class="text-danger">{{ $message }}</div>
@@ -127,7 +127,7 @@
                         </div>
                         <button type="submit" class="btn btn-primary w-100 py-2 mb-4 rounded-2">Login
                             Sekarang</button>
-                        <div class="mt-3 text-center text-sm">
+                        <div class="mt-3 text-sm">
                             <p>Belum punya Akun? <a href="{{ route('register') }}">Daftar</a></p>
                         </div>
                     </form>
