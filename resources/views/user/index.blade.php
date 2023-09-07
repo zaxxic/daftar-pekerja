@@ -35,12 +35,20 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/logo.png">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Title -->
     <title>Dashboard User</title>
+    <style>
+        .highlight-box {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: #5d87ff;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+    </style>
 </head>
 
 <body>
@@ -143,7 +151,7 @@
     <!-- End Page Title Area -->
 
     @php
-        use Carbon\Carbon;
+    use Carbon\Carbon;
     @endphp
 
     <!-- Start Employers Listing Area -->
@@ -162,10 +170,9 @@
                                     <option value="" @if (!$selectedDivision) selected @endif>Semua
                                     </option>
                                     @foreach ($divisi as $item)
-                                        <option value="{{ $item->divisi }}"
-                                            @if ($selectedDivision === $item->divisi) selected @endif>
-                                            {{ $item->divisi }}
-                                        </option>
+                                    <option value="{{ $item->divisi }}" @if ($selectedDivision===$item->divisi) selected @endif>
+                                        {{ $item->divisi }}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -209,51 +216,49 @@
                             }
                         }
                     </style>
-                    <div class="employers-listing-sidebar mt-5 " id="pp">
+                    <div class="employers-listing-sidebar mt-5 mb-5 " id="pp">
                         <h3>Lamaran Ditampung</h3>
                         @forelse ($registration as $item)
-                            <div class="col-lg-12 mt-3" id="lowongan">
+                        <div class="col-lg-12 mt-3" id="lowongan">
+                            <div class="d-flex justify-content-between">
+                                <h5><a href="" style="color: black">{{ $item->Vacancy->judul }}</a></h5>
+                                @if ($item->status === 'diterima')
+                                <span class="status bg-success" style="width: 79px;">{{ $item->status }}</span>
+                                @elseif($item->status === ['ditolak', 'nonaktif'])
+                                <span class="status bg-danger" style="width: 70px;">{{ $item->status }}</span>
+                                @else
+                                <span class="status bg-warning" style="align-items: center;"><span style="margin-right: -50px;">{{ $item->status }}</span></span>
+                                @endif
+                            </div>
+                            <ul>
+                                <li class="mb-2 mt-2"><span>Tanggal Wanwancara :</span>
+                                    {{ $item->User->tanggal_wawancara }}
+                                </li>
+                                <li class="mb-2"><span>Posisi :</span>{{ $item->Vacancy->pekerja }}</li>
+                                <li class="mb-2"><span>Slot Tersedia : </span> {{ $item->Vacancy->slot }}</li>
                                 <div class="d-flex justify-content-between">
-                                    <h5><a href="" style="color: black">{{ $item->Vacancy->judul }}</a></h5>
-                                    @if ($item->status === 'diterima')
-                                        <span class="status bg-success" style="width: 79px;">{{ $item->status }}</span>
-                                    @elseif($item->status === ['ditolak', 'nonaktif'])
-                                        <span class="status bg-danger" style="width: 70px;">{{ $item->status }}</span>
-                                    @else
-                                        <span class="status bg-warning" style="align-items: center;"><span
-                                                style="margin-right: -50px;">{{ $item->status }}</span></span>
-                                    @endif
-                                </div>
-                                <ul>
-                                    <li class="mb-2 mt-2"><span>Tanggal Wanwancara :</span>
-                                        {{ $item->User->tanggal_wawancara }}
+                                    <li class="mb-2"><span>Tipe Kerja : </span>{{ $item->Vacancy->tipe }}</li>
+                                    <li class="ml-auto" style="margin-left: 300px;">
+                                        <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
+                                            <button class="btn btn-primary">
+                                                Detail
+                                            </button>
+                                        </a>
                                     </li>
-                                    <li class="mb-2"><span>Posisi :</span>{{ $item->Vacancy->pekerja }}</li>
-                                    <li class="mb-2"><span>Slot Tersedia : </span> {{ $item->Vacancy->slot }}</li>
-                                    <div class="d-flex justify-content-between">
-                                        <li class="mb-2"><span>Tipe Kerja : </span>{{ $item->Vacancy->tipe }}</li>
-                                        <li class="ml-auto" style="margin-left: 300px;">
-                                            <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
-                                                <button class="btn btn-primary">
-                                                    Detail
-                                                </button>
-                                            </a>
-                                        </li>
-                                        @if ($item->status === 'menunggu')
-                                            <li class="ml-1" id="batal"><button
-                                                    class="btn btn-danger">Batal</button>
-                                            </li>
-                                        @endif
+                                    @if ($item->status === 'menunggu')
+                                    <li class="ml-1" id="batal"><button class="btn btn-danger">Batal</button>
+                                    </li>
+                                    @endif
 
 
-                                    </div>
-                                </ul>
+                                </div>
+                            </ul>
 
-                            </div>
+                        </div>
                         @empty
-                            <div class="col-lg-12 mt-3 ml-5" id="lowongan">
-                                <img src="/assets/dist/images/nodatas.png" alt="" width="180px">
-                            </div>
+                        <div class="col-lg-12 mt-3 ml-5" id="lowongan">
+                            <img src="/assets/dist/images/nodatas.png" alt="" width="180px">
+                        </div>
                         @endforelse
                         {{ $registration->links() }}
                     </div>
@@ -262,57 +267,52 @@
                     <div class="shorting">
                         <div class="row">
                             @forelse ($lowongan as $item)
-                                <div class=" mix a s c" id="card2">
-                                    <div class="hot-jobs-list col-md-6 col-12 col-lg-12">
-                                        <div class="row align-items-center">
-                                            <div class="col-12 col-lg-12">
-                                                <div class="hot-jobs-content">
-                                                    <div class="row d-flex justify-content-between"
-                                                        style="color: black">
-                                                        <h3 class="col-12 col-md-4"><a
-                                                                href="">{{ $item->judul }}</a></h3>
-                                                        <p class="col-12 col-md-8 tanggal">
-                                                            <span class="text-center text-md-left">Berakhir Pada
-                                                                Tanggal:
-                                                                {{ Carbon::parse($item->batas)->format('d M Y') }}</span>
-                                                        </p>
-                                                    </div>
-                                                    <span
-                                                        class="sub-title text-primary mb-1">{{ $item->Division->divisi }}</span>
-                                                    <ul>
-                                                        <li><span>Gaji
-                                                                :</span>{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}
-                                                        </li>
-                                                        <li><span>Slot Tersedia : </span>{{ $item->slot }}</li>
-                                                        <div class="row ">
-                                                            <li class="col-12 col-md-6"><span>Tipe Kerja :
-                                                                </span>{{ $item->tipe }}</li>
-                                                            <li
-                                                                class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end">
-                                                                <a  href="{{ route('detailLowongan', $item->id) }}" class="text-white">
-                                                                    <button class="default-btn">Detail</button>
-                                                                </a>
-                                                            </li>
-                                                        </div>
-                                                    </ul>
+                            <div class=" mix a s c" id="card2">
+                                <div class="hot-jobs-list col-md-6 col-12 col-lg-12">
+                                    <div class="row align-items-center">
+                                        <div class="col-12 col-lg-12">
+                                            <div class="hot-jobs-content">
+                                                <div class="row d-flex justify-content-between" style="color: black">
+                                                    <h3 class="col-12 col-md-4"><a href="">{{ $item->judul }}</a></h3>
+                                                    <p class="col-12 col-md-8 tanggal">
+                                                        <span class="text-center text-md-left">Berakhir Pada
+                                                            Tanggal:
+                                                            {{ Carbon::parse($item->batas)->format('d M Y') }}</span>
+                                                    </p>
                                                 </div>
+                                                <span class="sub-title text-primary mb-1">{{ $item->Division->divisi }}</span>
+                                                <ul>
+                                                    <li><span>Gaji
+                                                            :</span>{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}
+                                                    </li>
+                                                    <li><span>Slot Tersedia : </span>{{ $item->slot }}</li>
+                                                    <div class="row ">
+                                                        <li class="col-12 col-md-6"><span>Tipe Kerja :
+                                                            </span>{{ $item->tipe }}</li>
+                                                        <li class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end">
+                                                            <a href="{{ route('detailLowongan', $item->id) }}" class="text-white">
+                                                                <button class="default-btn">Detail</button>
+                                                            </a>
+                                                        </li>
+                                                    </div>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
                             @empty
-                                <div class="row">
-                                    <div class="col-lg-12 mt-5 text-center" id="lowongan">
-                                        <img src="/assets/dist/images/nodatas.png" alt="" width="350px">
-                                    </div>
+                            <div class="row">
+                                <div class="col-lg-12 mt-5 text-center" id="lowongan">
+                                    <img src="/assets/dist/images/nodatas.png" alt="" width="350px">
                                 </div>
+                            </div>
                             @endforelse
                             <div class="col-12">
                                 <div class="pagination-area">
                                     @if ($cek > 2)
-                                        <button class="default-btn"><a href="{{ route('lowongan-user', $item->id) }}"
-                                                class="text-white">Lihat Selengkapnya</a></button>
+                                    <button class="default-btn"><a href="{{ route('lowongan-user', $item->id) }}" class="text-white">Lihat Selengkapnya</a></button>
                                     @endif
                                     {{-- {{ $lowongan->links() }} --}}
                                 </div>
@@ -343,30 +343,28 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="single-footer-widget single-bg">
                                     <a class="logo" href="index.html">
-                                        <img width="180px" src="assets1/images/humma.png" alt="logo">
+                                        <img width="180px" src="{{asset('assets/hummatech.png')}}" alt="logo">
                                     </a>
-                                    <p>Lorem ipsum dolor sit amet, consec tetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut
-                                        labore et dolore magna aliqua consec tetur.</p>
+                                    <p>Hummasoft merupakan sebuah perusahaan yang bergerak dibidang IT (Information Technology).</p>
 
                                     <ul class="social-icon">
                                         <li>
-                                            <a href="#">
+                                            <a href="https://www.facebook.com/hummasoft?locale=id_ID" target="_blank">
                                                 <i class="bx bxl-facebook"></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="https://www.instagram.com/hummasoft" target="_blank">
                                                 <i class="bx bxl-instagram"></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="https://id.linkedin.com/in/hummasoft-technology-2476a8241" target="_blank">
                                                 <i class="bx bxl-linkedin-square"></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="https://twitter.com/hummasoft">
                                                 <i class="bx bxl-twitter"></i>
                                             </a>
                                         </li>
@@ -387,10 +385,7 @@
                                         <li class="mb-3" s>
                                             <i class="bx bx-envelope"></i>
                                             <span>Email:</span>
-                                            <a
-                                                href="https://templates.envytheme.com/cdn-cgi/l/email-protection#80e8e5ececefc0eaf5e2e9aee3efed"><span
-                                                    class="__cf_email__"
-                                                    data-cfemail="f098959c9c9fb09a859299de939f9d">hummasoft.tech@gmail.com</span></a>
+                                            <a href="https://templates.envytheme.com/cdn-cgi/l/email-protection#80e8e5ececefc0eaf5e2e9aee3efed"><span class="__cf_email__" data-cfemail="f098959c9c9fb09a859299de939f9d">hummasoft.tech@gmail.com</span></a>
                                         </li>
                                         <li class="location">
                                             <i class="bx bx-location-plus"></i>
@@ -403,26 +398,42 @@
 
                             <div class="col-lg-3 col-md-6">
                                 <div class="single-footer-widget">
-                                    <h3>Helpful Resources</h3>
+                                    <h3>Layanan Kami</h3>
 
                                     <ul class="import-link">
                                         <li>
-                                            <a href="#">Create Account</a>
+                                            <div class="d-flex">
+                                                <div>
+                                                    <div class="highlight-box"></div>
+                                                </div>
+                                                <a>Kelas Industri</a>
+
+                                            </div>
                                         </li>
                                         <li>
-                                            <a href="#">Contact Us</a>
+                                            <div class="d-flex">
+                                                <div>
+                                                    <div class="highlight-box"></div>
+                                                </div>
+                                                <a>Pengembangan Perangkat Lunak</a>
+                                            </div>
                                         </li>
                                         <li>
-                                            <a href="#">Site Map</a>
+                                            <div class="d-flex">
+                                                <div>
+                                                    <div class="highlight-box"></div>
+                                                </div>
+                                                <a>Pelatihan Upskilling/Reskilling Berbasis Industri</a>
+
+                                            </div>
                                         </li>
                                         <li>
-                                            <a href="#">Terms of Use</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Privacy Centre</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Blog</a>
+                                            <div class="d-flex">
+                                                <div>
+                                                    <div class="highlight-box"></div>
+                                                </div>
+                                                <a>Riset dan Intership/Magang</a>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
@@ -430,26 +441,40 @@
 
                             <div class="col-lg-3 col-md-6">
                                 <div class="single-footer-widget">
-                                    <h3>Job Seekers</h3>
+                                    <h3>Benefit Kami</h3>
 
                                     <ul class="import-link">
                                         <li>
-                                            <a href="#">Create Account</a>
+                                            <div class="d-flex">
+                                                <div>
+                                                    <div class="highlight-box"></div>
+                                                </div>
+                                                <a>Lingkungan Kerja Berbasis Proyek dan Teamwork</a>
+                                            </div>
                                         </li>
                                         <li>
-                                            <a href="#">Browse Jobs</a>
+                                            <div class="d-flex">
+                                                <div>
+                                                    <div class="highlight-box"></div>
+                                                </div>
+                                                <a>Memperluas Jejaring / Networking IT</a>
+                                            </div>
                                         </li>
                                         <li>
-                                            <a href="#">Upload CV</a>
+                                            <div class="d-flex">
+                                                <div>
+                                                    <div class="highlight-box"></div>
+                                                </div>
+                                                <a>Menambah Pengalaman dan Portofolio</a>
+                                            </div>
                                         </li>
                                         <li>
-                                            <a href="#">Company Profile</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">International Jobs</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">FAQ</a>
+                                            <div class="d-flex">
+                                                <div>
+                                                    <div class="highlight-box"></div>
+                                                </div>
+                                                <a>Proyek Skala Nasional dan Internasional</a>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
@@ -466,8 +491,8 @@
     <div class="copy-right-area">
         <div class="container">
             <p>
-                © 2021 Jubi Is Proudly Created By
-                <a href="https://envytheme.com/" target="_blank">EnvyTheme</a>
+                © 2023 Hummatech Technology Created By
+                <a href="https://envytheme.com/" target="_blank">Eternal Glory</a>
             </p>
         </div>
     </div>
@@ -517,8 +542,7 @@
     <!-- Custom JS -->
     <script src="assets1/js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script
-        src="
+    <script src="
                                                                                                                                                                                                                                                                                                                                         https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
                                                                                                                                                                                                                                                                                                                                         ">
     </script>
