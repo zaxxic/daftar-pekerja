@@ -42,9 +42,7 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/logo.png">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Title -->
     <title>Dashboard User</title>
@@ -142,7 +140,7 @@
     <!-- End Page Title Area -->
 
     @php
-        use Carbon\Carbon;
+    use Carbon\Carbon;
     @endphp
 
     <!-- Start Employers Listing Area -->
@@ -155,16 +153,14 @@
                         <form action="" class="search-form  d-flex">
                             <div class="form-group  ">
                                 <div style="width: 200px"> <!-- Mengatur lebar form secara keseluruhan -->
-                                    <select class="select2 " id="division-select" name="division"
-                                        style="width: 100%; height:  margin-right: 10px;">
+                                    <select class="select2 " id="division-select" name="division" style="width: 100%; height:  margin-right: 10px;">
                                         <!-- Mengatur width, height, dan margin -->
                                         <option value="" @if (!$selectedDivision) selected @endif>Semua
                                         </option>
                                         @foreach ($divisi as $item)
-                                            <option value="{{ $item->id }}"
-                                                @if ($selectedDivision == $item->id) selected @endif>
-                                                {{ $item->divisi }}
-                                            </option>
+                                        <option value="{{ $item->id }}" @if ($selectedDivision==$item->id) selected @endif>
+                                            {{ $item->divisi }}
+                                        </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -209,50 +205,46 @@
                 <div class="shorting">
                     <div class="row" id="card">
                         @forelse ($lowongan as $item)
-                            <div class="col-md-6 col-12 mix a s c" id="card2">
-                                <div class="hot-jobs-list col-12">
-                                    <div class="row align-items-center">
-                                        <div class="col-12">
-                                            <div class="hot-jobs-content">
-                                                <div class="row" style="color: black">
-                                                    <div class="col-12 col-md-4">
-                                                        <h3><a href="">{{ $item->judul }}</a></h3>
-                                                    </div>
-                                                    <div class="col-12 col-md-8 tanggal">
-                                                        <span class="text-center text-md-left">Berakhir Pada
-                                                            Tanggal:
-                                                            {{ Carbon::parse($item->batas)->format('d M Y') }}</span>
-                                                    </div>
+                        <div class="col-md-6 col-12 mix a s c" id="card2">
+                            <div class="hot-jobs-list col-12">
+                                <div class="row align-items-center">
+                                    <div class="col-12">
+                                        <div class="hot-jobs-content">
+                                            <div class="row" style="color: black">
+                                                <div class="col-12 col-md-4">
+                                                    <h3><a href="">{{ $item->judul }}</a></h3>
                                                 </div>
-                                                <span
-                                                    class="sub-title text-primary mb-1">{{ $item->Division->divisi }}</span>
-                                                <ul>
-                                                    <li><span>Gaji
-                                                            :</span>{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}
-                                                    </li>
-                                                    <li><span>Slot Tersedia :</span>{{ $item->slot }}</li>
-                                                    <div class="row">
-                                                        <li class="col-12 col-md-6"><span>Tipe Kerja
-                                                                :</span>{{ $item->tipe }}</li>
-                                                        <li
-                                                            class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end">
-                                                            <button class="default-btn"><a
-                                                                    href="{{ route('detailLowongan', $item->id) }}"
-                                                                    class="text-white">Detail</a></button>
-                                                        </li>
-                                                    </div>
-                                                </ul>
+                                                <div class="col-12 col-md-8 tanggal">
+                                                    <span class="text-center text-md-left">Berakhir Pada
+                                                        Tanggal:
+                                                        {{ Carbon::parse($item->batas)->format('d M Y') }}</span>
+                                                </div>
                                             </div>
+                                            <span class="sub-title text-primary mb-1">{{ $item->Division->divisi }}</span>
+                                            <ul>
+                                                <li><span>Gaji
+                                                        :</span>{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}
+                                                </li>
+                                                <li><span>Slot Tersedia :</span>{{ $item->slot }}</li>
+                                                <div class="row">
+                                                    <li class="col-12 col-md-6"><span>Tipe Kerja
+                                                            :</span>{{ $item->tipe }}</li>
+                                                    <li class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end">
+                                                        <button class="default-btn"><a href="{{ route('detailLowongan', $item->id) }}" class="text-white">Detail</a></button>
+                                                    </li>
+                                                </div>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         @empty
-                            <div class="row">
-                                <div class="col-12 mt-5 text-center" id="lowongan">
-                                    <img src="/assets/dist/images/nodatas.png" alt="" width="350px">
-                                </div>
+                        <div class="row">
+                            <div class="col-12 mt-5 text-center" id="lowongan">
+                                <img src="/assets/dist/images/nodatas.png" alt="" width="350px">
                             </div>
+                        </div>
                         @endforelse
                         <div class="col-12">
                             <div class="pagination-area">
@@ -434,8 +426,8 @@
     <div class="copy-right-area">
         <div class="container">
             <p>
-                © 2021 Jubi Is Proudly Created By
-                <a href="https://envytheme.com/" target="_blank">EnvyTheme</a>
+                © 2023 Hummatech Technology Created By
+                <a href="https://envytheme.com/" target="_blank">Eternal Glory</a>
             </p>
         </div>
     </div>
@@ -489,8 +481,7 @@
 
     <script src="assets1/js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script
-        src="
+    <script src="
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ">
     </script>

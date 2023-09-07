@@ -491,8 +491,8 @@
     <div class="copy-right-area">
         <div class="container">
             <p>
-                © 2021 Jubi Is Proudly Created By
-                <a href="https://envytheme.com/" target="_blank">EnvyTheme</a>
+                © 2023 Hummatech Technology Created By
+                <a href="https://envytheme.com/" target="_blank">Eternal Glory</a>
             </p>
         </div>
     </div>

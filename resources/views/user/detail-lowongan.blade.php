@@ -49,20 +49,18 @@
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="assets1/images/favicon.png">
         <!-- Title -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <title>Dashboard User</title>
         <style>
-        .highlight-box {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            background-color: #5d87ff;
-            margin-right: 5px;
-            vertical-align: middle;
-        }
-    </style>
+            .highlight-box {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                background-color: #5d87ff;
+                margin-right: 5px;
+                vertical-align: middle;
+            }
+        </style>
     </head>
     <title>Jubi - Job Board HTML Template</title>
 </head>
@@ -96,14 +94,14 @@
         }
     </style>
     @if (session()->has('sukses'))
-        <script>
-            alert("anda sudah terdaftar")
-        </script>
+    <script>
+        alert("anda sudah terdaftar")
+    </script>
     @endif
     @if (session()->has('error'))
-        <script>
-            alert("anda tidak bisa daftar kembali")
-        </script>
+    <script>
+        alert("anda tidak bisa daftar kembali")
+    </script>
     @endif
 
 
@@ -147,10 +145,7 @@
                                             <div class="d-flex justify-content-end  ">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <li style="margin-right: -19%;"><button
-                                                                class="btn btn-warning"><a
-                                                                    href="{{ route('dashboard-user') }}"
-                                                                    class="text-white">Kembali</a></button>
+                                                        <li style="margin-right: -19%;"><button class="btn btn-warning"><a href="{{ route('dashboard-user') }}" class="text-white">Kembali</a></button>
                                                         </li>
                                                     </div>
                                                     <div class="col-6">
@@ -177,26 +172,23 @@
                                                             </li>
                                                         @endif --}}
                                                         @if ($status === 'sudah')
-                                                            <li>
-                                                                <p>Anda sudah mendaftar pada lowongan lain.</p>
-                                                            </li>
+                                                        <li>
+                                                            <p>Anda sudah mendaftar pada lowongan lain.</p>
+                                                        </li>
                                                         @elseif ($status === 'belum')
-                                                            <button type="button" class="btn btn-primary"
-                                                                style="background-color: #2042e3"
-                                                                id="daftar">Daftar</button>
+                                                        <button type="button" class="btn btn-primary" style="background-color: #2042e3" id="daftar">Daftar</button>
                                                         @elseif ($status === 'disini')
-                                                            <li>
-                                                                <button type="button" class="btn btn-danger"
-                                                                    id="batal">Batal</button>
-                                                            </li>
+                                                        <li>
+                                                            <button type="button" class="btn btn-danger" id="batal">Batal</button>
+                                                        </li>
                                                         @elseif ($status === 'diterima_disini')
-                                                            <li>
-                                                                <p>anda di terima di lowongan ini </p>
-                                                            </li>
+                                                        <li>
+                                                            <p>anda di terima di lowongan ini </p>
+                                                        </li>
                                                         @else
-                                                            <li>
-                                                                <p>anda sudah di terima pada lowongan lain</p>
-                                                            </li>
+                                                        <li>
+                                                            <p>anda sudah di terima pada lowongan lain</p>
+                                                        </li>
                                                         @endif
                                                     </div>
 
@@ -446,8 +438,8 @@
     <div class="copy-right-area">
         <div class="container">
             <p>
-                © 2020 Jubi Is Proudly Created By
-                <a href="https://envytheme.com/" target="_blank">EnvyTheme</a>
+                © 2023 Hummatech Technology Created By
+                <a href="https://envytheme.com/" target="_blank">Eternal Glory</a>
             </p>
         </div>
     </div>
@@ -557,7 +549,7 @@
                 var lamaran = '{{Auth()->user()->lamaran}}';
                 var foto_user = '{{Auth()->user()->foto}}';
 
-                if(foto_user !== 'default/default.png' && (cv !== 'default/default.png' && lamaran !== 'default/default.png')) {
+                if (foto_user !== 'default/default.png' && (cv !== 'default/default.png' && lamaran !== 'default/default.png')) {
                     swalWithBootstrapButtons.fire({
                         title: 'Apa kamu yakin',
                         text: "Ingin mendaftar di lowongan ini",
@@ -619,7 +611,7 @@
                             );
                         }
                     });
-                }else{
+                } else {
                     swalWithBootstrapButtons.fire({
                         icon: 'error',
                         title: 'Error',
