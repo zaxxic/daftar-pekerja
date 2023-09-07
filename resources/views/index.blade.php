@@ -100,7 +100,7 @@
                 <div class="container">
                     <div class="mobile-menu">
                         <div class="logo">
-                            <a href="index.html">
+                        <a>
                                 <img src="{{asset('assets/hummatech.png')}}" alt="logo">
                             </a>
                         </div>
@@ -142,7 +142,7 @@
                         <div class="option-inner">
                             <div class="others-option justify-content-center d-flex align-items-center">
                                 <div class="get-quote">
-                                    <a href="post-job.html" class="default-btn">
+                                    <a href="{{route('register')}}" class="default-btn">
                                         Daftar Sekarang
                                     </a>
                                 </div>
