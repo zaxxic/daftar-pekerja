@@ -25,6 +25,10 @@ class LowonganController extends Controller
             $data->appends(['cari' => $keyword]);
             return view('admin-lowongan.lowongan', compact('data'));
         }
+        $cek = Division::where('status', null)->get();
+        foreach ($cek as $item) {
+            $item->update(['status' => 'aktif']);
+        }
         $user = User::all();
         $divisi = Division::all();
         $data = Vacancy::where('status', ['aktif','nonaktif'])->latest()->paginate(8);
@@ -187,7 +191,8 @@ class LowonganController extends Controller
         }
         $lowongan = Vacancy::find($id);
         $lowongan->update([
-            'status' => 'dihapus'
+            'status' => 'dihapus',
+            'devision_id' => null
         ]);
         return redirect()->back();
     }

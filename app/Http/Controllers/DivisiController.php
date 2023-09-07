@@ -17,7 +17,8 @@ class DivisiController extends Controller
         ]);
 
         $division = Division::create([
-            'divisi' => $request->divisi
+            'divisi' => $request->divisi,
+            'status' => 'aktif'
         ]);
 
         if ($request->ajax()) {
@@ -33,7 +34,7 @@ class DivisiController extends Controller
      */
     public function index()
     {
-        $divisi = Division::all();
+        $divisi = Division::where('status', 'aktif')->get();
         return response()->json(['divisi' => $divisi]);
     }
 
@@ -48,7 +49,7 @@ class DivisiController extends Controller
             return response()->json(['message' => 'Division not found'], 404);
         }
 
-        $division->delete();
+        $division->update(['status' => 'nonaktif']);
 
         return response()->json(['message' => 'Division deleted successfully']);
     }
