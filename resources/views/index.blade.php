@@ -45,7 +45,7 @@
 <body>
 
     <!-- Start Header Area -->
-    <header class="header-area">
+    <header class="header-area mb-5">
         <!-- Start Top Header -->
         <!-- Start Top Header -->
         <div class="top-header">
@@ -55,7 +55,7 @@
                         <ul class="header-left-content">
                             <li>
                                 <a class="navbar-brand">
-                                    <img width="180px" src="{{asset('assets/hummatech.png')}}" alt="logo">
+                                    <img width="180px" src="{{ asset('assets/hummatech.png') }}" alt="logo">
                                 </a>
                             </li>
                         </ul>
@@ -95,63 +95,7 @@
         </div>
 
         <!-- Start Navbar Area -->
-        <div class="navbar-area">
-            <div class="mobile-nav">
-                <div class="container">
-                    <div class="mobile-menu">
-                        <div class="logo">
-                        <a>
-                                <img src="{{asset('assets/hummatech.png')}}" alt="logo">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            ...
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="others-option-for-responsive">
-                <div class="container">
-                    <div class="dot-menu">
-                        <div class="inner">
-                            <div class="circle circle-one"></div>
-                            <div class="circle circle-two"></div>
-                            <div class="circle circle-three"></div>
-                        </div>
-                    </div>
-
-                    <div class="container">
-                        <div class="option-inner">
-                            <div class="others-option justify-content-center d-flex align-items-center">
-                                <div class="get-quote">
-                                    <a href="{{route('register')}}" class="default-btn">
-                                        Daftar Sekarang
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- End Navbar Area -->
     </header>
     <!-- End Header Area -->
@@ -194,14 +138,16 @@
                 <div class="col-lg-6">
                     <div class="who-we-are-content">
                         <div class="container">
-                            <div class="row" style="margin-right: 350px;">
+                            <div class="row">
                                 <h2 class="fw-bold">Tentang Kami</h2>
                             </div>
                         </div>
                         <div class="container">
                             <div class="row">
-                                <h4 style="margin-right: 280px;" class="text-primary">Hummatech Digital Indonesia</h4>
-
+                                <div>
+                                    <h4 class="text-primary">Hummatech Digital Indonesia
+                                    </h4>
+                                </div>
                             </div>
                         </div>
                         <p>Hummasoft merupakan sebuah perusahaan yang bergerak dibidang IT (Information Technology) yang
@@ -267,7 +213,7 @@
     <!-- End Global Talent Area -->
 
     <!-- Start Testimonials Area -->
- 
+
 
     <!-- Start Footer Area -->
     <div class="container">
@@ -279,7 +225,8 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="single-footer-widget single-bg">
                                     <a class="logo" href="index.html">
-                                        <img width="180px" src="{{asset('assets/hummatech.png')}}" alt="logo">
+                                        <img width="180px" src="{{ asset('assets/hummatech.png') }}"
+                                            alt="logo">
                                     </a>
                                     <p>Hummasoft merupakan sebuah perusahaan yang bergerak dibidang IT (Information
                                         Technology)
