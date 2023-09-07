@@ -92,7 +92,7 @@
 
                         <div class="mb-3">
                             <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
-                            <input type="password" class="form-control" id="password" name="Masukkan Password"
+                            <input type="password" class="form-control" name="password" id="password"
                                 placeholder="Password" required>
                                 <small>Silahkan masukan password baru Anda.</small>
                             @error('password')
