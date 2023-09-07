@@ -9,7 +9,7 @@ class Division extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'divisi'
+        'divisi','status'
      ];
 
      public function Vacancy()

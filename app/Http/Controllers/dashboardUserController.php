@@ -17,7 +17,7 @@ class DashboardUserController extends Controller
      */
     public function index()
     {
-        $selectedDivision = 'semua';    
+        $selectedDivision = 'semua';
         $registration = Registration::where('users_id', Auth()->user()->id)
             ->whereIn('status', ['menunggu', 'diterima', 'ditolak', 'nonaktif']) // Menggunakan whereIn untuk beberapa nilai status
             ->latest()
@@ -37,7 +37,7 @@ class DashboardUserController extends Controller
             $vacancy->update(['status' => 'nonaktif']);
         }
 
-        $divisi = Division::all();
+        $divisi = Division::where('status', 'aktif')->get();
         $cek = Vacancy::where('status', 'aktif')->count();
 
         return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration', 'cek'));
@@ -85,7 +85,7 @@ class DashboardUserController extends Controller
             });
         })
             ->whereDate('batas', '>=', Carbon::today()->toDateString()) // Memastikan hanya lowongan yang berakhir pada hari ini dan seterusnya yang ditampilkan
-            ->orderByRaw('ABS(DATEDIFF(batas, CURDATE()))')
+            ->orderByRaw('ABS(DATEDIFF(batas, CURDATE()))')->where('status', 'aktif')
             ->latest()
             ->paginate(3);
 
@@ -95,7 +95,7 @@ class DashboardUserController extends Controller
             ->paginate(5);
 
 
-        $divisi = Division::all();
+        $divisi = Division::where('status', 'aktif')->get();
         $cek = Vacancy::where('status', 'aktif')->count();
 
         return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration', 'cek'));
