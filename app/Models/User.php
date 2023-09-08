@@ -30,6 +30,7 @@ class User extends Authenticatable
         'status',
         'tanggal_wawancara',
         'password',
+        'lokasi_wawancara',
         'devision_id',
     ];
 

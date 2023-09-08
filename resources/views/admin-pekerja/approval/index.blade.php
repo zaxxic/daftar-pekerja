@@ -220,6 +220,15 @@
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                                 <br>
+                                <label for="recipient-name" class="control-label mt-2" style="color: black;">lokasi
+                                    Wawancara
+                                    <span style="color: red;">*</span></label>
+                                <input type="text" class="form-control" id="lokasi" name="lokasi" />
+                                <span class="text-danger" id="error_lokasi"></span>
+                                @error('lokasi')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                                <br>
                                 <small id="name" class="form-text text-muted">Setelah anda
                                     yakin ingin menerima pekerja tersebut, anda bisa mengirimkan
                                     tanggal untuk jadwal wawancara si pekerja.</small>
@@ -466,7 +475,6 @@
             });
             $('#terima').click(function() {
                 // Menutup modal yang ada sebelumnya (jika ada)
-                $('.modal').modal('hide');
 
                 const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
@@ -476,8 +484,10 @@
                     buttonsStyling: false,
                 });
 
-                if ($("#tanggal").val() !== "") {
+                if ($("#tanggal").val() !== "" && $("#lokasi").val() !== "") {
                     $('#error').html('');
+                    $('.modal').modal('hide');
+
                     swalWithBootstrapButtons
                         .fire({
                             title: "Apakah Anda Yakin?",
@@ -516,8 +526,18 @@
                             }
                         });
                 } else {
-                    $('#error').text("pesan harus di isi");
-                    console.log("gagal bg");
+                    if ($("#tanggal").val() === "" && $("#lokasi").val() === "") {
+                        console.log("gagal bg");
+                        $('#error').text("pesan harus di isi");
+                        $('#error_lokasi').text("Lokasi wawancara harus di isi");
+                    } else if ($("#lokasi").val() === "") {
+                        $('#error').text("");
+                        $('#error_lokasi').text("Lokasi wawancara harus di isi");
+                    } else if ($("#tanggal").val() === "") {
+                        $('#error').text("pesan harus di isi");
+                        $('#error_lokasi').text("");
+                    }
+
                 }
             });
 

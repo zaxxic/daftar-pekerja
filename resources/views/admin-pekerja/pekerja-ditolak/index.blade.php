@@ -237,25 +237,8 @@
                     searchInput.value = '';
 
 
-
-                    <
-                    !-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- - -- >
-                    <
-                    !--Form Basic End-- >
-                    <
-                    !-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- - -- >
-                    <
-                    /div> < /
-                    div > <
-                        script >
                         // Ambil elemen input pencarian
                         const searchInput = document.querySelector('input[name="cari"]');
-
-                    // Tambahkan event listener untuk mendengarkan peristiwa klik pada ikon "x"
-                    searchInput.addEventListener('search', function(event) {
-                        // Setel nilai input pencarian menjadi kosong
-                        searchInput.value = '';
-
                         // Selanjutnya, Anda dapat memicu pencarian ulang atau tindakan lain yang sesuai.
                     });
     </script>
