@@ -224,7 +224,7 @@
                                 <h5><a href="" style="color: black">{{ $item->Vacancy->judul }}</a></h5>
                                 @if ($item->status === 'diterima')
                                 <span class="status bg-success" style="width: 79px;">{{ $item->status }}</span>
-                                @elseif($item->status === ['ditolak', 'nonaktif'])
+                                @elseif(in_array($item->status, ['ditolak', 'nonaktif']))
                                 <span class="status bg-danger" style="width: 70px;">{{ $item->status }}</span>
                                 @else
                                 <span class="status bg-warning" style="align-items: center;"><span style="margin-right: -50px;">{{ $item->status }}</span></span>
@@ -236,6 +236,9 @@
                                 </li>
                                 <li class="mb-2"><span>Posisi :</span>{{ $item->Vacancy->pekerja }}</li>
                                 <li class="mb-2"><span>Slot Tersedia : </span> {{ $item->Vacancy->slot }}</li>
+                                @if ($item->status === 'diterima')
+                                <li class="mb-2"><span>Lokasi Wawancara : </span> {{ $item->User->lokasi_wawancara }}</li>
+                                @endif
                                 <div class="d-flex justify-content-between">
                                     <li class="mb-2"><span>Tipe Kerja : </span>{{ $item->Vacancy->tipe }}</li>
                                     <li class="ml-auto" style="margin-left: 300px;">
