@@ -198,7 +198,7 @@
                                         <div class="col">
                                             <tr>
                                                 <td class="text-center" colspan="5">
-                                                    <img src="/assets/dist/images/nodatas.png" alt=""
+                                                    <img src="{{ asset('assets/nodatas.png') }}" alt=""
                                                         width="280px">
                                                 </td>
                                             </tr>

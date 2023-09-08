@@ -260,7 +260,7 @@
                         </div>
                         @empty
                         <div class="col-lg-12 mt-3 ml-5" id="lowongan">
-                            <img src="/assets/dist/images/nodatas.png" alt="" width="180px">
+                            <img src="{{ asset('assets/nodatas.png') }}" alt="" width="180px">
                         </div>
                         @endforelse
                         {{ $registration->links() }}
@@ -308,7 +308,7 @@
                             @empty
                             <div class="row">
                                 <div class="col-lg-12 mt-5 text-center" id="lowongan">
-                                    <img src="/assets/dist/images/nodatas.png" alt="" width="350px">
+                                    <img src="{{ asset('assets/nodatas.png') }}" alt="" width="350px">
                                 </div>
                             </div>
                             @endforelse
