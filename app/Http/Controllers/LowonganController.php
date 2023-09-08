@@ -19,20 +19,42 @@ class LowonganController extends Controller
      */
     public function index(Request $request)
     {
+        $keyword = $request->input('cari');
+        $value_filter = $request->input('filter');
+
         if ($request->has('cari')) {
             $keyword = $request->cari;
-            $data = Vacancy::where('status','aktif')->where('judul', 'LIKE', '%' . $keyword . '%')->paginate(8);
+            $data = Vacancy::where('status', 'aktif')
+                ->where('judul', 'LIKE', '%' . $keyword . '%')
+                ->paginate(8);
             $data->appends(['cari' => $keyword]);
-            return view('admin-lowongan.lowongan', compact('data'));
+            return view('admin-lowongan.lowongan', compact('data', 'keyword'));
         }
+
         $cek = Division::where('status', null)->get();
         foreach ($cek as $item) {
             $item->update(['status' => 'aktif']);
         }
+
         $user = User::all();
         $divisi = Division::all();
-        $data = Vacancy::where('status', ['aktif','nonaktif'])->latest()->paginate(8);
-        return view('admin-lowongan.lowongan', compact('data', 'divisi', 'user'));
+
+        if ($request->has('filter')) {
+            $keyword = $request->filter;
+            $data = Vacancy::where('status', ['aktif', 'nonaktif'])
+                ->where('judul', 'LIKE', '%' . $keyword . '%')
+                ->latest()
+                ->paginate(8);
+            $data->appends(['filter' => $keyword]);
+            $value_filter = $keyword;
+            $keyword = "";
+        } else {
+            $data = Vacancy::where('status', ['aktif', 'nonaktif'])
+                ->latest()
+                ->paginate(8);
+        }
+
+        return view('admin-lowongan.lowongan', compact('data', 'divisi', 'user', 'keyword', 'value_filter'));
     }
 
     /**

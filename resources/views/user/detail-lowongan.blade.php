@@ -47,7 +47,8 @@
         <link rel="stylesheet" href="assets1/css/rtl.css">
 
         <!-- Favicon -->
-        <link rel="icon" type="image/png" href="assets1/images/favicon.png">
+        <link rel="icon" type="image/png" href="assets/logo.png">
+
         <!-- Title -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <title>Dashboard User</title>
@@ -82,13 +83,31 @@
     <!-- End Header Area -->
 
     <style>
+          @media (max-width: 600px) {
+            .judul {
+                font-size: small;
+                /* padding-left: 90px; */
+            }
+        }
+        @media (max-width: 600px){
+            .daftar {
+                justify-content: center;
+            }
+        }
+        .daftar {
+            justify-content: end;
+        }
+
         .kerja {
             background-image: url("assets1/images/banner/banner-bg.jpg");
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
 
-            padding: 170px;
+            padding-top: 150px;
+            padding-right: 150px;
+            padding-bottom: 150px;
+            padding-left: 90px;
             /* Sesuaikan ukuran padding sesuai keinginan */
             box-sizing: border-box;
         }
@@ -111,7 +130,7 @@
             <div class="row">
                 <div class="col sm-6">
                     <div class="banner-content">
-                        <h1 style="margin-top: -40px;  font-weight: bolder; font-size: 50px;">Detail Lowongan
+                        <h1 style="margin-top: -40px;  font-weight: bolder; font-size: 50px; " class="judul">Detail Lowongan
                             Kerja</h1>
                         <ul>
                             <li>
@@ -133,16 +152,16 @@
                         <div class="row align-items-center">
                             <div class="col-lg-12">
                                 <div class="hot-jobs-content">
-                                    <div class="d-flex justify-content-between" style="color: black">
+                                    <div class="" style="color: black">
                                         <h3 class="mb-3"><a href="">{{ $lowongan->judul }}</a></h3>
                                     </div>
                                     <span class="sub-title text-primary mb-3">{{ $lowongan->Division->divisi }}</span>
                                     <ul class="overview">
                                         <li class="mb-3"><span>Posisi : </span> {{ $lowongan->pekerja }}</li>
                                         <li class="mb-3"><span>Slot Tersedia : </span> {{ $lowongan->slot }}</li>
-                                        <div class="d-flex justify-content-between">
-                                            <li><span>Tipe Kerja : </span>{{ $lowongan->tipe }}</li>
-                                            <div class="d-flex justify-content-end  ">
+                                        <div class="row">
+                                            <li class="col-12 col-md-6"><span>Tipe Kerja : </span>{{ $lowongan->tipe }}</li>
+                                            <div class="col-12 col-md-6 d-flex  daftar ">
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <li style="margin-right: -19%;"><button class="btn btn-warning"><a href="{{ route('dashboard-user') }}" class="text-white">Kembali</a></button>

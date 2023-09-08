@@ -7,7 +7,7 @@
         </button>
         <form action="">
             <div class="mb-4 d-flex justify-content-end align-items-center position-relative">
-                <input type="search" class="form-control mt-3" name="cari" placeholder="Cari Lowongan..." style="height: 4%;">
+                <input type="search" class="form-control mt-3" name="cari" placeholder="Cari Lowongan..." style="height: 4%;" value="{{ $keyword }}">
             </div>
         </form>
     </div>
