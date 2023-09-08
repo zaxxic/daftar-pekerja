@@ -11,17 +11,17 @@
 
             </div>
             <div class="row">
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     <label class="mt-5" for="judul">Judul Lowongan </label> <br>
-                    <input placeholder="Judul" class="col-10 form-control" type="text" name="judul"
+                    <input placeholder="Judul" class="col-12 col-md-10 rounded-1 form-control" type="text" name="judul"
                         value="{{ $lowongan->judul }}" id="">
                     @error('judul')
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     <label class="mt-5" for="devisi">Divisi </label> <br>
-                    <select name="devisi" class="col-10 form-control" style="" id="">
+                    <select name="devisi" class="col-12 col-md-10 rounded-1 form-control" style="" id="">
                         @foreach ($divisi as $data)
                             <option value="{{ $data->id }}" {{ $data->id === $lowongan->devisi_id ? 'selected' : '' }}>
                                 {{ $data->divisi }}</option>
@@ -31,41 +31,41 @@
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     <label class="mt-5" for="judul">Batas Lowongan </label> <br>
-                    <input placeholder="Batas" class="col-10 form-control" type="text" name="batas"
+                    <input placeholder="Batas" class="col-12 col-md-10 rounded-1 form-control" type="text" name="batas"
                         value="{{ $lowongan->batas }}" id="">
                     @error('batas')
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     <label class="mt-5" for="judul">Posisi </label> <br>
-                    <input placeholder="Posisi" class="col-10 form-control" type="text" name="pekerjaan"
+                    <input placeholder="Posisi" class="col-12 col-md-10 rounded-1 form-control" type="text" name="pekerjaan"
                         value="{{ $lowongan->pekerja }}" id="">
                     @error('pekerjaan')
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     <label class="mt-5" for="judul">Slot</label> <br>
-                    <input placeholder="Slot" class="col-10 form-control" type="number" name="slot"
+                    <input placeholder="Slot" class="col-12 col-md-10 rounded-1 form-control" type="number" name="slot"
                         value="{{ $lowongan->slot }}" id="">
                     @error('slot')
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     <label class="mt-5" for="judul"> Gaji </label> <br>
-                    <input placeholder="Gaji" class="col-10 form-control" type="number" name="gaji"
+                    <input placeholder="Gaji" class="col-12 col-md-10 rounded-1 form-control" type="number" name="gaji"
                         value="{{ $lowongan->gaji }}" id="">
                     @error('gaji')
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     <label class="mt-5" for="judul">Tipe pekerjaan </label> <br>
-                    <select name="tipe" class="col-10 form-control" style="" id="">
+                    <select name="tipe" class="col-12 col-md-10 rounded-1 form-control" style="" id="">
                         <option value="kontrak">aa</option>
                         <option value="permanen">b</option>
                     </select>
@@ -73,9 +73,9 @@
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     <label class="mt-5" for="judul">lokasi </label> <br>
-                    <input placeholder="Lokasi" class="col-10 form-control" type="text"
+                    <input placeholder="Lokasi" class="col-12 col-md-10 rounded-1 form-control" type="text"
                         name="lokasi"value="{{ $lowongan->lokasi }}" id="">
                     @error('lokasi')
                         <p class="text-danger">{{ $message }}</p>
@@ -87,7 +87,7 @@
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
                     <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="5"
-                        placeholder="Masukkan Konten Post">{!! $lowongan->syarat !!}</textarea> {{-- <input placeholder="" class="col-10 form-control" type="text" name="lokasi" id=""> --}}
+                        placeholder="Masukkan Konten Post">{!! $lowongan->syarat !!}</textarea> {{-- <input placeholder="" class="col-12 col-md-10 rounded-1 form-control" type="text" name="lokasi" id=""> --}}
                 </div>
 
             </div>

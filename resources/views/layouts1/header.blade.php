@@ -97,9 +97,9 @@
                                 </div>
                                 <div class="d-flex align-items-center py-9 mx-7 border-bottom">
                                     <div
-                                        style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; text-align: center; display: flex; justify-content: center; align-items: center;">
+                                        style="width: 90px; height: 90px; border-radius: 50%; overflow: hidden; text-align: center; display: flex; justify-content: center; align-items: center;">
                                         <img src="{{ asset('foto_user/' . Auth()->user()->foto) }}"
-                                        class="img-fluid rounded-circle" style="width: 120px; height: 120px;" alt="" />
+                                        class="img-fluid rounded-circle" style="width: 100px; height: 100px;" alt="" />
                                     </div>
 
                                     <div class="ms-3">
