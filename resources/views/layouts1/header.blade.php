@@ -72,7 +72,7 @@
                                         <div
                                             style="width: 35px; height: 35px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px;">
                                             <img src="{{ asset('foto_user/default/default.png') }}"
-                                            class="img-fluid rounded-circle" style="width: 100%; height: 100%"
+                                                class="img-fluid rounded-circle" style="width: 100%; height: 100%"
                                                 alt="" />
                                         </div>
                                     @else
@@ -97,13 +97,15 @@
                                 </div>
                                 <div class="d-flex align-items-center py-9 mx-7 border-bottom">
                                     <div
-                                        style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; text-align: center; display: flex; justify-content: center; align-items: center;">
+                                        style="width: 35px; height: 35px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 45px;">
                                         <img src="{{ asset('foto_user/' . Auth()->user()->foto) }}"
-                                        class="img-fluid rounded-circle" style="width: 120px; height: 120px;" alt="" />
+                                            class="img-fluid rounded-circle" style="width: 100%; height: 100%;"
+                                            alt="" />
                                     </div>
 
                                     <div class="ms-3">
-                                        <h5 class="mb-1 fs-3"> <i class="ti ti-user fs-5 me-1"></i>{{ Auth()->user()->name }}</h5>
+                                        <h5 class="mb-1 fs-3"> <i
+                                                class="ti ti-user fs-5 me-1"></i>{{ Auth()->user()->name }}</h5>
                                         <p class="mb-0 d-flex text-dark align-items-center gap-2">
                                             <i class="ti ti-mail fs-5"></i>{{ Auth()->user()->email }}
                                         </p>

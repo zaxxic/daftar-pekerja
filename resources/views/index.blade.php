@@ -49,6 +49,20 @@
             margin-right: 5px;
             vertical-align: middle;
         }
+
+        @media (max-width: 600px) {
+
+            .atas {
+                display: none;
+            }
+        }
+
+        @media (min-width: 768px) {
+
+            .atass {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -58,7 +72,7 @@
     <header class="header-area mb-5">
         <!-- Start Top Header -->
         <!-- Start Top Header -->
-        <div class="top-header">
+        <div class="top-header atas">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6">
@@ -105,7 +119,85 @@
         </div>
 
         <!-- Start Navbar Area -->
+        <!-- Start Navbar Area -->
+        <div class="navbar-area atass">
+            <div class="mobile-nav">
+                <div class="container">
+                    <div class="mobile-menu">
+                        <div class="logo">
+                            <a>
+                                <img src="{{ asset('assets/hummatech.png') }}" alt="logo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="others-option-for-responsive">
+                <div class="container align-items-end" style="margin-right: -50px;">
+                    <div class="dot-menu">
+                        <div class="inner">
+                            <div class="circle circle-one"></div>
+                            <div class="circle circle-two"></div>
+                            <div class="circle circle-three"></div>
+                        </div>
+                    </div>
+
+                    <div class="container me-5 mr-5" style="margin-right: 50px;">
+                        <div class="option-inner" style="margin-right: 50px;">
+                            <div class="others-option justify-content-center d-flex align-items-center"
+                                style="margin-left: 10px;">
+                                <div class="get-quote">
+                                    <ul>
+                                        @auth
+                                            <li style="list-style-type: none;">
+                                                <a href="{{ route('login') }}">
+                                                    Dashboard
+                                                </a>
+                                            </li>
+                                        @else
+                                            <li style="list-style-type: none;" class="mb-3">
+                                                <a href="{{ route('login') }}">
+
+                                                    Log In
+                                                </a>
+                                            </li>
+                                            <li style="list-style-type: none;">
+                                                <a href="{{ route('register') }}">
+
+                                                    Register
+                                                </a>
+                                            </li>
+                                        @endauth
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- End Navbar Area -->
     </header>
     <!-- End Header Area -->
@@ -135,13 +227,15 @@
     </section>
     <!-- End Banner Area -->
 
+
     <!-- Start Who We Are Area -->
-    <section class="who-we-are-page mt-5">
-        <div class="container">
+    <section class="who-we-are-page mt-5" class="gambar">
+        <div class="container ">
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="who-we-are-img">
-                        <img src="assets1/images/who-we-are-img.png" alt="Image" width="400px;">
+                        <img src="assets1/images/who-we-are-img.png" class="d-sm-block d-md-block" alt="Image"
+                            width="400px;">
                     </div>
                 </div>
 
@@ -226,7 +320,7 @@
 
 
     <!-- Start Footer Area -->
-     <div class="container">
+    <div class="container">
         <div class="row">
             <div class="col">
                 <footer class="footer-area pt-100 pb-70" style="direction: ltr;">
@@ -238,7 +332,8 @@
                                         <img width="180px" src="{{ asset('assets/hummatech.png') }}"
                                             alt="logo">
                                     </a>
-                                    <p>Hummasoft merupakan sebuah perusahaan yang bergerak dibidang IT (Information Technology).</p>
+                                    <p>Hummasoft merupakan sebuah perusahaan yang bergerak dibidang IT (Information
+                                        Technology).</p>
 
                                     <ul class="social-icon">
                                         <li>
@@ -252,7 +347,8 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="https://id.linkedin.com/in/hummasoft-technology-2476a8241" target="_blank">
+                                            <a href="https://id.linkedin.com/in/hummasoft-technology-2476a8241"
+                                                target="_blank">
                                                 <i class="bx bxl-linkedin-square"></i>
                                             </a>
                                         </li>
@@ -278,7 +374,10 @@
                                         <li class="mb-3" s>
                                             <i class="bx bx-envelope"></i>
                                             <span>Email:</span>
-                                            <a href="https://templates.envytheme.com/cdn-cgi/l/email-protection#80e8e5ececefc0eaf5e2e9aee3efed"><span class="__cf_email__" data-cfemail="f098959c9c9fb09a859299de939f9d">hummasoft.tech@gmail.com</span></a>
+                                            <a
+                                                href="https://templates.envytheme.com/cdn-cgi/l/email-protection#80e8e5ececefc0eaf5e2e9aee3efed"><span
+                                                    class="__cf_email__"
+                                                    data-cfemail="f098959c9c9fb09a859299de939f9d">hummasoft.tech@gmail.com</span></a>
                                         </li>
                                         <li class="location">
                                             <i class="bx bx-location-plus"></i>
