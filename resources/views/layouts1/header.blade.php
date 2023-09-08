@@ -97,7 +97,7 @@
                                 </div>
                                 <div class="d-flex align-items-center py-9 mx-7 border-bottom">
                                     <div
-                                        style="width: 35px; height: 35px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 45px;">
+                                        style="width: 80px; height: 80px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 45px;">
                                         <img src="{{ asset('foto_user/' . Auth()->user()->foto) }}"
                                             class="img-fluid rounded-circle" style="width: 100%; height: 100%;"
                                             alt="" />
