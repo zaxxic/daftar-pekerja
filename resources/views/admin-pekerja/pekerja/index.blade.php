@@ -224,7 +224,7 @@
                                                             <span class="me-3" style="font-weight: 600;">Tanggal
                                                                 Wawancara
                                                                 :</span>
-                                                            <span>{{ $item->Vacancy->lokasi }}</span>
+                                                            <span>{{ $item->User->tanggal_wawancara }}</span>
                                                         </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;"
                                                             class="mt-0">
@@ -232,7 +232,7 @@
                                                             <span class="me-3" style="font-weight: 600;">Lokasi
                                                                 Wawancara
                                                                 :</span>
-                                                            <span>{{ $item->Vacancy->lokasi }}</span>
+                                                            <span>{{ $item->User->lokasi_wawancara }}</span>
                                                         </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;"
                                                             class="mt-0">
