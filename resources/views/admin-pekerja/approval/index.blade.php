@@ -273,71 +273,70 @@
         </div>
         <div id="detail-user-{{ $item->User->id }}" class="modal fade" tabindex="-1"
             aria-labelledby="bs-example-modal-md" aria-hidden="true">
-            <div class="modal-dialog  modal-lg">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header d-flex align-items-center">
-                        <h4 class="modal-title" id="myModalLabel">
-                            Detail Pekerja
-                        </h4>
+                        <h4 class="modal-title" id="myModalLabel">Detail Pekerja</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
-                    <div class="modal-body col-lg-12" style="height: auto">
-                        <div class="d-flex">
-                            <div class="col-lg-4">
-                                <div
-                                    style="border-radius: 50%; overflow: hidden; width: 180px; height: 180px; display: flex; justify-content: center; align-items: center;">
-                                    <img src="{{ asset('foto_user/' . $row->User->foto) }}"
-                                        style="max-width: 150%; max-height: 150%;" alt="" />
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-4 col-12">
+                                    <div
+                                        style="border-radius: 50%; overflow: hidden; width: 180px; height: 180px; display: flex; justify-content: center; align-items: center;">
+                                        <img src="{{ asset('foto_user/' . $row->User->foto) }}"
+                                            style="max-width: 100%; max-height: 100%;" alt="" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-8">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="mb-3">Data Diri Pekerja</h5>
-                                        <div class="d-flex mb-1">
-                                            <span class="me-3" style="font-weight: 600;">Nama
-                                                :</span>
-                                            <span>{{ $item->User->name }}</span>
-                                        </div>
-                                        <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
-                                        <div class="d-flex mb-1">
-                                            <span class="me-3" style="font-weight: 600;">Jenis
-                                                Kelamin :</span>
-                                            <span>{{ $item->User->jenis_kelamin }}</span>
-                                        </div>
-                                        <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
-                                        <div class="d-flex mb-1">
-                                            <span class="me-3" style="font-weight: 600;">No.
-                                                Handphome :</span>
-                                            <span>{{ $item->User->no_telp }}</span>
-                                        </div>
-                                        <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
-                                        <div class="d-flex mb-1">
-                                            <span class="me-3" style="font-weight: 600;">Email
-                                                :</span>
-                                            <span>{{ $item->User->email }}</span>
-                                        </div>
-                                        <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
-                                        <div class="d-flex mb-1">
-                                            <span style="font-weight: 600;">Divisi:</span>
-                                            <span class="ms-2">{{ $item->Vacancy->Division->divisi }}</span>
-                                        </div>
-                                        <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
-                                        <div class="d-flex mb-1">
-                                            <span class="me-3" style="font-weight: 600;">Posisi
-                                                :</span>
-                                            <span>{{ $item->Vacancy->pekerja }}</span>
-                                        </div>
+                                <div class="col-lg-8 col-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="mb-3">Data Diri Pekerja</h5>
+                                            <div class="mb-1">
+                                                <span class="fw-bold me-3">Nama:</span>
+                                                <span>{{ $item->User->name }}</span>
+                                            </div>
+                                            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                            <div class="mb-1">
+                                                <span class="fw-bold me-3">Jenis Kelamin:</span>
+                                                <span>{{ $item->User->jenis_kelamin }}</span>
+                                            </div>
+                                            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                            <div class="d-flex mb-1">
+                                                <span class="me-3" style="font-weight: 600;">No.
+                                                    Handphone :</span>
+                                                <span>{{ $item->User->no_telp }}</span>
+                                            </div>
+                                            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                            <div class="d-flex mb-1">
+                                                <span class="me-3" style="font-weight: 600;">Email
+                                                    :</span>
+                                                <span>{{ $item->User->email }}</span>
+                                            </div>
+                                            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                            <div class="d-flex mb-1">
+                                                <span style="font-weight: 600;">Divisi:</span>
+                                                <span class="ms-2">{{ $item->Vacancy->Division->divisi }}</span>
+                                            </div>
+                                            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                            <div class="d-flex mb-1">
+                                                <span class="me-3" style="font-weight: 600;">Posisi
+                                                    :</span>
+                                                <span>{{ $item->Vacancy->pekerja }}</span>
+                                            </div>
 
 
-                                        <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
-                                        <div class="d-flex mb-1">
-                                            <span style="font-weight: 600;">Alamat:</span>
-                                            <span class="ms-2">{{ $item->User->alamat }}</span>
-                                        </div>
-                                        <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                            <div class="d-flex mb-1">
+                                                <span style="font-weight: 600;">Alamat:</span>
+                                                <span class="ms-2">{{ $item->User->alamat }}</span>
+                                            </div>
+                                            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
 
+                                            <!-- Tambahkan data lainnya di sini menggunakan format yang sama -->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -346,6 +345,7 @@
                 </div>
             </div>
         </div>
+
 
         <div class="modal fade" id="detail-lamaran-{{ $row->User->lamaran }}" tabindex="-1"
             aria-labelledby="detail-lamaran-{{ $row->User->lamaran }}" aria-hidden="true">

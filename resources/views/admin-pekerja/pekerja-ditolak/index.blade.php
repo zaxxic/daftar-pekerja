@@ -107,36 +107,34 @@
                                     <div class="modal-dialog modal-dialog-scrollable modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header d-flex align-items-center">
-                                                <h4 class="modal-title" id="myModalLabel">
-                                                    Detail Pekerja
-                                                </h4>
+                                                <h4 class="modal-title" id="myModalLabel">Detail Pekerja</h4>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
                                             <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
-                                            <div class="modal-body col-lg-12">
-                                                <div class="d-flex">
-                                                    <div class="col-lg-4">
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-12">
                                                         <div
                                                             style="border-radius: 50%; overflow: hidden; width: 180px; height: 180px; display: flex; justify-content: center; align-items: center;">
                                                             <img src="{{ asset('foto_user/' . $row->User->foto) }}"
-                                                                style="max-width: 150%; max-height: 150%;" alt="" />
+                                                                style="max-width: 100%; max-height: 100%;" alt="" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-8">
+                                                    <div class="col-lg-8 col-12">
                                                         <div class="card">
                                                             <div class="card-body">
                                                                 <h5 class="mb-3">Data Diri Pekerja</h5>
                                                                 <div class="d-flex mb-1">
-                                                                    <span class="me-3" style="font-weight: 600;">Nama
-                                                                        :</span>
+                                                                    <span class="me-3"
+                                                                        style="font-weight: 600;">Nama:</span>
                                                                     <span>{{ $row->User->name }}</span>
                                                                 </div>
                                                                 <hr style="width: 100%; border-top: 1px solid #000000;"
                                                                     class="mt-0">
                                                                 <div class="d-flex mb-1">
                                                                     <span class="me-3" style="font-weight: 600;">Jenis
-                                                                        Kelamin :</span>
+                                                                        Kelamin:</span>
                                                                     <span>{{ $row->User->jenis_kelamin }}</span>
                                                                 </div>
                                                                 <hr style="width: 100%; border-top: 1px solid #000000;"
@@ -149,23 +147,9 @@
                                                                 <hr style="width: 100%; border-top: 1px solid #000000;"
                                                                     class="mt-0">
                                                                 <div class="d-flex mb-1">
-                                                                    <span class="me-3" style="font-weight: 600;">Email
-                                                                        :</span>
+                                                                    <span class="me-3"
+                                                                        style="font-weight: 600;">Email:</span>
                                                                     <span>{{ $row->User->email }}</span>
-                                                                </div>
-                                                                <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                                    class="mt-0">
-                                                                <div class="d-flex mb-1">
-                                                                    <span style="font-weight: 600;">Divisi:</span>
-                                                                    <span
-                                                                        class="ms-2">{{ $row->Vacancy->Division->divisi }}</span>
-                                                                </div>
-                                                                <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                                    class="mt-0">
-                                                                <div class="d-flex mb-1">
-                                                                    <span class="me-3" style="font-weight: 600;">Posisi
-                                                                        :</span>
-                                                                    <span>{{ $row->Vacancy->pekerja }}</span>
                                                                 </div>
                                                                 <hr style="width: 100%; border-top: 1px solid #000000;"
                                                                     class="mt-0">
@@ -177,64 +161,17 @@
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <h5 class="mb-3">Alamat Pekerja</h5>
-
                                                         <div class="d-flex mb-1">
-                                                            <div class="col-lg-1.5">
-                                                                <span class="me-3" style="font-weight: 600;">Alamat
-                                                                    :</span>
-                                                            </div>
-                                                            <div class="col-lg-10">
-                                                                <span>{{ $row->User->alamat }}</span>
-                                                            </div>
+                                                            <span class="me-3" style="font-weight: 600;">Alamat :</span>
+                                                            <span>{{ $row->User->alamat }}</span>
                                                         </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">Jenis
-                                                                Kelamin :</span>
-                                                            <span>{{ $row->User->jenis_kelamin }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">No.
-                                                                Handphone :</span>
-                                                            <span>{{ $row->User->no_telp }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">Email
-                                                                :</span>
-                                                            <span>{{ $row->User->email }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span style="font-weight: 600;">Divisi:</span>
-                                                            <span
-                                                                class="ms-2">{{ $row->Vacancy->Division->divisi }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">Posisi
-                                                                :</span>
-                                                            <span>{{ $row->Vacancy->pekerja }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
                                                     </div>
-
                                                 </div>
-
                                             </div>
                                         </div>
-                                        <!-- /.modal-content -->
                                     </div>
-                                    <!-- /.modal-dialog -->
-
                                 </div>
+
                             @empty
                                 <div class="container">
                                     <div class="row d-flex">
