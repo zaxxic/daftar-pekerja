@@ -172,7 +172,7 @@
                                             <div class="col-lg-4 col-12">
                                                 <div
                                                     style="border-radius: 50%; overflow: hidden; width: 180px; height: 180px; display: flex; justify-content: center; align-items: center;">
-                                                    <img src="{{ asset('foto_user/' . $row->User->foto) }}"
+                                                    <img src="{{ asset('foto_user/' . $item->User->foto) }}"
                                                         style="max-width: 100%; max-height: 100%;" alt="" />
                                                 </div>
                                             </div>
