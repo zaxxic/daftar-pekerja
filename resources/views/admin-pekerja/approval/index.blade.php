@@ -212,21 +212,21 @@
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="control-label" style="color: black;">Tanggal Wawancara
-                                <span style="color: red;">*</span></label>
+                                    <span style="color: red;">*</span></label>
                                 <input type="datetime-local" class="form-control" id="tanggal"
-                                name="tanggal_wawancara" />
+                                    name="tanggal_wawancara" />
                                 <span class="text-danger" id="error"></span>
                                 @error('tanggal_wawancara')
-                                <small class="text-danger">{{ $message }}</small>
+                                    <small class="text-danger">{{ $message }}</small>
                                 @enderror
                                 <br>
-                                <label for="recipient-name" class="control-label mt-2" style="color: black;">lokasi Wawancara
-                                <span style="color: red;">*</span></label>
-                                <input type="text" class="form-control" id="lokasi"
-                                name="lokasi" />
+                                <label for="recipient-name" class="control-label mt-2" style="color: black;">lokasi
+                                    Wawancara
+                                    <span style="color: red;">*</span></label>
+                                <input type="text" class="form-control" id="lokasi" name="lokasi" />
                                 <span class="text-danger" id="error_lokasi"></span>
                                 @error('lokasi')
-                                <small class="text-danger">{{ $message }}</small>
+                                    <small class="text-danger">{{ $message }}</small>
                                 @enderror
                                 <br>
                                 <small id="name" class="form-text text-muted">Setelah anda
@@ -280,6 +280,18 @@
                 </div>
             </div>
         </div>
+        <style>
+            @media (max-width: 600px) {
+
+                .foto {
+                    align-items: center;
+                    text-align: center;
+                    justify-content: center;
+                    margin-left: 38px;
+                    border-radius: 10%;
+                }
+            }
+        </style>
         <div id="detail-user-{{ $item->User->id }}" class="modal fade" tabindex="-1"
             aria-labelledby="bs-example-modal-md" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -292,10 +304,10 @@
                     <div class="modal-body">
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-4 col-12">
-                                    <div
-                                        style="border-radius: 50%; overflow: hidden; width: 180px; height: 180px; display: flex; justify-content: center; align-items: center;">
-                                        <img src="{{ asset('foto_user/' . $item->User->foto) }}"
+                                <div class="col-lg-4 col-12 foto">
+                                    <div class="justify-content-center align-items-center foto"
+                                        style="border-radius: 50%; overflow: hidden; width: 180px; height: 180px;">
+                                        <img src="{{ asset('foto_user/' . $row->User->foto) }}"
                                             style="max-width: 100%; max-height: 100%;" alt="" />
                                     </div>
                                 </div>
@@ -314,14 +326,12 @@
                                             </div>
                                             <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                             <div class="d-flex mb-1">
-                                                <span class="me-3" style="font-weight: 600;">No.
-                                                    Handphone :</span>
+                                                <span class="me-3" style="font-weight: 600;">No. Handphone:</span>
                                                 <span>{{ $item->User->no_telp }}</span>
                                             </div>
                                             <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                             <div class="d-flex mb-1">
-                                                <span class="me-3" style="font-weight: 600;">Email
-                                                    :</span>
+                                                <span class="me-3" style="font-weight: 600;">Email:</span>
                                                 <span>{{ $item->User->email }}</span>
                                             </div>
                                             <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
@@ -331,13 +341,11 @@
                                             </div>
                                             <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                             <div class="d-flex mb-1">
-                                                <span class="me-3" style="font-weight: 600;">Posisi
-                                                    :</span>
+                                                <span class="me-3" style="font-weight: 600;">Posisi:</span>
                                                 <span>{{ $item->Vacancy->pekerja }}</span>
                                             </div>
-
-
                                             <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+
                                             <div class="d-flex mb-1">
                                                 <span style="font-weight: 600;">Alamat:</span>
                                                 <span class="ms-2">{{ $item->User->alamat }}</span>
@@ -351,6 +359,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -517,14 +526,14 @@
                             }
                         });
                 } else {
-                    if($("#tanggal").val() === "" && $("#lokasi").val() === ""){
+                    if ($("#tanggal").val() === "" && $("#lokasi").val() === "") {
                         console.log("gagal bg");
                         $('#error').text("pesan harus di isi");
                         $('#error_lokasi').text("Lokasi wawancara harus di isi");
-                    }else if($("#lokasi").val() === ""){
+                    } else if ($("#lokasi").val() === "") {
                         $('#error').text("");
                         $('#error_lokasi').text("Lokasi wawancara harus di isi");
-                    }else if($("#tanggal").val() === "" ){
+                    } else if ($("#tanggal").val() === "") {
                         $('#error').text("pesan harus di isi");
                         $('#error_lokasi').text("");
                     }

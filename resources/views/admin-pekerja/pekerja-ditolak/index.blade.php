@@ -26,6 +26,18 @@
                 }
             }
         </style>
+        <style>
+            @media (max-width: 600px) {
+
+                .fotos {
+                    align-items: center;
+                    text-align: center;
+                    justify-content: center;
+                    margin-left: 38px;
+                    border-radius: 10%;
+                }
+            }
+        </style>
     </body>
 
     </html>
@@ -122,9 +134,9 @@
                                             <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
                                             <div class="modal-body">
                                                 <div class="row">
-                                                    <div class="col-lg-4 col-12">
-                                                        <div
-                                                            style="border-radius: 50%; overflow: hidden; width: 180px; height: 180px; display: flex; justify-content: center; align-items: center;">
+                                                    <div class="col-lg-4 col-12 fotos">
+                                                        <div class="justify-content-center align-items-center fotos"
+                                                            style="border-radius: 50%; overflow: hidden; width: 180px; height: 180px;">
                                                             <img src="{{ asset('foto_user/' . $row->User->foto) }}"
                                                                 style="max-width: 100%; max-height: 100%;" alt="" />
                                                         </div>

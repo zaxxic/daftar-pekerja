@@ -153,7 +153,18 @@
                 </table>
 
 
+                <style>
+                    @media (max-width: 600px) {
 
+                        .foto {
+                            align-items: center;
+                            text-align: center;
+                            justify-content: center;
+                            margin-left: 38px;
+                            border-radius: 10%;
+                        }
+                    }
+                </style>
 
                 @foreach ($user as $item)
                     <div id="detail-user-{{ $item->User->id }}" class="modal fade" tabindex="-1"
@@ -169,10 +180,10 @@
                                 <div class="modal-body">
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col-lg-4 col-12">
-                                                <div
-                                                    style="border-radius: 50%; overflow: hidden; width: 180px; height: 180px; display: flex; justify-content: center; align-items: center;">
-                                                    <img src="{{ asset('foto_user/' . $item->User->foto) }}"
+                                            <div class="col-lg-4 col-12 foto">
+                                                <div class="justify-content-center align-items-center foto"
+                                                    style="border-radius: 50%; overflow: hidden; width: 180px; height: 180px;">
+                                                    <img src="{{ asset('foto_user/' . $row->User->foto) }}"
                                                         style="max-width: 100%; max-height: 100%;" alt="" />
                                                 </div>
                                             </div>
@@ -204,6 +215,22 @@
                                                             class="mt-0">
                                                         <div class="d-flex mb-1">
                                                             <span class="me-3" style="font-weight: 600;">Lokasi
+                                                                :</span>
+                                                            <span>{{ $item->Vacancy->lokasi }}</span>
+                                                        </div>
+                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
+                                                            class="mt-0">
+                                                        <div class="d-flex mb-1">
+                                                            <span class="me-3" style="font-weight: 600;">Tanggal
+                                                                Wawancara
+                                                                :</span>
+                                                            <span>{{ $item->Vacancy->lokasi }}</span>
+                                                        </div>
+                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
+                                                            class="mt-0">
+                                                        <div class="d-flex mb-1">
+                                                            <span class="me-3" style="font-weight: 600;">Lokasi
+                                                                Wawancara
                                                                 :</span>
                                                             <span>{{ $item->Vacancy->lokasi }}</span>
                                                         </div>
