@@ -52,7 +52,7 @@
 
         <div class="d-block d-xl-none mt-1 mb-2">
             <a href="index.html" class="text-nowrap nav-link">
-                <img src="{{ asset('assets/hummas.png') }}" width="180" alt="" />
+                <img src="{{ asset('assets/hummatech.png') }}" width="180" alt="" />
             </a>
         </div>
         <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
