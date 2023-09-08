@@ -18,6 +18,14 @@
 <body>
     @extends('layouts.app')
     @section('content')
+    <style>
+        @media (max-width:600px){
+            .foto {
+                display: flex;
+                justify-content: center;
+            }
+        }
+    </style>
     </body>
 
     </html>
@@ -70,7 +78,7 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <a href="{{ asset('foto_user/' . $row->User->foto) }}" data-lightbox="image-1"
-                                                data-title="Gambar Profil Anda"
+                                                data-title="Gambar Profil {{$row->User->name}}"
                                                 style="border-radius: 50%; overflow: hidden; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center;">
                                                 <img src="{{ asset('foto_user/' . $row->User->foto) }}"
                                                     style="max-width: 150%; max-height: 150%;" alt="" />
@@ -115,12 +123,12 @@
                                             </div>
                                             <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
                                             <div class="modal-body col-lg-12">
-                                                <div class="d-flex">
+                                                <div class="row">
                                                     <div class="col-lg-4">
-                                                        <div
-                                                            style="border-radius: 50%; overflow: hidden; width: 180px; height: 180px; display: flex; justify-content: center; align-items: center;">
+                                                        <div class="foto"
+                                                            style="border-radius: 50%; overflow: hidden; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; ">
                                                             <img src="{{ asset('foto_user/' . $row->User->foto) }}"
-                                                                style="max-width: 150%; max-height: 150%;" alt="" />
+                                                                style="max-width: 150%; max-height: 150%; object-fit: cover;" alt="" />
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-8">
