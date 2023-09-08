@@ -18,6 +18,14 @@
 <body>
     @extends('layouts.app')
     @section('content')
+        <style>
+            @media (max-width:600px) {
+                .foto {
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+        </style>
     </body>
 
     </html>
@@ -70,7 +78,7 @@
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <a href="{{ asset('foto_user/' . $row->User->foto) }}" data-lightbox="image-1"
-                                                data-title="Gambar Profil Anda"
+                                                data-title="Gambar Profil {{ $row->User->name }}"
                                                 style="border-radius: 50%; overflow: hidden; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center;">
                                                 <img src="{{ asset('foto_user/' . $row->User->foto) }}"
                                                     style="max-width: 150%; max-height: 150%;" alt="" />

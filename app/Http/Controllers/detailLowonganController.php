@@ -50,12 +50,12 @@ class DetailLowonganController extends Controller
         ]);
 
         $ceking = Registration::where('users_id', Auth()->user()->id)
-        ->where('status', 'ditolak')
+        ->whereIn('status', ['ditolak','nonaktif'])
         ->exists();
 
         if($ceking){
             $ceking = Registration::where('users_id', Auth()->user()->id)
-            ->where('status', 'ditolak')->first();
+            ->whereIn('status', ['ditolak','nonaktif'])->first();
             $ceking->update([
                 'status' => 'menunggu',
                 'vacancie_id' => $request->id
