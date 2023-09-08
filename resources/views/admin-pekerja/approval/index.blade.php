@@ -271,6 +271,18 @@
                 </div>
             </div>
         </div>
+        <style>
+            @media (max-width: 600px) {
+
+                .foto {
+                    align-items: center;
+                    text-align: center;
+                    justify-content: center;
+                    margin-left: 38px;
+                    border-radius: 10%;
+                }
+            }
+        </style>
         <div id="detail-user-{{ $item->User->id }}" class="modal fade" tabindex="-1"
             aria-labelledby="bs-example-modal-md" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -283,9 +295,9 @@
                     <div class="modal-body">
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-4 col-12">
-                                    <div
-                                        style="border-radius: 50%; overflow: hidden; width: 180px; height: 180px; display: flex; justify-content: center; align-items: center;">
+                                <div class="col-lg-4 col-12 foto">
+                                    <div class="justify-content-center align-items-center foto"
+                                        style="border-radius: 50%; overflow: hidden; width: 180px; height: 180px;">
                                         <img src="{{ asset('foto_user/' . $row->User->foto) }}"
                                             style="max-width: 100%; max-height: 100%;" alt="" />
                                     </div>
@@ -305,14 +317,12 @@
                                             </div>
                                             <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                             <div class="d-flex mb-1">
-                                                <span class="me-3" style="font-weight: 600;">No.
-                                                    Handphone :</span>
+                                                <span class="me-3" style="font-weight: 600;">No. Handphone:</span>
                                                 <span>{{ $item->User->no_telp }}</span>
                                             </div>
                                             <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                             <div class="d-flex mb-1">
-                                                <span class="me-3" style="font-weight: 600;">Email
-                                                    :</span>
+                                                <span class="me-3" style="font-weight: 600;">Email:</span>
                                                 <span>{{ $item->User->email }}</span>
                                             </div>
                                             <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
@@ -322,13 +332,11 @@
                                             </div>
                                             <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                             <div class="d-flex mb-1">
-                                                <span class="me-3" style="font-weight: 600;">Posisi
-                                                    :</span>
+                                                <span class="me-3" style="font-weight: 600;">Posisi:</span>
                                                 <span>{{ $item->Vacancy->pekerja }}</span>
                                             </div>
-
-
                                             <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+
                                             <div class="d-flex mb-1">
                                                 <span style="font-weight: 600;">Alamat:</span>
                                                 <span class="ms-2">{{ $item->User->alamat }}</span>
@@ -342,6 +350,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
