@@ -88,9 +88,11 @@ class ApprovalController extends Controller
                         }
                     },
                 ],
+                'lokasi' => 'required',
             ],
             [
                 'tanggal_wawancara.required' => 'Tanggal Wawancara Wajib Diisi',
+                'lokasi.required' => 'lokasi Wawancara Wajib Diisi',
             ]
         );
 
@@ -100,7 +102,8 @@ class ApprovalController extends Controller
         $timestamp = strtotime($tanggal);
         $tanggal_format = date('d-m-Y', $timestamp);
         $datas =   [
-            'pesan' => "Persiapkan anda untuk wawancara pada tanggal " . $tanggal_format,
+            'pesan' => "Persiapkan anda untuk wawancara pada tanggal " . $tanggal_format . "
+             untuk lokasi wawancaranya adalah ". $request->lokasi,
             'status' => "terima",
             'judul' => " Selamat anda diterima di lowongan " . $item->Vacancy->judul
         ];
@@ -109,7 +112,8 @@ class ApprovalController extends Controller
         // dd($item->Vacancy->devisi_id);
         $data->update([
             'status' => 'diterima',
-            'tanggal_wawancara' => $request->tanggal_wawancara
+            'tanggal_wawancara' => $request->tanggal_wawancara,
+            'lokasi_wawancara' => $request->lokasi
         ]);
         $item->update([
             'status' => 'diterima'
