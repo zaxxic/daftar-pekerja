@@ -18,7 +18,7 @@
 
 <body>
 
-</body>
+
 
 </html>
 @extends('layouts.app')
@@ -193,7 +193,7 @@
             aria-labelledby="exampleModalLabel1">
             <div class="modal-dialog" role="document">
 
-                <form action="acc/{{ $item->User->id }}" method="POST" id="pesanTerima">
+                <form action="acc/{{ $item->User->id }}" method="POST">
                     @method('PATCH')
                     @csrf
                     <div class="modal-content">
@@ -237,7 +237,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" onclick="Terima()" id="terima" class="btn btn-success">
+                            <button type="submit" id="terima" class="btn btn-success">
                                 Terima
                             </button>
                         </div>

@@ -220,7 +220,7 @@
                         <h3>Lamaran Ditampung</h3>
                         @forelse ($registration as $item)
                         <div class="col-lg-12 mt-3" id="lowongan">
-                            <div class="d-flex justify-content-between">
+                            <div class="d-flex justify-content-between mb-3">
                                 <h5><a href="" style="color: black">{{ $item->Vacancy->judul }}</a></h5>
                                 @if ($item->status === 'diterima')
                                 <span class="status bg-success" style="width: 79px;">{{ $item->status }}</span>
@@ -232,24 +232,25 @@
                             </div>
                             <ul>
                                 <li class="mb-2 mt-2"><span>Tanggal Wanwancara :</span>
-                                    {{ $item->User->tanggal_wawancara }}
+                                    {{ \Carbon\Carbon::parse($item->User->tanggal_wawancara)->locale('id')->isoFormat('D MMMM Y, H:m ') }}
                                 </li>
-                                <li class="mb-2"><span>Posisi :</span>{{ $item->Vacancy->pekerja }}</li>
-                                <li class="mb-2"><span>Slot Tersedia : </span> {{ $item->Vacancy->slot }}</li>
                                 @if ($item->status === 'diterima')
                                 <li class="mb-2"><span>Lokasi Wawancara : </span> {{ $item->User->lokasi_wawancara }}</li>
                                 @endif
+                                <li class="mb-2"><span>Posisi :</span>{{ $item->Vacancy->pekerja }}</li>
+                                <li class="mb-2"><span>Slot Tersedia : </span> {{ $item->Vacancy->slot }}</li>
+                                <li class="mb-2"><span>Tipe Kerja : </span>{{ $item->Vacancy->tipe }}</li>
                                 <div class="d-flex justify-content-between">
-                                    <li class="mb-2"><span>Tipe Kerja : </span>{{ $item->Vacancy->tipe }}</li>
+                                    
                                     <li class="ml-auto" style="margin-left: 300px;">
                                         <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
-                                            <button class="btn btn-primary">
+                                            <button class="btn btn-primary mb-4">
                                                 Detail
                                             </button>
                                         </a>
                                     </li>
                                     @if ($item->status === 'menunggu')
-                                    <li class="ml-1" id="batal"><button class="btn btn-danger">Batal</button>
+                                    <li class="ml-1" id="batal"><button class="btn btn-danger mb-4">Batal</button>
                                     </li>
                                     @endif
 
@@ -388,7 +389,7 @@
                                         <li class="mb-3" s>
                                             <i class="bx bx-envelope"></i>
                                             <span>Email:</span>
-                                            <a href="https://templates.envytheme.com/cdn-cgi/l/email-protection#80e8e5ececefc0eaf5e2e9aee3efed"><span class="__cf_email__" data-cfemail="f098959c9c9fb09a859299de939f9d">hummasoft.tech@gmail.com</span></a>
+                                            <a href="https://templates.envytheme.com/cdn-cgi/l/email-protection#80e8e5ececefc0eaf5e2e9aee3efed"><span class="_cf_email_" data-cfemail="f098959c9c9fb09a859299de939f9d">hummasoft.tech@gmail.com</span></a>
                                         </li>
                                         <li class="location">
                                             <i class="bx bx-location-plus"></i>
