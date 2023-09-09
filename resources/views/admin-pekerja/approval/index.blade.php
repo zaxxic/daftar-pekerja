@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dad\nwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -192,7 +193,7 @@
             aria-labelledby="exampleModalLabel1">
             <div class="modal-dialog" role="document">
 
-                <form action="acc/{{ $item->User->id }}" method="POST" id="pesan_terima">
+                <form action="acc/{{ $item->User->id }}" method="POST" id="pesanTerima">
                     @method('PATCH')
                     @csrf
                     <div class="modal-content">
@@ -215,7 +216,7 @@
                                     <span style="color: red;">*</span></label>
                                 <input type="datetime-local" class="form-control" id="tanggal"
                                     name="tanggal_wawancara" />
-                                <span class="text-danger" id="error"></span>
+                                <p class="text-danger" style="color: red; height:5px" id="error"></p>
                                 @error('tanggal_wawancara')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -224,7 +225,7 @@
                                     Wawancara
                                     <span style="color: red;">*</span></label>
                                 <input type="text" class="form-control" id="lokasi" name="lokasi" />
-                                <span class="text-danger" id="error_lokasi"></span>
+                                <p class="text-danger" style="color: red; height:5px" id="errorLokasi"></p>
                                 @error('lokasi')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -236,7 +237,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" id="terima" class="btn btn-success">
+                            <button type="button" onclick="Terima()" id="terima" class="btn btn-success">
                                 Terima
                             </button>
                         </div>
@@ -307,7 +308,7 @@
                                 <div class="col-lg-4 col-12 foto">
                                     <div class="justify-content-center align-items-center foto"
                                         style="border-radius: 50%; overflow: hidden; width: 180px; height: 180px;">
-                                        <img src="{{ asset('foto_user/' . $row->User->foto) }}"
+                                        <img src="{{ asset('foto_user/' . $item->User->foto) }}"
                                             style="max-width: 100%; max-height: 100%;" alt="" />
                                     </div>
                                 </div>
@@ -412,9 +413,7 @@
     <!--  Form Basic End -->
     <!-- --------------------------------------------------- -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script>
         $(document).ready(function() {
             $('#tolak').click(function() {
@@ -473,76 +472,79 @@
                     console.log("gagal bg");
                 }
             });
-            $('#terima').click(function() {
-                // Menutup modal yang ada sebelumnya (jika ada)
-
-                const swalWithBootstrapButtons = Swal.mixin({
-                    customClass: {
-                        confirmButton: "btn btn-success",
-                        cancelButton: "mr-2 btn btn-danger",
-                    },
-                    buttonsStyling: false,
-                });
-
-                if ($("#tanggal").val() !== "" && $("#lokasi").val() !== "") {
-                    $('#error').html('');
-                    $('.modal').modal('hide');
-
-                    swalWithBootstrapButtons
-                        .fire({
-                            title: "Apakah Anda Yakin?",
-                            text: "Anda ingin menerima akun ini!",
-                            type: "warning",
-                            showCancelButton: true,
-                            confirmButtonText: "Iya!",
-                            cancelButtonText: "Tidak!",
-                            reverseButtons: true,
-                            customClass: {
-                                confirmButton: "btn btn-success",
-                                cancelButton: "btn btn-danger me-3",
-                            },
-                            buttonsStyling: false,
-                            width: "25rem",
-                            padding: "1rem",
-                            customContainerClass: "swal-custom",
-                        })
-                        .then((result) => {
-                            if (result.value) {
-                                swalWithBootstrapButtons.fire(
-                                    "Berhasil!",
-                                    "Anda berhasil menerima akun tersebut.",
-                                    "success"
-                                );
-                                var form = document.getElementById("pesan_terima");
-                                form.submit();
-                            } else if (
-                                result.dismiss === Swal.DismissReason.cancel
-                            ) {
-                                swalWithBootstrapButtons.fire(
-                                    "Batal",
-                                    "penerimaan di batalkan. :)",
-                                    "error"
-                                );
-                            }
-                        });
-                } else {
-                    if ($("#tanggal").val() === "" && $("#lokasi").val() === "") {
-                        console.log("gagal bg");
-                        $('#error').text("pesan harus di isi");
-                        $('#error_lokasi').text("Lokasi wawancara harus di isi");
-                    } else if ($("#lokasi").val() === "") {
-                        $('#error').text("");
-                        $('#error_lokasi').text("Lokasi wawancara harus di isi");
-                    } else if ($("#tanggal").val() === "") {
-                        $('#error').text("pesan harus di isi");
-                        $('#error_lokasi').text("");
-                    }
-
-                }
-            });
-
 
         });
+    </script>
+    <script>
+        function Terima() {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "mr-2 btn btn-danger",
+                },
+                buttonsStyling: false,
+            });
+            const tanggal = document.getElementById('tanggal').value;
+            const lokasi = document.getElementById('lokasi').value;
+            const error = document.getElementById('error');
+            const errorLokasi = document.getElementById('errorLokasi');
+            console.log(tanggal);
+            console.log(lokasi);
+            if (tanggal !== "" && lokasi !== "") {
+                error.innerHTML = '';
+                errorLokasi.innerHTML = '';
+
+                swalWithBootstrapButtons.fire({
+                        title: "Apakah Anda Yakin?",
+                        text: "Anda ingin menerima akun ini!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Iya!",
+                        cancelButtonText: "Tidak!",
+                        reverseButtons: true,
+                        customClass: {
+                            confirmButton: "btn btn-success",
+                            cancelButton: "btn btn-danger me-3",
+                        },
+                        buttonsStyling: false,
+                        width: "25rem",
+                        padding: "1rem",
+                        customContainerClass: "swal-custom",
+                    })
+                    .then((result) => {
+                        if (result.value) {
+                            swalWithBootstrapButtons.fire(
+                                "Berhasil!",
+                                "Anda berhasil menerima akun tersebut.",
+                                "success"
+                            );
+                            var form = document.getElementById("pesanTerima");
+                            form.submit();
+                        } else if (
+                            result.dismiss === Swal.DismissReason.cancel
+                        ) {
+                            swalWithBootstrapButtons.fire(
+                                "Batal",
+                                "penerimaan di batalkan. :)",
+                                "error"
+                            );
+                        }
+                    });
+            } else {
+                if (tanggal === "" && lokasi === "") {
+                    console.log(error.innerHTML);
+                    error.innerHTML = "pesan harus di isi";
+                    errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
+                } else if (lokasi === "") {
+                    error.innerHTML = "";
+                    errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
+                } else if (tanggal === "") {
+                    error.innerHTML = "pesan harus di isi";
+                    errorLokasi.innerHTML = "";
+                }
+
+            };
+        }
     </script>
     <script>
         // Ambil elemen input pencarian
@@ -554,17 +556,6 @@
             searchInput.value = '';
 
             // Selanjutnya, Anda dapat memicu pencarian ulang atau tindakan lain yang sesuai.
-        });
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        $(document).ready(function() {
-            console.log("dokumen siap");
-            $('#filter').click(function() {
-                console.log("awookaowk");
-            });
         });
     </script>
 @endsection
