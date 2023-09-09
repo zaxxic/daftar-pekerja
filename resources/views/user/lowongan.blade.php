@@ -242,7 +242,7 @@
                         @empty
                         <div class="row">
                             <div class="col-12 mt-5 text-center" id="lowongan">
-                                <img src="/assets/dist/images/nodatas.png" alt="" width="350px">
+                                <img src="{{ asset('assets/nodatas.png') }}" alt="" width="350px">
                             </div>
                         </div>
                         @endforelse

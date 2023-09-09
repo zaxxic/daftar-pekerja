@@ -190,7 +190,7 @@
     <div class="container">
         <div class="row text-center">
             <div class="col">
-                <img src="/assets/dist/images/nodatas.png" alt="" width="280px">
+                <img src="{{ asset('assets/nodatas.png') }}" alt="" width="280px">
             </div>
         </div>
     </div>

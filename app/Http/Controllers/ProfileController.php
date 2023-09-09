@@ -94,7 +94,7 @@ class ProfileController extends Controller
             $lamaran->move(public_path('lamaran'), $lamaranFileName);
 
             if ($user->lamaran && file_exists(public_path('lamaran/' . $user->lamaran))) {
-                unlink(public_path('lamaran' . $user->lamaran));
+                unlink(public_path('lamaran/' . $user->lamaran));
             }
 
             $user->lamaran = $lamaranFileName;
