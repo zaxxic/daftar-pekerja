@@ -29,7 +29,7 @@ class DashboardUserController extends Controller
             ->latest()
             ->paginate(5);
 
-        $data = Vacancy::whereDate('batas', '<=', Carbon::today())
+        $data = Vacancy::whereDate('batas', '<', Carbon::today())
             ->where('status', 'aktif')
             ->get();
 
