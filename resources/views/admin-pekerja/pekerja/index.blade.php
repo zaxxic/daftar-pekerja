@@ -36,7 +36,6 @@
 
                 </div>
 
-
                 <div class="table-responsive rounded-2 mb-4">
                     <table class="table border text-nowrap customize-table mb-0 align-middle">
                         <thead class="text-dark fs-4">
@@ -176,97 +175,29 @@
                                                         class="img-fluid rounded-circle"
                                                         style="width: 220px; height: 220px;" />
                                                 </div>
-                                            </div>
-                                            <div class="col-lg-8 col-12">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="mb-3">Data Divisi</h5>
-                                                        <div class="d-flex mb-1">
-                                                            <span style="font-weight: 600;">Divisi:</span>
-                                                            <span
-                                                                class="ms-2">{{ $item->Vacancy->Division->divisi }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">Posisi
-                                                                :</span>
-                                                            <span>{{ $item->Vacancy->pekerja }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">Tipe
-                                                                Pekrjaan
-                                                                :</span>
-                                                            <span>{{ $item->Vacancy->tipe }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">Lokasi
-                                                                :</span>
-                                                            <span>{{ $item->Vacancy->lokasi }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">Tanggal
-                                                                Wawancara
-                                                                :</span>
-                                                            <span>{{ $item->User->tanggal_wawancara }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">Lokasi
-                                                                Wawancara
-                                                                :</span>
-                                                            <span>{{ $item->User->lokasi_wawancara }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                    </div>
+                                                <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                                <div class="d-flex mb-1">
+                                                    <span class="me-3" style="font-weight: 600;">Jenis
+                                                        Kelamin:</span>
+                                                    <span>{{ $item->User->jenis_kelamin }}</span>
                                                 </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="mb-3">Data Diri Pekerja</h5>
-                                                        <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">Nama:</span>
-                                                            <span>{{ $item->User->name }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">Jenis
-                                                                Kelamin:</span>
-                                                            <span>{{ $item->User->jenis_kelamin }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">No.
-                                                                Handphone:</span>
-                                                            <span>{{ $item->User->no_telp }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">Email:</span>
-                                                            <span>{{ $item->User->email }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span style="font-weight: 600;">Alamat:</span>
-                                                            <span class="ms-2">{{ $item->User->alamat }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                    </div>
+                                                <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                                <div class="d-flex mb-1">
+                                                    <span class="me-3" style="font-weight: 600;">No.
+                                                        Handphone:</span>
+                                                    <span>{{ $item->User->no_telp }}</span>
                                                 </div>
+                                                <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                                <div class="d-flex mb-1">
+                                                    <span class="me-3" style="font-weight: 600;">Email:</span>
+                                                    <span>{{ $item->User->email }}</span>
+                                                </div>
+                                                <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                                <div class="d-flex mb-1">
+                                                    <span style="font-weight: 600;">Alamat:</span>
+                                                    <span class="ms-2">{{ $item->User->alamat }}</span>
+                                                </div>
+                                                <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                             </div>
                                         </div>
                                     </div>
@@ -274,60 +205,60 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+            </div>
+        </div>
 
-                @foreach ($user as $row)
-                    <div class="modal fade" id="nonaktif-user-{{ $row->User->id }}" tabindex="-1"
-                        aria-labelledby="exampleModalLabel1">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header d-flex align-items-center">
-                                    <h4 class="modal-title" id="exampleModalLabel1">
-                                        Nonaktif Pekerja
-                                    </h4>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
-                                <div class="modal-body">
-                                    <form action="/nonactive/{{ $row->User->id }}" method="POST" id="formnonactive">
-                                        @method('PATCH')
-                                        @csrf
-                                        <div class="mb-3">
-                                            <label for="message-text" class="control-label">Pesan
-                                                <span style="color: red;">*</span></label>
-                                            <textarea class="form-control" id="pesan" placeholder="Masukkan pesan" name="pesan"></textarea>
-                                            <span id="error" class="text-danger"></span>
-                                            @error('pesan')
-                                                <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-                                            <br>
-                                            <small id="name" class="form-text text-muted">Masukkan alasan
-                                                kenapa pekerja tersebut dinonaktifkan.</small>
-                                        </div>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" onclick="klikNonaktif()"
-                                        class="btn btn-danger img-fluid model_img" id="nonaktif">
-                                        Nonaktif
-                                    </button>
-                                </div>
-                                </form>
-                            </div>
-                        </div>
+        <div class="modal fade" id="nonaktif-user-{{ $item->User->id }}" tabindex="-1"
+            aria-labelledby="exampleModalLabel1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header d-flex align-items-center">
+                        <h4 class="modal-title" id="exampleModalLabel1">
+                            Nonaktif Pekerja
+                        </h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                @endforeach
+                    <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
+                    <div class="modal-body">
+                        <form action="/nonactive/{{ $item->User->id }}" method="POST"
+                            id="pesanNonaktif{{ $item->User->id }}">
+                            @method('PATCH')
+                            @csrf
+                            <div class="mb-3">
+                                <label for="message-text" class="control-label">Pesan
+                                    <span style="color: red;">*</span></label>
+                                <textarea class="form-control" id="pesan{{ $item->User->id }}" placeholder="Masukkan pesan" name="pesan"></textarea>
+                                <span id="error{{ $item->User->id }}" class="text-danger"></span>
+                                @error('pesan')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                                <br>
+                                <small id="name" class="form-text text-muted">Masukkan alasan
+                                    kenapa pekerja tersebut dinonaktifkan.</small>
+                            </div>
 
-                <div class="col-lg-12">
-                    <nav aria-label="Page navigation example" class="mt-3 justify-content-end">
-                        <ul class="pagination justify-content-end">
-                            {{ $user->appends(['cari' => request('cari')])->links() }}
-                        </ul>
-                    </nav>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" onclick="Nonaktif({{ $item->User->id }})"
+                            class="btn btn-danger img-fluid model_img">
+                            Nonaktif
+                        </button>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+        @endforeach
+
+        <div class="col-lg-12">
+            <nav aria-label="Page navigation example" class="mt-3 justify-content-end">
+                <ul class="pagination justify-content-end">
+                    {{ $user->appends(['cari' => request('cari')])->links() }}
+                </ul>
+            </nav>
+        </div>
+    </div>
+    </div>
     </div>
 
 
@@ -337,7 +268,7 @@
     <!--  Form Basic End -->
     <!-- --------------------------------------------------- -->
     </div>
-    <script>
+    <!-- <script>
         function klikNonaktif() {
             $("#nonaktif").click(function() {
                 const swalWithBootstrapButtons = Swal.mixin({
@@ -392,6 +323,63 @@
                     console.log("gagal bg");
                 }
             });
+        }
+    </script> -->
+    <script>
+        function Nonaktif(data) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "mr-2 btn btn-danger",
+                },
+                buttonsStyling: false,
+            });
+            var pesan = document.getElementById('pesan' + data).value;
+            const error = document.getElementById('error' + data);
+            console.log(pesan);
+            console.log(data);
+            if (pesan.trim() !== "") {
+                error.innerHTML = '';
+
+                swalWithBootstrapButtons.fire({
+                        title: "Apakah Anda Yakin?",
+                        text: "Anda ingin menonaktifkan akun ini!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Iya!",
+                        cancelButtonText: "Tidak!",
+                        reverseButtons: true,
+                        customClass: {
+                            confirmButton: "btn btn-success",
+                            cancelButton: "btn btn-danger me-3",
+                        },
+                        buttonsStyling: false,
+                        width: "25rem",
+                        padding: "1rem",
+                        customContainerClass: "swal-custom",
+                    })
+                    .then((result) => {
+                        if (result.value) {
+                            swalWithBootstrapButtons.fire(
+                                "Berhasil!",
+                                "Anda berhasil menonaktifkan akun tersebut.",
+                                "success"
+                            );
+                            var form = document.getElementById("pesanNonaktif" + data);
+                            form.submit();
+                        } else if (
+                            result.dismiss === Swal.DismissReason.cancel
+                        ) {
+                            swalWithBootstrapButtons.fire(
+                                "Batal",
+                                "penonaktifkan di batalkan. :)",
+                                "error"
+                            );
+                        }
+                    });
+            } else {
+                error.innerHTML = "pesan harus di isi";
+            };
         }
     </script>
     <script>
