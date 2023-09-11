@@ -14,33 +14,33 @@
     <meta name="author" content="" />
     <meta name="keywords" content="Mordenize" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" href="{{asset('assets1/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets1/css/bootstrap.min.css') }}">
     <!-- Owl Theme Default Min CSS -->
-    <link rel="stylesheet" href="{{asset('assets1/css/owl.theme.default.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets1/css/owl.theme.default.min.css') }}">
     <!-- Owl Carousel Min CSS -->
-    <link rel="stylesheet" href="{{asset('assets1/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets1/css/owl.carousel.min.css') }}">
     <!-- Animate Min CSS -->
-    <link rel="stylesheet" href="{{asset('assets1/css/animate.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets1/css/animate.min.css') }}">
     <!-- Boxicons Min CSS -->
-    <link rel="stylesheet" href="{{asset('assets1/css/boxicons.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets1/css/boxicons.min.css') }}">
     <!-- Magnific Popup Min CSS -->
-    <link rel="stylesheet" href="{{asset('assets1/css/magnific-popup.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets1/css/magnific-popup.min.css') }}">
     <!-- Flaticon CSS -->
-    <link rel="stylesheet" href="{{asset('assets1/css/flaticon.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets1/css/flaticon.css') }}">
     <!-- Meanmenu Min CSS -->
-    <link rel="stylesheet" href="{{asset('assets1/css/meanmenu.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets1/css/meanmenu.min.css') }}">
     <!-- Nice Select Min CSS -->
-    <!-- <link rel="stylesheet" href="{{asset('assets1/css/nice-select.min.css')}}"> -->
+    <!-- <link rel="stylesheet" href="{{ asset('assets1/css/nice-select.min.css') }}"> -->
     <!-- Odometer Min CSS-->
-    <link rel="stylesheet" href="{{asset('assets1/css/odometer.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets1/css/odometer.min.css') }}">
     <!-- Date Picker CSS-->
-    <link rel="stylesheet" href="{{asset('assets1/css/date-picker.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets1/css/date-picker.min.css') }}">
     <!-- Muli Fonts Min CSS-->
-    <link rel="stylesheet" href="{{asset('assets1/css/muli-fonts.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets1/css/muli-fonts.css') }}">
     <!-- Style CSS -->
-    <link rel="stylesheet" href="{{asset('assets1/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets1/css/style.css') }}">
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="{{asset('assets1/css/responsive.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets1/css/responsive.css') }}">
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets/dist/images/logo.png') }}" />
@@ -57,7 +57,13 @@
     <link rel="stylesheet" href="{{ asset('assets/dist/libs/sweetalert2/dist/sweetalert2.min.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css" rel="stylesheet">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dad\nwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
     @yield('style')
+
 </head>
 
 <body>
@@ -113,40 +119,41 @@
     <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 
     <!-- Jquery Min JS -->
-    <script data-cfasync="false" src="{{asset('../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js')}}"></script>
-    <script src="{{asset('assets1/js/jquery.min.js')}}"></script>
+    <script data-cfasync="false" src="{{ asset('../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js') }}">
+    </script>
+    <script src="{{ asset('assets1/js/jquery.min.js') }}"></script>
     <!-- Popper Min JS -->
-    <script src="{{asset('assets1/js/popper.min.js')}}"></script>
+    <script src="{{ asset('assets1/js/popper.min.js') }}"></script>
     <!-- Bootstrap Min JS -->
-    <script src="{{asset('assets1/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('assets1/js/bootstrap.min.js') }}"></script>
     <!-- Meanmenu Min JS -->
-    <script src="{{asset('assets1/js/meanmenu.min.js')}}"></script>
+    <script src="{{ asset('assets1/js/meanmenu.min.js') }}"></script>
     <!-- Wow Min JS -->
-    <script src="{{asset('assets1/js/wow.min.js')}}"></script>
+    <script src="{{ asset('assets1/js/wow.min.js') }}"></script>
     <!-- Owl Carousel Min JS -->
-    <script src="{{asset('assets1/js/owl.carousel.min.js')}}"></script>
+    <script src="{{ asset('assets1/js/owl.carousel.min.js') }}"></script>
     <!-- Nice Select Min JS -->
-    <!-- <script src="{{asset('assets1/js/nice-select.min.js')}}"></script> -->
+    <!-- <script src="{{ asset('assets1/js/nice-select.min.js') }}"></script> -->
     <!-- Magnific Popup Min JS -->
-    <script src="{{asset('assets1/js/magnific-popup.min.js')}}"></script>
+    <script src="{{ asset('assets1/js/magnific-popup.min.js') }}"></script>
     <!-- Mixitup JS -->
-    <script src="{{asset('assets1/js/jquery.mixitup.min.js')}}"></script>
+    <script src="{{ asset('assets1/js/jquery.mixitup.min.js') }}"></script>
     <!-- Appear Min JS -->
-    <script src="{{asset('assets1/js/appear.min.js')}}"></script>
+    <script src="{{ asset('assets1/js/appear.min.js') }}"></script>
     <!-- Odometer Min JS -->
-    <script src="{{asset('assets1/js/odometer.min.js')}}"></script>
+    <script src="{{ asset('assets1/js/odometer.min.js') }}"></script>
     <!-- Range Slider Min JS -->
-    <script src="{{asset('assets1/js/range-slider.min.js')}}"></script>
+    <script src="{{ asset('assets1/js/range-slider.min.js') }}"></script>
     <!-- Datepicker Min JS -->
-    <script src="{{asset('assets1/js/bootstrap-datepicker.min.js')}}"></script>
+    <script src="{{ asset('assets1/js/bootstrap-datepicker.min.js') }}"></script>
     <!-- Form Validator Min JS -->
-    <script src="{{asset('assets1/js/form-validator.min.js')}}"></script>
+    <script src="{{ asset('assets1/js/form-validator.min.js') }}"></script>
     <!-- Contact JS -->
-    <script src="{{asset('assets1/js/contact-form-script.js')}}"></script>
+    <script src="{{ asset('assets1/js/contact-form-script.js') }}"></script>
     <!-- Ajaxchimp Min JS -->
-    <script src="{{asset('assets1/js/ajaxchimp.min.js')}}"></script>
+    <script src="{{ asset('assets1/js/ajaxchimp.min.js') }}"></script>
     <!-- Custom JS -->
-    <script src="{{asset('assets1/js/custom.js')}}"></script>
+    <script src="{{ asset('assets1/js/custom.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
