@@ -1,46 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
-</head>
-
-<body>
-    @extends('layouts.app')
-    @section('content')
-        <style>
-            @media (max-width:600px) {
-                .foto {
-                    display: flex;
-                    justify-content: center;
-                }
+@extends('layouts.app')
+@section('content')
+    <style>
+        @media (max-width:600px) {
+            .foto {
+                display: flex;
+                justify-content: center;
             }
-        </style>
-        <style>
-            @media (max-width: 600px) {
+        }
+    </style>
+    <style>
+        @media (max-width: 600px) {
 
-                .fotos {
-                    align-items: center;
-                    text-align: center;
-                    justify-content: center;
-                    margin-left: 38px;
-                    border-radius: 10%;
-                }
+            .fotos {
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+                margin-left: 38px;
+                border-radius: 10%;
             }
-        </style>
-    </body>
-
-    </html>
+        }
+    </style>
     <div class="container-fluid">
         <!-- --------------------------------------------------- -->
         <!--  Form Basic Start -->
@@ -233,13 +212,13 @@
 
         // Tambahkan event listener untuk mendengarkan peristiwa klik pada ikon "x"
         searchInput.addEventListener('search', function(event) {
-                    // Setel nilai input pencarian menjadi kosong
-                    searchInput.value = '';
+            // Setel nilai input pencarian menjadi kosong
+            searchInput.value = '';
 
 
-                        // Ambil elemen input pencarian
-                        const searchInput = document.querySelector('input[name="cari"]');
-                        // Selanjutnya, Anda dapat memicu pencarian ulang atau tindakan lain yang sesuai.
-                    });
+            // Ambil elemen input pencarian
+            const searchInput = document.querySelector('input[name="cari"]');
+            // Selanjutnya, Anda dapat memicu pencarian ulang atau tindakan lain yang sesuai.
+        });
     </script>
 @endsection
