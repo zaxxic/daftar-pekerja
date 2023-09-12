@@ -244,23 +244,33 @@
                                     @endif
                                     <li class="mb-2"><span>Posisi :</span>{{ $item->Vacancy->pekerja }}</li>
                                     <li class="mb-2"><span>Slot Tersedia : </span> {{ $item->Vacancy->slot }}</li>
-                                    <li class="mb-2"><span>Tipe Kerja : </span>{{ $item->Vacancy->tipe }}</li>
                                     <div class="d-flex justify-content-between">
+                                        <li class="mb-2"><span>Tipe Kerja : </span>{{ $item->Vacancy->tipe }}</li>
 
-                                        <li class="ml-auto" style="margin-left: 300px;">
-                                            <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
-                                                <button class="btn btn-primary mb-4">
-                                                    Detail
-                                                </button>
-                                            </a>
-                                        </li>
-                                        @if ($item->status === 'menunggu')
-                                            <li class="ml-1" id="batal"><button
-                                                    class="btn btn-danger mb-4">Batal</button>
+                                        @if ($item->status === 'ditolak')
+                                            <li class="ml-auto" style="margin-left: 300px;">
+                                                <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
+                                                    <button class="btn btn-primary mb-4">
+                                                        Detail
+                                                    </button>
+                                                </a>
                                             </li>
                                         @endif
+                                        @if ($item->status === 'menunggu')
+                                            <div class="d-flex justify-content-end">
+                                                <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
+                                                    <button class="btn btn-primary mb-4">
+                                                        Detail
+                                                    </button>
+                                                </a>
+                                                <li class="ml-1" id="batal">
+                                                    <button class="btn btn-danger mb-4">Batal</button>
+                                                </li>
+                                            </div>
+                                        @endif
 
-
+                                        @if ($item->status === 'nonaktif')
+                                        @endif
                                     </div>
                                 </ul>
 
@@ -566,8 +576,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
         src="
-                                                                                                                                                                                                                                                                                                                                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                                                                                                                                                                                                                                                                                                                                                ">
+                                                                                                                                                                                                                                                                                                                                                                                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                                                                                                                                                                                                                                                                                                                                                                                ">
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
