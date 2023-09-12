@@ -21,7 +21,13 @@ class ProfileController extends Controller
     {
         $request->validate(
             [
-                'current_password' => 'required',
+                'current_password' => ['required',
+                function ($attribute, $value, $fail) {
+                    if (!Hash::check($value, Auth()->user()->password)) {
+                        return $fail(__('Password Lama tidak benar.'));
+                    }
+                },
+            ],
                 'new_password' => 'required|min:6|confirmed',
             ],
             [
@@ -98,7 +104,7 @@ class ProfileController extends Controller
             }
 
             $user->lamaran = $lamaranFileName;
-          
+
         }
 
         if ($request->hasFile('cv')) {
@@ -106,18 +112,18 @@ class ProfileController extends Controller
             $cv = $request->file('cv');
             $cvFileName = time() . '.' . $cv->getClientOriginalExtension();
             $cv->move(public_path('cv'), $cvFileName);
-        
+
             // Hapus CV lama jika ada
             if ($user->cv && file_exists(public_path('cv/' . $user->cv))) {
                 unlink(public_path('cv/' . $user->cv));
             }
-        
+
             // Update kolom 'cv' pada model User atau Registration
             // Sesuaikan dengan model yang Anda gunakan
             $user->cv = $cvFileName;
-         
+
         }
-        
+
 
         $user->save(); // Save the changes to the user model
 
