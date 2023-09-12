@@ -246,16 +246,6 @@
                                     <li class="mb-2"><span>Slot Tersedia : </span> {{ $item->Vacancy->slot }}</li>
                                     <div class="d-flex justify-content-between">
                                         <li class="mb-2"><span>Tipe Kerja : </span>{{ $item->Vacancy->tipe }}</li>
-
-                                        @if ($item->status === 'ditolak')
-                                            <li class="ml-auto" style="margin-left: 300px;">
-                                                <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
-                                                    <button class="btn btn-primary mb-4">
-                                                        Detail
-                                                    </button>
-                                                </a>
-                                            </li>
-                                        @endif
                                         @if ($item->status === 'menunggu')
                                             <div class="d-flex justify-content-end">
                                                 <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
@@ -267,10 +257,19 @@
                                                     <button class="btn btn-danger mb-4">Batal</button>
                                                 </li>
                                             </div>
+                                        @else
+                                            @if ($item->Vacancy->status === "aktif")
+                                            <li class="ml-auto" style="margin-left: 300px;">
+                                                <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
+                                                    <button class="btn btn-primary mb-4">
+                                                        Detail
+                                                    </button>
+                                                </a>
+                                            </li>
+                                            @endif
                                         @endif
 
-                                        @if ($item->status === 'nonaktif')
-                                        @endif
+
                                     </div>
                                 </ul>
 
