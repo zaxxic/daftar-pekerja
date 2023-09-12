@@ -92,10 +92,10 @@
 
                                         <div class="d-flex align-items-center">
                                             <a href="{{ asset('foto_user/' . $row->User->foto) }}" data-lightbox="image-1"
-                                                data-title="Gambar Profil Anda"
-                                                style="border-radius: 50%; overflow: hidden; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center;">
+                                                data-title="Gambar Profil {{ $row->User->name }}">
                                                 <img src="{{ asset('foto_user/' . $row->User->foto) }}"
-                                                    style="max-width: 150%; max-height: 150%;" alt="" />
+                                                    class="img-fluid rounded-circle" width="40px"
+                                                    style="width: 40px; height: 40px;" />
                                             </a>
                                             <div class="ms-3">
                                                 <h6 class="fs-4 fw-semibold mb-0">{{ $row->User->name }}</h6>
@@ -113,7 +113,8 @@
                                             class="btn btn-primary">CV</a>
                                     </td>
                                     <td>
-                                        <a data-bs-toggle="modal" data-bs-target="#detail-lamaran-{{ $row->User->lamaran }}"
+                                        <a data-bs-toggle="modal"
+                                            data-bs-target="#detail-lamaran-{{ $row->User->lamaran }}"
                                             class="btn btn-primary">Lamaran</a>
                                     </td>
                                     <td>
@@ -284,12 +285,23 @@
         <style>
             @media (max-width: 600px) {
 
-                .foto {
+                .fotos {
                     align-items: center;
                     text-align: center;
                     justify-content: center;
-                    margin-left: 38px;
+
                     border-radius: 10%;
+                }
+            }
+
+            @media (max-width: 1080px) and (min-width: 760px) {
+                .fotos {
+                    align-items: center;
+                    text-align: center;
+                    justify-content: center;
+                    margin-left: 85px;
+                    border-radius: 10%;
+                    width: 100%;
                 }
             }
         </style>
@@ -305,11 +317,10 @@
                     <div class="modal-body">
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-4 col-12 foto">
-                                    <div class="justify-content-center align-items-center foto"
-                                        style="border-radius: 50%; overflow: hidden; width: 180px; height: 180px;">
+                                <div class="col-lg-4 col-sm-4 col-md-8 ">
+                                    <div class="justify-content-center align-items-center fotos">
                                         <img src="{{ asset('foto_user/' . $item->User->foto) }}"
-                                            style="max-width: 100%; max-height: 100%;" alt="" />
+                                            class="img-fluid rounded-circle" style="width: 220px; height: 220px;" />
                                     </div>
                                 </div>
                                 <div class="col-lg-8 col-12">
