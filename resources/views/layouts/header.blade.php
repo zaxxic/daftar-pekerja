@@ -92,7 +92,8 @@
                                 <div class="d-flex align-items-center py-9 mx-7 border-bottom">
 
                                     <div class="ms-3"> <!-- Teks di tengah -->
-                                        <h5 class="mb-1 fs-3">Admin</h5>
+                                        <h5 class="mb-1 fs-3"><i
+                                                class="ti ti-user fs-5 me-1"></i>Admin</h5>
                                         <p class="mb-0 d-flex text-dark align-items-center gap-2">
                                             <i class="ti ti-mail fs-5"></i>{{ Auth()->user()->email }}
                                         </p>

@@ -49,7 +49,7 @@ class LowonganController extends Controller
             $value_filter = $keyword;
             $keyword = "";
         } else {
-            $data = Vacancy::where('status', ['aktif', 'nonaktif'])
+            $data = Vacancy::whereIn('status', ['aktif', 'nonaktif'])
                 ->latest()
                 ->paginate(8);
         }
@@ -251,7 +251,13 @@ class LowonganController extends Controller
     public function nonactive(Request $request, string $id)
     {
         $registation = Registration::where('vacancie_id', $id)->where('status', 'menunggu')->first();
-
+        $data = $registation->User->email;
+        $datas =   [
+            'pesan' => "lowongan yang anda daftar sudah tidak aktif silakan daftar dilowongan yang lain",
+            'status' => "terima",
+            'judul' => " Pemberitahuan tentang pendaftaran"
+        ];
+        Mail::to($data)->send(new daftar($datas));
         if ($registation) {
             $registation->delete();
         }
