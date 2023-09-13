@@ -120,7 +120,7 @@
                         <div class="mb-3">
                             <label for="email" class="form-label">Email <span style="color: red;">*</span></label>
                             <input type="email" class="form-control" id="email" name="email"
-                                placeholder="Masukkan Email Anda" required>
+                                placeholder="Masukkan Email Anda" required value="{{old('email')}}">
                         </div>
                         @error('email')
                             <div class="text-danger">{{ $message }}</div>
