@@ -132,7 +132,7 @@
 
 
                 <style>
-                    @media (max-width: 600px) {
+                    @media (max-width: 680px) {
 
                         .fotos {
                             align-items: center;
@@ -148,7 +148,7 @@
                             align-items: center;
                             text-align: center;
                             justify-content: center;
-                            margin-left: 85px;
+                            margin-left: 13px       ;
                             border-radius: 10%;
                             width: 100%;
                         }
