@@ -1,26 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dad\nwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
-</head>
-
-<body>
-
-
-
-</html>
 @extends('layouts.app')
 @section('content')
     <div class="container-fluid">
@@ -92,10 +69,10 @@
 
                                         <div class="d-flex align-items-center">
                                             <a href="{{ asset('foto_user/' . $row->User->foto) }}" data-lightbox="image-1"
-                                                data-title="Gambar Profil {{ $row->User->name }}">
+                                                data-title="Gambar Profil Anda"
+                                                style="border-radius: 50%; overflow: hidden; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center;">
                                                 <img src="{{ asset('foto_user/' . $row->User->foto) }}"
-                                                    class="img-fluid rounded-circle" width="40px"
-                                                    style="width: 40px; height: 40px;" />
+                                                    style="max-width: 150%; max-height: 150%;" alt="" />
                                             </a>
                                             <div class="ms-3">
                                                 <h6 class="fs-4 fw-semibold mb-0">{{ $row->User->name }}</h6>
@@ -113,15 +90,14 @@
                                             class="btn btn-primary">CV</a>
                                     </td>
                                     <td>
-                                        <a data-bs-toggle="modal"
-                                            data-bs-target="#detail-lamaran-{{ $row->User->lamaran }}"
+                                        <a data-bs-toggle="modal" data-bs-target="#detail-lamaran-{{ $row->User->lamaran }}"
                                             class="btn btn-primary">Lamaran</a>
                                     </td>
                                     <td>
                                         <button type="button" title="tolak pekerja" style="background-color: transparent;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="21"
                                                 title="Tolak Pekerja" viewBox="0 0 16 16" data-bs-toggle="modal"
-                                                data-bs-target="#reject-user-{{ $row->User->id }}" class="me-1">
+                                                data-bs-target="#reject-user-{{ $row->User->id }}">
                                                 <g fill="#FA896B">
                                                     <path
                                                         d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -194,7 +170,7 @@
             aria-labelledby="exampleModalLabel1">
             <div class="modal-dialog" role="document">
 
-                <form action="acc/{{ $item->User->id }}" method="POST">
+                <form action="acc/{{ $item->User->id }}" method="POST" id="pesanTerima{{$item->User->id}}">
                     @method('PATCH')
                     @csrf
                     <div class="modal-content">
@@ -215,9 +191,9 @@
                             <div class="mb-3">
                                 <label for="recipient-name" class="control-label" style="color: black;">Tanggal Wawancara
                                     <span style="color: red;">*</span></label>
-                                <input type="datetime-local" class="form-control" id="tanggal"
+                                <input type="datetime-local" class="form-control" id="tanggal{{$item->User->id}}"
                                     name="tanggal_wawancara" />
-                                <p class="text-danger" style="color: red; height:5px" id="error"></p>
+                                <p class="text-danger" style="color: red; height:5px" id="error{{$item->User->id}}"></p>
                                 @error('tanggal_wawancara')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -225,8 +201,8 @@
                                 <label for="recipient-name" class="control-label mt-2" style="color: black;">lokasi
                                     Wawancara
                                     <span style="color: red;">*</span></label>
-                                <input type="text" class="form-control" id="lokasi" name="lokasi" />
-                                <p class="text-danger" style="color: red; height:5px" id="errorLokasi"></p>
+                                <input type="text" class="form-control" id="lokasi{{$item->User->id}}" name="lokasi" />
+                                <p class="text-danger" style="color: red; height:5px" id="errorLokasi{{$item->User->id}}"></p>
                                 @error('lokasi')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -238,7 +214,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" id="terima" class="btn btn-success">
+                            <button type="button"  onclick="Terima({{$item->User->id}})" class="btn btn-success">
                                 Terima
                             </button>
                         </div>
@@ -265,7 +241,7 @@
                                 <label for="message-text" class="control-label">Pesan <span
                                         style="color: red;">*</span></label>
                                 <textarea class="form-control" id="pesan{{ $item->User->id }}" placeholder="Masukkan pesan" name="pesan"></textarea>
-                                <span class="text-danger" id="errorPesan{{ $item->User->id }}"></span>
+                                <span class="text-danger" id="errorTolak{{ $item->User->id }}"></span>
                                 @error('pesan')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -274,7 +250,7 @@
                             </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="tolak" type="button" class="btn btn-danger">
+                        <button onclick="Tolak({{$item->User->id}})" type="button" class="btn btn-danger">
                             Tolak
                         </button>
                     </div>
@@ -285,23 +261,12 @@
         <style>
             @media (max-width: 600px) {
 
-                .fotos {
+                .foto {
                     align-items: center;
                     text-align: center;
                     justify-content: center;
-
+                    margin-left: 38px;
                     border-radius: 10%;
-                }
-            }
-
-            @media (max-width: 1080px) and (min-width: 760px) {
-                .fotos {
-                    align-items: center;
-                    text-align: center;
-                    justify-content: center;
-                    margin-left: 85px;
-                    border-radius: 10%;
-                    width: 100%;
                 }
             }
         </style>
@@ -317,10 +282,11 @@
                     <div class="modal-body">
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-4 col-sm-4 col-md-8 ">
-                                    <div class="justify-content-center align-items-center fotos">
+                                <div class="col-lg-4 col-12 foto">
+                                    <div class="justify-content-center align-items-center foto"
+                                        style="border-radius: 50%; overflow: hidden; width: 180px; height: 180px;">
                                         <img src="{{ asset('foto_user/' . $item->User->foto) }}"
-                                            class="img-fluid rounded-circle" style="width: 220px; height: 220px;" />
+                                            style="max-width: 100%; max-height: 100%;" alt="" />
                                     </div>
                                 </div>
                                 <div class="col-lg-8 col-12">
@@ -423,26 +389,23 @@
     <!-- --------------------------------------------------- -->
     <!--  Form Basic End -->
     <!-- --------------------------------------------------- -->
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        $(document).ready(function() {
-            $('#tolak').click(function() {
-                // Menutup modal yang ada sebelumnya (jika ada)
-                $('.modal').modal('hide');
-
-                const swalWithBootstrapButtons = Swal.mixin({
+        function Tolak(params) {
+            const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
                         confirmButton: "btn btn-success",
                         cancelButton: "mr-2 btn btn-danger",
                     },
                     buttonsStyling: false,
                 });
-
-                if ($("#pesan").val() !== "") {
-                    $('#error').html('')
-                    swalWithBootstrapButtons
-                        .fire({
+            var pesan = document.getElementById('pesan'+params).value;
+            var error = document.getElementById('errorTolak'+params)
+            console.log(pesan);
+            if(pesan !== ""){
+                error.innerHTML = "";
+                swalWithBootstrapButtons.fire({
                             title: "Apakah Anda Yakin?",
                             text: "Anda ingin menolak akun ini!",
                             type: "warning",
@@ -466,7 +429,7 @@
                                     "Anda berhasil menolak akun tersebut.",
                                     "success"
                                 );
-                                var form = document.getElementById("pesan_tolak");
+                                var form = document.getElementById("pesanTolak"+params);
                                 form.submit();
                             } else if (
                                 result.dismiss === Swal.DismissReason.cancel
@@ -478,15 +441,12 @@
                                 );
                             }
                         });
-                } else {
-                    $('#error').text("pesan harus di isi");
-                    console.log("gagal bg");
-                }
-            });
+            }else{
+                error.innerHTML = "masukan pesan alasan kenapa anda menolak pendaftar ini";
+            }
 
-        });
+        }
     </script>
-
     <script>
         function Terima(data) {
             const swalWithBootstrapButtons = Swal.mixin({
@@ -496,10 +456,10 @@
                 },
                 buttonsStyling: false,
             });
-            const tanggal = document.getElementById('tanggal').value;
-            const lokasi = document.getElementById('lokasi').value;
-            const error = document.getElementById('error');
-            const errorLokasi = document.getElementById('errorLokasi');
+            var tanggal = document.getElementById('tanggal'+data).value;
+            var lokasi = document.getElementById('lokasi'+data).value;
+            const error = document.getElementById('error'+data);
+            const errorLokasi = document.getElementById('errorLokasi'+data);
             console.log(tanggal);
             console.log(lokasi);
             console.log(data);
@@ -531,7 +491,7 @@
                                 "Anda berhasil menerima akun tersebut.",
                                 "success"
                             );
-                            var form = document.getElementById("pesanTerima");
+                            var form = document.getElementById("pesanTerima"+data);
                             form.submit();
                         } else if (
                             result.dismiss === Swal.DismissReason.cancel

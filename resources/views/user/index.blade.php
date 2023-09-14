@@ -270,7 +270,7 @@
                                     </li>
                                     @endif
                                     @endif
-                                </div>
+                                </div>      
                             </ul>
                         </div>
                         @empty
