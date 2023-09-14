@@ -197,16 +197,17 @@
                                             <label for="exampleInputCV" class="form-label fw-semibold">Masukkan
                                                 CV (format harus PDF)</label>
                                                 <div class=" row gap-2">
-                                                    <div class="col-12 col-md-8">
+                                                    <div class="col-12 col-md-6">
                                                     <input type="file" name="cv" class="form-control"
                                                         id="cv">
                                                     @error('cv')
                                                         <div class="text-danger">{{ $message }}</div>
                                                     @enderror
                                                 </div>
-                                                <div class="col-12 col-md-3 d-flex justify-content-end ">
+
+                                                <div class="col-12 col-md-5 d-flex justify-content-end ">
                                                     <a  data-bs-toggle="modal"
-                                                    data-bs-target="#detail-cv-{{ Auth()->User()->cv }}" class="btn btn-primary col-6 col-md-12" >Lihat CV</a>
+                                                    data-bs-target="#detail-cv-{{ Auth()->User()->cv }}" class="btn btn-primary col-8 col-md-12 " >Lihat CV</a>
                                                 </div>
                                             </div>
                                         </div>
