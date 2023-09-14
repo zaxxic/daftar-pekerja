@@ -31,7 +31,7 @@ class DashboardUserController extends Controller
 
         $data = Vacancy::whereDate('batas', '>', Carbon::today())
             ->where('status', 'aktif')
-            ->get();
+            ->get();  
 
         foreach ($data as $vacancy) {
             $vacancy->update(['status' => 'nonaktif']);
