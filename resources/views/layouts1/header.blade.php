@@ -68,10 +68,10 @@
                             <div class="d-flex align-items-center">
                                 <div class="user-profile-img">
 
-                                    @if (Auth::user()->foto == 'default.png')
+                                    @if (Auth::user()->foto == 'default/default.png')
                                         <div
                                             style="width: 35px; height: 35px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px;">
-                                            <img src="{{ asset('foto_user/default/default.png') }}"
+                                            <img src="{{ asset(Auth()->user()->foto) }}"
                                                 class="img-fluid rounded-circle" style="width: 100%; height: 100%"
                                                 alt="" />
                                         </div>
@@ -100,9 +100,15 @@
                                     <div>
                                         <div
                                             style="width: 60px; height: 60px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px;">
+                                            @if (Auth()->user()->foto === "default/default.png")
+                                            <img src="{{ asset(Auth()->user()->foto) }}"
+                                                class="img-fluid rounded-circle" style="width: 100%; height: 100%;"
+                                                alt="" />
+                                            @else
                                             <img src="{{ asset('foto_user/' . Auth()->user()->foto) }}"
                                                 class="img-fluid rounded-circle" style="width: 100%; height: 100%;"
                                                 alt="" />
+                                            @endif
                                         </div>
                                     </div>
 

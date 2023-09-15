@@ -251,18 +251,17 @@ class LowonganController extends Controller
     public function nonactive(Request $request, string $id)
     {
         $registation = Registration::where('vacancie_id', $id)->where('status', 'menunggu')->first();
-        $data = $registation->User->email;
-        $datas =   [
-            'pesan' => "lowongan yang anda daftar sudah tidak aktif silakan daftar dilowongan yang lain",
-            'status' => "terima",
-            'judul' => " Pemberitahuan tentang pendaftaran"
-        ];
-        Mail::to($data)->send(new daftar($datas));
         if ($registation) {
+            $data = $registation->User->email;
+            $datas =   [
+                'pesan' => "lowongan yang anda daftar sudah tidak tersedia ",
+                'status' => "terima",
+                'judul' => " Pemberitahuan tentang pendaftaran"
+            ];
+
+            Mail::to($data)->send(new daftar($datas));
             $registation->delete();
         }
-
-
         $data = Vacancy::find($id);
         $data->Update([
             'status' => 'nonaktif'

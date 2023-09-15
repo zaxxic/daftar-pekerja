@@ -106,8 +106,13 @@
                                 <div class="text-center">
                                     <a href="{{ asset('foto_user/' . $user->foto) }}" data-lightbox="image-1"
                                         data-title="Gambar Profil Anda">
+                                        @if ($user->foto === 'default/default.png')
+                                        <img src="{{ asset($user->foto) }}" alt="" width="180px"
+                                            class="img-fluid rounded-circle" style="width: 120px; height: 120px;">
+                                        @else
                                         <img src="{{ asset('foto_user/' . $user->foto) }}" alt="" width="180px"
                                             class="img-fluid rounded-circle" style="width: 120px; height: 120px;">
+                                        @endif
                                     </a>
 
                                     <!-- <div class="d-flex align-items-center justify-content-center my-4 gap-3">
