@@ -16,32 +16,39 @@ class DashboardUserController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $selectedDivision = 'semua';
-        $registration = Registration::where('users_id', Auth()->user()->id)
-            ->whereIn('status', ['menunggu', 'diterima', 'ditolak', 'nonaktif']) // Menggunakan whereIn untuk beberapa nilai status
-            ->latest()
-            ->paginate(5);
+{
+    $selectedDivision = 'semua';
 
-        $lowongan = Vacancy::where('status', 'aktif')
-            ->whereDate('batas', '>=', Carbon::today())
-            ->orderByRaw('DATEDIFF(batas, CURDATE())') // Mengurutkan berdasarkan perbedaan antara batas tanggal dan tanggal hari ini
-            ->latest()
-            ->paginate(5);
+    // Ambil semua pendaftaran yang terkait dengan pengguna saat ini
+    $registration = Registration::where('users_id', Auth()->user()->id)
+        ->whereIn('status', ['menunggu', 'diterima', 'ditolak', 'nonaktif'])
+        ->latest()
+        ->paginate(5);
 
-        $data = Vacancy::whereDate('batas', '>', Carbon::today())
-            ->where('status', 'aktif')
-            ->get();  
+    // Ambil semua lowongan yang masih aktif dan memiliki batas tanggal setelah hari ini
+    $lowongan = Vacancy::where('status', 'aktif')
+        ->whereDate('batas', '>=', Carbon::today())
+        ->orderByRaw('DATEDIFF(batas, CURDATE())')
+        ->latest()
+        ->paginate(5);
 
-        foreach ($data as $vacancy) {
-            $vacancy->update(['status' => 'nonaktif']);
-        }
+    // Menonaktifkan lowongan yang sudah melewati tanggal batasnya (deadline)
+    $data = Vacancy::where('status', 'aktif')
+        ->whereDate('batas', '<', Carbon::today())
+        ->get();
 
-        $divisi = Division::where('status', 'aktif')->get();
-        $cek = Vacancy::where('status', 'aktif')->count();
-
-        return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration', 'cek'));
+    foreach ($data as $vacancy) {
+        $vacancy->update(['status' => 'nonaktif']);
     }
+
+    // Ambil semua divisi yang masih aktif
+    $divisi = Division::where('status', 'aktif')->get();
+    
+    $cek = Vacancy::where('status', 'aktif')->count();
+
+    return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration', 'cek'));
+}
+
 
     public function lowongan(Request $request)
     {
