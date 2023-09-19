@@ -83,7 +83,7 @@ class LowonganController extends Controller
                 },
             ],
             'pekerjaan' => 'required',
-            'slot' => 'required|numeric|min:0',
+            'slot' => 'required|numeric|min:1',
             'gaji' => 'required|numeric|min:100000|',
             'tipe' => 'required',
             'lokasi' => 'required',
@@ -94,7 +94,8 @@ class LowonganController extends Controller
             'batas.required' => 'batas harus di isi',
             'pekerjaan.required' => 'pekerjaan harus di isi',
             'slot.required' => 'slot harus di isi',
-            'slot.min' => 'slot tidak boleh min',
+            'slot.min' => 'slot minimal satu',
+            'slow.numeric' => 'slot hanya boleh angka',
             'slot.numeric' => 'slot hanya boleh angka',
             'gaji.numeric' => 'gaji hanya boleh angka',
             'gaji.required' => 'gaji harus di isi',
@@ -135,7 +136,7 @@ class LowonganController extends Controller
      */
     public function edit($id)
     {
-        $divisi = Division::all();
+        $divisi = Division::where('status', 'aktif')->get();
         $lowongan = Vacancy::find($id);
         return view('admin-lowongan.lowongan-edit', compact('lowongan', 'divisi'));
     }
@@ -157,7 +158,7 @@ class LowonganController extends Controller
                 },
             ],
             'pekerjaan' => 'required',
-            'slot' => 'required|numeric|min:0',
+            'slot' => 'required|numeric|min:1',
             'gaji' => 'required|numeric|min:100000', // Gaji maksimal 10 digit
             'tipe' => 'required',
             'lokasi' => 'required',
@@ -168,7 +169,8 @@ class LowonganController extends Controller
             'batas.required' => 'batas harus di isi',
             'pekerjaan.required' => 'pekerjaan harus di isi',
             'slot.required' => 'slot harus di isi',
-            'slot.min' => 'slot tidak boleh kurang dari 0',
+            'slot.min' => 'slot minimal satu',
+            'slot.numeric' => 'slot hanya boleh angka',
             'gaji.required' => 'gaji harus di isi',
             'gaji.min' => 'gaji tidak boleh kurang dari 100.000',
             'gaji.max' => 'gaji tidak bole lebi dari 10 angka',

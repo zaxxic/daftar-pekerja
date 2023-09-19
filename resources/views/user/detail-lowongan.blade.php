@@ -50,7 +50,9 @@
         <link rel="icon" type="image/png" href="assets/logo.png">
 
         <!-- Title -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <title>Dashboard User</title>
         <style>
             .highlight-box {
@@ -83,19 +85,25 @@
     <!-- End Header Area -->
 
     <style>
-          @media (max-width: 600px) {
+        @media (max-width: 600px) {
             .judul {
                 font-size: small;
                 /* padding-left: 90px; */
             }
         }
-        @media (max-width: 600px){
+
+        @media (max-width: 600px) {
             .daftar {
+                margin-top: 15px;
                 justify-content: center;
             }
         }
-        .daftar {
-            justify-content: end;
+
+        @media (min-width: 1080px) {
+            .daftar {
+                justify-content: end;
+
+            }
         }
 
         .kerja {
@@ -113,14 +121,14 @@
         }
     </style>
     @if (session()->has('sukses'))
-    <script>
-        alert("anda sudah terdaftar")
-    </script>
+        <script>
+            alert("anda sudah terdaftar")
+        </script>
     @endif
     @if (session()->has('error'))
-    <script>
-        alert("anda tidak bisa daftar kembali")
-    </script>
+        <script>
+            alert("anda tidak bisa daftar kembali")
+        </script>
     @endif
 
 
@@ -130,7 +138,8 @@
             <div class="row">
                 <div class="col sm-6">
                     <div class="banner-content">
-                        <h1 style="margin-top: -40px;  font-weight: bolder; font-size: 50px; " class="judul">Detail Lowongan
+                        <h1 style="margin-top: -40px;  font-weight: bolder; font-size: 50px; " class="judul">Detail
+                            Lowongan
                             Kerja</h1>
                         <ul>
                             <li>
@@ -160,11 +169,15 @@
                                         <li class="mb-3"><span>Posisi : </span> {{ $lowongan->pekerja }}</li>
                                         <li class="mb-3"><span>Slot Tersedia : </span> {{ $lowongan->slot }}</li>
                                         <div class="row">
-                                            <li class="col-12 col-md-6"><span>Tipe Kerja : </span>{{ $lowongan->tipe }}</li>
+                                            <li class="col-12 col-md-6"><span>Tipe Kerja : </span>{{ $lowongan->tipe }}
+                                            </li>
                                             <div class="col-12 col-md-6 d-flex  daftar ">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <li style="margin-right: -19%;"><button class="btn btn-warning"><a href="{{ route('dashboard-user') }}" class="text-white">Kembali</a></button>
+                                                        <li style="margin-right: -19%;"><button
+                                                                class="btn btn-warning"><a
+                                                                    href="{{ route('dashboard-user') }}"
+                                                                    class="text-white">Kembali</a></button>
                                                         </li>
                                                     </div>
                                                     <div class="col-6">
@@ -191,23 +204,26 @@
                                                             </li>
                                                         @endif --}}
                                                         @if ($status === 'sudah')
-                                                        <li>
-                                                            <p>Anda sudah mendaftar pada lowongan lain.</p>
-                                                        </li>
+                                                            <li>
+                                                                <p>Anda sudah mendaftar pada lowongan lain.</p>
+                                                            </li>
                                                         @elseif ($status === 'belum')
-                                                        <button type="button" class="btn btn-primary" style="background-color: #2042e3" id="daftar">Daftar</button>
+                                                            <button type="button" class="btn btn-primary"
+                                                                style="background-color: #2042e3"
+                                                                id="daftar">Daftar</button>
                                                         @elseif ($status === 'disini')
-                                                        <li>
-                                                            <button type="button" class="btn btn-danger" id="batal">Batal</button>
-                                                        </li>
+                                                            <li>
+                                                                <button type="button" class="btn btn-danger"
+                                                                    id="batal">Batal</button>
+                                                            </li>
                                                         @elseif ($status === 'diterima_disini')
-                                                        <li>
-                                                            <p>anda di terima di lowongan ini </p>
-                                                        </li>
+                                                            <li>
+                                                                <p>anda di terima di lowongan ini </p>
+                                                            </li>
                                                         @else
-                                                        <li>
-                                                            <p>anda sudah di terima pada lowongan lain</p>
-                                                        </li>
+                                                            <li>
+                                                                <p>anda sudah di terima pada lowongan lain</p>
+                                                            </li>
                                                         @endif
                                                     </div>
 
@@ -308,9 +324,11 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="single-footer-widget single-bg">
                                     <a class="logo" href="index.html">
-                                        <img width="180px" src="{{asset('assets/hummatech.png')}}" alt="logo">
+                                        <img width="180px" src="{{ asset('assets/hummatech.png') }}"
+                                            alt="logo">
                                     </a>
-                                    <p>Hummasoft merupakan sebuah perusahaan yang bergerak dibidang IT (Information Technology).</p>
+                                    <p>Hummasoft merupakan sebuah perusahaan yang bergerak dibidang IT (Information
+                                        Technology).</p>
 
                                     <ul class="social-icon">
                                         <li>
@@ -324,7 +342,8 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="https://id.linkedin.com/in/hummasoft-technology-2476a8241" target="_blank">
+                                            <a href="https://id.linkedin.com/in/hummasoft-technology-2476a8241"
+                                                target="_blank">
                                                 <i class="bx bxl-linkedin-square"></i>
                                             </a>
                                         </li>
@@ -350,7 +369,10 @@
                                         <li class="mb-3" s>
                                             <i class="bx bx-envelope"></i>
                                             <span>Email:</span>
-                                            <a href="https://templates.envytheme.com/cdn-cgi/l/email-protection#80e8e5ececefc0eaf5e2e9aee3efed"><span class="__cf_email__" data-cfemail="f098959c9c9fb09a859299de939f9d">hummasoft.tech@gmail.com</span></a>
+                                            <a
+                                                href="https://templates.envytheme.com/cdn-cgi/l/email-protection#80e8e5ececefc0eaf5e2e9aee3efed"><span
+                                                    class="__cf_email__"
+                                                    data-cfemail="f098959c9c9fb09a859299de939f9d">hummasoft.tech@gmail.com</span></a>
                                         </li>
                                         <li class="location">
                                             <i class="bx bx-location-plus"></i>
@@ -567,11 +589,12 @@
                     buttonsStyling: false
                 });
 
-                var cv = '{{Auth()->user()->cv}}';
-                var lamaran = '{{Auth()->user()->lamaran}}';
-                var foto_user = '{{Auth()->user()->foto}}';
+                var cv = '{{ Auth()->user()->cv }}';
+                var lamaran = '{{ Auth()->user()->lamaran }}';
+                var foto_user = '{{ Auth()->user()->foto }}';
 
-                if (foto_user !== 'default/default.png' && (cv !== 'default/default.png' && lamaran !== 'default/default.png')) {
+                if (foto_user !== 'default/default.png' && (cv !== 'default/default.png' && lamaran !==
+                        'default/default.png')) {
                     swalWithBootstrapButtons.fire({
                         title: 'Apa kamu yakin',
                         text: "Ingin mendaftar di lowongan ini",

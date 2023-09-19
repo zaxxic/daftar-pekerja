@@ -60,13 +60,14 @@ class ProfileController extends Controller
             [
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|max:255|unique:users,email,' . $user->id,
-                'no_telp' => 'required|numeric|regex:/^\d*$/',
+                'no_telp' => 'required|numeric|regex:/^\d*$/|digits_between:10,13',
                 'alamat' => 'required|string',
                 'lamaran' => 'file|mimes:pdf|max:5120', // Max size: 5MB
                 'cv' => 'file|mimes:pdf|max:5120', // Max size: 5MB
             ],
             [
                 'name.required' => 'Nama harus diisi.',
+                'no_telp.digits_between' => 'nomor telepon harus antara 10 sampai 13 digit',
                 'name.string' => 'Format nama tidak valid.',
                 'name.max' => 'Nama tidak boleh lebih dari 255 karakter.',
                 'email.required' => 'Email harus diisi.',

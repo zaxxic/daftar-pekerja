@@ -33,7 +33,7 @@ class RegisterController extends Controller
                         JenisKelaminEnum::PEREMPUAN,
                     ]),
                 ],
-                'no_telp' => 'required|numeric|regex:/^\d*$/',
+                'no_telp' => 'required|digits_between:10,13|numeric|regex:/^\d*$/',
                 'password' => ['required', 'string', 'min:6', 'confirmed'],
             ],
             [
@@ -43,6 +43,7 @@ class RegisterController extends Controller
                 'email.unique' => 'Email Sudah Terdaftar',
                 'jenis_kelamin.required' => 'Jenis Kelamin Wajib Diisi',
                 'jenis_kelamin.in' => 'Jenis Kelamin Wajib Diisi',
+                'no_telp.digits_between' => 'nomor telepon harus antara 10 sampai 13 digit',
                 'no_telp.required' => 'No Telephone Wajib Diisi',
                 'no_telp.numeric' => 'No Telephone Wajib Diisi Angka',
                 'no_telp.regex' => 'No Telephone Tidak Boleh Minus',
