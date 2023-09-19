@@ -15,17 +15,19 @@ class DivisiController extends Controller
         ],[
             'divisi.required' => "divisi tidak boleh kosong"
         ]);
-
+        if (Division::where('divisi', $request->divisi)->exists()) {
+            return response()->json([
+                'status' => 'gagal',
+                'message' => 'Divisi yang anda inputkan telah ada']);
+        }
         $division = Division::create([
             'divisi' => $request->divisi,
             'status' => 'aktif'
         ]);
 
-        if ($request->ajax()) {
-            return response()->json(['message' => 'Data berhasil disimpan.', 'division' => $division], 200);
-        }
-
-        return redirect()->back()->with('success', 'Data berhasil disimpan.');
+            return response()->json([
+                'status' => 'sukses',
+                'message' => 'Data berhasil disimpan.', 'division' => $division], 200);
     }
 
 

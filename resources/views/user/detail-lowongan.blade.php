@@ -515,12 +515,15 @@
             y.submit();
         }
 
-        document.getElementById('shareFacebook').addEventListener('click', function() {
+        </script>
+       <script>
+         document.getElementById('shareFacebook').addEventListener('click', function() {
             var currentUrl = window.location.href;
             var facebookLink = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(currentUrl);
+            console.log(facebookLink);
             window.open(facebookLink, '_blank');
-        });
-    </script>
+        }); 
+       </script>
     <script>
         document.getElementById('shareWhatsapp').addEventListener('click', function() {
             var currentUrl = window.location.href;
