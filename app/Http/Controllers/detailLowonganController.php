@@ -101,6 +101,13 @@ class DetailLowonganController extends Controller
             return redirect()->route('dashboard-user');
         }
 
+        $reg = Registration::where('users_id', Auth()->user()->id)
+            ->whereIn('status', ['menunggu', 'diterima', 'ditolak', 'nonaktif'])
+            ->latest()
+            ->get();
+            // dd($reg);
+
+
         $registrations = Registration::where('users_id', $loggedInUser->id)
             ->where('status', 'menunggu')
             ->exists();
@@ -134,7 +141,7 @@ class DetailLowonganController extends Controller
         }
 
 
-        return view('user.detail-lowongan', compact('lowongan', 'registrations', 'status'));
+        return view('user.detail-lowongan', compact('lowongan', 'registrations', 'status', 'reg'));
     }
 
     /**
