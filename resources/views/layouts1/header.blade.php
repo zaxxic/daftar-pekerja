@@ -34,6 +34,11 @@
                     justify-content: center;
                 }
             }
+            @media(min-width: 1300px){
+                .hilang-gambar {
+                    display: none;
+                }
+            }
 
             .kecil{
                 font-size: 12px;
@@ -68,7 +73,10 @@
                     aria-controls="offcanvasWithBothOptions">
                     <i class="ti ti-align-justified fs-7"></i>
                 </a>
-                <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-center">
+                <a href="#" class=" hilang-gambar">
+                    <img src="{{ asset('assets/hummatech.png') }}" width="120" alt="" />
+                </a>
+                <ul class="navbar-nav flex-row  align-items-center justify-content-center">
 
                     <li class="nav-item dropdown">
                         <a class="nav-link pe-0" href="javascript:void(0)" id="drop1" data-bs-toggle="dropdown"

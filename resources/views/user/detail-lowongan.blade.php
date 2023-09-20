@@ -50,11 +50,21 @@
         <link rel="icon" type="image/png" href="assets/logo.png">
 
         <!-- Title -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <title>Dashboard User</title>
         <style>
+            .status {
+                display: inline-block;
+                width: 92px;
+                height: 28px;
+                padding-left: 12px;
+                padding-right: 20px;
+                padding-top: 2px;
+                padding-bottom: 1px;
+                color: white;
+                border-radius: 4px;
+            }
+
             .highlight-box {
                 display: inline-block;
                 width: 10px;
@@ -136,14 +146,14 @@
         }
     </style>
     @if (session()->has('sukses'))
-        <script>
-            alert("anda sudah terdaftar")
-        </script>
+    <script>
+        alert("anda sudah terdaftar")
+    </script>
     @endif
     @if (session()->has('error'))
-        <script>
-            alert("anda tidak bisa daftar kembali")
-        </script>
+    <script>
+        alert("anda tidak bisa daftar kembali")
+    </script>
     @endif
 
 
@@ -189,33 +199,30 @@
                                             <div class="col-12 col-md-12 d-flex  daftar ">
                                                 <div class="row">
                                                     <div class="col-6" class="kembali">
-                                                        <li class="kembali"><button class="btn btn-warning"><a
-                                                                    href="{{ route('dashboard-user') }}"
-                                                                    class="text-white">Kembali</a></button>
+                                                        <li class="kembali"><button class="btn btn-warning"><a href="{{ route('dashboard-user') }}" class="text-white">Kembali</a></button>
                                                         </li>
                                                     </div>
                                                     <div class="col-6" class="kembali">
                                                         @if ($status === 'sudah')
-                                                            <li>
-                                                                <p>Anda sudah mendaftar pada lowongan lain.</p>
-                                                            </li>
+                                                        <li>
+                                                            <p>Anda sudah mendaftar pada lowongan lain.</p>
+                                                        </li>
                                                         @elseif ($status === 'belum')
                                                             <button type="button" class="btn btn-primary"
                                                                 style="background-color: #2042e3" id="daftar"
                                                                 class="kembalii">Daftar</button>
                                                         @elseif ($status === 'disini')
-                                                            <li>
-                                                                <button type="button" class="btn btn-danger"
-                                                                    id="batal">Batal</button>
-                                                            </li>
+                                                        <li>
+                                                            <button type="button" class="btn btn-danger" id="batal">Batal</button>
+                                                        </li>
                                                         @elseif ($status === 'diterima_disini')
-                                                            <li>
-                                                                <p>anda di terima di lowongan ini </p>
-                                                            </li>
+                                                        <li>
+                                                            <p>anda di terima di lowongan ini </p>
+                                                        </li>
                                                         @else
-                                                            <li>
-                                                                <p>anda sudah di terima pada lowongan lain</p>
-                                                            </li>
+                                                        <li>
+                                                            <p>anda sudah di terima pada lowongan lain</p>
+                                                        </li>
                                                         @endif
                                                     </div>
 
@@ -241,13 +248,29 @@
 
                 <div class="col-lg-4">
                     <div class="employers-details-sidebar">
-
-
+                    <div class="employer-widget">
+                            <h3>Status</h3>
+                            <ul class="overview">
+                                <li class="mb-5">
+                                    @foreach ($reg as $registration)
+                                    @if ($registration->vacancie_id === $lowongan->id)
+                                <li class="mb-5">
+                                    @if ($registration->status === 'diterima')
+                                    <span class="status bg-success" style="width: 79px;">{{ $registration->status }}</span>
+                                    @elseif(in_array($registration->status, ['ditolak', 'nonaktif']))
+                                    <span class="status bg-danger" style="width: 75px;">{{ $registration->status }}</span>
+                                    @else
+                                    <span class="status bg-warning" style="align-items: center;">
+                                        <span style="margin-right: -50px;">{{ $registration->status }}</span>
+                                    </span>
+                                    @endif
+                                </li>
+                                @endif
+                                @endforeach
+                            </ul>
+                        </div>
                         <div class="employer-widget">
                             <h3>Detail Lowongan Perusahaan</h3>
-
-
-
                             <ul class="overview">
                                 <li>
                                     Divisi
@@ -317,8 +340,7 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="single-footer-widget single-bg">
                                     <a class="logo" href="index.html">
-                                        <img width="180px" src="{{ asset('assets/hummatech.png') }}"
-                                            alt="logo">
+                                        <img width="180px" src="{{ asset('assets/hummatech.png') }}" alt="logo">
                                     </a>
                                     <p>Hummasoft merupakan sebuah perusahaan yang bergerak dibidang IT (Information
                                         Technology).</p>
@@ -335,8 +357,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="https://id.linkedin.com/in/hummasoft-technology-2476a8241"
-                                                target="_blank">
+                                            <a href="https://id.linkedin.com/in/hummasoft-technology-2476a8241" target="_blank">
                                                 <i class="bx bxl-linkedin-square"></i>
                                             </a>
                                         </li>
@@ -362,8 +383,7 @@
                                         <li class="mb-3" s>
                                             <i class="bx bx-envelope"></i>
                                             <span>Email:</span>
-                                            <a><span class="__cf_email__"
-                                                    data-cfemail="f098959c9c9fb09a859299de939f9d">hummatechcareer@gmail.com</span></a>
+                                            <a><span class="__cf_email__" data-cfemail="f098959c9c9fb09a859299de939f9d">hummatechcareer@gmail.com</span></a>
                                         </li>
                                         <li class="location">
                                             <i class="bx bx-location-plus"></i>
