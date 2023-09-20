@@ -82,7 +82,7 @@ Route::middleware('checkLogin')->group(function () {
         Route::post('/ubah-password', [ProfileController::class, 'updatePassword'])->name('ubah-password');
         Route::patch('/ubah-profile', [ProfileController::class, 'updateProfile'])->name('ubah-profile');
         Route::patch('/ubah-foto', [ProfileController::class, 'updateFoto'])->name('ubah-foto');
-        route::resource('detail-lowongan', DetailLowonganController::class);
+        Route::resource('detail-lowongan', DetailLowonganController::class);
         route::post('batalkan-lowongan',[ DetailLowonganController::class, 'batalkan'])->name('batalkan-lowongan');
         Route::get('/detail-lowongan{id}', [DetailLowonganController::class, 'show'])->name('detailLowongan');
         Route::get('/dashboard-user', [DashboardUserController::class, 'index'])->name('dashboard-user');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Divisi;
 use App\Models\Division;
+use App\Models\Register;
 use App\Models\Registration;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Vacancy;
@@ -18,23 +19,30 @@ class DashboardUserController extends Controller
     public function index()
 {
     $selectedDivision = 'semua';
-
     // Ambil semua pendaftaran yang terkait dengan pengguna saat ini
     $registration = Registration::where('users_id', Auth()->user()->id)
         ->whereIn('status', ['menunggu', 'diterima', 'ditolak', 'nonaktif'])
         ->latest()
         ->paginate(5);
+    $pp = Registration::where('users_id', Auth()->user()->id)->first();
+    if($pp){
+        $qq = $pp->vacancie_id;
+         // Ambil semua lowongan yang masih aktif dan memiliki batas tanggal setelah hari ini
+        $lowongan = Vacancy::where('status', 'aktif')
+        ->whereDate('batas', '>=', Carbon::today())
+        ->whereNotIn('id', [$qq])
+        ->orderByRaw('DATEDIFF(batas, CURDATE())')
+        ->latest()
+        ->paginate(5);
+    }else{
+        $lowongan = Vacancy::where('status', 'aktif')
+        ->whereDate('batas', '>=', Carbon::today())
+        ->orderByRaw('DATEDIFF(batas, CURDATE())')
+        ->latest()
+        ->paginate(5);
+    };
 
-    // Ambil semua lowongan yang masih aktif dan memiliki batas tanggal setelah hari ini
-    $lowongan = Vacancy::where('status', 'aktif')
-    ->whereDate('batas', '>=', Carbon::today())
-    ->whereNotIn('id', function($query) {
-        $query->select('vacancie_id')
-            ->from('Registrations');
-    })
-    ->orderByRaw('DATEDIFF(batas, CURDATE())')
-    ->latest()
-    ->paginate(5);
+
 
 
     // Menonaktifkan lowongan yang sudah melewati tanggal batasnya (deadline)

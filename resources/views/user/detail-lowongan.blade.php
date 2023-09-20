@@ -220,9 +220,9 @@
                                                     </div>
                                                     <div class="col-6" class="kembali">
                                                         @if ($status === 'sudah')
-                                                            <li>
-                                                                <p>Anda sudah mendaftar pada lowongan lain.</p>
-                                                            </li>
+                                                        <button type="button" class="btn btn-primary"
+                                                        style="background-color: #2042e3"
+                                                        class="kembalii">Terdaftar</button>
                                                         @elseif ($status === 'belum')
                                                             <button type="button" class="btn btn-primary"
                                                                 style="background-color: #2042e3" id="daftar"
@@ -233,13 +233,13 @@
                                                                     id="batal">Batal</button>
                                                             </li>
                                                         @elseif ($status === 'diterima_disini')
-                                                            <li>
-                                                                <p>anda di terima di lowongan ini </p>
-                                                            </li>
+                                                        <button type="button" class="btn btn-primary"
+                                                        style="background-color: #2042e3"
+                                                        class="kembalii">Diterima</button>
                                                         @else
-                                                            <li>
-                                                                <p>anda sudah di terima pada lowongan lain</p>
-                                                            </li>
+                                                        <button type="button" class="btn btn-primary"
+                                                        style="background-color: #2042e3"
+                                                        class="kembalii">Diterima</button>
                                                         @endif
                                                     </div>
 
@@ -265,28 +265,31 @@
 
                 <div class="col-lg-4">
                     <div class="employers-details-sidebar">
-                        <div class="employer-widget">
-                            <h3>Status</h3>
-                            <ul class="overview">
-                                <li class="mb-5">
-                                    @foreach ($reg as $registration)
+                        <div class="card">
+                            <div class="card-title">
+                                <div style="display: flex; align-items: center;">
+                                    <ul class="">
+                                        @foreach ($reg as $registration)
                                         @if ($registration->vacancie_id === $lowongan->id)
-                                <li class="mb-5">
-                                    @if ($registration->status === 'diterima')
-                                        <span class="status bg-success"
-                                            style="width: 79px;">{{ $registration->status }}</span>
-                                    @elseif(in_array($registration->status, ['ditolak', 'nonaktif']))
-                                        <span class="status bg-danger"
-                                            style="width: 75px;">{{ $registration->status }}</span>
-                                    @else
-                                        <span class="status bg-warning" style="align-items: center;">
-                                            <span style="margin-right: -50px;">{{ $registration->status }}</span>
-                                        </span>
-                                    @endif
-                                </li>
-                                @endif
-                                @endforeach
-                            </ul>
+                                        <li class="mt-3 ms-4" style="display: flex; align-items: center; justify-content: space-between;">
+                                            <span >Status:</span>
+                                            @if ($registration->status === 'diterima')
+                                            <span class="status fs-5" style="width: 200px; color: green;">{{ $registration->status }}</span>
+                                            @elseif(in_array($registration->status, ['ditolak', 'nonaktif']))
+                                            <span class="status fs-5" style="width: 200px; color: red;">{{ $registration->status }}</span>
+                                            @else
+                                            <span class="status fs-5" style="width: 200px; color: #ffae1f;">{{ $registration->status }}</span>
+                                            @endif
+                                        </li>
+                                        @endif
+
+                                        @endforeach
+                                    </ul>
+
+
+
+                                </div>
+                            </div>
                         </div>
                         <div class="employer-widget">
                             <h3>Detail Lowongan Perusahaan</h3>

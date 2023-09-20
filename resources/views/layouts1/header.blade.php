@@ -60,7 +60,7 @@
             </li>
         </ul>
         <div class="d-block d-xl-none mt-1 mb-2">
-            <a href="index.html" class="text-nowrap nav-link">
+            <a href="#" class="text-nowrap nav-link">
                 <img src="" width="180" alt="" />
             </a>
         </div>

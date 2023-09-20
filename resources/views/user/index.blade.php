@@ -216,7 +216,7 @@
                         .detail {
                             text-align: right;
                         }
-                        }
+
                     </style>
                     <div class="employers-listing-sidebar mt-5 mb-5 " id="pp">
                         <h3>Lamaran Ditampung</h3>
@@ -335,15 +335,7 @@
 
                             @empty
                             @endforelse
-                            <div class="col-12">
-                                <div class="pagination-area">
-                                    @if ($cek > 2)
-                                        <button class="default-btn"><a href="{{ route('lowongan-user', $item->id) }}"
-                                                class="text-white">Lihat Selengkapnya</a></button>
-                                    @endif
-                                    {{-- {{ $lowongan->links() }} --}}
-                                </div>
-                            </div>
+                           
                         </div>
                         <div class="row">
                             @forelse ($lowongan as $item)
