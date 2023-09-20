@@ -28,12 +28,13 @@ class ProfileController extends Controller
                     }
                 },
             ],
-                'new_password' => 'required|min:6|confirmed',
+                'new_password' => 'required|min:6|confirmed|max:12',
             ],
             [
                 'current_password.required' => 'Password Lama Wajib Diisi',
                 'new_password.required' => 'Password Baru Wajib Diisi',
                 'new_password.min' => 'Password Baru Minimal 6 Huruf',
+                'new_password.max' => 'Password Baru Maximal 12 Huruf',
                 'new_password.confirmed' => 'Konfirmasi Password Tidak Valid',
             ]
         );
@@ -52,6 +53,7 @@ class ProfileController extends Controller
         return redirect()->back()->with('success', 'Password berhasil diperbarui');
     }
 
+    
     public function updateProfile(Request $request)
     {
         $user = Auth::user();

@@ -148,7 +148,7 @@
                             align-items: center;
                             text-align: center;
                             justify-content: center;
-                            margin-left: 13px       ;
+                            margin-left: 13px;
                             border-radius: 10%;
                             width: 100%;
                         }
@@ -169,24 +169,54 @@
                                 <div class="modal-body">
                                     <div class="container">
                                         <div class="row">
-                                            <!-- Kolom untuk gambar (kiri) -->
-                                            <div class="col-lg-4 col-sm-4 col-md-12">
+                                            <div class="col-lg-4 col-sm-4 col-md-8 my-auto mx-auto">
                                                 <div class="justify-content-center align-items-center fotos">
                                                     <img src="{{ asset('foto_user/' . $item->User->foto) }}"
                                                         class="img-fluid rounded-circle"
                                                         style="width: 220px; height: 220px;" />
                                                 </div>
                                             </div>
-
-                                            <div class="col-lg-8 col-sm-8 col-md-12">
+                                            <div class="col-lg-8  col-12">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h5 class="card-title">Data Diri Pekerja</h5>
+                                                        <h5 class="mb-3">Data Diri Pekerja</h5>
+                                                        <div class="mb-1">
+                                                            <span class="fw-bold me-3">Nama:</span>
+                                                            <span>{{ $item->User->name }}</span>
+                                                        </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;"
                                                             class="mt-0">
                                                         <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">Jenis
-                                                                Kelamin:</span>
+                                                            <span class="me-3" style="font-weight: 600;">Email:</span>
+                                                            <span>{{ $item->User->email }}</span>
+                                                        </div>
+                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
+                                                            class="mt-0">
+                                                        <div class="d-flex mb-1">
+                                                            <span style="font-weight: 600;">Divisi:</span>
+                                                            <span
+                                                                class="ms-2">{{ $item->Vacancy->Division->divisi }}</span>
+                                                        </div>
+                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
+                                                            class="mt-0">
+                                                        <div class="d-flex mb-1">
+                                                            <span class="me-3" style="font-weight: 600;">Posisi:</span>
+                                                            <span>{{ $item->Vacancy->pekerja }}</span>
+                                                        </div>
+                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
+                                                            class="mt-0">
+
+                                                        <!-- Tambahkan data lainnya di sini menggunakan format yang sama -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12  col-12">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h5 class="mb-3">Data Lengkap Pekerja</h5>
+
+                                                        <div class="mb-1">
+                                                            <span class="fw-bold me-3">Jenis Kelamin:</span>
                                                             <span>{{ $item->User->jenis_kelamin }}</span>
                                                         </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;"
@@ -199,23 +229,20 @@
                                                         <hr style="width: 100%; border-top: 1px solid #000000;"
                                                             class="mt-0">
                                                         <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">Email:</span>
-                                                            <span>{{ $item->User->email }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
                                                             <span style="font-weight: 600;">Alamat:</span>
                                                             <span class="ms-2">{{ $item->User->alamat }}</span>
                                                         </div>
                                                         <hr style="width: 100%; border-top: 1px solid #000000;"
                                                             class="mt-0">
+
+                                                        <!-- Tambahkan data lainnya di sini menggunakan format yang sama -->
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>

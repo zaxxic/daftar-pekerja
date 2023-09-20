@@ -107,20 +107,20 @@
                                     <a href="{{ asset('foto_user/' . $user->foto) }}" data-lightbox="image-1"
                                         data-title="Gambar Profil Anda">
                                         @if ($user->foto === 'default/default.png')
-                                        <img src="{{ asset($user->foto) }}" alt="" width="180px"
-                                            class="img-fluid rounded-circle" style="width: 120px; height: 120px;">
+                                            <img src="{{ asset($user->foto) }}" alt="" width="180px"
+                                                class="img-fluid rounded-circle" style="width: 120px; height: 120px;">
                                         @else
-                                        <img src="{{ asset('foto_user/' . $user->foto) }}" alt="" width="180px"
-                                            class="img-fluid rounded-circle" style="width: 120px; height: 120px;">
+                                            <img src="{{ asset('foto_user/' . $user->foto) }}" alt="" width="180px"
+                                                class="img-fluid rounded-circle" style="width: 120px; height: 120px;">
                                         @endif
                                     </a>
 
                                     <!-- <div class="d-flex align-items-center justify-content-center my-4 gap-3">
-                                                                                    <input type="file" name="foto" class="form-control" id="exampleInputResume">
-                                                                                    @error('foto')
+                                                                                        <input type="file" name="foto" class="form-control" id="exampleInputResume">
+                                                                                        @error('foto')
         <div class="text-danger">{{ $message }}</div>
     @enderror
-                                                                                </div> -->
+                                                                                    </div> -->
                                     <form action="{{ route('ubah-foto') }}" enctype="multipart/form-data" method="post">
                                         @method('PATCH')
                                         @csrf
@@ -183,38 +183,42 @@
                                         <div class="mb-4">
                                             <label for="exampleInputResume" class="form-label fw-semibold">Masukkan
                                                 Lamaran (format harus PDF)</label>
-                                                <div class=" row gap-2">
-                                                    <div class="col-12 col-md-6">
+                                            <div class=" row gap-2">
+                                                <div class="col-12 col-md-6">
                                                     <input type="file" name="lamaran" class="form-control"
                                                         id="lamaran">
-                                                    @error('lamaran')
-                                                        <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
+
                                                 </div>
 
                                                 <div class="col-12 col-md-5 d-flex justify-content-end ">
-                                                    <a  data-bs-toggle="modal"
-                                                    data-bs-target="#detail-lamaran-{{ Auth()->User()->lamaran }}" class="btn btn-primary col-8 col-md-12 " >Lihat Lamaran</a>
+                                                    <a data-bs-toggle="modal"
+                                                        data-bs-target="#detail-lamaran-{{ Auth()->User()->lamaran }}"
+                                                        class="btn btn-primary col-8 col-md-12 ">Lihat Lamaran</a>
                                                 </div>
                                             </div>
+                                            @error('lamaran')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="mb-4">
                                             <label for="exampleInputCV" class="form-label fw-semibold">Masukkan
                                                 CV (format harus PDF)</label>
-                                                <div class=" row gap-2">
-                                                    <div class="col-12 col-md-6">
+                                            <div class=" row gap-2">
+                                                <div class="col-12 col-md-6">
                                                     <input type="file" name="cv" class="form-control"
                                                         id="cv">
-                                                    @error('cv')
-                                                        <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
+
                                                 </div>
 
                                                 <div class="col-12 col-md-5 d-flex justify-content-end ">
-                                                    <a  data-bs-toggle="modal"
-                                                    data-bs-target="#detail-cv-{{ Auth()->User()->cv }}" class="btn btn-primary col-8 col-md-12 " >Lihat CV</a>
+                                                    <a data-bs-toggle="modal"
+                                                        data-bs-target="#detail-cv-{{ Auth()->User()->cv }}"
+                                                        class="btn btn-primary col-8 col-md-12 ">Lihat CV</a>
                                                 </div>
                                             </div>
+                                            @error('cv')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                         <div class="mb-4">
                                             <label for="exampleInputAddress" class="form-label fw-semibold">Alamat</label>

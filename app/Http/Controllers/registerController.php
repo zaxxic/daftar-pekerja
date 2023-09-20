@@ -23,8 +23,8 @@ class RegisterController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'name' => 'required',
-                'email' => 'required|unique:users,email',
+                'name' => 'required|max:225',
+                'email' => 'required|unique:users,email|max:225',
                 'alamat' => 'required',
                 'jenis_kelamin' => [
                     'required',
@@ -38,6 +38,8 @@ class RegisterController extends Controller
             ],
             [
                 'name.required' => 'Nama Wajib Diisi',
+                'name.max' => 'Nama tidak boleh lebih dari 255 karakter.',
+                'email.max' => 'email tidak boleh lebih dari 255 karakter.',
                 'alamat.required' => 'Alamat wajib di isi',
                 'email.required' => 'Email Wajib Diisi',
                 'email.unique' => 'Email Sudah Terdaftar',
