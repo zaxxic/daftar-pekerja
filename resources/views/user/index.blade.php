@@ -209,14 +209,13 @@
 
                         /* Gaya untuk tampilan desktop (lebar layar lebih dari 767px) */
                         @media (min-width: 768px) {
-                            .tanggal {
-                                text-align: right;
-                                /* Teks berakhir pada tanggal akan diatur ke kanan */
-                            }
 
-                            .detail {
-                                text-align: right;
-                            }
+                            /* Teks berakhir pada tanggal akan diatur ke kanan */
+                        }
+
+                        .detail {
+                            text-align: right;
+                        }
                         }
                     </style>
                     <div class="employers-listing-sidebar mt-5 mb-5 " id="pp">
@@ -290,15 +289,16 @@
                         <div class="row">
                             @forelse ($registration as $item)
                                 <div class=" mix a s c " id="card2">
-                                    <div class="hot-jobs-list col-md-6 border border-info col-12 col-lg-12">
+                                    <div class="hot-jobs-list col-md-12 border border-info col-12 col-lg-12">
                                         <div class="row align-items-center ">
                                             <div class="col-12 col-lg-12 ">
                                                 <div class="hot-jobs-content ">
                                                     <div class="row d-flex justify-content-between"
                                                         style="color: black">
-                                                        <h3 class="col-12 col-md-4"><a
+                                                        <h3 class="col-12 col-md-12 col-lg-6"><a
                                                                 href="">{{ $item->Vacancy->judul }}</a></h3>
-                                                        <p class="col-12 col-md-8 tanggal">
+                                                        <p
+                                                            class="col-12 col-md-12 col-lg-6 tanggal justify-content-lg-end ">
                                                             <span class="text-center text-md-left">Berakhir Pada
                                                                 Tanggal:
                                                                 {{ Carbon::parse($item->Vacancy->batas)->format('d M Y') }}</span>
@@ -319,7 +319,7 @@
                                                                 </span>{{ $item->status }}</li>
 
                                                             <li
-                                                                class="col-12 col-lg-6 d-flex justify-content-center justify-content-md-end">
+                                                                class="col-12 col-md-12 col-lg-12 d-flex justify-content-center justify-content-md-center justify-content-lg-end">
                                                                 <a href="{{ route('detailLowongan', $item->Vacancy->id) }}"
                                                                     class="text-white">
                                                                     <button class="default-btn">Detail</button>
@@ -348,15 +348,16 @@
                         <div class="row">
                             @forelse ($lowongan as $item)
                                 <div class=" mix a s c" id="card2">
-                                    <div class="hot-jobs-list col-md-6 col-12 col-lg-12">
+                                    <div class="hot-jobs-list col-md-12 col-12 col-lg-12">
                                         <div class="row align-items-center">
                                             <div class="col-12 col-lg-12">
                                                 <div class="hot-jobs-content">
                                                     <div class="row d-flex justify-content-between"
                                                         style="color: black">
-                                                        <h3 class="col-12 col-md-4"><a
+                                                        <h3 class="col-12 col-md-12 col-lg-6"><a
                                                                 href="">{{ $item->judul }}</a></h3>
-                                                        <p class="col-12 col-md-8 tanggal">
+                                                        <p
+                                                            class="col-12 col-md-12 col-lg-6 tanggal justify-content-lg-end ">
                                                             <span class="text-center text-md-left">Berakhir Pada
                                                                 Tanggal:
                                                                 {{ Carbon::parse($item->batas)->format('d M Y') }}</span>
@@ -370,10 +371,10 @@
                                                         </li>
                                                         <li><span>Slot Tersedia : </span>{{ $item->slot }}</li>
                                                         <div class="row ">
-                                                            <li class="col-12 col-md-6"><span>Tipe Kerja :
+                                                            <li class="col-12 col-md-12"><span>Tipe Kerja :
                                                                 </span>{{ $item->tipe }}</li>
                                                             <li
-                                                                class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end">
+                                                                class="col-12 col-md-12 col-lg-12 d-flex justify-content-center justify-content-md-center justify-content-lg-end">
                                                                 <a href="{{ route('detailLowongan', $item->id) }}"
                                                                     class="text-white">
                                                                     <button class="default-btn">Detail</button>
@@ -634,8 +635,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
         src="
-                                                                                                                                                                                                                                                                                                                                                                                                                            https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                                                                                                                                                                                                                                                                                                                                                                                                            ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ">
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
