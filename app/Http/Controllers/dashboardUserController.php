@@ -43,7 +43,7 @@ class DashboardUserController extends Controller
 
     // Ambil semua divisi yang masih aktif
     $divisi = Division::where('status', 'aktif')->get();
-    
+
     $cek = Vacancy::where('status', 'aktif')->count();
 
     return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration', 'cek'));

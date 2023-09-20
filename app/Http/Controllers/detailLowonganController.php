@@ -12,7 +12,7 @@ use Illuminate\Support\Carbon;
 
 class DetailLowonganController extends Controller
 {
-      /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
@@ -50,17 +50,17 @@ class DetailLowonganController extends Controller
         ]);
 
         $ceking = Registration::where('users_id', Auth()->user()->id)
-        ->whereIn('status', ['ditolak','nonaktif'])
-        ->exists();
+            ->whereIn('status', ['ditolak', 'nonaktif'])
+            ->exists();
 
-        if($ceking){
+        if ($ceking) {
             $ceking = Registration::where('users_id', Auth()->user()->id)
-            ->whereIn('status', ['ditolak','nonaktif'])->first();
+                ->whereIn('status', ['ditolak', 'nonaktif'])->first();
             $ceking->update([
                 'status' => 'menunggu',
                 'vacancie_id' => $request->id
             ]);
-        }else{
+        } else {
             Registration::create([
                 'status' => 'menunggu',
                 'users_id' => Auth()->user()->id,
@@ -80,11 +80,24 @@ class DetailLowonganController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
+
         $lowongan = Vacancy::findOrFail($id);
         $loggedInUser = Auth()->user(); // Mengambil pengguna yang sudah login
-        if($lowongan->batas <= Carbon::today()){
+        // Mengambil tanggal sekarang
+        $today = Carbon::now();
+
+        // Mengambil tanggal kemarin
+        $yesterday = $today->subDay();
+
+        // Format tanggal kemarin sesuai kebutuhan
+        $yesterdayFormatted = $yesterday->toDateString();
+        if ($lowongan->batas < $yesterdayFormatted) {
+
+            return redirect()->route('dashboard-user');
+        }
+        if (in_array($lowongan->status, ['nonaktif', 'dihapus'])) {
             return redirect()->route('dashboard-user');
         }
 
@@ -93,32 +106,32 @@ class DetailLowonganController extends Controller
             ->exists();
 
 
+        if ($registrations) {
+            $registrations = Registration::where('users_id', $loggedInUser->id)
+                ->where('vacancie_id', $id)
+                ->exists();
+            if ($registrations) {
+                $status = 'disini';
+            } else {
+                $status = 'sudah';
+            }
+        } else {
+            $registrations = Registration::where('users_id', $loggedInUser->id)
+                ->where('status', 'diterima')
+                ->exists();
             if ($registrations) {
                 $registrations = Registration::where('users_id', $loggedInUser->id)
                     ->where('vacancie_id', $id)
                     ->exists();
-                    if ($registrations){
-                        $status = 'disini';
-                    }else{
-                        $status = 'sudah';
-                    }
-            } else {
-                $registrations = Registration::where('users_id', $loggedInUser->id)
-                ->where('status', 'diterima')
-                ->exists();
-                if ($registrations){
-                    $registrations = Registration::where('users_id', $loggedInUser->id)
-                    ->where('vacancie_id', $id)
-                    ->exists();
-                    if ($registrations){
-                        $status = 'diterima_disini';
-                    }else{
-                        $status = 'terima';
-                    }
-                }else{
-                    $status = 'belum';
+                if ($registrations) {
+                    $status = 'diterima_disini';
+                } else {
+                    $status = 'terima';
                 }
+            } else {
+                $status = 'belum';
             }
+        }
 
 
         return view('user.detail-lowongan', compact('lowongan', 'registrations', 'status'));
