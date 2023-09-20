@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\UpdateLowonganRequest;
 use App\Models\Registration;
 use App\Models\User;
+use App\TipePekerjaEnum;
+use DateTime;
 
 class LowonganController extends Controller
 {
@@ -72,37 +74,39 @@ class LowonganController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'judul' => 'required',
+            'judul' => 'required|max:100',
             'devisi' => 'required',
-            'batas' => [
-                'required',
-                function ($attribute, $value, $fail) {
-                    if (Carbon::parse($value)->isBefore(Carbon::now()->subDay())) {
-                        $fail('Tanggal tenggat tidak boleh hari kemarin');
-                    }
-                },
-            ],
-            'pekerjaan' => 'required',
+            'batas' => 'required|date|after_or_equal:today',
+            'pekerjaan' => 'required|max:100',
             'slot' => 'required|numeric|min:1',
-            'gaji' => 'required|numeric|min:100000|',
-            'tipe' => 'required',
-            'lokasi' => 'required',
-            'content' => 'required'
+            'gaji' => 'required|numeric|min:100000',
+            'tipe' => [
+                'required',
+                'in:' . implode(',', [
+                    TipePekerjaEnum::KONTRAK,
+                    TipePekerjaEnum::PERMANEN,
+                ]),
+            ],
+            'lokasi' => 'required|max:150',
+            'content' => 'required',
         ], [
             'judul.required' => 'judul harus di isi',
+            'judul.max' => 'judul maksimal 100 karakter',
             'devisi.required' => 'devisi harus di isi',
-            'batas.required' => 'batas harus di isi',
+            'batas.required' => 'batas lowongan harus di isi',
+            'batas.date' => 'batas lowongan tidak valid',
             'pekerjaan.required' => 'pekerjaan harus di isi',
+            'pekerjaan.max' => 'pekerjaan maksimal 100 karakter',
             'slot.required' => 'slot harus di isi',
             'slot.min' => 'slot minimal satu',
-            'slow.numeric' => 'slot hanya boleh angka',
             'slot.numeric' => 'slot hanya boleh angka',
-            'gaji.numeric' => 'gaji hanya boleh angka',
             'gaji.required' => 'gaji harus di isi',
             'gaji.min' => 'gaji tidak boleh kurang dari 100.000',
-            'gaji.max' => 'gaji tidak boleh lebih dari 10 angka',
+            'gaji.max' => 'gaji tidak bole lebi dari 10 angka',
             'tipe.required' => 'tipe harus di isi',
+            'tipe.in' => 'pilih tipe pekerjaan "kontrak" atau "permanen"',
             'lokasi.required' => 'lokasi harus di isi',
+            'lokasi.max' => 'lokasi maksimal 150 karakter',
             'content.required' => 'syarat harus di isi',
         ]);
 
@@ -147,27 +151,29 @@ class LowonganController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'judul' => 'required',
+            'judul' => 'required|max:100',
             'devisi' => 'required',
-            'batas' => [
-                'required',
-                function ($attribute, $value, $fail) {
-                    if (Carbon::parse($value)->isBefore(Carbon::now()->subDay())) {
-                        $fail('Tanggal tenggat tidak boleh hari kemarin');
-                    }
-                },
-            ],
-            'pekerjaan' => 'required',
+            'batas' => 'required|date|after_or_equal:today',
+            'pekerjaan' => 'required|max:100',
             'slot' => 'required|numeric|min:1',
-            'gaji' => 'required|numeric|min:100000', // Gaji maksimal 10 digit
-            'tipe' => 'required',
-            'lokasi' => 'required',
+            'gaji' => 'required|numeric|min:100000',
+            'tipe' => [
+                'required',
+                'in:' . implode(',', [
+                    TipePekerjaEnum::KONTRAK,
+                    TipePekerjaEnum::PERMANEN,
+                ]),
+            ],
+            'lokasi' => 'required|max:150',
             'content' => 'required',
         ], [
             'judul.required' => 'judul harus di isi',
+            'judul.max' => 'judul maksimal 100 karakter',
             'devisi.required' => 'devisi harus di isi',
-            'batas.required' => 'batas harus di isi',
+            'batas.required' => 'batas lowongan harus di isi',
+            'batas.date' => 'batas lowongan tidak valid',
             'pekerjaan.required' => 'pekerjaan harus di isi',
+            'pekerjaan.max' => 'pekerjaan maksimal 100 karakter',
             'slot.required' => 'slot harus di isi',
             'slot.min' => 'slot minimal satu',
             'slot.numeric' => 'slot hanya boleh angka',
@@ -175,7 +181,9 @@ class LowonganController extends Controller
             'gaji.min' => 'gaji tidak boleh kurang dari 100.000',
             'gaji.max' => 'gaji tidak bole lebi dari 10 angka',
             'tipe.required' => 'tipe harus di isi',
+            'tipe.in' => 'pilih tipe pekerjaan "kontrak" atau "permanen"',
             'lokasi.required' => 'lokasi harus di isi',
+            'lokasi.max' => 'lokasi maksimal 150 karakter',
             'content.required' => 'syarat harus di isi',
         ]);
 
