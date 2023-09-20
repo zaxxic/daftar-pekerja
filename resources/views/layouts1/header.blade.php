@@ -24,7 +24,20 @@
                 transition: all 0.1s ease-in-out;
                 color: #5d87ff !important;
             }
+            @media (max-width:720px){
+                .hilang {
+                    display: none;
+                }
+                .tengah{
+                    display: flex;
+                    margin-bottom: 2px;
+                    justify-content: center;
+                }
+            }
 
+            .kecil{
+                font-size: 12px;
+            }
             /* Tambahkan aturan serupa untuk setiap tautan yang lain jika diperlukan */
         </style>
         <ul class="navbar-nav quick-links d-none d-xl-flex">
@@ -46,13 +59,8 @@
                 <img src="" width="180" alt="" />
             </a>
         </div>
-        <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="p-2">
-                <i class="ti ti-dots fs-7"></i>
-            </span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+
+        <div class=" navbar-collapse justify-content-end" id="navbarNav">
             <div class="d-flex align-items-center justify-content-between px-0 px-xl-8">
                 <a href="javascript:void(0)"
                     class="nav-link round-40 p-1 ps-0 d-flex d-xl-none align-items-center justify-content-center"
@@ -96,8 +104,8 @@
                                     <h5 class="mb-0 fs-5 fw-semibold">User Profil</h5>
                                 </div>
 
-                                <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                                    <div>
+                                <div class="row align-items-center py-9 mx-2 border-bottom">
+                                    <div class="col-12 col-md-3 tengah ">
                                         <div
                                             style="width: 60px; height: 60px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px;">
                                             @if (Auth()->user()->foto === "default/default.png")
@@ -112,12 +120,12 @@
                                         </div>
                                     </div>
 
-                                    <div class="ms-3">
-                                        <h5 class="mb-1 fs-3"> <i
-                                                class="ti ti-user fs-5 me-1"></i>{{ Auth()->user()->name }}</h5>
-                                        <p class="mb-0 d-flex text-dark align-items-center gap-2">
-                                            <i class="ti ti-mail fs-5"></i>{{ Auth()->user()->email }}
-                                        </p>
+                                    <div class=" col-12 col-md-9">
+                                        <h5 class="mb-1 row fs-3 tengah"> <i
+                                                class="ti col-1 ti-user fs-5 me-1 hilang"></i> <p class="kecil col-10 tengah">{{ Auth()->user()->name }}</p></h5>
+                                        <span class="mb-0 row text-dark align-items-center  tengah " style="max-width:100%; overflow: hidden" >
+                                            <i class="ti ti-mail fs-5 col-1 hilang"></i> <p class="col-12 col-md-10 kecil text-center" style="max-width: 80%">{{ Auth()->user()->email }}</p>
+                                        </span>
                                     </div>
 
                                 </div>

@@ -24,7 +24,7 @@ class LowonganController extends Controller
 
         if ($request->has('cari')) {
             $keyword = $request->cari;
-            $data = Vacancy::where('status', 'aktif')
+            $data = Vacancy::whereIn('status', ['aktif', 'nonaktif'])
                 ->where('judul', 'LIKE', '%' . $keyword . '%')
                 ->paginate(8);
             $data->appends(['cari' => $keyword]);

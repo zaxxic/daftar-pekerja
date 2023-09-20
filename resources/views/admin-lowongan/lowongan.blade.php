@@ -32,7 +32,7 @@
                             <div class="modal-body">
                                 <div class="d-flex justify-content-center">
                                     <input type="text" name="divisi" id="devisi" class="form-control" autofocus
-                                        placeholder="Masukan Divisi " style="width: 95%">
+                                        placeholder="Masukan Divisi " pattern="[a-zA-Z\s]+"  style="width: 95%">
                                     <span class="text-danger" id="error"></span>
                                 </div>
                             </div>

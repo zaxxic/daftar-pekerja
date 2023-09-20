@@ -27,10 +27,15 @@ class DashboardUserController extends Controller
 
     // Ambil semua lowongan yang masih aktif dan memiliki batas tanggal setelah hari ini
     $lowongan = Vacancy::where('status', 'aktif')
-        ->whereDate('batas', '>=', Carbon::today())
-        ->orderByRaw('DATEDIFF(batas, CURDATE())')
-        ->latest()
-        ->paginate(5);
+    ->whereDate('batas', '>=', Carbon::today())
+    ->whereNotIn('id', function($query) {
+        $query->select('vacancie_id')
+            ->from('Registrations');
+    })
+    ->orderByRaw('DATEDIFF(batas, CURDATE())')
+    ->latest()
+    ->paginate(5);
+
 
     // Menonaktifkan lowongan yang sudah melewati tanggal batasnya (deadline)
     $data = Vacancy::where('status', 'aktif')

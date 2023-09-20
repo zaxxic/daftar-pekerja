@@ -11,11 +11,12 @@ class DivisiController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'divisi' => 'required'
+            'divisi' => 'required|alpha'
         ],[
-            'divisi.required' => "divisi tidak boleh kosong"
+            'divisi.required' => "divisi tidak boleh kosong",
+            'divisi.alpha' => 'hanya bisa huruf alfabet'
         ]);
-        if (Division::where('divisi', $request->divisi)->exists()) {
+        if (Division::where('divisi', $request->divisi)->where('status','aktif')->exists()) {
             return response()->json([
                 'status' => 'gagal',
                 'message' => 'Divisi yang anda inputkan telah ada']);
