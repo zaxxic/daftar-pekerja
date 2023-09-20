@@ -106,6 +106,21 @@
             }
         }
 
+        @media (min-width: 768px) and (max-width: 1180px) {
+            .kembali {
+                margin-left: 210px;
+                margin-right: 80px;
+                text-align: center;
+                justify-content: space-between;
+                /* Atur margin kiri sesuai yang Anda inginkan */
+            }
+
+            .kembalii {
+                margin-left: 3000px;
+            }
+        }
+
+
         .kerja {
             background-image: url("assets1/images/banner/banner-bg.jpg");
             background-size: cover;
@@ -136,13 +151,13 @@
     <div class=" kerja" style="direction: ltr; margin-top: -45px;">
         <div class="container" style="margin-bottom: -100px; margin-left: -50px;">
             <div class="row">
-                <div class="col sm-6">
+                <div class="col-sm-12">
                     <div class="banner-content">
-                        <h1 style="margin-top: -40px;  font-weight: bolder; font-size: 50px; " class="judul">Detail
-                            Lowongan
-                            Kerja</h1>
-                        <ul>
-                            <li>
+                        <h1 style="margin-top: -40px; font-weight: bolder; font-size: 50px;" class="judul">Detail
+                            Lowongan Kerja</h1>
+
+                        <ul class="temukan-list">
+                            <li class="temukan mt-3">
                                 <h5>Temukan pekerjaan yang anda sukai!!</h5>
                             </li>
                         </ul>
@@ -169,48 +184,25 @@
                                         <li class="mb-3"><span>Posisi : </span> {{ $lowongan->pekerja }}</li>
                                         <li class="mb-3"><span>Slot Tersedia : </span> {{ $lowongan->slot }}</li>
                                         <div class="row">
-                                            <li class="col-12 col-md-6"><span>Tipe Kerja : </span>{{ $lowongan->tipe }}
+                                            <li class="col-12 col-md-12"><span>Tipe Kerja : </span>{{ $lowongan->tipe }}
                                             </li>
-                                            <div class="col-12 col-md-6 d-flex  daftar ">
+                                            <div class="col-12 col-md-12 d-flex  daftar ">
                                                 <div class="row">
-                                                    <div class="col-6">
-                                                        <li style="margin-right: -19%;"><button
-                                                                class="btn btn-warning"><a
+                                                    <div class="col-6" class="kembali">
+                                                        <li class="kembali"><button class="btn btn-warning"><a
                                                                     href="{{ route('dashboard-user') }}"
                                                                     class="text-white">Kembali</a></button>
                                                         </li>
                                                     </div>
-                                                    <div class="col-6">
-                                                        {{-- @if (Auth::check())
-                                                            <!-- Periksa apakah pengguna sudah login -->
-                                                            @if ($registrations !== null && $registrations->status !== 'menunggu')
-                                                                <!-- Pengguna telah mendaftar pada lowongan lain -->
-                                                                <li>
-                                                                    <button type="button" class="btn btn-primary"
-                                                                        style="background-color: #2042e3"
-                                                                        id="daftar">Daftar</button>
-                                                                </li>
-                                                            @else
-                                                                <!-- Pengguna belum mendaftar pada lowongan ini -->
-                                                                <li>
-                                                                    <p>Anda sudah mendaftar pada lowongan lain.</p>
-                                                                </li>
-                                                            @endif
-                                                        @else
-                                                            <!-- Tampilkan tombol "Daftar" jika pengguna belum login -->
-                                                            <li>
-                                                                <button type="button" class="btn btn-primary"
-                                                                    id="daftar">Daftar</button>
-                                                            </li>
-                                                        @endif --}}
+                                                    <div class="col-6" class="kembali">
                                                         @if ($status === 'sudah')
                                                             <li>
                                                                 <p>Anda sudah mendaftar pada lowongan lain.</p>
                                                             </li>
                                                         @elseif ($status === 'belum')
                                                             <button type="button" class="btn btn-primary"
-                                                                style="background-color: #2042e3"
-                                                                id="daftar">Daftar</button>
+                                                                style="background-color: #2042e3" id="daftar"
+                                                                class="kembalii">Daftar</button>
                                                         @elseif ($status === 'disini')
                                                             <li>
                                                                 <button type="button" class="btn btn-danger"
@@ -249,32 +241,7 @@
 
                 <div class="col-lg-4">
                     <div class="employers-details-sidebar">
-                        <div class="employer-widget">
-                            <h3>Bagikan Lowongan Ini</h3>
 
-                            <ul class="social-icon">
-                                <li id="shareFacebook">
-                                    <a>
-                                        <i class="bx bxl-facebook"></i>
-                                    </a>
-                                </li>
-                                <li id="shareWhatsapp">
-                                    <a>
-                                        <i class="bx bxl-whatsapp"></i>
-                                    </a>
-                                </li>
-                                <li id="shareLinkedin">
-                                    <a>
-                                        <i class="bx bxl-linkedin-square"></i>
-                                    </a>
-                                </li>
-                                <li id="shareTwitter">
-                                    <a>
-                                        <i class="bx bxl-twitter"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
 
                         <div class="employer-widget">
                             <h3>Detail Lowongan Perusahaan</h3>
@@ -302,6 +269,32 @@
                             </ul>
                         </div>
 
+                        <div class="employer-widget">
+                            <h3>Bagikan Lowongan Ini</h3>
+
+                            <ul class="social-icon">
+                                <li id="shareFacebook">
+                                    <a>
+                                        <i class="bx bxl-facebook"></i>
+                                    </a>
+                                </li>
+                                <li id="shareWhatsapp">
+                                    <a>
+                                        <i class="bx bxl-whatsapp"></i>
+                                    </a>
+                                </li>
+                                <li id="shareLinkedin">
+                                    <a>
+                                        <i class="bx bxl-linkedin-square"></i>
+                                    </a>
+                                </li>
+                                <li id="shareTwitter">
+                                    <a>
+                                        <i class="bx bxl-twitter"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
 
                     </div>
                 </div>
@@ -369,9 +362,7 @@
                                         <li class="mb-3" s>
                                             <i class="bx bx-envelope"></i>
                                             <span>Email:</span>
-                                            <a
-                                                ><span
-                                                    class="__cf_email__"
+                                            <a><span class="__cf_email__"
                                                     data-cfemail="f098959c9c9fb09a859299de939f9d">hummatechcareer@gmail.com</span></a>
                                         </li>
                                         <li class="location">
@@ -536,16 +527,15 @@
             var y = document.getElementById("myform");
             y.submit();
         }
-
-        </script>
-       <script>
-         document.getElementById('shareFacebook').addEventListener('click', function() {
+    </script>
+    <script>
+        document.getElementById('shareFacebook').addEventListener('click', function() {
             var currentUrl = window.location.href;
             var facebookLink = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(currentUrl);
             console.log(facebookLink);
             window.open(facebookLink, '_blank');
-        }); 
-       </script>
+        });
+    </script>
     <script>
         document.getElementById('shareWhatsapp').addEventListener('click', function() {
             var currentUrl = window.location.href;
