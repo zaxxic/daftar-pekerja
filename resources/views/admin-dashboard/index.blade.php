@@ -134,6 +134,19 @@
             // Data dari controller
             var chartData = @json($chartData);
 
+            var monthNames = ["", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September",
+                "Oktober", "November", "Desember"
+            ];
+
+            for (var i = 0; i < chartData.length; i++) {
+                var dateParts = chartData[i].month.split('-');
+                var year = dateParts[0];
+                var monthNumber = parseInt(dateParts[1]);
+                var monthName = monthNames[monthNumber];
+
+                chartData[i].month = year + '-' + monthName;
+            }
+
             // Konfigurasi grafik
             var options = {
                 chart: {
@@ -183,6 +196,14 @@
                         color: '#FF0000' // Set the color for the 'Ditolak' series
                     }
                 ],
+                yaxis: {
+                    labels: {
+                        formatter: function(value) {
+                            return Math.round(value); // Mengubah label sumbu y menjadi bilangan bulat
+                        }
+                    }
+                },
+
                 xaxis: {
                     categories: chartData.map(data => data.month)
                 },
