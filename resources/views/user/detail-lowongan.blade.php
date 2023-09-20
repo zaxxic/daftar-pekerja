@@ -248,13 +248,8 @@
 
                 <div class="col-lg-4">
                     <div class="employers-details-sidebar">
-
-
-                        <div class="employer-widget">
-                            <h3>Detail Lowongan Perusahaan</h3>
-
-
-
+                    <div class="employer-widget">
+                            <h3>Status</h3>
                             <ul class="overview">
                                 <li class="mb-5">
                                     @foreach ($reg as $registration)
@@ -272,9 +267,11 @@
                                 </li>
                                 @endif
                                 @endforeach
-
-
-                                </li>
+                            </ul>
+                        </div>
+                        <div class="employer-widget">
+                            <h3>Detail Lowongan Perusahaan</h3>
+                            <ul class="overview">
                                 <li>
                                     Divisi
                                     <span>: {{ $lowongan->Division->divisi }}</span>
