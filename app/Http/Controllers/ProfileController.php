@@ -28,7 +28,7 @@ class ProfileController extends Controller
                     }
                 },
             ],
-                'new_password' => 'required|min:6|confirmed|max:12',
+                'new_password' => 'required|min:6|max:12|confirmed',
             ],
             [
                 'current_password.required' => 'Password Lama Wajib Diisi',
