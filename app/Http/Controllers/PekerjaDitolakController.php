@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Registration;
 use App\Models\User;
+use App\Models\Rejected;
 use Illuminate\Http\Request;
 
 class PekerjaDitolakController extends Controller
@@ -25,10 +26,8 @@ class PekerjaDitolakController extends Controller
 
             $user->appends(['cari' => $keyword]);
         } else {
-            $user = Registration::whereHas('vacancy', function ($query) {
-                $query->where('status', '=', 'aktif'); // Filter berdasarkan status lowongan 'aktif'
-            })->where('status', '=', 'ditolak')
-                ->paginate(8);
+            $user = Rejected::get();
+
         }
 
         return view('admin-pekerja.pekerja-ditolak.index', compact('user', 'keyword')); // Kirimkan $keyword ke view

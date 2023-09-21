@@ -99,15 +99,34 @@ class DashboardUserController extends Controller
     {
         $selectedDivision = $request->input('division');
 
-        $lowongan = Vacancy::when($selectedDivision, function ($query) use ($selectedDivision) {
-            return $query->whereHas('division', function ($subQuery) use ($selectedDivision) {
-                $subQuery->where('divisi', $selectedDivision);
-            });
-        })
-            ->whereDate('batas', '>=', Carbon::today()->toDateString()) // Memastikan hanya lowongan yang berakhir pada hari ini dan seterusnya yang ditampilkan
-            ->orderByRaw('ABS(DATEDIFF(batas, CURDATE()))')->where('status', 'aktif')
-            ->latest()
-            ->paginate(3);
+
+        $pp = Registration::where('users_id', Auth()->user()->id)->first();
+        if($pp){
+            $qq = $pp->vacancie_id;
+
+            $lowongan = Vacancy::when($selectedDivision, function ($query) use ($selectedDivision) {
+                return $query->whereHas('division', function ($subQuery) use ($selectedDivision) {
+                    $subQuery->where('divisi', $selectedDivision);
+                });
+            })
+                ->whereDate('batas', '>=', Carbon::today()->toDateString()) // Memastikan hanya lowongan yang berakhir pada hari ini dan seterusnya yang ditampilkan
+                ->orderByRaw('ABS(DATEDIFF(batas, CURDATE()))')->where('status', 'aktif')
+                ->whereNotIn('id', [$qq])
+                ->latest()
+                ->paginate(3);
+
+        }else{
+            $lowongan = Vacancy::when($selectedDivision, function ($query) use ($selectedDivision) {
+                return $query->whereHas('division', function ($subQuery) use ($selectedDivision) {
+                    $subQuery->where('divisi', $selectedDivision);
+                });
+            })
+                ->whereDate('batas', '>=', Carbon::today()->toDateString()) // Memastikan hanya lowongan yang berakhir pada hari ini dan seterusnya yang ditampilkan
+                ->orderByRaw('ABS(DATEDIFF(batas, CURDATE()))')->where('status', 'aktif')
+                ->latest()
+                ->paginate(3);
+        };
+
 
          $registration = Registration::where('users_id', Auth()->user()->id)
             ->whereIn('status', ['menunggu', 'diterima', 'ditolak', 'nonaktif']) // Menggunakan whereIn untuk beberapa nilai status
