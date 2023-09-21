@@ -140,6 +140,12 @@ class ProfileController extends Controller
         // Validasi file yang diunggah (misalnya, tipe file, ukuran maksimal, dll.)
         $request->validate([
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Ganti sesuai kebutuhan Anda
+        ],
+        [
+            'foto.required' => 'Foto Profile Wajib Diisi',
+            'foto.image' => 'Foto Wajib Berupa Foto',
+            'foto.mimes' => 'Foto Wajib Berformat JPG, JPEG dan PNG',
+            'foto.max' => 'Foto Maksimal Berukuran 2048',
         ]);
 
         // Simpan file foto ke direktori yang sesuai
