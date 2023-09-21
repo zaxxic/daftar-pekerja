@@ -116,26 +116,26 @@
             }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width:  770px) {
             .daftar {
                 margin-top: 15px;
                 justify-content: center;
             }
         }
 
-        @media (min-width: 1080px) {
+        @media (min-width: 1200px) {
             .daftar {
                 justify-content: end;
 
             }
         }
 
-        @media (min-width: 768px) and (max-width: 1180px) {
+        @media (min-width: 770px) and (max-width: 1200px) {
             .kembali {
                 margin-left: 220px;
                 margin-right: 80px;
                 text-align: center;
-                justify-content: space-between;
+                justify-content: center;
                 /* Atur margin kiri sesuai yang Anda inginkan */
             }
 
@@ -213,12 +213,12 @@
                                             <div class="col-12 col-md-12 d-flex  daftar ">
                                                 <div class="row">
                                                     <div class="col-6" class="kembali">
-                                                        <li class="kembali"><button class="btn btn-warning"><a
+                                                       <button class="btn btn-warning kembali"><a
                                                                     href="{{ route('dashboard-user') }}"
                                                                     class="text-white">Kembali</a></button>
-                                                        </li>
+
                                                     </div>
-                                                    <div class="col-6" class="kembali">
+                                                    <div class="col-6" class="">
                                                         @if ($status === 'sudah')
                                                         <button type="button" class="btn btn-primary"
                                                         style="background-color: #2042e3"
@@ -294,24 +294,23 @@
                         <div class="employer-widget">
                             <h3>Detail Lowongan Perusahaan</h3>
                             <ul class="overview">
-                                <li>
-                                    Divisi
-                                    <span class="ellipsis">: {{ $lowongan->Division->divisi }}</span>
+                                <li class="row">
+                                    <p class="  col-5"> Divisi</p>
+                                    <p class="ellipsis  col-7">: {{ $lowongan->Division->divisi }}</p>
                                 </li>
-                                <li>
-                                    Gaji
-                                    <span class="ellipsis">:
-                                        {{ 'Rp ' . number_format($lowongan->gaji, 0, ',', '.') }}</span>
+                                <li class="row">
+                                    <p class=" col-5">Gaji</p>
+                                    <p class="  col-7">:
+                                        {{ 'Rp ' . number_format($lowongan->gaji, 0, ',', '.') }}</p>
                                 </li>
-                                <li>
-                                    Tipe Kerja
-                                    <span>: {{ $lowongan->tipe }}</span>
+                                <li class="row">
+                                    <p class=" col-5">Tipe Kerja</p>
+                                    <p class=" col-7 ellipsis">: {{ $lowongan->tipe }}</p>
                                 </li>
-                                <li>
-                                    Lokasi
-                                    <span class="ellipsis">: {{ $lowongan->lokasi }}</span>
+                                <li class="row">
+                                    <p class=" col-5"> Lokasi</p>
+                                    <p  class= "ellipsis  col-7">: {{ $lowongan->lokasi }}</p>
                                 </li>
-
                             </ul>
                         </div>
 

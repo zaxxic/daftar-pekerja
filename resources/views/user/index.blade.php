@@ -216,7 +216,6 @@
                         .detail {
                             text-align: right;
                         }
-
                     </style>
                     <div class="employers-listing-sidebar mt-5 mb-5 " id="pp">
                         <h3>Lamaran Ditampung</h3>
@@ -312,19 +311,27 @@
                                                         </li>
                                                         <li><span>Slot Tersedia : </span>{{ $item->Vacancy->slot }}
                                                         </li>
+                                                        @if (in_array($item->Vacancy->status, ['dihapus', 'nonaktif']))
+                                                            <li><span>Status Lowongan : </span>sudah tidak tersedia</li>
+                                                        @endif
+                                                        </li>
                                                         <div class="row">
                                                             <li class="col-12 col-md-12"><span>Tipe Kerja :
                                                                 </span>{{ $item->Vacancy->tipe }}</li>
                                                             <li class="col-12 col-md-12 col-lg-12"><span>Status :
                                                                 </span>{{ $item->status }}</li>
+                                                            @if (in_array($item->Vacancy->status, ['dihapus', 'nonaktif']))
+                                                            @else
+                                                                <li
+                                                                    class="col-12 col-md-12 col-lg-12 d-flex justify-content-center justify-content-md-center justify-content-lg-end">
+                                                                    <a href="{{ route('detailLowongan', $item->Vacancy->id) }}"
+                                                                        class="text-white">
+                                                                        <button class="default-btn">Detail</button>
+                                                                    </a>
+                                                                </li>
+                                                            @endif
 
-                                                            <li
-                                                                class="col-12 col-md-12 col-lg-12 d-flex justify-content-center justify-content-md-center justify-content-lg-end">
-                                                                <a href="{{ route('detailLowongan', $item->Vacancy->id) }}"
-                                                                    class="text-white">
-                                                                    <button class="default-btn">Detail</button>
-                                                                </a>
-                                                            </li>
+
                                                         </div>
                                                     </ul>
                                                 </div>
@@ -335,7 +342,7 @@
 
                             @empty
                             @endforelse
-                           
+
                         </div>
                         <div class="row">
                             @forelse ($lowongan as $item)
@@ -627,12 +634,21 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
         src="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ">
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css" rel="stylesheet">
+    @if (session('tidakAda'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '{{ session('tidakAda') }}'
+            });
+        </script>
+    @endif
     <script>
         $(document).ready(function() {
             $.ajaxSetup({

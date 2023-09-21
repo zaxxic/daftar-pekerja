@@ -93,7 +93,7 @@
                                 <p class="mb-0 fw-normal">{{ $row->Vacancy->pekerja }}</p>
                             </td>
                             <td>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#detail-user-{{ $row->User->id }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#detail-user-{{ $row-> id }}">
                                     <g fill="#5D87FF">
                                         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
                                         <path d="M8 5.5a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0a3.5 3.5 0 0 1-7 0z" />
@@ -104,7 +104,7 @@
 
 
                         <!-- Modal -->
-                        <div id="detail-user-{{ $row->User->id }}" class="modal fade" tabindex="-1" aria-labelledby="bs-example-modal-md" aria-hidden="true">
+                        <div id="detail-user-{{ $row->id }}" class="modal fade" tabindex="-1" aria-labelledby="bs-example-modal-md" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-scrollable modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header d-flex align-items-center">
@@ -152,11 +152,17 @@
 
                                         <div class="card">
                                             <div class="card-body">
-                                                <h5 class="mb-3">Alamat Pekerja</h5>
+                                                <h5 class="mb-3">Data Pekerja</h5>
                                                 <div class="d-flex mb-1">
                                                     <span class="me-3" style="font-weight: 600;">Alamat :</span>
                                                     <span>{{ $row->User->alamat }}</span>
                                                 </div>
+                                                <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                                <div class="d-flex mb-1">
+                                                    <span class="me-3" style="font-weight: 600;">Alasan :</span>
+                                                    <span>{{ $row->pesan }}</span>
+                                                </div>
+                                                 <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                             </div>
                                         </div>
                                     </div>
@@ -180,11 +186,11 @@
                     </tbody>
                 </table>
                 <div class="col-lg-12">
-                    <nav aria-label="Page navigation example" class="mt-3 justify-content-end">
+                    {{-- <nav aria-label="Page navigation example" class="mt-3 justify-content-end">
                         <ul class="pagination justify-content-end">
                             {{ $user->appends(['cari' => request('cari')])->links() }}
                         </ul>
-                    </nav>
+                    </nav> --}}
                 </div>
             </div>
         </div>

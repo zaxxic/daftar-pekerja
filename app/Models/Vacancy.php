@@ -36,4 +36,8 @@ class Vacancy extends Model
     {
         return $this->hasMany(Registration::class);
     }
+    public function Rejected()
+    {
+        return $this->hasMany(Rejected::class);
+    }
 }

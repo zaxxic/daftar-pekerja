@@ -66,4 +66,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Registration::class);
     }
+    public function Rejected()
+    {
+        return $this->hasMany(Rejected::class);
+    }
 }
