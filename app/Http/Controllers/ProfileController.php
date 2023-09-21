@@ -28,7 +28,7 @@ class ProfileController extends Controller
                     }
                 },
             ],
-                'new_password' => 'required|min:6|confirmed|max:12',
+                'new_password' => 'required|min:6|max:12|confirmed',
             ],
             [
                 'current_password.required' => 'Password Lama Wajib Diisi',
@@ -140,6 +140,12 @@ class ProfileController extends Controller
         // Validasi file yang diunggah (misalnya, tipe file, ukuran maksimal, dll.)
         $request->validate([
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Ganti sesuai kebutuhan Anda
+        ],
+        [
+            'foto.required' => 'Foto Profile Wajib Diisi',
+            'foto.image' => 'Format Foto Profile Tidak Valid',
+            'foto.mimes' => 'Foto Profile Wajib Berformat JPG, JPEG dan PNG',
+            'foto.max' => 'Foto Profile Maksimal Berukuran 2048',
         ]);
 
         // Simpan file foto ke direktori yang sesuai
