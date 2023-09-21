@@ -143,9 +143,9 @@ class ProfileController extends Controller
         ],
         [
             'foto.required' => 'Foto Profile Wajib Diisi',
-            'foto.image' => 'Foto Wajib Berupa Foto',
-            'foto.mimes' => 'Foto Wajib Berformat JPG, JPEG dan PNG',
-            'foto.max' => 'Foto Maksimal Berukuran 2048',
+            'foto.image' => 'Format Foto Profile Tidak Valid',
+            'foto.mimes' => 'Foto Profile Wajib Berformat JPG, JPEG dan PNG',
+            'foto.max' => 'Foto Profile Maksimal Berukuran 2048',
         ]);
 
         // Simpan file foto ke direktori yang sesuai
