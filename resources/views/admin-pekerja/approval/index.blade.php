@@ -318,6 +318,17 @@
                     width: 100%;
                 }
             }
+
+            .ellipsis {
+                white-space: nowrap;
+                /* Mencegah teks untuk melompat ke baris berikutnya */
+                overflow: hidden;
+                /* Menyembunyikan teks yang melebihi lebar elemen */
+                text-overflow: ellipsis;
+                /* Menambahkan efek ellipsis */
+                width: 100%;
+                /* Atur lebar elemen sesuai kebutuhan Anda */
+            }
         </style>
         <div id="detail-user-{{ $item->User->id }}" class="modal fade" tabindex="-1"
             aria-labelledby="bs-example-modal-md" aria-hidden="true">
@@ -383,7 +394,7 @@
                                             <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                             <div class="d-flex mb-1">
                                                 <span style="font-weight: 600;">Alamat:</span>
-                                                <span class="ms-2">{{ $item->User->alamat }}</span>
+                                                <span class="ms-2 ellipsis">{{ $item->User->alamat }}</span>
                                             </div>
                                             <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
 

@@ -24,10 +24,27 @@
                 transition: all 0.1s ease-in-out;
                 color: #5d87ff !important;
             }
-            @media(min-width: 1300px){
+
+            @media (max-width:720px) {
                 .hilang {
                     display: none;
                 }
+
+                .tengah {
+                    display: flex;
+                    margin-bottom: 2px;
+                    justify-content: center;
+                }
+            }
+
+            @media(min-width: 1300px) {
+                .hilang-gambar {
+                    display: none;
+                }
+            }
+
+            .kecil {
+                font-size: 12px;
             }
 
             /* Tambahkan aturan serupa untuk setiap tautan yang lain jika diperlukan */
@@ -65,9 +82,7 @@
                     <i class="ti ti-align-justified fs-7"></i>
                 </a>
 
-                <a href="#" class=" hilang">
-                    <img src="{{ asset('assets/hummatech.png') }}" width="120" alt="" />
-                </a>
+
                 <ul class="navbar-nav flex-row  align-items-center justify-content-center">
                     <li class="nav-item dropdown">
                         <a class="nav-link pe-0" href="javascript:void(0)" id="drop1" data-bs-toggle="dropdown"
@@ -84,27 +99,42 @@
                         <div class="dropdown-menu content-dd dropdown-menu-end dropdown-menu-animate-up"
                             aria-labelledby="drop1">
                             <div class="profile-dropdown position-relative" data-simplebar>
-                                <div class="py-3 px-7 pb-0"> <!-- Teks di tengah -->
+                                <div class="py-3 px-7 pb-0">
                                     <h5 class="mb-0 fs-5 fw-semibold">Admin Profil</h5>
                                 </div>
-                                <div class="d-flex align-items-center py-9 mx-7 border-bottom">
 
-                                    <div class="ms-3"> <!-- Teks di tengah -->
-                                        <h5 class="mb-1 fs-3"><i
-                                                class="ti ti-user fs-5 me-1"></i>Admin</h5>
-                                        <p class="mb-0 d-flex text-dark align-items-center gap-2">
-                                            <i class="ti ti-mail fs-5"></i>{{ Auth()->user()->email }}
-                                        </p>
+                                <div class="row align-items-center py-9 mx-2 border-bottom">
+                                    <div class="col-12 col-md-3 tengah ">
+                                        <div
+                                            style="width: 60px; height: 60px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px;">
+
+                                            <img src="{{ asset('assets/logo.png') }}" class="img-fluid rounded-circle"
+                                                style="width: 100%; height: 100%;" alt="" />
+                                        </div>
+                                    </div>
+
+                                    <div class=" col-12 col-md-9">
+                                        <h5 class="mb-1 row fs-3 tengah"> <i
+                                                class="ti col-1 ti-user fs-5 me-1 hilang"></i>
+                                            <p class="kecil col-10 tengah">Admin</p>
+                                        </h5>
+                                        <span class="mb-0 row text-dark align-items-center  tengah "
+                                            style="max-width:100%; overflow: hidden">
+                                            <i class="ti ti-mail col-1 fs-5 me-1 hilang"></i>
+                                            <p class="kecil col-10 tengah">
+                                                {{ Auth()->user()->email }}</p>
+                                        </span>
                                     </div>
 
                                 </div>
 
-                                <div class="d-grid py-4 px-7 pt-8"> <!-- Tombol logout memanjang -->
+                                <div class="d-grid py-4 px-7 pt-8">
                                     <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                                         @csrf
                                         <button type="submit" class="btn btn-outline-primary btn-block">Keluar</button>
                                     </form>
                                 </div>
+
                             </div>
                         </div>
 

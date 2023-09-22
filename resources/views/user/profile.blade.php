@@ -116,11 +116,11 @@
                                     </a>
 
                                     <!-- <div class="d-flex align-items-center justify-content-center my-4 gap-3">
-                                                                                        <input type="file" name="foto" class="form-control" id="exampleInputResume">
-                                                                                        @error('foto')
+                                                                                            <input type="file" name="foto" class="form-control" id="exampleInputResume">
+                                                                                            @error('foto')
         <div class="text-danger">{{ $message }}</div>
     @enderror
-                                                                                    </div> -->
+                                                                                        </div> -->
                                     <form action="{{ route('ubah-foto') }}" enctype="multipart/form-data" method="post">
                                         @method('PATCH')
                                         @csrf
