@@ -133,6 +133,16 @@
             height: 120px;
             /* Sesuaikan tinggi sesuai kebutuhan Anda */
         }
+        @media (max-width:1200px){
+            .tengah{
+                justify-content: center;
+            }
+        }
+        @media (min-width: 1200px){
+            .justify-content-lg-endcustom {
+                justify-content: flex-end !important;
+            }
+        }
     </style>
 
     <!-- Start Page Title Area -->
@@ -294,10 +304,10 @@
                                                 <div class="hot-jobs-content ">
                                                     <div class="row d-flex justify-content-between"
                                                         style="color: black">
-                                                        <h3 class="col-12 col-md-12 col-lg-6"><a
+                                                        <h3 class="col-12 col-md-12 col-xl-6 tengah"><a
                                                                 href="">{{ $item->Vacancy->judul }}</a></h3>
                                                         <p
-                                                            class="col-12 col-md-12 col-lg-6 tanggal justify-content-lg-end ">
+                                                            class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal  justify-content-xl-end ">
                                                             <span class="text-center text-md-left">Berakhir Pada
                                                                 Tanggal:
                                                                 {{ Carbon::parse($item->Vacancy->batas)->format('d M Y') }}</span>
@@ -323,7 +333,7 @@
                                                             @if (in_array($item->Vacancy->status, ['dihapus', 'nonaktif']))
                                                             @else
                                                                 <li
-                                                                    class="col-12 col-md-12 col-lg-12 d-flex justify-content-center justify-content-md-center justify-content-lg-end">
+                                                                    class="col-12 col-md-12 col-lg-12 d-flex justify-content-center justify-content-md-center tengah justify-content-lg-endcustom justify-content-xl-end">
                                                                     <a href="{{ route('detailLowongan', $item->Vacancy->id) }}"
                                                                         class="text-white">
                                                                         <button class="default-btn">Detail</button>
@@ -353,10 +363,10 @@
                                                 <div class="hot-jobs-content">
                                                     <div class="row d-flex justify-content-between"
                                                         style="color: black">
-                                                        <h3 class="col-12 col-md-12 col-lg-6"><a
+                                                        <h3 class="col-12 col-md-12 col-xl-6 tengah"><a
                                                                 href="">{{ $item->judul }}</a></h3>
                                                         <p
-                                                            class="col-12 col-md-12 col-lg-6 tanggal justify-content-lg-end ">
+                                                            class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal  justify-content-xl-end">
                                                             <span class="text-center text-md-left">Berakhir Pada
                                                                 Tanggal:
                                                                 {{ Carbon::parse($item->batas)->format('d M Y') }}</span>
@@ -373,7 +383,7 @@
                                                             <li class="col-12 col-md-12"><span>Tipe Kerja :
                                                                 </span>{{ $item->tipe }}</li>
                                                             <li
-                                                                class="col-12 col-md-12 col-lg-12 d-flex justify-content-center justify-content-md-center justify-content-lg-end">
+                                                                class="col-12 col-md-12 col-lg-12 d-flex justify-content-center justify-content-md-center tengah justify-content-lg-endcustom justify-content-xl-end">
                                                                 <a href="{{ route('detailLowongan', $item->id) }}"
                                                                     class="text-white">
                                                                     <button class="default-btn">Detail</button>
@@ -474,7 +484,7 @@
                                         <li class="mb-3" s>
                                             <i class="bx bx-envelope"></i>
                                             <span>Email:</span>
-                                            <a><span class="__cf_email__"
+                                            <a><span class="_cf_email_"
                                                     data-cfemail="f098959c9c9fb09a859299de939f9d">hummatechcareer@gmail.com</span></a>
                                         </li>
                                         <li class="location">

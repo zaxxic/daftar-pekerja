@@ -112,7 +112,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
-                                    <div class="modal-body">
+                                    <div class="modal-body" style="height: auto">
                                         <div class="row">
                                             <div class="col-lg-4 col-sm-4 col-md-8 ">
                                                 <div class="justify-content-center align-items-center fotos">
@@ -161,6 +161,11 @@
                                                 <div class="d-flex mb-1">
                                                     <span class="me-3" style="font-weight: 600;">Alasan :</span>
                                                     <span>{{ $row->pesan }}</span>
+                                                </div>
+                                                 <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                                <div class="d-flex mb-1">
+                                                    <span class="me-3" style="font-weight: 600;">Tanggal penolakan :</span>
+                                                    <span>{{ $row->created_at->format('Y-m-d') }}</span>
                                                 </div>
                                                  <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                             </div>

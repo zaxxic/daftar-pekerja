@@ -151,15 +151,19 @@
                                     <div class="col-md-6 mb-3">
                                         <label for="exampleInputEmail1" class="form-label mb-3">Jenis Kelamin <span
                                                 style="color: red;">*</span></label>
-                                        <div class="radio-container">
-                                            <input class="text-sm me-1" type="radio" name="jenis_kelamin"
-                                                id="radio1" value="laki-laki"
-                                                {{ old('jenis_kelamin') == 'laki-laki' ? 'checked' : '' }}>
-                                            <label class="mb-0 me-3" for="radio1">Laki-laki</label>
-                                            <input class="text-sm me-1" type="radio" name="jenis_kelamin"
-                                                id="radio2" value="perempuan"
-                                                {{ old('jenis_kelamin') == 'perempuan' ? 'checked' : '' }}>
-                                            <label class="mb-0" for="radio2">Perempuan</label>
+                                        <div class="radio-container d-flex">
+                                            <div class="d-flex">
+                                                <input class="text-sm me-1" type="radio" name="jenis_kelamin"
+                                                    id="radio1" value="laki-laki"
+                                                    {{ old('jenis_kelamin') == 'laki-laki' ? 'checked' : '' }}>
+                                                <label class="mb-0 me-3" for="radio1">Laki-laki</label>
+                                            </div>
+                                            <div class="d-flex">
+                                                <input class="text-sm me-1" type="radio" name="jenis_kelamin"
+                                                    id="radio2" value="perempuan"
+                                                    {{ old('jenis_kelamin') == 'perempuan' ? 'checked' : '' }}>
+                                                <label class="mb-0" for="radio2">Perempuan</label>
+                                            </div>
                                         </div>
                                         @error('jenis_kelamin')
                                             <div class="text-danger">{{ $message }}</div>
