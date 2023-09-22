@@ -22,7 +22,7 @@
                     <label class="mt-5" for="devisi">Divisi </label> <br>
                     <select name="devisi" class="col-12 col-md-10 rounded-1 form-control" style="" id="">
                         @foreach ($divisi as $data)
-                            <option value="{{ $data->id }}" {{ $data->id === old('id') ? 'selected' : '' }}>
+                            <option value="{{ $data->id }}" {{ $data->id === old('devisi') ? 'selected' : '' }}>
                                 {{ $data->divisi }}</option>
                         @endforeach
                     </select>

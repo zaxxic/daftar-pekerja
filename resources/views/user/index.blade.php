@@ -93,6 +93,12 @@
                 /* Teks akan menjadi lurus horizontal */
             }
         }
+        @media (min-width:1300px){
+            .justify-content-xl-endcustom{
+                justify-content: end;
+                padding-left: 120px
+            }
+        }
 
         .kerja {
             background-image: url("assets1/images/banner/banner-bg.jpg");
@@ -307,7 +313,7 @@
                                                         <h3 class="col-12 col-md-12 col-xl-6 tengah"><a
                                                                 href="">{{ $item->Vacancy->judul }}</a></h3>
                                                         <p
-                                                            class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal  justify-content-xl-end ">
+                                                            class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal justify-content-lg-endcustom justify-content-xl-endcustom ">
                                                             <span class="text-center text-md-left">Berakhir Pada
                                                                 Tanggal:
                                                                 {{ Carbon::parse($item->Vacancy->batas)->format('d M Y') }}</span>
@@ -366,7 +372,7 @@
                                                         <h3 class="col-12 col-md-12 col-xl-6 tengah"><a
                                                                 href="">{{ $item->judul }}</a></h3>
                                                         <p
-                                                            class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal  justify-content-xl-end">
+                                                            class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal  justify-content-lg-endcustom justify-content-xl-endcustom">
                                                             <span class="text-center text-md-left">Berakhir Pada
                                                                 Tanggal:
                                                                 {{ Carbon::parse($item->batas)->format('d M Y') }}</span>

@@ -26,7 +26,7 @@ class PekerjaDitolakController extends Controller
 
             $user->appends(['cari' => $keyword]);
         } else {
-            $user = Rejected::get();
+            $user = Rejected::paginate(1);
 
         }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Division;
+use App\Models\Vacancy;
 use Illuminate\Http\Request;
 
 
@@ -51,8 +52,18 @@ class DivisiController extends Controller
         if (!$division) {
             return response()->json(['message' => 'Division not found'], 404);
         }
+        $data = Vacancy::where('devisi_id', $id)->Where('status', 'aktif')->first();
 
-        $division->update(['status' => 'nonaktif']);
+        if($data){
+            $pesan = 'devisi ini sedang digunakan pada lowongan '.$data->judul;
+            return response()->json([
+                'status' => 'peringatan',
+                'peringatan' => $pesan
+            ]);
+        }else{
+            $division->update(['status' => 'nonaktif']);
+        }
+
 
         return response()->json(['message' => 'Division deleted successfully']);
     }

@@ -264,6 +264,14 @@ class LowonganController extends Controller
      */
     public function nonactive(Request $request, string $id)
     {
+
+        $data = Vacancy::findOrFail($id);
+        $data->Update([
+            'status' => 'nonaktif'
+        ]);
+
+
+
         $registation = Registration::where('vacancie_id', $id)->where('status', 'menunggu')->first();
         if ($registation) {
             $data = $registation->User->email;
@@ -276,10 +284,8 @@ class LowonganController extends Controller
             Mail::to($data)->send(new daftar($datas));
             $registation->delete();
         }
-        $data = Vacancy::find($id);
-        $data->Update([
-            'status' => 'nonaktif'
-        ]);
+
+
 
         return redirect()->route('lowongan.index')->with('sukses', 'Data Berhasil Di Perbarui');
     }
