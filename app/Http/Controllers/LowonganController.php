@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Vacancy;
-use App\Models\Division;
+use DateTime;
 use Carbon\Carbon;
 use App\Mail\daftar;
+use App\Models\User;
+use App\Models\Vacancy;
+use App\Models\Division;
+use App\TipePekerjaEnum;
+use App\Models\Registration;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\UpdateLowonganRequest;
-use App\Models\Registration;
-use App\Models\User;
-use App\TipePekerjaEnum;
-use DateTime;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class LowonganController extends Controller
 {
@@ -211,27 +212,40 @@ class LowonganController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy($id)
-    {
-        $registation = Registration::where('vacancie_id', $id)->where('status', 'menunggu')->first();
+{
+    try {
+        $registration = Registration::where('vacancie_id', $id)->where('status', 'menunggu')->firstOrFail();
 
-        if ($registation) {
-            $data = $registation->User->email;
-            $datas =   [
-                'pesan' => "lowongan yang anda daftar sudah tidak tersedia ",
-                'status' => "terima",
-                'judul' => " Pemberitahuan tentang pendaftaran"
-            ];
+        $data = $registration->User->email;
+        $datas = [
+            'pesan' => "lowongan yang anda daftar sudah tidak tersedia ",
+            'status' => "terima",
+            'judul' => " Pemberitahuan tentang pendaftaran"
+        ];
 
-            Mail::to($data)->send(new daftar($datas));
-            $registation->delete();
-        }
-        $lowongan = Vacancy::find($id);
+        Mail::to($data)->send(new daftar($datas));
+        
+        $registration->delete();
+
+        $lowongan = Vacancy::findOrFail($id);
         $lowongan->update([
             'status' => 'dihapus',
             'devision_id' => null
         ]);
+
         return redirect()->back();
+    } catch (ModelNotFoundException $e) {
+        // ID tidak ditemukan, lemparkan ke halaman 404
+        abort(404);
     }
+}
+
+
+
+
+
+
+
     // public function delete(Lowongan $lowongan, $id)
     // {
     //     dd('awoakwoqk');
