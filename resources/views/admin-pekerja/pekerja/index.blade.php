@@ -264,6 +264,9 @@
                     </div>
                     <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
                     <div class="modal-body">
+                    <span style="color: black;" for="recipient-name" class="control-label">Apakah anda
+                            yakin untuk menonaktifkan pekerja
+                            {{ $item->User->name }}?</span>
                         <form action="/nonactive/{{ $item->User->id }}" method="POST"
                             id="pesanNonaktif{{ $item->User->id }}">
                             @method('PATCH')
