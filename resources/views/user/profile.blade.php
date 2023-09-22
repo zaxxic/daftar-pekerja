@@ -130,7 +130,10 @@
                                             id="btn-upload">Unggah</button>
                                         <button type="submit" style="display: none" id="submit-button">Save</button>
                                     </form>
-                                    <p class="mb-0 mt-3">Dibolehkan JPG atau PNG. Ukuran maksimal photo 5Mb</p>
+                                    <p class="mb-0 mt-3">Format Wajib JPG,JPEG atau PNG. Ukuran maksimal photo 1Mb</p>
+                                    @error('foto')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                 </div>
                             </div>
                         </div>

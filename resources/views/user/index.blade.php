@@ -133,6 +133,16 @@
             height: 120px;
             /* Sesuaikan tinggi sesuai kebutuhan Anda */
         }
+        @media (max-width:1200px){
+            .tengah{
+                justify-content: center;
+            }
+        }
+        @media (min-width: 1200px){
+            .justify-content-lg-endcustom {
+                justify-content: flex-end !important;
+            }
+        }
     </style>
 
     <!-- Start Page Title Area -->
@@ -216,7 +226,6 @@
                         .detail {
                             text-align: right;
                         }
-
                     </style>
                     <div class="employers-listing-sidebar mt-5 mb-5 " id="pp">
                         <h3>Lamaran Ditampung</h3>
@@ -295,10 +304,10 @@
                                                 <div class="hot-jobs-content ">
                                                     <div class="row d-flex justify-content-between"
                                                         style="color: black">
-                                                        <h3 class="col-12 col-md-12 col-lg-6"><a
+                                                        <h3 class="col-12 col-md-12 col-xl-6 tengah"><a
                                                                 href="">{{ $item->Vacancy->judul }}</a></h3>
                                                         <p
-                                                            class="col-12 col-md-12 col-lg-6 tanggal justify-content-lg-end ">
+                                                            class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal  justify-content-xl-end ">
                                                             <span class="text-center text-md-left">Berakhir Pada
                                                                 Tanggal:
                                                                 {{ Carbon::parse($item->Vacancy->batas)->format('d M Y') }}</span>
@@ -312,19 +321,27 @@
                                                         </li>
                                                         <li><span>Slot Tersedia : </span>{{ $item->Vacancy->slot }}
                                                         </li>
+                                                        @if (in_array($item->Vacancy->status, ['dihapus', 'nonaktif']))
+                                                            <li><span>Status Lowongan : </span>sudah tidak tersedia</li>
+                                                        @endif
+                                                        </li>
                                                         <div class="row">
                                                             <li class="col-12 col-md-12"><span>Tipe Kerja :
                                                                 </span>{{ $item->Vacancy->tipe }}</li>
                                                             <li class="col-12 col-md-12 col-lg-12"><span>Status :
                                                                 </span>{{ $item->status }}</li>
+                                                            @if (in_array($item->Vacancy->status, ['dihapus', 'nonaktif']))
+                                                            @else
+                                                                <li
+                                                                    class="col-12 col-md-12 col-lg-12 d-flex justify-content-center justify-content-md-center tengah justify-content-lg-endcustom justify-content-xl-end">
+                                                                    <a href="{{ route('detailLowongan', $item->Vacancy->id) }}"
+                                                                        class="text-white">
+                                                                        <button class="default-btn">Detail</button>
+                                                                    </a>
+                                                                </li>
+                                                            @endif
 
-                                                            <li
-                                                                class="col-12 col-md-12 col-lg-12 d-flex justify-content-center justify-content-md-center justify-content-lg-end">
-                                                                <a href="{{ route('detailLowongan', $item->Vacancy->id) }}"
-                                                                    class="text-white">
-                                                                    <button class="default-btn">Detail</button>
-                                                                </a>
-                                                            </li>
+
                                                         </div>
                                                     </ul>
                                                 </div>
@@ -335,7 +352,7 @@
 
                             @empty
                             @endforelse
-                           
+
                         </div>
                         <div class="row">
                             @forelse ($lowongan as $item)
@@ -346,10 +363,10 @@
                                                 <div class="hot-jobs-content">
                                                     <div class="row d-flex justify-content-between"
                                                         style="color: black">
-                                                        <h3 class="col-12 col-md-12 col-lg-6"><a
+                                                        <h3 class="col-12 col-md-12 col-xl-6 tengah"><a
                                                                 href="">{{ $item->judul }}</a></h3>
                                                         <p
-                                                            class="col-12 col-md-12 col-lg-6 tanggal justify-content-lg-end ">
+                                                            class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal  justify-content-xl-end">
                                                             <span class="text-center text-md-left">Berakhir Pada
                                                                 Tanggal:
                                                                 {{ Carbon::parse($item->batas)->format('d M Y') }}</span>
@@ -366,7 +383,7 @@
                                                             <li class="col-12 col-md-12"><span>Tipe Kerja :
                                                                 </span>{{ $item->tipe }}</li>
                                                             <li
-                                                                class="col-12 col-md-12 col-lg-12 d-flex justify-content-center justify-content-md-center justify-content-lg-end">
+                                                                class="col-12 col-md-12 col-lg-12 d-flex justify-content-center justify-content-md-center tengah justify-content-lg-endcustom justify-content-xl-end">
                                                                 <a href="{{ route('detailLowongan', $item->id) }}"
                                                                     class="text-white">
                                                                     <button class="default-btn">Detail</button>
@@ -467,7 +484,7 @@
                                         <li class="mb-3" s>
                                             <i class="bx bx-envelope"></i>
                                             <span>Email:</span>
-                                            <a><span class="__cf_email__"
+                                            <a><span class="_cf_email_"
                                                     data-cfemail="f098959c9c9fb09a859299de939f9d">hummatechcareer@gmail.com</span></a>
                                         </li>
                                         <li class="location">
@@ -627,12 +644,21 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
         src="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ">
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css" rel="stylesheet">
+    @if (session('tidakAda'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '{{ session('tidakAda') }}'
+            });
+        </script>
+    @endif
     <script>
         $(document).ready(function() {
             $.ajaxSetup({

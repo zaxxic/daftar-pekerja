@@ -219,8 +219,8 @@
                         <div class="modal-body">
                             <div class="mb-3">
                                 <span style="color: black;" for="recipient-name" class="control-label">Apakah anda
-                                    yakin untuk menerima pekerja
-                                    tersebut?</span>
+                                    yakin untuk menerima
+                                    {{ $item->User->name }}?</span>
                             </div>
                             <div class="mb-3">
                                 <label for="recipient-name" class="control-label" style="color: black;">Tanggal Wawancara
@@ -271,6 +271,11 @@
                     </div>
                     <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
                     <div class="modal-body">
+                        <div class="mb-3">
+                            <span style="color: black;" for="recipient-name" class="control-label">Apakah anda
+                                yakin untuk menolak
+                                {{ $item->User->name }}?</span>
+                        </div>
                         <form action="/reject/{{ $item->User->id }}" method="POST"
                             id="pesanTolak{{ $item->User->id }}">
                             @method('PATCH')
@@ -528,10 +533,269 @@
                 error.innerHTML = "masukan pesan alasan kenapa anda menolak pendaftar ini";
             }
 
+            border - radius: 10 % ;
         }
+        }
+
+        @media(max - width: 1080 px) and(min - width: 760 px) {
+                .fotos {
+                    align - items: center;
+                    text - align: center;
+                    justify - content: center;
+                    margin - left: 85 px;
+                    border - radius: 10 % ;
+                    width: 100 % ;
+                }
+            } <
+            /style> <
+            div id = "detail-user-{{ $item->User->id }}"
+        class = "modal fade"
+        tabindex = "-1"
+        aria - labelledby = "bs-example-modal-md"
+        aria - hidden = "true" >
+            <
+            div class = "modal-dialog modal-lg" >
+            <
+            div class = "modal-content" >
+            <
+            div class = "modal-header d-flex align-items-center" >
+            <
+            h4 class = "modal-title"
+        id = "myModalLabel" > Detail Pekerja < /h4> <
+            button type = "button"
+        class = "btn-close"
+        data - bs - dismiss = "modal"
+        aria - label = "Close" > < /button> <
+            /div> <
+            hr style = "width: 100%; border-top: 2px solid #000000;"
+        class = "mt-0" >
+        <
+        div class = "modal-body" >
+        <
+        div class = "container" >
+        <
+        div class = "row" >
+        <
+        div class = "col-lg-4 col-sm-4 col-md-8 my-auto mx-auto" >
+        <
+        div class = "justify-content-center align-items-center fotos" >
+        <
+        img src = "{{ asset('foto_user/' . $item->User->foto) }}"
+        class = "img-fluid rounded-circle"
+        style = "width: 220px; height: 220px;" / >
+            <
+            /div> <
+            /div> <
+            div class = "col-lg-8  col-12" >
+            <
+            div class = "card" >
+            <
+            div class = "card-body" >
+            <
+            h5 class = "mb-3" > Data Diri Pekerja < /h5> <
+            div class = "mb-1" >
+            <
+            span class = "fw-bold me-3" > Nama: < /span> <
+            span > {{ $item->User->name }} < /span> <
+            /div> <
+            hr style = "width: 100%; border-top: 1px solid #000000;"
+        class = "mt-0" >
+        <
+        div class = "d-flex mb-1" >
+        <
+        span class = "me-3"
+        style = "font-weight: 600;" > Email: < /span> <
+            span > {{ $item->User->email }} < /span> <
+            /div> <
+            hr style = "width: 100%; border-top: 1px solid #000000;"
+        class = "mt-0" >
+        <
+        div class = "d-flex mb-1" >
+        <
+        span style = "font-weight: 600;" > Divisi: < /span> <
+            span class = "ms-2" > {{ $item->Vacancy->Division->divisi }} < /span> <
+            /div> <
+            hr style = "width: 100%; border-top: 1px solid #000000;"
+        class = "mt-0" >
+        <
+        div class = "d-flex mb-1" >
+        <
+        span class = "me-3"
+        style = "font-weight: 600;" > Posisi: < /span> <
+            span > {{ $item->Vacancy->pekerja }} < /span> <
+            /div> <
+            hr style = "width: 100%; border-top: 1px solid #000000;"
+        class = "mt-0" >
+
+        <
+        !--Tambahkan data lainnya di sini menggunakan format yang sama-- >
+        <
+        /div> <
+        /div> <
+        /div> <
+        div class = "col-lg-12  col-12" >
+        <
+        div class = "card" >
+        <
+        div class = "card-body" >
+        <
+        h5 class = "mb-3" > Data Lengkap Pekerja < /h5>
+
+            <
+            div class = "mb-1" >
+            <
+            span class = "fw-bold me-3" > Jenis Kelamin: < /span> <
+            span > {{ $item->User->jenis_kelamin }} < /span> <
+            /div> <
+            hr style = "width: 100%; border-top: 1px solid #000000;"
+        class = "mt-0" >
+        <
+        div class = "d-flex mb-1" >
+        <
+        span class = "me-3"
+        style = "font-weight: 600;" > No.Handphone: < /span> <
+            span > {{ $item->User->no_telp }} < /span> <
+            /div> <
+            hr style = "width: 100%; border-top: 1px solid #000000;"
+        class = "mt-0" >
+        <
+        div class = "d-flex mb-1" >
+        <
+        span style = "font-weight: 600;" > Alamat: < /span> <
+            span class = "ms-2" > {{ $item->User->alamat }} < /span> <
+            /div> <
+            hr style = "width: 100%; border-top: 1px solid #000000;"
+        class = "mt-0" >
+
+        <
+        !--Tambahkan data lainnya di sini menggunakan format yang sama-- >
+        <
+        /div> <
+        /div> <
+        /div> <
+        /div> <
+        /div> <
+        /div>
+
+        <
+        /div> <
+        /div> <
+        /div>
+
+
+        <
+        div class = "modal fade"
+        id = "detail-cv-{{ $item->User->id }}"
+        tabindex = "-1"
+        aria - labelledby = "detail-cv-{{ $item->User->id }}"
+        aria - hidden = "true" >
+            <
+            !--Konten modal CV-- >
+            <
+            div class = "modal-dialog modal-fullscreen" >
+            <
+            div class = "modal-content" >
+            <
+            div class = "modal-header" >
+            <
+            h5 class = "modal-title h4"
+        id = "exampleModalFullscreenLabel" >
+            CV Pekerja <
+            /h5> <
+            button type = "button"
+        class = "btn-close"
+        data - bs - dismiss = "modal"
+        aria - label = "Close" > < /button> <
+            /div> <
+            div class = "modal-body" >
+            <
+            embed src = "{{ asset('cv/' . $item->User->cv) }}"
+        type = "application/pdf"
+        width = "100%"
+        height = "100%" >
+            <
+            /div> <
+            div class = "modal-footer" >
+            <
+            button type = "button"
+        class = "btn btn-light-danger text-danger font-medium"
+        data - bs - dismiss = "modal" >
+            Close <
+            /button> <
+            /div> <
+            /div> <
+            !--/.modal-content --> <
+            /div> <
+            !--/.modal-dialog --> <
+            /div> <
+            div class = "modal fade"
+        id = "detail-lamaran-{{ $item->User->id }}"
+        tabindex = "-1"
+        aria - labelledby = "detail-lamaran-{{ $item->User->id }}"
+        aria - hidden = "true" >
+            <
+            div class = "modal-dialog modal-fullscreen" >
+            <
+            div class = "modal-content" >
+            <
+            div class = "modal-header" >
+            <
+            h5 class = "modal-title h4"
+        id = "exampleModalFullscreenLabel" >
+            Lamaran Pekerja <
+            /h5> <
+            button type = "button"
+        class = "btn-close"
+        data - bs - dismiss = "modal"
+        aria - label = "Close" > < /button> <
+            /div> <
+            div class = "modal-body" >
+            <
+            embed src = "{{ asset('lamaran/' . $item->User->lamaran) }}"
+        type = "application/pdf"
+        width = "100%"
+        height = "100%" >
+            <
+            /div> <
+            div class = "modal-footer" >
+            <
+            button type = "button"
+        class = "btn btn-light-danger text-danger font-medium"
+        data - bs - dismiss = "modal" >
+            Close <
+            /button> <
+            /div> <
+            /div> <
+            !--/.modal-content --> <
+            /div> <
+            !--/.modal-dialog --> <
+            /div>
+        @endforeach
+
+            <
+            !-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- - -- >
+            <
+            !--Form Basic End-- >
+            <
+            !-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- - -- >
+
+            <
+            script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
+        integrity = "sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
+        crossorigin = "anonymous"
+        referrerpolicy = "no-referrer" >
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        function Terima(data) {
+        var userName{{ $item->User->id }} =
+        "{{ $item->User->name }}"; // Simpan nama pengguna ke dalam variabel JavaScript
+    </script>
+
+
+    <script>
+        function Tolak(params) {
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
                     confirmButton: "btn btn-success",
@@ -539,34 +803,87 @@
                 },
                 buttonsStyling: false,
             });
-            var today = new Date(); // Tanggal hari ini
+            var pesan = document.getElementById('pesan' + params).value;
+            var error = document.getElementById('errorTolak' + params)
+            console.log(pesan);
+            if (pesan !== "") {
+                error.innerHTML = "";
+                swalWithBootstrapButtons.fire({
+                        title: "Apakah Anda Yakin?",
+                        text: "Anda ingin menolak akun ini!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Iya!",
+                        cancelButtonText: "Tidak!",
+                        reverseButtons: true,
+                        customClass: {
+                            confirmButton: "btn btn-success",
+                            cancelButton: "btn btn-danger me-3",
+                        },
+                        buttonsStyling: false,
+                        width: "25rem", // You can adjust the width as needed
+                        padding: "1rem", // You can adjust the padding as needed
+                        customContainerClass: "swal-custom", // Define a custom class for styling
+                    })
+                    .then((result) => {
+                        if (result.value) {
+                            swalWithBootstrapButtons.fire(
+                                "Berhasil!",
+                                "Anda berhasil menolak akun tersebut.",
+                                "success"
+                            );
+                            var form = document.getElementById("pesanTolak" + params);
+                            form.submit();
+                        } else if (
+                            result.dismiss === Swal.DismissReason.cancel
+                        ) {
+                            swalWithBootstrapButtons.fire(
+                                "Batal",
+                                "Selamat akun tersebut masih selamat. :)",
+                                "error"
+                            );
+                        }
+                    });
+            } else {
+                error.innerHTML = "masukan pesan alasan kenapa anda menolak pendaftar ini";
+            }
+
+        }
+    </script>
+    <script>
+        function Terima(userId) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "mr-2 btn btn-danger",
+                },
+                buttonsStyling: false,
+            });
+
+            var today = new Date();
             var yesterday = new Date(today);
-            yesterday.setDate(today.getDate() - 1); // Mengurangkan satu hari
-            var tanggal = document.getElementById('tanggal' + data).value;
-            var lokasi = document.getElementById('lokasi' + data).value;
-            const error = document.getElementById('error' + data);
-            const errorLokasi = document.getElementById('errorLokasi' + data);
+            yesterday.setDate(today.getDate() - 1);
+            var tanggal = document.getElementById('tanggal' + userId).value;
+            var lokasi = document.getElementById('lokasi' + userId).value;
+            const error = document.getElementById('error' + userId);
+            const errorLokasi = document.getElementById('errorLokasi' + userId);
             var tahun = today.getFullYear();
             var bulan = String(today.getMonth() + 1).padStart(2, "0");
             var tanggalKedua = String(today.getDate()).padStart(2, "0");
             var jam = String(today.getHours()).padStart(2, "0");
             var menit = String(today.getMinutes()).padStart(2, "0");
-
-            // Menghasilkan format yang diinginkan (YYYY-MM-DDTHH:MM)
             var hasilFormat = `${tahun}-${bulan}-${tanggalKedua}T${jam}:${menit}`;
 
-            console.log(hasilFormat); // Output: 2023-09-23T19:55
-            console.log(tanggal);
-            console.log(lokasi);
-            console.log(data);
-            console.log(yesterday);
+            // Mengambil nama pengguna dari sumber data yang relevan
+            var userName = "John Doe"; // Ganti dengan cara Anda mengambil nama pengguna
+
             if (tanggal.trim() !== "" && (lokasi.trim() !== "" && tanggal.trim() > hasilFormat)) {
                 error.innerHTML = '';
                 errorLokasi.innerHTML = '';
 
                 swalWithBootstrapButtons.fire({
                     title: "Apakah Anda Yakin?",
-                    text: "Anda ingin menerima akun ini!",
+                    text: `Anda ingin menerima pekerja ${userName}?`, // Menampilkan nama pengguna
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonText: "Iya!",
@@ -584,39 +901,37 @@
                     if (result.value) {
                         swalWithBootstrapButtons.fire(
                             "Berhasil!",
-                            "Anda berhasil menerima akun tersebut.",
+                            "Anda berhasil menerima pekerja tersebut.",
                             "success"
                         ).then(() => {
-                            // Jika SweetAlert berhasil ditampilkan, submit form
-                            var form = document.getElementById("pesanTerima" + data);
+                            var form = document.getElementById("pesanTerima" + userId);
                             form.submit();
                         });
                     } else if (result.dismiss === Swal.DismissReason.cancel) {
                         swalWithBootstrapButtons.fire(
                             "Batal",
-                            "penerimaan di batalkan. :)",
+                            "Penerimaan dibatalkan. :)",
                             "error"
                         );
                     }
                 });
             } else {
-                // Perbandingan dengan tanggal kemarin
                 if (new Date(tanggal) <= yesterday) {
-                    console.log('1');
-                    error.innerHTML = "tanggal tidak boleh tanggal kemarin";
+                    error.innerHTML = "Tanggal tidak boleh tanggal kemarin";
                     errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
                 } else if (tanggal === "") {
-                    console.log('2');
-                    error.innerHTML = "pesan harus di isi";
+                    error.innerHTML = "Pesan harus di isi";
                     errorLokasi.innerHTML = "";
                 } else if (lokasi === "") {
-                    console.log('3');
                     error.innerHTML = "";
                     errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
                 }
             }
         }
     </script>
+
+    </script>
+
 
     <script>
         // Ambil elemen input pencarian

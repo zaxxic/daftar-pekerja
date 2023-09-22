@@ -47,6 +47,17 @@
                 font-size: 12px;
             }
 
+            @media (min-width: 1200px) {
+                .navbar-expand-xl .navbar-collapse {
+                    flex-basis: auto;
+                    flex-wrap: nowrap;
+                    flex-direction: column;
+                    align-items: stretch;
+                }
+            }
+
+            /* Tam
+
             /* Tambahkan aturan serupa untuk setiap tautan yang lain jika diperlukan */
         </style>
         <ul class="navbar-nav quick-links d-none d-xl-flex">

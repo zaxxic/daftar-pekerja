@@ -48,6 +48,7 @@
 
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="assets/logo.png">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
         <!-- Title -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
@@ -116,32 +117,37 @@
             }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 770px) {
             .daftar {
                 margin-top: 15px;
                 justify-content: center;
             }
         }
 
-        @media (min-width: 1080px) {
+        @media (min-width: 1200px) {
             .daftar {
                 justify-content: end;
 
             }
         }
 
-        @media (min-width: 768px) and (max-width: 1180px) {
+        @media (min-width: 770px) and (max-width: 1200px) {
             .kembali {
                 margin-left: 220px;
                 margin-right: 80px;
                 text-align: center;
-                justify-content: space-between;
+                justify-content: center;
                 /* Atur margin kiri sesuai yang Anda inginkan */
             }
 
             .kembalii {
                 margin-left: 3000px;
             }
+        }
+
+        .custom-title-class {
+            font-size: 18px;
+            /* Atur ukuran font sesuai keinginan Anda */
         }
 
 
@@ -152,7 +158,7 @@
             background-position: center center;
 
             padding-top: 150px;
-            padding-right: 150px;
+
             padding-bottom: 150px;
             padding-left: 90px;
             /* Sesuaikan ukuran padding sesuai keinginan */
@@ -213,16 +219,16 @@
                                             <div class="col-12 col-md-12 d-flex  daftar ">
                                                 <div class="row">
                                                     <div class="col-6" class="kembali">
-                                                        <li class="kembali"><button class="btn btn-warning"><a
-                                                                    href="{{ route('dashboard-user') }}"
-                                                                    class="text-white">Kembali</a></button>
-                                                        </li>
+                                                        <button class="btn btn-warning kembali"><a
+                                                                href="{{ route('dashboard-user') }}"
+                                                                class="text-white">Kembali</a></button>
+
                                                     </div>
-                                                    <div class="col-6" class="kembali">
+                                                    <div class="col-6" class="">
                                                         @if ($status === 'sudah')
-                                                        <button type="button" class="btn btn-primary"
-                                                        style="background-color: #2042e3"
-                                                        class="kembalii">Terdaftar</button>
+                                                            <button type="button" class="btn btn-primary"
+                                                                style="background-color: #2042e3" id="Terdaftar"
+                                                                class="kembalii">Terdaftar</button>
                                                         @elseif ($status === 'belum')
                                                             <button type="button" class="btn btn-primary"
                                                                 style="background-color: #2042e3" id="daftar"
@@ -233,13 +239,13 @@
                                                                     id="batal">Batal</button>
                                                             </li>
                                                         @elseif ($status === 'diterima_disini')
-                                                        <button type="button" class="btn btn-primary"
-                                                        style="background-color: #2042e3"
-                                                        class="kembalii">Diterima</button>
+                                                            <button type="button" class="btn btn-primary"
+                                                                style="background-color: #2042e3" id="Diterima"
+                                                                class="kembalii">Diterima</button>
                                                         @else
-                                                        <button type="button" class="btn btn-primary"
-                                                        style="background-color: #2042e3"
-                                                        class="kembalii">Diterima</button>
+                                                            <button type="button" class="btn btn-primary"
+                                                                style="background-color: #2042e3" id="Diterima"
+                                                                class="kembalii">Diterima</button>
                                                         @endif
                                                     </div>
 
@@ -265,53 +271,70 @@
 
                 <div class="col-lg-4">
                     <div class="employers-details-sidebar">
-                        <div class="card">
-                            <div class="card-title">
-                                <div style="display: flex; align-items: center;">
-                                    <ul class="">
-                                        @foreach ($reg as $registration)
-                                        @if ($registration->vacancie_id === $lowongan->id)
-                                        <li class="mt-3 ms-4" style="display: flex; align-items: center; justify-content: space-between;">
-                                            <span >Status:</span>
-                                            @if ($registration->status === 'diterima')
-                                            <span class="status fs-5" style="width: 200px; color: green;">{{ $registration->status }}</span>
-                                            @elseif(in_array($registration->status, ['ditolak', 'nonaktif']))
-                                            <span class="status fs-5" style="width: 200px; color: red;">{{ $registration->status }}</span>
-                                            @else
-                                            <span class="status fs-5" style="width: 200px; color: #ffae1f;">{{ $registration->status }}</span>
-                                            @endif
-                                        </li>
-                                        @endif
+                        @foreach ($reg as $registration)
+                            @if ($registration->vacancie_id === $lowongan->id)
+                                @if ($registration->status === 'diterima')
+                                    <div class="card " style="background-color:green">
+                                        <ul class="">
+                                            <li class="mt-3 ms-4"
+                                                style="display: flex; align-items: center; justify-content: center; background-color:green">
+                                                {{-- <span></span> --}}
+                                                <span class="status fs-5 text-center fw-bold"
+                                                    style="width: 200px; color: #ffffff;">Status:
+                                                    {{ $registration->status }}</span>
 
-                                        @endforeach
-                                    </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @elseif(in_array($registration->status, ['ditolak', 'nonaktif']))
+                                    <div class="card " style="background-color:#f04848">
+                                        <ul class="">
+                                            <li class="mt-3 ms-4"
+                                                style="display: flex; align-items: center; justify-content: center; background-color:#f04848">
+                                                {{-- <span></span> --}}
+                                                <span class="status fs-5 text-center fw-bold"
+                                                    style="width: 200px; color: #ffffff;">Status:
+                                                    {{ $registration->status }}</span>
 
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @else
+                                    <div class="card " style="background-color:#ffae1f">
+                                        <ul class="">
+                                            <li class="mt-3 ms-4"
+                                                style="display: flex; align-items: center; justify-content: center; background-color:#ffae1f">
+                                                {{-- <span></span> --}}
+                                                <span class="status fs-5 text-center fw-bold"
+                                                    style="width: 200px; color: #ffffff;">Status:
+                                                    {{ $registration->status }}</span>
 
-
-                                </div>
-                            </div>
-                        </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @endif
+                            @endif
+                        @endforeach
                         <div class="employer-widget">
                             <h3>Detail Lowongan Perusahaan</h3>
                             <ul class="overview">
-                                <li>
-                                    Divisi
-                                    <span class="ellipsis">: {{ $lowongan->Division->divisi }}</span>
+                                <li class="row">
+                                    <p class="  col-5"> Divisi</p>
+                                    <p class="ellipsis  col-7">: {{ $lowongan->Division->divisi }}</p>
                                 </li>
-                                <li>
-                                    Gaji
-                                    <span class="ellipsis">:
-                                        {{ 'Rp ' . number_format($lowongan->gaji, 0, ',', '.') }}</span>
+                                <li class="row">
+                                    <p class=" col-5">Gaji</p>
+                                    <p class="  col-7">:
+                                        {{ 'Rp ' . number_format($lowongan->gaji, 0, ',', '.') }}</p>
                                 </li>
-                                <li>
-                                    Tipe Kerja
-                                    <span>: {{ $lowongan->tipe }}</span>
+                                <li class="row">
+                                    <p class=" col-5">Tipe Kerja</p>
+                                    <p class=" col-7 ellipsis">: {{ $lowongan->tipe }}</p>
                                 </li>
-                                <li>
-                                    Lokasi
-                                    <span class="ellipsis">: {{ $lowongan->lokasi }}</span>
+                                <li class="row">
+                                    <p class=" col-5"> Lokasi</p>
+                                    <p class="ellipsis  col-7">: {{ $lowongan->lokasi }}</p>
                                 </li>
-
                             </ul>
                         </div>
 
@@ -792,6 +815,53 @@
 
 
         });
+    </script>
+    <script>
+        function Terdaftar(){
+            
+        }
+        // $(document).ready(function() {
+        //     $('#Terdaftar').click(function() {
+        //         const swalWithBootstrapButtons = Swal.mixin({
+        //             customClass: {
+        //                 confirmButton: 'mr-2 btn btn-success',
+        //                 cancelButton: ' btn btn-danger'
+        //             },
+        //             buttonsStyling: false
+        //         });
+
+        //             .fire({
+        //             title: 'Anda sudah mendaftar di lowongan lain ',
+        //             showClass: {
+        //                 popup: 'animate__animated animate__fadeInDown'
+        //             },
+        //             hideClass: {
+        //                 popup: 'animate__animated animate__fadeOutUp'
+        //             },
+        //             customClass: {
+        //                 title: 'custom-title-class' // Tambahkan class CSS khusus untuk judul
+        //             }
+        //         })
+        //     })
+        // })
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#Diterima').click(function() {
+                Swal.fire({
+                    title: 'Selamat anda telah di terima selalu semangat dan jangan menyerah ',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    },
+                    customClass: {
+                        title: 'custom-title-class' // Tambahkan class CSS khusus untuk judul
+                    }
+                })
+            })
+        })
     </script>
 </body>
 

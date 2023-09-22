@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use App\Models\Pesan;
 use App\Models\User;
+use App\Models\Rejected;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -126,7 +127,7 @@ class ApprovalController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function reject(Request $request, string $id)
+    public function reject(Request $request, string $id, Rejected $rejected)
     {
         $this->validate(
             $request,
@@ -151,6 +152,11 @@ class ApprovalController extends Controller
 
         $item->update([
             'status' => 'ditolak'
+        ]);
+        $rejected::create([
+           'user_id' => $user->id,
+           'pesan' => $pesan,
+           'vacancies_id' => $item->Vacancy->id
         ]);
 
         $pesan = new Message([

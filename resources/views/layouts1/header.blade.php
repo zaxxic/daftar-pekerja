@@ -38,10 +38,21 @@
                 .hilang-gambar {
                     display: none;
                 }
+                .berimargin{
+                    margin-left: auto;
+                }
             }
 
             .kecil{
                 font-size: 12px;
+            }
+            @media (min-width: 1200px){
+                .navbar-expand-xl .navbar-collapse {
+                    flex-basis: auto;
+                    flex-wrap: nowrap;
+                    flex-direction: column;
+                    align-items: stretch;
+                }
             }
             /* Tambahkan aturan serupa untuk setiap tautan yang lain jika diperlukan */
         </style>
@@ -76,7 +87,7 @@
                 <a href="#" class=" hilang-gambar">
                     <img src="{{ asset('assets/hummatech.png') }}" width="120" alt="" />
                 </a>
-                <ul class="navbar-nav flex-row  align-items-center justify-content-center">
+                <ul class="navbar-nav flex-row  align-items-center justify-content-center berimargin">
 
                     <li class="nav-item dropdown">
                         <a class="nav-link pe-0" href="javascript:void(0)" id="drop1" data-bs-toggle="dropdown"

@@ -17,6 +17,7 @@ class DetailLowonganController extends Controller
      */
     public function index()
     {
+        return redirect()->back();
     }
 
     /**
@@ -95,10 +96,10 @@ class DetailLowonganController extends Controller
         $yesterdayFormatted = $yesterday->toDateString();
         if ($lowongan->batas < $yesterdayFormatted) {
 
-            return redirect()->route('dashboard-user');
+            return redirect()->route('dashboard-user')->with('tidakAda', 'Lowongan yang anda akses sudah tidak ada');
         }
         if (in_array($lowongan->status, ['nonaktif', 'dihapus'])) {
-            return redirect()->route('dashboard-user');
+            return redirect()->route('dashboard-user')->with('tidakAda', 'Lowongan yang anda akses sudah tidak ada');
         }
 
         $reg = Registration::where('users_id', Auth()->user()->id)
