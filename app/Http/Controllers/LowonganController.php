@@ -75,10 +75,10 @@ class LowonganController extends Controller
     {
         $this->validate($request, [
             'judul' => 'required|max:100',
-            'devisi' => 'required',
+            'devisi' => 'required|exists:divisions,id',
             'batas' => 'required|date|after_or_equal:today',
             'pekerjaan' => 'required|max:100',
-            'slot' => 'required|numeric|min:1',
+            'slot' => 'required|numeric|min:1|max:1000',
             'gaji' => 'required|numeric|min:100000',
             'tipe' => [
                 'required',
@@ -93,6 +93,7 @@ class LowonganController extends Controller
             'judul.required' => 'judul harus di isi',
             'judul.max' => 'judul maksimal 100 karakter',
             'devisi.required' => 'devisi harus di isi',
+            'devisi.exists' => 'divisi tidak valid',
             'batas.required' => 'batas lowongan harus di isi',
             'batas.date' => 'batas lowongan tidak valid',
             'pekerjaan.required' => 'pekerjaan harus di isi',
@@ -100,6 +101,7 @@ class LowonganController extends Controller
             'slot.required' => 'slot harus di isi',
             'slot.min' => 'slot minimal satu',
             'slot.numeric' => 'slot hanya boleh angka',
+            'slot.max' => 'slot maksimal 1000',
             'gaji.required' => 'gaji harus di isi',
             'gaji.min' => 'gaji tidak boleh kurang dari 100.000',
             'gaji.max' => 'gaji tidak bole lebi dari 10 angka',
@@ -152,10 +154,10 @@ class LowonganController extends Controller
     {
         $this->validate($request, [
             'judul' => 'required|max:100',
-            'devisi' => 'required',
+            'devisi' => 'required|exists:divisions,id',
             'batas' => 'required|date|after_or_equal:today',
             'pekerjaan' => 'required|max:100',
-            'slot' => 'required|numeric|min:1',
+            'slot' => 'required|numeric|min:1|max:1000',
             'gaji' => 'required|numeric|min:100000',
             'tipe' => [
                 'required',
@@ -170,6 +172,7 @@ class LowonganController extends Controller
             'judul.required' => 'judul harus di isi',
             'judul.max' => 'judul maksimal 100 karakter',
             'devisi.required' => 'devisi harus di isi',
+            'devisi.exists' => 'divisi tidak valid',
             'batas.required' => 'batas lowongan harus di isi',
             'batas.date' => 'batas lowongan tidak valid',
             'pekerjaan.required' => 'pekerjaan harus di isi',
@@ -177,6 +180,7 @@ class LowonganController extends Controller
             'slot.required' => 'slot harus di isi',
             'slot.min' => 'slot minimal satu',
             'slot.numeric' => 'slot hanya boleh angka',
+            'slot.max' => 'slot maksimal 1000',
             'gaji.required' => 'gaji harus di isi',
             'gaji.min' => 'gaji tidak boleh kurang dari 100.000',
             'gaji.max' => 'gaji tidak bole lebi dari 10 angka',
