@@ -97,7 +97,7 @@ class ApprovalController extends Controller
             ]
         );
 
-        $data = User::find($id);
+        $data = User::findOrFail($id);
         $item = Registration::where('users_id', $id)->first();
         $tanggal = $request->tanggal_wawancara;
         $timestamp = strtotime($tanggal);
@@ -139,7 +139,7 @@ class ApprovalController extends Controller
             ]
         );
 
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         $item = Registration::where('users_id', $id)->first();
         $pesan = $request->pesan;
         $datas =   [

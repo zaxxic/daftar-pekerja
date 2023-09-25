@@ -34,7 +34,12 @@ class DetailLowonganController extends Controller
     public function store(Request $request)
     {
 
-        $vacancy = Vacancy::find($request->id);
+        $vacancy = Vacancy::findOrFail($request->id);
+        $user = User::findOrFail(Auth()->User()->id);
+
+        $user->update([
+            'devision_id' => $vacancy->devisi_id
+        ]);
 
 
         $cek = Registration::where('users_id', Auth()->user()->id)
@@ -44,11 +49,6 @@ class DetailLowonganController extends Controller
         if ($cek) {
             return response()->json(['status' => 'sudah']);
         }
-        $user = User::find(Auth()->User()->id);
-
-        $user->update([
-            'devision_id' => $vacancy->devisi_id
-        ]);
 
         $ceking = Registration::where('users_id', Auth()->user()->id)
             ->whereIn('status', ['ditolak', 'nonaktif'])

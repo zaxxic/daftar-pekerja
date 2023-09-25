@@ -213,7 +213,7 @@ class LowonganController extends Controller
      */
     public function destroy($id)
 {
-    try {
+
         $registration = Registration::where('vacancie_id', $id)->where('status', 'menunggu')->firstOrFail();
 
         $data = $registration->User->email;
@@ -224,7 +224,7 @@ class LowonganController extends Controller
         ];
 
         Mail::to($data)->send(new daftar($datas));
-        
+
         $registration->delete();
 
         $lowongan = Vacancy::findOrFail($id);
@@ -234,10 +234,6 @@ class LowonganController extends Controller
         ]);
 
         return redirect()->back();
-    } catch (ModelNotFoundException $e) {
-        // ID tidak ditemukan, lemparkan ke halaman 404
-        abort(404);
-    }
 }
 
 
@@ -265,7 +261,7 @@ class LowonganController extends Controller
     public function active(Request $request, string $id)
     {
 
-        $data = Vacancy::find($id);
+        $data = Vacancy::findOrFail($id);
         $data->update([
             'status' => 'aktif',
         ]);
@@ -298,7 +294,6 @@ class LowonganController extends Controller
             Mail::to($data)->send(new daftar($datas));
             $registation->delete();
         }
-
 
 
         return redirect()->route('lowongan.index')->with('sukses', 'Data Berhasil Di Perbarui');
