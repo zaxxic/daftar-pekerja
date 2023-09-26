@@ -192,7 +192,7 @@ class LowonganController extends Controller
             'content.required' => 'syarat harus di isi',
         ]);
 
-        $data = Vacancy::find($id);
+        $data = Vacancy::findOrFail($id);
         $data->update([
             'judul' => $request->judul,
             'devisi_id' => $request->devisi,
@@ -282,18 +282,18 @@ class LowonganController extends Controller
 
 
 
-        $registation = Registration::where('vacancie_id', $id)->where('status', 'menunggu')->first();
-        if ($registation) {
-            $data = $registation->User->email;
-            $datas =   [
-                'pesan' => "lowongan yang anda daftar sudah tidak tersedia ",
-                'status' => "terima",
-                'judul' => " Pemberitahuan tentang pendaftaran"
-            ];
+        // $registation = Registration::where('vacancie_id', $id)->where('status', 'menunggu')->first();
+        // if ($registation) {
+        //     $data = $registation->User->email;
+        //     $datas =   [
+        //         'pesan' => "lowongan yang anda daftar sudah tidak tersedia ",
+        //         'status' => "terima",
+        //         'judul' => " Pemberitahuan tentang pendaftaran"
+        //     ];
 
-            Mail::to($data)->send(new daftar($datas));
-            $registation->delete();
-        }
+        //     Mail::to($data)->send(new daftar($datas));
+        //     $registation->delete();
+        // }
 
 
         return redirect()->route('lowongan.index')->with('sukses', 'Data Berhasil Di Perbarui');
