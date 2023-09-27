@@ -18,7 +18,7 @@ class PekerjaController extends Controller
      */
     public function index(Request $request)
     {
-        $divisi = Division::where('status', 'aktif')->get();
+        $divisi = Division::where('status', ['aktif', 'nonaktif'])->get();
         $keyword = $request->input('cari');
         $value_filter  = $request->input('filter');
 
@@ -46,7 +46,7 @@ class PekerjaController extends Controller
             $keyword = "";
         } else {
             $user = Registration::whereHas('vacancy', function ($query) {
-                $query->where('status', '=', 'aktif'); // Filter berdasarkan status lowongan 'aktif'
+                $query->where('status', ['aktif', 'nonaktif']); // Filter berdasarkan status lowongan 'aktif'
             })->where('status', 'diterima')
                 ->paginate(8);
         }
