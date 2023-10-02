@@ -262,6 +262,10 @@ class LowonganController extends Controller
     {
 
         $data = Vacancy::findOrFail($id);
+        if($data->batas < Carbon::today()){
+            return redirect()->back()->with(['gagal'=> 'batas masih kurang dari hari ini ', 'id' => $data->id]);
+        }
+        
         $data->update([
             'status' => 'aktif',
         ]);

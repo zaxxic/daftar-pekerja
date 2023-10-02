@@ -52,7 +52,7 @@ class ApprovalController extends Controller
             $keyword = "";
         } else {
             $user = Registration::whereHas('vacancy', function ($query) {
-                $query->where('status', '=', 'aktif'); // Filter berdasarkan status lowongan 'aktif'
+                $query->whereIn('status', ['nonaktif', 'aktif']); // Filter berdasarkan status lowongan 'aktif'
             })->whereIn('status', ['menunggu'])
                 ->paginate(8);
         }

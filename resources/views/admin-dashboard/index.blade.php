@@ -25,11 +25,11 @@
             <div class="d-flex gap-2">
                 <div class="p-1 align-self-center rounded" style="background-color: #13DEB9">
                     <!-- <svg class="text-light" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-                                                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                                        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0" />
-                                                        <path d="M12 7v5l3 3" />
-                                                    </g>
-                                                </svg> -->
+                                                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0" />
+                                                                    <path d="M12 7v5l3 3" />
+                                                                </g>
+                                                            </svg> -->
                     <svg xmlns="http://www.w3.org/2000/svg" style="color: #ffff;" width="32" height="32"
                         viewBox="0 0 24 24">
                         <path fill="currentColor"
@@ -48,13 +48,13 @@
             <div class="d-flex gap-2">
                 <div class="p-1 align-self-center rounded" style="background-color: #FA896B">
                     <!-- <svg class="text-light" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                        viewBox="0 0 24 24">
-                                                        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="2">
-                                                            <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0" />
-                                                            <path d="M12 7v5l3 3" />
-                                                        </g>
-                                                    </svg> -->
+                                                                    viewBox="0 0 24 24">
+                                                                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                                        stroke-width="2">
+                                                                        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0" />
+                                                                        <path d="M12 7v5l3 3" />
+                                                                    </g>
+                                                                </svg> -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                         <path fill="currentColor" style="color: #ffff;"
                             d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2zM4 12c0-4.4 3.6-8 8-8c1.8 0 3.5.6 4.9 1.7L5.7 16.9C4.6 15.5 4 13.8 4 12zm8 8c-1.8 0-3.5-.6-4.9-1.7L18.3 7.1C19.4 8.5 20 10.2 20 12c0 4.4-3.6 8-8 8z" />
@@ -72,11 +72,11 @@
             <div class="d-flex gap-2">
                 <div class="p-1 align-self-center rounded" style="background-color: #67E6E6">
                     <!-- <svg class="text-light" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-                                                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                                        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0" />
-                                                        <path d="M12 7v5l3 3" />
-                                                    </g>
-                                                </svg> -->
+                                                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0" />
+                                                                    <path d="M12 7v5l3 3" />
+                                                                </g>
+                                                            </svg> -->
                     <svg xmlns="http://www.w3.org/2000/svg" style="color: #ffff;" width="32" height="32"
                         viewBox="0 0 24 24">
                         <path fill="currentColor"
@@ -95,11 +95,11 @@
             <div class="d-flex gap-2">
                 <div class="p-1 align-self-center rounded" style="background-color: #6d5dff">
                     <!-- <svg class="text-light" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-                                                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                                        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0" />
-                                                        <path d="M12 7v5l3 3" />
-                                                    </g>
-                                                </svg> -->
+                                                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0" />
+                                                                    <path d="M12 7v5l3 3" />
+                                                                </g>
+                                                            </svg> -->
                     <svg xmlns="http://www.w3.org/2000/svg" style="color: #ffff;" width="32" height="32"
                         viewBox="0 0 24 24">
                         <path fill="currentColor"
@@ -137,14 +137,25 @@
             var monthNames = ["", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September",
                 "Oktober", "November", "Desember"
             ];
+            var monthNamesID = ["", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September",
+                "Oktober", "November", "Desember"
+            ];
 
             for (var i = 0; i < chartData.length; i++) {
                 var dateParts = chartData[i].month.split('-');
-                var year = dateParts[0];
-                var monthNumber = parseInt(dateParts[1]);
-                var monthName = monthNames[monthNumber];
+                var bulan = dateParts[0];
 
-                chartData[i].month = year + '-' + monthName;
+                // Daftar nama bulan dalam bahasa Indonesia
+                var bulanIndonesia = [
+                    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+                    'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+                ];
+                var monthNumber = parseInt(dateParts[1]);
+                var monthName = monthNamesID[monthNumber];
+                console.log(bulan);
+                bulan = bulanIndonesia[bulan - 1];
+                
+               bulan = bulan; // Mengganti format bulan menjadi "Januari 2023" misalnya
             }
 
             // Konfigurasi grafik

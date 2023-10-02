@@ -296,10 +296,18 @@
                     max-width:100px ;
                 }
             }
+            @media (max-width: 765px){
+                .titik-dua {
+                    display:none ;
+                }
+                .text-detail{
+                    text-align: center
+                }
+            }
         </style>
         <div id="detail-user-{{ $item->User->id }}" class="modal fade" tabindex="-1"
             aria-labelledby="bs-example-modal-md" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header d-flex align-items-center">
                         <h4 class="modal-title" id="myModalLabel">Detail Pekerja</h4>
@@ -320,99 +328,66 @@
                                     <div class="card-body">
                                         <div class="">
                                             <div class="row">
-                                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                                    <table class="table table-borderless">
-                                                        <tr>
-                                                            <th>
-                                                                <p class="title modal-title" style="font-weight: bold">
-                                                                    Nama
-                                                                </p>
-                                                            </th>
-                                                            <td style="display: flex ">
-                                                                : <span class="box-detail email-text"
-                                                                    id="detail-student">{{ $item->User->name }} ardiansyah amahulana</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>
-                                                                <p class="title modal-title" style="font-weight: bold">
-                                                                    Divisi
-                                                                </p>
-                                                            </th>
-                                                            <td style="display: flex ">
-                                                                : <span class="box-detail"
-                                                                    id="detail-student">{{ $item->Vacancy->Division->divisi }}</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>
-                                                                <p class="title modal-title" style="font-weight: bold">
-                                                                    Posisi
-                                                                </p>
-                                                            </th>
-                                                            <td style="display: flex ">
-                                                                : <span class="box-detail"
-                                                                    id="detail-treatment">{{ $item->Vacancy->pekerja }}</span>
-                                                            </td>
-                                                        </tr>
-
-                                                    </table>
+                                                <div class="col-lg-6 col-md-12 col-sm-12 pt-3">
+                                                   <div class="row mb-4">
+                                                    <span class="col-12 col-md-3 text-detail  " style="font-weight: bold">Nama</span>
+                                                    <span class="titik-dua col-1">:</span>
+                                                    <span class="col-12 col-md-8 text-detail">{{ $item->User->name }}</span>
+                                                   </div>
+                                                  
                                                 </div>
-                                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                                    <table class="table table-borderless">
-
-                                                        {{-- <tr>
-                                                            <th>
-                                                                <p class="title modal-title" style="font-weight: bold">
-                                                                    Email
-                                                                </p>
-                                                            </th>
-                                                            <td style="display: flex ">
-                                                                : <p class="box-detail email-text " id="detail-classroom" >
-                                                                    {{ $item->User->email }}
-                                                                </p>
-                                                            </td>
-                                                        </tr> --}}
-                                                        <tr>
-                                                            <th>
-                                                                <p class="title modal-title" style="font-weight: bold">
-                                                                  Jenis 
-                                                                </p>
-                                                            </th>
-                                                            <td style="display: flex ">
-                                                                : <span class="box-detail"
-                                                                    id="detail-classroom">{{ $item->User->jenis_kelamin }}</span>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>
-                                                                <p class="title modal-title" style="font-weight: bold">
-                                                                    No Telp
-                                                                </p>
-                                                            </th>
-                                                            <td style="display: flex ">
-                                                                : <span class="box-detail"
-                                                                    id="detail-treatment">{{ $item->User->no_telp }}</span>
-                                                            </td>
-                                                        </tr>
-
-                                                    </table>
+                                                <div class="col-lg-6 col-md-12 col-sm-12 pt-3">
+                                                  
+                                                   <div class="row  mb-4">
+                                                    <span class="col-12 col-md-3 text-detail " style="font-weight: bold">Jenis Kelamin</span>
+                                                    <span class="titik-dua col-1">:</span>
+                                                    <span class="col-12 col-md-8 text-detail">{{ $item->User->jenis_kelamin }}</span>
+                                                   </div>
+                                                  
                                                 </div>
-                                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                                    <table class="table table-borderless">
-                                                        <tr>
-                                                            <th>
-                                                                <p class="title modal-title" style="font-weight: bold">
-                                                                    Alamat
-                                                                </p>
-                                                            </th>
-                                                            <td style="display: flex ">
-                                                                : <span class="box-detail"
-                                                                    id="detail-student">{{ $item->User->alamat }}</span>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
+                                                <div class="col-lg-6 col-md-12 col-sm-12 pt-3">
+                                                   
+                                                   <div class="row  mb-4">
+                                                    <span class="col-12 col-md-3 text-detail " style="font-weight: bold">No Telp</span>
+                                                    <span class="titik-dua col-1">:</span>
+                                                    <span class="col-12 col-md-8 text-detail">{{ $item->User->no_telp }}</span>
+                                                   </div>
                                                 </div>
+                                                <div class="col-lg-6 col-md-12 col-sm-12 pt-3">
+                                                   <div class="row mb-4">
+                                                    <span class="col-12 col-md-3 text-detail " style="font-weight: bold" style="font-weight: bold">Email</span>
+                                                    <span class="titik-dua col-1">:</span>
+                                                    <span class="col-12 col-md-8 text-detail">{{ $item->User->email }}</span>
+                                                   </div>
+                                                 
+                                                </div>
+                                                <div class="col-lg-6 col-md-12 col-sm-12 pt-3">
+                                                   
+                                                   <div class="row  mb-4">
+                                                    <span class="col-12 col-md-3 text-detail " style="font-weight: bold">Divisi</span>
+                                                    <span class="titik-dua col-1">:</span>
+                                                    <span class="col-12 col-md-8 text-detail">{{ $item->Vacancy->Division->divisi }}</span>
+                                                   </div>
+                                                  
+                                                </div>
+                                                <div class="col-lg-6 col-md-12 col-sm-12 pt-3">
+                                                   
+                                                   <div class="row  mb-4">
+                                                    <span class="col-12 col-md-3 text-detail " style="font-weight: bold">Posisi</span>
+                                                    <span class="titik-dua col-1">:</span>
+                                                    <span class="col-12 col-md-8 text-detail">{{  $item->Vacancy->pekerja }}</span>
+                                                   </div>
+                                                </div>
+                                                
+                                                <div class="col-lg-12 col-md-12 col-sm-12 pt-3">
+                                                   <div class="row mb-4">
+                                                    <span class="col-12 text-center text-detail " style="font-weight: bold" style="font-weight: bold">Alamat</span>
+                                                  
+                                                    <span class="col-12 text-center text-detail">{{ $item->User->alamat }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorem adipisci accusantium maiores, hic minus sunt exercitationem debitis dignissimos aperiam laborum laudantium voluptate placeat enim numquam, velit voluptatum, iure natus.</span>
+                                                   </div>
+                                                </div>
+                                                
+                                                
                                             </div>
                                         </div>
 

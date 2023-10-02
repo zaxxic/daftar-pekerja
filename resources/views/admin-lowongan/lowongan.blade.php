@@ -14,6 +14,9 @@
         /* Ganti dengan warna latar belakang yang diinginkan */
     }
 </style>
+
+
+
 <div class="row">
     <div class="mb-4 d-flex justify-content-start col-md-6 lg-6">
         <button style="background-color: white;">
@@ -527,11 +530,7 @@
             })
             .then((result) => {
                 if (result.value) {
-                    swalWithBootstrapButtons.fire(
-                        "Berhasil!",
-                        "Anda berhasil mengaktifkan lowongan tersebut.",
-                        "success"
-                    );
+                   
                     var form = document.getElementById("formactive-" + itemId);
                     form.submit();
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -544,6 +543,19 @@
             });
     }
 </script>
+@if (session('gagal'))
+<script>
+    Swal.fire({
+        title: 'Batal',
+        text: "{{ session('gagal') }}",
+        icon: 'error',
+    }).then(function() {
+        // Redirect ke halaman edit dengan menggunakan ID yang diambil dari sesi
+        window.location.href = "{{ route('lowongan.edit', session('id')) }}";
+    });
+</script>
+@endif
+
 
 <script>
     $(document).load(function() {
