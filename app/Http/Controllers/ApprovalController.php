@@ -102,7 +102,13 @@ class ApprovalController extends Controller
         $tanggal = $request->tanggal_wawancara;
         $timestamp = strtotime($tanggal);
         $tanggal_format = date('d-m-Y', $timestamp);
-        $datas =   [
+        $datas = [
+            'nama' => $data->name,
+            'lokasi' => $request->lokasi,
+            'tanggal' => $tanggal_format,
+            'lowongan' => $item->Vacancy->judul,
+            'divisi' => $item->Vacancy->Division->divisi,
+            'posisi' => $item->Vacancy->pekerja,
             'pesan' => "Persiapkan anda untuk wawancara pada tanggal " . $tanggal_format . "
              untuk lokasi wawancaranya adalah ". $request->lokasi,
             'status' => "terima",

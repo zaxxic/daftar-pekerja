@@ -41,23 +41,25 @@
 
 <body>
     <div class="card">
-        <div class="body">
+        <div class="card-body">
             <center>
                 <h1 style="color: #00c3ff;">Humma<span class="soft" style="color: #000; ">tech</span></h1>
             </center>
-            <h4
-                style="
-              font-family: Arial, Helvetica, sans-serif;
-              justify-content: start;
-            ">
-                Keterangan :
-            </h4>
-            <p>{{ $datas['judul'] }} </p>
+            <p style="color: #000;">Dengan hormat,</p>
 
-            <h4 style="font-family: Arial, Helvetica, sans-serif">Pesan :</h4>
-            <p>{{ $datas['pesan'] }}</p>
+            <p style="color: #000;">{{ $datas['nama'] }}</p>
 
-            <h3 style="text-align: center; margin-top: 25px">Terima Kasih! 😊</h3>
+            <p style="color: #000;">Saya dengan ini ingin menyampaikan bahwa saya telah menerima tawaran Anda untuk bergabung dengan Lowongan {{ $datas['lowongan'] }} dalam divisi {{ $datas['divisi'] }}, dengan posisi {{ $datas['posisi'] }}. Saya sangat berterima kasih atas kesempatan ini.</p>
+
+            <p style="color: #000;">Saya ingin mengonfirmasi bahwa saya bersedia untuk mengikuti sesi wawancara yang telah dijadwalkan pada tanggal {{ $datas['tanggal'] }}. Lokasi wawancara akan berlangsung di alamat berikut :</p>
+
+            <p style="color: #000;">{{ $datas['lokasi'] }}</p>
+
+            <p style="color: #000;">Saya sangat bersemangat untuk bertemu dengan Anda dan berdiskusi lebih lanjut tentang peran ini. Terima kasih atas perhatian Anda terhadap lamaran saya.</p>
+
+            <p style="color: #000;">Salam hormat,</p>
+
+            <p style="color: #000;">PT. Hummatech Technology</p>
         </div>
     </div>
 </body>
