@@ -5,19 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Rejected extends Model
+class Experience extends Model
 {
-    use HasFactory; 
-    protected $fillable = [
-        'user_id','pesan','vacancies_id'
+    use HasFactory;
+
+    protected $fillable=[
+        'user_id','Tempat','JenisPekerjaan','NamaProjek','DetailProjek','WaktuPengerjaan','Bukti'
     ];
-    public function Vacancy()
-    {
-        return $this->belongsTo(Vacancy::class, 'vacancies_id');
-    }
     public function User()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
 }

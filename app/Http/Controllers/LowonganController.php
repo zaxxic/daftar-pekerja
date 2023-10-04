@@ -205,8 +205,8 @@ class LowonganController extends Controller
             'syarat' => $request->content
 
         ]);
-        return redirect()->route('lowongan.index');
-    }
+        return redirect()->route('lowongan.index')->with('suksesEdit', 'Lowongan Berhasil Di Edit');  
+      }
 
     /**
      * Remove the specified resource from storage.
@@ -300,6 +300,6 @@ class LowonganController extends Controller
         // }
 
 
-        return redirect()->route('lowongan.index')->with('sukses', 'Data Berhasil Di Perbarui');
+        return redirect()->route('lowongan.index');
     }
 }

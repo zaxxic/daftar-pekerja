@@ -286,7 +286,7 @@
                     align-items: center;
                     text-align: center;
                     justify-content: center;
-                    margin-left: 85px;
+                    /* margin-left: 85px; */
                     border-radius: 10%;
                     width: 100%;
                 }
@@ -381,9 +381,8 @@
                                                 
                                                 <div class="col-lg-12 col-md-12 col-sm-12 pt-3">
                                                    <div class="row mb-4">
-                                                    <span class="col-12 text-center text-detail " style="font-weight: bold" style="font-weight: bold">Alamat</span>
-                                                  
-                                                    <span class="col-12 text-center text-detail">{{ $item->User->alamat }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorem adipisci accusantium maiores, hic minus sunt exercitationem debitis dignissimos aperiam laborum laudantium voluptate placeat enim numquam, velit voluptatum, iure natus.</span>
+                                                    <span class="col-12  text-detail mb-1 " style="font-weight: bold" style="font-weight: bold">Alamat</span>
+                                                    <span class="col-12  text-detail">{{ $item->User->alamat }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorem adipisci accusantium maiores, hic minus sunt exercitationem debitis dignissimos aperiam laborum laudantium voluptate placeat enim numquam, velit voluptatum, iure natus.</span>
                                                    </div>
                                                 </div>
                                                 
@@ -630,4 +629,5 @@
             // Selanjutnya, Anda dapat memicu pencarian ulang atau tindakan lain yang sesuai.
         });
     </script>
+
 @endsection

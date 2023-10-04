@@ -33,7 +33,7 @@
             </div>
             <div class="col-12 col-md-6">
                 <label class="mt-5" for="judul">Batas Lowongan </label> <br>
-                <input placeholder="Batas" class="col-12 col-md-10 rounded-1 form-control" type="text" name="batas" value="{{ $lowongan->batas }}" id="">
+                <input placeholder="Batas" class="col-12 col-md-10 rounded-1 form-control" type="date" name="batas" value="{{ $lowongan->batas }}" id="">
                 @error('batas')
                 <p class="text-danger">{{ $message }}</p>
                 @enderror

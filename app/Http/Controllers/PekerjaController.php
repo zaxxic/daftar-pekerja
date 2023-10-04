@@ -46,7 +46,7 @@ class PekerjaController extends Controller
             $keyword = "";
         } else {
             $user = Registration::whereHas('vacancy', function ($query) {
-                $query->where('status', ['aktif', 'nonaktif']); // Filter berdasarkan status lowongan 'aktif'
+                $query->whereIn('status', ['aktif', 'nonaktif']); // Filter berdasarkan status lowongan 'aktif'
             })->where('status', 'diterima')
                 ->paginate(8);
         }

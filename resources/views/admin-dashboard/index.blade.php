@@ -170,7 +170,7 @@
                 plotOptions: {
                     bar: {
                         horizontal: false,
-                        columnWidth: '10%',
+                        columnWidth: '30%',
                         endingShape: 'rounded',
                         borderRadius: 7,
                         barPercentage: 0.8, // Atur lebar batang relatif terhadap lebar kategori

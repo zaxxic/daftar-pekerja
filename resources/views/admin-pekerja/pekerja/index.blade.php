@@ -148,7 +148,7 @@
                             align-items: center;
                             text-align: center;
                             justify-content: center;
-                            margin-left: 13px;
+                            /* margin-left: 13px; */
                             border-radius: 10%;
                             width: 100%;
                         }
@@ -167,96 +167,118 @@
                 </style>
 
                 @foreach ($user as $item)
-                    <div id="detail-user-{{ $item->User->id }}" class="modal fade" tabindex="-1"
-                        aria-labelledby="bs-example-modal-md" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header d-flex align-items-center">
-                                    <h4 class="modal-title" id="myModalLabel">Detail Pekerja</h4>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
-                                <div class="modal-body">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-4 col-sm-4 col-md-8 my-auto mx-auto">
-                                                <div class="justify-content-center align-items-center fotos">
-                                                    <img src="{{ asset('foto_user/' . $item->User->foto) }}"
-                                                        class="img-fluid rounded-circle"
-                                                        style="width: 220px; height: 220px;" />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-8  col-12">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="mb-3">Data Diri Pekerja</h5>
-                                                        <div class="mb-1">
-                                                            <span class="fw-bold me-3">Nama:</span>
-                                                            <span>{{ $item->User->name }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">Email:</span>
-                                                            <span>{{ $item->User->email }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span style="font-weight: 600;">Divisi:</span>
-                                                            <span
-                                                                class="ms-2">{{ $item->Vacancy->Division->divisi }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">Posisi:</span>
-                                                            <span>{{ $item->Vacancy->pekerja }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-
-                                                        <!-- Tambahkan data lainnya di sini menggunakan format yang sama -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12  col-12">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="mb-3">Data Lengkap Pekerja</h5>
-
-                                                        <div class="mb-1">
-                                                            <span class="fw-bold me-3">Jenis Kelamin:</span>
-                                                            <span>{{ $item->User->jenis_kelamin }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span class="me-3" style="font-weight: 600;">No.
-                                                                Handphone:</span>
-                                                            <span>{{ $item->User->no_telp }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-                                                        <div class="d-flex mb-1">
-                                                            <span style="font-weight: 600;">Alamat:</span>
-                                                            <span class="ms-2 ellipsis">{{ $item->User->alamat }}</span>
-                                                        </div>
-                                                        <hr style="width: 100%; border-top: 1px solid #000000;"
-                                                            class="mt-0">
-
-                                                        <!-- Tambahkan data lainnya di sini menggunakan format yang sama -->
-                                                    </div>
-                                                </div>
+                <div id="detail-user-{{ $item->User->id }}" class="modal fade" tabindex="-1"
+                    aria-labelledby="bs-example-modal-md" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header d-flex align-items-center">
+                                <h4 class="modal-title" id="myModalLabel">Detail Pekerja</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
+                            <div class="modal-body">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="justify-content-center text-center align-items-center fotos">
+                                                <img src="{{ asset('foto_user/' . $item->User->foto) }}"
+                                                    class="img-fluid rounded-circle" style="width: 220px; height: 220px;" />
                                             </div>
                                         </div>
+                                        <!-- <div class="col-lg-8 col-12"> -->
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="">
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-12 col-sm-12 pt-3">
+                                                           <div class="row mb-4">
+                                                            <span class="col-12 col-md-3 text-detail  " style="font-weight: bold">Nama</span>
+                                                            <span class="titik-dua col-1">:</span>
+                                                            <span class="col-12 col-md-8 text-detail">{{ $item->User->name }}</span>
+                                                           </div>
+                                                          
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-12 col-sm-12 pt-3">
+                                                          
+                                                           <div class="row  mb-4">
+                                                            <span class="col-12 col-md-3 text-detail " style="font-weight: bold">Jenis Kelamin</span>
+                                                            <span class="titik-dua col-1">:</span>
+                                                            <span class="col-12 col-md-8 text-detail">{{ $item->User->jenis_kelamin }}</span>
+                                                           </div>
+                                                          
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-12 col-sm-12 pt-3">
+                                                           
+                                                           <div class="row  mb-4">
+                                                            <span class="col-12 col-md-3 text-detail " style="font-weight: bold">No Telp</span>
+                                                            <span class="titik-dua col-1">:</span>
+                                                            <span class="col-12 col-md-8 text-detail">{{ $item->User->no_telp }}</span>
+                                                           </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-12 col-sm-12 pt-3">
+                                                           <div class="row mb-4">
+                                                            <span class="col-12 col-md-3 text-detail " style="font-weight: bold" style="font-weight: bold">Email</span>
+                                                            <span class="titik-dua col-1">:</span>
+                                                            <span class="col-12 col-md-8 text-detail">{{ $item->User->email }}</span>
+                                                           </div>
+                                                         
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-12 col-sm-12 pt-3">
+                                                           
+                                                           <div class="row  mb-4">
+                                                            <span class="col-12 col-md-3 text-detail " style="font-weight: bold">Divisi</span>
+                                                            <span class="titik-dua col-1">:</span>
+                                                            <span class="col-12 col-md-8 text-detail">{{ $item->Vacancy->Division->divisi }}</span>
+                                                           </div>
+                                                          
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-12 col-sm-12 pt-3">
+                                                           <div class="row  mb-4">
+                                                            <span class="col-12 col-md-3 text-detail " style="font-weight: bold">Posisi</span>
+                                                            <span class="titik-dua col-1">:</span>
+                                                            <span class="col-12 col-md-8 text-detail">{{  $item->Vacancy->pekerja }}</span>
+                                                           </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-12 col-sm-12 pt-3">
+                                                           <div class="row  mb-4">
+                                                            <span class="col-12 col-md-3 text-detail " style="font-weight: bold">Tanggal Wawancara</span>
+                                                            <span class="titik-dua col-1">:</span>
+                                                            <span class="col-12 col-md-8 text-detail">{{  $item->User->tanggal_wawancara }}</span>
+                                                           </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-12 col-sm-12 pt-3">
+                                                           <div class="row  mb-4">
+                                                            <span class="col-12 col-md-3 text-detail " style="font-weight: bold">Lokasi Wawancara</span>
+                                                            <span class="titik-dua col-1">:</span>
+                                                            <span class="col-12 col-md-8 text-detail">{{  $item->User->lokasi_wawancara }}</span>
+                                                           </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 pt-3">
+                                                           <div class="row mb-4">
+                                                            <span class="col-12 text-center text-detail " style="font-weight: bold" style="font-weight: bold">Alamat</span>
+                                                          
+                                                            <span class="col-12 text-center text-detail">{{ $item->User->alamat }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur dolorem adipisci accusantium maiores, hic minus sunt exercitationem debitis dignissimos aperiam laborum laudantium voluptate placeat enim numquam, velit voluptatum, iure natus.</span>
+                                                           </div>
+                                                        </div>
+                                                        
+                                                        
+                                                    </div>
+                                                </div>
+        
+        
+                                                <!-- Tambahkan data lainnya di sini menggunakan format yang sama -->
+                                            </div>
+                                        </div>
+                                        <!-- </div> -->
+        
                                     </div>
                                 </div>
-
                             </div>
+        
                         </div>
                     </div>
+                </div>
 
 
 
