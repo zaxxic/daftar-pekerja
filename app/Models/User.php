@@ -32,6 +32,7 @@ class User extends Authenticatable
         'password',
         'lokasi_wawancara',
         'devision_id',
+        'tentang',
     ];
 
     /**
@@ -69,5 +70,13 @@ class User extends Authenticatable
     public function Rejected()
     {
         return $this->hasMany(Rejected::class);
+    }
+    public function Skill()
+    {
+        return $this->hasMany(Skill::class);
+    }
+    public function Certificate()
+    {
+        return $this->hasMany(Certificate::class);
     }
 }
