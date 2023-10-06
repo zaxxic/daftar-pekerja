@@ -46474,3 +46474,75 @@ ul {
     padding-left: 20px; /* Sesuaikan nilai padding kiri yang Anda inginkan */
     padding-right: 20px; /* Sesuaikan nilai padding kanan yang Anda inginkan */
 }
+
+.buttonmodal {
+    background-color: white;
+    padding: 2%;
+    border-top: 1px solid black;
+    color: black;
+    border-radius: 0 0 10px 10px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.buttonmodal:hover {
+    background-color: #5d87ff;
+    border-top-color: white;
+    color: white;
+}
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 8px 16px;
+    /* Lebih lebar */
+    position: absolute;
+    z-index: 1;
+    top: 140%;
+    /* Pindahkan ke bawah elemen SVG */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.2s, visibility 0.2s;
+}       
+
+.tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip-container1 {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-text1 {
+    visibility: hidden;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 8px 16px;
+    /* Lebih lebar */
+    position: absolute;
+    z-index: 1;
+    top: 110%;
+    /* Pindahkan ke bawah elemen SVG */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.2s, visibility 0.2s;
+}       
+
+.tooltip-container1:hover .tooltip-text1 {
+    visibility: visible;
+    opacity: 1;
+}       
+
