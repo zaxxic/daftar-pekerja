@@ -17,6 +17,11 @@ class ProfileController extends Controller
         return view('user.profile', compact('user'));
     }
 
+    function profileuser()
+    {
+        return view('user.profile-user');
+    }
+
     public function updatePassword(Request $request)
     {
         $request->validate(
@@ -63,7 +68,7 @@ class ProfileController extends Controller
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|max:255|unique:users,email,' . $user->id,
                 'no_telp' => 'required|numeric|regex:/^\d*$/|digits_between:10,13',
-                'alamat' => 'required|string',
+                'alamat' => 'required|string|max:225',
                 'lamaran' => 'file|mimes:pdf|max:5120', // Max size: 5MB
                 'cv' => 'file|mimes:pdf|max:5120', // Max size: 5MB
             ],
@@ -80,6 +85,7 @@ class ProfileController extends Controller
                 'no_telp.numeric' => 'Nomor telepon harus berupa angka.',
                 'no_telp.regex' => 'Format nomor telepon tidak valid.',
                 'alamat.required' => 'Alamat harus diisi.',
+                'alamat.max' => 'Alamat maksimal 225 hurus',
                 'alamat.string' => 'Format alamat tidak valid.',
                 'lamaran.file' => 'Lamaran harus berupa file PDF.',
                 'lamaran.mimes' => 'Format lamaran harus PDF.',
