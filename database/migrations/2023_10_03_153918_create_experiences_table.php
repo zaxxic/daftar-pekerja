@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('JenisPekerjaan');
             $table->string('NamaProjek');
             $table->longText('DetailProjek');
-            $table->string('WaktuPengerjaan');
+            $table->string('TanggalAwal');
+            $table->string('TanggalAkhir');
             $table->string('Bukti');
             $table->timestamps();
         });

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Experience;
+use App\Models\Skill;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,20 +21,24 @@ class ProfileController extends Controller
 
     function profileuser()
     {
-        return view('user.profile-user');
+        $user = User::find(auth()->user()->id);
+        $skill = Skill::all();
+        $experience = Experience::all();
+        return view('user.profile-user', compact('user', 'skill', 'experience'));
     }
 
     public function updatePassword(Request $request)
     {
         $request->validate(
             [
-                'current_password' => ['required',
-                function ($attribute, $value, $fail) {
-                    if (!Hash::check($value, Auth()->user()->password)) {
-                        return $fail(__('Password Lama tidak benar.'));
-                    }
-                },
-            ],
+                'current_password' => [
+                    'required',
+                    function ($attribute, $value, $fail) {
+                        if (!Hash::check($value, Auth()->user()->password)) {
+                            return $fail(__('Password Lama tidak benar.'));
+                        }
+                    },
+                ],
                 'new_password' => 'required|min:6|max:12|confirmed',
             ],
             [
@@ -58,7 +64,7 @@ class ProfileController extends Controller
         return redirect()->back()->with('success', 'Password berhasil diperbarui');
     }
 
-    
+
     public function updateProfile(Request $request)
     {
         $user = Auth::user();
@@ -113,7 +119,6 @@ class ProfileController extends Controller
             }
 
             $user->lamaran = $lamaranFileName;
-
         }
 
         if ($request->hasFile('cv')) {
@@ -130,7 +135,6 @@ class ProfileController extends Controller
             // Update kolom 'cv' pada model User atau Registration
             // Sesuaikan dengan model yang Anda gunakan
             $user->cv = $cvFileName;
-
         }
 
 
@@ -144,15 +148,17 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         // Validasi file yang diunggah (misalnya, tipe file, ukuran maksimal, dll.)
-        $request->validate([
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Ganti sesuai kebutuhan Anda
-        ],
-        [
-            'foto.required' => 'Foto Profile Wajib Diisi',
-            'foto.image' => 'Format Foto Profile Tidak Valid',
-            'foto.mimes' => 'Foto Profile Wajib Berformat JPG, JPEG dan PNG',
-            'foto.max' => 'Foto Profile Maksimal Berukuran 2048',
-        ]);
+        $request->validate(
+            [
+                'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Ganti sesuai kebutuhan Anda
+            ],
+            [
+                'foto.required' => 'Foto Profile Wajib Diisi',
+                'foto.image' => 'Format Foto Profile Tidak Valid',
+                'foto.mimes' => 'Foto Profile Wajib Berformat JPG, JPEG dan PNG',
+                'foto.max' => 'Foto Profile Maksimal Berukuran 2048',
+            ]
+        );
 
         // Simpan file foto ke direktori yang sesuai
         if ($request->hasFile('foto')) {
@@ -173,5 +179,34 @@ class ProfileController extends Controller
 
         // Redirect kembali ke halaman profil
         return redirect()->route('profile')->with('success', 'Foto berhasil diunggah.');
+    }
+
+    public function summary(Request $request)
+    {
+        $user = auth()->user(); // Mendapatkan user yang sedang login
+        $deskripsi = $request->input('deskripsi');
+
+        $request->validate(
+            [
+                'deskripsi' => 'required|max:250', // Ganti sesuai kebutuhan Anda
+            ],
+            [
+                'deskripsi.required' => 'Deskripsi Wajib Diisi',
+                'deskripsi.max' => 'Deskripsi Maksimal 250 Karakter'
+            ]
+        );
+
+        // Cek apakah user sudah memiliki deskripsi
+        $existingSummary = $user->deskripsi;
+
+        if (!empty($existingSummary)) {
+            // Jika user sudah memiliki deskripsi, update deskripsi yang ada
+            $user->update(['deskripsi' => $deskripsi]);
+        } else {
+            // Jika user belum memiliki deskripsi, buat deskripsi baru
+            $user->update(['deskripsi' => $deskripsi]);
+        }
+
+        return redirect()->back()->with('success', 'Deskripsi berhasil disimpan.');
     }
 }

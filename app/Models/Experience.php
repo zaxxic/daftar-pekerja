@@ -10,7 +10,7 @@ class Experience extends Model
     use HasFactory;
 
     protected $fillable=[
-        'user_id','Tempat','JenisPekerjaan','NamaProjek','DetailProjek','WaktuPengerjaan','Bukti'
+        'user_id', 'Tempat', 'JenisPekerjaan', 'NamaProjek', 'DetailProjek', 'TanggalAwal', 'TanggalAkhir', 'Bukti'
     ];
     public function User()
     {

@@ -32,7 +32,7 @@ class User extends Authenticatable
         'password',
         'lokasi_wawancara',
         'devision_id',
-        'tentang',
+        'deskripsi',
     ];
 
     /**
