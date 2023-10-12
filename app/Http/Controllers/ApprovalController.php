@@ -13,9 +13,13 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\daftar;
+use App\Models\Certificate;
 use App\Models\Division;
+use App\Models\Experience;
 use App\Models\Registration;
-
+use App\Models\School;
+use App\Models\Skill;
+use App\Models\Vacancy;
 
 class ApprovalController extends Controller
 {
@@ -182,8 +186,18 @@ class ApprovalController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function show($id)
     {
-        //
+        // dd($id);
+        $data = User::find($id);
+        $experience = Experience::where('user_id');
+        $skill = Skill::where('user_id');
+        $school = School::where('user_id');
+        $certificate = Certificate::where('user_id');
+        // $divisi = Division::where('user_id');
+        $lowongan = Vacancy::get();
+        // dd($lowongan);
+        // dd($data);
+        return view('admin-pekerja.approval.detail-user', compact('data', 'experience', 'skill', 'school', 'certificate', 'lowongan'));
     }
 }

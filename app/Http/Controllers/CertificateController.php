@@ -33,7 +33,7 @@ class CertificateController extends Controller
 
         $this->validate($request, [
             'judul' => 'required|max:150',
-            'deskripsi' => 'required|max:150',
+            'deskripsi' => 'required',
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ], [
             'judul.required' => 'Tempat Wajib Diisi',
@@ -92,7 +92,7 @@ class CertificateController extends Controller
 
         $this->validate($request, [
             'judul' => 'required|max:150',
-            'deskripsi' => 'required|max:150',
+            'deskripsi' => 'required',
             'foto' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ], [
             'judul.required' => 'Tempat Wajib Diisi',
