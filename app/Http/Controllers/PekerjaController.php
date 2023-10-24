@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\daftar;
+use App\Mail\lulus;
 use App\Models\Division;
 
 class PekerjaController extends Controller
@@ -127,6 +128,70 @@ class PekerjaController extends Controller
 
         return redirect()->route('pekerja')->with('sukses', 'Data Berhasil Di Perbarui');
     }
+
+    // public function lulus($id)
+    // {
+    //     $data = User::findOrFail($id);
+    //     $item = Registration::where('users_id', $id)->first();
+    //     $datas = [
+    //         'nama' => $data->name,
+    //         'lowongan' => $item->Vacancy->judul,
+    //         'divisi' => $item->Vacancy->Division->divisi,
+    //         'posisi' => $item->Vacancy->pekerja,
+    //         'status' => "terima",
+    //         'judul' => " Selamat anda diterima di lowongan " . $item->Vacancy->judul
+    //     ];
+
+    //     Mail::to($data->email)->send(new lulus($datas));
+    //     // dd($item->Vacancy->devisi_id);
+    //     $data->update([
+    //         'status' => 'lulus',
+    //     ]);
+    //     $item->update([
+    //         'status' => 'lulus'
+    //     ]);
+
+    //     return redirect()->route('pekerja')->with('sukses', 'Data Berhasil Di Perbarui');
+    // }
+
+    public function lulus($id)
+    {
+        $data = User::findOrFail($id);
+        $item = Registration::where('users_id', $id)->first();
+        $vacancy = $item->Vacancy;
+    
+        // Menghitung jumlah pengguna yang telah diterima di lowongan ini
+        $jumlahDiterima = $vacancy->registrations()->where('status', 'lulus')->count();
+    
+        // Memeriksa apakah jumlah pengguna yang telah diterima sudah mencapai atau melebihi slot
+        if ($jumlahDiterima >= $vacancy->slot) {
+            return redirect()->route('pekerja')->with('gagal', 'Maaf, slot pada lowongan ini sudah terisi penuh.');
+        }
+    
+        $datas = [
+            'nama' => $data->name,
+            'lowongan' => $vacancy->judul,
+            'divisi' => $vacancy->Division->divisi,
+            'posisi' => $vacancy->pekerja,
+            'status' => "terima",
+            'judul' => "Selamat Anda diterima di lowongan " . $vacancy->judul
+        ];
+    
+        Mail::to($data->email)->send(new lulus($datas));
+    
+        $data->update([
+            'status' => 'lulus',
+        ]);
+    
+        $item->update([
+            'status' => 'lulus'
+        ]);
+    
+        return redirect()->route('pekerja')->with('sukses', 'Data Berhasil Di Perbarui');
+    }
+    
+    
+
 
     /**
      * Remove the specified resource from storage.
