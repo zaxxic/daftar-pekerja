@@ -163,8 +163,10 @@ class PekerjaController extends Controller
 
     public function lulus($id)
     {
-        $data = User::findOrFail($id);
-        $item = Registration::where('users_id', $id)->first();
+        // $data = User::findOrFail($id);
+        // $item = Registration::where('users_id', $id)->first();
+        $item = Registration::FindOrFail($id);
+        $data = User::findOrFail($item->users_id);
         $vacancy = $item->vacancy; // Gunakan relasi untuk mengakses Vacancy
     
         // Menghitung jumlah pengguna yang telah diterima di lowongan ini
