@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\daftar;
+use App\Mail\gagal;
 use App\Mail\lulus;
 use App\Models\Division;
 
@@ -115,16 +116,22 @@ class PekerjaController extends Controller
             'devision_id' => null
         ]);
         $data = Registration::where('users_id', $id)->first();
+        $vacancy = $data->vacancy;
         $data->update([
             'status' => 'nonaktif'
         ]);
         $datas =   [
+            'nama' => $data->name,
+            'lowongan' => $vacancy->judul,
+            'divisi' => $vacancy->Division->divisi,
+            'posisi' => $vacancy->pekerja,
+            'pesan' => $request->pesan,
             'pesan' => "Akun anda di nonaktifkan ",
             'status' => "nonaktif",
             'judul' => " Anda di nonkatifkan karena alasan " . $request->pesan . " dan anda bisa daftar di lowongan lainnya"
         ];
 
-        Mail::to($user->email)->send(new daftar($datas));
+        Mail::to($user->email)->send(new gagal($datas));
 
         return redirect()->route('pekerja')->with('sukses', 'Data Berhasil Di Perbarui');
     }
@@ -158,43 +165,37 @@ class PekerjaController extends Controller
     {
         $data = User::findOrFail($id);
         $item = Registration::where('users_id', $id)->first();
-        $vacancy = $item->Vacancy;
-
+        $vacancy = $item->vacancy; // Gunakan relasi untuk mengakses Vacancy
+    
         // Menghitung jumlah pengguna yang telah diterima di lowongan ini
-        $jumlahDiterima = Registration::where('status', 'lulus')->count();
-
-        
+        $jumlahDiterima = Registration::where('status', 'lulus')->where('vacancie_id', $vacancy->id)->count();
+    
         // Memeriksa apakah jumlah pengguna yang telah diterima sudah mencapai atau melebihi slot
         if ($jumlahDiterima >= $vacancy->slot) {
             return redirect()->route('pekerja')->with('gagal', 'Maaf, slot pada lowongan ini sudah terisi penuh.');
-        }else{
-
-                    $datas = [
-                        'nama' => $data->name,
-                        'lowongan' => $vacancy->judul,
-                        'divisi' => $vacancy->Division->divisi,
-                        'posisi' => $vacancy->pekerja,
-                        'status' => "terima",
-                        'judul' => "Selamat Anda diterima di lowongan " . $vacancy->judul
-                    ];
-
-                    Mail::to($data->email)->send(new lulus($datas));
-
-                    $data->update([
-                        'status' => 'lulus',
-                    ]);
-
-                    $item->update([
-                        'status' => 'lulus'
-                    ]);
-                    return redirect()->route('pekerja')->with('sukses', 'Data Berhasil Di Perbarui');
         }
-
+    
+        $datas = [
+            'nama' => $data->name,
+            'lowongan' => $vacancy->judul,
+            'divisi' => $vacancy->Division->divisi,
+            'posisi' => $vacancy->pekerja,
+            'status' => "terima",
+            'judul' => "Selamat Anda diterima di lowongan " . $vacancy->judul
+        ];
+    
+        Mail::to($data->email)->send(new lulus($datas));
+    
+        $data->update([
+            'status' => 'lulus',
+        ]);
+    
+        $item->update([
+            'status' => 'lulus'
+        ]);
+    
+        return redirect()->route('pekerja')->with('sukses', 'Data Berhasil Di Perbarui');
     }
-
-
-
-
     /**
      * Remove the specified resource from storage.
      */

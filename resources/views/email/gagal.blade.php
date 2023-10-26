@@ -50,9 +50,13 @@
 
             <p style="color: #000;">{{ $datas['nama'] }}</p>
 
-            <p style="color: #000;">Berkenaan dengan hasil wawancara yang telah Anda lakukan sebelumnya</p>
+            <p style="color: #000;">Kami ingin mengucapkan terima kasih yang sebesar-besarnya atas partisipasi Anda dalam melamar pada lowongan {{ $datas['lowongan'] }} di divisi {{ $datas['divisi'] }} dengan posisi {{ $datas['posisi'] }}.</p>
 
-            <p style="color: #000;">dengan ini kami ingin menyampaikan bahwa Anda telah diterima untuk bergabung di {{ $datas['lowongan'] }} dalam divisi {{ $datas['divisi']}} dengan posisi {{ $datas['posisi'] }}, Kami sangat antusias menantikan kesuksesan Anda di peran ini.</p>
+            <p style="color: #000;">Namun, dengan sangat menyesal, kami harus menyampaikan permohonan maaf karena Anda belum memenuhi kualifikasi yang kami cari, dengan alasan </p>
+
+            <p style="color: #000;"> {{ $datas['pesan'] }} </p>
+
+            <p style="color: #000;">Sekali lagi, kami ingin menyampaikan apresiasi yang tinggi atas partisipasi Anda. Terima kasih banyak.</p>
 
             <p style="color: #000;">Salam hormat,</p>
 

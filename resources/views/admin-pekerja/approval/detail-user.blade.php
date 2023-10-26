@@ -2,20 +2,14 @@
 
 <head>
 
+    <!-- <link rel="stylesheet" href="{{ asset('assets/dist/libs/daterangepicker/daterangepicker.css') }}">  -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <!-- Add Bootstrap CSS link -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="{{asset('assets1/css/stylesCarousel.css')}}">
     <!-- Add Bootstrap JavaScript and jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-<v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="{{ asset('assets/dist/libs/prismjs/themes/prism-okaidia.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets1/css/stylesCarousel.css') }}">
-
-
 
 </head>
 
@@ -85,7 +79,11 @@
 
                         <img src="{{ asset('assets/profilebg.jpg') }}" alt="" class="img-fluid">
                         <div class="row ">
+                            <!-- <div class="col-lg-4 order-lg-1 order-2">
+                                                                                        <div class="d-flex align-items-center justify-content-around m-4">
 
+                                                                                        </div>
+                                                                                    </div> -->
                             <div class="col-lg-8 col-md-8 col-7 ">
                                 <div class="mt-n5">
                                     <div class="d-flex ms-5 mb-2">
@@ -111,96 +109,54 @@
                                             </div> -->
                                 </div>
                             </div>
-                            <div class="modal fade" id="detail-cv-{{ Auth()->User()->cv }}" tabindex="-1"
-                                aria-labelledby="detail-cv-{{ Auth()->User()->cv }}" aria-hidden="true">
+                            <div class="modal fade" id="detail-cv-{{ Auth()->User()->cv }}" tabindex="-1" aria-labelledby="detail-cv-{{ Auth()->User()->cv }}" aria-hidden="true">
                                 <div class="modal-dialog modal-fullscreen">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1 class="modal-title fs-5" id="exampleModalLabel">Cv pekerja</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             @if (Auth()->User()->cv === 'default/default.png')
-                                                <div class="row">
-                                                    <div class="col-lg-12 mt-5 text-center" id="lowongan">
-                                                        <img src="/assets/nodatas.png" alt="" width="350px">
-                                                    </div>
+                                            <div class="row">
+                                                <div class="col-lg-12 mt-5 text-center" id="lowongan">
+                                                    <img src="/assets/nodatas.png" alt="" width="350px">
                                                 </div>
+                                            </div>
                                             @else
-                                            <canvas style="width: 100%" id="my_canvas"></canvas>
+                                            <embed src="{{ asset('cv/' . $data->cv) }}" type="application/pdf" width="100%" height="100%">
                                             @endif
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Tutup</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                                             {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal fade" id="detail-lamaran-{{ Auth()->User()->lamaran }}" tabindex="-1"
-                                aria-labelledby="detail-lamaran-{{ Auth()->User()->lamaran }}" aria-hidden="true">
-                                <div class="modal-dialog modal-fullscreen">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Lamaran pekerja</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            @if (Auth()->User()->lamaran === 'default/default.png')
-                                                <div class="row">
-                                                    <div class="col-lg-12 mt-5 text-center" id="lowongan">
-                                                        <img src="/assets/nodatas.png" alt="" width="350px">
-                                                    </div>
-                                                </div>
-                                            @else
-                                            <canvas style="width: 100%" id="canvasLamaran"></canvas>
-                                            @endif
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Tutup</button>
-                                            {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="col-lg-8 col-md-8 col-12">
-                                <div
-                                    class="list-unstyled align-items-center justify-content-center justify-content-lg-start my-3 gap-3 mx-4">
+                                <div class="list-unstyled align-items-center justify-content-center justify-content-lg-start my-3 gap-3 mx-4">
                                     <div class="position-relative d-flex  mb-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="mb-1 me-3 hilang" width="25"
-                                            height="25" viewBox="0 0 24 24">
-                                            <path fill="none" stroke="#000000" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="2"
-                                                d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" />
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="mb-1 me-3" width="25" height="25" viewBox="0 0 24 24">
+                                            <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" />
                                         </svg>
                                         <h6 class="mb-0 mt-1">{{ $data->no_telp }}</h6>
                                     </div>
 
                                     <div class="position-relative d-flex mb-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="mb-1 me-3 hilang" width="25"
-                                            height="25" viewBox="0 0 24 24">
-                                            <g fill="none" stroke="#000000" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="2">
-                                                <path
-                                                    d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" />
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="mb-1 me-3" width="25" height="25" viewBox="0 0 24 24">
+                                            <g fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                                <path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" />
                                                 <path d="m3 7l9 6l9-6" />
                                             </g>
                                         </svg>
                                         <h6 class="mb-0 mt-1">{{ $data->email }}</h6>
                                     </div>
                                     <div class="position-relative d-flex mb-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="mb-1 me-3 alamat hilang"
-                                            width="25" height="26" viewBox="0 0 24 24">
-                                            <g fill="none" stroke="#000000" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="mb-1 me-3 alamat" width="25" height="26" viewBox="0 0 24 24">
+                                            <g fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                                                 <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0-6 0" />
-                                                <path
-                                                    d="M17.657 16.657L13.414 20.9a2 2 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z" />
+                                                <path d="M17.657 16.657L13.414 20.9a2 2 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z" />
                                             </g>
                                         </svg>
                                         <h6 class="mb-0 mt-1">{{ $data->alamat }}</h6>
@@ -237,12 +193,12 @@
                                     }
                                 }
                             </style>
-                           <div class="col-lg-4 col-md-4 col-12">
-                            <div class="text-center mb-3 ms-4 padding">
-                                <a href="{{ route('user.cv', ['id' => $data->id]) }}" class="btn btn-primary me-2">CV</a>
-                                <a href="{{ route('user.lamaran', ['id' => $data->id]) }}" class="btn btn-primary">Lamaran</a>
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <div class="text-center mb-3 ms-4 padding">
+                                    <a href="{{ route('user.cv', ['id' => $data->id]) }}" class="btn btn-primary me-2">CV</a>
+                                    <a href="{{ route('user.lamaran', ['id' => $data->id]) }}" class="btn btn-primary">Lamaran</a>
+                                </div>
                             </div>
-                        </div>
                             <style>
                                 @media (min-width: 768px) {
                                     div.padding {
@@ -267,7 +223,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-12 mb-3">
+                    <div class="col-lg-12">
                         <div class="card position-relative overflow-hidden mb-4" style="height: 94%;">
                             <div class="card-header bg-info d-flex align-items-center justify-content-between">
                                 <h4 class="card-title text-white mb-0">Tentang</h4>
@@ -278,7 +234,7 @@
                                     <p>{{ $data->deskripsi }}</p>
                                 </form>
                                 @else
-                                <div class="col-lg-12 mt-3 ml-5 text-center" id="lowongan">
+                                <div class="text-center" id="lowongan">
                                     <img src="{{ asset('assets/nodatas.png') }}" alt="" width="200px">
                                 </div>
                                 @endif
@@ -330,6 +286,7 @@
                         }
                     </style>
 
+
                     <div class="col-lg-12">
                         <div class="card position-relative overflow-hidden mb-4">
                             <div class="card-header bg-info d-flex align-items-center">
@@ -337,38 +294,43 @@
                             </div>
                             <div class="card-body p-4">
                                 @forelse($experience as $key => $item)
-                                <button class="accordion mt-2" onclick="Ganti({{ $item->id }})">
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex">
-                                            <p class="fw-semibold fs-4">{{ $item->Tempat }}</p>
-                                            <span class="fs-2 ms-2 me-2 mt-1">{{ \Carbon\Carbon::parse($item->TanggalAwal)->locale('id')->isoFormat('D MMM Y ') }}</span>-
-                                            <span class="fs-2 ms-2 mt-1">{{ \Carbon\Carbon::parse($item->TanggalAkhir)->locale('id')->isoFormat('D MMM Y ') }}</span>
-                                        </div>
-                                        <div>
-                                            <svg id="buka{{ $item->id }}" class="buka" style="display: block" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 21 21">
-                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m14.5 8.5l-4 4l-4-4" />
-                                            </svg>
-                                            <svg id="tutup{{ $item->id }}" class="tutup" style="display: none" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 21 21">
-                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m6.5 12.5l4-4l4 4" />
-                                            </svg>
-                                        </div>
+                                <button class="accordion mt-2">
+                                    <div class="d-flex">
+                                        <p class="  fw-semibold fs-4">{{ $item->Tempat }}</p>
+                                        <span class="fs-2 ms-2 me-2 mt-1">{{ \Carbon\Carbon::parse($item->TanggalAwal)->locale('id')->isoFormat('D MMM Y ') }}</span>-
+                                        <span class="fs-2 ms-2 mt-1">{{ \Carbon\Carbon::parse($item->TanggalAkhir)->locale('id')->isoFormat('D MMM Y ') }}</span>
                                     </div>
                                 </button>
                                 <div class="panel card-body pt-2">
-                                    <div class="d-flex mt-3" style="float: right;">
+                                    <div class="d-flex" style="float: right;">
+
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#experience-update-{{ $item->id }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="text-primary me-1" style="margin-bottom: 3px;" width="20" height="20" viewBox="0 0 24 24">
+                                                <path fill="#13DEB9" d="M5 19h1.4l8.625-8.625l-1.4-1.4L5 17.6V19ZM19.3 8.925l-4.25-4.2l1.4-1.4q.575-.575 1.413-.575t1.412.575l1.4 1.4q.575.575.6 1.388t-.55 1.387L19.3 8.925ZM17.85 10.4L7.25 21H3v-4.25l10.6-10.6l4.25 4.25Zm-3.525-.725l-.7-.7l1.4 1.4l-.7-.7Z" />
+                                            </svg>
+                                        </a>
+                                        <div class="justify-content-end">
+                                            <form action="{{ route('experience-delete', $item->id) }}" method="POST" id="formpengalaman-{{ $item->id }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="button" style="background: none; border: none; padding: 0;" onclick="Pengalaman({{ $item->id }})">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-primary" width="20" height="20" style="margin-bottom: 3px;" viewBox="0 0 24 24">
+                                                        <path fill="#FA896B" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4z" />
+                                                    </svg>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div class="mt-3">
                                     <span class="form-label fw-semibold fs-4">{{ $item->NamaProjek }}</span>
                                     <br>
                                     {{ $item->JenisPekerjaan }}
                                     <p class="form-label fw-semibold mt-3">Detail Projek :</p>
                                     {{ $item->DetailProjek }}
                                     <p class="form-label fw-semibold mt-3">Bukti :</p>
-                                    <div class="text-center mb-4" style="width: 670px; height: 500px; border: 1px solid #adadac; overflow: hidden; position: relative; border-radius: 10px;">
+                                    <div class="text-center mb-3" style="margin: 0 auto; width: 300px; height: 200px; border: 1px solid #adadac; overflow: hidden; border-radius: 10px;">
                                         <a href="{{ asset('pengalaman/' . $item->Bukti) }}" data-lightbox="image-1" data-title="Gambar Profil Anda">
-                                            <img src="{{ asset('pengalaman/' . $item->Bukti) }}" style="width: 100%; height: 100%; object-fit: contain;" alt="" />
+                                            <img src="{{ asset('pengalaman/' . $item->Bukti) }}" style="max-width: 100%; max-height: 100%; object-fit: contain;" alt="" />
                                         </a>
-                                    </div>
                                     </div>
                                 </div>
 
@@ -401,10 +363,14 @@
                                     });
                                 }
                             </script>
-
+                            <button class="buttonmodal border-bottom-0 border-start-0 border-end-0 w-100" data-bs-toggle="modal" data-bs-target="#experience-add">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="25" height="25" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
+                                </svg>
+                                <strong class="fs-4">Tambah</strong>
+                            </button>
                         </div>
                     </div>
-
 
                     <div class="col-lg-12">
                         <div class="card position-relative overflow-hidden mb-4">
@@ -422,12 +388,10 @@
                                     </div>
                                 </div>
                                 @empty
-                                <div class="col-lg-12 mt-3 ml-5 text-center" id="lowongan">
+                                <div class="text-center" id="lowongan">
                                     <img src="{{ asset('assets/nodatas.png') }}" alt="" width="200px">
                                 </div>
                                 @endforelse
-
-
                             </div>
                         </div>
                     </div>
@@ -441,17 +405,8 @@
                                 @forelse ($school as $item)
                                 <div class="mt-2 mb-2 d-flex justify-content-between">
                                     <div class="d-flex">
-                                        <div class="me-4" style="width: 50px; height: 50px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: center; line-height: 50px; border:1px solid black">
-                                            <div style="background-color: white; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
-                                                <p style="margin-top: 4px">
-                                                    @if ( $item->Tingkatan === 'SMA/SMK/Sederajat')
-                                                        SMA
-                                                    @else
-                                                    {{$item->Tingkatan}}
-                                                    @endif
-
-                                                </p>
-                                            </div>
+                                        <div class="me-4" style="width: 50px; height: 50px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px;">
+                                            <img src="{{ asset('assets/user-1.jpg') }}" alt="" class="w-100 h-100">
                                         </div>
                                         <div>
                                             <p for="exampleInputPassword1" class=" fw-semibold" style="margin-bottom: 0">
@@ -471,7 +426,7 @@
                                     </div>
                                 </div>
                                 @empty
-                                <div class="col-lg-12 mt-3 ml-5 text-center" id="lowongan">
+                                <div class="text-center" id="lowongan">
                                     <img src="{{ asset('assets/nodatas.png') }}" alt="" width="200px">
                                 </div>`
                                 @endforelse
@@ -499,120 +454,104 @@
                             overflow: hidden;
                             text-overflow: ellipsis;
                             white-space: nowrap;
-                        }php
+                        }
 
                         .menu {
                             display: none;
                         }
                     </style>
-<div class="col-lg-12">
-    <div class="card position-relative overflow-hidden mb-4">
-        <div class="card-header bg-info d-flex align-items-center justify-content-between">
-            <h4 class="card-title text-white mb-0">Sertifikat</h4>
-        </div>
-        <div class="">
-            <section class="product">
-                <button class="pre-btn"><img src="{{asset('images/arrow.png')}}" alt=""></button>
-                <button class="nxt-btn"><img src="{{asset('images/arrow.png')}}" alt=""></button>
-                <div class="product-container">
-                    @foreach ($certificate as $item)
-                    <div class="product-card">
-                        <div class="col-lg-12 ">
-                            <div class="card" style="height: 90%;">
-                                <div class="p-2">
-                                    <div class="d-flex align-items-center">
-                                        <h4 class="card-title mb-0"></h4>
-                                        <div class="ms-auto mb-0">
-                                            <div class="dropdown dropstart">
-                                                <a href="#" class="link text-dark" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fs-7">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-                                                            <path fill="currentColor" d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2z" />
-                                                        </svg>
-                                                    </i>
-                                                </a>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <div class="col-lg-12">
+                        <div class="card position-relative overflow-hidden mb-4">
+                            <div class="card-header bg-info d-flex align-items-center justify-content-between">
+                                <h4 class="card-title text-white mb-0">Sertifikat</h4>
+                            </div>
+                            <div class="card-body">
 
-                                                    <li class="d-flex">
-                                                        <a href="#" class="dropdown-item text-primary" data-bs-toggle="modal" data-bs-target="#certificate-detail-{{ $item->id }}">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="text-primary me-2" width="20" height="20" style="margin-bottom: 3px;" viewBox="0 0 24 24">
-                                                                <path fill="currentColor" d="M12 16q1.875 0 3.188-1.313T16.5 11.5q0-1.875-1.313-3.188T12 7q-1.875 0-3.188 1.313T7.5 11.5q0 1.875 1.313 3.188T12 16Zm0-1.8q-1.125 0-1.913-.788T9.3 11.5q0-1.125.788-1.913T12 8.8q1.125 0 1.913.788T14.7 11.5q0 1.125-.787 1.913T12 14.2Zm0 4.8q-3.65 0-6.65-2.038T1 11.5q1.35-3.425 4.35-5.463T12 4q3.65 0 6.65 2.038T23 11.5q-1.35 3.425-4.35 5.463T12 19Zm0-7.5Zm0 5.5q2.825 0 5.188-1.488T20.8 11.5q-1.25-2.525-3.613-4.013T12 6Q9.175 6 6.812 7.488T3.2 11.5q1.25 2.525 3.613 4.013T12 17Z" />
-                                                            </svg>
+                                <section class="product">
 
-                                                            Detail
-                                                        </a>
-                                                    </li>
+                                    <button class="pre-btn"><img src="{{asset('images/arrow.png')}}" alt=""></button>
+                                    <button class="nxt-btn"><img src="{{asset('images/arrow.png')}}" alt=""></button>
+                                    <div class="product-container">
+                                        @foreach ($certificate as $item)
+                                        <div class="product-card">
+                                            <div class="col-lg-12 ">
+                                                <div class="card" style="height: 90%;">
+                                                    <div class="p-2">
+                                                        <div class="d-flex align-items-center">
+                                                            <h4 class="card-title mb-0"></h4>
+                                                            <div class="ms-auto mb-0">
+                                                                <div class="dropdown dropstart">
+                                                                    <a href="#" class="link text-dark" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                        <i class="fs-7">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                                                                                <path fill="currentColor" d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2z" />
+                                                                            </svg>
+                                                                        </i>
+                                                                    </a>
+                                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                        <li class="d-flex">
+                                                                            <a href="#" class="dropdown-item text-primary" data-bs-toggle="modal" data-bs-target="#certificate-update-{{ $item->id }}">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" class="text-primary me-2" style="margin-bottom: 3px;" width="20" height="20" viewBox="0 0 24 24">
+                                                                                    <path fill="currentColor" d="M5 19h1.4l8.625-8.625l-1.4-1.4L5 17.6V19ZM19.3 8.925l-4.25-4.2l1.4-1.4q.575-.575 1.413-.575t1.412.575l1.4 1.4q.575.575.6 1.388t-.55 1.387L19.3 8.925ZM17.85 10.4L7.25 21H3v-4.25l10.6-10.6l4.25 4.25Zm-3.525-.725l-.7-.7l1.4 1.4l-.7-.7Z" />
+                                                                                </svg>
 
-                                                </ul>
+                                                                                Edit
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="d-flex">
+                                                                            <form action="{{ route('certificate-delete', $item->id) }}" method="POST" style="display: inline;" class="dropdown-item" id="formsertifikat-{{ $item->id }}">
+                                                                                @csrf
+                                                                                @method('DELETE')
+                                                                                <button type="button" class=" delete-button me-1 dropdown-item text-primary" onclick="Sertifikat('{{ $item->id }}')" style="background: none; border: none; padding: 0;">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-primary me-2" width="20" height="20" style="margin-bottom: 3px;" viewBox="0 0 24 24">
+                                                                                        <path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4z" />
+                                                                                    </svg>
+
+                                                                                    Hapus
+                                                                                </button>
+                                                                            </form>
+                                                                        </li>
+                                                                        <li class="d-flex">
+                                                                            <a href="#" class="dropdown-item text-primary" data-bs-toggle="modal" data-bs-target="#certificate-detail-{{ $item->id }}">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" class="text-primary me-2" width="20" height="20" style="margin-bottom: 3px;" viewBox="0 0 24 24">
+                                                                                    <path fill="currentColor" d="M12 16q1.875 0 3.188-1.313T16.5 11.5q0-1.875-1.313-3.188T12 7q-1.875 0-3.188 1.313T7.5 11.5q0 1.875 1.313 3.188T12 16Zm0-1.8q-1.125 0-1.913-.788T9.3 11.5q0-1.125.788-1.913T12 8.8q1.125 0 1.913.788T14.7 11.5q0 1.125-.787 1.913T12 14.2Zm0 4.8q-3.65 0-6.65-2.038T1 11.5q1.35-3.425 4.35-5.463T12 4q3.65 0 6.65 2.038T23 11.5q-1.35 3.425-4.35 5.463T12 19Zm0-7.5Zm0 5.5q2.825 0 5.188-1.488T20.8 11.5q-1.25-2.525-3.613-4.013T12 6Q9.175 6 6.812 7.488T3.2 11.5q1.25 2.525 3.613 4.013T12 17Z" />
+                                                                                </svg>
+
+                                                                                Detail
+                                                                            </a>
+                                                                        </li>
+
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-12 mb-3">
+                                                                <div class="border border-4 border-white d-flex align-items-center justify-content-center overflow-hidden" style="width: 200px; height: 110px;">
+                                                                    <img src="{{ asset('sertifikat/' . $item->foto) }}" alt="" style="height: 100%; width: 100%; border-radius: 6px;">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 " style="height: 100px">
+                                                                <span style="color: black">{{$item->judul}}</span>
+                                                                <p>{{$item->deskripsi}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+                                        @endforeach
+
                                     </div>
-                                    <div class="row">
-                                        <div class="col-12 mb-3">
-                                            <div class="border border-4 border-white d-flex align-items-center justify-content-center overflow-hidden" style="width: 200px; height: 110px;">
-                                                <img src="{{ asset('sertifikat/' . $item->foto) }}" alt="" style="height: 100%; width: 100%; border-radius: 6px;">
-                                            </div>
-                                        </div>
-                                        <div class="col-12 " style="height: 100px">
-                                            <span style="color: black">{{$item->judul}}</span>
-                                            <p class="ellipsis">{{$item->deskripsi}}</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                </section>
+
+
+
                             </div>
                         </div>
                     </div>
-                    @endforeach
-
-                </div>
-            </section>
-        </div>
-    </div>
-</div>
                 </div>
             </div>
-            @foreach ($certificate as $item)
-
-
-
-            <div class="modal fade" id="certificate-detail-{{ $item->id }}" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header d-flex align-items-center">
-                            <h4 class="modal-title" id="myLargeModalLabel">
-                                Detail Sertifikat
-                            </h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
-                            <div class="col-lg-12">
-                                <div>
-                                    Judul : {{$item->judul}}
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div>
-                                    {{$item->deskripsi}}
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="border border-4 border-white d-flex align-items-center justify-content-center overflow-hidden" style="width: 100%; max-height: 100%;">
-                                    <img src="{{ asset('sertifikat/' . $item->foto) }}" alt="" style="max-height: 100%; width: 100%; border-radius: 20px;">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-light-danger text-danger font-medium waves-effect text-start" data-bs-dismiss="modal">
-                                Tutup
-                            </button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-
-            @endforeach
 
 
             <div class="col-lg-4">
@@ -625,82 +564,49 @@
                             @foreach ($lowongan as $item)
                             <ul class="overview">
                                 <li class="row">
-                                    <p class="fw-semibold col-5"> Judul </p>
-                                    <p class="ellipsis  col-7">: {{ $item->judul }}</p>
+                                    <p class="fw-semibold col-3"> Judul </p>
+                                    <p class="ellipsis  col-9">: {{ $item->Vacancy->judul }}</p>
                                 </li>
                                 <li class="row">
-                                    <p class="fw-semibold  col-5"> Divisi</p>
-                                    <p class="ellipsis  col-7">: {{ $item->Division->divisi }}</p>
+                                    <p class="fw-semibold  col-3"> Divisi</p>
+                                    <p class="ellipsis  col-9">: {{ $item->Vacancy->Division->divisi }}</p>
                                 </li>
                                 <li class="row">
-                                    <p class="fw-semibold  col-5"> Posisi</p>
-                                    <p class="ellipsis  col-7">: {{ $item->pekerja }}</p>
+                                    <p class="fw-semibold  col-3"> Posisi</p>
+                                    <p class="ellipsis  col-9">: {{ $item->Vacancy->pekerja }}</p>
                                 </li>
                             </ul>
 
-                            <div style="float: right;">
+                            <!-- <div style="float: right;">
                                 <button class="btn btn-danger me-2" data-bs-toggle="modal" data-bs-target="#reject-user-{{ $data->id }}">Tolak</button>
-                                <button class="btn btn-success" data-bs-toggle="modal" data-id="{{ $data->id }}" data-bs-target="#acc-user-{{ $data->id }}">Terima</button>
+                                <button class="btn btn-success" data-bs-toggle="modal" data-id="{{ $data->id }}" data-bs-target="#acc-user-{{ $data->id }}">Terima</button> -->
+                            <div style="float: right;">
+                                @if ($item->status === 'menunggu')
+                                <button class="btn btn-danger me-2" data-bs-toggle="modal" data-bs-target="#reject-user-{{ $item->id }}">Tolak</button>
+                                <button class="btn btn-success" data-bs-toggle="modal" data-id="{{ $data->id }}" data-bs-target="#acc-user-{{ $item->id }}">Terima</button>
+                                @elseif ($item->status === 'diterima')
+                                <form action="{{ route('pekerja-lulus', $item->id) }}" method="POST" style="display: inline;" class="dropdown-item" id="formlulus-{{ $item->id }}">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button class="btn btn-success" onclick="klikLulus('{{ $item->id }}')">Lulus</button>
+                                </form>
+                                <button class="btn btn-danger me-2" data-bs-toggle="modal" data-bs-target="#nonaktif-user-{{ $item->id }}">Gagal</button>
+                                @elseif ($item->status === 'lulus')
+                                <button class="btn btn-danger me-2" data-bs-toggle="modal" data-bs-target="#pecat-user-{{ $item->id }}">Pecat</button>
+                                @endif
                             </div>
-                            <div class="modal fade" id="acc-user-{{ $data->id }}" tabindex="-1" aria-labelledby="exampleModalLabel1">
-                                <div class="modal-dialog" role="document">
 
-                                    <form action="{{ route('acc', ['id' => $data->id]) }}" method="POST" id="pesanTerima{{$data->id}}">
-                                        @method('PATCH')
-                                        @csrf
-                                        <div class="modal-content">
-                                            <div class="modal-header d-flex align-items-center">
-                                                <h4 class="modal-title" id="exampleModalLabel1">
-                                                    Terima Pekerja
-                                                </h4>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
-                                            <div class="modal-body">
-                                                <div class="mb-3">
-                                                    <span style="color: black;" for="recipient-name" class="control-label">Apakah anda
-                                                        yakin untuk menerima
-                                                        {{ $data->name }}?</span>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="recipient-name" class="control-label" style="color: black;">Tanggal Wawancara
-                                                        <span style="color: red;">*</span></label>
-                                                    <input type="datetime-local" class="form-control" id="tanggal{{$data->id}}" name="tanggal_wawancara" />
-                                                    <p class="text-danger" style="color: red; height:5px" id="error{{$data->id}}"></p>
-                                                    @error('tanggal_wawancara')
-                                                    <small class="text-danger">{{ $message }}</small>
-                                                    @enderror
-                                                    <br>
-                                                    <label for="recipient-name" class="control-label mt-2" style="color: black;">lokasi
-                                                        Wawancara
-                                                        <span style="color: red;">*</span></label>
-                                                    <input type="text" class="form-control" id="lokasi{{$data->id}}" name="lokasi" />
-                                                    <p class="text-danger" style="color: red; height:5px" id="errorLokasi{{$data->id}}"></p>
-                                                    @error('lokasi')
-                                                    <small class="text-danger">{{ $message }}</small>
-                                                    @enderror
-                                                    <br>
-                                                    <small id="name" class="form-text text-muted">Setelah anda
-                                                        yakin ingin menerima pekerja tersebut, anda bisa mengirimkan
-                                                        tanggal untuk jadwal wawancara si pekerja.</small>
+                        </div>
+                        <div class="modal fade" id="acc-user-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel1">
+                            <div class="modal-dialog" role="document">
 
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" onclick="Terima({{$data->id}})" class="btn btn-success">
-                                                    Terima
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="modal fade" id="reject-user-{{ $data->id }}" tabindex="-1" aria-labelledby="exampleModalLabel1">
-                                <div class="modal-dialog" role="document">
+                                <form action="{{ route('acc', ['id' => $item->id]) }}" method="POST" id="pesanTerima{{$item->id}}">
+                                    @method('PATCH')
+                                    @csrf
                                     <div class="modal-content">
                                         <div class="modal-header d-flex align-items-center">
                                             <h4 class="modal-title" id="exampleModalLabel1">
-                                                Tolak Pekerja
+                                                Terima Pekerja
                                             </h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
@@ -708,76 +614,202 @@
                                         <div class="modal-body">
                                             <div class="mb-3">
                                                 <span style="color: black;" for="recipient-name" class="control-label">Apakah anda
-                                                    yakin untuk menolak
-                                                    {{ $data->name }}?</span>
+                                                    yakin untuk menerima
+                                                    {{ $item->name }}?</span>
                                             </div>
-                                            <form action="/reject/{{ $data->id }}" method="POST" id="pesanTolak{{ $data->id }}">
-                                                @method('PATCH')
-                                                @csrf
-                                                <div class="mb-3">
-                                                    <label for="message-text" class="control-label">Pesan <span style="color: red;">*</span></label>
-                                                    <textarea class="form-control" id="pesan{{ $data->id }}" placeholder="Masukkan pesan" name="pesan"></textarea>
-                                                    <span class="text-danger" id="errorTolak{{ $data->id }}"></span>
-                                                    @error('pesan')
-                                                    <small class="text-danger">{{ $message }}</small>
-                                                    @enderror
-                                                    <small id="name" class="form-text text-muted">Masukkan alasan
-                                                        kenapa pekerja tersebut ditolak.</small>
-                                                </div>
+                                            <div class="mb-3">
+                                                <label for="recipient-name" class="control-label" style="color: black;">Tanggal Wawancara
+                                                    <span style="color: red;">*</span></label>
+                                                <input type="datetime-local" class="form-control" id="tanggal{{$item->id}}" name="tanggal_wawancara" />
+                                                <p class="text-danger" style="color: red; height:5px" id="error{{$item->id}}"></p>
+                                                @error('tanggal_wawancara')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                                <br>
+                                                <label for="recipient-name" class="control-label mt-2" style="color: black;">lokasi
+                                                    Wawancara
+                                                    <span style="color: red;">*</span></label>
+                                                <input type="text" class="form-control" id="lokasi{{$item->id}}" name="lokasi" />
+                                                <p class="text-danger" style="color: red; height:5px" id="errorLokasi{{$item->id}}"></p>
+                                                @error('lokasi')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                                <br>
+                                                <small id="name" class="form-text text-muted">Setelah anda
+                                                    yakin ingin menerima pekerja tersebut, anda bisa mengirimkan
+                                                    tanggal untuk jadwal wawancara si pekerja.</small>
+
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button onclick="Tolak({{$data->id}})" type="button" class="btn btn-danger">
-                                                Tolak
+                                            <button type="button" onclick="Terima({{$item->id}})" class="btn btn-success">
+                                                Terima
                                             </button>
                                         </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="reject-user-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel1">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header d-flex align-items-center">
+                                        <h4 class="modal-title" id="exampleModalLabel1">
+                                            Tolak Pekerja
+                                        </h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <span style="color: black;" for="recipient-name" class="control-label">Apakah anda
+                                                yakin untuk menolak
+                                                {{ $item->name }}?</span>
+                                        </div>
+                                        <form action="/reject/{{ $item->id }}" method="POST" id="pesanTolak{{ $item->id }}">
+                                            @method('PATCH')
+                                            @csrf
+                                            <div class="mb-3">
+                                                <label for="message-text" class="control-label">Pesan <span style="color: red;">*</span></label>
+                                                <textarea class="form-control" id="pesan{{ $item->id }}" placeholder="Masukkan pesan" name="pesan"></textarea>
+                                                <span class="text-danger" id="errorTolak{{ $item->id }}"></span>
+                                                @error('pesan')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                                <small id="name" class="form-text text-muted">Masukkan alasan
+                                                    kenapa pekerja tersebut ditolak.</small>
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button onclick="Tolak({{$item->id}})" type="button" class="btn btn-danger">
+                                            Tolak
+                                        </button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="pecat-user-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel1">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header d-flex align-items-center">
+                                        <h4 class="modal-title" id="exampleModalLabel1">
+                                            Pecat Pekerja
+                                        </h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <span style="color: black;" for="recipient-name" class="control-label">Apakah anda
+                                                yakin untuk mempecat
+                                                {{ $item->name }}?</span>
+                                        </div>
+                                        <form action="pecat/{{ $item->id }}" method="POST" style="display: inline;" class="dropdown-item">
+                                            @method('PATCH')
+                                            @csrf
+                                            <div class="mb-3">
+                                                <label for="message-text" class="control-label">Pesan <span style="color: red;">*</span></label>
+                                                <textarea class="form-control" id="pesan{{ $item->id }}" placeholder="Masukkan pesan" name="pesan"></textarea>
+                                                <span class="text-danger" id="errorTolak{{ $item->id }}"></span>
+                                                @error('pesan')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                                <small id="name" class="form-text text-muted">Masukkan alasan
+                                                    kenapa anda mempecat pekerja tersebut.</small>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-danger">
+                                                    Tolak
+                                                </button>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
                         </div>
-
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="card mb-4" style="height: auto;">
-                            <div class="card-header bg-info d-flex align-items-center">
-                                <h4 class="card-title text-white mb-0">User Mendaftar Lowongan Yang Sama</h4>
-                            </div>
-                            <div class="card-body p-4">
-                                @forelse ($pelamarSama as $data )
-                                <div class="mt-2 mb-4 d-flex justify-content-between">
-                                    <div class="d-flex " style="width:100%; padding: 0">
-                                        <div class="me-2" style="width: 50px; height: 42px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px; margin-top: 5px;">
-                                            <img src="{{ asset('foto_user/'. $data->User->foto) }}" alt="" class="w-100 h-100">
-                                        </div>
-                                        <div style="width: 100%; overflow:hidden">
-                                            <div class="w-full d-flex justify-content-between">
-                                                <span    for="exampleInputPassword1" class="form-label fw-semibold">{{$data->User->name}}</span>
-                                                <a href="{{ route('detail-user', $data->User->id) }}" class="d-flex items-center" style="padding: 0;">
-                                                    <button class="btn btn-primary btn-sm">Detail</button>
-                                                </a>
+                        <div class="modal fade" id="nonaktif-user-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel1">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header d-flex align-items-center">
+                                        <h4 class="modal-title" id="exampleModalLabel1">
+                                            Gagalkan Pelamar
+                                        </h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
+                                    <div class="modal-body">
+                                        <span for="recipient-name" class="control-label">Apakah anda
+                                            yakin untuk tidak meluluskan pelamar
+                                            {{ $item->name }} untuk mendaftar di lowongan {{ $item->Vacancy->judul }}?</span>
+                                        <form action="/nonactive/{{ $item->id }}" method="POST" id="pesanNonaktif{{ $item->id }}">
+                                            @method('PATCH')
+                                            @csrf
+                                            <div class="mb-3 mt-2">
+                                                <label for="message-text" style="color: black;" class="control-label">Pesan
+                                                    <span style="color: red;">*</span></label>
+                                                <textarea class="form-control" id="pesan{{ $item->id }}" placeholder="Masukkan pesan" name="pesan"></textarea>
+                                                <span id="error{{ $item->id }}" class="text-danger"></span>
+                                                @error('pesan')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                                <small id="name" class="form-text text-muted">Masukkan alasan
+                                                    kenapa pelamar tersebut tidak Anda luluskan.</small>
                                             </div>
-                                            <p class="fs-2">{{$data->User->email}}</p>
-                                        </div>
-
 
                                     </div>
+                                    <div class="modal-footer">
+                                        <button type="button" onclick="Nonaktif({{ $item->id }})" class="btn btn-primary img-fluid model_img">
+                                            Kirim
+                                        </button>
+                                    </div>
+                                    </form>
                                 </div>
-                                @empty
-
-                                @endforelse
                             </div>
-
                         </div>
-                    </div>
+                        @endforeach
                     </div>
 
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="card mb-4" style="height: auto;">
+                    <div class="card-header bg-info d-flex align-items-center">
+                        <h4 class="card-title text-white mb-0">User Mendaftar Lowongan Yang Sama</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        @forelse ($pelamarSama as $data )
+                        <div class="mt-2 mb-4 d-flex justify-content-between">
+                            <div class="d-flex " style="width:100%; padding: 0">
+                                <div class="me-2" style="width: 50px; height: 42px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px; margin-top: 5px;">
+                                    <img src="{{ asset('foto_user/'. $data->User->foto) }}" alt="" class="w-100 h-100">
+                                </div>
+                                <div style="width: 100%; overflow:hidden">
+                                    <div class="w-full d-flex justify-content-between">
+                                        <span for="exampleInputPassword1" class="form-label fw-semibold">{{$data->User->name}}</span>
+                                        <a href="{{ route('detail-user', $data->User->id) }}" class="d-flex items-center" style="padding: 0;">
+                                            <button class="btn btn-primary btn-sm">Detail</button>
+                                        </a>
+                                    </div>
+                                    <p class="fs-2">{{$data->User->email}}</p>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        @empty
+
+                        @endforelse
+                    </div>
+
+                </div>
             </div>
         </div>
+
+    </div>
+    </div>
 </body>
 
-<script src="{{asset('assets1/js/carousel.js')}}"></script>
 
 <!-- <script src="{{ asset('assets/dist/libs/daterangepicker/daterangepicker.js') }}"></script>
                                                                     <script src="{{ asset('assets/dist/libs/bootstrap-material-datetimepicker/node_modules/moment/moment.js') }}"></script> -->
@@ -793,12 +825,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="{{ asset('assets/dist/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('assets/dist/js/dashboard3.js') }}"></script>
+<script src="{{asset('assets1/js/carousel.js')}}"></script>
 <!-- ---------------------------------------------- -->
 <script src="{{ asset('assets/dist/libs/prismjs/prism.js') }}"></script>
 @if ($errors->any())
 <script>
     $(document).ready(function() {
-        @foreach($errors->all() as $error)
+        @foreach($errors -> all() as $error)
         toastr.error('{{ $error }}', 'Error', {
             closeButton: true, // Menambahkan tombol hapus
             timeOut: 0
@@ -820,6 +853,77 @@
 @endif
 
 
+@if(session('sukses'))
+<script>
+    console.log("berhasil");
+    Swal.fire({
+        title: 'Berhasil',
+        text: "Anda berhasil memperbarui data tersebut",
+        icon: 'success',
+    });
+</script>
+@endif
+@if(session('gagal'))
+<script>
+    console.log("gagal");
+    Swal.fire({
+        title: 'Gagal',
+        text: "Maaf, slot pada lowongan ini sudah terisi penuh",
+        icon: 'error',
+    });
+</script>
+@endif
+<script>
+    function klikLulus(itemId) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "mr-2 btn btn-danger",
+            },
+            buttonsStyling: false,
+        });
+
+        swalWithBootstrapButtons
+            .fire({
+                title: "Apakah Anda Yakin?",
+                text: "Anda ingin meluluskan pelamar ini!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Iya!",
+                cancelButtonText: "Tidak!",
+                reverseButtons: true,
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger me-3",
+                },
+                buttonsStyling: false,
+                width: "25rem",
+                padding: "1rem",
+                customContainerClass: "swal-custom",
+            })
+            .then((result) => {
+                if (result.value) {
+                    swalWithBootstrapButtons.fire({
+                        title: "Terkirim!",
+                        text: "Data sedang diproses.",
+                        icon: "info",
+                        customClass: {
+                            icon: "swal-icon--info",
+                        },
+                        showConfirmButton: false,
+                    });
+                    var form = document.getElementById("formlulus-" + itemId);
+                    form.submit();
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire(
+                        "Batal",
+                        "Pelemar tersebut batal untuk diluluskan. :)",
+                        "error"
+                    );
+                }
+            });
+    }
+</script>
 
 <script>
     const toggleButton = document.querySelector('.btn-toggle');
@@ -833,16 +937,16 @@
             longText.style.display = 'none';
             toggleButton.textContent = 'Lihat Selengkapnya';
         }
-    });
-</script>
-<script>
-    function show() {
-        document.getElementById('foto').click();
+    }); <
+    /> <
+    script >
+        function show() {
+            document.getElementById('foto').click();
 
-        document.getElementById('foto').addEventListener('change', function() {
-            document.getElementById('submit-button').click();
-        });
-    }
+            document.getElementById('foto').addEventListener('change', function() {
+                document.getElementById('submit-button').click();
+            });
+        }
 </script>
 <script>
     $('#ButtonSimpan').click(function() {
@@ -1402,22 +1506,6 @@
                 error.innerHTML = "";
                 errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
             }
-        }
-    }
-</script>
-<script>
-    function Ganti(id) {
-        var buka = document.getElementById('buka' + id);
-        var tutup = document.getElementById('tutup' + id);
-        var gaya = window.getComputedStyle(tutup);
-
-
-        if (gaya.display === 'none') {
-            tutup.style.display = 'block';
-            buka.style.display = 'none';
-        } else {
-            tutup.style.display = 'none';
-            buka.style.display = 'block';
         }
     }
 </script>

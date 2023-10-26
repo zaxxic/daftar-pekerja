@@ -34,6 +34,8 @@
 
         p {
             margin-left: 20px;
+
+            margin-right: 20px;
         }
     </style>
 </head>
@@ -50,9 +52,11 @@
 
             <p style="color: #000;">{{ $datas['nama'] }}</p>
 
-            <p style="color: #000;">Berkenaan dengan hasil wawancara yang telah Anda lakukan sebelumnya</p>
+            <p style="color: #000;">Setelah melakukan evaluasi dan pertimbangan yang mendalam, kami telah sampai pada keputusan yang sulit, yaitu untuk mengakhiri hubungan kerja Anda di {{ $datas['divisi'] }} dengan posisi {{ $datas['posisi'] }}.</p>
 
-            <p style="color: #000;">dengan ini kami ingin menyampaikan bahwa Anda telah diterima untuk bergabung di {{ $datas['lowongan'] }} dalam divisi {{ $datas['divisi']}} dengan posisi {{ $datas['posisi'] }}, Kami sangat antusias menantikan kesuksesan Anda di peran ini.</p>
+            <p style="color: #000;">Keputusan ini didasarkan pada berbagai faktor, termasuk {{ $datas['pesan'] }}. </p>
+
+            <p style="color: #000;">Kami sangat menghargai kontribusi dan usaha Anda selama bekerja di perusahaan kami. Ini adalah keputusan yang kami ambil setelah mempertimbangkan segala aspek yang terlibat.  </p>
 
             <p style="color: #000;">Salam hormat,</p>
 

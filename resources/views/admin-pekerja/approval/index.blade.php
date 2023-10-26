@@ -650,7 +650,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css
             var menit = String(today.getMinutes()).padStart(2, "0");
 
             // Menghasilkan format yang diinginkan (YYYY-MM-DDTHH:MM)
-            var hasilFormat = `${tahun}-${bulan}-${tanggalKedua}T${jam}:${menit}`;
+            var hasilFormat = ${tahun}-${bulan}-${tanggalKedua}T${jam}:${menit};
 
             console.log(hasilFormat); // Output: 2023-09-23T19:55
             console.log(tanggal);

@@ -104,17 +104,17 @@
                                     </button>
                                 </form>
                                 <button type="button" title="lihat pekerja" style="background-color: transparent;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="25" viewBox="0 0 16 16" data-bs-toggle="modal" data-bs-target="#detail-user-{{ $row->User->id }}">
-                                        <g fill="#5D87FF">
-                                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
-                                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0a3.5 3.5 0 0 1-7 0z" />
-                                        </g>
-                                    </svg>
+                                    <a href="{{ route('detail-user', $row->User->id) }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="25" viewBox="0 0 16 16">
+                                            <g fill="#5D87FF">
+                                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0a3.5 3.5 0 0 1-7 0z" />
+                                            </g>
+                                        </svg>
+                                    </a>
                                 </button>
                             </td>
                         </tr>
-
-
             </div>
 
 
@@ -123,7 +123,7 @@
                 <div class="row d-flex">
                     <div class="col">
                         <tr>
-                            <td class="text-center" colspan="5">
+                            <td class="text-center" colspan="7">
                                 <img src="{{ asset('assets/nodatas.png') }}" alt="" width="280px">
                             </td>
                         </tr>
@@ -292,35 +292,34 @@
             <div class="modal-content">
                 <div class="modal-header d-flex align-items-center">
                     <h4 class="modal-title" id="exampleModalLabel1">
-                        Nonaktif Pekerja
+                        Gagalkan Pelamar
                     </h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
                 <div class="modal-body">
-                    <span style="color: black;" for="recipient-name" class="control-label">Apakah anda
-                        yakin untuk menonaktifkan pekerja
-                        {{ $item->User->name }}?</span>
+                    <span for="recipient-name" class="control-label">Apakah anda
+                        yakin untuk tidak meluluskan pelamar
+                        {{ $item->User->name }} untuk mendaftar di lowongan {{ $item->Vacancy->judul }}?</span>
                     <form action="/nonactive/{{ $item->User->id }}" method="POST" id="pesanNonaktif{{ $item->User->id }}">
                         @method('PATCH')
                         @csrf
-                        <div class="mb-3">
-                            <label for="message-text" class="control-label">Pesan
+                        <div class="mb-3 mt-2">
+                            <label for="message-text" style="color: black;" class="control-label">Pesan
                                 <span style="color: red;">*</span></label>
                             <textarea class="form-control" id="pesan{{ $item->User->id }}" placeholder="Masukkan pesan" name="pesan"></textarea>
                             <span id="error{{ $item->User->id }}" class="text-danger"></span>
                             @error('pesan')
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
-                            <br>
                             <small id="name" class="form-text text-muted">Masukkan alasan
-                                kenapa pekerja tersebut dinonaktifkan.</small>
+                                kenapa pelamar tersebut tidak Anda luluskan.</small>
                         </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" onclick="Nonaktif({{ $item->User->id }})" class="btn btn-danger img-fluid model_img">
-                        Nonaktif
+                    <button type="button" onclick="Nonaktif({{ $item->User->id }})" class="btn btn-primary img-fluid model_img">
+                        Kirim
                     </button>
                 </div>
                 </form>
@@ -404,52 +403,76 @@
             });
         }
     </script> -->
+@if(session('sukses'))
 <script>
-     function klikLulus(itemId) {
-            const swalWithBootstrapButtons = Swal.mixin({
+    console.log("berhasil");
+    Swal.fire({
+        title: 'Berhasil',
+        text: "Anda berhasil memperbarui data tersebut",
+        icon: 'success',
+    });
+</script>
+@endif
+@if(session('gagal'))
+<script>
+    console.log("gagal");
+    Swal.fire({
+        title: 'Gagal',
+        text: "Maaf, slot pada lowongan ini sudah terisi penuh",
+        icon: 'error',
+    });
+</script>
+@endif
+<script>
+    function klikLulus(itemId) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "mr-2 btn btn-danger",
+            },
+            buttonsStyling: false,
+        });
+
+        swalWithBootstrapButtons
+            .fire({
+                title: "Apakah Anda Yakin?",
+                text: "Anda ingin meluluskan pelamar ini!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Iya!",
+                cancelButtonText: "Tidak!",
+                reverseButtons: true,
                 customClass: {
                     confirmButton: "btn btn-success",
-                    cancelButton: "mr-2 btn btn-danger",
+                    cancelButton: "btn btn-danger me-3",
                 },
                 buttonsStyling: false,
+                width: "25rem",
+                padding: "1rem",
+                customContainerClass: "swal-custom",
+            })
+            .then((result) => {
+                if (result.value) {
+                    swalWithBootstrapButtons.fire({
+                        title: "Terkirim!",
+                        text: "Data sedang diproses.",
+                        icon: "info",
+                        customClass: {
+                            icon: "swal-icon--info",
+                        },
+                        showConfirmButton: false,
+                    });
+                    var form = document.getElementById("formlulus-" + itemId);
+                    form.submit();
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire(
+                        "Batal",
+                        "Pelemar tersebut batal untuk diluluskan. :)",
+                        "error"
+                    );
+                }
             });
-
-            swalWithBootstrapButtons
-                .fire({
-                    title: "Apakah Anda Yakin?",
-                    text: "Anda ingin menerima pekerja ini!",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonText: "Iya!",
-                    cancelButtonText: "Tidak!",
-                    reverseButtons: true,
-                    customClass: {
-                        confirmButton: "btn btn-success",
-                        cancelButton: "btn btn-danger me-3",
-                    },
-                    buttonsStyling: false,
-                    width: "25rem",
-                    padding: "1rem",
-                    customContainerClass: "swal-custom",
-                })
-                .then((result) => {
-                    if (result.value) {
-                        swalWithBootstrapButtons.fire(
-                            "Berhasil!",
-                            "Anda berhasil menerima pekerja tersebut.",
-                            "success"
-                        );
-                        var form = document.getElementById("formlulus-" + itemId);
-                        form.submit();
-                    } else if (result.dismiss === Swal.DismissReason.cancel) {
-                        swalWithBootstrapButtons.fire(
-                            "Batal",
-                            "Pekerja tersebut batal untuk diterima. :)",
-                            "error"
-                        );
-                    }
-                });
-        }
+    }
 
     function Nonaktif(data) {
         const swalWithBootstrapButtons = Swal.mixin({
@@ -468,7 +491,7 @@
 
             swalWithBootstrapButtons.fire({
                     title: "Apakah Anda Yakin?",
-                    text: "Anda ingin menonaktifkan akun ini!",
+                    text: "Anda ingin menggagalkan pelamar ini!",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonText: "Iya!",
@@ -487,7 +510,7 @@
                     if (result.value) {
                         swalWithBootstrapButtons.fire(
                             "Berhasil!",
-                            "Anda berhasil menonaktifkan akun tersebut.",
+                            "Anda berhasil menggagalkan akun tersebut.",
                             "success"
                         );
                         var form = document.getElementById("pesanNonaktif" + data);
@@ -497,7 +520,7 @@
                     ) {
                         swalWithBootstrapButtons.fire(
                             "Batal",
-                            "penonaktifkan di batalkan. :)",
+                            "Pelamar tersebut batal untuk digagalkan. :)",
                             "error"
                         );
                     }
