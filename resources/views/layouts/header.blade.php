@@ -51,7 +51,7 @@
         </style>
         <ul class="navbar-nav quick-links d-none d-xl-flex">
             <li class="nav-item dropdown-hover d-none d-xl-block">
-                <a class="nav-link {{ request()->routeIs('dashboard-admin') ? 'active' : '' }}"
+                <a class="nav-link {{ request()->routeIs('dashboard-admin') ? 'active1' : '' }}"
                     href="{{ route('dashboard-admin') }}">Dashboard</a>
             </li>
             <li class="nav-item dropdown-hover d-none d-xl-block">
@@ -59,15 +59,23 @@
                     href="{{ route('approval') }}">Approval</a>
             </li>
             <li class="nav-item dropdown-hover d-none d-xl-block">
-                <a class="nav-link {{ request()->routeIs('pekerja') ? 'active' : '' }}"
-                    href="{{ route('pekerja') }}">Pekerja</a>
+                <a class="nav-link {{ request()->routeIs('lulus') ? 'active1' : '' }}"
+                    href="{{ route('lulus') }}">Pekerja</a>
             </li>
             <li class="nav-item dropdown-hover d-none d-xl-block">
-                <a class="nav-link {{ request()->routeIs('pekerja-ditolak') ? 'active' : '' }}"
+                <a class="nav-link {{ request()->routeIs('pekerja') ? 'active1' : '' }}"
+                    href="{{ route('pekerja') }}">Pekerja Diterima</a>
+            </li>
+            <li class="nav-item dropdown-hover d-none d-xl-block">
+                <a class="nav-link {{ request()->routeIs('pekerja-ditolak') ? 'active1' : '' }}"
                     href="{{ route('pekerja-ditolak') }}">Pekerja Ditolak</a>
             </li>
             <li class="nav-item dropdown-hover d-none d-xl-block">
-                <a class="nav-link {{ request()->routeIs('lowongan.index') ? 'active' : '' }}"
+                <a class="nav-link {{ request()->routeIs('pekerja-disimpan') ? 'active1' : '' }}"
+                    href="{{ route('pekerja-disimpan') }}">Pekerja Disimpan</a>
+            </li>
+            <li class="nav-item dropdown-hover d-none d-xl-block">
+                <a class="nav-link {{ request()->routeIs('lowongan.index') ? 'active1' : '' }}"
                     href="{{ route('lowongan.index') }}">Lowongan</a>
             </li>
         </ul>
