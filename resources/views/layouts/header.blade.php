@@ -60,19 +60,19 @@
             </li>
             <li class="nav-item dropdown-hover d-none d-xl-block">
                 <a class="nav-link {{ request()->routeIs('lulus') ? 'active1' : '' }}"
-                    href="{{ route('lulus') }}">Pekerja</a>
+                    href="{{ route('lulus') }}">Pekerja Diterima</a>
             </li>
             <li class="nav-item dropdown-hover d-none d-xl-block">
                 <a class="nav-link {{ request()->routeIs('pekerja') ? 'active1' : '' }}"
-                    href="{{ route('pekerja') }}">Pekerja Diterima</a>
+                    href="{{ route('pekerja') }}">Pelamar Diterima</a>
             </li>
             <li class="nav-item dropdown-hover d-none d-xl-block">
                 <a class="nav-link {{ request()->routeIs('pekerja-ditolak') ? 'active1' : '' }}"
-                    href="{{ route('pekerja-ditolak') }}">Pekerja Ditolak</a>
+                    href="{{ route('pekerja-ditolak') }}">Pelamar Ditolak</a>
             </li>
             <li class="nav-item dropdown-hover d-none d-xl-block">
                 <a class="nav-link {{ request()->routeIs('pekerja-disimpan') ? 'active1' : '' }}"
-                    href="{{ route('pekerja-disimpan') }}">Pekerja Disimpan</a>
+                    href="{{ route('pekerja-disimpan') }}">Pelamar Disimpan</a>
             </li>
             <li class="nav-item dropdown-hover d-none d-xl-block">
                 <a class="nav-link {{ request()->routeIs('lowongan.index') ? 'active1' : '' }}"
