@@ -15,10 +15,6 @@
     <meta name="keywords" content="Mordenize" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="{{ asset('assets1/css/bootstrap.min.css') }}">
-    <!-- Owl Theme Default Min CSS -->
-    <link rel="stylesheet" href="{{ asset('assets1/css/owl.theme.default.min.css') }}">
-    <!-- Owl Carousel Min CSS -->
-    <link rel="stylesheet" href="{{ asset('assets1/css/owl.carousel.min.css') }}">
     <!-- Animate Min CSS -->
     <link rel="stylesheet" href="{{ asset('assets1/css/animate.min.css') }}">
     <!-- Boxicons Min CSS -->
@@ -47,21 +43,19 @@
     <!-- Title -->
     <!--  Favicon -->
     <link rel="shortcut icon" type="image/png')}}" href="{{ asset('assets/logo.png') }}" />
-    <!-- Owl Carousel  -->
-    <link rel="stylesheet" href="{{ asset('assets/dist/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}">
+
     <!-- Core Css -->
-    <link rel="stylesheet" href="{{ asset('assets/dist/libs/sweetalert2/dist/sweetalert2.min.css') }}">
     <link id="themeColors" rel="stylesheet" href="{{ asset('assets/dist/css/style.min.css') }}" />
-    <link id="themeColors" rel="stylesheet" href="{{ asset('assets/dist/css/app.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/dist/libs/prismjs/themes/prism-okaidia.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/dist/libs/sweetalert2/dist/sweetalert2.min.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dad\nwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <!-- Moment Js -->
+
+
     @yield('style')
 
 </head>
@@ -88,39 +82,29 @@
 
     <!--  core files -->
     <script src="{{ asset('assets/dist/js/app.min.js') }}"></script>
-    <script src="{{ asset('assets/dist/js/app.init.js') }}"></script>
     <script src="{{ asset('assets/dist/js/app-style-switcher.js') }}"></script>
     <script src="{{ asset('assets/dist/js/sidebarmenu.js') }}"></script>
     <script src="{{ asset('assets/dist/js/custom.js') }}"></script>
     <!--  current page js files -->
-    <script src="{{ asset('assets/dist/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('assets/dist/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/dist/js/dashboard.js') }}"></script>
 
     <script src="{{ asset('assets/dist/js/custom.js') }}"></script>
     <script src="{{ asset('assets/dist/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
     <script src="{{ asset('assets/dist/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('assets/dist/js/forms/form-wizard.js') }}"></script>
-    <script src="{{ asset('assets/dist/libs/sweetalert2/dist/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('assets/dist/libs/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/dist/libs/select2/dist/js/select2.min.js') }}"></script>
     <script src="{{ asset('assets/dist/js/forms/select2.init.js') }}"></script>
-    <script src="{{ asset('assets/dist/libs/jquery.repeater/jquery.repeater.min.js') }}"></script>
-    <script src="{{ asset('assets/dist/js/plugins/repeater-init.js') }}"></script>
     <script src="{{ asset('assets/dist/js/apps/chat.js') }}"></script>
-    <script src="{{ asset('assets/dist/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/dist/js/widgets-charts.js') }}"></script>
     <script src="{{ asset('assets/dist/js/dashboard5.js') }}"></script>
-    <script src="{{ asset('assets/dist/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('assets/dist/js/apex-chart/apex.pie.init.js') }}"></script>
     <script src="{{ asset('assets/dist/js/forms/sweet-alert.init.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 
     <!-- Jquery Min JS -->
-    <script data-cfasync="false" src="{{ asset('../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js') }}">
-    </script>
+
     <script src="{{ asset('assets1/js/jquery.min.js') }}"></script>
     <!-- Popper Min JS -->
     <script src="{{ asset('assets1/js/popper.min.js') }}"></script>
@@ -131,8 +115,7 @@
     <!-- Wow Min JS -->
     <script src="{{ asset('assets1/js/wow.min.js') }}"></script>
     <!-- Owl Carousel Min JS -->
-    <script src="{{ asset('assets1/js/owl.carousel.min.js') }}"></script>
-    <!-- Nice Select Min JS -->
+        <!-- Nice Select Min JS -->
     <!-- <script src="{{ asset('assets1/js/nice-select.min.js') }}"></script> -->
     <!-- Magnific Popup Min JS -->
     <script src="{{ asset('assets1/js/magnific-popup.min.js') }}"></script>
@@ -153,7 +136,6 @@
     <!-- Ajaxchimp Min JS -->
     <script src="{{ asset('assets1/js/ajaxchimp.min.js') }}"></script>
     <!-- Custom JS -->
-    <script src="{{ asset('assets1/js/custom.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
@@ -170,5 +152,4 @@
 
 </html>
 
-{{-- <script src="{{ asset('assets/dist/libs/jquery.repeater/jquery.repeater.min.js') }}"></script> --}}
-{{-- <script src="{{ asset('assets/dist/js/plugins/repeater-init.js') }}"></script> --}}
+

@@ -14,12 +14,15 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\daftar;
 use App\Models\Certificate;
+use App\Mail\Tolak;
 use App\Models\Division;
 use App\Models\Experience;
 use App\Models\Registration;
+use App\Models\Save;
 use App\Models\School;
 use App\Models\Skill;
 use App\Models\Vacancy;
+use Illuminate\Auth\Middleware\Authorize;
 
 class ApprovalController extends Controller
 {
@@ -129,6 +132,12 @@ class ApprovalController extends Controller
         $item->update([
             'status' => 'diterima'
         ]);
+        Rejected::create([
+            'user_id'=>$data->id,
+            'pesan' => 'diterima',
+            'vacancies_id' => $item->Vacancy->id,
+            'status' => 'diterima'
+        ]);
 
 
         return redirect()->route('approval')->with('sukses', 'Data Berhasil Di Perbarui');
@@ -153,12 +162,14 @@ class ApprovalController extends Controller
         $item = Registration::where('users_id', $id)->first();
         $pesan = $request->pesan;
         $datas =   [
-            'pesan' => "Anda ditolak karena alasan ini " . $pesan,
+            'pesan' =>  $pesan,
             'status' => "tolak",
-            'judul' => " Maaf  anda ditolak di lowongan " . $item->Vacancy->judul
+            'nama' => $user->name,
+            'lowongan' => $item->Vacancy->judul,
+            'posisi' => $item->Vacancy->pekerja,
         ];
 
-        Mail::to($user->email)->send(new daftar($datas));
+        Mail::to($user->email)->send(new Tolak($datas));
 
         $item->update([
             'status' => 'ditolak'
@@ -180,6 +191,13 @@ class ApprovalController extends Controller
             'devision_id' => $item->Vacancy->devision_id,
         ]);
 
+        Rejected::create([
+            'user_id'=>$user->id,
+            'pesan' => $request->pesan,
+            'vacancies_id' => $item->Vacancy->id,
+            'status' => 'ditolak'
+        ]);
+
         return redirect()->route('approval')->with('sukses', 'Data Berhasil Di Perbarui');
     }
 
@@ -189,15 +207,23 @@ class ApprovalController extends Controller
     public function show($id)
     {
         // dd($id);
-        $data = User::find($id);
-        $experience = Experience::where('user_id');
-        $skill = Skill::where('user_id');
-        $school = School::where('user_id');
-        $certificate = Certificate::where('user_id');
+        $data = User::FindOrFail($id);
+        if($data->role !== 'user'){
+            abort(404, 'Authorize 404');
+
+        };
+        $experience = Experience::where('user_id', $data->id)->get();
+        $skill = Skill::where('user_id', $data->id)->get();
+        $school = School::where('user_id', $data->id)->get();
+        $certificate = Certificate::where('user_id', $data->id)->get();
         // $divisi = Division::where('user_id');
         $lowongan = Vacancy::get();
+        $pencarian = Registration::where('users_id', $data->id)->first();
+        $pelamarSama = Registration::where('vacancie_id', $pencarian->vacancie_id)->whereNotIn('users_id', [$data->id])->get();
+
         // dd($lowongan);
         // dd($data);
-        return view('admin-pekerja.approval.detail-user', compact('data', 'experience', 'skill', 'school', 'certificate', 'lowongan'));
+        return view('admin-pekerja.approval.detail-user', compact('data', 'experience', 'skill', 'school', 'certificate', 'lowongan','pelamarSama'));
     }
+   
 }

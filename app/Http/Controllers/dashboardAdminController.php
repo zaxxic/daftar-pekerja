@@ -6,35 +6,41 @@ use App\Models\User;
 use App\Models\Vacancy;
 use App\Models\Division;
 use App\Models\Registration;
+use App\Models\Rejected;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DashboardAdminController extends Controller
 {
-      /**
+    /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+
         $currentYear = date('Y'); // Tahun saat ini
+        $keyword = $request->input('year');
+        if(!empty($keyword)){
+            $currentYear = $keyword;
+        };
         $menunggu = Registration::where('status', 'menunggu')->count();
         $terima = Registration::where('status', 'diterima')->count();
         $tolak = Registration::where('status', 'ditolak')->count();
         $divisi = Division::where('status', 'aktif')->count();
         $lowongan = Vacancy::where('status', 'aktif')->count();
-    
-        $data = Registration::select(
+
+        $data = Rejected::select(
             DB::raw('MONTH(created_at) as month'),
             'status',
             DB::raw('count(*) as total')
         )
-        ->whereIn('status', ['menunggu', 'diterima', 'ditolak'])
-        ->whereYear('created_at', $currentYear) // Filter untuk tahun saat ini
-        ->groupBy('month', 'status')
-        ->get();
-    
+            ->whereIn('status', ['menunggu', 'diterima', 'ditolak'])
+            ->whereYear('created_at', $currentYear) // Filter untuk tahun saat ini
+            ->groupBy('month', 'status')
+            ->get();
+
         $processedData = [];
-    
+
         // Inisialisasi data bulanan ke 0
         for ($month = 1; $month <= 12; $month++) {
             $monthStr = str_pad($month, 2, '0', STR_PAD_LEFT);
@@ -45,18 +51,21 @@ class DashboardAdminController extends Controller
                 'ditolak' => 0,
             ];
         }
-    
+
         // Memasukkan data yang ada ke dalam array yang diproses
         foreach ($data as $item) {
             $monthStr = str_pad($item->month, 2, '0', STR_PAD_LEFT);
             $processedData[$monthStr][$item->status] = $item->total;
         }
-    
+
         $chartData = array_values($processedData);
-    
-        return view('admin-dashboard.index', compact('menunggu', 'terima', 'tolak', 'divisi', 'lowongan', 'chartData'));
+
+
+
+
+        return view('admin-dashboard.index', compact('menunggu', 'terima', 'tolak', 'divisi', 'lowongan', 'chartData','keyword'));
     }
-    
+
 
 
     /**

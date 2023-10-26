@@ -37,7 +37,7 @@ class ExperienceController extends Controller
             'JenisPekerjaan' => 'required|max:150',
             'NamaProjek' => 'required|max:150',
             'DetailProjek' => 'required',
-            'TanggalAwal' => 'required|date|after_or_equal:today',
+            'TanggalAwal' => 'required|date|before:today',
             'TanggalAkhir' => [
                 'required', 'date',
                 function ($attribute, $value, $fail) use ($request) {
@@ -46,7 +46,7 @@ class ExperienceController extends Controller
                     }
                 },
             ],
-            'Bukti' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'Bukti' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ], [
             'Tempat.required' => 'Tempat Wajib Diisi',
             'Tempat.max' => 'Tempat Maksimal 150 karakter',
@@ -59,7 +59,6 @@ class ExperienceController extends Controller
             'TanggalAwal.date' => 'Waktu Pengerjaan Tidak Valid',
             'TanggalAkhir.required' => 'Waktu Pengerjaan Wajib Diisi',
             'TanggalAkhir.date' => 'Waktu Pengerjaan Tidak Valid',
-            'Bukti.required' => 'Bukti Wajib Diisi',
             'Bukti.mimes' => 'Format Harus JPG, JPEG atau PNG',
             'Bukti.image' => 'Format Foto Tidak Valid',
             'Bukti.max' => 'Foto Maksimal Berukuran 2048',
@@ -72,7 +71,7 @@ class ExperienceController extends Controller
 
         $bukti = $request->file('Bukti');
         $namaFoto = time() . '.' . $bukti->getClientOriginalExtension(); // Nama file tanpa direktori
-    
+
         // Simpan file ke lokasi yang diinginkan
         $bukti->move(public_path('pengalaman'), $namaFoto);
 
@@ -88,7 +87,7 @@ class ExperienceController extends Controller
             'Bukti' => $namaFoto,
         ]);
 
-        return redirect()->route('profileuser')->with('tambah', 'Data Pengalaman Berhasil Ditambahkan.');
+        return redirect()->back()->with('tambah', 'Data Pengalaman Berhasil Ditambahkan.');
     }
 
     /**
@@ -119,8 +118,15 @@ class ExperienceController extends Controller
             'JenisPekerjaan' => 'required|max:150',
             'NamaProjek' => 'required|max:150',
             'DetailProjek' => 'required',
-            'TanggalAwal' => 'required|date|after_or_equal:today',
-            'TanggalAkhir' => 'required|date',
+            'TanggalAwal' => 'required|date|before:today',
+            'TanggalAkhir' => [
+                'required', 'date',
+                function ($attribute, $value, $fail) use ($request) {
+                    if ($request->TanggalAwal > $request->TanggalAkhir) {
+                        $fail('Tanggal Akhir Wajib Lebih Besar Dari Tanggal Awal');
+                    }
+                },
+            ],
             'Bukti' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ], [
             'Tempat.required' => 'Tempat Wajib Diisi',
@@ -143,7 +149,7 @@ class ExperienceController extends Controller
 
         // Pastikan catatan keahlian ditemukan dan milik pengguna yang saat ini masuk
         if (!$experience || $experience->user_id != $user_id) {
-            return redirect()->route('profileuser')->with('error', 'Catatan keahlian tidak ditemukan atau Anda tidak memiliki izin untuk mengeditnya.');
+            return redirect()->back()->with('error', 'Catatan keahlian tidak ditemukan atau Anda tidak memiliki izin untuk mengeditnya.');
         }
 
         $experience->Tempat = $request->Tempat;
@@ -152,16 +158,16 @@ class ExperienceController extends Controller
         $experience->TanggalAwal = $request->TanggalAwal;
         $experience->TanggalAkhir = $request->TanggalAkhir;
         $experience->DetailProjek = $request->DetailProjek;
-    
+
         // Upload dan simpan foto jika ada
         if ($request->hasFile('Bukti')) {
             $foto = $request->file('Bukti');
             $namaFoto = time() . '.' . $foto->getClientOriginalExtension();
-    
+
             // Simpan foto baru
             $pathToNewFile = public_path('pengalaman/' . $namaFoto);
             $foto->move(public_path('pengalaman'), $namaFoto);
-    
+
             // Hapus foto lama jika ada
             if ($experience->Bukti) {
                 // dd($experience->Bukti);
@@ -170,14 +176,14 @@ class ExperienceController extends Controller
                     unlink($pathToOldFile);
                 }
             }
-    
+
             $experience->Bukti = $namaFoto;
         }
-    
+
         $experience->save();
 
 
-        return redirect()->route('profileuser')->with('sunting', 'Data Pengalaman Berhasil Diperbarui.');
+        return redirect()->back()->with('sunting', 'Data Pengalaman Berhasil Diperbarui.');
     }
 
     public function destroy(string $id)
@@ -202,17 +208,17 @@ class ExperienceController extends Controller
                 $experience->delete();
 
                 // Redirect atau berikan pesan sukses
-                return redirect()->route('profileuser')->with('delete', 'Data Pengalaman Berhasil Dihapus.');
+                return redirect()->back()->with('delete', 'Data Pengalaman Berhasil Dihapus.');
             } else {
                 // File tidak ditemukan, berikan pesan error atau tindakan yang sesuai
-                return redirect()->route('profileuser')->with('gagal', 'File tidak ditemukan.');
+                return redirect()->back()->with('gagal', 'File tidak ditemukan.');
             }
         } else {
             // Jika Bukti tidak ada, Anda dapat menghapus data pengalaman dari database tanpa melakukan unlink
             $experience->delete();
 
             // Redirect atau berikan pesan sukses
-            return redirect()->route('profileuser')->with('delete', 'Data Pengalaman Berhasil Dihapus.');
+            return redirect()->back()->with('delete', 'Data Pengalaman Berhasil Dihapus.');
         }
     }
 }

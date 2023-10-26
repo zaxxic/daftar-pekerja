@@ -8,7 +8,7 @@
             </li>
         </ul>
         <style>
-            .navbar-nav .nav-item .nav-link.active {
+            .navbar-nav .nav-item .nav-link.active1 {
                 content: "";
                 position: absolute;
                 left: 0;
@@ -55,7 +55,7 @@
                     href="{{ route('dashboard-admin') }}">Dashboard</a>
             </li>
             <li class="nav-item dropdown-hover d-none d-xl-block">
-                <a class="nav-link {{ request()->routeIs('approval') ? 'active' : '' }}"
+                <a class="nav-link {{ request()->routeIs('approval') ||  request()->routeIs('user.cv') ||  request()->routeIs('user.lamaran') ||  request()->routeIs('detail-user') ? 'active1' : '' }}"
                     href="{{ route('approval') }}">Approval</a>
             </li>
             <li class="nav-item dropdown-hover d-none d-xl-block">

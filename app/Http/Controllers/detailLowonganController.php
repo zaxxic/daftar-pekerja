@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Division;
-use Illuminate\Http\Request;
-use App\Models\Vacancy;
 use App\Models\User;
+use App\Models\Vacancy;
+use App\Models\Division;
+use App\Models\Rejected;
 use App\Models\Registration;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class DetailLowonganController extends Controller
 {
@@ -68,6 +69,12 @@ class DetailLowonganController extends Controller
                 'vacancie_id' => $request->id
             ]);
         }
+        Rejected::create([
+            'user_id'=> Auth()->User()->id,
+            'pesan' => 'daftar',
+            'vacancies_id' => $request->id,
+            'status' => 'menunggu'
+        ]);
 
 
 

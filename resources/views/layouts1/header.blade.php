@@ -8,7 +8,7 @@
             </li>
         </ul>
         <style>
-            .navbar-nav .nav-item .nav-link.active {
+            .navbar-nav .nav-item .nav-link.active1 {
                 content: "";
                 position: absolute;
                 left: 0;
@@ -58,23 +58,19 @@
         </style>
         <ul class="navbar-nav quick-links d-none d-xl-flex">
             <li class="nav-item dropdown-hover d-none d-xl-block">
-                <a class="nav-link {{ request()->routeIs('dashboard-user') ? 'active' : '' }}"
+                <a class="nav-link {{ request()->routeIs('dashboard-user') ? 'active1' : '' }}"
                     href="{{ route('dashboard-user') }}">Dashboard</a>
             </li>
             <li class="nav-item dropdown-hover d-none d-xl-block">
-                <a class="nav-link {{ request()->routeIs('profile') ? 'active' : '' }}"
+                <a class="nav-link {{ request()->routeIs('profile') ? 'active1' : '' }}"
                     href="{{ route('profile') }}">Profile</a>
             </li>
             <li class="nav-item dropdown-hover d-none d-xl-block">
-                <a class="nav-link {{ request()->routeIs('lowongan-user') ? 'active' : '' }}"
+                <a class="nav-link {{ request()->routeIs('lowongan-user') ? 'active1' : '' }}"
                     href="{{ route('lowongan-user') }}">Lowongan</a>
             </li>
         </ul>
-        <div class="d-block d-xl-none mt-1 mb-2">
-            <a href="#" class="text-nowrap nav-link">
-                <img src="" width="180" alt="" />
-            </a>
-        </div>
+
 
         <div class=" navbar-collapse justify-content-end" id="navbarNav">
             <div class="d-flex align-items-center justify-content-between px-0 px-xl-8">
@@ -106,7 +102,7 @@
                                         <div
                                             style="width: 35px; height: 35px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px;">
                                             <img src="{{ asset('foto_user/' . Auth()->user()->foto) }}"
-                                                class="img-fluid rounded-circle" style="width: 100%; height: 100%;"
+                                                class="img-fluid rounded-circle" style="width: 100%; height: 100%; object-fit:cover"
                                                 alt="" />
                                         </div>
                                     @endif
@@ -133,7 +129,7 @@
                                                 alt="" />
                                             @else
                                             <img src="{{ asset('foto_user/' . Auth()->user()->foto) }}"
-                                                class="img-fluid rounded-circle" style="width: 100%; height: 100%;"
+                                                class="img-fluid rounded-circle" style="width: 100%; height: 100%; object-fit:cover"
                                                 alt="" />
                                             @endif
                                         </div>

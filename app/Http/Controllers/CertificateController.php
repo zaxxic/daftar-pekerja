@@ -33,12 +33,12 @@ class CertificateController extends Controller
 
         $this->validate($request, [
             'judul' => 'required|max:150',
-            'deskripsi' => 'required',
+            'deskripsi_sertifikat' => 'required',
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ], [
             'judul.required' => 'Tempat Wajib Diisi',
             'judul.max' => 'Tempat Maksimal 150 karakter',
-            'deskripsi.required' => 'Jenis Pekerjaan Wajib Diisi',
+            'deskripsi_sertifikat.required' => 'Jenis Pekerjaan Wajib Diisi',
             'foto.required' => 'Bukti Wajib Diisi',
             'foto.mimes' => 'Format Harus JPG, JPEG atau PNG',
             'foto.image' => 'Format Foto Tidak Valid',
@@ -60,11 +60,11 @@ class CertificateController extends Controller
         Certificate::create([
             'user_id' => $user_id,
             'judul' => $request->judul,
-            'deskripsi' => $request->deskripsi,
+            'deskripsi' => $request->deskripsi_sertifikat,
             'foto' => $namaFoto,
         ]);
 
-        return redirect()->route('profileuser')->with('tambah', 'Data Pengalaman Berhasil Ditambahkan.');
+        return redirect()->back()->with('tambah', 'Data Pengalaman Berhasil Ditambahkan.');
     }
 
     /**
@@ -92,12 +92,12 @@ class CertificateController extends Controller
 
         $this->validate($request, [
             'judul' => 'required|max:150',
-            'deskripsi' => 'required',
+            'deskripsi_sertifikat' => 'required',
             'foto' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ], [
             'judul.required' => 'Tempat Wajib Diisi',
             'judul.max' => 'Tempat Maksimal 150 karakter',
-            'deskripsi.required' => 'Jenis Pekerjaan Wajib Diisi',
+            'deskripsi_sertifikat.required' => 'Jenis Pekerjaan Wajib Diisi',
             'foto.mimes' => 'Format Harus JPG, JPEG atau PNG',
             'foto.image' => 'Format Foto Tidak Valid',
             'foto.max' => 'Foto Maksimal Berukuran 2048',
@@ -111,7 +111,7 @@ class CertificateController extends Controller
         }
 
         $experience->judul = $request->judul;
-        $experience->deskripsi = $request->deskripsi;
+        $experience->deskripsi = $request->deskripsi_sertifikat;
 
         // Upload dan simpan foto jika ada
         if ($request->hasFile('foto')) {
@@ -137,7 +137,7 @@ class CertificateController extends Controller
         $experience->save();
 
 
-        return redirect()->route('profileuser')->with('sunting', 'Data Pengalaman Berhasil Diperbarui.');
+        return redirect()->back()->with('sunting', 'Data Pengalaman Berhasil Diperbarui.');
     }
 
     /**
@@ -165,17 +165,17 @@ class CertificateController extends Controller
                 $certificate->delete();
 
                 // Redirect atau berikan pesan sukses
-                return redirect()->route('profileuser')->with('delete', 'Data Pengalaman Berhasil Dihapus.');
+                return redirect()->back()->with('delete', 'Data Pengalaman Berhasil Dihapus.');
             } else {
                 // File tidak ditemukan, berikan pesan error atau tindakan yang sesuai
-                return redirect()->route('profileuser')->with('gagal', 'File tidak ditemukan.');
+                return redirect()->back()->with('gagal', 'File tidak ditemukan.');
             }
         } else {
             // Jika Bukti tidak ada, Anda dapat menghapus data pengalaman dari database tanpa melakukan unlink
             $certificate->delete();
 
             // Redirect atau berikan pesan sukses
-            return redirect()->route('profileuser')->with('delete', 'Data Pengalaman Berhasil Dihapus.');
+            return redirect()->back()->with('delete', 'Data Pengalaman Berhasil Dihapus.');
         }
     }
 }

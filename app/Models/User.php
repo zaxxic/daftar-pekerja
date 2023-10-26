@@ -33,6 +33,8 @@ class User extends Authenticatable
         'lokasi_wawancara',
         'devision_id',
         'deskripsi',
+        'LinkedIn',
+        'GitHub',
     ];
 
     /**

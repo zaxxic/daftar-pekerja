@@ -18,19 +18,19 @@ class SkillController extends Controller
 
         $this->validate($request, [
             'judul' => 'required|max:150',
-            'deskripsi' => 'required',
+            'deskripsi_keahlian' => 'required',
         ], [
             'judul.required' => 'Judul Wajib Diisi',
             'judul.max' => 'Judul Maksimal 150 Karakter',
-            'deskripsi.required' => 'Deskripsi Wajib Diisi',
+            'deskripsi_keahlian.required' => 'Deskripsi Wajib Diisi',
         ]);
 
         Skill::create([
             'user_id' => $user_id,
             'judul' => $request->judul,
-            'deskripsi' => $request->deskripsi
+            'deskripsi' => $request->deskripsi_keahlian
         ]);
-        return redirect()->route('profileuser')->with('add', 'Keahlian Berhasil Ditambahkan.');
+        return redirect()->back()->with('add', 'Keahlian Berhasil Ditambahkan.');
     }
 
     /**
@@ -59,11 +59,11 @@ class SkillController extends Controller
         // Validasi data yang diterima dari request
         $this->validate($request, [
             'judul' => 'required|max:150',
-            'deskripsi' => 'required',
+            'deskripsi_keahlian' => 'required',
         ], [
             'judul.required' => 'Judul Wajib Diisi',
             'judul.max' => 'Judul Maksimal 150 Karakter',
-            'deskripsi.required' => 'Deskripsi Wajib Diisi',
+            'deskripsi_keahlian.required' => 'Deskripsi Wajib Diisi',
         ]);
 
         // Cari catatan keahlian berdasarkan ID
@@ -77,10 +77,10 @@ class SkillController extends Controller
         // Update catatan keahlian
         $skill->update([
             'judul' => $request->judul,
-            'deskripsi' => $request->deskripsi
+            'deskripsi' => $request->deskripsi_keahlian
         ]);
 
-        return redirect()->route('profileuser')->with('update', 'Keahlian Berhasil Diperbarui.');
+        return redirect()->back()->with('update', 'Keahlian Berhasil Diperbarui.');
     }
 
 
@@ -94,12 +94,12 @@ class SkillController extends Controller
 
         // Pastikan catatan keahlian ditemukan
         if (!$skill) {
-            return redirect()->route('profileuser')->with('error', 'Catatan keahlian tidak ditemukan.');
+            return redirect()->back()->with('error', 'Catatan keahlian tidak ditemukan.');
         }
 
         // Hapus catatan keahlian
         $skill->delete();
 
-        return redirect()->route('profileuser')->with('delete', 'Keahlian berhasil dihapus.');
+        return redirect()->back()->with('delete', 'Keahlian berhasil dihapus.');
     }
 }

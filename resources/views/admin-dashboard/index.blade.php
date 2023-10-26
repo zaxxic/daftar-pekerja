@@ -1,5 +1,9 @@
+
+
+
 @extends('layouts.app')
 @section('content')
+
     <div class="row ">
         <div class="col-11 col-md-6 mx-3  my-2 rounded-2 col-lg-2 col-xl-2 py-3" style="background-color: #ECF2FF">
             <div class="d-flex gap-2">
@@ -25,11 +29,11 @@
             <div class="d-flex gap-2">
                 <div class="p-1 align-self-center rounded" style="background-color: #13DEB9">
                     <!-- <svg class="text-light" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-                                                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0" />
-                                                                    <path d="M12 7v5l3 3" />
-                                                                </g>
-                                                            </svg> -->
+                                                                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                                                                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0" />
+                                                                                <path d="M12 7v5l3 3" />
+                                                                            </g>
+                                                                        </svg> -->
                     <svg xmlns="http://www.w3.org/2000/svg" style="color: #ffff;" width="32" height="32"
                         viewBox="0 0 24 24">
                         <path fill="currentColor"
@@ -48,13 +52,13 @@
             <div class="d-flex gap-2">
                 <div class="p-1 align-self-center rounded" style="background-color: #FA896B">
                     <!-- <svg class="text-light" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                                    viewBox="0 0 24 24">
-                                                                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                                        stroke-width="2">
-                                                                        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0" />
-                                                                        <path d="M12 7v5l3 3" />
-                                                                    </g>
-                                                                </svg> -->
+                                                                                viewBox="0 0 24 24">
+                                                                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                                                    stroke-width="2">
+                                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0" />
+                                                                                    <path d="M12 7v5l3 3" />
+                                                                                </g>
+                                                                            </svg> -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                         <path fill="currentColor" style="color: #ffff;"
                             d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2zM4 12c0-4.4 3.6-8 8-8c1.8 0 3.5.6 4.9 1.7L5.7 16.9C4.6 15.5 4 13.8 4 12zm8 8c-1.8 0-3.5-.6-4.9-1.7L18.3 7.1C19.4 8.5 20 10.2 20 12c0 4.4-3.6 8-8 8z" />
@@ -72,11 +76,11 @@
             <div class="d-flex gap-2">
                 <div class="p-1 align-self-center rounded" style="background-color: #67E6E6">
                     <!-- <svg class="text-light" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-                                                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0" />
-                                                                    <path d="M12 7v5l3 3" />
-                                                                </g>
-                                                            </svg> -->
+                                                                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                                                                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0" />
+                                                                                <path d="M12 7v5l3 3" />
+                                                                            </g>
+                                                                        </svg> -->
                     <svg xmlns="http://www.w3.org/2000/svg" style="color: #ffff;" width="32" height="32"
                         viewBox="0 0 24 24">
                         <path fill="currentColor"
@@ -95,11 +99,11 @@
             <div class="d-flex gap-2">
                 <div class="p-1 align-self-center rounded" style="background-color: #6d5dff">
                     <!-- <svg class="text-light" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-                                                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                                                    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0" />
-                                                                    <path d="M12 7v5l3 3" />
-                                                                </g>
-                                                            </svg> -->
+                                                                            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                                                                <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0" />
+                                                                                <path d="M12 7v5l3 3" />
+                                                                            </g>
+                                                                        </svg> -->
                     <svg xmlns="http://www.w3.org/2000/svg" style="color: #ffff;" width="32" height="32"
                         viewBox="0 0 24 24">
                         <path fill="currentColor"
@@ -119,7 +123,15 @@
             <div class="card">
                 <div class="card-body">
                     <h5>Grafik Pekerja</h5>
-                    <div id="chart-line-with-data-labell"></div>
+                    <form action="" method="get">
+                        @csrf
+                        <label class="" for="yearInput">Pilih tahun:</label>
+                        <div class="d-flex">
+                            <select class="form-control" name="year" id="tahun"></select>
+                            <button class="btn btn-success ml-2" type="submit">Cari</button>
+                        </div>
+                    </form>
+                    <div class="mt-2" id="chart-line-with-data-labell"></div>
                 </div>
             </div>
         </div>
@@ -127,9 +139,31 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
             integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="{{ asset('../assets/dist/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
-        <script src="{{ asset('../assets/dist/js/apex-chart/apex.line.init.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.44.0/apexcharts.min.js" integrity="sha512-9ktqS1nS/L6/PPv4S4FdD2+guYGmKF+5DzxRKYkS/fV5gR0tXoDaLqqQ6V93NlTj6ITsanjwVWZ3xe6YkObIQQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- Year Picker Js -->
+        <script src="{{asset('assets/dist/js/yearpicker.js')}}"></script>
+       <script>
 
+        var inputan = @json($keyword);
+         // Ambil elemen select
+        const selectTahun = document.getElementById("tahun");
+
+        // Dapatkan tahun saat ini
+        const tahunSekarang = new Date().getFullYear();
+
+        // Tambahkan opsi tahun dari tahun ini hingga 10 tahun ke depan
+        for (let i = tahunSekarang; i >= tahunSekarang - 10; i--) {
+            console.log(inputan);
+            const option = document.createElement("option");
+            option.value = i;
+            option.text = i;
+             // Periksa apakah nilai inputan sama dengan tahun i, jika ya, tandai sebagai "selected"
+            if (i == inputan) {
+                option.selected = true;
+            }
+            selectTahun.appendChild(option);
+        }
+       </script>
         <script>
             // Data dari controller
             var chartData = @json($chartData);
@@ -154,23 +188,24 @@
                 var monthName = monthNamesID[monthNumber];
                 console.log(bulan);
                 bulan = bulanIndonesia[bulan - 1];
-                
-               bulan = bulan; // Mengganti format bulan menjadi "Januari 2023" misalnya
-            }
 
+                bulan = bulan; // Mengganti format bulan menjadi "Januari 2023" misalnya
+            }
+            var jumlah;
             // Konfigurasi grafik
             var options = {
                 chart: {
-                    type: 'bar',
+                    type: 'line',
                     responsive: true,
                     width: '100%',
                     height: '180%',
                     colors: ['#36B37E', '#FF5733', '#FF0000']
+
                 },
                 plotOptions: {
                     bar: {
                         horizontal: false,
-                        columnWidth: '30%',
+                        columnWidth: '10%',
                         endingShape: 'rounded',
                         borderRadius: 7,
                         barPercentage: 0.8, // Atur lebar batang relatif terhadap lebar kategori
@@ -178,7 +213,7 @@
                     },
                 },
                 dataLabels: {
-                    enabled: false,
+                    enabled: true,
                 },
                 animations: {
                     enabled: true,
@@ -194,25 +229,21 @@
                     }
                 },
                 series: [{
-                        name: 'Menunggu',
-                        data: chartData.map(data => parseInt(data.menunggu)) // Menggunakan parseInt() di sini
+                        name: 'Daftar',
+                        data: chartData.map(data => parseInt(data.menunggu))
                     },
                     {
                         name: 'Diterima',
-                        data: chartData.map(data => parseInt(data.diterima)) // Menggunakan parseInt() di sini
+                        data: chartData.map(data => parseInt(data.diterima))
                     },
                     {
                         name: 'Ditolak',
-                        data: chartData.map(data => parseInt(data.ditolak)), // Menggunakan parseInt() di sini
-                        color: '#FF0000' // Set the color for the 'Ditolak' series
+                        data: chartData.map(data => parseInt(data.ditolak)),
+                        color: '#FF0000'
                     }
                 ],
                 yaxis: {
-                    labels: {
-                        formatter: function(value) {
-                            return Math.round(value); // Mengubah label sumbu y menjadi bilangan bulat
-                        }
-                    }
+                    max: 20,
                 },
 
                 xaxis: {
@@ -221,13 +252,12 @@
                 tooltip: {
                     y: {
                         formatter: function(val) {
-                            return Math.round(val); // Menampilkan angka sebagai bilangan bulat pada tooltip
+                            return Math.round(val);
                         }
                     }
                 }
             };
 
-            // Inisialisasi grafik
             var chart = new ApexCharts(document.querySelector("#chart-line-with-data-labell"), options);
             chart.render();
         </script>

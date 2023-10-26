@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mt-5" for="devisi">Divisi </label> <br>
-                    <select name="devisi" class="col-12 col-md-10 rounded-1 form-control" style="" id="">
+                    <select name="devisi" class="col-12 col-md-10 rounded-1 form-select" style="" id="">
                         @foreach ($divisi as $data)
                             <option value="{{ $data->id }}" {{ $data->id === old('devisi') ? 'selected' : '' }}>
                                 {{ $data->divisi }}</option>
@@ -64,7 +64,7 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <label class="mt-5" for="judul">Tipe pekerjaan </label> <br>
-                    <select name="tipe" class="col-12 col-md-10 rounded-1 form-control" style="" id="">
+                    <select name="tipe" class="col-12 col-md-10 rounded-1 form-select" style="" id="">
                         <option value="kontrak" {{ 'kontrak' === old('tipe') ? 'selected' : '' }}>kontrak</option>
                         <option value="permanen" {{ 'permanen' === old('tipe') ? 'selected' : '' }}>permanen</option>
                     </select>

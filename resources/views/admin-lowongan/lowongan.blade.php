@@ -597,7 +597,7 @@
             Swal.fire({
                 title:  'Berhasil',
                 text: "berhasil mengaktifkan lowongan",
-                icon: 'success', 
+                icon: 'success',
             });
         </script>
     @endif
@@ -607,16 +607,20 @@
             Swal.fire({
                 title:  'Berhasil',
                 text: "{{session('suksesEdit')}}",
-                icon: 'success', 
+                icon: 'success',
+            });
+        </script>
+    @endif
+    @if(session('divisiKosong'))
+        <script>
+            Swal.fire({
+                title:  'gagal',
+                text: "{{session('divisiKosong')}}",
+                icon: 'error',
             });
         </script>
     @endif
 
 
-    <script>
-        $(document).load(function() {
-            var status =
-        })
-    </script>
 
 @endsection

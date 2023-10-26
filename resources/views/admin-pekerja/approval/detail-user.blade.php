@@ -2,29 +2,20 @@
 
 <head>
 
-    <!-- <link rel="stylesheet" href="{{ asset('assets/dist/libs/daterangepicker/daterangepicker.css') }}"> -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    <link rel="stylesheet" href="{{ asset('assets/dist/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}">
+
     <!-- Add Bootstrap CSS link -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <!-- Add Bootstrap JavaScript and jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
-    </script>
-    <link rel="stylesheet" href="{{ asset('assets/dist/libs/prismjs/themes/prism-okaidia.min.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('#myCarousel').carousel();
-        });
-    </script>
+    <link rel="stylesheet" href="{{ asset('assets/dist/libs/prismjs/themes/prism-okaidia.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets1/css/stylesCarousel.css') }}">
+
+
 
 </head>
 
@@ -94,14 +85,10 @@
 
                         <img src="{{ asset('assets/profilebg.jpg') }}" alt="" class="img-fluid">
                         <div class="row ">
-                            <!-- <div class="col-lg-4 order-lg-1 order-2">
-                                                                                    <div class="d-flex align-items-center justify-content-around m-4">
 
-                                                                                    </div>
-                                                                                </div> -->
-                            <div class="col-lg-4 col-md-5 col-7 ">
+                            <div class="col-lg-8 col-md-8 col-7 ">
                                 <div class="mt-n5">
-                                    <div class="d-flex align-items-center justify-content-center mb-2">
+                                    <div class="d-flex ms-5 mb-2">
                                         <div class="linear-gradient d-flex align-items-center justify-content-center rounded-circle" style="width: 110px; height: 110px; position: relative;">
                                             <div class="border border-4 border-white d-flex align-items-center justify-content-center rounded-circle overflow-hidden" style="width: 100px; height: 100px;">
                                                 <!-- <img src="{{ asset('assets/user-1.jpg') }}" alt="" class="w-100 h-100"> -->
@@ -113,114 +100,174 @@
                                                     @endif
                                                 </a>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
-                                <div class="text-center mb-3">
+                                <div class="ms-4 mb-3">
                                     <h5 class="fs-5 mb-0 fw-semibold mb-3">{{ $data->name }}</h5>
                                     <!-- <div style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; float: right;">
-                                            <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#detail-cv-{{ Auth()->User()->cv }}">CV</button>
-                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detail-lamaran-{{ Auth()->User()->lamaran }}">Lamaran</button>
-                                        </div> -->
+                                                <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#detail-cv-{{ Auth()->User()->cv }}">CV</button>
+                                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detail-lamaran-{{ Auth()->User()->lamaran }}">Lamaran</button>
+                                            </div> -->
                                 </div>
                             </div>
-                            <div class="modal fade" id="detail-cv-{{ $data->cv }}" tabindex="-1" aria-labelledby="detail-cv-{{ $data->cv }}" aria-hidden="true">
+                            <div class="modal fade" id="detail-cv-{{ Auth()->User()->cv }}" tabindex="-1"
+                                aria-labelledby="detail-cv-{{ Auth()->User()->cv }}" aria-hidden="true">
                                 <div class="modal-dialog modal-fullscreen">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1 class="modal-title fs-5" id="exampleModalLabel">Cv pekerja</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            @if ($data->cv === 'default/default.png')
-                                            <div class="row">
-                                                <div class="col-lg-12 mt-5 text-center" id="lowongan">
-                                                    <img src="/assets/nodatas.png" alt="" width="350px">
+                                            @if (Auth()->User()->cv === 'default/default.png')
+                                                <div class="row">
+                                                    <div class="col-lg-12 mt-5 text-center" id="lowongan">
+                                                        <img src="/assets/nodatas.png" alt="" width="350px">
+                                                    </div>
                                                 </div>
-                                            </div>
                                             @else
-                                            <embed src="{{ asset('cv/' . $data->cv) }}" type="application/pdf" width="100%" height="100%">
+                                            <canvas style="width: 100%" id="my_canvas"></canvas>
                                             @endif
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Tutup</button>
                                             {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal fade" id="detail-lamaran-{{ $data->lamaran }}" tabindex="-1" aria-labelledby="detail-lamaran-{{ $data->cv }}" aria-hidden="true">
+                            <div class="modal fade" id="detail-lamaran-{{ Auth()->User()->lamaran }}" tabindex="-1"
+                                aria-labelledby="detail-lamaran-{{ Auth()->User()->lamaran }}" aria-hidden="true">
                                 <div class="modal-dialog modal-fullscreen">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1 class="modal-title fs-5" id="exampleModalLabel">Lamaran pekerja</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            @if ($data->lamaran === 'default/default.png')
-                                            <div class="row">
-                                                <div class="col-lg-12 mt-5 text-center" id="lowongan">
-                                                    <img src="/assets/nodatas.png" alt="" width="350px">
+                                            @if (Auth()->User()->lamaran === 'default/default.png')
+                                                <div class="row">
+                                                    <div class="col-lg-12 mt-5 text-center" id="lowongan">
+                                                        <img src="/assets/nodatas.png" alt="" width="350px">
+                                                    </div>
                                                 </div>
-                                            </div>
                                             @else
-                                            <embed src="{{ asset('lamaran/' . $data->lamaran) }}" type="application/pdf" width="100%" height="100%">
+                                            <canvas style="width: 100%" id="canvasLamaran"></canvas>
                                             @endif
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Tutup</button>
                                             {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-
-                            <div class="col-lg-12 container">
-                                <div class="list-unstyled align-items-center justify-content-center justify-content-lg-start my-3 gap-3 mx-4">
+                            <div class="col-lg-8 col-md-8 col-12">
+                                <div
+                                    class="list-unstyled align-items-center justify-content-center justify-content-lg-start my-3 gap-3 mx-4">
                                     <div class="position-relative d-flex  mb-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="mb-1 me-3" width="25" height="25" viewBox="0 0 24 24">
-                                            <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" />
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="mb-1 me-3 hilang" width="25"
+                                            height="25" viewBox="0 0 24 24">
+                                            <path fill="none" stroke="#000000" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2"
+                                                d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" />
                                         </svg>
-                                        <h6>{{ $data->no_telp }}</h6>
+                                        <h6 class="mb-0 mt-1">{{ $data->no_telp }}</h6>
                                     </div>
 
                                     <div class="position-relative d-flex mb-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="mb-1 me-3" width="25" height="25" viewBox="0 0 24 24">
-                                            <g fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                                <path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" />
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="mb-1 me-3 hilang" width="25"
+                                            height="25" viewBox="0 0 24 24">
+                                            <g fill="none" stroke="#000000" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2">
+                                                <path
+                                                    d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" />
                                                 <path d="m3 7l9 6l9-6" />
                                             </g>
                                         </svg>
-                                        <h6>{{ $data->email }}</h6>
+                                        <h6 class="mb-0 mt-1">{{ $data->email }}</h6>
                                     </div>
                                     <div class="position-relative d-flex mb-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="mb-1 me-3" width="25" height="26" viewBox="0 0 24 24">
-                                            <g fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="mb-1 me-3 alamat hilang"
+                                            width="25" height="26" viewBox="0 0 24 24">
+                                            <g fill="none" stroke="#000000" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2">
                                                 <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0-6 0" />
-                                                <path d="M17.657 16.657L13.414 20.9a2 2 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z" />
+                                                <path
+                                                    d="M17.657 16.657L13.414 20.9a2 2 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z" />
                                             </g>
                                         </svg>
-                                        <h6>{{ $data->alamat }}</h6>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                            <div class="col-lg-12 container">
-                                <div class="text-center mb-3">
-                                    <div style="float: right;" class="mb-4 me-5">
-                                        <button class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#detail-cv-{{ $data->cv }}">CV</button>
-                                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detail-lamaran-{{ $data->lamaran }}">Lamaran</button>
+                                        <h6 class="mb-0 mt-1">{{ $data->alamat }}</h6>
                                     </div>
                                 </div>
                             </div>
+                            <style>
+                                @media (max-width: 760px) {
+                                    svg.alamat {
+                                        width: 25;
+                                        height: 25;
+                                    }
+                                }
+
+                                @media (max-width: 320px) {
+                                    svg.alamat {
+                                        width: 49;
+                                        height: 49;
+                                    }
+                                }
+
+                                @media (max-width: 410px) {
+                                    svg.alamat {
+                                        width: 38;
+                                        height: 38;
+                                    }
+                                }
+
+                                /* HR untuk tampilan di luar (laptop) */
+                                @media (min-width: 1080px) {
+                                    svg.alamat {
+                                        width: 25;
+                                        height: 25;
+                                    }
+                                }
+                            </style>
+                           <div class="col-lg-4 col-md-4 col-12">
+                            <div class="text-center mb-3 ms-4 padding">
+                                <a href="{{ route('user.cv', ['id' => $data->id]) }}" class="btn btn-primary me-2">CV</a>
+                                <a href="{{ route('user.lamaran', ['id' => $data->id]) }}" class="btn btn-primary">Lamaran</a>
+                            </div>
+                        </div>
+                            <style>
+                                @media (min-width: 768px) {
+                                    div.padding {
+                                        padding-top: 90px;
+                                    }
+                                }
+
+                                @media (max-width: 600px) {
+                                    div.padding {
+                                        padding-top: 10px;
+                                    }
+                                }
+
+                                /* HR untuk tampilan di luar (laptop) */
+                                @media (min-width: 1080px) {
+                                    div.padding {
+                                        padding-top: 90px;
+                                    }
+                                }
+                            </style>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 mb-3">
                         <div class="card position-relative overflow-hidden mb-4" style="height: 94%;">
                             <div class="card-header bg-info d-flex align-items-center justify-content-between">
                                 <h4 class="card-title text-white mb-0">Tentang</h4>
@@ -239,67 +286,125 @@
                         </div>
                     </div>
 
+                    <style>
+                        .accordion {
+                            background-color: #ffffff00;
+                            color: #000000;
+                            cursor: pointer;
+                            padding: 8px;
+                            width: 100%;
+                            border: none;
+                            text-align: left;
+                            outline: none;
+                            font-size: 15px;
+                            transition: 0.4s;
+                            height: 40px;
+                            border-radius: 10px;
+                        }
+
+                        .active,
+                        .accordion:hover {
+                            background-color: #549bff;
+                            color: white;
+                        }
+
+                        .accordion:after {
+                            content: '\002B';
+                            color: white;
+                            font-weight: bold;
+                            float: top;
+                            margin-left: 5px;
+                        }
+
+                        .active:after {
+                            content: "\2212";
+                        }
+
+                        .panel {
+                            padding: 0 18px;
+                            background-color: white;
+                            max-height: 0;
+                            overflow: hidden;
+                            transition: max-height 0.2s ease-out;
+
+                        }
+                    </style>
+
                     <div class="col-lg-12">
                         <div class="card position-relative overflow-hidden mb-4">
                             <div class="card-header bg-info d-flex align-items-center">
                                 <h4 class="card-title text-white mb-0">Pengalaman</h4>
                             </div>
                             <div class="card-body p-4">
-                                <div class="accordion accordion-flush" id="accordionFlushExample">
-                                    @forelse($experience as $key => $item)
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="flush-heading{{ $key }}">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ $key }}" aria-expanded="false" aria-controls="flush-collapse{{ $key }}">
-                                                <div class="d-flex">
-                                                    <p class="form-label fw-semibold fs-4">{{ $item->Tempat }}</p>
-                                                    <span class="fs-2 ms-2 me-2 mt-1">{{ \Carbon\Carbon::parse($item->TanggalAwal)->locale('id')->isoFormat('D MMM Y ') }}</span>-
-                                                    <span class="fs-2 ms-2 mt-1">{{ \Carbon\Carbon::parse($item->TanggalAkhir)->locale('id')->isoFormat('D MMM Y ') }}</span>
-                                                </div>
-                                            </button>
-                                        </h2>
-                                        <div id="flush-collapse{{ $key }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ $key }}" data-bs-parent="#accordionFlushExample">
-                                            <div class="accordion-body">
-                                                <!-- <div class="d-flex" style="float: right;">
-
-                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#experience-update-{{ $item->id }}">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="text-primary me-1" style="margin-bottom: 3px;" width="20" height="20" viewBox="0 0 24 24">
-                                                            <path fill="#13DEB9" d="M5 19h1.4l8.625-8.625l-1.4-1.4L5 17.6V19ZM19.3 8.925l-4.25-4.2l1.4-1.4q.575-.575 1.413-.575t1.412.575l1.4 1.4q.575.575.6 1.388t-.55 1.387L19.3 8.925ZM17.85 10.4L7.25 21H3v-4.25l10.6-10.6l4.25 4.25Zm-3.525-.725l-.7-.7l1.4 1.4l-.7-.7Z" />
-                                                        </svg>
-                                                    </a>
-                                                    <div class="justify-content-end">
-                                                        <form action="{{ route('experience-delete', $item->id) }}" method="POST" id="formpengalaman-{{ $item->id }}">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="button" style="background: none; border: none; padding: 0;" onclick="Pengalaman({{ $item->id }})">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="text-primary" width="20" height="20" style="margin-bottom: 3px;" viewBox="0 0 24 24">
-                                                                    <path fill="#FA896B" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4z" />
-                                                                </svg>
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                </div> -->
-                                                <span class="form-label fw-semibold fs-4">{{ $item->NamaProjek }}</span>
-                                                <br>
-                                                {{ $item->JenisPekerjaan }}
-                                                <p class="form-label fw-semibold mt-3">Detail Projek :</p>
-                                                {{ $item->DetailProjek }}
-                                                <p class="form-label fw-semibold mt-3">Bukti :</p>
-                                                <div style="width: 40%; height: 10%; border-radius: 10%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px;">
-                                                    <img src="{{ asset('pengalaman/' . $item->Bukti) }}" style="width: 100%; height: 100%;" alt="" />
-                                                </div>
-                                            </div>
+                                @forelse($experience as $key => $item)
+                                <button class="accordion mt-2" onclick="Ganti({{ $item->id }})">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex">
+                                            <p class="fw-semibold fs-4">{{ $item->Tempat }}</p>
+                                            <span class="fs-2 ms-2 me-2 mt-1">{{ \Carbon\Carbon::parse($item->TanggalAwal)->locale('id')->isoFormat('D MMM Y ') }}</span>-
+                                            <span class="fs-2 ms-2 mt-1">{{ \Carbon\Carbon::parse($item->TanggalAkhir)->locale('id')->isoFormat('D MMM Y ') }}</span>
+                                        </div>
+                                        <div>
+                                            <svg id="buka{{ $item->id }}" class="buka" style="display: block" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 21 21">
+                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m14.5 8.5l-4 4l-4-4" />
+                                            </svg>
+                                            <svg id="tutup{{ $item->id }}" class="tutup" style="display: none" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 21 21">
+                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m6.5 12.5l4-4l4 4" />
+                                            </svg>
                                         </div>
                                     </div>
-                                    @empty
-                                    <div class="col-lg-12 mt-3 ml-5 text-center" id="lowongan">
-                                        <img src="{{ asset('assets/nodatas.png') }}" alt="" width="200px">
+                                </button>
+                                <div class="panel card-body pt-2">
+                                    <div class="d-flex mt-3" style="float: right;">
                                     </div>
-                                    @endforelse
+                                    <div class="mt-3">
+                                    <span class="form-label fw-semibold fs-4">{{ $item->NamaProjek }}</span>
+                                    <br>
+                                    {{ $item->JenisPekerjaan }}
+                                    <p class="form-label fw-semibold mt-3">Detail Projek :</p>
+                                    {{ $item->DetailProjek }}
+                                    <p class="form-label fw-semibold mt-3">Bukti :</p>
+                                    <div class="text-center mb-4" style="width: 670px; height: 500px; border: 1px solid #adadac; overflow: hidden; position: relative; border-radius: 10px;">
+                                        <a href="{{ asset('pengalaman/' . $item->Bukti) }}" data-lightbox="image-1" data-title="Gambar Profil Anda">
+                                            <img src="{{ asset('pengalaman/' . $item->Bukti) }}" style="width: 100%; height: 100%; object-fit: contain;" alt="" />
+                                        </a>
+                                    </div>
+                                    </div>
                                 </div>
+
+                                @empty
+                                @endforelse
+
                             </div>
+
+
+                            <script>
+                                var acc = document.getElementsByClassName("accordion");
+                                var i;
+
+                                for (i = 0; i < acc.length; i++) {
+                                    acc[i].addEventListener("click", function() {
+                                        this.classList.toggle("active");
+                                        var panel = this.nextElementSibling;
+                                        if (panel.style.maxHeight) {
+                                            panel.style.maxHeight = null;
+                                            panel.style.border = null;
+                                            this.style.borderRadius = null;
+
+                                        } else {
+                                            panel.style.maxHeight = panel.scrollHeight + "px";
+                                            panel.style.border = "1px solid rgb(122, 122, 122)";
+                                            panel.style.borderTop = "0px solid black";
+                                            panel.style.borderRadius = "0px 0px 10px 10px ";
+                                            this.style.borderRadius = "10px 10px 0px 0px";
+                                        }
+                                    });
+                                }
+                            </script>
 
                         </div>
                     </div>
+
 
                     <div class="col-lg-12">
                         <div class="card position-relative overflow-hidden mb-4">
@@ -336,8 +441,17 @@
                                 @forelse ($school as $item)
                                 <div class="mt-2 mb-2 d-flex justify-content-between">
                                     <div class="d-flex">
-                                        <div class="me-4" style="width: 50px; height: 50px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px;">
-                                            <img src="{{ asset('assets/user-1.jpg') }}" alt="" class="w-100 h-100">
+                                        <div class="me-4" style="width: 50px; height: 50px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: center; line-height: 50px; border:1px solid black">
+                                            <div style="background-color: white; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+                                                <p style="margin-top: 4px">
+                                                    @if ( $item->Tingkatan === 'SMA/SMK/Sederajat')
+                                                        SMA
+                                                    @else
+                                                    {{$item->Tingkatan}}
+                                                    @endif
+
+                                                </p>
+                                            </div>
                                         </div>
                                         <div>
                                             <p for="exampleInputPassword1" class=" fw-semibold" style="margin-bottom: 0">
@@ -385,66 +499,125 @@
                             overflow: hidden;
                             text-overflow: ellipsis;
                             white-space: nowrap;
-                        }
+                        }php
 
                         .menu {
                             display: none;
                         }
                     </style>
-                    <div class="col-lg-12">
-                        <div class="card position-relative overflow-hidden mb-4">
-                            <div class="card-header bg-info d-flex align-items-center">
-                                <h4 class="card-title text-white mb-0">Sertifikat</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="servitikat gap-1">
-                                    @foreach ($certificate as $item)
-                                    <div class="col-lg-5">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center">
-                                                    <h4 class="card-title mb-0"></h4>
-                                                    <div class="ms-auto">
-                                                        <div class="dropdown dropstart">
-                                                            <a href="#" class="link text-dark" id="new" data-bs-toggle="dropdown" onclick="Dropdown()" aria-expanded="false">
-                                                                <i class="ti ti-dots fs-7"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row mt-3">
-                                                    <div class="col-12 mb-3">
-                                                        <div style="max-width: auto; height: auto;">
-                                                            <img src="{{ asset('sertifikat/' . $item->foto) }}" class="img-fluid" alt="">
-                                                        </div>
-                                                    </div>
+<div class="col-lg-12">
+    <div class="card position-relative overflow-hidden mb-4">
+        <div class="card-header bg-info d-flex align-items-center justify-content-between">
+            <h4 class="card-title text-white mb-0">Sertifikat</h4>
+        </div>
+        <div class="">
+            <section class="product">
+                <button class="pre-btn"><img src="{{asset('images/arrow.png')}}" alt=""></button>
+                <button class="nxt-btn"><img src="{{asset('images/arrow.png')}}" alt=""></button>
+                <div class="product-container">
+                    @foreach ($certificate as $item)
+                    <div class="product-card">
+                        <div class="col-lg-12 ">
+                            <div class="card" style="height: 90%;">
+                                <div class="p-2">
+                                    <div class="d-flex align-items-center">
+                                        <h4 class="card-title mb-0"></h4>
+                                        <div class="ms-auto mb-0">
+                                            <div class="dropdown dropstart">
+                                                <a href="#" class="link text-dark" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fs-7">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                                                            <path fill="currentColor" d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2z" />
+                                                        </svg>
+                                                    </i>
+                                                </a>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-                                                    <div class="col-12 ">
-                                                        <p>{{$item->judul}}</p>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div style="max-width: auto;">
-                                                            <p style="white-space: normal; " class="truncate-text">
-                                                                {{$item->deskripsi}}
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                    <li class="d-flex">
+                                                        <a href="#" class="dropdown-item text-primary" data-bs-toggle="modal" data-bs-target="#certificate-detail-{{ $item->id }}">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="text-primary me-2" width="20" height="20" style="margin-bottom: 3px;" viewBox="0 0 24 24">
+                                                                <path fill="currentColor" d="M12 16q1.875 0 3.188-1.313T16.5 11.5q0-1.875-1.313-3.188T12 7q-1.875 0-3.188 1.313T7.5 11.5q0 1.875 1.313 3.188T12 16Zm0-1.8q-1.125 0-1.913-.788T9.3 11.5q0-1.125.788-1.913T12 8.8q1.125 0 1.913.788T14.7 11.5q0 1.125-.787 1.913T12 14.2Zm0 4.8q-3.65 0-6.65-2.038T1 11.5q1.35-3.425 4.35-5.463T12 4q3.65 0 6.65 2.038T23 11.5q-1.35 3.425-4.35 5.463T12 19Zm0-7.5Zm0 5.5q2.825 0 5.188-1.488T20.8 11.5q-1.25-2.525-3.613-4.013T12 6Q9.175 6 6.812 7.488T3.2 11.5q1.25 2.525 3.613 4.013T12 17Z" />
+                                                            </svg>
+
+                                                            Detail
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
-                                    @endforeach
+                                    <div class="row">
+                                        <div class="col-12 mb-3">
+                                            <div class="border border-4 border-white d-flex align-items-center justify-content-center overflow-hidden" style="width: 200px; height: 110px;">
+                                                <img src="{{ asset('sertifikat/' . $item->foto) }}" alt="" style="height: 100%; width: 100%; border-radius: 6px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 " style="height: 100px">
+                                            <span style="color: black">{{$item->judul}}</span>
+                                            <p class="ellipsis">{{$item->deskripsi}}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @endforeach
+
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
                 </div>
             </div>
+            @foreach ($certificate as $item)
+
+
+
+            <div class="modal fade" id="certificate-detail-{{ $item->id }}" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header d-flex align-items-center">
+                            <h4 class="modal-title" id="myLargeModalLabel">
+                                Detail Sertifikat
+                            </h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
+                            <div class="col-lg-12">
+                                <div>
+                                    Judul : {{$item->judul}}
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div>
+                                    {{$item->deskripsi}}
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="border border-4 border-white d-flex align-items-center justify-content-center overflow-hidden" style="width: 100%; max-height: 100%;">
+                                    <img src="{{ asset('sertifikat/' . $item->foto) }}" alt="" style="max-height: 100%; width: 100%; border-radius: 20px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light-danger text-danger font-medium waves-effect text-start" data-bs-dismiss="modal">
+                                Tutup
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+
+            @endforeach
 
 
             <div class="col-lg-4">
                 <div class="col-lg-12">
-                    <div class="card mb-4" style="height: 25%;">
+                    <div class="card mb-4" style="height: auto;">
                         <div class="card-header bg-info d-flex align-items-center">
                             <h4 class="card-title text-white mb-0">Lowongan Yang Telah Didaftar</h4>
                         </div>
@@ -567,63 +740,44 @@
                     </div>
                 </div>
                 <div class="col-lg-12">
-                    <div class="card mb-4" style="height: 25%;">
-                        <div class="card-header bg-info d-flex align-items-center">
-                            <h4 class="card-title text-white mb-0">User Mendaftar Lowongan Yang Sama</h4>
-                        </div>
-                        <div class="card-body p-4">
-                            <div class="mt-2 mb-4 d-flex justify-content-between">
-                                <div class="d-flex">
-                                    <div class="me-4" style="width: 50px; height: 50px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px;">
-                                        <img src="{{ asset('assets/user-1.jpg') }}" alt="" class="w-100 h-100">
-                                    </div>
-                                    <div>
-                                        <p for="exampleInputPassword1" class="form-label fw-semibold">Rahmat Mahendra</p>
-                                        <p class=" mt-2">rahmat@gmail.com</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary btn-sm mt-2">Detail</button>
-                                </div>
+                    <div class="card mb-4" style="height: auto;">
+                            <div class="card-header bg-info d-flex align-items-center">
+                                <h4 class="card-title text-white mb-0">User Mendaftar Lowongan Yang Sama</h4>
                             </div>
-                            <div class="mt-2 mb-4 d-flex justify-content-between">
-                                <div class="d-flex">
-                                    <div class="me-4" style="width: 50px; height: 50px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px;">
-                                        <img src="{{ asset('assets/user-1.jpg') }}" alt="" class="w-100 h-100">
-                                    </div>
-                                    <div>
-                                        <p for="exampleInputPassword1" class="form-label fw-semibold">Trisqi Tgar Valenzi</p>
-                                        <p class=" mt-2">trisqitegarv@gmail.com</p>
-                                    </div>
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary btn-sm mt-2">Detail</button>
-                                </div>
-                            </div>
-                            <div class="mt-2 mb-4 d-flex justify-content-between">
-                                <div class="d-flex">
-                                    <div class="me-4" style="width: 50px; height: 50px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px;">
-                                        <img src="{{ asset('assets/user-1.jpg') }}" alt="" class="w-100 h-100">
-                                    </div>
-                                    <div>
-                                        <p for="exampleInputPassword1" class="form-label fw-semibold">Surya Maulana</p>
-                                        <p class=" mt-2">surya@gmail.com</p>
+                            <div class="card-body p-4">
+                                @forelse ($pelamarSama as $data )
+                                <div class="mt-2 mb-4 d-flex justify-content-between">
+                                    <div class="d-flex " style="width:100%; padding: 0">
+                                        <div class="me-2" style="width: 50px; height: 42px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px; margin-top: 5px;">
+                                            <img src="{{ asset('foto_user/'. $data->User->foto) }}" alt="" class="w-100 h-100">
+                                        </div>
+                                        <div style="width: 100%; overflow:hidden">
+                                            <div class="w-full d-flex justify-content-between">
+                                                <span    for="exampleInputPassword1" class="form-label fw-semibold">{{$data->User->name}}</span>
+                                                <a href="{{ route('detail-user', $data->User->id) }}" class="d-flex items-center" style="padding: 0;">
+                                                    <button class="btn btn-primary btn-sm">Detail</button>
+                                                </a>
+                                            </div>
+                                            <p class="fs-2">{{$data->User->email}}</p>
+                                        </div>
+
+
                                     </div>
                                 </div>
-                                <div>
-                                    <button class="btn btn-primary btn-sm mt-2">Detail</button>
-                                </div>
+                                @empty
+
+                                @endforelse
                             </div>
 
                         </div>
-
                     </div>
-                </div>
+                    </div>
 
             </div>
         </div>
 </body>
 
+<script src="{{asset('assets1/js/carousel.js')}}"></script>
 
 <!-- <script src="{{ asset('assets/dist/libs/daterangepicker/daterangepicker.js') }}"></script>
                                                                     <script src="{{ asset('assets/dist/libs/bootstrap-material-datetimepicker/node_modules/moment/moment.js') }}"></script> -->
@@ -644,7 +798,7 @@
 @if ($errors->any())
 <script>
     $(document).ready(function() {
-        @foreach($errors -> all() as $error)
+        @foreach($errors->all() as $error)
         toastr.error('{{ $error }}', 'Error', {
             closeButton: true, // Menambahkan tombol hapus
             timeOut: 0
@@ -1248,6 +1402,22 @@
                 error.innerHTML = "";
                 errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
             }
+        }
+    }
+</script>
+<script>
+    function Ganti(id) {
+        var buka = document.getElementById('buka' + id);
+        var tutup = document.getElementById('tutup' + id);
+        var gaya = window.getComputedStyle(tutup);
+
+
+        if (gaya.display === 'none') {
+            tutup.style.display = 'block';
+            buka.style.display = 'none';
+        } else {
+            tutup.style.display = 'none';
+            buka.style.display = 'block';
         }
     }
 </script>

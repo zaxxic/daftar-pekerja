@@ -10,7 +10,7 @@ class School extends Model
     use HasFactory;
 
     protected $fillable=[
-        'user_id','NamaSekolah','Jurusan','TanggalAwal','TanggalAkhir'
+        'user_id','NamaSekolah','Jurusan','TanggalAwal','TanggalAkhir','Tingkatan'
     ];
     public function User()
     {

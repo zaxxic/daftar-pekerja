@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('NamaSekolah');
-            $table->string('Jurusan');
+            $table->string('Jurusan')->nullable();
             $table->string('TanggalAwal');
             $table->string('TanggalAkhir');
             $table->timestamps();

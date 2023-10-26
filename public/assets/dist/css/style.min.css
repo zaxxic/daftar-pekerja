@@ -21801,7 +21801,7 @@ fieldset:disabled .btn {
         overflow: visible;
     }
     .navbar-expand-lg .navbar-collapse {
-       
+
     }
     .navbar-expand-lg .navbar-toggler {
         display: none;
@@ -21848,7 +21848,7 @@ fieldset:disabled .btn {
         overflow: visible;
     }
     .navbar-expand-xl .navbar-collapse {
-       
+
     }
     .navbar-expand-xl .navbar-toggler {
         display: none;
@@ -46511,7 +46511,7 @@ ul {
     transform: translateX(-50%);
     opacity: 0;
     transition: opacity 0.2s, visibility 0.2s;
-}       
+}
 
 .tooltip-container:hover .tooltip-text {
     visibility: visible;
@@ -46539,10 +46539,95 @@ ul {
     transform: translateX(-50%);
     opacity: 0;
     transition: opacity 0.2s, visibility 0.2s;
-}       
+}
 
 .tooltip-container1:hover .tooltip-text1 {
     visibility: visible;
     opacity: 1;
-}       
+}
+
+.aksi {
+    background-color: #5d87ff;
+    padding: 10%;
+    color: white;
+    border-radius: 10px 0 0 10px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.aksi:hover {
+    background-color: white;
+    border: 1px solid #5d87ff;
+    color: #5d87ff;
+}
+.aksi1 {
+    background-color: #5d87ff;
+    padding: 10%;
+    color: white;
+    border-radius: 0 10px 10px 0;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.aksi1:hover {
+    background-color: white;
+    border: 1px solid #5d87ff;
+    color: #5d87ff;
+}
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 8px 16px;
+    /* Lebih lebar */
+    position: absolute;
+    top: 140%;
+    /* Pindahkan ke bawah elemen SVG */
+    left: -40%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.2s, visibility 0.2s;
+    /* Satu kali saja definisi z-index */
+    z-index: 99;
+}
+
+
+.tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip-container1 {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-text1 {
+    visibility: hidden;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 8px 16px;
+    /* Lebih lebar */
+    position: absolute;
+    z-index: 1;
+    top: 110%;
+    /* Pindahkan ke bawah elemen SVG */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.2s, visibility 0.2s;
+}
+
+.tooltip-container1:hover .tooltip-text1 {
+    visibility: visible;
+    opacity: 1;
+}
 

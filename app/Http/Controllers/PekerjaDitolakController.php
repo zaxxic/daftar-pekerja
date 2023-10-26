@@ -21,12 +21,12 @@ class PekerjaDitolakController extends Controller
                 $query->where('name', 'LIKE', '%' . $keyword . '%');
             })->whereHas('vacancy', function ($query) {
                 $query->where('status', '=', 'aktif'); // Filter berdasarkan status lowongan 'aktif'
-            })
+            })->where('status','ditolak')
                 ->paginate(8);
 
             $user->appends(['cari' => $keyword]);
         } else {
-            $user = Rejected::paginate(1);
+            $user = Rejected::where('status','ditolak')->paginate(8);
 
         }
 

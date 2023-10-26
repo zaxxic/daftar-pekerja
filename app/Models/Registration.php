@@ -9,7 +9,7 @@ class Registration extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'vacancie_id','users_id','status'
+        'vacancie_id','users_id','status','status2'
     ];
     public function Vacancy()
     {

@@ -23,7 +23,7 @@ return [
     'alpha_num' => 'The :attribute field must only contain letters and numbers.',
     'array' => 'The :attribute field must be an array.',
     'ascii' => 'The :attribute field must only contain single-byte alphanumeric characters and symbols.',
-    'before' => 'The :attribute field must be a date before :date.',
+    'before' => 'Tanggal Awal Harus Hari Kemarin',
     'before_or_equal' => 'The :attribute field must be a date before or equal to :date.',
     'between' => [
         'array' => 'The :attribute field must have between :min and :max items.',

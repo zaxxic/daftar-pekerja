@@ -12,10 +12,10 @@ class DivisiController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'divisi' => 'required|alpha|max:50'
+            'divisi' =>  ['required', 'regex:/^[A-Za-z\s]+$/', 'max:50']
         ],[
             'divisi.required' => "divisi tidak boleh kosong",
-            'divisi.alpha' => 'hanya bisa huruf alfabet',
+            'divisi.regex' => 'hanya bisa huruf alfabet',
             'divisi.max' => 'maksimal 50 karakter',
         ]);
         if (Division::where('divisi', $request->divisi)->where('status','aktif')->exists()) {

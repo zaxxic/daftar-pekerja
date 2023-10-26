@@ -65,7 +65,11 @@ class LowonganController extends Controller
      */
     public function create()
     {
+
         $divisi = Division::where('status', 'aktif')->get();
+        if($divisi->count() < 1){
+            return redirect()->back()->with('divisiKosong', 'isikan divisi terlebih dahulu');
+        }
         return view('admin-lowongan.lowongan-create', compact('divisi'));
     }
 
@@ -205,7 +209,7 @@ class LowonganController extends Controller
             'syarat' => $request->content
 
         ]);
-        return redirect()->route('lowongan.index')->with('suksesEdit', 'Lowongan Berhasil Di Edit');  
+        return redirect()->route('lowongan.index')->with('suksesEdit', 'Lowongan Berhasil Di Edit');
       }
 
     /**
@@ -265,7 +269,7 @@ class LowonganController extends Controller
         if($data->batas < Carbon::today()){
             return redirect()->back()->with(['gagal'=> 'batas masih kurang dari hari ini ', 'id' => $data->id]);
         }
-        
+
         $data->update([
             'status' => 'aktif',
         ]);

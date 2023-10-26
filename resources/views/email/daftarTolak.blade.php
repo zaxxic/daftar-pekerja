@@ -41,31 +41,30 @@
 
 <body>
     <div class="card">
-        <div class="body">
+        <div class="card-body container">
             <center>
                 <h1 style="color: #00c3ff;">Humma<span class="soft" style="color: #000; ">tech</span></h1>
             </center>
 
-            Subject: Pemberitahuan Penolakan Lamaran Pekerjaan - Lowongan Satpam di Griya Divisi Keamanan
+            <p> Pemberitahuan Penolakan Lamaran Pekerjaan - Lowongan {{ $datas['lowongan'] }}</p>
+            <p style="color: #000;">Dengan hormat,</p>
+            <p style="color: #000;">Kepada {{ $datas['nama'] }},</p>
 
-            Kepada [Nama Pelamar],
-            
-            Saya mewakili tim manajemen Griya Divisi Keamanan, kami ingin mengucapkan terima kasih atas minat Anda untuk bergabung dengan tim kami sebagai Satpam. Kami telah melakukan evaluasi mendalam terhadap semua pelamar, namun dengan sangat menyesal kami harus memberitahukan bahwa lamaran Anda tidak dapat kami lanjutkan ke tahap seleksi berikutnya.
-            
-            Keputusan ini bukanlah sesuatu yang kami lakukan dengan enteng, namun, kami harus mempertimbangkan beberapa faktor yang relevan dalam proses rekrutmen kami. Kami sangat menghargai waktu dan usaha yang Anda luangkan dalam mengajukan lamaran Anda untuk posisi ini.
-            
-            Kami ingin memberikan alasan mengapa Anda tidak dipilih untuk posisi Satpam ini:
-            
-            Kualifikasi dan Pengalaman: Meskipun Anda memiliki sejumlah kualifikasi yang relevan, terdapat kandidat lain yang memiliki pengalaman yang lebih sesuai dengan kebutuhan kami untuk posisi ini.
-            
-            Kemampuan Lainnya: Saat kami meninjau lamaran, kami juga mempertimbangkan kemampuan tambahan yang diperlukan untuk posisi ini, seperti kemampuan berkomunikasi dan keterampilan interpersonal. Kandidat lain mungkin lebih memenuhi kriteria ini.
-            
-            Meskipun Anda tidak dipilih untuk posisi ini saat ini, kami mendorong Anda untuk terus mencari peluang karier yang sesuai dengan pengalaman dan kualifikasi Anda. Kami percaya bahwa Anda memiliki potensi yang besar dan mungkin cocok dengan posisi lain di masa depan.
-            
-            Terima kasih sekali lagi atas minat Anda untuk bergabung dengan Griya Divisi Keamanan. Kami menghargai dedikasi Anda dalam mencari peluang kerja dan mengucapkan selamat untuk pencarian kerja Anda selanjutnya.
-            
-            Salam hormat,
-            Hummatecth
+
+            <p> mewakili tim manajemen Hummatech, kami ingin mengucapkan terima kasih atas minat Anda untuk bergabung dengan tim kami sebagai {{ $datas['posisi'] }}. Kami telah melakukan evaluasi mendalam terhadap semua pelamar, namun dengan sangat menyesal kami harus memberitahukan bahwa lamaran Anda tidak dapat kami lanjutkan ke tahap seleksi berikutnya. <br>
+
+            Keputusan ini bukanlah sesuatu yang kami lakukan dengan enteng, namun, kami harus mempertimbangkan beberapa faktor yang relevan dalam proses rekrutmen kami. Kami sangat menghargai waktu dan usaha yang Anda luangkan dalam mengajukan lamaran Anda untuk posisi {{ $datas['posisi'] }}.
+
+            Kami ingin memberikan alasan mengapa Anda tidak dipilih untuk posisi {{ $datas['posisi'] }} : </p>
+
+            <p>Alasan penolakan :  {{ $datas['pesan'] }}.</p>
+
+            <p>Meskipun Anda tidak dipilih untuk posisi {{ $datas['posisi'] }} saat ini, kami mendorong Anda untuk terus mencari peluang karier yang sesuai dengan pengalaman dan kualifikasi Anda. Kami percaya bahwa Anda memiliki potensi yang besar dan mungkin cocok dengan posisi lain di masa depan.<br>
+
+                Terima kasih sekali lagi atas minat Anda untuk bergabung dengan Hummatech. Kami menghargai dedikasi Anda dalam mencari peluang kerja dan mengucapkan selamat untuk pencarian kerja Anda selanjutnya. </p>
+
+            <p>Salam hormat,</p>
+            <p>PT. Hummatech Technology</p>
         </div>
     </div>
 </body>

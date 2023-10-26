@@ -553,7 +553,6 @@
     </div>
     <!-- End Go Top Area -->
     <!-- Jquery Min JS -->
-    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="assets1/js/jquery.min.js"></script>
     <!-- Popper Min JS -->
     <script src="assets1/js/popper.min.js"></script>
@@ -816,35 +815,7 @@
 
         });
     </script>
-    <script>
-        function Terdaftar(){
-            
-        }
-        // $(document).ready(function() {
-        //     $('#Terdaftar').click(function() {
-        //         const swalWithBootstrapButtons = Swal.mixin({
-        //             customClass: {
-        //                 confirmButton: 'mr-2 btn btn-success',
-        //                 cancelButton: ' btn btn-danger'
-        //             },
-        //             buttonsStyling: false
-        //         });
 
-        //             .fire({
-        //             title: 'Anda sudah mendaftar di lowongan lain ',
-        //             showClass: {
-        //                 popup: 'animate__animated animate__fadeInDown'
-        //             },
-        //             hideClass: {
-        //                 popup: 'animate__animated animate__fadeOutUp'
-        //             },
-        //             customClass: {
-        //                 title: 'custom-title-class' // Tambahkan class CSS khusus untuk judul
-        //             }
-        //         })
-        //     })
-        // })
-    </script>
     <script>
         $(document).ready(function() {
             $('#Diterima').click(function() {

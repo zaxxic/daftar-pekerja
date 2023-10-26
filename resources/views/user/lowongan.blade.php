@@ -456,7 +456,6 @@
 
 
     <!-- Jquery Min JS -->
-    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="assets1/js/jquery.min.js"></script>
     <!-- Popper Min JS -->
     <script src="assets1/js/popper.min.js"></script>
