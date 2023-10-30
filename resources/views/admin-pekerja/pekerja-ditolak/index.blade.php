@@ -40,6 +40,7 @@
             }
         }
     </style>
+     <link rel="stylesheet" href="{{asset('assets/dist/libs/daterangepicker/daterangepicker.css')}}">
     <div class="container-fluid">
         <!-- --------------------------------------------------- -->
         <!--  Form Basic Start -->
@@ -48,12 +49,25 @@
         <div class="card w-100 position-relative overflow-hidden">
 
             <div class="card-body p-4">
-                <div class="row">
-                    <div class="mb-3 d-flex justify-content-start col-md-6 lg-6">
+                <div v class="row">
+                    <div class="mb-3 d-flex justify-content-between col-md-12 lg-12">
+
                         <form action="">
-                            <div class="mb-3 d-flex justify-content-end align-items-center position-relative">
-                                <input type="search" class="form-control mt-3" name="cari" placeholder="Cari Pekerja..."
+                            @csrf
+                            <div class="input-group " style="height: 10px">
+                                <input type="text" name="date" class="form-control p-1 showdropdowns" />
+                                <button type="submit" style="width: 40px; height:auto; background-color:#549bff; border-radius: 0px 5px 5px 0px;" class="text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 21 21"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5"/><path d="M17.571 17.5L12 12"/></g></svg>
+                                </button>
+                              </div>
+                        </form>
+                        <form action="">
+                            <div class="mb-3 d-flex  input-group">
+                                <input type="search" class="form-control mt-0" name="cari" placeholder="Cari Pekerja..."
                                     style="height: 4%;" value="{{ $keyword }}">
+                                    <button type="submit" style="width: 40px; height:auto;  background-color:#549bff; border-radius: 0px 5px 5px 0px;" class="text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 21 21"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5"/><path d="M17.571 17.5L12 12"/></g></svg>
+                                    </button>
                             </div>
                         </form>
                     </div>
@@ -228,6 +242,7 @@
                                                                 {{ $row->User->email }}
                                                             </span>
                                                             <div class=" row mt-2 gap-3 ">
+                                                                @if ($row->User->LinkedIn)
                                                                 <a href="{{$row->User->LinkedIn}}" target="blank" class="col-6 tepiborder d-flex text-white"
                                                                 style=" align-items: center; background: #0A66C2;">
 
@@ -239,6 +254,21 @@
                                                                         <span class="item-center kata">LinkedIn</span>
 
                                                                 </a>
+                                                                @else
+                                                                <a id="tidakPunya" class="col-6 tepiborder d-flex text-white"
+                                                                style=" align-items: center; background: #0A66C2;">
+
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                            height="24" viewBox="0 0 24 24">
+                                                                            <path fill="currentColor"
+                                                                                d="M18.336 18.339h-2.665v-4.177c0-.996-.02-2.278-1.39-2.278c-1.389 0-1.601 1.084-1.601 2.205v4.25h-2.666V9.75h2.56v1.17h.035c.358-.674 1.228-1.387 2.528-1.387c2.7 0 3.2 1.778 3.2 4.091v4.715ZM7.004 8.575a1.546 1.546 0 0 1-1.548-1.549a1.548 1.548 0 1 1 1.547 1.549Zm1.336 9.764H5.667V9.75H8.34v8.589ZM19.67 3H4.33C3.594 3 3 3.58 3 4.297v15.406C3 20.42 3.594 21 4.328 21h15.339C20.4 21 21 20.42 21 19.703V4.297C21 3.581 20.4 3 19.666 3h.003Z" />
+                                                                        </svg>
+                                                                        <span class="item-center kata">LinkedIn</span>
+
+                                                                </a>
+
+                                                                @endif
+                                                                @if ($row->User->GitHub)
                                                                 <a href="{{$row->User->GitHub}}" target="blank" class="col-5 tepiborderGithub d-flex"
                                                                 style=" align-items: center; background: #ffffff;">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24"
@@ -248,6 +278,18 @@
                                                                         </svg>
                                                                         <span class="item-center text-dark github">Github</span>
                                                                 </a>
+                                                                @else
+                                                                <a id="tidakPunyaGithub" class="col-5 tepiborderGithub d-flex"
+                                                                style=" align-items: center; background: #ffffff;">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                            height="24" viewBox="0 0 24 24">
+                                                                            <path fill="black"
+                                                                                d="M12.001 2c-5.525 0-10 4.475-10 10a9.994 9.994 0 0 0 6.837 9.488c.5.087.688-.213.688-.476c0-.237-.013-1.024-.013-1.862c-2.512.463-3.162-.612-3.362-1.175c-.113-.288-.6-1.175-1.025-1.413c-.35-.187-.85-.65-.013-.662c.788-.013 1.35.725 1.538 1.025c.9 1.512 2.337 1.087 2.912.825c.088-.65.35-1.087.638-1.337c-2.225-.25-4.55-1.113-4.55-4.938c0-1.088.387-1.987 1.025-2.688c-.1-.25-.45-1.275.1-2.65c0 0 .837-.262 2.75 1.026a9.28 9.28 0 0 1 2.5-.338c.85 0 1.7.112 2.5.337c1.913-1.3 2.75-1.024 2.75-1.024c.55 1.375.2 2.4.1 2.65c.637.7 1.025 1.587 1.025 2.687c0 3.838-2.337 4.688-4.563 4.938c.363.312.676.912.676 1.85c0 1.337-.013 2.412-.013 2.75c0 .262.188.574.688.474A10.016 10.016 0 0 0 22 12c0-5.525-4.475-10-10-10Z" />
+                                                                        </svg>
+                                                                        <span class="item-center text-dark github">Github</span>
+                                                                </a>
+
+                                                                @endif
                                                             </div>
                                                         </div>
                                                         <div class="col-12 col-lg-8 pr-0 row">
@@ -506,6 +548,14 @@
         <!-- --------------------------------------------------- -->
     </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js
+    "></script>
+    <link href="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css
+    " rel="stylesheet">
     <script>
         // Ambil elemen input pencarian
         const searchInput = document.querySelector('input[name="cari"]');
@@ -516,9 +566,58 @@
             searchInput.value = '';
 
 
-            // Ambil elemen input pencarian
+              // Ambil elemen input pencarian
             const searchInput = document.querySelector('input[name="cari"]');
             // Selanjutnya, Anda dapat memicu pencarian ulang atau tindakan lain yang sesuai.
         });
     </script>
+    <script>
+        $(document).ready(function(){
+            $('#tidakPunya').click( function(){
+                Swal.fire(
+                'Belum Memiliki',
+                'User belum memiliki akun linkedIn',
+                'info'
+                );
+            });
+
+            $('#tidakPunyaGithub').click( function(){
+                Swal.fire(
+                'Belum Memiliki',
+                'User belum memiliki akun GitHub',
+                'info'
+                );
+            });
+        });
+    </script>
+        <script src="{{asset('assets/dist/libs/bootstrap-material-datetimepicker/node_modules/moment/moment.js')}}"></script>
+        <script src="{{asset('assets/dist/libs/daterangepicker/daterangepicker.js')}}"></script>
+        <script>
+          /*******************************************/
+          // Show Dropdowns
+          /*******************************************/
+          $(".showdropdowns").daterangepicker({
+            showDropdowns: true,
+            locale: {
+                format: "DD-MM-YYYY",
+                applyLabel: "Pakai",
+                cancelLabel: "Batal",
+                daysOfWeek: ["Sen", "Sel", "Rab", "Kam", "Jum", "Sab", "Min"],
+                monthNames: [
+                "Januari",
+                "Februari",
+                "Maret",
+                "April",
+                "Mei",
+                "Juni",
+                "Juli",
+                "Agustus",
+                "September",
+                "Oktober",
+                "November",
+                "Desember",
+                ],
+            },
+          });
+        </script>
 @endsection

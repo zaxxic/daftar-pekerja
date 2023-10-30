@@ -113,9 +113,9 @@
                                                 <li class="d-flex" data-bs-toggle="modal"
                                                     data-bs-target="#reject-user-{{ $row->User->id }}"
                                                     style="cursor: pointer;">
-                                                    <a class=" text-primary " style="padding:4px">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                            height="28" title="Tolak Pekerja" viewBox="0 0 16 16"
+                                                    <a class=" text-primary d-flex" style="padding:4px">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                            height="24" title="Tolak Pekerja" viewBox="0 0 16 16"
                                                             class="me-1 " style="margin-left: 2px">
                                                             <g fill="currentColor">
                                                                 <path
@@ -124,30 +124,33 @@
                                                                     d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8L4.646 5.354a.5.5 0 0 1 0-.708z" />
                                                             </g>
                                                         </svg>
-                                                        Tolak Pendaftar
+                                                        <p class="" style="font-size: 12px; margin-left:5px">
+                                                            Tolak Pelamar
+                                                        </p>
                                                     </a>
                                                 </li>
                                                 <li class="d-flex" data-bs-toggle="modal" data-id="{{ $row->User->id }}"
                                                     data-bs-target="#acc-user-{{ $row->User->id }}"
                                                     style="cursor: pointer;">
-                                                    <a class=" text-primary " style="padding:4px">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="25"
-                                                            height="28" viewBox="0 0 16 16" class="me-1">
+                                                    <a class=" text-primary d-flex " style="padding:4px">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                            height="24" viewBox="0 0 16 16" class="me-1">
                                                             <g fill="currentColor">
                                                                 <path
                                                                     d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764a.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0a5.5 5.5 0 1 1-11 0z" />
                                                                 <path
                                                                     d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293L5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z" />
                                                             </g>
-                                                        </svg>
-                                                        Terima Pendaftar
+                                                        </svg> <p class="" style="font-size: 12px; margin-left:5px">
+                                                            Terima Pelamar
+                                                        </p>
                                                     </a>
                                                 </li>
 
                                                 <li class="d-flex" style="cursor: pointer;">
-                                                    <a href="{{ route('detail-user', $row->User->id) }}">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="35"
-                                                            height="25" viewBox="0 0 16 16">
+                                                    <a class="d-flex" href="{{ route('detail-user', $row->User->id) }}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="30"
+                                                            height="20" viewBox="0 0 16 16">
                                                             <g fill="currentColor">
                                                                 <path
                                                                     d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
@@ -155,7 +158,9 @@
                                                                     d="M8 5.5a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0a3.5 3.5 0 0 1-7 0z" />
                                                             </g>
                                                         </svg>
-                                                        Detail User
+                                                        <p class="" style="font-size: 12px; margin-left:5px">
+                                                            Detail pelamar
+                                                        </p>
                                                     </a>
                                                 </li>
 
@@ -165,17 +170,19 @@
                                                             style="padding:4px" id="BatalSimpan{{ $row->id }}">
                                                             @csrf
                                                             @method('PATCH')
-                                                            <button class="text-primary" type="button"
+                                                            <button class="text-primary d-flex" type="button"
                                                                 title="tolak pekerja"
                                                                 style="background-color: transparent;"
                                                                 onclick="BatalSimpan({{ $row->id }})">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="27"
-                                                                    height="27" viewBox="0 0 24 24"
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                    height="20" viewBox="0 0 24 24"
                                                                     style="margin-right: 4px">
                                                                     <path fill="currentColor"
                                                                         d="M21 7h-6V5h6v2ZM5 21V5q0-.825.588-1.413T7 3h6v2H7v12.95l5-2.15l5 2.15V11h2v10l-7-3l-7 3ZM7 5h6h-6Z" />
                                                                 </svg>
-                                                                Batal simpan
+                                                                <p class="" style="font-size: 12px; margin-left:5px">
+                                                                    Batal Simpan
+                                                                </p>
                                                             </button>
                                                         </form>
                                                     @else
@@ -184,17 +191,19 @@
                                                             style="background-color: transparent; padding:4px">
                                                             @csrf
                                                             @method('PATCH')
-                                                            <button class="text-primary" type="button"
+                                                            <button class="text-primary d-flex" type="button"
                                                                 title="simpan pekerja"
                                                                 onclick="Simpan({{ $row->id }})"
                                                                 style="background-color: transparent;">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="27"
-                                                                    height="27" viewBox="0 0 24 24"
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                    height="20" viewBox="0 0 24 24"
                                                                     style="margin-right: 4px">
                                                                     <path fill="currentColor"
                                                                         d="M5 21V5q0-.825.588-1.413T7 3h6v2H7v12.95l5-2.15l5 2.15V11h2v10l-7-3l-7 3ZM7 5h6h-6Zm10 4V7h-2V5h2V3h2v2h2v2h-2v2h-2Z" />
                                                                 </svg>
-                                                                Simpan
+                                                                <p class="" style="font-size: 12px; margin-left:6px">
+                                                                    Simpan
+                                                                </p>
                                                             </button>
                                                         </form>
                                                     @endif
@@ -263,7 +272,7 @@
                             <div class="mb-3">
                                 <label for="recipient-name" class="control-label" style="color: black;">Tanggal Wawancara
                                     <span style="color: red;">*</span></label>
-                                <input type="datetime-local" class="form-control" id="tanggal{{ $item->User->id }}"
+                                <input type="datetime-local" class="form-control" id="Tanggal{{ $item->User->id }}"
                                     name="tanggal_wawancara" />
                                 <p class="text-danger" style="color: red; height:5px" id="error{{ $item->User->id }}">
                                 </p>
@@ -274,7 +283,7 @@
                                 <label for="recipient-name" class="control-label mt-2" style="color: black;">lokasi
                                     Wawancara
                                     <span style="color: red;">*</span></label>
-                                <input type="text" class="form-control" id="lokasi{{ $item->User->id }}"
+                                <input type="text" class="form-control" id="Lokasi{{ $item->User->id }}"
                                     name="lokasi" />
                                 <p class="text-danger" style="color: red; height:5px"
                                     id="errorLokasi{{ $item->User->id }}"></p>
@@ -639,8 +648,10 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css
             var today = new Date(); // Tanggal hari ini
             var yesterday = new Date(today);
             yesterday.setDate(today.getDate() - 1); // Mengurangkan satu hari
-            var tanggal = document.getElementById('tanggal' + data).value;
-            var lokasi = document.getElementById('lokasi' + data).value;
+            var tanggal = document.getElementById('Tanggal' + data).value;
+            console.log(tanggal);
+            var lokasi = document.getElementById('Lokasi' + data).value;
+            console.log(lokasi);
             const error = document.getElementById('error' + data);
             const errorLokasi = document.getElementById('errorLokasi' + data);
             var tahun = today.getFullYear();
@@ -648,15 +659,14 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css
             var tanggalKedua = String(today.getDate()).padStart(2, "0");
             var jam = String(today.getHours()).padStart(2, "0");
             var menit = String(today.getMinutes()).padStart(2, "0");
+            console.log(tanggalKedua);
+            console.log(jam);
 
-            // Menghasilkan format yang diinginkan (YYYY-MM-DDTHH:MM)
-            var hasilFormat = ${tahun}-${bulan}-${tanggalKedua}T${jam}:${menit};
+            // // Menghasilkan format yang diinginkan (YYYY-MM-DDTHH:MM)
+            var hasilFormat = tahun+"-"+bulan+'-'+tanggalKedua+'T'+jam+':'+menit;
+            console.log(hasilFormat);
 
-            console.log(hasilFormat); // Output: 2023-09-23T19:55
-            console.log(tanggal);
-            console.log(lokasi);
-            console.log(data);
-            console.log(yesterday);
+
             if (tanggal.trim() !== "" && (lokasi.trim() !== "" && tanggal.trim() > hasilFormat)) {
                 error.innerHTML = '';
                 errorLokasi.innerHTML = '';

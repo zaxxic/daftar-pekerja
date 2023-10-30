@@ -79,11 +79,6 @@
 
                         <img src="{{ asset('assets/profilebg.jpg') }}" alt="" class="img-fluid">
                         <div class="row ">
-                            <!-- <div class="col-lg-4 order-lg-1 order-2">
-                                                                                        <div class="d-flex align-items-center justify-content-around m-4">
-
-                                                                                        </div>
-                                                                                    </div> -->
                             <div class="col-lg-8 col-md-8 col-7 ">
                                 <div class="mt-n5">
                                     <div class="d-flex ms-5 mb-2">
@@ -705,7 +700,7 @@
                                                 yakin untuk mempecat
                                                 {{ $item->name }}?</span>
                                         </div>
-                                        <form action="pecat/{{ $item->id }}" method="POST" style="display: inline;" class="dropdown-item">
+                                        <form action="/pecat/{{ $item->id }}" method="POST" style="display: inline;" class="dropdown-item">
                                             @method('PATCH')
                                             @csrf
                                             <div class="mb-3">
@@ -771,37 +766,37 @@
                     </div>
 
                 </div>
-            </div>
-            <div class="col-lg-12">
-                <div class="card mb-4" style="height: auto;">
-                    <div class="card-header bg-info d-flex align-items-center">
-                        <h4 class="card-title text-white mb-0">User Mendaftar Lowongan Yang Sama</h4>
-                    </div>
-                    <div class="card-body p-4">
-                        @forelse ($pelamarSama as $data )
-                        <div class="mt-2 mb-4 d-flex justify-content-between">
-                            <div class="d-flex " style="width:100%; padding: 0">
-                                <div class="me-2" style="width: 50px; height: 42px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px; margin-top: 5px;">
-                                    <img src="{{ asset('foto_user/'. $data->User->foto) }}" alt="" class="w-100 h-100">
-                                </div>
-                                <div style="width: 100%; overflow:hidden">
-                                    <div class="w-full d-flex justify-content-between">
-                                        <span for="exampleInputPassword1" class="form-label fw-semibold">{{$data->User->name}}</span>
-                                        <a href="{{ route('detail-user', $data->User->id) }}" class="d-flex items-center" style="padding: 0;">
-                                            <button class="btn btn-primary btn-sm">Detail</button>
-                                        </a>
-                                    </div>
-                                    <p class="fs-2">{{$data->User->email}}</p>
-                                </div>
-
-
-                            </div>
+                <div class="col-lg-12">
+                    <div class="card mb-4" style="height: auto;">
+                        <div class="card-header bg-info d-flex align-items-center">
+                            <h4 class="card-title text-white mb-0">User Mendaftar Lowongan Yang Sama</h4>
                         </div>
-                        @empty
+                        <div class="card-body p-4">
+                            @forelse ($pelamarSama as $data )
+                            <div class="mt-2 mb-4 d-flex justify-content-between">
+                                <div class="d-flex " style="width:100%; padding: 0">
+                                    <div class="me-2" style="width: 50px; height: 42px; border-radius: 50%; overflow: hidden; text-align: center; vertical-align: middle; line-height: 35px; margin-top: 5px;">
+                                        <img src="{{ asset('foto_user/'. $data->User->foto) }}" alt="" class="w-100 h-100">
+                                    </div>
+                                    <div style="width: 100%; overflow:hidden">
+                                        <div class="w-full d-flex justify-content-between">
+                                            <span for="exampleInputPassword1" class="form-label fw-semibold">{{$data->User->name}}</span>
+                                            <a href="{{ route('detail-user', $data->User->id) }}" class="d-flex items-center" style="padding: 0;">
+                                                <button class="btn btn-primary btn-sm">Detail</button>
+                                            </a>
+                                        </div>
+                                        <p class="fs-2">{{$data->User->email}}</p>
+                                    </div>
 
-                        @endforelse
+
+                                </div>
+                            </div>
+                            @empty
+
+                            @endforelse
+                        </div>
+
                     </div>
-
                 </div>
             </div>
         </div>

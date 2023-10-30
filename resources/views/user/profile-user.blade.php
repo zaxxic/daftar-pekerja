@@ -356,7 +356,7 @@
                                                         <label for="recipient-name" class="control-label mt-2"
                                                             style="color: black;">Profile LinkedIn<span
                                                                 style="color: red;">*</span></label>
-                                                        <input type="url" class="form-control" name="url_likedIn"
+                                                        <input type="text" class="form-control" name="url_likedIn"
                                                             value="{{ $user->LinkedIn }}"></input>
 
                                                         <br>

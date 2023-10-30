@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('lamaran');
             $table->string('foto');
             $table->string('role')->default('user');
-            $table->enum('status', ['menunggu', 'ditolak', 'diterima', 'lulus'])->default('menunggu');
+            $table->enum('status', ['menunggu', 'ditolak', 'diterima', 'lulus','dipecat'])->default('menunggu');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->datetime('tanggal_wawancara')->nullable();

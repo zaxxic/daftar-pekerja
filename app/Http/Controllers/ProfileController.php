@@ -20,6 +20,7 @@ class ProfileController extends Controller
 {
     function showProfile()
     {
+    
         $user = User::find(auth()->user()->id);
         $skill = Skill::where('user_id', $user->id)->get();
         $experience = Experience::where('user_id', $user->id)->get();
@@ -44,7 +45,6 @@ class ProfileController extends Controller
             'pengalaman' =>(count($experience) >= 1 ? $experience : null),
         ];
         $jumlahData = 0;
-
         foreach ($progesBar as $key => $value) {
             if (!is_null($value)) {
                 $jumlahData++;

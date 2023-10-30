@@ -115,26 +115,21 @@ class DetailLowonganController extends Controller
             ->get();
             // dd($reg);
 
-
         $registrations = Registration::where('users_id', $loggedInUser->id)
-            ->where('status', 'menunggu')
-            ->exists();
+            ->first();
+        if($registrations){
+            if($registrations->status === 'menunggu'){
+                    $registrations = Registration::where('users_id', $loggedInUser->id)
+                        ->where('vacancie_id', $id)
+                        ->exists();
+                    if ($registrations) {
+                        $status = 'disini';
+                    } else {
+                        $status = 'sudah';
+                    }
 
-
-        if ($registrations) {
-            $registrations = Registration::where('users_id', $loggedInUser->id)
-                ->where('vacancie_id', $id)
-                ->exists();
-            if ($registrations) {
-                $status = 'disini';
-            } else {
-                $status = 'sudah';
             }
-        } else {
-            $registrations = Registration::where('users_id', $loggedInUser->id)
-                ->where('status', 'diterima')
-                ->exists();
-            if ($registrations) {
+            elseif($registrations->status === 'diterima'){
                 $registrations = Registration::where('users_id', $loggedInUser->id)
                     ->where('vacancie_id', $id)
                     ->exists();
@@ -143,10 +138,46 @@ class DetailLowonganController extends Controller
                 } else {
                     $status = 'terima';
                 }
-            } else {
+            }
+            elseif($registrations->status === 'lulus'){
+                $status = 'lulus';
+            }
+            else{
                 $status = 'belum';
             }
+        }else{
+            $status = 'belum';
         }
+        // if ($registrations->status === 'menunggu') {
+        //     $registrations = Registration::where('users_id', $loggedInUser->id)
+        //         ->where('vacancie_id', $id)
+        //         ->exists();
+        //     if ($registrations) {
+        //         $status = 'disini';
+        //     } else {
+        //         $status = 'sudah';
+        //     }
+        // } else {
+        //     $registrations = Registration::where('users_id', $loggedInUser->id)
+        //         ->where('status', 'diterima')
+        //         ->exists();
+
+        //     if ($registrations) {
+        //         $registrations = Registration::where('users_id', $loggedInUser->id)
+        //             ->where('vacancie_id', $id)
+        //             ->exists();
+        //         if ($registrations) {
+        //             $status = 'diterima_disini';
+        //         } else {
+        //             $status = 'terima';
+        //         }
+        //     } else {
+        //         $registrations = Registration::where('users_id', $loggedInUser->id)
+        //         ->where('status', 'lulus')
+        //         ->exists();
+        //         $status = 'belum';
+        //     }
+        // }
 
 
         return view('user.detail-lowongan', compact('lowongan', 'registrations', 'status', 'reg'));

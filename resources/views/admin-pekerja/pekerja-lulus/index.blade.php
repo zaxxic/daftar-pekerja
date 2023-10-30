@@ -232,7 +232,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-danger">
-                            Tolak
+                            Pecat
                         </button>
                     </div>
                 </form>

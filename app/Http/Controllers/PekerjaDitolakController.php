@@ -15,6 +15,7 @@ class PekerjaDitolakController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->input('cari'); // Ambil nilai dari query string 'cari'
+        $date = $request->input('date'); // Ambil nilai dari query string 'cari'
 
         if (!empty($keyword)) {
             $user = Rejected::whereHas('user', function ($query) use ($keyword) {
@@ -25,6 +26,14 @@ class PekerjaDitolakController extends Controller
                 ->paginate(8);
 
             $user->appends(['cari' => $keyword]);
+        }elseif($date){
+            $p = Registration::select('created_at')->get();
+            $dates = explode(" - ", trim($date));
+            $startDate = date("Y-m-d", strtotime($dates[0])); // Mengonversi tanggal ke format Y-m-d
+            $endDate = date("Y-m-d", strtotime($dates[1]));
+            $user = Rejected::whereBetween('created_at', [$startDate,$endDate])->where('status','ditolak')
+            ->paginate(8);
+
         } else {
             $user = Rejected::where('status','ditolak')->paginate(8);
 

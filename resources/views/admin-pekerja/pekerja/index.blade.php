@@ -1,4 +1,36 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+</head>
+
+<body>
+
+    <button type="button" id="Toastr">Toastr</button>
+
+    <script>
+        $(document).ready(function() {
+            $('#Toastr').click(function() {
+                toastr.info('selamat toastr telah muncul');
+            });
+        });
+    </script>
+</body>
+
+</html>
+
+
+{{-- @extends('layouts.app')
 @section('content')
 <div class="container-fluid">
     <!-- --------------------------------------------------- -->
@@ -18,16 +50,30 @@
                 </div>
                 <div class="mb-3 d-flex justify-content-end col-md-6 lg-6 mt-3">
                     <form id="form_filter">
-                        <div class="mb-3 d-flex">
-                            <select id="filter" name="filter" class="form-select me-3">
-                                <option value="">Semua</option>
-                                @foreach ($divisi as $item)
-                                <option value="{{ $item->id }}" @if ($item->id == $value_filter) selected @endif>
-                                    {{ $item->divisi }}
-                                </option>
-                                @endforeach
-                            </select>
-                            <button class="btn btn-primary" style="height: 4%; width: 40%;" type="submit">Cari</button>
+                        <div class="mb-3 d-flex align-items-center justify-content-end">
+                            <div style="max-width: 30%;">
+                                <span class="mb-2 fw-semibold" style="font-size: 13px;">Filter Divisi</span>
+                                <select id="filter_divisi" name="filter_divisi" class="form-select me-3">
+                                    <option value="">Semua</option>
+                                    @foreach ($divisi as $item)
+                                    <option value="{{ $item->id }}" @if ($item->id == $value_filter) selected @endif>
+                                        {{ $item->divisi }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="ms-3" style="max-width: 30%;">
+                                <span class="mb-2 fw-semibold" style="font-size: 13px;">Filter Lokasi</span>
+                                <select id="filter_lokasi" name="filter_lokasi" class="form-select me-3">
+                                    <option value="" >Semua</option>
+                                    @foreach ($lokasi as $lokasi_wawancara)
+                                    <option value="{{ $lokasi_wawancara }}" @if ($item->id == $value_filter) selected @endif>
+                                        {{ $lokasi_wawancara }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <button class="btn btn-primary ms-3" style="height: 4%; width: 20%; margin-top: 20px;" type="submit">Cari</button>
                         </div>
                     </form>
                 </div>
@@ -91,11 +137,11 @@
                                         </g>
                                     </svg>
                                 </button>
-                                <form action="{{ route('pekerja-lulus', $row->User->id) }}" method="POST" style="display: inline;" class="dropdown-item" id="formlulus-{{ $row->User->id }}">
+                                <form action="{{ route('pekerja-lulus', $row->id) }}" method="POST" style="display: inline;" class="dropdown-item" id="formlulus-{{ $row->id }}">
                                     @csrf
                                     @method('PATCH')
-                                    <button type="button" title="terima pekerja" onclick="klikLulus('{{ $row->User->id }}')" style="background-color: transparent;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="28" viewBox="0 0 16 16" data-bs-toggle="modal" data-id="{{ $row->User->id }}" data-bs-target="#acc-user-{{ $row->User->id }}">
+                                    <button type="button" title="terima pekerja" onclick="klikLulus('{{ $row->id }}')" style="background-color: transparent;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="28" viewBox="0 0 16 16" data-bs-toggle="modal" data-id="{{ $row->id }}" data-bs-target="#acc-user-{{ $row->id }}">
                                             <g fill="#13DEB9">
                                                 <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764a.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0a5.5 5.5 0 1 1-11 0z" />
                                                 <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293L5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z" />
@@ -104,7 +150,7 @@
                                     </button>
                                 </form>
                                 <button type="button" title="lihat pekerja" style="background-color: transparent;">
-                                    <a href="{{ route('detail-user', $row->User->id) }}">
+                                    <a href="{{ route('detail-user', $row->id) }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="25" viewBox="0 0 16 16">
                                             <g fill="#5D87FF">
                                                 <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
@@ -169,7 +215,7 @@
             </style>
 
             @foreach ($user as $item)
-            <div class="modal fade" id="detail-user-{{ $item->User->id }}" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
+            <div class="modal fade" id="detail-user-{{ $item->id }}" tabindex="-1" aria-labelledby="bs-example-modal-lg" aria-hidden="true">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header d-flex align-items-center">
@@ -287,7 +333,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="nonaktif-user-{{ $item->User->id }}" tabindex="-1" aria-labelledby="exampleModalLabel1">
+    <div class="modal fade" id="nonaktif-user-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header d-flex align-items-center">
@@ -301,14 +347,14 @@
                     <span for="recipient-name" class="control-label">Apakah anda
                         yakin untuk tidak meluluskan pelamar
                         {{ $item->User->name }} untuk mendaftar di lowongan {{ $item->Vacancy->judul }}?</span>
-                    <form action="/nonactive/{{ $item->User->id }}" method="POST" id="pesanNonaktif{{ $item->User->id }}">
+                    <form action="/nonactive/{{ $item->id }}" method="POST" id="pesanNonaktif{{ $item->id }}">
                         @method('PATCH')
                         @csrf
                         <div class="mb-3 mt-2">
                             <label for="message-text" style="color: black;" class="control-label">Pesan
                                 <span style="color: red;">*</span></label>
-                            <textarea class="form-control" id="pesan{{ $item->User->id }}" placeholder="Masukkan pesan" name="pesan"></textarea>
-                            <span id="error{{ $item->User->id }}" class="text-danger"></span>
+                            <textarea class="form-control" id="pesan{{ $item->id }}" placeholder="Masukkan pesan" name="pesan"></textarea>
+                            <span id="error{{ $item->id }}" class="text-danger"></span>
                             @error('pesan')
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -403,7 +449,7 @@
             });
         }
     </script> -->
-@if(session('sukses'))
+@if (session('sukses'))
 <script>
     console.log("berhasil");
     Swal.fire({
@@ -413,7 +459,7 @@
     });
 </script>
 @endif
-@if(session('gagal'))
+@if (session('gagal'))
 <script>
     console.log("gagal");
     Swal.fire({
@@ -546,9 +592,15 @@
 <script>
     $(document).ready(function() {
         console.log("dokumen siap");
-        $('#filter').click(function() {
+        $('#filter_divisi').click(function() {
+            console.log("awookaowk");
+        });
+    });
+    $(document).ready(function() {
+        console.log("dokumen siap");
+        $('#filter_lokasi').click(function() {
             console.log("awookaowk");
         });
     });
 </script>
-@endsection
+@endsection --}}

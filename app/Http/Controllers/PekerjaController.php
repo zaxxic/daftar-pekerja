@@ -20,6 +20,7 @@ class PekerjaController extends Controller
      */
     public function index(Request $request)
     {
+        $lokasi = User::where('role', 'user')->whereNotNull('lokasi_wawancara')->distinct()->pluck('lokasi_wawancara');
         $divisi = Division::where('status', ['aktif', 'nonaktif'])->get();
         $keyword = $request->input('cari');
         $value_filter  = $request->input('filter');
@@ -34,8 +35,8 @@ class PekerjaController extends Controller
                 ->paginate(8);
 
             $user->appends(['cari' => $keyword]);
-        } else if ($request->has('filter')) {
-            $keyword = $request->filter;
+        } else if ($request->has('filter_divisi')) {
+            $keyword = $request->filter_divisi;
             $user = Registration::whereHas('user', function ($query) use ($keyword) {
                 $query->where('devision_id', 'LIKE', '%' . $keyword . '%');
             })->whereHas('vacancy', function ($query) {
@@ -44,7 +45,19 @@ class PekerjaController extends Controller
                 ->paginate(8);
 
             $value_filter = $keyword;
-            $user->appends(['filter' => $keyword]);
+            $user->appends(['filter_divisi' => $keyword]);
+            $keyword = "";
+        } else if ($request->has('filter_lokasi')) {
+            $keyword = $request->filter_lokasi;
+            $user = Registration::whereHas('user', function ($query) use ($keyword) {
+                $query->where('lokasi_wawancara', 'LIKE', '%' . $keyword . '%');
+            })->whereHas('vacancy', function ($query) {
+                $query->where('status', '=', 'aktif'); // Filter berdasarkan status lowongan 'aktif'
+            })->where('status', 'diterima')
+                ->paginate(8);
+
+            $value_filter = $keyword;
+            $user->appends(['filter_lokasi' => $keyword]);
             $keyword = "";
         } else {
             $user = Registration::whereHas('vacancy', function ($query) {
@@ -53,7 +66,7 @@ class PekerjaController extends Controller
                 ->paginate(8);
         }
 
-        return view('admin-pekerja.pekerja.index', compact('user', 'keyword', 'divisi', 'value_filter'));
+        return view('admin-pekerja.pekerja.index', compact('user', 'lokasi', 'keyword', 'divisi', 'value_filter'));
     }
 
     /**
@@ -168,15 +181,15 @@ class PekerjaController extends Controller
         $item = Registration::FindOrFail($id);
         $data = User::findOrFail($item->users_id);
         $vacancy = $item->vacancy; // Gunakan relasi untuk mengakses Vacancy
-    
+
         // Menghitung jumlah pengguna yang telah diterima di lowongan ini
         $jumlahDiterima = Registration::where('status', 'lulus')->where('vacancie_id', $vacancy->id)->count();
-    
+
         // Memeriksa apakah jumlah pengguna yang telah diterima sudah mencapai atau melebihi slot
         if ($jumlahDiterima >= $vacancy->slot) {
             return redirect()->route('pekerja')->with('gagal', 'Maaf, slot pada lowongan ini sudah terisi penuh.');
         }
-    
+
         $datas = [
             'nama' => $data->name,
             'lowongan' => $vacancy->judul,
@@ -185,17 +198,17 @@ class PekerjaController extends Controller
             'status' => "terima",
             'judul' => "Selamat Anda diterima di lowongan " . $vacancy->judul
         ];
-    
+
         Mail::to($data->email)->send(new lulus($datas));
-    
+
         $data->update([
             'status' => 'lulus',
         ]);
-    
+
         $item->update([
             'status' => 'lulus'
         ]);
-    
+
         return redirect()->route('pekerja')->with('sukses', 'Data Berhasil Di Perbarui');
     }
     /**
