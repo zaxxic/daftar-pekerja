@@ -9,7 +9,7 @@ class Rejected extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id','pesan','vacancies_id','status'
+        'user_id','pesan','divisi','posisi','status'
     ];
     public function Vacancy()
     {

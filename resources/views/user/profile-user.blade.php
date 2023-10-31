@@ -341,12 +341,14 @@
                                                                 style="color: red;">*</span></label>
                                                         <input type="file" class="form-control" name="lamaran"
                                                             value="{{ $user->lamaran }}"></input>
+                                                        <small class="mt-1">Format lamaran wajib pdf</small>
                                                         <br>
                                                         <label for="recipient-name" class="control-label mt-2"
                                                             style="color: black;">cv<span
                                                                 style="color: red;">*</span></label>
                                                         <input type="file" class="form-control" name="cv"
                                                             value="{{ $user->cv }}"></input>
+                                                        <small class="mt-1">Format lamaran wajib pdf</small>
                                                         <br>
                                                         <label for="recipient-name" class="control-label mt-2"
                                                             style="color: black;">Alamat<span
@@ -354,15 +356,15 @@
                                                         <textarea type="text" class="form-control" name="alamat">{{ $user->alamat }}</textarea>
                                                         <br>
                                                         <label for="recipient-name" class="control-label mt-2"
-                                                            style="color: black;">Profile LinkedIn<span
-                                                                style="color: red;">*</span></label>
+                                                            style="color: black;">Profile LinkedIn<span style="">
+                                                                (opsional)</span></label>
                                                         <input type="text" class="form-control" name="url_likedIn"
                                                             value="{{ $user->LinkedIn }}"></input>
 
                                                         <br>
                                                         <label for="recipient-name" class="control-label mt-2"
-                                                            style="color: black;">Profile Github<span
-                                                                style="color: red;">*</span></label>
+                                                            style="color: black;">Profile Github<span style="">
+                                                                (opsional)</span></label>
                                                         <input type="url" class="form-control" name="url_Github"
                                                             value="{{ $user->GitHub }}"></input>
 
@@ -484,8 +486,8 @@
                         <div class="col-lg-12">
                             <div class="card position-relative overflow-hidden mb-4" style="height: 94%;">
                                 <div class="card-header bg-info d-flex align-items-center justify-content-between">
-                                    <h4 class="card-title text-white mb-0">Persentase Data Tambahan Anda</h4>
-                                    <h4 class="text-white mb-0">{{ $jumlahData }}/7</h4>
+                                    <h4 class="card-title text-white mb-0">Kelengkapan Data</h4>
+                                    <h5 class="text-white mb-0">{{ $jumlahData }}/7</h5>
                                 </div>
                                 <div class="p-2">
                                     @if ($jumlahData == '7')
@@ -1770,9 +1772,30 @@
                                         @endif
                                     </div>
                                 @empty
+                                    @if (Auth()->user()->status === 'ditolak')
+                                    <div class="d-flex justify-content-end">
+                                        <ul class="overview">
+                                            <li class="row">
+                                                <p class="fw-semibold col-6"> Status </p>
+                                                <p class="ellipsis  col-6">: {{ Auth()->user()->status }}</p>
+                                            </li>
+                                            <Li>
+                                                maaf anda tidak lolos kualifikasi kami,
+                                                untuk lebih detailnya 
+                                            </Li>
+
+                                        </ul>
+                                        <a class="" href="">
+                                            <button class="btn btn-primary mb-1">
+                                                Detail
+                                            </button>
+                                        </a>
+                                    </div>
+                                    @else
                                     <div class="text-center" id="lowongan">
                                         <img src="{{ asset('assets/nodatas.png') }}" alt="" width="200px">
                                     </div>`
+                                    @endif
                                 @endforelse
                             </div>
 

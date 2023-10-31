@@ -58,10 +58,7 @@ class ApprovalController extends Controller
             $user->appends(['filter' => $keyword]);
             $keyword = "";
         } else {
-            $user = Registration::whereHas('vacancy', function ($query) {
-                $query->whereIn('status', ['nonaktif', 'aktif']); // Filter berdasarkan status lowongan 'aktif'
-            })->whereIn('status', ['menunggu'])
-                ->paginate(8);
+            $user = Registration::where('status', 'menunggu')->paginate(8);
         }
 
         return view('admin-pekerja.approval.index', compact('user', 'keyword', 'divisi', 'value_filter'));
@@ -123,7 +120,6 @@ class ApprovalController extends Controller
         ];
 
         Mail::to($data->email)->send(new daftar($datas));
-        // dd($item->Vacancy->devisi_id);
         $data->update([
             'status' => 'diterima',
             'tanggal_wawancara' => $request->tanggal_wawancara,
@@ -132,14 +128,14 @@ class ApprovalController extends Controller
         $item->update([
             'status' => 'diterima'
         ]);
+        $data->save();
+        $item->save();
         Rejected::create([
             'user_id'=>$data->id,
             'pesan' => 'diterima',
             'vacancies_id' => $item->Vacancy->id,
             'status' => 'diterima'
         ]);
-
-
         return redirect()->route('approval')->with('sukses', 'Data Berhasil Di Perbarui');
     }
 
@@ -169,16 +165,9 @@ class ApprovalController extends Controller
             'posisi' => $item->Vacancy->pekerja,
         ];
 
-        Mail::to($user->email)->send(new Tolak($datas));
+        // Mail::to($user->email)->send(new Tolak($datas));
 
-        $item->update([
-            'status' => 'ditolak'
-        ]);
-        $rejected::create([
-           'user_id' => $user->id,
-           'pesan' => $pesan,
-           'vacancies_id' => $item->Vacancy->id
-        ]);
+
 
         $pesan = new Message([
             'pesan' => $request->pesan,
@@ -187,17 +176,18 @@ class ApprovalController extends Controller
         $user->message()->save($pesan);
 
         $user->update([
-            'status' => 'ditolak',
-            'devision_id' => $item->Vacancy->devision_id,
+            'status' => 'ditolak'
         ]);
-
+        // dd($item->Vacancy->Division->divisi);
         Rejected::create([
             'user_id'=>$user->id,
             'pesan' => $request->pesan,
-            'vacancies_id' => $item->Vacancy->id,
+            'divisi' => $item->Vacancy->Division->divisi,
+            'posisi' => $item->Vacancy->pekerja,
             'status' => 'ditolak'
         ]);
 
+        $item->delete();
         return redirect()->route('approval')->with('sukses', 'Data Berhasil Di Perbarui');
     }
 

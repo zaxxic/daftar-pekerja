@@ -13,6 +13,7 @@ use App\Models\Registration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\UpdateLowonganRequest;
+use App\Mail\Tolak;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class LowonganController extends Controller
@@ -217,27 +218,35 @@ class LowonganController extends Controller
      */
     public function destroy($id)
 {
+        $registration = Registration::where('vacancie_id', $id)->where('status', 'menunggu')->get();
+        // dd($registration);
+        if($registration){
+            foreach ($registration as $row){
+                $data = $row->User->email;
+                $datas =   [
+                    'pesan' =>  'lowongan yang anda daftar sudah tidak ada',
+                    'status' => "tolak",
+                    'nama' => $row->User->name,
+                    'lowongan' => $row->Vacancy->judul,
+                    'posisi' => $row->Vacancy->pekerja,
+                ];
 
-        $registration = Registration::where('vacancie_id', $id)->where('status', 'menunggu')->firstOrFail();
+                Mail::to($data)->send(new Tolak($datas));
+                $row->delete();
+            }
 
-        $data = $registration->User->email;
-        $datas = [
-            'pesan' => "lowongan yang anda daftar sudah tidak tersedia ",
-            'status' => "terima",
-            'judul' => " Pemberitahuan tentang pendaftaran"
-        ];
+        }
+        $registration = Registration::where('vacancie_id', $id)->where('status', 'diterima')->count();
+        // dd($registration);
+        if($registration !== 0){
+            return redirect()->back()->with('Diterima', 'masih ada pelamar yang belum di acc di halaman pelamar di terima ');
+        }else{
+            $lowongan = Vacancy::findOrFail($id);
+            $lowongan->delete();
 
-        Mail::to($data)->send(new daftar($datas));
+            return redirect()->back();  
+        }
 
-        $registration->delete();
-
-        $lowongan = Vacancy::findOrFail($id);
-        $lowongan->update([
-            'status' => 'dihapus',
-            'devision_id' => null
-        ]);
-
-        return redirect()->back();
 }
 
 

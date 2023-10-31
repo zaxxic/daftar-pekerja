@@ -12,6 +12,8 @@ use App\Mail\daftar;
 use App\Mail\gagal;
 use App\Mail\lulus;
 use App\Models\Division;
+use App\Models\Worker;
+use Termwind\Components\Dd;
 
 class PekerjaController extends Controller
 {
@@ -24,44 +26,59 @@ class PekerjaController extends Controller
         $divisi = Division::where('status', ['aktif', 'nonaktif'])->get();
         $keyword = $request->input('cari');
         $value_filter  = $request->input('filter');
-
-        if ($request->has('cari')) {
+        if ($request->input('cari')) {
             $keyword = $request->cari;
             $user = Registration::whereHas('user', function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', '%' . $keyword . '%');
             })->whereHas('vacancy', function ($query) {
-                $query->where('status', '=', 'aktif'); // Filter berdasarkan status lowongan 'aktif'
+                $query->where('status', '=', 'aktif');
             })->where('status', 'diterima')
                 ->paginate(8);
 
             $user->appends(['cari' => $keyword]);
-        } else if ($request->has('filter_divisi')) {
+        }elseif($request->input('filter_divisi') !== null && $request->input('filter_lokasi') !== null){
             $keyword = $request->filter_divisi;
-            $user = Registration::whereHas('user', function ($query) use ($keyword) {
-                $query->where('devision_id', 'LIKE', '%' . $keyword . '%');
+            $keyword1 = $request->filter_lokasi;
+            $user = Registration::whereHas('vacancy', function ($query) use ($keyword) {
+                $query->where('devisi_id', 'LIKE', '%' . $keyword . '%');
             })->whereHas('vacancy', function ($query) {
-                $query->where('status', '=', 'aktif'); // Filter berdasarkan status lowongan 'aktif'
+                $query->where('status', '=', 'aktif');
+            })->whereHas('user', function ($query) use ($keyword1) {
+                $query->where('lokasi_wawancara', 'LIKE', '%' . $keyword1 . '%');
             })->where('status', 'diterima')
                 ->paginate(8);
 
             $value_filter = $keyword;
             $user->appends(['filter_divisi' => $keyword]);
             $keyword = "";
-        } else if ($request->has('filter_lokasi')) {
+        }  else if ($request->input('filter_divisi') !== null) {
+
+            $keyword = $request->filter_divisi;
+            $user = Registration::whereHas('vacancy', function ($query) use ($keyword) {
+                $query->where('devisi_id', 'LIKE', '%' . $keyword . '%');
+            })->whereHas('vacancy', function ($query) {
+                $query->where('status', '=', 'aktif');
+            })->where('status', 'diterima')
+                ->paginate(8);
+
+            $value_filter = $keyword;
+            $user->appends(['filter_divisi' => $keyword]);
+            $keyword = "";
+        } else if ($request->input('filter_lokasi') !== null) {
             $keyword = $request->filter_lokasi;
             $user = Registration::whereHas('user', function ($query) use ($keyword) {
                 $query->where('lokasi_wawancara', 'LIKE', '%' . $keyword . '%');
             })->whereHas('vacancy', function ($query) {
-                $query->where('status', '=', 'aktif'); // Filter berdasarkan status lowongan 'aktif'
+                $query->where('status', '=', 'aktif');
             })->where('status', 'diterima')
                 ->paginate(8);
 
             $value_filter = $keyword;
             $user->appends(['filter_lokasi' => $keyword]);
             $keyword = "";
-        } else {
+        }else {
             $user = Registration::whereHas('vacancy', function ($query) {
-                $query->whereIn('status', ['aktif', 'nonaktif']); // Filter berdasarkan status lowongan 'aktif'
+                $query->whereIn('status', ['aktif', 'nonaktif']);
             })->where('status', 'diterima')
                 ->paginate(8);
         }
@@ -116,7 +133,8 @@ class PekerjaController extends Controller
             ]
         );
 
-        $user = User::find($id);
+        $data = Registration::FindOrFail($id);
+        $user = User::findOrFail($data->users_id);
 
         $pesan = new Message([
             'pesan' => $request->pesan,
@@ -124,26 +142,29 @@ class PekerjaController extends Controller
 
         $user->message()->save($pesan);
         $user->update([
-            'status' => 'menunggu',
+            'status' => 'gagal',
             'tanggal_wawancara' => null,
-            'devision_id' => null
         ]);
-        $data = Registration::where('users_id', $id)->first();
+
+        // $data = Registration::where('users_id', $id)->first();
         $vacancy = $data->vacancy;
-        $data->update([
-            'status' => 'nonaktif'
+
+        Worker::created([
+            'users_id' => $user->id,
+            'divisi' => $data->Vacancy->Division->divisi,
+            'posisi' => $data->Vacancy->pekerja
         ]);
+
         $datas =   [
             'nama' => $data->name,
             'lowongan' => $vacancy->judul,
             'divisi' => $vacancy->Division->divisi,
             'posisi' => $vacancy->pekerja,
             'pesan' => $request->pesan,
-            'pesan' => "Akun anda di nonaktifkan ",
             'status' => "nonaktif",
             'judul' => " Anda di nonkatifkan karena alasan " . $request->pesan . " dan anda bisa daftar di lowongan lainnya"
         ];
-
+        $data->delete();
         Mail::to($user->email)->send(new gagal($datas));
 
         return redirect()->route('pekerja')->with('sukses', 'Data Berhasil Di Perbarui');

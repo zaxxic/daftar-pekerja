@@ -69,10 +69,10 @@
                                 </div>
                             </td>
                             <td>
-                                <p class="mb-0 fw-normal">{{ $row->Vacancy->Division->divisi }}</p>
+                                <p class="mb-0 fw-normal">{{ $row->divisi }}</p>
                             </td>
                             <td>
-                                <p class="mb-0 fw-normal">{{ $row->Vacancy->pekerja }}</p>
+                                <p class="mb-0 fw-normal">{{ $row->posisi }}</p>
                             </td>
                             <td>
 

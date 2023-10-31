@@ -131,8 +131,9 @@
                                             id="formdelete-{{ $item->id }}">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="button" class=" delete-button me-1 dropdown-item text-primary"
-                                                onclick="klikDelete('{{ $item->id }}')"
+                                            <button type="button" class="delete-button me-1 dropdown-item text-primary"
+                                                data-bs-toggle="modal" data-id="{{ $item->id }}"
+                                                data-bs-target="#hapus{{ $item->id }}"
                                                 style="background: none; border: none; padding: 0;">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="text-primary me-2"
                                                     width="20" height="20" style="margin-bottom: 3px;"
@@ -188,7 +189,7 @@
                             {!! str_replace(
                                 '<p>',
                                 '
-                                                                            <p class="ellipsis1">',
+                                                                                                        <p class="ellipsis1">',
                                 $item->syarat,
                             ) !!}
                         </div>
@@ -207,10 +208,10 @@
                                         @csrf
                                         @method('PATCH')
                                         <!-- <button type="button" style="background: none; border: none; padding: 0;" class="text-danger" onclick="klikNonaktif('{{ $item->id }}')" id="nonaktif-{{ $item->id }}">
-                                                                                                                                                                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24">
-                                                                                                                                                                                                                            <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8c1.85 0 3.55.63 4.9 1.69L5.69 16.9A7.902 7.902 0 0 1 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1A7.902 7.902 0 0 1 20 12c0 4.42-3.58 8-8 8z" />
-                                                                                                                                                                                                                        </svg>
-                                                                                                                                                                                                                    </button> -->
+                                                                                                                                                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24">
+                                                                                                                                                                                                                                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8c1.85 0 3.55.63 4.9 1.69L5.69 16.9A7.902 7.902 0 0 1 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1A7.902 7.902 0 0 1 20 12c0 4.42-3.58 8-8 8z" />
+                                                                                                                                                                                                                            </svg>
+                                                                                                                                                                                                                        </button> -->
                                         <button type="button" title="nonaktif lowongan"
                                             onclick="klikNonaktif('{{ $item->id }}')"
                                             style="background: none; border: none; padding: 0;">
@@ -230,10 +231,10 @@
                                         @csrf
                                         @method('PATCH')
                                         <!-- <button type="button" style="background: none; border: none; padding: 0;" class="text-success" onclick="klikAktif('{{ $item->id }}')" id="aktif-{{ $item->id }}">
-                                                                                                                                                                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24">
-                                                                                                                                                                                                                            <path fill="currentColor" d="M20 12a8 8 0 0 1-8 8a8 8 0 0 1-8-8a8 8 0 0 1 8-8c.76 0 1.5.11 2.2.31l1.57-1.57A9.822 9.822 0 0 0 12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10M7.91 10.08L6.5 11.5L11 16L21 6l-1.41-1.42L11 13.17l-3.09-3.09Z" />
-                                                                                                                                                                                                                        </svg>
-                                                                                                                                                                                                                    </button> -->
+                                                                                                                                                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24">
+                                                                                                                                                                                                                                <path fill="currentColor" d="M20 12a8 8 0 0 1-8 8a8 8 0 0 1-8-8a8 8 0 0 1 8-8c.76 0 1.5.11 2.2.31l1.57-1.57A9.822 9.822 0 0 0 12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10M7.91 10.08L6.5 11.5L11 16L21 6l-1.41-1.42L11 13.17l-3.09-3.09Z" />
+                                                                                                                                                                                                                            </svg>
+                                                                                                                                                                                                                        </button> -->
                                         <button type="button" title="aktif lowongan"
                                             onclick="klikAktif('{{ $item->id }}')"
                                             style="background: none; border: none; padding: 0;">
@@ -278,6 +279,40 @@
     </div>
 
     </div>
+
+    @forelse ($data as $row)
+        <div class="modal fade" id="hapus{{ $row->id }}" tabindex="-1" aria-labelledby="bs-example-modal-lg"
+            aria-hidden="true">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header d-flex align-items-center">
+                        <h4 class="modal-title" id="myModalLabel">Peringatan</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
+                    <div class="modal-body">
+                        <div class="container">
+
+                            jika anda menghapus lowongan ini maka untuk pelamar yang sedang menunggu dilowongan ini, akan
+                            otomatis di kirimkan pesan penolakan dan jika masih ada pelamar yang sedang di wawancara maka
+                            lowongan ini tidak dapat di hapus
+
+                            apakah anda benar ingin menghapus lowongan ini?
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info">
+                            batal
+                        </button>
+                        <button type="button" class="btn btn-danger" onclick="klikDelete('{{$row->id}}')">
+                            hapus
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @empty
+    @endforelse
 @endsection
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -504,7 +539,7 @@
             swalWithBootstrapButtons
                 .fire({
                     title: "Apakah Anda Yakin?",
-                    text: "Anda ingin menghapus lowongan ini!",
+                    text: "Anda ingin menghapus lowongan ini?",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonText: "Iya!",
@@ -521,11 +556,7 @@
                 })
                 .then((result) => {
                     if (result.value) {
-                        swalWithBootstrapButtons.fire(
-                            "Berhasil!",
-                            "Anda berhasil menghapus lowongan tersebut.",
-                            "success"
-                        );
+
                         var form = document.getElementById("formdelete-" + itemId);
                         form.submit();
                     } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -591,36 +622,42 @@
             });
         </script>
     @endif
-    @if(session('sukses'))
+    @if (session('sukses'))
         <script>
             console.log("berhasil");
             Swal.fire({
-                title:  'Berhasil',
+                title: 'Berhasil',
                 text: "berhasil mengaktifkan lowongan",
                 icon: 'success',
             });
         </script>
     @endif
-    @if(session('suksesEdit'))
+    @if (session('suksesEdit'))
         <script>
             console.log("berhasil");
             Swal.fire({
-                title:  'Berhasil',
-                text: "{{session('suksesEdit')}}",
+                title: 'Berhasil',
+                text: "{{ session('suksesEdit') }}",
                 icon: 'success',
             });
         </script>
     @endif
-    @if(session('divisiKosong'))
+    @if (session('divisiKosong'))
         <script>
             Swal.fire({
-                title:  'gagal',
-                text: "{{session('divisiKosong')}}",
+                title: 'gagal',
+                text: "{{ session('divisiKosong') }}",
                 icon: 'error',
             });
         </script>
     @endif
-
-
-
+    @if (session('Diterima'))
+        <script>
+            Swal.fire({
+                title: 'gagal',
+                text: "{{ session('Diterima') }}",
+                icon: 'error',
+            });
+        </script>
+    @endif
 @endsection

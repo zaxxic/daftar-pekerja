@@ -117,7 +117,6 @@ class PekerjaLulusController extends Controller
         $user->update([
             'status' => 'dipecat',
             'tanggal_wawancara' => null,
-            'devision_id' => null
         ]);
 
         // $data = Registration::with('vacancy')->find($id);

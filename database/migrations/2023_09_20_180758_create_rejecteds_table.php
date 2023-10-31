@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->text('pesan');
-            $table->foreignUuid('vacancies_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('divisi');
+            $table->string('posisi');
             $table->timestamps();
         });
     }

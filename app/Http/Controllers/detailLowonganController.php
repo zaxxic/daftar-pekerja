@@ -38,9 +38,7 @@ class DetailLowonganController extends Controller
         $vacancy = Vacancy::findOrFail($request->id);
         $user = User::findOrFail(Auth()->User()->id);
 
-        $user->update([
-            'devision_id' => $vacancy->devisi_id
-        ]);
+       
 
 
         $cek = Registration::where('users_id', Auth()->user()->id)
