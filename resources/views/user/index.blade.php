@@ -292,7 +292,7 @@
                                         </li>
                                     </div>
 
-                                    @if ($item->Vacancy->status === 'aktif')
+                                    @else ($item->Vacancy->status === 'aktif')
                                     <li class="ml-auto" style="margin-left: 300px;">
                                         <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
                                             <button class="btn btn-primary mb-4">
@@ -300,7 +300,7 @@
                                             </button>
                                         </a>
                                     </li>
-                                    @endif
+                                    
                                     @endif
                                 </div>
                             </ul>

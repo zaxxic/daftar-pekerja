@@ -781,8 +781,13 @@
 
                                             <br>
                                             <label for="recipient-name" class="control-label mt-2" style="color: black;">Jenis Pekerjaan<span style="color: red;">*</span></label>
-                                            <input type="text" class="form-control" name="JenisPekerjaan" value="{{ old('JenisPekerjaan') }}"></input>
-
+                                            <select name="JenisPekerjaan" class="form-control rounded-1 form-select" style="" id="">
+                                                <option value="kontrak" {{ 'kontrak' === old('JenisPekerjaan') ? 'selected' : '' }}>kontrak</option>
+                                                <option value="permanen" {{ 'permanen' === old('JenisPekerjaan') ? 'selected' : '' }}>permanen</option>
+                                            </select>
+                                            @error('JenisPekerjaan')
+                                            <p class="text-danger">{{ $message }}</p>
+                                            @enderror
                                             <br>
                                             <label for="recipient-name" class="control-label mt-2" style="color: black;">Nama
                                                 Project<span style="color: red;">*</span></label>
@@ -842,7 +847,13 @@
 
                                             <br>
                                             <label for="recipient-name" class="control-label mt-2" style="color: black;">Jenis Pekerjaan<span style="color: red;">*</span></label>
-                                            <input type="text" class="form-control" name="JenisPekerjaan" value="{{ $item->JenisPekerjaan }}"></input>
+                                            <select name="JenisPekerjaan" class="form rounded-1 form-control" id="tipe">
+                                                <option value="kontrak" {{ old('JenisPekerjaan', $item->JenisPekerjaan) == 'kontrak' ? 'selected' : '' }}>kontrak</option>
+                                                <option value="permanen" {{ old('JenisPekerjaan', $item->JenisPekerjaan) == 'permanen' ? 'selected' : '' }}>permanen</option>
+                                            </select>
+                                            @error('tipe')
+                                            <p class="text-danger">{{ $message }}</p>
+                                            @enderror
 
                                             <br>
                                             <label for="recipient-name" class="control-label mt-2" style="color: black;">Nama Project<span style="color: red;">*</span></label>
@@ -1883,8 +1894,7 @@ $data = round($jumlahData * 14.28571428571429);
 </script>
 <script>
     // PDF URL for CV
-    const cvPdfUrl = '{{ asset('
-    cv / ' . $user->cv) }}';
+    const cvPdfUrl = '{{ asset('cv/' . $user->cv) }}';
 
     // Function to render a specific page of the PDF
     const renderPage = (pageNum, pdfDoc, containerId) => {
@@ -1917,8 +1927,7 @@ $data = round($jumlahData * 14.28571428571429);
     });
 
     // PDF URL for Lamaran
-    const lamaranPdfUrl = '{{ asset('
-    lamaran / ' . $user->lamaran) }}';
+    const lamaranPdfUrl = '{{ asset('lamaran/' . $user->lamaran) }}';
 
     // Load Lamaran PDF using PDF.js
     pdfjsLib.getDocument(lamaranPdfUrl).promise.then(pdfDoc => {
@@ -1929,7 +1938,6 @@ $data = round($jumlahData * 14.28571428571429);
         }
     });
 </script>
-
 
 <script>
     var IdData;
@@ -2349,6 +2357,7 @@ $data = round($jumlahData * 14.28571428571429);
 
     });
 </script>
+
 @endsection
 
 </html>

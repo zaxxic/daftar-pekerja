@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('Tempat');
-            $table->string('JenisPekerjaan');
+            $table->enum('JenisPekerjaan',['kontrak','permanen']);
             $table->string('NamaProjek');
             $table->longText('DetailProjek');
             $table->string('TanggalAwal');

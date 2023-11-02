@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Experience;
+use App\TipePekerjaEnum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -34,7 +35,13 @@ class ExperienceController extends Controller
 
         $this->validate($request, [
             'Tempat' => 'required|max:150',
-            'JenisPekerjaan' => 'required|max:150',
+            'JenisPekerjaan' => [
+                'required',
+                'in:' . implode(',', [
+                    TipePekerjaEnum::KONTRAK,
+                    TipePekerjaEnum::PERMANEN,
+                ]),
+            ],
             'NamaProjek' => 'required|max:150',
             'DetailProjek' => 'required',
             'TanggalAwal' => 'required|date|before:today',
@@ -51,7 +58,7 @@ class ExperienceController extends Controller
             'Tempat.required' => 'Tempat Wajib Diisi',
             'Tempat.max' => 'Tempat Maksimal 150 karakter',
             'JenisPekerjaan.required' => 'Jenis Pekerjaan Wajib Diisi',
-            'JenisPekerjaan.max' => 'Jenis Pekerjaan Maksimal 150 karakter',
+            'JenisPekerjaan.in' => 'Jenis Pekerjaan tidak valid',
             'NamaProjek.required' => 'Nama Projek Wajib Diisi',
             'NamaProjek.max' => 'Nama Projek Maksimal 150 karakter',
             'DetailProjek.required' => 'Detail Projek Wajib Diisi',
@@ -115,7 +122,13 @@ class ExperienceController extends Controller
 
         $this->validate($request, [
             'Tempat' => 'required|max:150',
-            'JenisPekerjaan' => 'required|max:150',
+            'JenisPekerjaan' => [
+                'required',
+                'in:' . implode(',', [
+                    TipePekerjaEnum::KONTRAK,
+                    TipePekerjaEnum::PERMANEN,
+                ]),
+            ],
             'NamaProjek' => 'required|max:150',
             'DetailProjek' => 'required',
             'TanggalAwal' => 'required|date|before:today',
@@ -132,7 +145,7 @@ class ExperienceController extends Controller
             'Tempat.required' => 'Tempat Wajib Diisi',
             'Tempat.max' => 'Tempat Maksimal 150 karakter',
             'JenisPekerjaan.required' => 'Jenis Pekerjaan Wajib Diisi',
-            'JenisPekerjaan.max' => 'Jenis Pekerjaan Maksimal 150 karakter',
+            'JenisPekerjaan.in' => 'Jenis Pekerjaan tidak valid',
             'NamaProjek.required' => 'Nama Projek Wajib Diisi',
             'NamaProjek.max' => 'Nama Projek Maksimal 150 karakter',
             'DetailProjek.required' => 'Detail Projek Wajib Diisi',
