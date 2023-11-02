@@ -665,7 +665,6 @@
                         if (result.isConfirmed) {
                             var url = "{{ route('detail-lowongan.store') }}";
                             var formData = "{{ $lowongan->id }}";
-
                             $.ajax({
                                 type: 'POST',
                                 url: url,

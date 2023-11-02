@@ -38,9 +38,6 @@ class DetailLowonganController extends Controller
         $vacancy = Vacancy::findOrFail($request->id);
         $user = User::findOrFail(Auth()->User()->id);
 
-       
-
-
         $cek = Registration::where('users_id', Auth()->user()->id)
             ->whereIn('status', ['diterima', 'menunggu'])
             ->exists();
@@ -70,7 +67,8 @@ class DetailLowonganController extends Controller
         Rejected::create([
             'user_id'=> Auth()->User()->id,
             'pesan' => 'daftar',
-            'vacancies_id' => $request->id,
+            'divisi' => $vacancy->Division->divisi,
+            'posisi' => $vacancy->pekerja,
             'status' => 'menunggu'
         ]);
 
