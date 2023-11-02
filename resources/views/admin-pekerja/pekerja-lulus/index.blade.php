@@ -201,7 +201,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" onclick="Terima({{$item->User->id}})" class="btn btn-success">
+                    <button type="submit" class="btn btn-success">
                         Terima
                     </button>
                 </div>

@@ -297,39 +297,24 @@
                                     </div>
                                 </button>
                                 <div class="panel card-body pt-2">
-                                    <div class="d-flex" style="float: right;">
 
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#experience-update-{{ $item->id }}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="text-primary me-1" style="margin-bottom: 3px;" width="20" height="20" viewBox="0 0 24 24">
-                                                <path fill="#13DEB9" d="M5 19h1.4l8.625-8.625l-1.4-1.4L5 17.6V19ZM19.3 8.925l-4.25-4.2l1.4-1.4q.575-.575 1.413-.575t1.412.575l1.4 1.4q.575.575.6 1.388t-.55 1.387L19.3 8.925ZM17.85 10.4L7.25 21H3v-4.25l10.6-10.6l4.25 4.25Zm-3.525-.725l-.7-.7l1.4 1.4l-.7-.7Z" />
-                                            </svg>
-                                        </a>
-                                        <div class="justify-content-end">
-                                            <form action="{{ route('experience-delete', $item->id) }}" method="POST" id="formpengalaman-{{ $item->id }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="button" style="background: none; border: none; padding: 0;" onclick="Pengalaman({{ $item->id }})">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-primary" width="20" height="20" style="margin-bottom: 3px;" viewBox="0 0 24 24">
-                                                        <path fill="#FA896B" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4z" />
-                                                    </svg>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
                                     <span class="form-label fw-semibold fs-4">{{ $item->NamaProjek }}</span>
                                     <br>
                                     {{ $item->JenisPekerjaan }}
                                     <p class="form-label fw-semibold mt-3">Detail Projek :</p>
                                     {{ $item->DetailProjek }}
                                     <p class="form-label fw-semibold mt-3">Bukti :</p>
-                                    <div class="text-center mb-3" style="margin: 0 auto; width: 300px; height: 200px; border: 1px solid #adadac; overflow: hidden; border-radius: 10px;">
+                                    <div class="text-center mb-4" style="width: 670px; height: 500px; border: 1px solid #adadac; overflow: hidden; position: relative; border-radius: 10px;">
                                         <a href="{{ asset('pengalaman/' . $item->Bukti) }}" data-lightbox="image-1" data-title="Gambar Profil Anda">
-                                            <img src="{{ asset('pengalaman/' . $item->Bukti) }}" style="max-width: 100%; max-height: 100%; object-fit: contain;" alt="" />
+                                            <img src="{{ asset('pengalaman/' . $item->Bukti) }}" style="width: 100%; height: 100%; object-fit: contain;" alt="" />
                                         </a>
                                     </div>
                                 </div>
 
                                 @empty
+                                <div class="text-center" id="lowongan">
+                                    <img src="{{ asset('assets/nodatas.png') }}" alt="" width="200px">
+                                </div>`
                                 @endforelse
 
                             </div>
@@ -358,12 +343,6 @@
                                     });
                                 }
                             </script>
-                            <button class="buttonmodal border-bottom-0 border-start-0 border-end-0 w-100" data-bs-toggle="modal" data-bs-target="#experience-add">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="25" height="25" viewBox="0 0 24 24">
-                                    <path fill="currentColor" d="M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z" />
-                                </svg>
-                                <strong class="fs-4">Tambah</strong>
-                            </button>
                         </div>
                     </div>
 
@@ -467,7 +446,7 @@
                                     <button class="pre-btn"><img src="{{asset('images/arrow.png')}}" alt=""></button>
                                     <button class="nxt-btn"><img src="{{asset('images/arrow.png')}}" alt=""></button>
                                     <div class="product-container">
-                                        @foreach ($certificate as $item)
+                                        @forelse ($certificate as $item)
                                         <div class="product-card">
                                             <div class="col-lg-12 ">
                                                 <div class="card" style="height: 90%;">
@@ -535,9 +514,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        @endforeach
-
+                                        
                                     </div>
+                                    @empty
+                                    <div class="text-center col-12" id="lowongan">
+                                        <img src="{{ asset('assets/nodatas.png') }}" alt="" width="200px">
+                                    </div>`
+                                    @endforelse
                                 </section>
 
 
@@ -676,7 +659,7 @@
                                             </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button onclick="Tolak({{$item->id}})" type="button" class="btn btn-danger">
+                                        <button type="submit" class="btn btn-danger">
                                             Tolak
                                         </button>
                                     </div>
@@ -792,7 +775,9 @@
                                 </div>
                             </div>
                             @empty
-
+                            <div class="text-center" id="lowongan">
+                                <img src="{{ asset('assets/nodatas.png') }}" alt="" width="200px">
+                            </div>`
                             @endforelse
                         </div>
 

@@ -295,7 +295,7 @@
                     </div>
             </div>
             <div class="modal-footer">
-                <button onclick="Tolak({{ $item->User->id }})" type="button" class="btn btn-danger">
+                <button type="submit" class="btn btn-danger">
                     Tolak
                 </button>
             </div>
