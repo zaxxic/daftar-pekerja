@@ -1672,8 +1672,6 @@ $data = round($jumlahData * 14.28571428571429);
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="{{ asset('assets/dist/libs/prismjs/prism.js') }}"></script>
 
-
-
 @if (Session::has('BerhasilPendidikan'))
 <script>
     Swal.fire({
@@ -1724,6 +1722,34 @@ $data = round($jumlahData * 14.28571428571429);
     }
 </script>
 
+
+
+<script>
+    $('#ButtonSimpan').click(function() {
+        Swal.fire({
+            title: 'Apa kamu yakin?',
+            text: "Data yang anda masukan sudah benar?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'batal',
+            confirmButtonText: 'ya, sudah benar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Terkirim!',
+                    'Data telah terkirim',
+                    'success'
+                ).then((result) => { // Perbaikan disini: Tambahkan parameter "result"
+                    var form = document.getElementById('Pendidikan');
+                    form.submit();
+                });
+            };
+        });
+    });
+</script>
+
 <script>
     // Konfigurasi grafik Anda
 
@@ -1753,9 +1779,7 @@ $data = round($jumlahData * 14.28571428571429);
         },
         series: [{
             name: "kelengkapan data",
-            data: [{
-                !!json_encode($data) !!
-            }]
+            data: [{!!json_encode($data)!!}]
         }],
         title: {
             floating: true,
@@ -1790,31 +1814,6 @@ $data = round($jumlahData * 14.28571428571429);
     chartProgress2.render();
 </script>
 
-<script>
-    $('#ButtonSimpan').click(function() {
-        Swal.fire({
-            title: 'Apa kamu yakin?',
-            text: "Data yang anda masukan sudah benar?",
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: 'batal',
-            confirmButtonText: 'ya, sudah benar!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                    'Terkirim!',
-                    'Data telah terkirim',
-                    'success'
-                ).then((result) => { // Perbaikan disini: Tambahkan parameter "result"
-                    var form = document.getElementById('Pendidikan');
-                    form.submit();
-                });
-            };
-        });
-    });
-</script>
 
 <script>
     function Form() {
