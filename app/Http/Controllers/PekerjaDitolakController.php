@@ -20,8 +20,6 @@ class PekerjaDitolakController extends Controller
         if (!empty($keyword)) {
             $user = Rejected::whereHas('user', function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', '%' . $keyword . '%');
-            })->whereHas('vacancy', function ($query) {
-                $query->where('status', '=', 'aktif'); // Filter berdasarkan status lowongan 'aktif'
             })->where('status','ditolak')
                 ->paginate(8);
 

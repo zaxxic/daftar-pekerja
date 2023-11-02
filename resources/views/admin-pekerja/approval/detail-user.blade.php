@@ -87,9 +87,9 @@
                                                 <!-- <img src="{{ asset('assets/user-1.jpg') }}" alt="" class="w-100 h-100"> -->
                                                 <a href="{{ asset('foto_user/' . $data->foto) }}" data-lightbox="image-1" data-title="Gambar Profil Anda">
                                                     @if ($data->foto === 'default/default.png')
-                                                    <img src="{{ asset($user->foto) }}" alt="" width="180px" class="img-fluid rounded-circle" style="width: 120px; height: 120px;">
+                                                    <img src="{{ asset($user->foto) }}" alt="" width="180px" class="img-fluid rounded-circle" style="width: 120px; height: 120px; object-fit: cover;">
                                                     @else
-                                                    <img src="{{ asset('foto_user/' . $data->foto) }}" alt="" width="180px" class="img-fluid rounded-circle" style="width: 120px; height: 120px;">
+                                                    <img src="{{ asset('foto_user/' . $data->foto) }}" alt="" width="180px" class="img-fluid rounded-circle" style="width: 120px; height: 120px; object-fit: cover;">
                                                     @endif
                                                 </a>
                                             </div>
@@ -583,7 +583,7 @@
                                 <form action="{{ route('pekerja-lulus', $item->id) }}" method="POST" style="display: inline;" class="dropdown-item" id="formlulus-{{ $item->id }}">
                                     @csrf
                                     @method('PATCH')
-                                    <button class="btn btn-success" onclick="klikLulus('{{ $item->id }}')">Lulus</button>
+                                    <button type="button" class="btn btn-success" onclick="klikLulus('{{ $item->id }}')">Lulus</button>
                                 </form>
                                 <button class="btn btn-danger me-2" data-bs-toggle="modal" data-bs-target="#nonaktif-user-{{ $item->id }}">Gagal</button>
                                 @elseif ($item->status === 'lulus')
@@ -605,7 +605,7 @@
                                             </h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
+                                        <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                         <div class="modal-body">
                                             <div class="mb-3">
                                                 <span style="color: black;" for="recipient-name" class="control-label">Apakah anda
@@ -637,7 +637,7 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" onclick="Terima({{$item->id}})" class="btn btn-success">
+                                            <button type="submit" class="btn btn-success">
                                                 Terima
                                             </button>
                                         </div>
@@ -654,7 +654,7 @@
                                         </h4>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
+                                    <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                     <div class="modal-body">
                                         <div class="mb-3">
                                             <span style="color: black;" for="recipient-name" class="control-label">Apakah anda
@@ -693,7 +693,7 @@
                                         </h4>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
+                                    <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                     <div class="modal-body">
                                         <div class="mb-3">
                                             <span style="color: black;" for="recipient-name" class="control-label">Apakah anda
@@ -714,8 +714,8 @@
                                                     kenapa anda mempecat pekerja tersebut.</small>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" class="btn btn-danger">
-                                                    Tolak
+                                                <button type="submit" class="btn btn-primary">
+                                                    kirim
                                                 </button>
                                             </div>
                                         </form>
@@ -732,7 +732,7 @@
                                         </h4>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
+                                    <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                     <div class="modal-body">
                                         <span for="recipient-name" class="control-label">Apakah anda
                                             yakin untuk tidak meluluskan pelamar
@@ -754,7 +754,7 @@
 
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" onclick="Nonaktif({{ $item->id }})" class="btn btn-primary img-fluid model_img">
+                                        <button type="submit" class="btn btn-primary img-fluid model_img">
                                             Kirim
                                         </button>
                                     </div>
@@ -823,19 +823,6 @@
 <script src="{{asset('assets1/js/carousel.js')}}"></script>
 <!-- ---------------------------------------------- -->
 <script src="{{ asset('assets/dist/libs/prismjs/prism.js') }}"></script>
-@if ($errors->any())
-<script>
-    $(document).ready(function() {
-        @foreach($errors -> all() as $error)
-        toastr.error('{{ $error }}', 'Error', {
-            closeButton: true, // Menambahkan tombol hapus
-            timeOut: 0
-        });
-        @endforeach
-    });
-</script>
-@endif
-
 
 @if (Session::has('BerhasilPendidikan'))
 <script>
@@ -918,7 +905,299 @@
                 }
             });
     }
+
+    function Nonaktif(itemId) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "mr-2 btn btn-danger",
+            },
+            buttonsStyling: false,
+        });
+        var pesan = document.getElementById('pesan' + itemId).value;
+        const error = document.getElementById('error' + itemId);
+        if (pesan.trim() !== "") {
+            error.innerHTML = '';
+
+            swalWithBootstrapButtons.fire({
+                    title: "Apakah Anda Yakin?",
+                    text: "Anda ingin menggagalkan pelamar ini!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Iya!",
+                    cancelButtonText: "Tidak!",
+                    reverseButtons: true,
+                    customClass: {
+                        confirmButton: "btn btn-success",
+                        cancelButton: "btn btn-danger me-3",
+                    },
+                    buttonsStyling: false,
+                    width: "25rem",
+                    padding: "1rem",
+                    customContainerClass: "swal-custom",
+                })
+                .then((result) => {
+                    if (result.value) {
+                        swalWithBootstrapButtons.fire(
+                            "Berhasil!",
+                            "Anda berhasil menggagalkan akun tersebut.",
+                            "success"
+                        );
+                        var form = document.getElementById("pesanNonaktif" + itemId); // Menggunakan itemId
+                        form.submit();
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        swalWithBootstrapButtons.fire(
+                            "Batal",
+                            "Pelamar tersebut batal untuk digagalkan. :)",
+                            "error"
+                        );
+                    }
+                });
+        } else {
+            error.innerHTML = "pesan harus diisi";
+        }
+    }
+
+
+    function Pengalaman(itemId) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "mr-2 btn btn-danger",
+            },
+            buttonsStyling: false,
+        });
+
+        swalWithBootstrapButtons
+            .fire({
+                title: "Apakah Anda Yakin?",
+                text: "Anda ingin menghapus pengalaman ini!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Iya!",
+                cancelButtonText: "Tidak!",
+                reverseButtons: true,
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger me-3",
+                },
+                buttonsStyling: false,
+                width: "25rem",
+                padding: "1rem",
+                customContainerClass: "swal-custom",
+            })
+            .then((result) => {
+                if (result.value) {
+                    swalWithBootstrapButtons.fire(
+                        "Berhasil!",
+                        "Anda berhasil menghapus pengalaman tersebut.",
+                        "success"
+                    );
+                    var form = document.getElementById("formpengalaman-" + itemId);
+                    form.submit();
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire(
+                        "Batal",
+                        "Pengalaman tersebut batal untuk dihapus.",
+                        "error"
+                    );
+                }
+            });
+    }
+
+    function Keahlian(itemId) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "mr-2 btn btn-danger",
+            },
+            buttonsStyling: false,
+        });
+
+        swalWithBootstrapButtons
+            .fire({
+                title: "Apakah Anda Yakin?",
+                text: "Anda ingin menghapus keahlian ini!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Iya!",
+                cancelButtonText: "Tidak!",
+                reverseButtons: true,
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger me-3",
+                },
+                buttonsStyling: false,
+                width: "25rem",
+                padding: "1rem",
+                customContainerClass: "swal-custom",
+            })
+            .then((result) => {
+                if (result.value) {
+                    swalWithBootstrapButtons.fire(
+                        "Berhasil!",
+                        "Anda berhasil menghapus keahlian tersebut.",
+                        "success"
+                    );
+                    var form = document.getElementById("formkeahlian-" + itemId);
+                    form.submit();
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire(
+                        "Batal",
+                        "Keahlian tersebut batal untuk dihapus.",
+                        "error"
+                    );
+                }
+            });
+    }
+
+    function Terima(data) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "mr-2 btn btn-danger",
+            },
+            buttonsStyling: false,
+        });
+        var today = new Date(); // Tanggal hari ini
+        var yesterday = new Date(today);
+        yesterday.setDate(today.getDate() - 1); // Mengurangkan satu hari
+        var tanggal = document.getElementById('tanggal' + data).value;
+        var lokasi = document.getElementById('lokasi' + data).value;
+        const error = document.getElementById('error' + data);
+        const errorLokasi = document.getElementById('errorLokasi' + data);
+        var tahun = today.getFullYear();
+        var bulan = String(today.getMonth() + 1).padStart(2, "0");
+        var tanggalKedua = String(today.getDate()).padStart(2, "0");
+        var jam = String(today.getHours()).padStart(2, "0");
+        var menit = String(today.getMinutes()).padStart(2, "0");
+
+        // Menghasilkan format yang diinginkan (YYYY-MM-DDTHH:MM)
+        var hasilFormat = `${tahun}-${bulan}-${tanggalKedua}T${jam}:${menit}`;
+
+        console.log(hasilFormat); // Output: 2023-09-23T19:55
+        console.log(tanggal);
+        console.log(lokasi);
+        console.log(data);
+        console.log(yesterday);
+        if (tanggal.trim() !== "" && (lokasi.trim() !== "" && tanggal.trim() > hasilFormat)) {
+            error.innerHTML = '';
+            errorLokasi.innerHTML = '';
+
+            swalWithBootstrapButtons.fire({
+                title: "Apakah Anda Yakin?",
+                text: "Anda ingin menerima akun ini!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Iya!",
+                cancelButtonText: "Tidak!",
+                reverseButtons: true,
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger me-3",
+                },
+                buttonsStyling: false,
+                width: "25rem",
+                padding: "1rem",
+                customContainerClass: "swal-custom",
+            }).then((result) => {
+                if (result.value) {
+                    swalWithBootstrapButtons.fire(
+                        "Berhasil!",
+                        "Anda berhasil menerima akun tersebut.",
+                        "success"
+                    ).then(() => {
+                        // Jika SweetAlert berhasil ditampilkan, submit form
+                        var form = document.getElementById("pesanTerima" + data);
+                        form.submit();
+                    });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire(
+                        "Batal",
+                        "penerimaan di batalkan. :)",
+                        "error"
+                    );
+                }
+            });
+        } else {
+            // Perbandingan dengan tanggal kemarin
+            if (new Date(tanggal) <= yesterday && lokasi === "") {
+                error.innerHTML = "tanggal tidak boleh tanggal kemarin";
+                errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
+            } else if (new Date(tanggal) <= yesterday) {
+                error.innerHTML = "tanggal tidak boleh tanggal kemarin";
+                errorLokasi.innerHTML = "";
+            } else if (tanggal === "" && lokasi === "") {
+                error.innerHTML = "pesan harus di isi";
+                errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
+            } else if (tanggal === "") {
+                console.log('2');
+                error.innerHTML = "pesan harus di isi";
+                errorLokasi.innerHTML = "";
+            } else if (lokasi === "") {
+                console.log('3');
+                error.innerHTML = "";
+                errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
+            }
+        }
+    }
+
+    function Tolak(params) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "mr-2 btn btn-danger",
+            },
+            buttonsStyling: false,
+        });
+        var pesan = document.getElementById('pesan' + params).value;
+        var error = document.getElementById('errorTolak' + params)
+        console.log(pesan);
+        if (pesan !== "") {
+            error.innerHTML = "";
+            swalWithBootstrapButtons.fire({
+                    title: "Apakah Anda Yakin?",
+                    text: "Anda ingin menolak akun ini!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Iya!",
+                    cancelButtonText: "Tidak!",
+                    reverseButtons: true,
+                    customClass: {
+                        confirmButton: "btn btn-success",
+                        cancelButton: "btn btn-danger me-3",
+                    },
+                    buttonsStyling: false,
+                    width: "25rem", // You can adjust the width as needed
+                    padding: "1rem", // You can adjust the padding as needed
+                    customContainerClass: "swal-custom", // Define a custom class for styling
+                })
+                .then((result) => {
+                    if (result.value) {
+                        swalWithBootstrapButtons.fire(
+                            "Berhasil!",
+                            "Anda berhasil menolak akun tersebut.",
+                            "success"
+                        );
+                        var form = document.getElementById("pesanTolak" + params);
+                        form.submit();
+                    } else if (
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        swalWithBootstrapButtons.fire(
+                            "Batal",
+                            "Selamat akun tersebut masih selamat. :)",
+                            "error"
+                        );
+                    }
+                });
+        } else {
+            error.innerHTML = "masukan pesan alasan kenapa anda menolak pendaftar ini";
+        }
+
+    }
 </script>
+
 
 <script>
     const toggleButton = document.querySelector('.btn-toggle');
@@ -932,16 +1211,16 @@
             longText.style.display = 'none';
             toggleButton.textContent = 'Lihat Selengkapnya';
         }
-    }); <
-    /> <
-    script >
-        function show() {
-            document.getElementById('foto').click();
+    });
+</script>
+<script>
+    function show() {
+        document.getElementById('foto').click();
 
-            document.getElementById('foto').addEventListener('change', function() {
-                document.getElementById('submit-button').click();
-            });
-        }
+        document.getElementById('foto').addEventListener('change', function() {
+            document.getElementById('submit-button').click();
+        });
+    }
 </script>
 <script>
     $('#ButtonSimpan').click(function() {
@@ -1204,10 +1483,6 @@
         });
     }
 </script>
-<script>
-    // Lakukan permintaan Ajax POST untuk menyimpan data
-</script>
-
 
 <script>
     $(function() {
@@ -1263,247 +1538,6 @@
     });
 </script>
 
-<script>
-    function Pengalaman(itemId) {
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: "btn btn-success",
-                cancelButton: "mr-2 btn btn-danger",
-            },
-            buttonsStyling: false,
-        });
-
-        swalWithBootstrapButtons
-            .fire({
-                title: "Apakah Anda Yakin?",
-                text: "Anda ingin menghapus pengalaman ini!",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Iya!",
-                cancelButtonText: "Tidak!",
-                reverseButtons: true,
-                customClass: {
-                    confirmButton: "btn btn-success",
-                    cancelButton: "btn btn-danger me-3",
-                },
-                buttonsStyling: false,
-                width: "25rem",
-                padding: "1rem",
-                customContainerClass: "swal-custom",
-            })
-            .then((result) => {
-                if (result.value) {
-                    swalWithBootstrapButtons.fire(
-                        "Berhasil!",
-                        "Anda berhasil menghapus pengalaman tersebut.",
-                        "success"
-                    );
-                    var form = document.getElementById("formpengalaman-" + itemId);
-                    form.submit();
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    swalWithBootstrapButtons.fire(
-                        "Batal",
-                        "Pengalaman tersebut batal untuk dihapus.",
-                        "error"
-                    );
-                }
-            });
-    }
-
-    function Keahlian(itemId) {
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: "btn btn-success",
-                cancelButton: "mr-2 btn btn-danger",
-            },
-            buttonsStyling: false,
-        });
-
-        swalWithBootstrapButtons
-            .fire({
-                title: "Apakah Anda Yakin?",
-                text: "Anda ingin menghapus keahlian ini!",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Iya!",
-                cancelButtonText: "Tidak!",
-                reverseButtons: true,
-                customClass: {
-                    confirmButton: "btn btn-success",
-                    cancelButton: "btn btn-danger me-3",
-                },
-                buttonsStyling: false,
-                width: "25rem",
-                padding: "1rem",
-                customContainerClass: "swal-custom",
-            })
-            .then((result) => {
-                if (result.value) {
-                    swalWithBootstrapButtons.fire(
-                        "Berhasil!",
-                        "Anda berhasil menghapus keahlian tersebut.",
-                        "success"
-                    );
-                    var form = document.getElementById("formkeahlian-" + itemId);
-                    form.submit();
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    swalWithBootstrapButtons.fire(
-                        "Batal",
-                        "Keahlian tersebut batal untuk dihapus.",
-                        "error"
-                    );
-                }
-            });
-    }
-</script>
-<script>
-    function Tolak(params) {
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: "btn btn-success",
-                cancelButton: "mr-2 btn btn-danger",
-            },
-            buttonsStyling: false,
-        });
-        var pesan = document.getElementById('pesan' + params).value;
-        var error = document.getElementById('errorTolak' + params)
-        console.log(pesan);
-        if (pesan !== "") {
-            error.innerHTML = "";
-            swalWithBootstrapButtons.fire({
-                    title: "Apakah Anda Yakin?",
-                    text: "Anda ingin menolak akun ini!",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonText: "Iya!",
-                    cancelButtonText: "Tidak!",
-                    reverseButtons: true,
-                    customClass: {
-                        confirmButton: "btn btn-success",
-                        cancelButton: "btn btn-danger me-3",
-                    },
-                    buttonsStyling: false,
-                    width: "25rem", // You can adjust the width as needed
-                    padding: "1rem", // You can adjust the padding as needed
-                    customContainerClass: "swal-custom", // Define a custom class for styling
-                })
-                .then((result) => {
-                    if (result.value) {
-                        swalWithBootstrapButtons.fire(
-                            "Berhasil!",
-                            "Anda berhasil menolak akun tersebut.",
-                            "success"
-                        );
-                        var form = document.getElementById("pesanTolak" + params);
-                        form.submit();
-                    } else if (
-                        result.dismiss === Swal.DismissReason.cancel
-                    ) {
-                        swalWithBootstrapButtons.fire(
-                            "Batal",
-                            "Selamat akun tersebut masih selamat. :)",
-                            "error"
-                        );
-                    }
-                });
-        } else {
-            error.innerHTML = "masukan pesan alasan kenapa anda menolak pendaftar ini";
-        }
-
-    }
-</script>
-<script>
-    function Terima(data) {
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: "btn btn-success",
-                cancelButton: "mr-2 btn btn-danger",
-            },
-            buttonsStyling: false,
-        });
-        var today = new Date(); // Tanggal hari ini
-        var yesterday = new Date(today);
-        yesterday.setDate(today.getDate() - 1); // Mengurangkan satu hari
-        var tanggal = document.getElementById('tanggal' + data).value;
-        var lokasi = document.getElementById('lokasi' + data).value;
-        const error = document.getElementById('error' + data);
-        const errorLokasi = document.getElementById('errorLokasi' + data);
-        var tahun = today.getFullYear();
-        var bulan = String(today.getMonth() + 1).padStart(2, "0");
-        var tanggalKedua = String(today.getDate()).padStart(2, "0");
-        var jam = String(today.getHours()).padStart(2, "0");
-        var menit = String(today.getMinutes()).padStart(2, "0");
-
-        // Menghasilkan format yang diinginkan (YYYY-MM-DDTHH:MM)
-        var hasilFormat = `${tahun}-${bulan}-${tanggalKedua}T${jam}:${menit}`;
-
-        console.log(hasilFormat); // Output: 2023-09-23T19:55
-        console.log(tanggal);
-        console.log(lokasi);
-        console.log(data);
-        console.log(yesterday);
-        if (tanggal.trim() !== "" && (lokasi.trim() !== "" && tanggal.trim() > hasilFormat)) {
-            error.innerHTML = '';
-            errorLokasi.innerHTML = '';
-
-            swalWithBootstrapButtons.fire({
-                title: "Apakah Anda Yakin?",
-                text: "Anda ingin menerima akun ini!",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Iya!",
-                cancelButtonText: "Tidak!",
-                reverseButtons: true,
-                customClass: {
-                    confirmButton: "btn btn-success",
-                    cancelButton: "btn btn-danger me-3",
-                },
-                buttonsStyling: false,
-                width: "25rem",
-                padding: "1rem",
-                customContainerClass: "swal-custom",
-            }).then((result) => {
-                if (result.value) {
-                    swalWithBootstrapButtons.fire(
-                        "Berhasil!",
-                        "Anda berhasil menerima akun tersebut.",
-                        "success"
-                    ).then(() => {
-                        // Jika SweetAlert berhasil ditampilkan, submit form
-                        var form = document.getElementById("pesanTerima" + data);
-                        form.submit();
-                    });
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    swalWithBootstrapButtons.fire(
-                        "Batal",
-                        "penerimaan di batalkan. :)",
-                        "error"
-                    );
-                }
-            });
-        } else {
-            // Perbandingan dengan tanggal kemarin
-            if (new Date(tanggal) <= yesterday && lokasi === "") {
-                error.innerHTML = "tanggal tidak boleh tanggal kemarin";
-                errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
-            } else if (new Date(tanggal) <= yesterday) {
-                error.innerHTML = "tanggal tidak boleh tanggal kemarin";
-                errorLokasi.innerHTML = "";
-            } else if (tanggal === "" && lokasi === "") {
-                error.innerHTML = "pesan harus di isi";
-                errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
-            } else if (tanggal === "") {
-                console.log('2');
-                error.innerHTML = "pesan harus di isi";
-                errorLokasi.innerHTML = "";
-            } else if (lokasi === "") {
-                console.log('3');
-                error.innerHTML = "";
-                errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
-            }
-        }
-    }
-</script>
 @endsection
 
 </html>

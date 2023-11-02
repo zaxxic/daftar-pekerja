@@ -134,7 +134,7 @@ class PekerjaLulusController extends Controller
 
         Mail::to($user->email)->send(new pecat($datas));
 
-        return redirect()->route('pekerja')->with('sukses', 'Data Berhasil Di Perbarui');
+        return redirect()->back()->with('sukses', 'Data Berhasil Di Perbarui');
         // // dd($request->pesan);
         // $this->validate(
         //     $request,

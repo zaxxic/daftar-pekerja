@@ -54,8 +54,8 @@
 
                         <form action="">
                             @csrf
-                            <div class="input-group " style="height: 10px">
-                                <input type="text" name="date" class="form-control p-1 showdropdowns" />
+                            <div class="input-group mt-2" >
+                                <input type="text" name="date" class="form-control p-1 showdropdowns" style="height: 4%"  />
                                 <button type="submit" style="width: 40px; height:auto; background-color:#549bff; border-radius: 0px 5px 5px 0px;" class="text-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 21 21"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5"/><path d="M17.571 17.5L12 12"/></g></svg>
                                 </button>
@@ -114,10 +114,10 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <p class="mb-0 fw-normal">{{ $row->Vacancy->Division->divisi }}</p>
+                                        <p class="mb-0 fw-normal">{{ $row->divisi }}</p>
                                     </td>
                                     <td>
-                                        <p class="mb-0 fw-normal">{{ $row->Vacancy->pekerja }}</p>
+                                        <p class="mb-0 fw-normal">{{ $row->posisi }}</p>
                                     </td>
                                     <td>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30"
@@ -308,12 +308,12 @@
                                                             <div class="pr-0 col-6"  style="margin-top:5px">
                                                                 <label for="" class="fontlabel"
                                                                     style="margin-bottom: 2px;">Divisi</label>
-                                                                <div class="tepiborder">{{ $row->Vacancy->Division->divisi }}</div>
+                                                                <div class="tepiborder">{{ $row->divisi }}</div>
                                                             </div>
                                                             <div class="pr-0 col-6"  style="margin-top:5px">
                                                                 <label for="" class="fontlabel"
                                                                     style="margin-bottom: 2px;">Posisi</label>
-                                                                <div class="tepiborder">{{ $row->Vacancy->pekerja }}</div>
+                                                                <div class="tepiborder">{{ $row->pekerja }}</div>
                                                             </div>
                                                             <div class="pr-0 col-12 " style="margin-top:5px">
                                                                 <label for="" class="fontlabel"
@@ -401,7 +401,7 @@
                                                                                 <div class="row  mb-3">
                                                                                     <span class="col-12 col-md-3 text-detail " style="font-weight: bold">Divisi</span>
                                                                                     <span class="titik-dua col-1" style="font-weight: bold">:</span>
-                                                                                    <span class="col-12 col-md-8 text-detail">{{ $row->Vacancy->Division->divisi }}</span>
+                                                                                    <span class="col-12 col-md-8 text-detail">{{ $row->divisi }}</span>
                                                                                 </div>
                                                                                 <hr class="">
                                                                             </div>
@@ -410,7 +410,7 @@
                                                                                 <div class="row  mb-3">
                                                                                     <span class="col-12 col-md-3 text-detail " style="font-weight: bold">Posisi</span>
                                                                                     <span class="titik-dua col-1" style="font-weight: bold">:</span>
-                                                                                    <span class="col-12 col-md-8 text-detail">{{ $row->Vacancy->pekerja }}</span>
+                                                                                    <span class="col-12 col-md-8 text-detail">{{ $row->pekerja }}</span>
                                                                                 </div>
                                                                                 <hr class="">
                                                                             </div>
@@ -518,7 +518,7 @@
                                     <div class="row d-flex">
                                         <div class="col">
                                             <tr>
-                                                <td class="text-center" colspan="5">
+                                                <td class="text-center" colspan="12">
                                                     <img src="{{ asset('assets/nodatas.png') }}" alt=""
                                                         width="280px">
                                                 </td>

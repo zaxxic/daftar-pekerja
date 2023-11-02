@@ -12,8 +12,16 @@
             <div class="row">
                 <div class="mb-3 d-flex justify-content-start col-md-6 lg-6">
                     <form action="">
-                        <div class="mb-3 d-flex justify-content-end align-items-center position-relative">
-                            <input type="search" class="form-control mt-3" name="cari" placeholder="Cari Pekerja..." style="height: 4%;" value="{{ $keyword }}">
+                        <div class="mb-3 d-flex mt-3 input-group">
+                            <input type="search" class="form-control mt-0" name="cari" placeholder="Cari Pekerja..." style="height: 4%;" value="{{ $keyword }}">
+                            <button type="submit" style="width: 40px; height:auto;  background-color:#549bff; border-radius: 0px 5px 5px 0px;" class="text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 21 21">
+                                    <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="8.5" cy="8.5" r="5" />
+                                        <path d="M17.571 17.5L12 12" />
+                                    </g>
+                                </svg>
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -69,10 +77,10 @@
                                 </div>
                             </td>
                             <td>
-                                <p class="mb-0 fw-normal">{{ $row->divisi }}</p>
+                                <p class="mb-0 fw-normal">{{ $row->Vacancy->Division->divisi }}</p>
                             </td>
                             <td>
-                                <p class="mb-0 fw-normal">{{ $row->posisi }}</p>
+                                <p class="mb-0 fw-normal">{{ $row->Vacancy->pekerja }}</p>
                             </td>
                             <td>
 
@@ -121,7 +129,7 @@
                             <div class="row d-flex">
                                 <div class="col">
                                     <tr>
-                                        <td class="text-center" colspan="7">
+                                        <td class="text-center" colspan="12">
                                             <img src="{{ asset('assets/nodatas.png') }}" alt="" width="280px">
                                         </td>
                                     </tr>
@@ -161,7 +169,7 @@
                     </h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
+                <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                 <div class="modal-body">
                     <div class="mb-3">
                         <span style="color: black;" for="recipient-name" class="control-label">Apakah anda
@@ -210,7 +218,7 @@
                 </h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
+            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
             <div class="modal-body">
                 <div class="mb-3">
                     <span style="color: black;" for="recipient-name" class="control-label">Apakah anda
@@ -279,7 +287,7 @@
                 <h4 class="modal-title" id="myModalLabel">Detail Pekerja</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
+            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
             <div class="modal-body">
                 <div class="container">
                     <div class="row">

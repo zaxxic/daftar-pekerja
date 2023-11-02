@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\daftar;
+use App\Mail\daftarTolak;
 use App\Models\Certificate;
 use App\Mail\Tolak;
 use App\Models\Division;
@@ -101,8 +102,10 @@ class ApprovalController extends Controller
             ]
         );
 
-        $data = User::findOrFail($id);
-        $item = Registration::where('users_id', $id)->first();
+        // $data = User::findOrFail($id);
+        // $item = Registration::where('users_id', $id)->first();
+        $item = Registration::FindOrFail($id);
+        $data = User::findOrFail($item->users_id);
         $tanggal = $request->tanggal_wawancara;
         $timestamp = strtotime($tanggal);
         $tanggal_format = date('d-m-Y', $timestamp);
@@ -133,10 +136,11 @@ class ApprovalController extends Controller
         Rejected::create([
             'user_id'=>$data->id,
             'pesan' => 'diterima',
-            'vacancies_id' => $item->Vacancy->id,
+            'divisi' => $item->Vacancy->Division->divisi,
+            'posisi' => $item->Vacancy->pekerja,
             'status' => 'diterima'
         ]);
-        return redirect()->route('approval')->with('sukses', 'Data Berhasil Di Perbarui');
+        return redirect()->back()->with('sukses', 'Data Berhasil Di Perbarui');
     }
 
     /**
@@ -167,8 +171,6 @@ class ApprovalController extends Controller
 
         // Mail::to($user->email)->send(new Tolak($datas));
 
-
-
         $pesan = new Message([
             'pesan' => $request->pesan,
         ]);
@@ -176,7 +178,8 @@ class ApprovalController extends Controller
         $user->message()->save($pesan);
 
         $user->update([
-            'status' => 'ditolak'
+            'status' => 'ditolak',
+            'tanggal_wawancara' => null
         ]);
         // dd($item->Vacancy->Division->divisi);
         Rejected::create([
@@ -186,9 +189,10 @@ class ApprovalController extends Controller
             'posisi' => $item->Vacancy->pekerja,
             'status' => 'ditolak'
         ]);
-
         $item->delete();
-        return redirect()->route('approval')->with('sukses', 'Data Berhasil Di Perbarui');
+        Mail::to($user->email)->send(new daftarTolak($datas));
+
+        return redirect()->back()->with('sukses', 'Data Berhasil Di Perbarui');
     }
 
     /**

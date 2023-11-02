@@ -110,7 +110,7 @@ class ProfileController extends Controller
                 ],
                 'new_password' => 'required|min:6|max:12|confirmed',
             ],
-            [
+            [   
                 'current_password.required' => 'Password Lama Wajib Diisi',
                 'new_password.required' => 'Password Baru Wajib Diisi',
                 'new_password.min' => 'Password Baru Minimal 6 Huruf',

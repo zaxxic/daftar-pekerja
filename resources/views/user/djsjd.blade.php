@@ -219,7 +219,7 @@
                                                 </h4>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
+                                            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                             <div class="modal-body" style="max-height: 490px; overflow-y: auto;">
                                                 <div class="mb-3">
                                                     <label for="recipient-name" class="control-label mt-2" style="color: black;">Nama<span style="color: red;">*</span></label>
@@ -418,7 +418,7 @@
                                         </h4>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <hr style="width: 100%; border-top: 2px solid #000000;" class="mt-0">
+                                    <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
                                     <div class="modal-body">
                                         <div class="mb-3">
                                             <label for="recipient-name" class="control-label mt-2" style="color: black;">

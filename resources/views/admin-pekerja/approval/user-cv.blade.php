@@ -11,7 +11,7 @@
 @section('content')
     <div class="d-flex justify-content-end">
         <div>
-            <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a>
+            <a href="{{ route('approval') }}" class="btn btn-primary">Kembali</a>
         </div>
     </div>
     <div class="text-center" id="pdf-container"></div>

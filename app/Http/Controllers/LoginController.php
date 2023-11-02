@@ -49,8 +49,6 @@ class LoginController extends Controller
         }
     }
 
-
-
     function showLogin()
     {
         if (Auth::check()) {

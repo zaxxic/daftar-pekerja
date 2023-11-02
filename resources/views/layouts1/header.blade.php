@@ -135,11 +135,23 @@
                                         </div>
                                     </div>
 
-                                    <div class=" col-12 col-md-9">
+                                    <!-- <div class=" col-12 col-md-9">
                                         <h5 class="mb-1 row fs-3 tengah"> <i
                                                 class="ti col-1 ti-user fs-5 me-1 hilang"></i> <p class="kecil col-10 tengah">{{ Auth()->user()->name }}</p></h5>
                                         <span class="mb-0 row text-dark align-items-center  tengah " style="max-width:100%; overflow: hidden" >
                                             <i class="ti ti-mail fs-5 col-1 hilang"></i> <p class="col-12 col-md-10 kecil text-center" style="max-width: 80%">{{ Auth()->user()->email }}</p>
+                                        </span>
+                                    </div> -->
+
+                                    <div class=" col-12 col-md-9">
+                                        <h5 class="mb-1 row fs-3 tengah"> <i class="ti col-1 ti-user fs-5 me-1 hilang"></i>
+                                            <p class="kecil col-10 tengah">{{ Auth()->user()->name }}</p>
+                                        </h5>
+                                        <span class="mb-0 row text-dark align-items-center  tengah " style="max-width:100%; overflow: hidden">
+                                            <i class="ti ti-mail col-1 fs-5 me-1 hilang"></i>
+                                            <p class="kecil col-10 tengah">
+                                            {{ Auth()->user()->email }}
+                                            </p>
                                         </span>
                                     </div>
 

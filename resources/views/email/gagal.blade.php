@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Diterima Pekerja</title>
+    <title>Tidak Lulus</title>
     <style>
         .card {
             width: 300px;

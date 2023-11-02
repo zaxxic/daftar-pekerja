@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Diterima</title>
+    <title>Ditolak</title>
     <style>
         .card {
             width: 300px;

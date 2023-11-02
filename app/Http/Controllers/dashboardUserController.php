@@ -6,6 +6,7 @@ use App\Models\Divisi;
 use App\Models\Division;
 use App\Models\Register;
 use App\Models\Registration;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Vacancy;
 use Carbon\Carbon;
@@ -19,9 +20,10 @@ class DashboardUserController extends Controller
     public function index()
 {
     $selectedDivision = 'semua';
+    $user = User::where(Auth()->user()->id);
     // Ambil semua pendaftaran yang terkait dengan pengguna saat ini
     $registration = Registration::where('users_id', Auth()->user()->id)
-        ->whereIn('status', ['menunggu', 'diterima', 'ditolak', 'nonaktif'])
+        ->whereIn('status', ['menunggu', 'diterima', 'ditolak', 'nonaktif', 'lulus'])
         ->latest()
         ->paginate(5);
     $pp = Registration::where('users_id', Auth()->user()->id)->first();
@@ -59,7 +61,7 @@ class DashboardUserController extends Controller
 
     $cek = Vacancy::where('status', 'aktif')->count();
 
-    return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration', 'cek'));
+    return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration', 'cek', 'user'));
 }
 
 

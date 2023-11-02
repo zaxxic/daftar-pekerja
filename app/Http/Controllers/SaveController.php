@@ -21,8 +21,10 @@ class SaveController extends Controller
         return redirect()->back()->with('BerhasilBatal', 'Berhasil membatalkan menyimpan data user');
     }
 
-    public function save($data) {
-        $data = Registration::FindOrFail($data);
+    public function save($id) {
+        // dd($id);
+        $data = Registration::FindOrFail($id);
+        
         $data->Update([
             'status2'=> 'save'
         ]);

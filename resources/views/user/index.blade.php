@@ -35,9 +35,7 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/logo.png">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Title -->
     <title>Dashboard User</title>
@@ -93,8 +91,9 @@
                 /* Teks akan menjadi lurus horizontal */
             }
         }
-        @media (min-width:1300px){
-            .justify-content-xl-endcustom{
+
+        @media (min-width:1300px) {
+            .justify-content-xl-endcustom {
                 justify-content: end;
                 padding-left: 120px
             }
@@ -139,12 +138,14 @@
             height: 120px;
             /* Sesuaikan tinggi sesuai kebutuhan Anda */
         }
-        @media (max-width:1200px){
-            .tengah{
+
+        @media (max-width:1200px) {
+            .tengah {
                 justify-content: center;
             }
         }
-        @media (min-width: 1200px){
+
+        @media (min-width: 1200px) {
             .justify-content-lg-endcustom {
                 justify-content: flex-end !important;
             }
@@ -169,7 +170,7 @@
     <!-- End Page Title Area -->
 
     @php
-        use Carbon\Carbon;
+    use Carbon\Carbon;
     @endphp
 
     <!-- Start Employers Listing Area -->
@@ -188,10 +189,9 @@
                                     <option value="" @if (!$selectedDivision) selected @endif>Semua
                                     </option>
                                     @foreach ($divisi as $item)
-                                        <option value="{{ $item->divisi }}"
-                                            @if ($selectedDivision === $item->divisi) selected @endif>
-                                            {{ $item->divisi }}
-                                        </option>
+                                    <option value="{{ $item->divisi }}" @if ($selectedDivision===$item->divisi) selected @endif>
+                                        {{ $item->divisi }}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -208,11 +208,12 @@
                             width: 92px;
                             height: 28px;
                             padding-left: 12px;
-                            padding-right: 20px;
+                            padding-right: 12px;
                             padding-top: 2px;
                             padding-bottom: 1px;
                             color: white;
                             border-radius: 4px;
+                            text-align: center;
                         }
 
                         #pp {
@@ -236,65 +237,100 @@
                     <div class="employers-listing-sidebar mt-5 mb-5 " id="pp">
                         <h3>Lamaran Ditampung</h3>
                         @forelse ($registration as $item)
-                            <div class="col-lg-12 mt-3" id="lowongan">
-                                <div class="d-flex justify-content-between mb-3">
-                                    <h5><a href="" style="color: black">{{ $item->Vacancy->judul }}</a></h5>
+                        <div class="col-lg-12 mt-3" id="lowongan">
+                            <div class="d-flex justify-content-between mb-3">
+                                @if (!in_array($item->status, ['nonaktif', 'dipecat']))
+                                <h5><a href="" style="color: black">{{ $item->Vacancy->judul }}</a></h5>
+                                @endif
+                                @if (!in_array($item->status, ['nonaktif', 'dipecat']))
+                                <div>
                                     @if ($item->status === 'diterima')
-                                        <span class="status bg-success" style="width: 79px;">{{ $item->status }}</span>
-                                    @elseif(in_array($item->status, ['ditolak', 'nonaktif']))
-                                        <span class="status bg-danger" style="width: 75px;">{{ $item->status }}</span>
+                                    <span class="status bg-success" style="width: 79px;">{{ $item->status }}</span>
+                                    @elseif(in_array($item->status, ['lulus']))
+                                    <span class="status bg-primary" style="width: 75px;">{{ $item->status }}</span>
                                     @else
-                                        <span class="status bg-warning" style="align-items: center;"><span
-                                                style="margin-right: -50px;">{{ $item->status }}</span></span>
+                                    <span class="status bg-warning"><span>{{ $item->status }}</span></span>
                                     @endif
                                 </div>
-                                <ul>
-                                    @if (!in_array($item->status, ['nonaktif', 'ditolak', 'menunggu']))
-                                        <li class="mb-2 mt-2"><span>Tanggal Wawancara :</span>
-                                            {{ \Carbon\Carbon::parse($item->User->tanggal_wawancara)->locale('id')->isoFormat('D MMMM Y') }}
-                                        </li>
-                                        <li class="mb-2 mt-2"><span>Jam Wawancara :</span>
-                                            {{ \Carbon\Carbon::parse($item->User->tanggal_wawancara)->locale('id')->isoFormat('h:m') }}
-                                        </li>
+                                @endif
+                            </div>
+                            <ul>
+                                @if (!in_array($item->status, ['nonaktif', 'lulus', 'ditolak', 'menunggu']))
+                                <li class="mb-2 mt-2"><span>Tanggal Wawancara :</span>
+                                    {{ \Carbon\Carbon::parse($item->User->tanggal_wawancara)->locale('id')->isoFormat('D MMMM Y') }}
+                                </li>
+                                <li class="mb-2 mt-2"><span>Jam Wawancara :</span>
+                                    {{ \Carbon\Carbon::parse($item->User->tanggal_wawancara)->locale('id')->isoFormat('h:m') }}
+                                </li>
+                                @endif
+                                @if ($item->status === 'diterima')
+                                <li class="mb-2"><span>Lokasi Wawancara : </span>
+                                    {{ $item->User->lokasi_wawancara }}
+                                </li>
+                                @endif
+
+                                @if (!in_array($item->status, ['nonaktif', 'dipecat']))
+                                <li class="mb-2"><span>Posisi :</span>{{ $item->Vacancy->pekerja }}</li>
+                                <li class="mb-2"><span>Divisi :</span>{{ $item->Vacancy->Division->divisi }}</li>
+                                @endif
+                                @if (!in_array($item->status, ['lulus', 'nonaktif']))
+                                <li class="mb-2"><span>Slot Tersedia : </span> {{ $item->Vacancy->slot }}</li>
+                                @endif
+                                <div class="d-flex justify-content-between">
+                                    @if (!in_array($item->status, ['nonaktif', 'dipecat']))
+                                    <li class="mb-2"><span>Tipe Kerja : </span>{{ $item->Vacancy->tipe }}</li>
                                     @endif
-                                    @if ($item->status === 'diterima')
-                                        <li class="mb-2"><span>Lokasi Wawancara : </span>
-                                            {{ $item->User->lokasi_wawancara }}
+                                    @if ($item->status === 'menunggu')
+                                    <div class="d-flex justify-content-end">
+                                        <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
+                                            <button class="btn btn-primary mb-4">
+                                                Detail
+                                            </button>
+                                        </a>
+                                        <li class="ml-1" id="batal">
+                                            <button class="btn btn-danger mb-4">Batal</button>
                                         </li>
-                                    @endif
-                                    <li class="mb-2"><span>Posisi :</span>{{ $item->Vacancy->pekerja }}</li>
-                                    <li class="mb-2"><span>Slot Tersedia : </span> {{ $item->Vacancy->slot }}</li>
-                                    <div class="d-flex justify-content-between">
-                                        <li class="mb-2"><span>Tipe Kerja : </span>{{ $item->Vacancy->tipe }}</li>
-                                        @if ($item->status === 'menunggu')
-                                            <div class="d-flex justify-content-end">
-                                                <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
-                                                    <button class="btn btn-primary mb-4">
-                                                        Detail
-                                                    </button>
-                                                </a>
-                                                <li class="ml-1" id="batal">
-                                                    <button class="btn btn-danger mb-4">Batal</button>
-                                                </li>
-                                            </div>
-                                        @else
-                                            @if ($item->Vacancy->status === 'aktif')
-                                                <li class="ml-auto" style="margin-left: 300px;">
-                                                    <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
-                                                        <button class="btn btn-primary mb-4">
-                                                            Detail
-                                                        </button>
-                                                    </a>
-                                                </li>
-                                            @endif
-                                        @endif
                                     </div>
-                                </ul>
-                            </div>
+
+                                    @if ($item->Vacancy->status === 'aktif')
+                                    <li class="ml-auto" style="margin-left: 300px;">
+                                        <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
+                                            <button class="btn btn-primary mb-4">
+                                                Detail
+                                            </button>
+                                        </a>
+                                    </li>
+                                    @endif
+                                    @endif
+                                </div>
+                            </ul>
+                        </div>
                         @empty
-                            <div class="col-lg-12 mt-3 ml-5" id="lowongan">
-                                <img src="{{ asset('assets/nodatas.png') }}" alt="" width="180px">
+                        @if (Auth()->user()->status === 'ditolak')
+                        <div class="mb-2" style="padding: 10%;"><span class="mb-2">Anda telah menerima pemberitahuan bahwa pendaftaran Anda telah ditolak. Mohon periksa email Anda untuk informasi lebih lanjut.</span>
+                            <div class="d-flex justify-content-end">
+                                <a href="https://mail.google.com/" target="_blank">
+                                    <button class="btn btn-primary mb-4">
+                                        Cek Email
+                                    </button>
+                                </a>
                             </div>
+                        </div>
+                        @elseif (Auth()->user()->status === 'gagal')
+                        <div class="mb-2" style="padding: 10%;"><span class="mb-2">Anda telah menerima pemberitahuan bahwa pendaftaran Anda tidak memnuhi kriteria. Mohon periksa email Anda untuk informasi lebih lanjut.</span>
+                            <div class="d-flex justify-content-end">
+                                <a href="https://mail.google.com/" target="_blank">
+                                    <button class="btn btn-primary mb-4">
+                                        Cek Email
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                        @else
+                        <div class="col-lg-12 mt-3 ml-5" id="lowongan">
+                            <img src="{{ asset('assets/nodatas.png') }}" alt="" width="180px">
+                        </div>
+                        @endif
                         @endforelse
 
                     </div>
@@ -303,58 +339,52 @@
                     <div class="shorting">
                         <div class="row">
                             @forelse ($registration as $item)
-                                <div class=" mix a s c " id="card2">
-                                    <div class="hot-jobs-list col-md-12 border border-info col-12 col-lg-12">
-                                        <div class="row align-items-center ">
-                                            <div class="col-12 col-lg-12 ">
-                                                <div class="hot-jobs-content ">
-                                                    <div class="row d-flex justify-content-between"
-                                                        style="color: black">
-                                                        <h3 class="col-12 col-md-12 col-xl-6 tengah"><a
-                                                                href="">{{ $item->Vacancy->judul }}</a></h3>
-                                                        <p
-                                                            class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal justify-content-lg-endcustom justify-content-xl-endcustom ">
-                                                            <span class="text-center text-md-left">Berakhir Pada
-                                                                Tanggal:
-                                                                {{ Carbon::parse($item->Vacancy->batas)->format('d M Y') }}</span>
-                                                        </p>
-                                                    </div>
-                                                    <span
-                                                        class="sub-title text-primary mb-1">{{ $item->Vacancy->Division->divisi }}</span>
-                                                    <ul>
-                                                        <li><span>Gaji
-                                                                :</span>{{ 'Rp ' . number_format($item->Vacancy->gaji, 0, ',', '.') }}
-                                                        </li>
-                                                        <li><span>Slot Tersedia : </span>{{ $item->Vacancy->slot }}
-                                                        </li>
-                                                        @if (in_array($item->Vacancy->status, ['dihapus', 'nonaktif']))
-                                                            <li><span>Status Lowongan : </span>sudah tidak tersedia</li>
-                                                        @endif
-                                                        </li>
-                                                        <div class="row">
-                                                            <li class="col-12 col-md-12"><span>Tipe Kerja :
-                                                                </span>{{ $item->Vacancy->tipe }}</li>
-                                                            <li class="col-12 col-md-12 col-lg-12"><span>Status :
-                                                                </span>{{ $item->status }}</li>
-                                                            @if (in_array($item->Vacancy->status, ['dihapus', 'nonaktif']))
-                                                            @else
-                                                                <li
-                                                                    class="col-12 col-md-12 col-lg-12 d-flex justify-content-center justify-content-md-center tengah justify-content-lg-endcustom justify-content-xl-end">
-                                                                    <a href="{{ route('detailLowongan', $item->Vacancy->id) }}"
-                                                                        class="text-white">
-                                                                        <button class="default-btn">Detail</button>
-                                                                    </a>
-                                                                </li>
-                                                            @endif
-
-
-                                                        </div>
-                                                    </ul>
+                            <div class=" mix a s c " id="card2">
+                                <div class="hot-jobs-list col-md-12 border border-info col-12 col-lg-12">
+                                    <div class="row align-items-center ">
+                                        <div class="col-12 col-lg-12 ">
+                                            <div class="hot-jobs-content ">
+                                                <div class="row d-flex justify-content-between" style="color: black">
+                                                    <h3 class="col-12 col-md-12 col-xl-6 tengah"><a href="">{{ $item->Vacancy->judul }}</a></h3>
+                                                    <p class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal justify-content-lg-endcustom justify-content-xl-endcustom ">
+                                                        <span class="text-center text-md-left">Berakhir Pada
+                                                            Tanggal:
+                                                            {{ Carbon::parse($item->Vacancy->batas)->format('d M Y') }}</span>
+                                                    </p>
                                                 </div>
+                                                <span class="sub-title text-primary mb-1">{{ $item->Vacancy->Division->divisi }}</span>
+                                                <ul>
+                                                    <li><span>Gaji
+                                                            :</span>{{ 'Rp ' . number_format($item->Vacancy->gaji, 0, ',', '.') }}
+                                                    </li>
+                                                    <li><span>Slot Tersedia : </span>{{ $item->Vacancy->slot }}
+                                                    </li>
+                                                    @if (in_array($item->Vacancy->status, ['dihapus', 'nonaktif']))
+                                                    <li><span>Status Lowongan : </span>sudah tidak tersedia</li>
+                                                    @endif
+                                                    </li>
+                                                    <div class="row">
+                                                        <li class="col-12 col-md-12"><span>Tipe Kerja :
+                                                            </span>{{ $item->Vacancy->tipe }}</li>
+                                                        <li class="col-12 col-md-12 col-lg-12"><span>Status :
+                                                            </span>{{ $item->status }}</li>
+                                                        @if (in_array($item->Vacancy->status, ['dihapus', 'nonaktif']))
+                                                        @else
+                                                        <li class="col-12 col-md-12 col-lg-12 d-flex justify-content-center justify-content-md-center tengah justify-content-lg-endcustom justify-content-xl-end">
+                                                            <a href="{{ route('detailLowongan', $item->Vacancy->id) }}" class="text-white">
+                                                                <button class="default-btn">Detail</button>
+                                                            </a>
+                                                        </li>
+                                                        @endif
+
+
+                                                    </div>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
                             @empty
                             @endforelse
@@ -362,59 +392,52 @@
                         </div>
                         <div class="row">
                             @forelse ($lowongan as $item)
-                                <div class=" mix a s c" id="card2">
-                                    <div class="hot-jobs-list col-md-12 col-12 col-lg-12">
-                                        <div class="row align-items-center">
-                                            <div class="col-12 col-lg-12">
-                                                <div class="hot-jobs-content">
-                                                    <div class="row d-flex justify-content-between"
-                                                        style="color: black">
-                                                        <h3 class="col-12 col-md-12 col-xl-6 tengah"><a
-                                                                href="">{{ $item->judul }}</a></h3>
-                                                        <p
-                                                            class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal  justify-content-lg-endcustom justify-content-xl-endcustom">
-                                                            <span class="text-center text-md-left">Berakhir Pada
-                                                                Tanggal:
-                                                                {{ Carbon::parse($item->batas)->format('d M Y') }}</span>
-                                                        </p>
-                                                    </div>
-                                                    <span
-                                                        class="sub-title text-primary mb-1">{{ $item->Division->divisi }}</span>
-                                                    <ul>
-                                                        <li><span>Gaji
-                                                                :</span>{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}
-                                                        </li>
-                                                        <li><span>Slot Tersedia : </span>{{ $item->slot }}</li>
-                                                        <div class="row ">
-                                                            <li class="col-12 col-md-12"><span>Tipe Kerja :
-                                                                </span>{{ $item->tipe }}</li>
-                                                            <li
-                                                                class="col-12 col-md-12 col-lg-12 d-flex justify-content-center justify-content-md-center tengah justify-content-lg-endcustom justify-content-xl-end">
-                                                                <a href="{{ route('detailLowongan', $item->id) }}"
-                                                                    class="text-white">
-                                                                    <button class="default-btn">Detail</button>
-                                                                </a>
-                                                            </li>
-                                                        </div>
-                                                    </ul>
+                            <div class=" mix a s c" id="card2">
+                                <div class="hot-jobs-list col-md-12 col-12 col-lg-12">
+                                    <div class="row align-items-center">
+                                        <div class="col-12 col-lg-12">
+                                            <div class="hot-jobs-content">
+                                                <div class="row d-flex justify-content-between" style="color: black">
+                                                    <h3 class="col-12 col-md-12 col-xl-6 tengah"><a href="">{{ $item->judul }}</a></h3>
+                                                    <p class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal  justify-content-lg-endcustom justify-content-xl-endcustom">
+                                                        <span class="text-center text-md-left">Berakhir Pada
+                                                            Tanggal:
+                                                            {{ Carbon::parse($item->batas)->format('d M Y') }}</span>
+                                                    </p>
                                                 </div>
+                                                <span class="sub-title text-primary mb-1">{{ $item->Division->divisi }}</span>
+                                                <ul>
+                                                    <li><span>Gaji
+                                                            :</span>{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}
+                                                    </li>
+                                                    <li><span>Slot Tersedia : </span>{{ $item->slot }}</li>
+                                                    <div class="row ">
+                                                        <li class="col-12 col-md-12"><span>Tipe Kerja :
+                                                            </span>{{ $item->tipe }}</li>
+                                                        <li class="col-12 col-md-12 col-lg-12 d-flex justify-content-center justify-content-md-center tengah justify-content-lg-endcustom justify-content-xl-end">
+                                                            <a href="{{ route('detailLowongan', $item->id) }}" class="text-white">
+                                                                <button class="default-btn">Detail</button>
+                                                            </a>
+                                                        </li>
+                                                    </div>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
                             @empty
-                                <div class="row">
-                                    <div class="col-lg-12 mt-5 text-center" id="lowongan">
-                                        <img src="{{ asset('assets/nodatas.png') }}" alt="" width="350px">
-                                    </div>
+                            <div class="row">
+                                <div class="col-lg-12 mt-5 text-center" id="lowongan">
+                                    <img src="{{ asset('assets/nodatas.png') }}" alt="" width="350px">
                                 </div>
+                            </div>
                             @endforelse
                             <div class="col-12">
                                 <div class="pagination-area">
                                     @if ($cek > 2)
-                                        <button class="default-btn"><a href="{{ route('lowongan-user', $item->id) }}"
-                                                class="text-white">Lihat Selengkapnya</a></button>
+                                    <button class="default-btn"><a href="{{ route('lowongan-user', $item->id) }}" class="text-white">Lihat Selengkapnya</a></button>
                                     @endif
                                     {{-- {{ $lowongan->links() }} --}}
                                 </div>
@@ -445,8 +468,7 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="single-footer-widget single-bg">
                                     <a class="logo" href="index.html">
-                                        <img width="180px" src="{{ asset('assets/hummatech.png') }}"
-                                            alt="logo">
+                                        <img width="180px" src="{{ asset('assets/hummatech.png') }}" alt="logo">
                                     </a>
                                     <p>Hummasoft merupakan sebuah perusahaan yang bergerak dibidang IT (Information
                                         Technology).</p>
@@ -463,8 +485,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="https://id.linkedin.com/in/hummasoft-technology-2476a8241"
-                                                target="_blank">
+                                            <a href="https://id.linkedin.com/in/hummasoft-technology-2476a8241" target="_blank">
                                                 <i class="bx bxl-linkedin-square"></i>
                                             </a>
                                         </li>
@@ -490,8 +511,7 @@
                                         <li class="mb-3" s>
                                             <i class="bx bx-envelope"></i>
                                             <span>Email:</span>
-                                            <a><span class="_cf_email_"
-                                                    data-cfemail="f098959c9c9fb09a859299de939f9d">hummatechcareer@gmail.com</span></a>
+                                            <a><span class="_cf_email_" data-cfemail="f098959c9c9fb09a859299de939f9d">hummatechcareer@gmail.com</span></a>
                                         </li>
                                         <li class="location">
                                             <i class="bx bx-location-plus"></i>
@@ -648,8 +668,7 @@
     <!-- Custom JS -->
     <script src="assets1/js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script
-        src="
+    <script src="
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ">
     </script>
@@ -657,13 +676,14 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css" rel="stylesheet">
     @if (session('tidakAda'))
-        <script>
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: '{{ session('tidakAda') }}'
-            });
-        </script>
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: '{{ session('
+            tidakAda ') }}'
+        });
+    </script>
     @endif
     <script>
         $(document).ready(function() {
