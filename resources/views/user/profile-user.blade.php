@@ -278,35 +278,31 @@
                                                 <div class="mb-3">
                                                     <label for="recipient-name" class="control-label mt-2" style="color: black;">Nama<span style="color: red;">*</span></label>
                                                     <input type="text" class="form-control" name="name" value="{{ $user->name }}"></input>
-
                                                     <br>
                                                     <label for="recipient-name" class="control-label mt-2" style="color: black;">No. Telephone<span style="color: red;">*</span></label>
                                                     <input type="text" class="form-control" name="no_telp" value="{{ $user->no_telp }}"></input>
-
                                                     <br>
                                                     <label for="recipient-name" class="control-label mt-2" style="color: black;">Email<span style="color: red;">*</span></label>
                                                     <input type="text" class="form-control" name="email" value="{{ $user->email }}"></input>
                                                     <br>
                                                     <label for="recipient-name" class="control-label mt-2" style="color: black;">Lamaran<span style="color: red;">*</span></label>
-                                                    <input type="file" class="form-control" name="lamaran" value="{{ $user->lamaran }}"></input>
-                                                    <small class="mt-1">Format lamaran wajib pdf.</small>
+                                                    <input type="file" class="form-control mb-2" name="lamaran" value="{{ $user->lamaran }}"></input>
+                                                    <small id="name" class="text-muted text-informasi text-white">Format lamaran wajib pdf.</small>
                                                     <br>
-                                                    <label for="recipient-name" class="control-label mt-2" style="color: black;">cv<span style="color: red;">*</span></label>
-                                                    <input type="file" class="form-control" name="cv" value="{{ $user->cv }}"></input>
-                                                    <small class="mt-1">Format CV wajib pdf.</small>
+                                                    <label for="recipient-name" class="control-label mt-4" style="color: black;">cv<span style="color: red;">*</span></label>
+                                                    <input type="file" class="form-control mb-2" name="cv" value="{{ $user->cv }}"></input>
+                                                    <small id="name" class="text-muted text-informasi text-white">Format CV wajib pdf.</small>
                                                     <br>
-                                                    <label for="recipient-name" class="control-label mt-2" style="color: black;">Alamat<span style="color: red;">*</span></label>
+                                                    <label for="recipient-name" class="control-label mt-4" style="color: black;">Alamat<span style="color: red;">*</span></label>
                                                     <textarea type="text" class="form-control" name="alamat">{{ $user->alamat }}</textarea>
                                                     <br>
                                                     <label for="recipient-name" class="control-label mt-2" style="color: black;">Profile LinkedIn</label>
-                                                    <input type="url" class="form-control" name="url_likedIn" value="{{ $user->LinkedIn }}"></input>
-                                                    <small class="mt-1">Profile LinkedIn tidak wajib diisi.</small>
-
+                                                    <input type="url" class="form-control mb-2" name="url_likedIn" value="{{ $user->LinkedIn }}"></input>
+                                                    <small id="name" class="text-muted text-informasi text-white">Profile LinkedIn tidak wajib diisi.</small>
                                                     <br>
-                                                    <label for="recipient-name" class="control-label mt-2" style="color: black;">Profile Github</label>
-                                                    <input type="url" class="form-control" name="url_Github" value="{{ $user->GitHub }}"></input>
-                                                    <small class="mt-1">Profile Github tidak wajib diisi.</small>
-
+                                                    <label for="recipient-name" class="control-label mt-4" style="color: black;">Profile Github</label>
+                                                    <input type="url" class="form-control mb-2" name="url_Github" value="{{ $user->GitHub }}"></input>
+                                                    <small id="name" class="text-muted text-informasi text-white">Profile Github tidak wajib diisi.</small>
                                                     <br>
 
                                                 </div>
@@ -591,13 +587,9 @@
                                                 Deskripsi
                                                 <span style="color: red;">*</span>
                                             </label>
-                                            <textarea name="deskripsi" class="form-control" id="" placeholder="Masukkan deskripsi Anda"> {{ $user->deskripsi }}</textarea>
-
-
+                                            <textarea name="deskripsi" class="form-control mb-2" id="" placeholder="Masukkan deskripsi Anda"> {{ $user->deskripsi }}</textarea>
                                             <span class="text-danger" id="errorSumary{{ $user->id }}"></span>
-                                            <small id="name" class="form-text text-muted">Silakan masukkan
-                                                deskripsi
-                                                Anda.</small>
+                                            <small id="name" class="text-muted text-informasi text-white">SIlahkan masukkan deskripsi Anda.</small>
                                         </div>
                                     </div>
 
@@ -807,11 +799,8 @@
 
                                             <br>
                                             <label for="recipient-name" class="control-label mt-2" style="color: black;">Detail Project<span style="color: red;">*</span></label>
-                                            <textarea type="text" class="form-control" name="DetailProjek" placeholder="Masukkan Detail Projek Anda">{{ old('DetailProjek') }}</textarea>
-
-                                            <small id="name" class="form-text text-muted">Silakan masukkan
-                                                detail
-                                                projek yang Anda kerjakan.</small>
+                                            <textarea type="text" class="form-control mb-2" name="DetailProjek" placeholder="Masukkan Detail Projek Anda">{{ old('DetailProjek') }}</textarea>
+                                            <small id="name" class="text-muted text-informasi text-white">Silakan masukkan detail projek yang Anda kerjakan</small>
                                             <br>
                                         </div>
                                     </div>
@@ -877,12 +866,8 @@
                                             <input type="file" class="form-control" name="Bukti" value="{{ $item->Bukti }}"></input>
                                             <br>
                                             <label for="recipient-name" class="control-label mt-2" style="color: black;">Detail Project<span style="color: red;">*</span></label>
-                                            <textarea type="text" class="form-control" name="DetailProjek" placeholder="Masukkan Detail Projek Anda">{{ $item->DetailProjek }}</textarea>
-
-                                            <small id="name" class="form-text text-muted">Silakan
-                                                masukkan
-                                                detail
-                                                projek yang Anda kerjakan.</small>
+                                            <textarea type="text" class="form-control mb-2" name="DetailProjek" placeholder="Masukkan Detail Projek Anda">{{ $item->DetailProjek }}</textarea>
+                                            <small id="name" class="text-muted text-informasi text-white">Silakan masukkan detail projek yang Anda kerjakan</small>
                                             <br>
                                         </div>
                                     </div>
@@ -969,21 +954,15 @@
                                                 Judul
                                                 <span style="color: red;">*</span>
                                             </label>
-                                            <input type="text" class="form-control" name="judul" value="{{ old('judul') }}" placeholder="Masukkan Keahlian Anda"></input>
-
-                                            <small id="name" class="form-text text-muted">Silakan masukkan
-                                                Keahlian
-                                                Anda.</small>
+                                            <input type="text" class="form-control mb-2" name="judul" value="{{ old('judul') }}" placeholder="Masukkan Keahlian Anda"></input>
+                                            <small id="name" class="text-muted text-informasi text-white">Silakan masukkan judul keahlian Anda.</small>
                                             <br>
                                             <label for="recipient-name" class="control-label mt-2" style="color: black;">
                                                 Deskripsi
                                                 <span style="color: red;">*</span>
                                             </label>
-                                            <textarea type="text" class="form-control" name="deskripsi_keahlian" placeholder="Masukkan Deskripsi Keahlian Anda">{{ old('deskripsi_keahlian') }}</textarea>
-
-                                            <small id="name" class="form-text text-muted">Silakan masukkan
-                                                deskripsi
-                                                Keahlian Anda.</small>
+                                            <textarea type="text" class="form-control mb-2" name="deskripsi_keahlian" placeholder="Masukkan Deskripsi Keahlian Anda">{{ old('deskripsi_keahlian') }}</textarea>
+                                            <small id="name" class="text-muted text-informasi text-white">Silakan masukkan deskripsi keahlian Anda.</small>
                                         </div>
                                     </div>
 
@@ -1018,23 +997,15 @@
                                                 Judul
                                                 <span style="color: red;">*</span>
                                             </label>
-                                            <input type="text" class="form-control" name="judul" value="{{ $item->judul }}" placeholder="Masukkan Keahlian Anda"></input>
-
-                                            <small id="name" class="form-text text-muted">Silakan
-                                                masukkan
-                                                Keahlian
-                                                Anda.</small>
+                                            <input type="text" class="form-control mb-2" name="judul" value="{{ $item->judul }}" placeholder="Masukkan Keahlian Anda"></input>
+                                            <small id="name" class="text-muted text-informasi text-white">Silakan masukkan judul keahlian Anda.</small>
                                             <br>
                                             <label for="recipient-name" class="control-label mt-2" style="color: black;">
                                                 Deskripsi
                                                 <span style="color: red;">*</span>
                                             </label>
-                                            <textarea type="text" class="form-control" name="deskripsi_keahlian" placeholder="Masukkan Deskripsi Keahlian Anda">{{ $item->deskripsi }}</textarea>
-
-                                            <small id="name" class="form-text text-muted">Silakan
-                                                masukkan
-                                                deskripsi
-                                                Keahlian Anda.</small>
+                                            <textarea type="text" class="form-control mb-2" name="deskripsi_keahlian" placeholder="Masukkan Deskripsi Keahlian Anda">{{ $item->deskripsi }}</textarea>
+                                            <small id="name" class="text-muted text-informasi text-white">Silakan masukkan deskripsi keahlian Anda.</small>
                                         </div>
                                     </div>
 
@@ -1336,13 +1307,8 @@
                                                 Judul
                                                 <span style="color: red;">*</span>
                                             </label>
-                                            <input type="text" class="form-control" name="judul" value="{{ old('judul') }}" placeholder="Masukkan Judul"></input>
-
-                                            <small id="name" class="form-text text-muted">Silakan masukkan
-                                                judul
-                                                sertifikat Anda.</small>
-                                            <br>
-
+                                            <input type="text" class="form-control mb-2" name="judul" value="{{ old('judul') }}" placeholder="Masukkan Judul"></input>
+                                            <small id="name" class="text-muted text-informasi text-white">Silakan masukkan judul sertifikat Anda.</small>
                                             <br>
                                             <label for="recipient-name" class="control-label mt-2" style="color: black;">Foto<span style="color: red;">*</span></label>
                                             <input type="file" class="form-control" name="foto" value="{{ old('foto') }}"></input>
@@ -1351,10 +1317,8 @@
                                                 Deskripsi
                                                 <span style="color: red;">*</span>
                                             </label>
-                                            <textarea type="text" class="form-control" name="deskripsi_sertifikat" placeholder="Masukkan Deskripsi">{{ old('deskripsi_sertifikat') }}</textarea>
-
-                                            <small id="name" class="form-text text-muted">Silakan masukkan
-                                                deskripsi sertifikat Anda.</small>
+                                            <textarea type="text" class="form-control mb-2" name="deskripsi_sertifikat" placeholder="Masukkan Deskripsi">{{ old('deskripsi_sertifikat') }}</textarea>
+                                            <small id="name" class="text-muted text-informasi text-white">Silakan masukkan deskripsi sertifikat Anda.</small>
                                         </div>
                                     </div>
 
@@ -1392,10 +1356,8 @@
                                                 Judul
                                                 <span style="color: red;">*</span>
                                             </label>
-                                            <input type="text" class="form-control" name="judul" value="{{ $item->judul }}"></input>
-
-                                            <small id="name" class="form-text text-muted">Silakan masukkan
-                                                Keahlian Anda.</small>
+                                            <input type="text" class="form-control mb-2" name="judul" value="{{ $item->judul }}"></input>
+                                            <small id="name" class="text-muted text-informasi text-white">Silakan masukkan judul sertifikat Anda.</small>
                                             <br>
                                             <div class="mb-3" style="width: 250px; height: 150px; border: 1px solid #adadac; overflow: hidden; position: relative; border-radius: 10px;">
                                                 <a href="{{ asset('sertifikat/' . $item->foto) }}" data-lightbox="image-1" data-title="Gambar Profil Anda">
@@ -1410,10 +1372,8 @@
                                                 Deskripsi
                                                 <span style="color: red;">*</span>
                                             </label>
-                                            <textarea type="text" class="form-control" name="deskripsi_sertifikat">{{ $item->deskripsi }}</textarea>
-
-                                            <small id="name" class="form-text text-muted">Silakan masukkan
-                                                deskripsi Keahlian Anda.</small>
+                                            <textarea type="text" class="form-control mb-2" name="deskripsi_sertifikat">{{ $item->deskripsi }}</textarea>
+                                            <small id="name" class="text-muted text-informasi text-white">Silakan masukkan deskripsi sertifikat Anda.</small>
                                         </div>
                                     </div>
 
@@ -1488,19 +1448,15 @@
                                                 Judul
                                                 <span style="color: red;">*</span>
                                             </label>
-                                            <input type="text" class="form-control" name="judul" value="{{ $item->judul }}"></input>
-                                            <br>
-                                            <small id="name" class="form-text text-muted">Silakan masukkan
-                                                Keahlian Anda.</small>
+                                            <input type="text" class="form-control mb-2" name="judul" value="{{ $item->judul }}"></input>
+                                            <small id="name" class="text-muted text-informasi text-white">Silakan masukkan judul sertifikat Anda.</small>
                                             <br>
                                             <label for="recipient-name" class="control-label mt-2" style="color: black;">
                                                 Deskripsi
                                                 <span style="color: red;">*</span>
                                             </label>
-                                            <textarea type="text" class="form-control" name="deskripsi">{{ $item->deskripsi }}</textarea>
-                                            <br>
-                                            <small id="name" class="form-text text-muted">Silakan masukkan
-                                                deskripsi Keahlian Anda.</small>
+                                            <textarea type="text" class="form-control mb-2" name="deskripsi">{{ $item->deskripsi }}</textarea>
+                                            <small id="name" class="text-muted text-informasi text-white">Silakan masukkan deskripsi sertifikat Anda.</small>
                                             <br>
                                             <label for="recipient-name" class="control-label mt-2" style="color: black;">Foto<span style="color: red;">*</span></label>
                                             <input type="file" class="form-control" name="foto" value="{{ $item->foto }}"></input>

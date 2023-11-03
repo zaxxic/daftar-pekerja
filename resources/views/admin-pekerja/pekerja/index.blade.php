@@ -56,7 +56,7 @@
 
             </div>
 
-            <div class="table-responsive rounded-2 mb-4">
+            <div class="table-responsive1 rounded-2 mb-4">
                 <table class="table border text-nowrap customize-table mb-0 align-middle">
                     <thead class="text-dark fs-4">
                         <tr>
@@ -324,12 +324,11 @@
                                     <label for="message-text" style="color: black;" class="control-label">Pesan
                                         <span style="color: red;">*</span></label>
                                     <textarea class="form-control" id="pesan{{ $item->id }}" placeholder="Masukkan pesan" name="pesan"></textarea>
-                                    <span id="error{{ $item->id }}" class="text-danger"></span>
                                     @error('pesan')
                                     <small class="text-danger">{{ $message }}</small>
                                     @enderror
-                                    <small id="name" class="form-text text-muted">Masukkan alasan
-                                        kenapa pelamar tersebut tidak Anda luluskan.</small>
+                                    <p class="text-danger fs-3" id="error{{ $item->id }}"></p>
+                                    <small id="name" class="text-muted text-informasi text-white">Masukkan alasan kenapa pelamar tersebut tidak Anda luluskan.</small>
                                 </div>
 
                         </div>

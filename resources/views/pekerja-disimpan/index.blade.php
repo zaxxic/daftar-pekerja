@@ -98,7 +98,7 @@
                                             </button>
                                         </form>
                                         <button type="button" title="lihat pekerja" style="background-color: transparent;">
-                                            <a href="">
+                                            <a href="{{ route('detail-user', $item->User->id) }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="25"
                                                     viewBox="0 0 16 16">
                                                     <g fill="#5D87FF">

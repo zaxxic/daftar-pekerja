@@ -313,7 +313,7 @@
                                                             <div class="pr-0 col-6"  style="margin-top:5px">
                                                                 <label for="" class="fontlabel"
                                                                     style="margin-bottom: 2px;">Posisi</label>
-                                                                <div class="tepiborder">{{ $row->pekerja }}</div>
+                                                                <div class="tepiborder">{{ $row->posisi }}</div>
                                                             </div>
                                                             <div class="pr-0 col-12 " style="margin-top:5px">
                                                                 <label for="" class="fontlabel"

@@ -234,29 +234,19 @@
                         <label for="recipient-name" class="control-label" style="color: black;">Tanggal Wawancara
                             <span style="color: red;">*</span></label>
                         <input type="datetime-local" class="form-control" id="Tanggal{{ $item->id }}" name="tanggal_wawancara" />
-                        <p class="text-danger" style="color: red; height:5px" id="error{{ $item->id }}">
-                        </p>
-                        @error('tanggal_wawancara')
-                        <small class="text-danger">{{ $message }}</small>
-                        @enderror
+                        <p class="text-danger fs-3" id="error{{ $item->id }}"></p>
+                        <small id="name" class="text-muted text-informasi text-white">Setelah Anda yakin, kirimkan tanggal untuk jadwal wawancara dengan pekerja.</small>
                         <br>
                         <label for="recipient-name" class="control-label mt-2" style="color: black;">lokasi
                             Wawancara
                             <span style="color: red;">*</span></label>
                         <input type="text" class="form-control" id="Lokasi{{ $item->id }}" name="lokasi" />
-                        <p class="text-danger" style="color: red; height:5px" id="errorLokasi{{ $item->id }}"></p>
-                        @error('lokasi')
-                        <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                        <br>
-                        <small id="name" class="form-text text-muted">Setelah anda
-                            yakin ingin menerima pekerja tersebut, anda bisa mengirimkan
-                            tanggal untuk jadwal wawancara si pekerja.</small>
+                        <p class="text-danger fs-3" id="errorLokasi{{ $item->id }}"></p>
 
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">
+                    <button  onclick="Terima({{$item->User->id}})" type="button" class="btn btn-success">
                         Terima
                     </button>
                 </div>
@@ -286,16 +276,13 @@
                     <div class="mb-3">
                         <label for="message-text" class="control-label">Pesan <span style="color: red;">*</span></label>
                         <textarea class="form-control" id="pesan{{ $item->User->id }}" placeholder="Masukkan pesan" name="pesan"></textarea>
-                        <span class="text-danger" id="errorTolak{{ $item->User->id }}"></span>
-                        @error('pesan')
-                        <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                        <small id="name" class="form-text text-muted">Masukkan alasan
+                        <p class="text-danger fs-3" id="errorTolak{{ $item->User->id }}"></p>
+                        <small id="name" class="text-muted text-informasi text-white">Masukkan alasan
                             kenapa pekerja tersebut ditolak.</small>
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-danger">
+                <button onclick="Tolak({{$item->User->id}})" type="button" class="btn btn-danger">
                     Tolak
                 </button>
             </div>
@@ -519,153 +506,68 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css
 @endif
 
 <script>
-    function Tolak(params) {
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: "btn btn-success",
-                cancelButton: "mr-2 btn btn-danger",
-            },
-            buttonsStyling: false,
-        });
-        var pesan = document.getElementById('pesan' + params).value;
-        var error = document.getElementById('errorTolak' + params)
-        console.log(pesan);
-        if (pesan !== "") {
-            error.innerHTML = "";
-            swalWithBootstrapButtons.fire({
-                    title: "Apakah Anda Yakin?",
-                    text: "Anda ingin menolak akun ini!",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonText: "Iya!",
-                    cancelButtonText: "Tidak!",
-                    reverseButtons: true,
-                    customClass: {
-                        confirmButton: "btn btn-success",
-                        cancelButton: "btn btn-danger me-3",
-                    },
-                    buttonsStyling: false,
-                    width: "25rem", // You can adjust the width as needed
-                    padding: "1rem", // You can adjust the padding as needed
-                    customContainerClass: "swal-custom", // Define a custom class for styling
-                })
-                .then((result) => {
-                    if (result.value) {
-                        swalWithBootstrapButtons.fire(
-                            "Berhasil!",
-                            "Anda berhasil menolak akun tersebut.",
-                            "success"
-                        );
-                        var form = document.getElementById("pesanTolak" + params);
-                        form.submit();
-                    } else if (
-                        result.dismiss === Swal.DismissReason.cancel
-                    ) {
-                        swalWithBootstrapButtons.fire(
-                            "Batal",
-                            "Selamat akun tersebut masih selamat. :)",
-                            "error"
-                        );
-                    }
-                });
-        } else {
-            error.innerHTML = "masukan pesan alasan kenapa anda menolak pendaftar ini";
-        }
+   function Tolak(params) {
+    var pesan = document.getElementById('pesan' + params).value;
+    var error = document.getElementById('errorTolak' + params);
 
+    if (pesan !== "") {
+        if (pesan.length > 255) {
+            error.innerHTML = "Pesan maksimal 255 karakter.";
+        } else {
+            error.innerHTML = "";
+            var form = document.getElementById("pesanTolak" + params);
+            form.submit();
+            return; // Menambahkan return untuk keluar dari fungsi setelah mengirim formulir
+        }
+    } else {
+        error.innerHTML = "Pesan harus diisi.";
     }
+
+    // Jika kode mencapai titik ini, berarti ada error dan modal tidak akan ditutup
+}
 </script>
 <script>
-    function Terima(data) {
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: "btn btn-success",
-                cancelButton: "mr-2 btn btn-danger",
-            },
-            buttonsStyling: false,
-        });
-        var today = new Date(); // Tanggal hari ini
-        var yesterday = new Date(today);
-        yesterday.setDate(today.getDate() - 1); // Mengurangkan satu hari
-        var tanggal = document.getElementById('Tanggal' + data).value;
-        console.log(tanggal);
-        var lokasi = document.getElementById('Lokasi' + data).value;
-        console.log(lokasi);
-        const error = document.getElementById('error' + data);
-        const errorLokasi = document.getElementById('errorLokasi' + data);
-        var tahun = today.getFullYear();
-        var bulan = String(today.getMonth() + 1).padStart(2, "0");
-        var tanggalKedua = String(today.getDate()).padStart(2, "0");
-        var jam = String(today.getHours()).padStart(2, "0");
-        var menit = String(today.getMinutes()).padStart(2, "0");
-        console.log(tanggalKedua);
-        console.log(jam);
+   function Terima(data) {
+    var today = new Date();
+    var yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+    var tanggal = document.getElementById('Tanggal' + data).value;
+    var lokasi = document.getElementById('Lokasi' + data).value;
+    const error = document.getElementById('error' + data);
+    const errorLokasi = document.getElementById('errorLokasi' + data);
+    var tahun = today.getFullYear();
+    var bulan = String(today.getMonth() + 1).padStart(2, "0");
+    var tanggalKedua = String(today.getDate()).padStart(2, "0");
+    var jam = String(today.getHours()).padStart(2, "0");
+    var menit = String(today.getMinutes()).padStart(2, "0");
 
-        // // Menghasilkan format yang diinginkan (YYYY-MM-DDTHH:MM)
-        var hasilFormat = tahun + "-" + bulan + '-' + tanggalKedua + 'T' + jam + ':' + menit;
-        console.log(hasilFormat);
+    var hasilFormat = tahun + "-" + bulan + '-' + tanggalKedua + 'T' + jam + ':' + menit;
 
+    if (tanggal.trim() !== "" && (lokasi.trim() !== "" && tanggal.trim() > hasilFormat)) {
+        error.innerHTML = '';
+        errorLokasi.innerHTML = '';
 
-        if (tanggal.trim() !== "" && (lokasi.trim() !== "" && tanggal.trim() > hasilFormat)) {
-            error.innerHTML = '';
-            errorLokasi.innerHTML = '';
-
-            swalWithBootstrapButtons.fire({
-                title: "Apakah Anda Yakin?",
-                text: "Anda ingin menerima akun ini!",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Iya!",
-                cancelButtonText: "Tidak!",
-                reverseButtons: true,
-                customClass: {
-                    confirmButton: "btn btn-success",
-                    cancelButton: "btn btn-danger me-3",
-                },
-                buttonsStyling: false,
-                width: "25rem",
-                padding: "1rem",
-                customContainerClass: "swal-custom",
-            }).then((result) => {
-                if (result.value) {
-                    swalWithBootstrapButtons.fire(
-                        "Berhasil!",
-                        "Anda berhasil menerima akun tersebut.",
-                        "success"
-                    ).then(() => {
-                        // Jika SweetAlert berhasil ditampilkan, submit form
-                        var form = document.getElementById("pesanTerima" + data);
-                        form.submit();
-                    });
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    swalWithBootstrapButtons.fire(
-                        "Batal",
-                        "penerimaan di batalkan. :)",
-                        "error"
-                    );
-                }
-            });
-        } else {
-            // Perbandingan dengan tanggal kemarin
-            if (new Date(tanggal) <= yesterday && lokasi === "") {
-                error.innerHTML = "tanggal tidak boleh tanggal kemarin";
-                errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
-            } else if (new Date(tanggal) <= yesterday) {
-                error.innerHTML = "tanggal tidak boleh tanggal kemarin";
-                errorLokasi.innerHTML = "";
-            } else if (tanggal === "" && lokasi === "") {
-                error.innerHTML = "pesan harus di isi";
-                errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
-            } else if (tanggal === "") {
-                console.log('2');
-                error.innerHTML = "pesan harus di isi";
-                errorLokasi.innerHTML = "";
-            } else if (lokasi === "") {
-                console.log('3');
-                error.innerHTML = "";
-                errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
-            }
+        var form = document.getElementById("pesanTerima" + data);
+        form.submit();
+    } else {
+        if (new Date(tanggal) <= yesterday && lokasi === "") {
+            error.innerHTML = "tanggal tidak boleh tanggal kemarin";
+            errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
+        } else if (new Date(tanggal) <= yesterday) {
+            error.innerHTML = "tanggal tidak boleh tanggal kemarin";
+            errorLokasi.innerHTML = "";
+        } else if (tanggal === "" && lokasi === "") {
+            error.innerHTML = "pesan harus di isi";
+            errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
+        } else if (tanggal === "") {
+            error.innerHTML = "pesan harus di isi";
+            errorLokasi.innerHTML = "";
+        } else if (lokasi === "") {
+            error.innerHTML = "";
+            errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
         }
     }
+}
 </script>
 <script>
     // Ambil elemen input pencarian

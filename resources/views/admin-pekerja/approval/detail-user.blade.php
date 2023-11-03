@@ -696,9 +696,10 @@
                                                     @error('tanggal_wawancara')
                                                         <small class="text-danger">{{ $message }}</small>
                                                     @enderror
+                                                    <small id="name" class="text-muted text-informasi text-white">Setelah Anda yakin, kirimkan tanggal untuk jadwal wawancara dengan pekerja.</small>
                                                     <br>
                                                     <label for="recipient-name" class="control-label mt-2"
-                                                        style="color: black;">lokasi
+                                                        style="color: black;">Lokasi
                                                         Wawancara
                                                         <span style="color: red;">*</span></label>
                                                     <input type="text" class="form-control"
@@ -709,9 +710,6 @@
                                                         <small class="text-danger">{{ $message }}</small>
                                                     @enderror
                                                     <br>
-                                                    <small id="name" class="form-text text-muted">Setelah anda
-                                                        yakin ingin menerima pekerja tersebut, anda bisa mengirimkan
-                                                        tanggal untuk jadwal wawancara si pekerja.</small>
 
                                                 </div>
                                             </div>
@@ -750,12 +748,12 @@
                                                 <div class="mb-3">
                                                     <label for="message-text" class="control-label">Pesan <span
                                                             style="color: red;">*</span></label>
-                                                    <textarea class="form-control" id="pesan{{ $item->id }}" placeholder="Masukkan pesan" name="pesan"></textarea>
+                                                    <textarea class="form-control mb-2" id="pesan{{ $item->id }}" placeholder="Masukkan pesan" name="pesan"></textarea>
                                                     <span class="text-danger" id="errorTolak{{ $item->id }}"></span>
                                                     @error('pesan')
                                                         <small class="text-danger">{{ $message }}</small>
                                                     @enderror
-                                                    <small id="name" class="form-text text-muted">Masukkan alasan
+                                                    <small id="name" class="text-muted text-informasi text-white">Masukkan alasan
                                                         kenapa pekerja tersebut ditolak.</small>
                                                 </div>
                                         </div>
@@ -842,7 +840,7 @@
                                                     @error('pesan')
                                                         <small class="text-danger">{{ $message }}</small>
                                                     @enderror
-                                                    <small id="name" class="form-text text-muted">Masukkan alasan
+                                                        <small id="name" class="text-muted text-informasi text-white">Masukkan alasan
                                                         kenapa pelamar tersebut tidak Anda luluskan.</small>
                                                 </div>
 
@@ -890,18 +888,18 @@
 
                                         </div>
                                     </div>
-                                    <button type="submit" style="cursor: pointer; background:none">Lihat
+                                    <button class="btn btn-primary" type="submit" style="cursor: pointer;">Lihat
                                         Selengkapnya</button>
                                 @empty
                                     <div class="text-center" id="lowongan">
                                         <img src="{{ asset('assets/nodatas.png') }}" alt="" width="200px">
                                     </div>`
                                 @endforelse --}}
-                                @if ($pelamarSama < 5)
+                                @if ($pelamarSama < 3)
 
                                 @else
-                                <div class="lihatSelengkapnya" style="cursor: pointer" id="LihatSelengkapnya">lihat Selengkapnya</div>
-                                <div class="lihatSedikit" style="display: none" id="Lihatsedikit">lihat Sedikit</div>
+                                <div class="lihatSelengkapnya btn btn-primary w-100" style="cursor: pointer" id="LihatSelengkapnya">Lihat Selengkapnya</div>
+                                <div class="lihatSedikit btn btn-primary w-100" style="display: none" id="Lihatsedikit">Lihat Sedikit</div>
                                 @endif
                             </div>
 

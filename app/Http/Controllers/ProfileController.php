@@ -20,7 +20,6 @@ class ProfileController extends Controller
 {
     function showProfile()
     {
-    
         $user = User::find(auth()->user()->id);
         $skill = Skill::where('user_id', $user->id)->get();
         $experience = Experience::where('user_id', $user->id)->get();

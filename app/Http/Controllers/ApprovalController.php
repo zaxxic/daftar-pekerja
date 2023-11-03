@@ -152,10 +152,11 @@ class ApprovalController extends Controller
         $this->validate(
             $request,
             [
-                'pesan' => 'required',
+                'pesan' => 'required|max:255',
             ],
             [
                 'pesan.required' => 'Pesan Wajib Diisi',
+                'pesan.max' => 'Pesan Maksimal 255 Karakter',
             ]
         );
 
@@ -210,7 +211,6 @@ class ApprovalController extends Controller
         $school = School::where('user_id', $data->id)->get();
         $certificate = Certificate::where('user_id', $data->id)->get();
         $lowongan = Registration::where('users_id', $data->id)->get();
-
         $pencarian = Registration::where('users_id', $data->id)->first();
         $pelamarSama = Registration::where('vacancie_id', $pencarian->vacancie_id)->whereNotIn('users_id', [$data->id])->count();
         return view('admin-pekerja.approval.detail-user', compact('data', 'experience', 'skill', 'school', 'certificate', 'lowongan','pelamarSama','pencarian'));

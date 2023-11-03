@@ -197,6 +197,7 @@
                         <small id="name" class="form-text text-muted">Setelah anda
                             yakin ingin menerima pekerja tersebut, anda bisa mengirimkan
                             tanggal untuk jadwal wawancara si pekerja.</small>
+                        
 
                     </div>
                 </div>
@@ -235,8 +236,8 @@
                         @error('pesan')
                         <small class="text-danger">{{ $message }}</small>
                         @enderror
-                        <small id="name" class="form-text text-muted">Masukkan alasan
-                            kenapa anda mempecat pekerja tersebut.</small>
+                        <p class="text-danger fs-3" id="error{{ $item->id }}"></p>
+                        <small id="name" class="text-muted text-informasi text-white">Masukkan alasan kenapa anda mempecat pekerja tersebut.</small>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-danger">
