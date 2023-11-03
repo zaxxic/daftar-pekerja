@@ -1438,19 +1438,19 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
-                                    <div class="col-lg-12">
-                                        <div>
-                                            Judul : {{ $item->judul }}
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div>
-                                            {{ $item->deskripsi }}
+                                    <div class="col-lg-12 mb-2">
+                                        <div style="font-size: 20px; font-weight: bold;">
+                                            {{ $item->judul }}
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="border border-4 border-white d-flex align-items-center justify-content-center overflow-hidden" style="width: 100%; max-height: 100%;">
                                             <img src="{{ asset('sertifikat/' . $item->foto) }}" alt="" style="max-height: 100%; width: 100%; border-radius: 20px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mt-1">
+                                        <div>
+                                            {{ $item->deskripsi }}
                                         </div>
                                     </div>
                                 </div>
@@ -1838,14 +1838,14 @@ $data = round($jumlahData * 14.28571428571429);
                         <label for="Jurusan" style="color: black;">
                             Jurusan <span style="color: red;">*</span>
                         </label>
-                        <input placeholder="Jurusan" class="col-12 col-md-10 rounded-1 form-control"
+                        <input placeholder="Jurusan" class="col-12 col-md-12 rounded-1 form-control"
                             type="text" name="Jurusan" value="{{ old('Jurusan') }}" id="InputJurusan">
                     </div>`;
             let Nama =
                 `   <label for="NamaSekolah" style="color: black;">
                             NamaSekolah <span style="color: red;">*</span>
                         </label>
-                        <input placeholder="NamaSekolah" class="col-12 col-md-10 rounded-1 form-control"
+                        <input placeholder="NamaSekolah" class="col-12 col-md-12 rounded-1 form-control"
                             type="text" name="NamaSekolah" value="{{ old('NamaSekolah') }}" id="InputNamaSekolah">`;
             document.getElementById('NamaSekolah').innerHTML = Nama;
 
@@ -1859,14 +1859,14 @@ $data = round($jumlahData * 14.28571428571429);
                         <label for="Universitas" style="color: black;">
                             Universitas <span style="color: red;">*</span>
                         </label>
-                        <input placeholder="Universitas" class="col-12 col-md-10 rounded-1 form-control"
+                        <input placeholder="Universitas" class="col-12 col-md-12 rounded-1 form-control"
                             type="text" name="NamaSekolah" value="{{ old('NamaSekolah') }}" id="InputUniversitas">
                     </div>
                     <div class="mt-2" id="Fakultas" style="color: black;">
                         <label for="Fakultas">
                             Fakultas <span style="color: red;">*</span>
                         </label>
-                        <input placeholder="Falkutas" class="col-12 col-md-10 rounded-1 form-control"
+                        <input placeholder="Falkutas" class="col-12 col-md-12 rounded-1 form-control"
                             type="text" name="Jurusan" value="{{ old('Jurusan') }}" id="InputJurusan">
                     </div>
                     `;
@@ -1881,7 +1881,7 @@ $data = round($jumlahData * 14.28571428571429);
             let Nama = `   <label for="NamaSekolah" style="color: black;">
                             NamaSekolah <span style="color: red;">*</span>
                         </label>
-                        <input placeholder="NamaSekolah" class="col-12 col-md-10 rounded-1 form-control"
+                        <input placeholder="NamaSekolah" class="col-12 col-md-12 rounded-1 form-control"
                             type="text" name="NamaSekolah" value="{{ old('NamaSekolah') }}" id="">`;
             document.getElementById('NamaSekolah').innerHTML = Nama;
             document.getElementById('TempatUniversitas').innerHTML = ``;

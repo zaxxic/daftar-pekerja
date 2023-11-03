@@ -149,7 +149,7 @@
                                         </h5>
                                         <span class="mb-0 row text-dark align-items-center  tengah " style="max-width:100%; overflow: hidden">
                                             <i class="ti ti-mail col-1 fs-5 me-1 hilang"></i>
-                                            <p class="kecil col-10 tengah">
+                                            <p class="kecil col-10 tengah mb-0">
                                             {{ Auth()->user()->email }}
                                             </p>
                                         </span>

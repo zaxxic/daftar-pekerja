@@ -44,8 +44,9 @@ class ApprovalController extends Controller
                 $query->where('status', '=', 'aktif'); // Filter berdasarkan status lowongan 'aktif'
             })->whereIn('status', ['menunggu'])
                 ->paginate(8);
+                $user->appends(['cari' => $keyword]);
+                dd($user);
 
-            $user->appends(['cari' => $keyword]);
         } else if ($request->has('filter')) {
             $keyword = $request->filter;
             $user = Registration::whereHas('user', function ($query) use ($keyword) {
@@ -181,8 +182,7 @@ class ApprovalController extends Controller
             'status' => 'ditolak',
             'tanggal_wawancara' => null
         ]);
-        // dd($item->Vacancy->Division->divisi);
-        Rejected::create([
+        $rejected::create([
             'user_id'=>$user->id,
             'pesan' => $request->pesan,
             'divisi' => $item->Vacancy->Division->divisi,
@@ -200,7 +200,6 @@ class ApprovalController extends Controller
      */
     public function show($id)
     {
-        // dd($id);
         $data = User::FindOrFail($id);
         if($data->role !== 'user'){
             abort(404, 'Authorize 404');
@@ -210,14 +209,26 @@ class ApprovalController extends Controller
         $skill = Skill::where('user_id', $data->id)->get();
         $school = School::where('user_id', $data->id)->get();
         $certificate = Certificate::where('user_id', $data->id)->get();
-        // $divisi = Division::where('user_id');
         $lowongan = Registration::where('users_id', $data->id)->get();
-        $pencarian = Registration::where('users_id', $data->id)->first();
-        $pelamarSama = Registration::where('vacancie_id', $pencarian->vacancie_id)->whereNotIn('users_id', [$data->id])->get();
 
-        // dd($lowongan);
-        // dd($data);
-        return view('admin-pekerja.approval.detail-user', compact('data', 'experience', 'skill', 'school', 'certificate', 'lowongan','pelamarSama'));
+        $pencarian = Registration::where('users_id', $data->id)->first();
+        $pelamarSama = Registration::where('vacancie_id', $pencarian->vacancie_id)->whereNotIn('users_id', [$data->id])->count();
+        return view('admin-pekerja.approval.detail-user', compact('data', 'experience', 'skill', 'school', 'certificate', 'lowongan','pelamarSama','pencarian'));
     }
 
+    public function pekerjaSama(Request $request){
+        $id = $request->id;
+        $data = User::FindOrFail($id);
+        $pencarian = Registration::where('users_id', $data->id)->first();
+        $pelamarSama = Registration::where('vacancie_id', $pencarian->vacancie_id)->whereNotIn('users_id', [$data->id])->with('user')->limit(5)->get();
+        return response()->json(['pelamarSama'=>$pelamarSama]);
+    }
+
+    public function pekerjaSelengkapnya(Request $request){
+        $id = $request->id;
+        $data = User::FindOrFail($id);
+        $pencarian = Registration::where('users_id', $data->id)->first();
+        $pelamarSama = Registration::where('vacancie_id', $pencarian->vacancie_id)->whereNotIn('users_id', [$data->id])->with('user')->get();
+        return response()->json(['pelamarSama'=>$pelamarSama]);
+    }
 }

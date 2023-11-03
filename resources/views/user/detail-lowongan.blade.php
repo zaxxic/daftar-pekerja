@@ -670,7 +670,7 @@
                                 url: url,
                                 data: {
                                     id: formData,
-                                },
+                                },  
                                 success: function(response) {
                                     if (response.status === 'sukses') {
                                         swalWithBootstrapButtons.fire({
