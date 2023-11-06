@@ -126,7 +126,7 @@
                                     </button>
                                 </form>
                                 <button type="button" title="lihat pekerja" style="background-color: transparent;">
-                                    <a href="{{ route('detail-user', $row->id) }}">
+                                    <a href="{{ route('detail-user', $row->User->id) }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="25" viewBox="0 0 16 16">
                                             <g fill="#5D87FF">
                                                 <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
@@ -333,7 +333,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary img-fluid model_img">
+                            <button onclick="Nonaktif({{$item->User->id}})" type="button" class="btn btn-primary img-fluid model_img">
                                 Kirim
                             </button>
                         </div>
@@ -493,60 +493,22 @@
     }
 
     function Nonaktif(data) {
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: "btn btn-success",
-                cancelButton: "mr-2 btn btn-danger",
-            },
-            buttonsStyling: false,
-        });
-        var pesan = document.getElementById('pesan' + data).value;
-        const error = document.getElementById('error' + data);
-        console.log(pesan);
-        console.log(data);
-        if (pesan.trim() !== "") {
-            error.innerHTML = '';
+    var pesan = document.getElementById('pesan' + data).value;
+    var error = document.getElementById('error' + data);
 
-            swalWithBootstrapButtons.fire({
-                    title: "Apakah Anda Yakin?",
-                    text: "Anda ingin menggagalkan pelamar ini!",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonText: "Iya!",
-                    cancelButtonText: "Tidak!",
-                    reverseButtons: true,
-                    customClass: {
-                        confirmButton: "btn btn-success",
-                        cancelButton: "btn btn-danger me-3",
-                    },
-                    buttonsStyling: false,
-                    width: "25rem",
-                    padding: "1rem",
-                    customContainerClass: "swal-custom",
-                })
-                .then((result) => {
-                    if (result.value) {
-                        swalWithBootstrapButtons.fire(
-                            "Berhasil!",
-                            "Anda berhasil menggagalkan akun tersebut.",
-                            "success"
-                        );
-                        var form = document.getElementById("pesanNonaktif" + data);
-                        form.submit();
-                    } else if (
-                        result.dismiss === Swal.DismissReason.cancel
-                    ) {
-                        swalWithBootstrapButtons.fire(
-                            "Batal",
-                            "Pelamar tersebut batal untuk digagalkan. :)",
-                            "error"
-                        );
-                    }
-                });
+    if (pesan !== "") {
+        if (pesan.length > 255) {
+            error.innerHTML = "Pesan maksimal 255 karakter.";
         } else {
-            error.innerHTML = "pesan harus di isi";
-        };
+            error.innerHTML = "";
+            var form = document.getElementById("pesanNonaktif" + data);
+            form.submit();
+            return;
+        }
+    } else {
+        error.innerHTML = "Pesan harus diisi.";
     }
+}
 </script>
 <script>
     // Ambil elemen input pencarian

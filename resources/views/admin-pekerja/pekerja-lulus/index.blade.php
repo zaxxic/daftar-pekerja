@@ -156,61 +156,8 @@
 </div>
 @foreach ($user as $item)
 <!-- Modal -->
-<div class="modal fade" id="acc-user-{{ $item->User->id }}" tabindex="-1" aria-labelledby="exampleModalLabel1">
-    <div class="modal-dialog" role="document">
 
-        <form action="acc/{{ $item->User->id }}" method="POST" id="pesanTerima{{$item->User->id}}">
-            @method('PATCH')
-            @csrf
-            <div class="modal-content">
-                <div class="modal-header d-flex align-items-center">
-                    <h4 class="modal-title" id="exampleModalLabel1">
-                        Terima Pekerja
-                    </h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <span style="color: black;" for="recipient-name" class="control-label">Apakah anda
-                            yakin untuk menerima
-                            {{ $item->User->name }}?</span>
-                    </div>
-                    <div class="mb-3">
-                        <label for="recipient-name" class="control-label" style="color: black;">Tanggal Wawancara
-                            <span style="color: red;">*</span></label>
-                        <input type="datetime-local" class="form-control" id="tanggal{{$item->User->id}}" name="tanggal_wawancara" />
-                        <p class="text-danger" style="color: red; height:5px" id="error{{$item->User->id}}"></p>
-                        @error('tanggal_wawancara')
-                        <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                        <br>
-                        <label for="recipient-name" class="control-label mt-2" style="color: black;">lokasi
-                            Wawancara
-                            <span style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="lokasi{{$item->User->id}}" name="lokasi" />
-                        <p class="text-danger" style="color: red; height:5px" id="errorLokasi{{$item->User->id}}"></p>
-                        @error('lokasi')
-                        <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                        <br>
-                        <small id="name" class="form-text text-muted">Setelah anda
-                            yakin ingin menerima pekerja tersebut, anda bisa mengirimkan
-                            tanggal untuk jadwal wawancara si pekerja.</small>
-                        
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">
-                        Terima
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<div class="modal fade" id="pecat-user-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel1">
+<!-- <div class="modal fade" id="pecat-user-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel1">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header d-flex align-items-center">
@@ -226,13 +173,12 @@
                         yakin untuk mempecat
                         {{ $item->User->name }}?</span>
                 </div>
-                <form action="pecat/{{ $item->id }}" method="POST" style="display: inline;" class="dropdown-item">
+                <form action="pecat/{{ $item->id }}" method="POST" id="pecatPekerja{{ $item->id }}">
                     @method('PATCH')
                     @csrf
                     <div class="mb-3">
                         <label for="message-text" class="control-label">Pesan <span style="color: red;">*</span></label>
                         <textarea class="form-control" id="pesan{{ $item->id }}" placeholder="Masukkan pesan" name="pesan"></textarea>
-                        <span class="text-danger" id="errorTolak{{ $item->id }}"></span>
                         @error('pesan')
                         <small class="text-danger">{{ $message }}</small>
                         @enderror
@@ -240,12 +186,50 @@
                         <small id="name" class="text-muted text-informasi text-white">Masukkan alasan kenapa anda mempecat pekerja tersebut.</small>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger">
-                            Pecat
+                        <button onclick="Pecat({{$item->User->id}})" type="button" class="btn btn-primary">
+                            Kirim
                         </button>
                     </div>
                 </form>
             </div>
+        </div>
+    </div>
+</div> -->
+<div class="modal fade" id="pecat-user-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header d-flex align-items-center">
+                <h4 class="modal-title" id="exampleModalLabel1">
+                    Pecat Pekerja
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+            <div class="modal-body">
+                <span for="recipient-name" class="control-label">Apakah anda
+                    yakin untuk mempecat
+                    {{ $item->User->name }}?</span>
+                <form action="/nonactive/{{ $item->id }}" method="POST" id="pecatPekerja{{ $item->id }}">
+                    @method('PATCH')
+                    @csrf
+                    <div class="mb-3 mt-2">
+                        <label for="message-text" style="color: black;" class="control-label">Pesan
+                            <span style="color: red;">*</span></label>
+                        <textarea class="form-control" id="pesan{{ $item->id }}" placeholder="Masukkan pesan" name="pesan"></textarea>
+                        @error('pesan')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                        <p class="text-danger fs-3" id="error{{ $item->id }}"></p>
+                        <small id="name" class="text-muted text-informasi text-white">Masukkan alasan kenapa pekerja tersebut Anda pecat.</small>
+                    </div>
+
+            </div>
+            <div class="modal-footer">
+                <button onclick="Pecat({{$item->User->id}})" type="button" class="btn btn-primary img-fluid model_img">
+                    Kirim
+                </button>
+            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -382,54 +366,27 @@
 <!--  Form Basic End -->
 <!-- --------------------------------------------------- -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!-- <script>
-    function klikPecat(itemId) {
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: "btn btn-success",
-                cancelButton: "mr-2 btn btn-danger",
-            },
-            buttonsStyling: false,
-        });
-        swalWithBootstrapButtons
-            .fire({
-                title: "Apakah Anda Yakin?",
-                text: "Anda ingin memecat Pekerja ini!",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Iya!",
-                cancelButtonText: "Tidak!",
-                reverseButtons: true,
-                customClass: {
-                    confirmButton: "btn btn-success",
-                    cancelButton: "btn btn-danger me-3",
-                },
-                buttonsStyling: false,
-                width: "25rem",
-                padding: "1rem",
-                customContainerClass: "swal-custom",
-            })
-            .then((result) => {
-                if (result.value) {
-                    console.log(result.value);
-                    var itemId = "YOUR_ITEM_ID"; // Replace with the actual item ID
-                    var form = document.getElementById("pecat-user-" + itemId);
 
-                    // Show the modal
-                    $('#pecat-user-' + itemId).modal('show');
+<script>
+    function Pecat(data) {
+        var pesan = document.getElementById('pesan' + data).value;
+        var error = document.getElementById('error' + data);
 
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    swalWithBootstrapButtons.fire(
-                        "Batal",
-                        "Pekerja tersebut batal untuk dipecat. :)",
-                        "error"
-                    );
-                }
-            });
+        if (pesan !== "") {
+            if (pesan.length > 255) {
+                error.innerHTML = "Pesan maksimal 255 karakter.";
+            } else {
+                error.innerHTML = "";
+                var form = document.getElementById("pecatPekerja" + data);
+                form.submit();
+                return;
+            }
+        } else {
+            error.innerHTML = "Pesan harus diisi.";
+        }
     }
-</script> -->
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     // Ambil elemen input pencarian
     const searchInput = document.querySelector('input[name="cari"]');

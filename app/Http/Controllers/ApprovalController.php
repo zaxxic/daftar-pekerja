@@ -160,8 +160,10 @@ class ApprovalController extends Controller
             ]
         );
 
-        $user = User::findOrFail($id);
-        $item = Registration::where('users_id', $id)->first();
+        // $user = User::findOrFail($id);
+        // $item = Registration::where('users_id', $id)->first();
+        $item = Registration::FindOrFail($id);
+        $user = User::findOrFail($item->users_id);
         $pesan = $request->pesan;
         $datas =   [
             'pesan' =>  $pesan,
