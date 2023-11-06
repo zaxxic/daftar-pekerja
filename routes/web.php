@@ -14,6 +14,7 @@ use App\Http\Controllers\DetailLowonganController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PekerjaLulusController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\SaveController;
@@ -82,6 +83,11 @@ Route::middleware('checkLogin')->group(function () {
     Route::get('PekerjaDisimpan',[SaveController::class, 'index'])->name('PekerjaDisimpan');
     Route::patch('BatalSimpan/{id}',[SaveController::class, 'batal']);
     Route::patch('pekerja-lulus/{id}', [PekerjaController::class, 'lulus'])->name('pekerja-lulus');
+    Route::get('lulus', [PekerjaLulusController::class, 'index'])->name('lulus');
+    Route::patch('pecat/{id}', [PekerjaLulusController::class, 'update'])->name('pecat');
+    Route::get('/pekerja-disimpan', [SaveController::class, 'index'])->name('pekerja-disimpan');
+    Route::post('/pekerja-sama', [ApprovalController::class, 'pekerjaSama'])->name('pekerja-sama');
+    Route::post('/pekerja-selengkapnya', [ApprovalController::class, 'pekerjaSelengkapnya'])->name('pekerja-selengkapnya');
 
     });
 

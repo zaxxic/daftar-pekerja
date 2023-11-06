@@ -787,12 +787,12 @@
                                                 yakin untuk menolak
                                                 {{ $item->name }}?</span>
                                         </div>
-                                        <form action="nonactive/{{ $item->id }}" method="POST" id="nonaktifUser{{ $item->User->id }}">
+                                        <form action="/nonactive/{{ $item->id }}" method="POST" id="nonaktifUser{{ $item->User->id }}">
                                             @method('PATCH')
                                             @csrf
                                             <div class="mb-3">
                                                 <label for="message-text" class="control-label">Pesan <span style="color: red;">*</span></label>
-                                                <textarea class="form-control mb-2" id="pesan{{ $item->id }}" placeholder="Masukkan pesan" name="pesan"></textarea>
+                                                <textarea class="form-control mb-2" id="pesan{{ $item->User->id }}" placeholder="Masukkan pesan" name="pesan"></textarea>
                                                 <p class="text-danger mb-1 fs-3" id="errorNonaktif{{ $item->User->id }}"></p>
                                                 @error('pesan')
                                                 <small class="text-danger">{{ $message }}</small>
@@ -1067,7 +1067,7 @@
         // Jika kode mencapai titik ini, berarti ada error dan modal tidak akan ditutup
     }
 
-    
+
 </script>
 
 
