@@ -748,7 +748,7 @@
                                                 yakin untuk mempecat
                                                 {{ $item->name }}?</span>
                                         </div>
-                                        <form action="reject/{{ $item->id }}" method="POST" id="pecatUser{{ $item->id }}">
+                                        <form action="/pecat/{{ $item->id }}" method="POST" id="pecatUser{{ $item->id }}">
                                             @method('PATCH')
                                             @csrf
                                             <div class="mb-3">
