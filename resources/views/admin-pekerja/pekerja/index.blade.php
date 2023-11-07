@@ -103,7 +103,7 @@
                                 <p class="mb-0 fw-normal">{{ $row->Vacancy->pekerja }}</p>
                             </td>
                             <td>
-                                <p class="mb-0 fw-normal">{{ $row->User->lokasi_wawancara }}</p>
+                                <p class="mb-0 fw-normal ellipsis" style="max-width: 150px;">{{ $row->User->lokasi_wawancara }}</p>
                             </td>
                             <td>
                                 <button type="button" title="nonaktif pekerja" style="background-color: transparent;">
