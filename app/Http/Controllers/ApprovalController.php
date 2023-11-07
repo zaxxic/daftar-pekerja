@@ -141,7 +141,7 @@ class ApprovalController extends Controller
             'posisi' => $item->Vacancy->pekerja,
             'status' => 'diterima'
         ]);
-        return redirect()->back()->with('sukses', 'Data Berhasil Di Perbarui');
+        return redirect()->route('approval')->with('sukses', 'Data Berhasil Di Perbarui');
     }
 
     /**
@@ -195,7 +195,7 @@ class ApprovalController extends Controller
         $item->delete();
         Mail::to($user->email)->send(new daftarTolak($datas));
 
-        return redirect()->back()->with('sukses', 'Data Berhasil Di Perbarui');
+        return redirect()->route('approval')->with('sukses', 'Data Berhasil Di Perbarui');
     }
 
     /**

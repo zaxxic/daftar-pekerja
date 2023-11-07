@@ -578,7 +578,7 @@
                         <div class="modal fade" id="acc-user-{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel1">
                             <div class="modal-dialog" role="document">
 
-                                <form action="{{ route('acc', ['id' => $item->id]) }}" method="POST" id="pesanTerima{{ $item->User->id }}">
+                                <form action="{{ route('acc', ['id' => $item->id]) }}" method="POST" id="pesanTerima{{ $item->id }}">
                                     @method('PATCH')
                                     @csrf
                                     <div class="modal-content">
@@ -608,13 +608,10 @@
                                                     <span style="color: red;">*</span></label>
                                                 <input type="text" class="form-control" id="Lokasi{{ $item->id }}" name="lokasi" />
                                                 <p class="text-danger fs-3" style="color: red; height:5px" id="errorLokasi{{ $item->id }}"></p>
-
-                                                <br>
-
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button onclick="Terima({{$item->User->id}})" type="button" class="btn btn-success">
+                                            <button onclick="Terima({{$item->id}})" type="button" class="btn btn-success">
                                                 Terima
                                             </button>
                                         </div>

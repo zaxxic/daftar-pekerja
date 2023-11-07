@@ -219,7 +219,7 @@ class PekerjaController extends Controller
         $data->delete();
         Mail::to($user->email)->send(new gagal($datas));
 
-        return redirect()->back()->with('sukses', 'Data Berhasil Di Perbarui');
+        return redirect()->route('pekerja')->with('sukses', 'Data Berhasil Di Perbarui');
     }
 
     // public function lulus($id)
@@ -288,7 +288,9 @@ class PekerjaController extends Controller
             'status' => 'lulus'
         ]);
 
-        return redirect()->back()->with('sukses', 'Data Berhasil Diperbarui');
+        $item->delete();
+
+        return redirect()->route('pekerja')->with('sukses', 'Data Berhasil Diperbarui');
     }
     /**
      * Remove the specified resource from storage.

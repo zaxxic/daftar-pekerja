@@ -49,8 +49,10 @@
         <div class="card w-100 position-relative overflow-hidden">
 
             <div class="card-body p-4">
-                <div v class="row">
-                    <div class="mb-3 d-flex justify-content-between col-md-12 lg-12">
+
+            <span style="color: #549bff;" class="fw-semibold fs-4">Pelamar</span><span class="fw-semibold fs-4">/ Ditolak</span>
+                <div class="row">
+                    <div class="mb-3 d-flex mt-5 justify-content-between col-md-12 lg-12">
 
                         <form action="">
                             @csrf

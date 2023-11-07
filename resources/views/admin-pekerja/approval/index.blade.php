@@ -9,10 +9,11 @@
 
         <div class="card-body p-4">
 
+            <span style="color: #549bff;" class="fw-semibold fs-4">Pelamar</span><span class="fw-semibold fs-4">/ Approval</span>
             <div class="row">
                 <div class="mb-3 d-flex justify-content-start col-md-6 lg-6">
                     <form action="">
-                        <div class="mb-3 d-flex mt-3 input-group">
+                        <div class="mb-3 d-flex mt-5 input-group">
                             <input type="search" class="form-control mt-0" name="cari" placeholder="Cari Pekerja..." style="height: 4%;" value="{{ $keyword }}">
                             <button type="submit" style="width: 40px; height:auto;  background-color:#549bff; border-radius: 0px 5px 5px 0px;" class="text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 21 21">
@@ -25,9 +26,9 @@
                         </div>
                     </form>
                 </div>
-                <div class="mb-3 d-flex justify-content-end col-md-6 lg-6 mt-3">
+                <div class="mb-3 mt-4 d-flex justify-content-end col-md-6 lg-6">
                     <form id="form_filter">
-                        <div class="mb-3 d-flex">
+                        <div class="mt-4 d-flex">
                             <select id="filter" name="filter" class="form-select me-3">
                                 <option value="">Semua</option>
                                 @foreach ($divisi as $item)
