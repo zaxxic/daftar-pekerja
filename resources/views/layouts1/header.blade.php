@@ -58,7 +58,7 @@
         </style>
         <ul class="navbar-nav quick-links d-none d-xl-flex">
             <li class="nav-item dropdown-hover d-none d-xl-block">
-                <a class="nav-link {{ request()->routeIs('dashboard-user') ? 'active1' : '' }}"
+                <a class="nav-link {{ request()->routeIs('dashboard-user') || request()->routeIs('detailLowongan') ? 'active1' : '' }}"
                     href="{{ route('dashboard-user') }}">Dashboard</a>
             </li>
             <li class="nav-item dropdown-hover d-none d-xl-block">
