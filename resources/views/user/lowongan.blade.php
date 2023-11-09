@@ -123,6 +123,14 @@
             height: 120px;
             /* Sesuaikan tinggi sesuai kebutuhan Anda */
         }
+
+        .employers-listing-area .nice-select {
+            width: 100%;
+            border-radius: 5px;
+            height: 29px;
+            margin-bottom: 30px;
+            border-color: #cccccc;
+        }
     </style>
 
     <!-- Start Page Title Area -->
@@ -149,14 +157,15 @@
     <section class="employers-listing-area ptb-100" style="direction: ltr;">
         <div class="container">
             <div class="row">
-                <label class="fs-5 fw-bold">Cari Berdasarkan Divisi :</label>
+
                 <div class="col-6 col-sm-12">
                     <div class="form-group">
-                        <form action="" class="search-form  d-flex">
-                            <div class="form-group  ">
-                                <div style="width: 200px"> <!-- Mengatur lebar form secara keseluruhan -->
+                        <form action="" class="search-form  row ">
+                            <div class="form-group  col-2" style="">
+                                <div style="width: 200px ">
+                                    <label class="fs-3 fw-bold">Cari Berdasarkan Divisi :</label>
                                     <select class="select2 " id="division-select" name="division"
-                                        style="width: 100%; height:  margin-right: 10px;">
+                                        style="width: 100%; margin-right: 10px; ">
                                         <!-- Mengatur width, height, dan margin -->
                                         <option value="" @if (!$selectedDivision) selected @endif>Semua
                                         </option>
@@ -169,11 +178,26 @@
                                     </select>
                                 </div>
                             </div>
-                            <button class="btn btn-primary text-center ms-2
-                            "
-                                style="height:30px">
-                                <p class="text-center" style="margin-top: -5px;"></p>Cari
-                            </button>
+                            <div class="form-group col-2 ">
+                                <div class="">
+                                    <label class="fs-3 fw-bold">Cari lowongan :</label> <br>
+                                    <input type="text" name="cari"
+                                        style="border:1px solid gray; height:28px; border-radius:5px; width:100%">
+                                </div>
+                            </div>
+                            <div class=" col-2 ">
+                                <div class="">
+                                    <label class="fs-3 fw-bold">Cari Tipe Pekerjaan :</label> <br>
+                                    <select class="" style="height: 5px" name="TipePekerjaan" id="">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-2 d-flex" style="align-items: center">
+                                <button class="btn btn-primary text-center ms-2   " style="height:30px">
+                                    <p class="text-center" style="margin-top: -5px;"></p>Cari
+                                </button>
+                            </div>
                             {{-- <button class="default-btn " type="submit"
                                 style="height: 15px; display: flex; align-items:;">
                                 <span style="font-size: 15px">Cari Divisi</span>
@@ -496,8 +520,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
         src="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ">
     </script>
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
