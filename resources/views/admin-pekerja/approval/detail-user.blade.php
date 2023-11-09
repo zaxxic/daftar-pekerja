@@ -846,10 +846,12 @@
                     <img src="{{ asset('assets/nodatas.png') }}" alt="" width="200px">
                 </div>`
                 @endforelse --}}
-                @if ($pelamarSama < 3) @else <div class="lihatSelengkapnya btn btn-primary w-100" style="cursor: pointer" id="LihatSelengkapnya">Lihat Selengkapnya
-            </div>
-            <div class="lihatSedikit btn btn-primary w-100" style="display: none" id="Lihatsedikit">Lihat Sedikit</div>
-            @endif
+                @if ($pelamarSama > 2) 
+                    <div class="lihatSelengkapnya btn btn-primary w-100" style="cursor: pointer" id="LihatSelengkapnya">Lihat Selengkapnya</div>
+                    <div class="lihatSedikit btn btn-primary w-100" style="display: none" id="Lihatsedikit">Lihat Sedikit</div>
+                @else 
+                
+                @endif
         </div>
 
     </div>
