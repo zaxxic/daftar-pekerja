@@ -50,6 +50,14 @@
             vertical-align: middle;
         }
 
+        .border {
+
+        }
+
+        .border.border::hover {
+
+        }
+
         @media (max-width: 600px) {
 
             .atas {
@@ -90,20 +98,20 @@
                             <ul class="log-in">
                                 @auth
                                     <li>
-                                        <a href="{{ route('login') }}">
+                                        <a href="{{ route('login') }}" style="padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 8px;">
                                             <i class="bx bxs-dashboard"></i>
                                             Dashboard
                                         </a>
                                     </li>
                                 @else
                                     <li>
-                                        <a href="{{ route('login') }}">
+                                        <a href="{{ route('login') }}" style="padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 8px;">
                                             <i class="bx bxs-lock"></i>
                                             Log In
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('register') }}">
+                                        <a href="{{ route('register') }}" style="padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 8px;">
                                             <i class="bx bxs-user"></i>
                                             Register
                                         </a>

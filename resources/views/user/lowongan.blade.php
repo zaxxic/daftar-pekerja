@@ -42,9 +42,7 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/logo.png">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Title -->
     <title>Lowongan-user</title>
@@ -150,7 +148,7 @@
     <!-- End Page Title Area -->
 
     @php
-        use Carbon\Carbon;
+    use Carbon\Carbon;
     @endphp
 
     <!-- Start Employers Listing Area -->
@@ -161,19 +159,17 @@
                 <div class="col-6 col-sm-12">
                     <div class="form-group">
                         <form action="" class="search-form  row ">
-                            <div class="form-group  col-2" style="">
-                                <div style="width: 200px ">
+                            <div class="form-group col-2" style="">
+                                <div>
                                     <label class="fs-3 fw-bold">Cari Berdasarkan Divisi :</label>
-                                    <select class="select2 " id="division-select" name="division"
-                                        style="width: 100%; margin-right: 10px; ">
+                                    <select class="select2 " id="division-select" name="division" style="width: 100%; margin-right: 10px; ">
                                         <!-- Mengatur width, height, dan margin -->
                                         <option value="" @if (!$selectedDivision) selected @endif>Semua
                                         </option>
                                         @foreach ($divisi as $item)
-                                            <option value="{{ $item->id }}"
-                                                @if ($selectedDivision == $item->id) selected @endif>
-                                                {{ $item->divisi }}
-                                            </option>
+                                        <option value="{{ $item->id }}" @if ($selectedDivision==$item->id) selected @endif>
+                                            {{ $item->divisi }}
+                                        </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -181,8 +177,7 @@
                             <div class="form-group col-2 ">
                                 <div class="">
                                     <label class="fs-3 fw-bold">Cari lowongan :</label> <br>
-                                    <input type="text" name="cari"
-                                        style="border:1px solid gray; height:28px; border-radius:5px; width:100%">
+                                    <input type="text" name="cari" style="border:1px solid gray; height:28px; border-radius:5px; width:100%">
                                 </div>
                             </div>
                             <div class=" col-2 ">
@@ -234,51 +229,83 @@
                 <div class="shorting">
                     <div class="row" id="card">
                         @forelse ($lowongan as $item)
-                            <div class="col-md-6 col-12 mix a s c" id="card2">
-                                <div class="hot-jobs-list col-12">
-                                    <div class="row align-items-center">
-                                        <div class="col-12">
+                        <div class="col-md-6 col-12 mix a s c" id="card2">
+                            <div class="hot-jobs-list col-12">
+                                <div class="row align-items-center">
+                                    <div class="col-12">
+                                        <a href="{{ route('detailLowongan', $item->id) }}">
                                             <div class="hot-jobs-content">
-                                                <div class="row d-flex justify-content-between" style="color: black">
-                                                    <h3 class="col-12 col-md-12 col-lg-6"><a
-                                                            href="">{{ $item->judul }}</a></h3>
-                                                    <p
-                                                        class="col-12 col-md-12 col-lg-6 tanggal justify-content-lg-end ">
-                                                        <span class="text-center text-md-left">Berakhir Pada
-                                                            Tanggal:
-                                                            {{ Carbon::parse($item->batas)->format('d M Y') }}</span>
+                                                <div class="row d-flex justify-content-between mb-3" style="color: black">
+                                                    <h4 class="col-12 col-md-12 col-xl-6 tengah">{{ $item->judul }}</h4>
+                                                    <p class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal  justify-content-lg-endcustom justify-content-xl-endcustom">
+                                                        @if($item->status)
+                                                        <span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}</span>
+                                                        @else
+                                                        <span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>
+                                                        @endif
                                                     </p>
                                                 </div>
-                                                <span
-                                                    class="sub-title text-primary mb-1">{{ $item->Division->divisi }}</span>
                                                 <ul>
-                                                    <li><span>Gaji
-                                                            :</span>{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}
-                                                    </li>
-                                                    <li><span>Slot Tersedia :</span>{{ $item->slot }}</li>
-                                                    <div class="row">
-                                                        <li class="col-12 col-md-12"><span>Tipe Kerja
-                                                                :</span>{{ $item->tipe }}</li>
-                                                        <li
-                                                            class="col-12 col-md-12 col-lg-12 d-flex justify-content-center justify-content-md-center justify-content-lg-end">
-                                                            <a href="{{ route('detailLowongan', $item->id) }}"
-                                                                class="text-white">
-                                                                <button class="default-btn">Detail</button>
-                                                            </a>
-                                                        </li>
-                                                    </div>
+                                                    <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">{{ $item->slot }}</span></li>
+                                                    <li class="fs-3"><span>Divisi : </span><span class="fw-medium">{{ $item->Division->divisi }}</span></li>
+                                                    <li class="fs-3"><span>Posisi : </span><span class="fw-medium">{{ $item->pekerja }}</span></li>
+                                                    <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">{{ $item->tipe }}</span></li>
+                                                    <hr>
                                                 </ul>
+                                            </div>
+                                        </a>
+                                        <div class="card-footer">
+                                            <div class="d-flex justify-content-between">
+
+                                                <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: {{ Carbon::parse($item->batas)->format('d F Y') }}</p>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                                </svg>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         @empty
-                            <div class="row">
-                                <div class="col-12 mt-5 text-center" id="lowongan">
-                                    <img src="{{ asset('assets/nodatas.png') }}" alt="" width="350px">
+                        <a href="{{ route('detailLowongan', $item->id) }}">
+                            <div class="hot-jobs-content">
+                                <div class="row d-flex justify-content-between mb-3" style="color: black">
+                                    <h4 class="col-12 col-md-12 col-xl-6 tengah">{{ $item->judul }}</h4>
+                                    <p class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal  justify-content-lg-endcustom justify-content-xl-endcustom">
+                                        <!-- <span class="text-center text-md-left">Berakhir Pada
+                                                            Tanggal:
+                                                            {{ Carbon::parse($item->batas)->format('d M Y') }}</span> -->
+                                        @if($item->status)
+                                        <span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}</span>
+                                        @else
+                                        <span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>
+                                        @endif
+                                    </p>
                                 </div>
+                                <ul>
+                                    <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">{{ $item->slot }}</span></li>
+                                    <li class="fs-3"><span>Divisi : </span><span class="fw-medium">{{ $item->Division->divisi }}</span></li>
+                                    <li class="fs-3"><span>Posisi : </span><span class="fw-medium">{{ $item->pekerja }}</span></li>
+                                    <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">{{ $item->tipe }}</span></li>
+                                    <hr>
+                                </ul>
                             </div>
+                        </a>
+                        <div class="card-footer">
+                            <div class="d-flex justify-content-between">
+
+                                <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: {{ Carbon::parse($item->batas)->format('d F Y') }}</p>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 mt-5 text-center" id="lowongan">
+                                <img src="{{ asset('assets/nodatas.png') }}" alt="" width="350px">
+                            </div>
+                        </div>
                         @endforelse
                         <div class="col-12">
                             <div class="pagination-area">
@@ -312,8 +339,7 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="single-footer-widget single-bg">
                                     <a class="logo" href="index.html">
-                                        <img width="180px" src="{{ asset('assets/hummatech.png') }}"
-                                            alt="logo">
+                                        <img width="180px" src="{{ asset('assets/hummatech.png') }}" alt="logo">
                                     </a>
                                     <p>Hummasoft merupakan sebuah perusahaan yang bergerak dibidang IT (Information
                                         Technology).</p>
@@ -330,8 +356,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="https://id.linkedin.com/in/hummasoft-technology-2476a8241"
-                                                target="_blank">
+                                            <a href="https://id.linkedin.com/in/hummasoft-technology-2476a8241" target="_blank">
                                                 <i class="bx bxl-linkedin-square"></i>
                                             </a>
                                         </li>
@@ -357,8 +382,7 @@
                                         <li class="mb-3" s>
                                             <i class="bx bx-envelope"></i>
                                             <span>Email:</span>
-                                            <a><span class="__cf_email__"
-                                                    data-cfemail="f098959c9c9fb09a859299de939f9d">hummatechcareer@gmail.com</span></a>
+                                            <a><span class="__cf_email__" data-cfemail="f098959c9c9fb09a859299de939f9d">hummatechcareer@gmail.com</span></a>
                                         </li>
                                         <li class="location">
                                             <i class="bx bx-location-plus"></i>
@@ -518,8 +542,7 @@
 
     <script src="assets1/js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script
-        src="
+    <script src="
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ">
     </script>

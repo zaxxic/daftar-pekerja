@@ -317,7 +317,7 @@
                             @endif
                         @endforeach
                         <div class="employer-widget">
-                            <h3>Detail Lowongan Perusahaan</h3>
+                            <h3 class="text-white">Detail Lowongan Perusahaan</h3>
                             <ul class="overview">
                                 <li class="row">
                                     <p class="  col-5"> Divisi</p>
@@ -340,7 +340,7 @@
                         </div>
 
                         <div class="employer-widget">
-                            <h3>Bagikan Lowongan Ini</h3>
+                            <h3 class="text-white">Bagikan Lowongan Ini</h3>
 
                             <ul class="social-icon">
                                 <li id="shareFacebook">

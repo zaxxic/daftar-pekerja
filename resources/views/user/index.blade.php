@@ -179,7 +179,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="employers-listing-sidebar">
-                        <h3>Cari Divisi</h3>
+                        <h4 class="text-white">Cari Divisi</h4>
 
                         <form class="search-form" action="{{ route('dashboard-filter') }}" method="POST">
                             @csrf
@@ -195,7 +195,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <button type="submit" class="default-btn">
+                            <button type="submit" class="btn btn-primary">
                                 Cari Divisi
                             </button>
                         </form>
@@ -218,8 +218,9 @@
 
                         #pp {
 
-                            border-top-right-radius: 30px;
-                            border-bottom-right-radius: 30px;
+                            /* border-top-right-radius: 30px;
+                            border-bottom-right-radius: 30px; */
+                            border-radius: 5px;
                             background-color: #fff;
                             box-shadow: 0px 10px 10px rgba(245, 246, 253, 1);
                         }
@@ -234,8 +235,8 @@
                             text-align: right;
                         }
                     </style>
-                    <div class="employers-listing-sidebar mt-5 mb-5 " id="pp">
-                        <h3>Lamaran Ditampung</h3>
+                    <div class="employers-listing-sidebar mt-5 mb-5" id="pp">
+                        <h4 class="text-white">Lamaran Ditampung</h4>
                         @forelse ($registration as $item)
                         <div class="col-lg-12 mt-3" id="lowongan">
                             <div class="d-flex justify-content-between mb-3">
@@ -295,12 +296,12 @@
                                     @else ($item->Vacancy->status === 'aktif')
                                     <li class="ml-auto" style="margin-left: 300px;">
                                         <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
-                                            <button class="btn btn-primary mb-4">
+                                            <button class="btn btn-primary mb-4" style="background-color: #2042e3">
                                                 Detail
                                             </button>
                                         </a>
                                     </li>
-                                    
+
                                     @endif
                                 </div>
                             </ul>
@@ -336,67 +337,72 @@
                     </div>
                 </div>
                 <div class="col-lg-8">
+                <div class="mb-4" style="border-bottom: 2px solid #5d87ff; width: 40%;">
+                        <h4 style="color: #5d87ff;">Lowongan Yang Didaftar</h4>
+                    </div>
                     <div class="shorting">
                         <div class="row">
                             @forelse ($registration as $item)
-                            <div class=" mix a s c " id="card2">
-                                <div class="hot-jobs-list col-md-12 border border-info col-12 col-lg-12">
-                                    <div class="row align-items-center ">
-                                        <div class="col-12 col-lg-12 ">
-                                            <div class="hot-jobs-content ">
-                                                <div class="row d-flex justify-content-between" style="color: black">
-                                                    <h3 class="col-12 col-md-12 col-xl-6 tengah"><a href="">{{ $item->Vacancy->judul }}</a></h3>
-                                                    <p class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal justify-content-lg-endcustom justify-content-xl-endcustom ">
-                                                        <span class="text-center text-md-left">Berakhir Pada
-                                                            Tanggal:
-                                                            {{ Carbon::parse($item->Vacancy->batas)->format('d M Y') }}</span>
-                                                    </p>
-                                                </div>
-                                                <span class="sub-title text-primary mb-1">{{ $item->Vacancy->Division->divisi }}</span>
-                                                <ul>
-                                                    <li><span>Gaji
-                                                            :</span>{{ 'Rp ' . number_format($item->Vacancy->gaji, 0, ',', '.') }}
-                                                    </li>
-                                                    <li><span>Slot Tersedia : </span>{{ $item->Vacancy->slot }}
-                                                    </li>
-                                                    @if (in_array($item->Vacancy->status, ['dihapus', 'nonaktif']))
-                                                    <li><span>Status Lowongan : </span>sudah tidak tersedia</li>
-                                                    @endif
-                                                    </li>
-                                                    <div class="row">
-                                                        <li class="col-12 col-md-12"><span>Tipe Kerja :
-                                                            </span>{{ $item->Vacancy->tipe }}</li>
-                                                        <li class="col-12 col-md-12 col-lg-12"><span>Status :
-                                                            </span>{{ $item->status }}</li>
-                                                        @if (in_array($item->Vacancy->status, ['dihapus', 'nonaktif']))
-                                                        @else
-                                                        <li class="col-12 col-md-12 col-lg-12 d-flex justify-content-center justify-content-md-center tengah justify-content-lg-endcustom justify-content-xl-end">
-                                                            <a href="{{ route('detailLowongan', $item->Vacancy->id) }}" class="text-white">
-                                                                <button class="default-btn">Detail</button>
-                                                            </a>
-                                                        </li>
-                                                        @endif
+                            <a href="{{ route('detailLowongan', $item->Vacancy->id) }}" id="card2">
 
+                                <div id="card2">
+                                    <div class="hot-jobs-list col-md-12 border border-info col-12 col-lg-12">
+                                        <div class="row align-items-center ">
+                                            <div class="col-12 col-lg-12 ">
 
+                                                <div class="hot-jobs-content ">
+                                                    <div class="row d-flex justify-content-between" style="color: black">
+                                                        <h4 class="col-12 col-md-12 col-xl-6 tengah">{{ $item->Vacancy->judul }}</h4>
+                                                        <p class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal justify-content-lg-endcustom justify-content-xl-endcustom ">
+                                                            <span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">{{ 'Rp ' . number_format($item->Vacancy->gaji, 0, ',', '.') }}</span>
+                                                        </p>
                                                     </div>
-                                                </ul>
+                                                    <span class="sub-title text-primary mb-1"></span>
+                                                    <ul>
+                                                        <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">{{ $item->Vacancy->slot }}</span>
+                                                        </li>
+                                                        @if (in_array($item->Vacancy->status, ['dihapus', 'nonaktif']))
+                                                        <li class="fs-3"><span>Status Lowongan : </span>sudah tidak tersedia</li>
+                                                        @endif
+                                                        </li>
+                                                        <li class="fs-3"><span>Divisi : </span><span class="fw-medium">{{ $item->Vacancy->Division->divisi }}</span></li>
+                                                        <li class="fs-3"><span>Posisi : </span><span class="fw-medium">{{ $item->Vacancy->pekerja }}</span></li>
+                                                        <li class="fs-3"><span>Tipe Kerja : </span><span class="fw-medium">{{ $item->Vacancy->tipe }}</span></li>
+
+                                                        <hr>
+                                                        <div class="d-flex">
+                                                            @if ($item->status === 'diterima')
+                                                            <span class="status bg-success" style="width: 79px;">{{ $item->status }}</span>
+                                                            @elseif($item->status === 'lulus')
+                                                            <span class="status bg-primary" style="width: 75px;">{{ $item->status }}</span>
+                                                            @else($item->status === 'menunggu')
+                                                            <span class="status bg-warning"><span>{{ $item->status }}</span></span>
+                                                            @endif
+                                                            <p class="ms-3 fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: {{ Carbon::parse($item->batas)->format('d F Y') }}</p>
+
+                                                        </div>
+                                                    </ul>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
 
                             @empty
                             @endforelse
-
                         </div>
                         <div class="row">
                             @forelse ($lowongan as $item)
-                            <div class=" mix a s c" id="card2">
+                            <div id="card2">
+                                <div class="mb-4" style="border-bottom: 2px solid #5d87ff; width: 33%;">
+                                    <h4 style="color: #5d87ff;">Lowongan Tersedia</h4>
+                                </div>
                                 <div class="hot-jobs-list col-md-12 col-12 col-lg-12">
                                     <div class="row align-items-center">
                                         <div class="col-12 col-lg-12">
-                                            <div class="hot-jobs-content">
+                                            <!-- <div class="hot-jobs-content">
                                                 <div class="row d-flex justify-content-between" style="color: black">
                                                     <h3 class="col-12 col-md-12 col-xl-6 tengah"><a href="">{{ $item->judul }}</a></h3>
                                                     <p class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal  justify-content-lg-endcustom justify-content-xl-endcustom">
@@ -421,11 +427,45 @@
                                                         </li>
                                                     </div>
                                                 </ul>
+                                            </div> -->
+                                            <a href="{{ route('detailLowongan', $item->id) }}">
+                                                <div class="hot-jobs-content">
+                                                    <div class="row d-flex justify-content-between mb-3" style="color: black">
+                                                        <h4 class="col-12 col-md-12 col-xl-6 tengah">{{ $item->judul }}</h4>
+                                                        <p class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal  justify-content-lg-endcustom justify-content-xl-endcustom">
+                                                            <!-- <span class="text-center text-md-left">Berakhir Pada
+                                                            Tanggal:
+                                                            {{ Carbon::parse($item->batas)->format('d M Y') }}</span> -->
+                                                            @if($item->status)
+                                                            <span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}</span>
+                                                            @else
+                                                            <span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>
+                                                            @endif
+                                                        </p>
+                                                    </div>
+                                                    <ul>
+                                                        <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">{{ $item->slot }}</span></li>
+                                                        <li class="fs-3"><span>Divisi : </span><span class="fw-medium">{{ $item->Division->divisi }}</span></li>
+                                                        <li class="fs-3"><span>Posisi : </span><span class="fw-medium">{{ $item->pekerja }}</span></li>
+                                                        <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">{{ $item->tipe }}</span></li>
+                                                        <hr>
+                                                    </ul>
+                                                </div>
+                                            </a>
+                                            <div class="card-footer">
+                                                <div class="d-flex justify-content-between">
+
+                                                    <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: {{ Carbon::parse($item->batas)->format('d F Y') }}</p>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                                    </svg>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
 
                             @empty
                             <div class="row">
