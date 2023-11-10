@@ -152,7 +152,7 @@ body {
 }
 
 .hot-jobs-list {
-  border-radius: 0 30px 0 30px;
+  border-radius: 5px;
 }
 
 .hot-jobs-list .featured {
@@ -686,12 +686,12 @@ body {
   right: auto;
 }
 
-.employers-listing-area .employers-listing-sidebar h3 {
-  border-radius: 0 30px 0 0;
+.employers-listing-area .employers-listing-sidebar h4 {
+  border-radius: 5px 5px 0 0;
 }
 
 .employers-listing-area .employers-listing-sidebar form {
-  border-radius: 0 0 30px 0;
+  border-radius: 0 0 5px 5px;
 }
 
 .employers-listing-area .hot-jobs-list .open-job {
@@ -699,15 +699,15 @@ body {
 }
 
 .employers-details-area .employers-details-sidebar .employer-widget h3 {
-  border-radius: 0 30px 0 0;
+  border-radius: 5px 5px 0 0;
 }
 
 .employers-details-area .employers-details-sidebar .employer-widget .social-icon {
-  border-radius: 0 0 0 30px;
+  border-radius: 0 0 5px 5px;
 }
 
 .employers-details-area .employers-details-sidebar .employer-widget .overview {
-  border-radius: 0 0 0 30px;
+  border-radius: 0 0 5px 5px;
 }
 
 .employers-details-area .employers-details-sidebar .employer-widget .contact-us {

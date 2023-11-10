@@ -536,7 +536,10 @@ Header Area Style
 }
 
 .top-header .header-right-content .log-in li a:hover {
-  color: #2042e3;
+  color: #ffffff;
+  padding: 5px 0px; /* Atur nilai padding sesuai kebutuhan */
+  background-color: #5d87ff; /* Atur warna dan ketebalan border sesuai kebutuhan */
+  border-radius: 5px; /* Atur radius border sesuai kebutuhan */
 }
 
 .top-header.top-header-two {
@@ -1914,7 +1917,7 @@ Hot Jobs Area Style
           box-shadow: 0px 5px 20px 3px rgba(230, 233, 249, 0.9);
   -webkit-transition: all ease 0.5s;
   transition: all ease 0.5s;
-  border-radius: 30px 0 30px 0;
+  border-radius: 5px;
   margin-bottom: 30px;
   position: relative;
   overflow: hidden;
@@ -5321,11 +5324,10 @@ Employers Listing Area Style
   padding-right: 0;
 }
 
-.employers-listing-area .employers-listing-sidebar h3 {
-  background-color: #f0f0fa;
+.employers-listing-area .employers-listing-sidebar h4 {
+  background-color: #5d87ff;
   padding: 15px 30px;
   border-radius: 30px 0 0 0;
-  font-size: 24px;
   margin-bottom: 0;
 }
 
@@ -5377,7 +5379,7 @@ Employers Details Area Style
           box-shadow: 0px 5px 20px 3px rgba(230, 233, 249, 0.9);
   padding: 30px;
   padding-bottom: 0;
-  border-radius: 30px 0 30px 0;
+  border-radius: 5px;
 }
 
 .employers-details-area .employers-details-content h3 {
@@ -5415,7 +5417,7 @@ Employers Details Area Style
 }
 
 .employers-details-area .employers-details-sidebar .employer-widget h3 {
-  background-color: #f0f0fa;
+  background-color: #5d87ff;
   padding: 15px 30px;
   border-radius: 30px 0 0 0;
   font-size: 20px;
