@@ -337,9 +337,12 @@
                     </div>
                 </div>
                 <div class="col-lg-8">
-                <div class="mb-4" style="border-bottom: 2px solid #5d87ff; width: 40%;">
-                        <h4 style="color: #5d87ff;">Lowongan Yang Didaftar</h4>
-                    </div>
+                    
+                    @if(count($registration) > 0)
+                        <div class="mb-4" style="border-bottom: 2px solid #5d87ff; width: 33%;">
+                            <h4 style="color: #5d87ff;">Lowongan Yang Tersedia</h4>
+                        </div>
+                    @endif
                     <div class="shorting">
                         <div class="row">
                             @forelse ($registration as $item)
@@ -393,12 +396,14 @@
                             @empty
                             @endforelse
                         </div>
+                        @if(count($lowongan) > 0)
+                        <div class="mb-4" style="border-bottom: 2px solid #5d87ff; width: 33%;">
+                            <h4 style="color: #5d87ff;">Lowongan Tersedia</h4>
+                        </div>
+                        @endif
                         <div class="row">
                             @forelse ($lowongan as $item)
                             <div id="card2">
-                                <div class="mb-4" style="border-bottom: 2px solid #5d87ff; width: 33%;">
-                                    <h4 style="color: #5d87ff;">Lowongan Tersedia</h4>
-                                </div>
                                 <div class="hot-jobs-list col-md-12 col-12 col-lg-12">
                                     <div class="row align-items-center">
                                         <div class="col-12 col-lg-12">
