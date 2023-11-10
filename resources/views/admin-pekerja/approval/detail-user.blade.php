@@ -600,14 +600,15 @@
                                                     <span style="color: red;">*</span></label>
                                                 <input type="datetime-local" class="form-control" id="Tanggal{{ $item->id }}" name="tanggal_wawancara" />
                                                 <p class="text-danger fs-3 mb-4" style="color: red; height:5px" id="error{{ $item->id }}"></p>
-
-                                                <small id="name" class="text-muted text-informasi text-white">Setelah Anda yakin, kirimkan tanggal untuk jadwal wawancara dengan pekerja.</small>
-                                                <br>
                                                 <label for="recipient-name" class="control-label mt-2" style="color: black;">Lokasi
                                                     Wawancara
                                                     <span style="color: red;">*</span></label>
                                                 <input type="text" class="form-control" id="Lokasi{{ $item->id }}" name="lokasi" />
                                                 <p class="text-danger fs-3" style="color: red; height:5px" id="errorLokasi{{ $item->id }}"></p>
+
+                                                <div style="background-color: #549bff; border-radius:2px; padding:5px; ">
+                                                    <small  class="text-muted  text-white" style="font-weight:bold">Setelah Anda yakin, kirimkan tanggal dan lokasi untuk jadwal wawancara dengan pelamar    </small>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -645,12 +646,12 @@
                                                 @error('pesan')
                                                 <small class="text-danger">{{ $message }}</small>
                                                 @enderror
-                                                <small id="name" class="text-muted text-informasi text-white">Masukkan alasan
-                                                    kenapa pekerja tersebut ditolak.</small>
+                                                <small id="name" class="text-muted text-white" style=" background-color: #549bff; border-radius:2px; padding:5px; font-weight:bold">Masukkan alasan
+                                                    kenapa pelamar tersebut ditolak.</small>
                                             </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button onclick="Tolak({{$item->User->id}})" type="button" class="btn btn-danger">
+                                        <button onclick="Tolak({{$item->id}})" type="button" class="btn btn-danger">
                                             Tolak
                                         </button>
                                     </div>
@@ -794,8 +795,7 @@
                                                 @error('pesan')
                                                 <small class="text-danger">{{ $message }}</small>
                                                 @enderror
-                                                <small id="name" class="text-muted text-informasi text-white">Masukkan alasan
-                                                    kenapa pekerja tersebut ditolak.</small>
+                                                <small id="name" class="text-muted text-white" style=" background-color: #549bff; border-radius:2px; padding:5px; font-weight:bold">Masukkan alasan kenapa pelamar tersebut tidak Anda luluskan.</small>
                                             </div>
                                     </div>
                                     <div class="modal-footer">
@@ -814,7 +814,7 @@
                 <div class="col-lg-12">
                     <div class="card mb-4" style="height: auto;">
                         <div class="card-header bg-info d-flex align-items-center">
-                            <h4 class="card-title text-white mb-0">User Mendaftar Lowongan Yang Sama</h4>
+                            <h4 class="card-title text-white mb-0">Pendaftar Mendaftar Lowongan Yang Sama</h4>
                         </div>
                         <div class="card-body p-4">
                             <div id="pelamarSama"></div>
@@ -846,12 +846,10 @@
                     <img src="{{ asset('assets/nodatas.png') }}" alt="" width="200px">
                 </div>`
                 @endforelse --}}
-                @if ($pelamarSama > 2) 
-                    <div class="lihatSelengkapnya btn btn-primary w-100" style="cursor: pointer" id="LihatSelengkapnya">Lihat Selengkapnya</div>
-                    <div class="lihatSedikit btn btn-primary w-100" style="display: none" id="Lihatsedikit">Lihat Sedikit</div>
-                @else 
-                
-                @endif
+                @if ($pelamarSama < 3) @else <div class="lihatSelengkapnya btn btn-primary w-100" style="cursor: pointer" id="LihatSelengkapnya">Lihat Selengkapnya
+            </div>
+            <div class="lihatSedikit btn btn-primary w-100" style="display: none" id="Lihatsedikit">Lihat Sedikit</div>
+            @endif
         </div>
 
     </div>
@@ -1497,7 +1495,7 @@
                     $.each(response.pelamarSama, function(index, item) {
                         // alert(item.user.id);
                         var id = item.user.id;
-                        var divisiHtml = `
+                        var userHtml = `
                                 <div class="mt-2 mb-4 d-flex justify-content-between">
                                     <div class="d-flex " style="width:100%; padding: 0">
                                             <div class="me-2"
@@ -1520,7 +1518,7 @@
                                         </div>
                                     </div>
                         `;
-                        $('#pelamarSama').append(divisiHtml);
+                        $('#pelamarSama').append(userHtml);
                     });
                 },
                 error: function(error) {
@@ -1556,7 +1554,7 @@
                     $.each(response.pelamarSama, function(index, item) {
                         // alert(item.user.id);
                         var id = item.user.id;
-                        var divisiHtml = `
+                        var userHtml = `
                                 <div class="mt-2 mb-4 d-flex justify-content-between">
                                     <div class="d-flex " style="width:100%; padding: 0">
                                             <div class="me-2"
@@ -1579,7 +1577,7 @@
                                         </div>
                                     </div>
                         `;
-                        $('#pelamarSama').append(divisiHtml);
+                        $('#pelamarSama').append(userHtml);
                     });
                 },
                 error: function(error) {

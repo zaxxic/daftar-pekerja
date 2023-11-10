@@ -236,18 +236,20 @@
                             <span style="color: red;">*</span></label>
                         <input type="datetime-local" class="form-control" id="Tanggal{{ $item->id }}" name="tanggal_wawancara" />
                         <p class="text-danger fs-3" id="error{{ $item->id }}"></p>
-                        <small id="name" class="text-muted text-informasi text-white">Setelah Anda yakin, kirimkan tanggal untuk jadwal wawancara dengan pekerja.</small>
                         <br>
                         <label for="recipient-name" class="control-label mt-2" style="color: black;">lokasi
                             Wawancara
                             <span style="color: red;">*</span></label>
                         <input type="text" class="form-control" id="Lokasi{{ $item->id }}" name="lokasi" />
                         <p class="text-danger fs-3" id="errorLokasi{{ $item->id }}"></p>
+                        <div style="background-color: #549bff; border-radius:2px; padding:5px; ">
+                            <small  class="text-muted  text-white" style="font-weight:bold">Setelah Anda yakin, kirimkan tanggal dan lokasi untuk jadwal wawancara dengan pelamar    </small>
+                        </div>
 
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button  onclick="Terima({{$item->User->id}})" type="button" class="btn btn-success">
+                    <button  onclick="Terima({{$item->id}})" type="button" class="btn btn-success">
                         Terima
                     </button>
                 </div>
@@ -271,14 +273,14 @@
                         yakin untuk menolak
                         {{ $item->User->name }}?</span>
                 </div>
-                <form action="/reject/{{ $item->User->id }}" method="POST" id="pesanTolak{{ $item->User->id }}">
+                <form action="/reject/{{ $item->id }}" method="POST" id="pesanTolak{{ $item->User->id }}">
                     @method('PATCH')
                     @csrf
                     <div class="mb-3">
                         <label for="message-text" class="control-label">Pesan <span style="color: red;">*</span></label>
                         <textarea class="form-control" id="pesan{{ $item->User->id }}" placeholder="Masukkan pesan" name="pesan"></textarea>
                         <p class="text-danger fs-3" id="errorTolak{{ $item->User->id }}"></p>
-                        <small id="name" class="text-muted text-informasi text-white">Masukkan alasan
+                        <small id="name" class="text-muted text-white" style=" background-color: #549bff; border-radius:2px; padding:5px; font-weight:bold">Masukkan alasan
                             kenapa pekerja tersebut ditolak.</small>
                     </div>
             </div>

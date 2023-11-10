@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-12 col-md-6">
                 <label class="mt-5" for="judul">Judul Lowongan </label> <br>
-                <input placeholder="Judul" class="col-12 col-md-10 rounded-1 form-control" type="text" name="judul" value="{{ $lowongan->judul }}" id="">
+                <input placeholder="Judul" class="col-12 col-md-10 rounded-1 form-control"  type="text" name="judul" value="{{ $lowongan->judul }}" id="">
                 @error('judul')
                 <p class="text-danger">{{ $message }}</p>
                 @enderror

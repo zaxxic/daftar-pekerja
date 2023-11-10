@@ -1,11 +1,8 @@
 
-
-
 @extends('layouts.app')
 @section('content')
-
     <div class="row ">
-        <div class="col-11 col-md-6 mx-3  my-2 rounded-2 col-lg-2 col-xl-2 py-3" style="background-color: #ECF2FF">
+        <div class="col-11 item col-md-6 mx-3  my-2 rounded-2 col-lg-2 col-xl-2 py-3" style="background-color: #ECF2FF">
             <div class="d-flex gap-2">
                 <div class="p-1 align-self-center rounded" style="background-color: #5D87FF">
                     <svg class="text-light" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
@@ -25,7 +22,7 @@
                 <span style="" class="fw-bold">{{ $menunggu }}</span>
             </div>
         </div>
-        <div class="col-11 col-md-5 mx-3  my-2 rounded-2 col-lg-2 col-xl-2 py-3" style="background-color: #E6FFFA">
+        <div class="col-11 item col-md-5 mx-3  my-2 rounded-2 col-lg-2 col-xl-2 py-3" style="background-color: #E6FFFA">
             <div class="d-flex gap-2">
                 <div class="p-1 align-self-center rounded" style="background-color: #13DEB9">
                     <!-- <svg class="text-light" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
@@ -48,7 +45,7 @@
                 <span style="" class="fw-bold">{{ $terima }}</span>
             </div>
         </div>
-        <div class="col-11 col-md-6 mx-3  my-2 rounded-2 col-lg-2 col-xl-2 py-3" style="background-color: #FBF2EF">
+        <div class="col-11 item col-md-6 mx-3  my-2 rounded-2 col-lg-2 col-xl-2 py-3" style="background-color: #FBF2EF">
             <div class="d-flex gap-2">
                 <div class="p-1 align-self-center rounded" style="background-color: #FA896B">
                     <!-- <svg class="text-light" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
@@ -72,7 +69,7 @@
                 <span style="" class="fw-bold">{{ $tolak }}</span>
             </div>
         </div>
-        <div class="col-11 col-md-5  mx-3  my-2 rounded-2 col-lg-2 col-xl-2 py-3" style="background-color: #E6FFFA">
+        <div class="col-11 item col-md-5  mx-3  my-2 rounded-2 col-lg-2 col-xl-2 py-3" style="background-color: #E6FFFA">
             <div class="d-flex gap-2">
                 <div class="p-1 align-self-center rounded" style="background-color: #67E6E6">
                     <!-- <svg class="text-light" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
@@ -95,7 +92,7 @@
                 <span style="" class="fw-bold">{{ $divisi }}</span>
             </div>
         </div>
-        <div class="col-11 col-md-6  mx-3  my-2  rounded-2 col-lg-2 col-xl-2 py-3" style="background-color: #ECF2FF">
+        <div class="col-11 item col-md-6  mx-3  my-2  rounded-2 col-lg-2 col-xl-2 py-3" style="background-color: #ECF2FF">
             <div class="d-flex gap-2">
                 <div class="p-1 align-self-center rounded" style="background-color: #6d5dff">
                     <!-- <svg class="text-light" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
@@ -142,6 +139,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.44.0/apexcharts.min.js" integrity="sha512-9ktqS1nS/L6/PPv4S4FdD2+guYGmKF+5DzxRKYkS/fV5gR0tXoDaLqqQ6V93NlTj6ITsanjwVWZ3xe6YkObIQQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <!-- Year Picker Js -->
         <script src="{{asset('assets/dist/js/yearpicker.js')}}"></script>
+        <script src="{{asset('assets/dist/libs/owl.carousel/dist/owl.carousel.min.js')}}"></script>
+
        <script>
 
         var inputan = @json($keyword);

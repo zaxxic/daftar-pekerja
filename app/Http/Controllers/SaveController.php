@@ -30,6 +30,10 @@ class SaveController extends Controller
 
         } else if ($request->has('filter')) {
             $keyword = $request->filter;
+            // dd($keyword);
+            if ($keyword === null){
+                return redirect()->back();
+            };
             $data = Registration::whereHas('user', function ($query) use ($keyword) {
                 $query->where('devision_id', 'LIKE', '%' . $keyword . '%');
             })->whereHas('vacancy', function ($query) {
@@ -57,7 +61,7 @@ class SaveController extends Controller
     public function save($id) {
         // dd($id);
         $data = Registration::FindOrFail($id);
-        
+
         $data->Update([
             'status2'=> 'save'
         ]);

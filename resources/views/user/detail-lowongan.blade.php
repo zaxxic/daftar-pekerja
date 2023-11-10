@@ -242,6 +242,7 @@
                                                             <button type="button" class="btn btn-primary"
                                                                 style="background-color: #2042e3" id="Diterima"
                                                                 class="kembalii">Diterima</button>
+
                                                         @else
                                                             <button type="button" class="btn btn-primary"
                                                                 style="background-color: #2042e3" id="Diterima"
@@ -670,7 +671,7 @@
                                 url: url,
                                 data: {
                                     id: formData,
-                                },  
+                                },
                                 success: function(response) {
                                     if (response.status === 'sukses') {
                                         swalWithBootstrapButtons.fire({

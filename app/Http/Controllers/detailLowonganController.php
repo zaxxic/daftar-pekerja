@@ -143,6 +143,10 @@ class DetailLowonganController extends Controller
             }
         }else{
             $status = 'belum';
+            if(Auth()->user()->status === 'lulus'){
+                $status = 'lulus';
+            };
+            // dd($status);
         }
         // if ($registrations->status === 'menunggu') {
         //     $registrations = Registration::where('users_id', $loggedInUser->id)

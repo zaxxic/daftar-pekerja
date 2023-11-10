@@ -10,6 +10,7 @@ use App\Models\Registration;
 use App\Models\Rejected;
 use App\Models\User;
 use App\Models\Vacancy;
+use App\Models\Worker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -26,31 +27,26 @@ class PekerjaLulusController extends Controller
 
         if ($request->has('cari')) {
             $keyword = $request->cari;
-            $user = Registration::whereHas('user', function ($query) use ($keyword) {
+            $user = Worker::whereHas('user', function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', '%' . $keyword . '%');
-            })->whereHas('vacancy', function ($query) {
-                $query->where('status', '=', 'aktif'); // Filter berdasarkan status lowongan 'aktif'
-            })->whereIn('status', ['lulus'])
-                ->paginate(8);
+            })->paginate(8);
 
             $user->appends(['cari' => $keyword]);
         } else if ($request->has('filter')) {
             $keyword = $request->filter;
-            $user = Registration::whereHas('user', function ($query) use ($keyword) {
-                $query->where('devision_id', 'LIKE', '%' . $keyword . '%');
-            })->whereHas('vacancy', function ($query) {
-                $query->where('status', '=', 'aktif'); // Filter berdasarkan status lowongan 'aktif'
-            })->whereIn('status', ['lulus'])
-                ->paginate(8);
+            $datadivisi = Division::find($keyword);
+            if ($datadivisi != null){
+                $user = Worker::where('divisi', $datadivisi->divisi)
+                    ->paginate(8);
+                }else{
+                $user = Worker::paginate(8);
+                }
 
             $value_filter = $keyword;
             $user->appends(['filter' => $keyword]);
             $keyword = "";
         } else {
-            $user = Registration::whereHas('vacancy', function ($query) {
-                $query->whereIn('status', ['nonaktif', 'aktif']); // Filter berdasarkan status lowongan 'aktif'
-            })->whereIn('status', ['lulus'])
-                ->paginate(8);
+            $user = Worker::paginate(8);
         }
         // dd($user);
 
@@ -106,8 +102,9 @@ class PekerjaLulusController extends Controller
         // $user = User::find($id);
         // dd($user);
 
-        $data = Registration::FindOrFail($id);
+        $data = Worker::FindOrFail($id);
         $user = User::findOrFail($data->users_id);
+        // dd($user);
         $pesan = $request->pesan;
 
         // $pesan = new Message([
@@ -120,16 +117,16 @@ class PekerjaLulusController extends Controller
         ]);
 
         // $data = Registration::with('vacancy')->find($id);
-        $vacancy =  Vacancy::findOrFail($data->vacancie_id);
+        // $vacancy =  Vacancy::findOrFail($data->vacancie_id);
         $data->delete();
         $datas =   [
             'nama' => $data->name,
-            'lowongan' => $vacancy->judul,
-            'divisi' => $vacancy->Division->divisi,
-            'posisi' => $vacancy->pekerja,
+            // 'lowongan' => $vacancy->judul,
+            'divisi' => $data->divisi,
+            'posisi' => $data->posisi,
             'pesan' => $pesan,
             'status' => "nonaktif",
-            'judul' => " Anda di nonkatifkan karena alasan " . $request->pesan . " dan anda bisa daftar di lowongan lainnya"
+            'judul' => " Anda di pecat karena alasan " . $request->pesan .""
         ];
 
         Mail::to($user->email)->send(new pecat($datas));

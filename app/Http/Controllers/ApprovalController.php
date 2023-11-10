@@ -45,12 +45,13 @@ class ApprovalController extends Controller
             })->whereIn('status', ['menunggu'])
                 ->paginate(8);
                 $user->appends(['cari' => $keyword]);
-                dd($user);
+                // dd($user);
 
         } else if ($request->has('filter')) {
             $keyword = $request->filter;
-            $user = Registration::whereHas('user', function ($query) use ($keyword) {
-                $query->where('devision_id', 'LIKE', '%' . $keyword . '%');
+            // $dataDivisi = Division::find($keyword);
+            $user = Registration::whereHas('vacancy', function ($query) use ($keyword) {
+                $query->where('vacancie_id', 'LIKE', '%' . $keyword . '%');
             })->whereHas('vacancy', function ($query) {
                 $query->where('status', '=', 'aktif'); // Filter berdasarkan status lowongan 'aktif'
             })->whereIn('status', ['menunggu'])
@@ -213,8 +214,8 @@ class ApprovalController extends Controller
         $school = School::where('user_id', $data->id)->get();
         $certificate = Certificate::where('user_id', $data->id)->get();
         $lowongan = Registration::where('users_id', $data->id)->get();
-        $pelamarSama = Registration::whereNotIn('users_id', [$data->id])->count();
-        
+        $pelamarSama = Registrat,                                                                                                                                    ion::whereNotIn('users_id', [$data->id])->count();
+
         return view('admin-pekerja.approval.detail-user', compact('data', 'experience', 'skill', 'school', 'certificate', 'lowongan','pelamarSama'));
     }
 

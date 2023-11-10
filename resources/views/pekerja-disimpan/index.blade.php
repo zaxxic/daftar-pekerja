@@ -27,7 +27,7 @@
                     </form>
                 </div>
                 <div class="mb-3 d-flex justify-content-end col-md-6 lg-6 mt-3">
-                    <form id="form_filter">
+                    {{-- <form id="form_filter">
                         <div class="mb-3 d-flex">
                             <select id="filter" name="filter" class="form-select me-3">
                                 <option value="">Semua</option>
@@ -36,7 +36,7 @@
                             </select>
                             <button class="btn btn-primary" style="height: 4%; width: 40%;" type="submit">Cari</button>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
 
             </div>
@@ -86,7 +86,7 @@
                             <td>
                                 <a href="{{ route('user.cv', ['id' => $item->User->id]) }}" class="btn btn-primary">CV</a>
                             </td>
-                            <td class="d-flex">
+                            <td class="d-flex" style="border: none">
                                 <form action="BatalSimpan/{{ $item->id }}" method="post" id="BatalSimpan{{ $item->id }}">
                                     @csrf
                                     @method('PATCH')

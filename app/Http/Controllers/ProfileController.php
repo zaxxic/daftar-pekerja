@@ -14,7 +14,9 @@ use App\Http\Requests\SchoolEdit;
 use App\Models\Certificate;
 use App\Models\Registration;
 use App\Models\School;
+use App\Models\Division;
 use App\Models\Vacancy;
+use App\Models\Worker;
 
 class ProfileController extends Controller
 {
@@ -24,10 +26,12 @@ class ProfileController extends Controller
         $skill = Skill::where('user_id', $user->id)->get();
         $experience = Experience::where('user_id', $user->id)->get();
         $School = School::where('user_id', Auth()->user()->id)->get();
-        $lowongan = Vacancy::where('status', 'aktif')->get();
+
         $Pendaftaran = Registration::where('users_id', Auth()->User()->id)->get();
         $certificate = Certificate::where('user_id', $user->id)->get();
-        $wsds = null;
+        $worker = Worker::where('users_id', $user->id)->first();
+        // $wsds = null;
+        $lowongan = Vacancy::where('status', 'aktif')->count();
         $progesBar = [
             'dataUser' => $user,
             'FotoDanFile' => (
@@ -52,7 +56,16 @@ class ProfileController extends Controller
 
 
 
-        return view('user.profile-user', compact('user', 'skill', 'experience','School','lowongan','Pendaftaran','certificate','jumlahData'));
+        return view('user.profile-user', compact('user', 'skill', 'experience','School','lowongan','Pendaftaran','certificate','jumlahData','worker'));
+    }
+
+    public function lowonganProfile() {
+        $lowongan = Vacancy::where('status', 'aktif')->with('Division')->limit(2)->get();
+        return response()->json(['lowongan'=>$lowongan]);
+    }
+    public function LihatlowonganProfile() {
+        $lowongan = Vacancy::where('status', 'aktif')->with('Division')->get();
+        return response()->json(['lowongan'=>$lowongan]);
     }
 
     function profileuser()
