@@ -40,4 +40,8 @@ class  Vacancy extends Model
     {
         return $this->hasMany(Rejected::class);
     }
+    public function VacancySave()
+    {
+        return $this->hasMany(VacancieSave::class);
+    }
 }

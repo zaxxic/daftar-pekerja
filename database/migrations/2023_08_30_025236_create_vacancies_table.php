@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('batas');
             $table->string('pekerja');
             $table->string('slot');
-            $table->string('gaji');
+            $table->string('gaji')->nullable();
             $table->enum('tipe',['kontrak','permanen']);
             $table->longText('lokasi');
             $table->longText('syarat');

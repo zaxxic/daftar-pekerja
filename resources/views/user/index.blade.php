@@ -461,9 +461,25 @@
                                                 <div class="d-flex justify-content-between">
 
                                                     <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: {{ Carbon::parse($item->batas)->format('d F Y') }}</p>
+                                                    @if ($simpan)
+                                                    <form action="simpan-lowongan/{{ $item->id }}" method="post">
+                                                        @method('PATCH')
+                                                        @csrf
+                                                    <button type="submit" style="background-color: transparent;">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
                                                         <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
                                                     </svg>
+                                                    </button>
+                                                    </form>
+                                                    @else
+                                                    <form action="batal-lowongan/{{ $item->id }}" method="post">
+                                                        @method('PATCH')
+                                                        @csrf
+                                                    <button type="submit" style="background-color: transparent;">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M17 11v6.97l-5-2.14l-5 2.14V5h6V3H7c-1.1 0-2 .9-2 2v16l7-3l7 3V11h-2zm4-4h-6V5h6v2z"/></svg>
+                                                    </button>
+                                                    </form>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
