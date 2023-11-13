@@ -30,14 +30,7 @@ class VacancieSaveController extends Controller
      */
     public function store(Request $request, $id)
     {
-        $user = Auth::user();
-        $vacancie = Vacancy::findOrFail($id);
-        VacancieSave::create([
-            'user_id' => $user->id,
-            'vacancie_id' => $vacancie->id
-        ]);
-
-        return redirect()->back()->with('seuccess', 'lowongan berhasi disimpan');
+        
     }
 
     /**
@@ -61,7 +54,14 @@ class VacancieSaveController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = Auth::user();
+        $vacancie = Vacancy::findOrFail($id);
+        VacancieSave::create([
+            'user_id' => $user->id,
+            'vacancie_id' => $vacancie->id
+        ]);
+
+        return redirect()->back()->with('seuccess', 'lowongan berhasi disimpan');
     }
 
     /**
