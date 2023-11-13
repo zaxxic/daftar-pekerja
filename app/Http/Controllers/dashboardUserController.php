@@ -7,6 +7,7 @@ use App\Models\Division;
 use App\Models\Register;
 use App\Models\Registration;
 use App\Models\User;
+use App\Models\VacancieSave;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Vacancy;
 use Carbon\Carbon;
@@ -44,10 +45,8 @@ class DashboardUserController extends Controller
         ->paginate(5);
     };
 
+    $simpan = VacancieSave::where('user_id', Auth()->user()->id)->get();
 
-
-
-    // Menonaktifkan lowongan yang sudah melewati tanggal batasnya (deadline)
     $data = Vacancy::where('status', 'aktif')
         ->whereDate('batas', '<', Carbon::today())
         ->get();
@@ -61,7 +60,7 @@ class DashboardUserController extends Controller
 
     $cek = Vacancy::where('status', 'aktif')->count();
 
-    return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration', 'cek', 'user'));
+    return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration', 'cek', 'user', 'simpan'));
 }
 
 

@@ -155,11 +155,10 @@
     <section class="employers-listing-area ptb-100" style="direction: ltr;">
         <div class="container">
             <div class="row">
-
-                <div class="col-6 col-sm-12">
+                <div class="col-12 col-sm-12">
                     <div class="form-group">
                         <form action="" class="search-form  row ">
-                            <div class="form-group col-2" style="">
+                            <div class="form-group col-7 col-lg-2" style="">
                                 <div>
                                     <label class="fs-3 fw-bold">Cari Berdasarkan Divisi :</label>
                                     <select class="select2 " id="division-select" name="division" style="width: 100%; margin-right: 10px; ">
@@ -174,13 +173,13 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group col-2 ">
+                            <div class="form-group col-5 ">
                                 <div class="">
                                     <label class="fs-3 fw-bold">Cari lowongan :</label> <br>
                                     <input type="text" name="cari" style="border:1px solid gray; height:28px; border-radius:5px; width:100%">
                                 </div>
                             </div>
-                            <div class=" col-2 ">
+                            <div class=" col-12 ">
                                 <div class="">
                                     <label class="fs-3 fw-bold">Cari Tipe Pekerjaan :</label> <br>
                                     <select class="" style="height: 5px" name="TipePekerjaan" id="">
@@ -188,7 +187,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-2 d-flex" style="align-items: center">
+                            <div class="col-12 d-flex" style="align-items: center">
                                 <button class="btn btn-primary text-center ms-2   " style="height:30px">
                                     <p class="text-center" style="margin-top: -5px;"></p>Cari
                                 </button>

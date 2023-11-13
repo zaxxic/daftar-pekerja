@@ -214,7 +214,7 @@ class ApprovalController extends Controller
         $school = School::where('user_id', $data->id)->get();
         $certificate = Certificate::where('user_id', $data->id)->get();
         $lowongan = Registration::where('users_id', $data->id)->get();
-        $pelamarSama = Registrat,                                                                                                                                    ion::whereNotIn('users_id', [$data->id])->count();
+        $pelamarSama = Registration::whereNotIn('users_id', [$data->id])->count();
 
         return view('admin-pekerja.approval.detail-user', compact('data', 'experience', 'skill', 'school', 'certificate', 'lowongan','pelamarSama'));
     }

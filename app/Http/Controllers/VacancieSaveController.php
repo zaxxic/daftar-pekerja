@@ -14,7 +14,9 @@ class VacancieSaveController extends Controller
      */
     public function index()
     {
-        //
+        // return Auth()->user()->id;
+        $simpan =  VacancieSave::where('user_id', Auth()->user()->id)->get();
+        return response()->json(['simpan' => $simpan]);
     }
 
     /**
@@ -30,7 +32,6 @@ class VacancieSaveController extends Controller
      */
     public function store(Request $request, $id)
     {
-        
     }
 
     /**
@@ -56,10 +57,20 @@ class VacancieSaveController extends Controller
     {
         $user = Auth::user();
         $vacancie = Vacancy::findOrFail($id);
-        VacancieSave::create([
-            'user_id' => $user->id,
-            'vacancie_id' => $vacancie->id
-        ]);
+        $cek = VacancieSave::where('user_id', auth()->user()->id)
+            ->where('vacancie_id', $id)
+            ->first();
+        if ($cek) {
+            $cek->delete();
+            return response()->json(['suksesBatal' => 'batal simpan']);
+        } else {
+
+            VacancieSave::create([
+                'user_id' => $user->id,
+                'vacancie_id' => $vacancie->id
+            ]);
+        }
+
 
         return response()->json(['success' => 'Lowongan berhasil disimpan']);
     }

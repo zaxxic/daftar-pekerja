@@ -143,7 +143,7 @@
 
                                 <div class="col-lg-8 col-md-8 col-7 ">
                                     <div class="mt-n5">
-                                        <div class="d-flex ms-5 mb-2">
+                                        <div class="d-flex ms-3 ms-lg-5 mb-2">
                                             <div class="tepi  d-flex align-items-center justify-content-center rounded-circle"
                                                 style="background-color:#5d87ff">
                                                 <div class="  dalam  border border-4 border-white d-flex align-items-center justify-content-center rounded-circle overflow-hidden"
