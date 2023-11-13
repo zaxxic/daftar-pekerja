@@ -337,11 +337,11 @@
                     </div>
                 </div>
                 <div class="col-lg-8">
-                    
+
                     @if(count($registration) > 0)
-                        <div class="mb-4" style="border-bottom: 2px solid #5d87ff; width: 33%;">
-                            <h4 style="color: #5d87ff;">Lowongan Yang Tersedia</h4>
-                        </div>
+                    <div class="mb-4" style="border-bottom: 2px solid #5d87ff; width: 33%;">
+                        <h4 style="color: #5d87ff;">Lowongan Yang Tersedia</h4>
+                    </div>
                     @endif
                     <div class="shorting">
                         <div class="row">
@@ -407,32 +407,6 @@
                                 <div class="hot-jobs-list col-md-12 col-12 col-lg-12">
                                     <div class="row align-items-center">
                                         <div class="col-12 col-lg-12">
-                                            <!-- <div class="hot-jobs-content">
-                                                <div class="row d-flex justify-content-between" style="color: black">
-                                                    <h3 class="col-12 col-md-12 col-xl-6 tengah"><a href="">{{ $item->judul }}</a></h3>
-                                                    <p class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal  justify-content-lg-endcustom justify-content-xl-endcustom">
-                                                        <span class="text-center text-md-left">Berakhir Pada
-                                                            Tanggal:
-                                                            {{ Carbon::parse($item->batas)->format('d M Y') }}</span>
-                                                    </p>
-                                                </div>
-                                                <span class="sub-title text-primary mb-1">{{ $item->Division->divisi }}</span>
-                                                <ul>
-                                                    <li><span>Gaji
-                                                            :</span>{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}
-                                                    </li>
-                                                    <li><span>Slot Tersedia : </span>{{ $item->slot }}</li>
-                                                    <div class="row ">
-                                                        <li class="col-12 col-md-12"><span>Tipe Kerja :
-                                                            </span>{{ $item->tipe }}</li>
-                                                        <li class="col-12 col-md-12 col-lg-12 d-flex justify-content-center justify-content-md-center tengah justify-content-lg-endcustom justify-content-xl-end">
-                                                            <a href="{{ route('detailLowongan', $item->id) }}" class="text-white">
-                                                                <button class="default-btn">Detail</button>
-                                                            </a>
-                                                        </li>
-                                                    </div>
-                                                </ul>
-                                            </div> -->
                                             <a href="{{ route('detailLowongan', $item->id) }}">
                                                 <div class="hot-jobs-content">
                                                     <div class="row d-flex justify-content-between mb-3" style="color: black">
@@ -461,25 +435,23 @@
                                                 <div class="d-flex justify-content-between">
 
                                                     <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: {{ Carbon::parse($item->batas)->format('d F Y') }}</p>
-                                                    @if ($simpan)
-                                                    <form action="simpan-lowongan/{{ $item->id }}" method="post">
+                                                    <form id="saveForm" action="simpan-lowongan/{{ $item->id }}" method="post">
                                                         @method('PATCH')
                                                         @csrf
-                                                    <button type="submit" style="background-color: transparent;">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-                                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
-                                                    </svg>
-                                                    </button>
+                                                        <button type="button" id="simpan" style="background-color: transparent;">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                                            </svg>
+                                                        </button>
                                                     </form>
-                                                    @else
-                                                    <form action="batal-lowongan/{{ $item->id }}" method="post">
+
+                                                    <!-- <form action="batal-lowongan/{{ $item->id }}" method="post">
                                                         @method('PATCH')
                                                         @csrf
                                                     <button type="submit" style="background-color: transparent;">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M17 11v6.97l-5-2.14l-5 2.14V5h6V3H7c-1.1 0-2 .9-2 2v16l7-3l7 3V11h-2zm4-4h-6V5h6v2z"/></svg>
                                                     </button>
-                                                    </form>
-                                                    @endif
+                                                    </form> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -748,6 +720,25 @@
     @endif
     <script>
         $(document).ready(function() {
+        $('#simpan').on('click', function() {
+            var formUrl = $('#saveForm').attr('action');
+            $.ajax({
+                url: formUrl,
+                type: 'PATCH',
+                data: $('#saveForm').serialize(),
+                success: function(response) {
+                    console.log(response.success);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+    </script>
+
+    <script>
+        $(document).ready(function() {
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -794,8 +785,6 @@
                                         let kosong = `<div> <div>`;
                                         $('#lowongan').append(kosong);
                                     });
-
-
                                 }
                                 console.log(response);
 

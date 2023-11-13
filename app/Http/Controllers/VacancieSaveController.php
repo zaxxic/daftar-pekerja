@@ -61,7 +61,7 @@ class VacancieSaveController extends Controller
             'vacancie_id' => $vacancie->id
         ]);
 
-        return redirect()->back()->with('seuccess', 'lowongan berhasi disimpan');
+        return response()->json(['success' => 'Lowongan berhasil disimpan']);
     }
 
     /**
