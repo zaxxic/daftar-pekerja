@@ -478,12 +478,12 @@
                                                         <p class="fs-3" style="color: #7c8fac;">Berakhir Pada
                                                             Tanggal: {{ Carbon::parse($item->batas)->format('d F Y') }}
                                                         </p>
-                                                        <form id="saveForm"
+                                                        <form id="saveForm{{ $item->id }}"
                                                             action="simpan-lowongan/{{ $item->id }}"
                                                             method="post">
                                                             @method('PATCH')
                                                             @csrf
-                                                            <button type="button" id="simpan"
+                                                            <button type="button"  id="simpan{{$item->id}}" onclick="Simpan('{{$item->id}}')"
                                                                 style="background-color: transparent;"
                                                                 class="buttonSimpan" data-vacancie-id="{{$item->id}}">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="25"
@@ -769,36 +769,60 @@
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: '{{ session('
-                                                            tidakAda ') }}'
+                text: '{{ session('tidakAda ') }}',
             });
         </script>
     @endif
     <script>
         $(document).ready(function() {
-            $('#simpan').on('click', function() {
-                var formUrl = $('#saveForm').attr('action');
-                $.ajax({
-                    url: formUrl,
-                    type: 'PATCH',
-                    data: $('#saveForm').serialize(),
-                    success: function(response) {
 
-                        if (response.suksesBatal) {
-                            alert('berhasil batal');
-                            $('#simpan').removeClass('text-info');
-                        } else {
-                            $('#simpan').addClass('text-info');
-                            alert('berhasil simpan');
-                        }
-                        // console.log(response.success);
-                    },
-                    error: function(error) {
-                        console.log(error);
-                    }
-                });
-            });
+            // $('.simpan').on('click', function() {
+            //     var formUrl = $('#saveForm').attr('action');
+            //     $.ajax({
+            //         url: formUrl,
+            //         type: 'PATCH',
+            //         data: $('#saveForm').serialize(),
+            //         success: function(response) {
+
+            //             if (response.suksesBatal) {
+            //                 alert('berhasil batal');
+            //                 $('#simpan').removeClass('text-info');
+            //             } else {
+            //                 $('#simpan').addClass('text-info');
+            //                 alert('berhasil simpan');
+            //             }
+            //             // console.log(response.success);
+            //         },
+            //         error: function(error) {
+            //             console.log(error);
+            //         }
+            //     });
+            // });
         });
+
+        function Simpan(id) {
+            // alert(id);
+            var formUrl = $('#saveForm'+id).attr('action');
+            $.ajax({
+                url: formUrl,
+                type: 'PATCH',
+                data: $('#saveForm'+id).serialize(),
+                success: function(response) {
+
+                    if (response.suksesBatal) {
+                        // alert('berhasil batal');
+                        $('#simpan'+id).removeClass('text-info');
+                    } else {
+                        $('#simpan'+id).addClass('text-info');
+                        // alert('berhasil simpan');
+                    }
+                    // console.log(response.success);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
     </script>
 
     <script>

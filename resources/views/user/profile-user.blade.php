@@ -1949,6 +1949,54 @@
                             <div class="card-header bg-info d-flex align-items-center">
                                 <h4 class="card-title text-white mb-0">Lowongan</h4>
                             </div>
+                                <div
+                                    style="padding-left: 20px; padding-right: 20px; padding-top: 10px; padding bottom: 10px;">
+                                    <div class="d-flex justify-content-between px-2 py-1 rounded">
+                                        <div class="d-flex">
+                                            <div>
+                                                <h5 for="exampleInputPassword1" class="fw-semibold mb-2"
+                                                    style="margin-bottom: 0">
+                                                    {{-- {{ $data->judul }} --}}
+                                                </h5>
+                                                <p for="exampleInputPassword1" class="mb-2"
+                                                    style="margin-bottom: 0">
+                                                    Tenggat Lowongan :
+                                                    {{-- {{ \Carbon\Carbon::parse($data->batas)->locale('id')->isoFormat('D MMM Y ') }} --}}
+                                                </p>
+                                                <p for="exampleInputPassword1" class="mb-2"
+                                                    style="margin-bottom: 0">
+                                                    Divisi : <span
+                                                        style="color: #5d87ff">
+                                                        {{-- {{ $data->Division->divisi }} --}}
+                                                    </span>
+                                                </p>
+                                                <p for="exampleInputPassword1" class="mb-2"
+                                                    style="margin-bottom: 0">
+                                                    {{-- Posisi : {{ $data->pekerja }} --}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="margin-top: 10px;">
+                                </div>
+
+
+
+                            @if ($lowongan < 3)
+
+                            @else
+                            <div class="lihatSelengkapnya btn btn-primary w-100" style="cursor: pointer" id="LihatSelengkapnya">Lihat Selengkapnya
+                            </div>
+                            <div class="lihatSedikit btn btn-primary w-100" style="display: none" id="Lihatsedikit">Lihat Sedikit</div>
+                            @endif
+
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="card position-relative overflow-hidden mb-4" style="height: auto;">
+                            <div class="card-header bg-info d-flex align-items-center">
+                                <h4 class="card-title text-white mb-0">Lowongan</h4>
+                            </div>
                             <div id="lowonganAktif"></div>
                             {{-- @forelse ($lowongan as $data)
                                 <div
@@ -1996,6 +2044,7 @@
 
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -2021,6 +2070,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="{{ asset('assets/dist/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
@@ -2938,6 +2988,67 @@
                         console.log(error);
                     }
                 });
+            });
+        });
+    </script>
+     <script>
+        $(document).ready(function() {
+            // alert('Please wait');
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var url = "{{route('LowonganAktif')}}";
+            $.ajax({
+                type: 'Get',
+                url: url,
+                success: function(response) {
+                    // console.log(response);
+                    // alert(response.lowongan);
+                    $('#lowonganAktif').empty(); // Kosongkan kontainer sebelum menambahkan data baru
+                    $.each(response.lowongan, function(index, item) {
+
+                        var tanggalTengat = item.batas;
+                        var formattedDate = formatTanggalIndonesia(tanggalTengat);
+                        // console.log(formattedDate);
+                        // alert(formattedDate);
+                        var lowonganHtml = `
+                        <div
+                                    style="padding-left: 20px; padding-right: 20px; padding-top: 10px; padding bottom: 10px;">
+                                    <div class="d-flex justify-content-between px-2 py-1 rounded">
+                                        <div class="d-flex">
+                                            <div>
+                                                <h5 for="exampleInputPassword1" class="fw-semibold mb-2"
+                                                    style="margin-bottom: 0">
+                                                    ${item.judul}
+                                                </h5>
+                                                <p for="exampleInputPassword1" class="mb-2"
+                                                    style="margin-bottom: 0">
+                                                    Tenggat Lowongan :
+                                                    ${formattedDate}
+                                                </p>
+                                                <p for="exampleInputPassword1" class="mb-2"
+                                                    style="margin-bottom: 0">
+                                                    Divisi : <span
+                                                        style="color: #5d87ff">${item.division.divisi}</span>
+                                                </p>
+                                                <p for="exampleInputPassword1" class="mb-2"
+                                                    style="margin-bottom: 0">
+                                                    Posisi : ${ item.pekerja }
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="margin-top: 10px;">
+                                </div>
+                            `;
+                        $('#lowonganAktif').append(lowonganHtml);
+                    });
+                },
+                error: function(error) {
+                    console.log(error);
+                }
             });
         });
     </script>
