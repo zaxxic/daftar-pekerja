@@ -1872,6 +1872,10 @@ Hot Jobs Area Style
   background-color: #ed1d24;
 }
 
+.hot-jobs-area.hot-jobs-area-two .hot-jobs-list .featured.yellow {
+  background-color: #fd7e14;
+}
+
 .hot-jobs-area.hot-jobs-area-two .hot-jobs-list:hover .hot-jobs-content h3 a {
   color: #79b530;
 }
@@ -2012,8 +2016,28 @@ Hot Jobs Area Style
   font-size: 14px;
 }
 
+.featured {
+  positi on: absolute;
+  top: 20px;
+  left: -36px;
+  background-color: #2042e3;
+  color: #ffffff;
+  padding: 5px 40px;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  font-size: 14px;
+}
+
+.featured.red {
+  background-color: #ed1d24;
+}
+
 .hot-jobs-list .featured.red {
   background-color: #ed1d24;
+}
+
+.hot-jobs-list .featured.green {
+  background-color: #13deb9;
 }
 
 .hot-jobs-sidebar {
@@ -5327,16 +5351,16 @@ Employers Listing Area Style
 .employers-listing-area .employers-listing-sidebar h4 {
   background-color: #5d87ff;
   padding: 15px 30px;
-  border-radius: 30px 0 0 0;
+  border-radius: 5px 5px 0 0;
   margin-bottom: 0;
 }
 
 .employers-listing-area .employers-listing-sidebar form {
   background-color: #ffffff;
-  -webkit-box-shadow: 0px 5px 20px 3px rgba(230, 233, 249, 0.9);
-          box-shadow: 0px 5px 20px 3px rgba(230, 233, 249, 0.9);
+  /* -webkit-box-shadow: 0px 5px 20px 3px rgba(230, 233, 249, 0.9); */
+          /* box-shadow: 0px 5px 20px 3px rgba(230, 233, 249, 0.9); */
   padding: 30px;
-  border-radius: 0 0 30px 0;
+  border-radius: 0 0 5px 5px;
 }
 
 .employers-listing-area .employers-listing-sidebar form .form-group {
