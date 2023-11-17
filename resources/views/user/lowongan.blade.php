@@ -157,39 +157,49 @@
             <div class="row">
                 <div class="col-12 col-sm-12">
                     <div class="form-group">
-                        <form action="" class="search-form  row ">
+                        <form class="search-form  row ">
+                            <div class="form-group col-3 ">
+                                <div class="d-flex" style="margin-top: 30px;">
+                                    <input type="text" name="cari" style="border: 1px solid gray; height: 28px; border-radius: 5px 0 0 5px; width:100%; padding: 8px;" value="{{ $keyword }}" placeholder="Cari Lowongan..">
+                                    <button type="submit" style="width: 40px; height:auto;  background-color:#549bff; border-radius: 0px 5px 5px 0px;" class="text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 21 21">
+                                        <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="8.5" cy="8.5" r="5" />
+                                            <path d="M17.571 17.5L12 12" />
+                                        </g>
+                                    </svg>
+                            </button>
+                                </div>
+                            </div>
+
                             <div class="form-group col-7 col-lg-2" style="">
                                 <div>
                                     <label class="fs-3 fw-bold">Cari Berdasarkan Divisi :</label>
-                                    <select class="select2 " id="division-select" name="division" style="width: 100%; margin-right: 10px; ">
-                                        <!-- Mengatur width, height, dan margin -->
-                                        <option value="" @if (!$selectedDivision) selected @endif>Semua
-                                        </option>
+                                    <select class="select2 form-select" id="division-select" name="division" style="width: 100%; margin-right: 10px;">
+                                        <option value="semua" @if (!$selectedDivision) selected @endif>Semua</option>
                                         @foreach ($divisi as $item)
-                                        <option value="{{ $item->id }}" @if ($selectedDivision==$item->id) selected @endif>
+                                        <option value="{{ $item->id }}" @if (old('division', $selectedDivision)==$item->id) selected @endif>
                                             {{ $item->divisi }}
                                         </option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group col-5 ">
-                                <div class="">
-                                    <label class="fs-3 fw-bold">Cari lowongan :</label> <br>
-                                    <input type="text" name="cari" style="border:1px solid gray; height:28px; border-radius:5px; width:100%">
-                                </div>
-                            </div>
-                            <div class=" col-12 ">
-                                <div class="">
-                                    <label class="fs-3 fw-bold">Cari Tipe Pekerjaan :</label> <br>
-                                    <select class="" style="height: 5px" name="TipePekerjaan" id="">
-                                        <option value=""></option>
+                           
+
+                            <div class="form-group col-7 col-lg-2" style="">
+                                <div>
+                                    <label class="fs-3 fw-bold">Cari Tipe Pekerjaan :</label>
+                                    <select class="select2" name="tipe" style="width: 100%; margin-right: 10px;">
+                                        <option value="kontrak" {{ $keywordTipe == 'kontrak' ? 'selected' : '' }}>kontrak</option>
+                                        <option value="permanen" {{ $keywordTipe == 'permanen' ? 'selected' : '' }}>permanen</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-12 d-flex" style="align-items: center">
-                                <button class="btn btn-primary text-center ms-2   " style="height:30px">
-                                    <p class="text-center" style="margin-top: -5px;"></p>Cari
+
+                            <div class="col-2 d-flex" style="align-items: center">
+                                <button class="btn btn-primary text-center ms-2" type="submit">
+                                    <p class="text-center"></p>Cari
                                 </button>
                             </div>
                             {{-- <button class="default-btn " type="submit"
@@ -246,7 +256,6 @@
                                                 </div>
                                                 <ul>
                                                     <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">{{ $item->slot }}</span></li>
-                                                    <li class="fs-3"><span>Divisi : </span><span class="fw-medium">{{ $item->Division->divisi }}</span></li>
                                                     <li class="fs-3"><span>Posisi : </span><span class="fw-medium">{{ $item->pekerja }}</span></li>
                                                     <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">{{ $item->tipe }}</span></li>
                                                     <hr>
@@ -256,10 +265,16 @@
                                         <div class="card-footer">
                                             <div class="d-flex justify-content-between">
 
-                                                <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: {{ Carbon::parse($item->batas)->format('d F Y') }}</p>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-                                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
-                                                </svg>
+                                                <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: {{ \Carbon\Carbon::parse($item->batas)->locale('id')->isoFormat('D MMMM Y ') }}</p>
+                                                <form id="saveForm{{ $item->id }}" action="simpan-lowongan/{{ $item->id }}" method="post">
+                                                        @method('PATCH')
+                                                        @csrf
+                                                        <button type="button" id="simpan{{$item->id}}" onclick="Simpan('{{$item->id}}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="{{$item->id}}">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                                            </svg>
+                                                        </button>
+                                                    </form>
                                             </div>
                                         </div>
                                     </div>
@@ -267,39 +282,7 @@
                             </div>
                         </div>
                         @empty
-                        <a href="{{ route('detailLowongan', $item->id) }}">
-                            <div class="hot-jobs-content">
-                                <div class="row d-flex justify-content-between mb-3" style="color: black">
-                                    <h4 class="col-12 col-md-12 col-xl-6 tengah">{{ $item->judul }}</h4>
-                                    <p class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal  justify-content-lg-endcustom justify-content-xl-endcustom">
-                                        <!-- <span class="text-center text-md-left">Berakhir Pada
-                                                            Tanggal:
-                                                            {{ Carbon::parse($item->batas)->format('d M Y') }}</span> -->
-                                        @if($item->status)
-                                        <span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}</span>
-                                        @else
-                                        <span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>
-                                        @endif
-                                    </p>
-                                </div>
-                                <ul>
-                                    <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">{{ $item->slot }}</span></li>
-                                    <li class="fs-3"><span>Divisi : </span><span class="fw-medium">{{ $item->Division->divisi }}</span></li>
-                                    <li class="fs-3"><span>Posisi : </span><span class="fw-medium">{{ $item->pekerja }}</span></li>
-                                    <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">{{ $item->tipe }}</span></li>
-                                    <hr>
-                                </ul>
-                            </div>
-                        </a>
-                        <div class="card-footer">
-                            <div class="d-flex justify-content-between">
 
-                                <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: {{ Carbon::parse($item->batas)->format('d F Y') }}</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
-                                </svg>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-12 mt-5 text-center" id="lowongan">
                                 <img src="{{ asset('assets/nodatas.png') }}" alt="" width="350px">
@@ -313,13 +296,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
-
             </div>
     </section>
     <!-- End Employers Listing Area -->
@@ -592,7 +568,8 @@
                                         text: response.pesan,
                                     });
                                     $('#lowongan').empty();
-                                    let kosong = `<div> <div>`;
+                                    let kosong = `<div>
+        <div>`;
                                     $('#lowongan').append(kosong);
 
                                 }
@@ -629,6 +606,121 @@
 
 
 
+        });
+        function Simpan(id) {
+            // alert(id);
+            // var formUrl = $('#saveForm' + id).attr('action');
+            // $.ajax({
+            //     url: formUrl,
+            //     type: 'PATCH',
+            //     data: $('#saveForm'+id).serialize(),
+            //     success: function(response) {
+
+            //         if (response.suksesBatal) {
+            //             // alert('berhasil batal');
+            //             $('#simpan'+id).removeClass('text-info');
+            //         } else {
+            //             $('#simpan'+id).addClass('text-info');
+            //             // alert('berhasil simpan');
+            //         }
+            //         // console.log(response.success);
+            //     },
+            //     error: function(error) {
+            //         console.log(error);
+            //     }
+            // });
+            const formId = 'saveForm' + id;
+            const formUrl = $('#' + formId).attr('action');
+
+            const formData = $('#' + formId).serialize();
+
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "mr-2 btn btn-danger",
+                },
+                buttonsStyling: false,
+            });
+
+            swalWithBootstrapButtons.fire({
+                title: "Konfirmasi",
+                text: "Apakah anda yakin ingin merubah status lowongan ini?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Iya!",
+                cancelButtonText: "Tidak!",
+                reverseButtons: true,
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger me-3",
+                },
+                buttonsStyling: false,
+                width: "25rem",
+                padding: "1rem",
+                customContainerClass: "swal-custom",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Jika pengguna menekan "Iya", lakukan AJAX request
+                    $.ajax({
+                        url: formUrl,
+                        type: 'PATCH',
+                        data: formData,
+                        success: function(response) {
+                            
+                            if (response.suksesBatal) {
+                                swalWithBootstrapButtons.fire({
+                                    icon: 'success',
+                                    title: 'Berhasil Batal',
+                                    text: 'Berhasil batal, simpan lowongan.',
+                                });
+                                $('#simpan' + id).removeClass('text-warning');
+                            } else {
+                                swalWithBootstrapButtons.fire({
+                                    icon: 'success',
+                                    title: 'Berhasil Simpan',
+                                    text: 'Berhasil simpan lowongan.',
+                                });
+                                $('#simpan' + id).addClass('text-warning');
+                            }
+                            // console.log(response.success);
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire(
+                        "Batal",
+                        "Pengajuan penerimaan dibatalkan.",
+                        "error"
+                    );
+                }
+            });
+        }
+    </script>
+    <script>
+        $(document).ready(function() {
+            var formUrl = "{{ route('Tampilkan-lowongan') }}"; // Changed 'Route' to 'route'
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                url: formUrl,
+                type: 'GET',
+                success: function(response) {
+                    console.log(response);
+                    $.each(response.simpan, function(index, item) {
+                        $('.buttonSimpan[data-vacancie-id="' + item.vacancie_id + '"]').addClass('text-warning');
+                    });
+                },
+                error: function(error) {
+                    console.log(error);
+                } // Removed unnecessary semicolon
+            });
         });
     </script>
 </body>

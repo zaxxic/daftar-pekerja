@@ -1947,9 +1947,10 @@
                     <div class="col-lg-12">
                         <div class="card position-relative overflow-hidden mb-4" style="height: auto;">
                             <div class="card-header bg-info d-flex align-items-center">
-                                <h4 class="card-title text-white mb-0">Lowongan</h4>
+                                <h4 class="card-title text-white mb-0">Lowongan Disimpan</h4>
                             </div>
-                                <div
+                            <div id="LowonganSimpan"></div>
+                                <!-- <div
                                     style="padding-left: 20px; padding-right: 20px; padding-top: 10px; padding bottom: 10px;">
                                     <div class="d-flex justify-content-between px-2 py-1 rounded">
                                         <div class="d-flex">
@@ -1978,16 +1979,13 @@
                                         </div>
                                     </div>
                                     <hr style="margin-top: 10px;">
-                                </div>
-
-
-
-                            @if ($lowongan < 3)
+                                </div> -->
+                            @if ($lowonganSimpan < 3)
 
                             @else
-                            <div class="lihatSelengkapnya btn btn-primary w-100" style="cursor: pointer" id="LihatSelengkapnya">Lihat Selengkapnya
+                            <div class="LihatSelengkapnyaSimpan btn btn-primary w-100" style="cursor: pointer" id="LihatSelengkapnyaSimpan">Lihat Selengkapnya
                             </div>
-                            <div class="lihatSedikit btn btn-primary w-100" style="display: none" id="Lihatsedikit">Lihat Sedikit</div>
+                            <div class="lihatsedikitSimpan btn btn-primary w-100" style="display: none" id="LihatsedikitSimpan">Lihat Sedikit</div>
                             @endif
 
                         </div>
@@ -3044,6 +3042,195 @@
                                 </div>
                             `;
                         $('#lowonganAktif').append(lowonganHtml);
+                    });
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    </script>
+     <script>
+        $(document).ready(function() {
+            $('#LihatSelengkapnyaSimpan').click(function() {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                var url = "{{route('Selegkapnya-Lowongan-Simpan')}}";
+
+                $.ajax({
+                    type: 'Get',
+                    url: url,
+                    success: function(response) {
+                        // alert(response);
+                        $('.LihatsedikitSimpan').attr("style", "display:block");
+                        $('.LihatSelengkapnyaSimpan').attr("style", "display:none");
+                        // alert(response);
+                        $('#LowonganSimpan').empty(); // Kosongkan kontainer sebelum menambahkan data baru
+                        $.each(response.lowongan, function(index, item) {
+                            // alert(item.user.id);
+                            var tanggalTengat = item.vacancy.batas;
+                            var formattedDate = formatTanggalIndonesia(tanggalTengat);
+                            var lowonganHtml = `
+                        <div
+                                    style="padding-left: 20px; padding-right: 20px; padding-top: 10px; padding bottom: 10px;">
+                                    <div class="d-flex justify-content-between px-2 py-1 rounded">
+                                        <div class="d-flex">
+                                            <div>
+                                                <h5 for="exampleInputPassword1" class="fw-semibold mb-2"
+                                                    style="margin-bottom: 0">
+                                                    ${item.vacancy.judul}
+                                                </h5>
+                                                <p for="exampleInputPassword1" class="mb-2"
+                                                    style="margin-bottom: 0">
+                                                    Tenggat Lowongan :
+                                                    ${formattedDate}
+                                                </p>
+                                                <p for="exampleInputPassword1" class="mb-2"
+                                                    style="margin-bottom: 0">
+                                                    Divisi : <span
+                                                        style="color: #5d87ff">${item.vacancy.division.divisi}</span>
+                                                </p>
+                                                <p for="exampleInputPassword1" class="mb-2"
+                                                    style="margin-bottom: 0">
+                                                    Posisi : ${ item.vacancy.pekerja }
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="margin-top: 10px;">
+                                </div>
+                            `;
+                            $('#LowonganSimpan').append(lowonganHtml);
+                        });
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+     <script>
+        $(document).ready(function() {
+            $('#LihatsedikitSimpan').click(function() {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                var url = "{{route('Lowongan-Simpan')}}";
+
+                $.ajax({
+                    type: 'Get',
+                    url: url,
+
+                    success: function(response) {
+                        // alert(response);
+                        $('#LihatsedikitSimpan').attr("style", "display:none");
+                        $('#LihatSelengkapnyaSimpan').attr("style", "display:block");
+                        // alert(response);
+                        $('#LowonganSimpan').empty(); // Kosongkan kontainer sebelum menambahkan data baru
+                        $.each(response.lowongan, function(index, item) {
+                            // alert(item.user.id);
+                            var tanggalTengat = item.vacancy.batas;
+                            var formattedDate = formatTanggalIndonesia(tanggalTengat);
+                            var lowonganHtml = `
+                        <div
+                                    style="padding-left: 20px; padding-right: 20px; padding-top: 10px; padding bottom: 10px;">
+                                    <div class="d-flex justify-content-between px-2 py-1 rounded">
+                                        <div class="d-flex">
+                                            <div>
+                                                <h5 for="exampleInputPassword1" class="fw-semibold mb-2"
+                                                    style="margin-bottom: 0">
+                                                    ${item.vacancy.judul}
+                                                </h5>
+                                                <p for="exampleInputPassword1" class="mb-2"
+                                                    style="margin-bottom: 0">
+                                                    Tenggat Lowongan :
+                                                    ${formattedDate}
+                                                </p>
+                                                <p for="exampleInputPassword1" class="mb-2"
+                                                    style="margin-bottom: 0">
+                                                    Divisi : <span
+                                                        style="color: #5d87ff">${item.vacancy.division.divisi}</span>
+                                                </p>
+                                                <p for="exampleInputPassword1" class="mb-2"
+                                                    style="margin-bottom: 0">
+                                                    Posisi : ${ item.vacancy.pekerja }
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="margin-top: 10px;">
+                                </div>
+                            `;
+                            $('#LowonganSimpan').append(lowonganHtml);
+                        });
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+     <script>
+        $(document).ready(function() {
+            // alert('Please wait');
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var url = "{{route('Lowongan-Simpan')}}";
+            $.ajax({
+                type: 'Get',
+                url: url,
+                success: function(response) {
+                    // console.log(response);
+                    // alert(response.lowongan);
+                    $('#LowonganSimpan').empty(); // Kosongkan kontainer sebelum menambahkan data baru
+                    $.each(response.lowongan, function(index, item) {
+                        // alert(item.vacancy.batas);
+                        var tanggalTengat = item.vacancy.batas;
+                        var formattedDate = formatTanggalIndonesia(tanggalTengat);
+                        // console.log(formattedDate);
+                        // alert(formattedDate);
+                        var lowonganHtml = `
+                        <div
+                                    style="padding-left: 20px; padding-right: 20px; padding-top: 10px; padding bottom: 10px;">
+                                    <div class="d-flex justify-content-between px-2 py-1 rounded">
+                                        <div class="d-flex">
+                                            <div>
+                                                <h5 for="exampleInputPassword1" class="fw-semibold mb-2"
+                                                    style="margin-bottom: 0">
+                                                    ${item.vacancy.judul}
+                                                </h5>
+                                                <p for="exampleInputPassword1" class="mb-2"
+                                                    style="margin-bottom: 0">
+                                                    Tenggat Lowongan :
+                                                    ${formattedDate}
+                                                </p>
+                                                <p for="exampleInputPassword1" class="mb-2"
+                                                    style="margin-bottom: 0">
+                                                    Divisi : <span
+                                                        style="color: #5d87ff">${item.vacancy.division.divisi}</span>
+                                                </p>
+                                                <p for="exampleInputPassword1" class="mb-2"
+                                                    style="margin-bottom: 0">
+                                                    Posisi : ${ item.vacancy.pekerja }
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr style="margin-top: 10px;">
+                                </div>
+                            `;
+                        $('#LowonganSimpan').append(lowonganHtml);
                     });
                 },
                 error: function(error) {
