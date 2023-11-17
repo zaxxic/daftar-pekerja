@@ -19,6 +19,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\SaveController;
 use App\Http\Controllers\SkillController;
+use App\Http\Controllers\VacancieSaveController;
 use App\Models\Lowongan;
 
 /*
@@ -49,8 +50,6 @@ Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkReques
 Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
-
-
 
 Route::middleware('checkLogin')->group(function () {
     Route::middleware('role:admin')->group(function () {
@@ -89,6 +88,15 @@ Route::middleware('checkLogin')->group(function () {
     Route::post('/pekerja-sama', [ApprovalController::class, 'pekerjaSama'])->name('pekerja-sama');
     Route::post('/pekerja-selengkapnya', [ApprovalController::class, 'pekerjaSelengkapnya'])->name('pekerja-selengkapnya');
 
+    Route::get('/tampil-pekerja/{id}', [ApprovalController::class, 'pekerja'])->name('tampil-pekerja');
+
+    Route::get('/pekerja-disimpan', [SaveController::class, 'index'])->name('pekerja-disimpan');
+    Route::patch('pekerja-lulus/{id}', [PekerjaController::class, 'lulus'])->name('pekerja-lulus');
+
+    Route::get('lulus', [PekerjaLulusController::class, 'index'])->name('lulus');
+    Route::patch('pecat/{id}', [PekerjaLulusController::class, 'update'])->name('pecat');
+    Route::post('/pekerja-sama', [ApprovalController::class, 'pekerjaSama'])->name('pekerja-sama');
+    Route::post('/pekerja-selengkapnya', [ApprovalController::class, 'pekerjaSelengkapnya'])->name('pekerja-selengkapnya');
     });
 
 
@@ -101,8 +109,18 @@ Route::middleware('checkLogin')->group(function () {
         Route::delete('/delete/pendidikan/{id}', [ProfileController::class, 'DeletePendidikan'])->name('delete/pendidikan');
         Route::get('/profileuser', [ProfileController::class, 'profileuser'])->name('profileuser');
         Route::post('/ubah-password', [ProfileController::class, 'updatePassword'])->name('ubah-password');
-        Route::patch('/ubah-profile', [ProfileController::class, 'updateProfile'])->name('ubah-profile');
+        Route::post('/summary', [ProfileController::class, 'summary'])->name('summary');
+        Route::post('/add-experience', [ExperienceController::class, 'store'])->name('add-experience');
+        Route::put('/experience-update/{id}', [ExperienceController::class, 'update'])->name('experience-update');
+        Route::delete('/experience-delete/{id}', [ExperienceController::class, 'destroy'])->name('experience-delete');
+        Route::post('/add-skill', [SkillController::class, 'store'])->name('add-skill');
+        Route::put('/skill-update/{id}', [SkillController::class, 'update'])->name('skill-update');
+        Route::delete('/skill-delete/{id}', [SkillController::class, 'destroy'])->name('skill-delete');
+        Route::post('/add-certificate', [CertificateController::class, 'store'])->name('add-certificate');
+        Route::put('/certificate-update/{id}', [CertificateController::class, 'update'])->name('certificate-update');
+        Route::delete('/certificate-delete/{id}', [CertificateController::class, 'destroy'])->name('certificate-delete');
         Route::patch('/ubah-foto', [ProfileController::class, 'updateFoto'])->name('ubah-foto');
+        Route::patch('/ubah-profile', [ProfileController::class, 'updateProfile'])->name('ubah-profile');
         Route::resource('detail-lowongan', DetailLowonganController::class);
         route::post('batalkan-lowongan',[ DetailLowonganController::class, 'batalkan'])->name('batalkan-lowongan');
         Route::get('/detail-lowongan{id}', [DetailLowonganController::class, 'show'])->name('detailLowongan');
@@ -119,11 +137,18 @@ Route::middleware('checkLogin')->group(function () {
         Route::post('/add-certificate', [CertificateController::class, 'store'])->name('add-certificate');
         Route::put('/certificate-update/{id}', [CertificateController::class, 'update'])->name('certificate-update');
         Route::delete('/certificate-delete/{id}', [CertificateController::class, 'destroy'])->name('certificate-delete');
-
+        Route::post('/pendidikan', [ProfileController::class, 'School'])->name('pendidikan');
+        Route::get('/tampilkan/pendidikan/{id}', [ProfileController::class, 'DataPendidikan'])->name('tampilkan/pendidikan');
+        Route::put('/Edit/pendidikan/{id}', [ProfileController::class, 'EditSchool'])->name('Edit/pendidikan');
+        Route::delete('/delete/pendidikan/{id}', [ProfileController::class, 'DeletePendidikan'])->name('delete/pendidikan');
+        Route::patch('/simpan-lowongan/{id}', [VacancieSaveController::class, 'update'])->name('simpan-lowongan');
+        Route::get('/LowonganAktif', [ProfileController::class, 'lowonganProfile'])->name('LowonganAktif');
+        Route::get('/LihatLowonganAktif', [ProfileController::class, 'LIhatlowonganProfile'])->name('LihatLowonganAktif');
+        Route::get('/Tampilkan-lowongan', [VacancieSaveController::class, 'index'])->name('Tampilkan-lowongan');
+        Route::get('/Lowongan-Simpan', [VacancieSaveController::class, 'LowonganSimpan'])->name('Lowongan-Simpan');
+        Route::get('/Selegkapnya-Lowongan-Simpan', [VacancieSaveController::class, 'SelegkapnyaLowonganSimpan'])->name('Selegkapnya-Lowongan-Simpan');
     });
     });
-
-
 
 Route::get('/', function () {
     return view('index');
@@ -133,4 +158,3 @@ Route::get('/', function () {
 Route::get('error-403', function () {
     return view('403');
 })->name('unauthorized');
-

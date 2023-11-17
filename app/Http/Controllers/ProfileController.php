@@ -15,6 +15,7 @@ use App\Models\Certificate;
 use App\Models\Registration;
 use App\Models\School;
 use App\Models\Division;
+use App\Models\VacancieSave;
 use App\Models\Vacancy;
 use App\Models\Worker;
 
@@ -26,7 +27,7 @@ class ProfileController extends Controller
         $skill = Skill::where('user_id', $user->id)->get();
         $experience = Experience::where('user_id', $user->id)->get();
         $School = School::where('user_id', Auth()->user()->id)->get();
-
+        $lowonganSimpan = VacancieSave::all()->count();
         $Pendaftaran = Registration::where('users_id', Auth()->User()->id)->get();
         $certificate = Certificate::where('user_id', $user->id)->get();
         $worker = Worker::where('users_id', $user->id)->first();
@@ -56,7 +57,7 @@ class ProfileController extends Controller
 
 
 
-        return view('user.profile-user', compact('user', 'skill', 'experience','School','lowongan','Pendaftaran','certificate','jumlahData','worker'));
+        return view('user.profile-user', compact('user', 'skill', 'experience','School','lowongan','Pendaftaran','certificate','jumlahData','worker', 'lowonganSimpan'));
     }
 
     public function lowonganProfile() {
@@ -75,6 +76,7 @@ class ProfileController extends Controller
         $experience = Experience::where('user_id', $user->id)->get();
         $School = School::where('user_id', Auth()->user()->id)->get();
         $lowongan = Vacancy::where('status', 'aktif')->get();
+        $lowonganSimpan = VacancieSave::all();
         $Pendaftaran = Registration::where('users_id', Auth()->User()->id)->get();
         $certificate = Certificate::where('user_id', $user->id)->get();
         $wsds = null;
@@ -103,7 +105,7 @@ class ProfileController extends Controller
 
 
 
-        return view('user.djsjd', compact('user', 'skill', 'experience','School','lowongan','Pendaftaran','certificate','jumlahData'));
+        return view('user.djsjd', compact('user', 'skill', 'experience','School','lowongan','Pendaftaran','certificate','jumlahData', 'lowonganSimpan'));
 
 
     }

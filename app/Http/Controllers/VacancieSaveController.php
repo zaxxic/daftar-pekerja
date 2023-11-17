@@ -24,7 +24,8 @@ class VacancieSaveController extends Controller
      */
     public function LowonganSimpan()
     {
-        //
+        $lowongan = VacancieSave::with(['Vacancy', 'Vacancy.Division'])->limit(2)->get();
+        return response()->json(['lowongan'=>$lowongan]);
     }
 
     /**
@@ -47,7 +48,8 @@ class VacancieSaveController extends Controller
      */
     public function SelegkapnyaLowonganSimpan()
     {
-        //
+        $lowongan = VacancieSave::with(['Vacancy', 'Vacancy.Division'])->get();
+        return response()->json(['lowongan'=>$lowongan]);
     }
 
     /**
