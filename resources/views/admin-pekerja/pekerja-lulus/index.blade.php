@@ -184,14 +184,13 @@
                         <p class="text-danger fs-3" id="error{{ $item->id }}"></p>
                          <small id="name" class="text-muted text-white" style=" background-color: #549bff; border-radius:2px; padding:5px; font-weight:bold">Masukkan alasan kenapa pekerja tersebut Anda pecat.</small>
                     </div>
-
+                    <div class="modal-footer">
+                        <button onclick="Pecat({{$item->id}})" type="button" class="btn btn-primary img-fluid model_img">
+                            Kirim
+                        </button>
+                    </div>
+                </form>
             </div>
-            <div class="modal-footer">
-                <button onclick="Pecat({{$item->id}})" type="button" class="btn btn-primary img-fluid model_img">
-                    Kirim
-                </button>
-            </div>
-            </form>
         </div>
     </div>
 </div>

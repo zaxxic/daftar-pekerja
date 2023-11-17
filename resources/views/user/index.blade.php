@@ -178,7 +178,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
-                    <div class="employers-listing-sidebar">
+                    <div class="employers-listing-sidebar" style="box-shadow: 0px 10px 10px rgba(245, 246, 253, 1); border-radius:5px">
                         <h4 class="text-white">Cari Divisi</h4>
 
                         <form class="search-form" action="{{ route('dashboard-filter') }}" method="POST">
@@ -295,7 +295,7 @@
                                         </li>
                                     </div>
                                     @else
-                                    ($item->Vacancy->status === 'aktif')
+
                                     <li class="ml-auto" style="margin-left: 300px;">
                                         <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
                                             <button class="btn btn-primary mb-4" style="background-color: #2042e3">
@@ -412,7 +412,7 @@
                             <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
                             <div class="hot-jobs-list">
 							<div class="row align-items-center">
-								
+
 
 								<div class="col-lg-12">
 									<div class="hot-jobs-content ms-4">
@@ -444,7 +444,7 @@
 
 								<!-- <div class="col-lg-5">
 									<div class="hot-jobs-btn">
-                                    
+
 									</div>
 								</div> -->
 							</div>
@@ -456,7 +456,7 @@
                             @empty
                             @endforelse
                         </div>
-                       
+
                         @if (count($lowongan) > 0)
                         <!-- <div class="mb-4" style="padding: 11px; border-radius: 5px; background-color: #5d87ff;">
                             <h4 class="text-white text-center">Lowongan Tersedia</h4>
@@ -512,84 +512,40 @@
                                                             </svg>
                                                         </button>
                                                     </form>
-                                                    <!-- <form id="saveForm" action="simpan-lowongan/{{ $item->id }}" method="post">
-                                                        @method('PATCH')
-                                                        @csrf
-                                                        <button onclick="Simpan({{$item->id}})" type="button" id="simpan" style="background-color: transparent;" class="buttonSimpan text-info" data-vacancie-id="{{$item->id}}">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-                                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
-                                                            </svg>
-                                                        </button> -->
-                                                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-                                                            <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                                                <path d="M0 0h24v24H0z" />
-                                                                <path fill="#ffc107" d="M15 3a3 3 0 0 1 2.995 2.824L18 6v14a1 1 0 0 1-1.413.911l-.101-.054l-4.487-2.691l-4.485 2.691a1 1 0 0 1-1.508-.743L6 20V6a3 3 0 0 1 2.824-2.995L9 3h6z" />
-                                                            </g>
-                                                        </svg> -->
+                                                        <!-- <form id="saveForm" action="simpan-lowongan/{{ $item->id }}" method="post">
+                                                            @method('PATCH')
+                                                            @csrf
+                                                            <button onclick="Simpan({{$item->id}})" type="button" id="simpan" style="background-color: transparent;" class="buttonSimpan text-info" data-vacancie-id="{{$item->id}}">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                                                </svg>
+                                                            </button> -->
+                                                        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                                                                <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                                                    <path d="M0 0h24v24H0z" />
+                                                                    <path fill="#ffc107" d="M15 3a3 3 0 0 1 2.995 2.824L18 6v14a1 1 0 0 1-1.413.911l-.101-.054l-4.487-2.691l-4.485 2.691a1 1 0 0 1-1.508-.743L6 20V6a3 3 0 0 1 2.824-2.995L9 3h6z" />
+                                                                </g>
+                                                            </svg> -->
 
-                                                    <!-- </form> -->
+                                                        <!-- </form> -->
 
-                                                    <!-- <form action="batal-lowongan/{{ $item->id }}" method="post">
-                                                        @method('PATCH')
-                                                        @csrf
-                                                    <button type="submit" style="background-color: transparent;">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M17 11v6.97l-5-2.14l-5 2.14V5h6V3H7c-1.1 0-2 .9-2 2v16l7-3l7 3V11h-2zm4-4h-6V5h6v2z"/></svg>
-                                                    </button>
-                                                    </form> -->
+                                                        <!-- <form action="batal-lowongan/{{ $item->id }}" method="post">
+                                                            @method('PATCH')
+                                                            @csrf
+                                                        <button type="submit" style="background-color: transparent;">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M17 11v6.97l-5-2.14l-5 2.14V5h6V3H7c-1.1 0-2 .9-2 2v16l7-3l7 3V11h-2zm4-4h-6V5h6v2z"/></svg>
+                                                        </button>
+                                                        </form> -->
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <span id=""  class="featured  labelSimpan hidden" data-label-id="{{$item->id}}" style="background-color:#ffad1e">Tersimpan</span>
                                 </div>
                             </div>
 
 
 
-
-                            <a href="{{ route('detailLowongan', $item->id) }}">
-                            <div class="hot-jobs-list">
-							<div class="row align-items-center">
-								
-
-								<div class="col-lg-12">
-									<div class="hot-jobs-content ms-4">
-                                        <div class="d-flex justify-content-between">
-										<h3>{{ $item->judul }}</h3>
-                                        <span class="fw-semibold fs-4 mt-2" style="color: #5d87ff;">{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}</span>
-                                        </div>
-										<!-- <span class="sub-title">Conzio construction</span> -->
-										<ul>
-											<li><span>Slot Tersedia:</span> <span class="fw-medium"> {{ $item->slot }}</span></li>
-											<li><span>Divisi: </span> <span class="fw-medium"> {{ $item->Division->divisi }} </span> </li>
-											<li><span>Posisi: </span> <span class="fw-medium"> {{ $item->pekerja }} </span> </li>
-                                            <li><span>Tipe Kerja: </span> <span class="fw-medium"> {{ $item->tipe }} </span> </li>
-										</ul>
-									</div>
-                                    <hr>
-                                        <div class="d-flex justify-content-between">
-                                        <p class="fs-3" style="color: #7c8fac;">Berakhir Pada
-                                                        Tanggal: {{ \Carbon\Carbon::parse($item->batas)->locale('id')->isoFormat('D MMMM Y ') }}
-                                                    </p>
-                                                    <form id="saveForm{{ $item->id }}" action="simpan-lowongan/{{ $item->id }}" method="post">
-                                                        @method('PATCH')
-                                                        @csrf
-                                                        <button type="button" id="simpan{{$item->id}}" onclick="Simpan('{{$item->id}}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="{{$item->id}}">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-                                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
-                                                            </svg>
-                                                        </button>
-                                        </div>
-								</div>
-
-								<!-- <div class="col-lg-5">
-									<div class="hot-jobs-btn">
-                                    
-									</div>
-								</div> -->
-							</div>
-							<span class="featured yellow">Terdaftar</span>
-						</div>
-                        </a>
                             @empty
                             <div class="row">
                                 <div class="col-lg-12 mt-5 text-center" id="lowongan">
@@ -872,27 +828,7 @@
         });
 
         function Simpan(id) {
-            // alert(id);
-            // var formUrl = $('#saveForm' + id).attr('action');
-            // $.ajax({
-            //     url: formUrl,
-            //     type: 'PATCH',
-            //     data: $('#saveForm'+id).serialize(),
-            //     success: function(response) {
 
-            //         if (response.suksesBatal) {
-            //             // alert('berhasil batal');
-            //             $('#simpan'+id).removeClass('text-info');
-            //         } else {
-            //             $('#simpan'+id).addClass('text-info');
-            //             // alert('berhasil simpan');
-            //         }
-            //         // console.log(response.success);
-            //     },
-            //     error: function(error) {
-            //         console.log(error);
-            //     }
-            // });
             const formId = 'saveForm' + id;
             const formUrl = $('#' + formId).attr('action');
 
@@ -930,7 +866,7 @@
                         type: 'PATCH',
                         data: formData,
                         success: function(response) {
-                            
+
                             if (response.suksesBatal) {
                                 swalWithBootstrapButtons.fire({
                                     icon: 'success',
@@ -938,6 +874,8 @@
                                     text: 'Berhasil batal, simpan lowongan.',
                                 });
                                 $('#simpan' + id).removeClass('text-warning');
+                                $('.labelSimpan[data-label-id="' + id + '"]').addClass('hidden');
+
                             } else {
                                 swalWithBootstrapButtons.fire({
                                     icon: 'success',
@@ -945,6 +883,8 @@
                                     text: 'Berhasil simpan lowongan.',
                                 });
                                 $('#simpan' + id).addClass('text-warning');
+                                $('.labelSimpan[data-label-id="' + id + '"]').removeClass('hidden');
+
                             }
                             // console.log(response.success);
                         },
@@ -980,6 +920,7 @@
                     console.log(response);
                     $.each(response.simpan, function(index, item) {
                         $('.buttonSimpan[data-vacancie-id="' + item.vacancie_id + '"]').addClass('text-warning');
+                        $('.labelSimpan[data-label-id="' + item.vacancie_id + '"]').removeClass('hidden');
                     });
                 },
                 error: function(error) {

@@ -174,6 +174,7 @@ class PekerjaController extends Controller
      */
     public function update(Request $request, string $id)
     {
+     
         $this->validate(
             $request,
             [
@@ -186,6 +187,7 @@ class PekerjaController extends Controller
 
         // $user = User::find($id);
         $data = Registration::FindOrFail($id);
+        dd($data);
         $user = User::findOrFail($data->users_id);
 
         $pesan = new Message([

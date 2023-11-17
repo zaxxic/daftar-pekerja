@@ -74,6 +74,15 @@
         @include('layouts1.app')
     </div>
     <!-- End Header Area -->
+    <script>
+        $(document).ready(function() {
+            $('.select2-container--default').each(function() {
+                $(this).css('width', '400px');
+                $(this).css('margin-right', '50px');
+            });
+        });
+    </script>
+
 
     <style>
         @media (max-width: 600px) {
@@ -121,6 +130,37 @@
             height: 120px;
             /* Sesuaikan tinggi sesuai kebutuhan Anda */
         }
+        .select2-container--default .select2-selection--single {
+            background-color: #fff;
+            border-radius: 4px;
+            display: flex;
+            font-size: 15px;
+            font-style: thin;
+            height: 35px;
+            border: 1px solid #549bff;
+            padding-top: 2px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 26px;
+            position: absolute;
+            top: 5px;
+            right: 1px;
+            width: 20px;
+            color: #549bff;
+        }
+        .select2-results {
+            display: block;
+            border: 1px solid #549bff;
+        }
+        .select2-search--dropdown {
+            display: block;
+            padding: 4px;
+            border: 1px solid #549bff;
+        }
+        .select2-container--default .select2-search--dropdown .select2-search__field {
+            border: 1px solid #549bff;
+        }
+
 
         .employers-listing-area .nice-select {
             width: 100%;
@@ -157,22 +197,22 @@
             <div class="row">
                 <div class="col-12 col-sm-12">
                     <div class="form-group">
-                        <form class="search-form  row ">
+                        <form class="search-form d-flex justify-content-between  row ">
                             <div class="form-group col-3 ">
                                 <div class="d-flex" style="margin-top: 30px;">
-                                    <input type="text" name="cari" style="border: 1px solid gray; height: 28px; border-radius: 5px 0 0 5px; width:100%; padding: 8px;" value="{{ $keyword }}" placeholder="Cari Lowongan..">
-                                    <button type="submit" style="width: 40px; height:auto;  background-color:#549bff; border-radius: 0px 5px 5px 0px;" class="text-white">
+                                    <input type="text" name="cari" style="border: 1px solid #549bff; height: 33px; border-radius: 5px; width:100%; padding: 8px;" value="{{ $keyword }}" placeholder="Cari Lowongan..">
+                                    {{-- <button type="submit" style="width: 40px; height:auto;  background-color:#549bff; border-radius: 0px 5px 5px 0px;" class="text-white">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 21 21">
                                         <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                                             <circle cx="8.5" cy="8.5" r="5" />
                                             <path d="M17.571 17.5L12 12" />
                                         </g>
                                     </svg>
-                            </button>
+                                    </button> --}}
                                 </div>
                             </div>
 
-                            <div class="form-group col-7 col-lg-2" style="">
+                            <div class="form-group col-7 col-lg-4" style="">
                                 <div>
                                     <label class="fs-3 fw-bold">Cari Berdasarkan Divisi :</label>
                                     <select class="select2 form-select" id="division-select" name="division" style="width: 100%; margin-right: 10px;">
@@ -185,9 +225,9 @@
                                     </select>
                                 </div>
                             </div>
-                           
 
-                            <div class="form-group col-7 col-lg-2" style="">
+
+                            <div class="form-group col-7 col-lg-4" style="">
                                 <div>
                                     <label class="fs-3 fw-bold">Cari Tipe Pekerjaan :</label>
                                     <select class="select2" name="tipe" style="width: 100%; margin-right: 10px;">
@@ -197,7 +237,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-2 d-flex" style="align-items: center">
+                            <div class="col-1 d-flex justify-content-end" style="align-items: center">
                                 <button class="btn btn-primary text-center ms-2" type="submit">
                                     <p class="text-center"></p>Cari
                                 </button>
@@ -238,7 +278,7 @@
                 <div class="shorting">
                     <div class="row" id="card">
                         @forelse ($lowongan as $item)
-                        <div class="col-md-6 col-12 mix a s c" id="card2">
+                        <div class="col-md-4 col-12 mix a s c" id="card2">
                             <div class="hot-jobs-list col-12">
                                 <div class="row align-items-center">
                                     <div class="col-12">
@@ -666,7 +706,7 @@
                         type: 'PATCH',
                         data: formData,
                         success: function(response) {
-                            
+
                             if (response.suksesBatal) {
                                 swalWithBootstrapButtons.fire({
                                     icon: 'success',
