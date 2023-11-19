@@ -74,14 +74,14 @@
         @include('layouts1.app')
     </div>
     <!-- End Header Area -->
-    <script>
+    <!-- <script>
         $(document).ready(function() {
             $('.select2-container--default').each(function() {
-                $(this).css('width', '400px');
+                $(this).css('width', '230px');
                 $(this).css('margin-right', '50px');
             });
         });
-    </script>
+    </script> -->
 
 
     <style>
@@ -198,23 +198,15 @@
                 <div class="col-12 col-sm-12">
                     <div class="form-group">
                         <form class="search-form d-flex justify-content-between  row ">
-                            <div class="form-group col-3 ">
+                            <div class="form-group col-5 ">
                                 <div class="d-flex" style="margin-top: 30px;">
-                                    <input type="text" name="cari" style="border: 1px solid #549bff; height: 33px; border-radius: 5px; width:100%; padding: 8px;" value="{{ $keyword }}" placeholder="Cari Lowongan..">
-                                    {{-- <button type="submit" style="width: 40px; height:auto;  background-color:#549bff; border-radius: 0px 5px 5px 0px;" class="text-white">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 21 21">
-                                        <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                                            <circle cx="8.5" cy="8.5" r="5" />
-                                            <path d="M17.571 17.5L12 12" />
-                                        </g>
-                                    </svg>
-                                    </button> --}}
+                                    <input type="text" name="cari" style="border: 1px solid #549bff; height: 35px; border-radius: 5px; width: 100%; padding: 8px;" value="{{ $keyword }}" placeholder="Cari Lowongan..">
+                                   
                                 </div>
                             </div>
 
-                            <div class="form-group col-7 col-lg-4" style="">
+                            <div class="form-group col-3" style="margin-top: 30px;">
                                 <div>
-                                    <label class="fs-3 fw-bold">Cari Berdasarkan Divisi :</label>
                                     <select class="select2 form-select" id="division-select" name="division" style="width: 100%; margin-right: 10px;">
                                         <option value="semua" @if (!$selectedDivision) selected @endif>Semua</option>
                                         @foreach ($divisi as $item)
@@ -227,9 +219,8 @@
                             </div>
 
 
-                            <div class="form-group col-7 col-lg-4" style="">
+                            <div class="form-group col-3" style="margin-top: 30px;">
                                 <div>
-                                    <label class="fs-3 fw-bold">Cari Tipe Pekerjaan :</label>
                                     <select class="select2" name="tipe" style="width: 100%; margin-right: 10px;">
                                         <option value="kontrak" {{ $keywordTipe == 'kontrak' ? 'selected' : '' }}>kontrak</option>
                                         <option value="permanen" {{ $keywordTipe == 'permanen' ? 'selected' : '' }}>permanen</option>
@@ -237,7 +228,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-1 d-flex justify-content-end" style="align-items: center">
+                            <div class="col-1 d-flex justify-content-end" style="align-items: center; margin-top: 15px;">
                                 <button class="btn btn-primary text-center ms-2" type="submit">
                                     <p class="text-center"></p>Cari
                                 </button>
@@ -275,52 +266,183 @@
                     }
                 </style>
 
-                <div class="shorting">
-                    <div class="row" id="card">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="employers-listing-sidebar1" style="box-shadow: 0px 10px 10px rgba(245, 246, 253, 1); border-radius:5px">
+                            <h4 class="text-white">Filter Tambahan</h4>
+    
+                            <div style="padding: 20px;">
+                                <p class="fw-semibold fs-4 mb-2" style="color: black;">Tipe Pekerjaan</p>
+                                <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" value=""
+                                            id="flexCheckDefault" />
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Kontrak
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                            checked />
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            Permanen
+                                        </label>
+                                    </div>
+                                    <hr>
+                                    <p class="fw-semibold fs-4 mb-2" style="color: black;">Tipe Lowongan</p>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="radio" name="exampleRadios"
+                                            id="exampleRadios1" value="option1" checked />
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            Lowongan Terbaru
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="exampleRadios"
+                                            id="exampleRadios2" value="option2" />
+                                        <label class="form-check-label" for="exampleRadios2">
+                                            Lowongan Terlama
+                                        </label>
+                                    </div>
+                                    <hr>
+                                    <p class="fw-semibold fs-4 mb-2" style="color: black;">Rentang Gaji</p>
+                                <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" value=""
+                                            id="flexCheckDefault" />
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                        Rp 100.000-2.500.000
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                            checked />
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                        Rp 2.500.000-5.000.000
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                            checked />
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                        Rp 5.000.000-7.500.000
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                            checked />
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                        Rp 7.500.000-10.000.000
+                                        </label>
+                                    </div>
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                            checked />
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                        Rp 10.000.000++
+                                        </label>
+                                    </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-9" id="card">
+                    <div class="row">
                         @forelse ($lowongan as $item)
-                        <div class="col-md-4 col-12 mix a s c" id="card2">
-                            <div class="hot-jobs-list col-12">
+                        <div class="col-6 mix a s c" id="card2">
+                            <!-- <div class="hot-jobs-list col-12">
                                 <div class="row align-items-center">
-                                    <div class="col-12">
-                                        <a href="{{ route('detailLowongan', $item->id) }}">
-                                            <div class="hot-jobs-content">
-                                                <div class="row d-flex justify-content-between mb-3" style="color: black">
-                                                    <h4 class="col-12 col-md-12 col-xl-6 tengah">{{ $item->judul }}</h4>
-                                                    <p class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal  justify-content-lg-endcustom justify-content-xl-endcustom">
-                                                        @if($item->status)
-                                                        <span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}</span>
-                                                        @else
-                                                        <span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>
-                                                        @endif
-                                                    </p>
+                                        <div class="col-12">
+                                            <a href="{{ route('detailLowongan', $item->id) }}">
+                                                <div class="hot-jobs-content">
+                                                    <div class="row d-flex justify-content-between mb-3" style="color: black">
+                                                        <h4 class="col-12 col-md-12 col-xl-6 tengah">{{ $item->judul }}</h4>
+                                                        <p class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal  justify-content-lg-endcustom justify-content-xl-endcustom">
+                                                            @if($item->status)
+                                                            <span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}</span>
+                                                            @else
+                                                            <span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>
+                                                            @endif
+                                                        </p>
+                                                    </div>
+                                                    <ul>
+                                                        <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">{{ $item->slot }}</span></li>
+                                                        <li class="fs-3"><span>Divisi : </span><span class="fw-medium">{{ $item->Division->divisi }}</span>
+                                                        </li>
+                                                        <li class="fs-3"><span>Posisi : </span><span class="fw-medium">{{ $item->pekerja }}</span></li>
+                                                        <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">{{ $item->tipe }}</span></li>
+                                                        <hr>
+                                                    </ul>
                                                 </div>
-                                                <ul>
-                                                    <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">{{ $item->slot }}</span></li>
-                                                    <li class="fs-3"><span>Posisi : </span><span class="fw-medium">{{ $item->pekerja }}</span></li>
-                                                    <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">{{ $item->tipe }}</span></li>
-                                                    <hr>
-                                                </ul>
-                                            </div>
-                                        </a>
-                                        <div class="card-footer">
-                                            <div class="d-flex justify-content-between">
-
-                                                <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: {{ \Carbon\Carbon::parse($item->batas)->locale('id')->isoFormat('D MMMM Y ') }}</p>
-                                                <form id="saveForm{{ $item->id }}" action="simpan-lowongan/{{ $item->id }}" method="post">
-                                                        @method('PATCH')
-                                                        @csrf
-                                                        <button type="button" id="simpan{{$item->id}}" onclick="Simpan('{{$item->id}}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="{{$item->id}}">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-                                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
-                                                            </svg>
-                                                        </button>
-                                                    </form>
+                                            </a>
+                                            <div class="card-footer">
+                                                <div class="d-flex justify-content-between">
+    
+                                                    <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: {{ \Carbon\Carbon::parse($item->batas)->locale('id')->isoFormat('D MMMM Y ') }}</p>
+                                                    <form id="saveForm{{ $item->id }}" action="simpan-lowongan/{{ $item->id }}" method="post">
+                                                            @method('PATCH')
+                                                            @csrf
+                                                            <button type="button" id="simpan{{$item->id}}" onclick="Simpan('{{$item->id}}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="{{$item->id}}">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                                                </svg>
+                                                            </button>
+                                                        </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <span id=""  class="featured labelSimpan hidden" data-label-id="{{$item->id}}" style="background-color:#ffad1e">Tersimpan</span> -->
+                                <div class="hot-jobs-list col-12">
+                                            <div class="row align-items-center">
+                                                <div class="col-12 col-lg-12 mt-3 ms-3">
+                                                    <a href="{{ route('detailLowongan', $item->id) }}">
+                                                        <div class="hot-jobs-content">
+                                                            <div class="row d-flex justify-content-between mb-3" style="color: black">
+                                                                <h4 class="col-12 col-md-12 col-xl-6 tengah">
+                                                                    {{ $item->judul }}
+                                                                </h4>
+                                                                <p class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal  justify-content-lg-endcustom justify-content-xl-endcustom">
+                                                                    @if ($item->status)
+                                                                    <span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}</span>
+                                                                    @else
+                                                                    <span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji
+                                                                        Tidak Ditambahkan</span>
+                                                                    @endif
+                                                                </p>
+        
+                                                            </div>
+                                                            <ul>
+                                                                <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">{{ $item->slot }}</span></li>
+                                                                <li class="fs-3"><span>Divisi : </span><span class="fw-medium">{{ $item->Division->divisi }}</span>
+                                                                </li>
+                                                                <li class="fs-3"><span>Posisi : </span><span class="fw-medium">{{ $item->pekerja }}</span></li>
+                                                                <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">{{ $item->tipe }}</span></li>
+                                                                <hr>
+                                                            </ul>
+                                                        </div>
+                                                    </a>
+                                                    <div class="card-footer">
+                                                        <div class="d-flex justify-content-between">
+        
+                                                            <p class="fs-3" style="color: #7c8fac;">Berakhir Pada
+                                                                Tanggal: {{ \Carbon\Carbon::parse($item->batas)->locale('id')->isoFormat('D MMMM Y ') }}
+                                                            </p>
+                                                            <form id="saveForm{{ $item->id }}" action="simpan-lowongan/{{ $item->id }}" method="post">
+                                                                @method('PATCH')
+                                                                @csrf
+                                                                <button type="button" id="simpan{{$item->id}}" onclick="Simpan('{{$item->id}}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="{{$item->id}}">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                                                    </svg>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <span id=""  class="featured  labelSimpan hidden" data-label-id="{{$item->id}}" style="background-color:#ffad1e">Tersimpan</span>
+                                        </div>
                             </div>
-                        </div>
                         @empty
 
                         <div class="row">
@@ -329,6 +451,7 @@
                             </div>
                         </div>
                         @endforelse
+                        </div>
                         <div class="col-12">
                             <div class="pagination-area">
                                 {{ $lowongan->appends(['cari' => request('cari')])->onEachSide(1)->links() }}
@@ -647,28 +770,37 @@
 
 
         });
-        function Simpan(id) {
-            // alert(id);
-            // var formUrl = $('#saveForm' + id).attr('action');
-            // $.ajax({
-            //     url: formUrl,
-            //     type: 'PATCH',
-            //     data: $('#saveForm'+id).serialize(),
-            //     success: function(response) {
+       
+    </script>
+   <script>
+        $(document).ready(function() {
 
-            //         if (response.suksesBatal) {
-            //             // alert('berhasil batal');
-            //             $('#simpan'+id).removeClass('text-info');
-            //         } else {
-            //             $('#simpan'+id).addClass('text-info');
-            //             // alert('berhasil simpan');
+            // $('.simpan').on('click', function() {
+            //     var formUrl = $('#saveForm').attr('action');
+            //     $.ajax({
+            //         url: formUrl,
+            //         type: 'PATCH',
+            //         data: $('#saveForm').serialize(),
+            //         success: function(response) {
+
+            //             if (response.suksesBatal) {
+            //                 alert('berhasil batal');
+            //                 $('#simpan').removeClass('text-info');
+            //             } else {
+            //                 $('#simpan').addClass('text-info');
+            //                 alert('berhasil simpan');
+            //             }
+            //             // console.log(response.success);
+            //         },
+            //         error: function(error) {
+            //             console.log(error);
             //         }
-            //         // console.log(response.success);
-            //     },
-            //     error: function(error) {
-            //         console.log(error);
-            //     }
+            //     });
             // });
+        });
+
+        function Simpan(id) {
+
             const formId = 'saveForm' + id;
             const formUrl = $('#' + formId).attr('action');
 
@@ -714,6 +846,8 @@
                                     text: 'Berhasil batal, simpan lowongan.',
                                 });
                                 $('#simpan' + id).removeClass('text-warning');
+                                $('.labelSimpan[data-label-id="' + id + '"]').addClass('hidden');
+
                             } else {
                                 swalWithBootstrapButtons.fire({
                                     icon: 'success',
@@ -721,6 +855,8 @@
                                     text: 'Berhasil simpan lowongan.',
                                 });
                                 $('#simpan' + id).addClass('text-warning');
+                                $('.labelSimpan[data-label-id="' + id + '"]').removeClass('hidden');
+
                             }
                             // console.log(response.success);
                         },
@@ -738,6 +874,7 @@
             });
         }
     </script>
+
     <script>
         $(document).ready(function() {
             var formUrl = "{{ route('Tampilkan-lowongan') }}"; // Changed 'Route' to 'route'
@@ -755,6 +892,7 @@
                     console.log(response);
                     $.each(response.simpan, function(index, item) {
                         $('.buttonSimpan[data-vacancie-id="' + item.vacancie_id + '"]').addClass('text-warning');
+                        $('.labelSimpan[data-label-id="' + item.vacancie_id + '"]').removeClass('hidden');
                     });
                 },
                 error: function(error) {
