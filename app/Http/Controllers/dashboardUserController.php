@@ -11,10 +11,14 @@ use App\Models\VacancieSave;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Vacancy;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Http\Request;
+use Mockery\Undefined;
 
 class DashboardUserController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      */
@@ -83,7 +87,7 @@ class DashboardUserController extends Controller
         if ($keywordTipe) {
             $lowonganQuery->whereIn('tipe', [$request->tipe]);
         }
-        
+
         if (!$selectedDivision && !$keyword && !$keywordTipe) {
             $lowonganQuery->where('status', 'aktif');
         }
@@ -96,6 +100,18 @@ class DashboardUserController extends Controller
         $divisi = Division::where('status', 'aktif')->get();
 
         return view('user.lowongan', compact('lowongan', 'divisi', 'selectedDivision', 'keyword', 'keywordTipe'));
+    }
+
+    public function LowonganUser()
+    {
+        $lowonganQuery = Vacancy::query();
+        $lowongan = $lowonganQuery
+            ->orderByRaw('ABS(DATEDIFF(batas, CURDATE()))')
+            ->where('status', 'aktif')
+            ->latest()
+            ->limit(8)->get();
+
+        return response()->json(['lowongan' => $lowongan]);
     }
 
 
@@ -141,5 +157,52 @@ class DashboardUserController extends Controller
         $cek = Vacancy::where('status', 'aktif')->count();
 
         return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration', 'cek'));
+    }
+
+
+    public function SideFilter(Request $request)
+    {
+
+        $lowonganQuery = Vacancy::query();
+        $type = $request->data[0];
+        $typeVacancy = $request->data[1];
+        $Salary = $request->data[2];
+        // dd($Salary);
+
+        if ($type != 'semua') {
+            $lowonganQuery->whereIn('tipe', $type);
+        }
+
+        if ($typeVacancy != 'semua') {
+            $orderBy = ($typeVacancy === 'terbaru') ? 'asc' : 'desc';
+            $lowonganQuery->orderBy('created_at', $orderBy);
+        }
+
+        if ($Salary != 'semua') {
+            switch ($Salary) {
+                case 'gaji1':
+                    $lowonganQuery->whereBetween('gaji', [100000, 2500000]);
+                    break;
+                case 'gaji2':
+                    $lowonganQuery->whereBetween('gaji', [2500000, 5000000]);
+                    break;
+                case 'gaji3':
+                    $lowonganQuery->whereBetween('gaji', [5000000, 7500000]);
+                    break;
+                case 'gaji4':
+                    $lowonganQuery->whereBetween('gaji', [7500000, 10000000]);
+                    break;
+                case 'gaji5':
+                    $lowonganQuery->where('gaji', '>', 10000000);
+                    break;
+                default:
+                    $lowonganQuery->where('gaji', '>', 100000);
+            }
+        }
+        $lowongan = $lowonganQuery->get();
+        dd($lowongan);
+
+        return response()->json(['lowongan'=>$lowongan]);
+
     }
 }
