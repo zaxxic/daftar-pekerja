@@ -169,17 +169,26 @@ class DashboardUserController extends Controller
         $Salary = $request->data[2];
         // dd($Salary);
 
-        if ($type != 'semua') {
+        if ($type[0] != 'semua') {
             $lowonganQuery->whereIn('tipe', $type);
         }
 
-        if ($typeVacancy != 'semua') {
-            $orderBy = ($typeVacancy === 'terbaru') ? 'asc' : 'desc';
-            $lowonganQuery->orderBy('created_at', $orderBy);
+
+        if ($typeVacancy[0] != 'semua') {
+            switch ($typeVacancy[0]){
+                case "terbaru":
+                    $lowonganQuery->orderBy('batas', 'asc');
+                break;
+                case "terlama":
+                    $lowonganQuery->orderBy('batas', 'desc');
+                break;
+            }
+            // $orderBy = ($typeVacancy[0] === 'terbaru') ? 'asc' : 'desc';
+            // $lowonganQuery->orderBy('created_at', $orderBy);
         }
 
-        if ($Salary != 'semua') {
-            switch ($Salary) {
+        if ($Salary[0] != 'semua') {
+            switch ($Salary[0]) {
                 case 'gaji1':
                     $lowonganQuery->whereBetween('gaji', [100000, 2500000]);
                     break;
@@ -199,8 +208,11 @@ class DashboardUserController extends Controller
                     $lowonganQuery->where('gaji', '>', 100000);
             }
         }
-        $lowongan = $lowonganQuery->get();
-        dd($lowongan);
+        $lowongan = $lowonganQuery->where('status', 'aktif')->get();
+
+        if($lowongan->count() < 1 && ($type[0] === 'semua' && $typeVacancy[0] === 'semua' && $Salary[0] === 'semua')){
+            $lowongan = Vacancy::where('status', 'aktif')->get();
+        }
 
         return response()->json(['lowongan'=>$lowongan]);
 
