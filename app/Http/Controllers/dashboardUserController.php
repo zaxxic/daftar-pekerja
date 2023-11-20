@@ -73,7 +73,7 @@ class DashboardUserController extends Controller
         $selectedDivision = $request->input('division');
         $lowonganQuery = Vacancy::query();
         $keyword = $request->input('cari');
-        $keywordTipe = $request->input('tipe');
+        $keywordLokasi = $request->input('lokasi');
 
         // Check and apply filters based on the input
         if ($selectedDivision && $selectedDivision !== 'semua') {
@@ -84,11 +84,12 @@ class DashboardUserController extends Controller
             $lowonganQuery->where('judul', 'LIKE', '%' . $keyword . '%');
         }
 
-        if ($keywordTipe) {
-            $lowonganQuery->whereIn('tipe', [$request->tipe]);
+        if ($keywordLokasi) {
+            // $lowonganQuery->whereIn('tipe', [$request->tipe]);
+            $lowonganQuery->where('lokasi', 'LIKE', '%' . $keywordLokasi . '%');
         }
 
-        if (!$selectedDivision && !$keyword && !$keywordTipe) {
+        if (!$selectedDivision && !$keyword && !$keywordLokasi) {
             $lowonganQuery->where('status', 'aktif');
         }
 
@@ -98,8 +99,57 @@ class DashboardUserController extends Controller
             ->paginate(5);
 
         $divisi = Division::where('status', 'aktif')->get();
+        $lokasi = Vacancy::where('status', 'aktif')
+        ->select('lokasi')
+        ->distinct()
+        ->get();
 
-        return view('user.lowongan', compact('lowongan', 'divisi', 'selectedDivision', 'keyword', 'keywordTipe'));
+        $lowonganTerbaru = Vacancy::where('created_at', 'desc');
+        $lowonganTerlama = Vacancy::where('created_at', 'asc');
+
+        return view('user.lowongan', compact('lowongan', 'divisi', 'selectedDivision', 'keyword', 'keywordLokasi', 'lokasi', 'lowonganTerbaru', 'lowonganTerlama'));
+    }
+
+    public function searchlowongan(Request $request)
+    {
+        $selectedDivision = $request->input('division');
+        $lowonganQuery = Vacancy::query();
+        $keyword = $request->input('cari');
+        $keywordLokasi = $request->input('lokasi');
+
+        // Check and apply filters based on the input
+        if ($selectedDivision && $selectedDivision !== 'semua') {
+            $lowonganQuery->where('devisi_id', $selectedDivision);
+        }
+
+        if ($keyword) {
+            $lowonganQuery->where('judul', 'LIKE', '%' . $keyword . '%');
+        }
+
+        if ($keywordLokasi && $keywordLokasi !== 'semua') {
+            // $lowonganQuery->whereIn('tipe', [$request->tipe]);
+            $lowonganQuery->where('lokasi', 'LIKE', '%' . $keywordLokasi . '%');
+        }
+        
+        if (!$selectedDivision && !$keyword && !$keywordLokasi) {
+            $lowonganQuery->where('status', 'aktif');
+        }
+
+        $lowongan = $lowonganQuery
+            ->orderByRaw('ABS(DATEDIFF(batas, CURDATE()))')
+            ->latest()
+            ->paginate(5);
+
+        $divisi = Division::where('status', 'aktif')->get();
+        $lokasi = Vacancy::where('status', 'aktif')
+        ->select('lokasi')
+        ->distinct()
+        ->get();
+
+        $lowonganTerbaru = Vacancy::where('created_at', 'desc');
+        $lowonganTerlama = Vacancy::where('created_at', 'asc');
+
+        return response()->json(['lowongan' => $lowongan, 'divisi' => $divisi, 'selectedDivision' => $selectedDivision, 'keyword' => $keyword, 'keywordLokasi' => $keywordLokasi, 'lokasi' => $lokasi, 'lowonganTerbaru' => $lowonganTerbaru, 'lowonganTerlama' => $lowonganTerlama]);
     }
 
     public function LowonganUser()
@@ -169,26 +219,17 @@ class DashboardUserController extends Controller
         $Salary = $request->data[2];
         // dd($Salary);
 
-        if ($type[0] != 'semua') {
+        if ($type != 'semua') {
             $lowonganQuery->whereIn('tipe', $type);
         }
 
-
-        if ($typeVacancy[0] != 'semua') {
-            switch ($typeVacancy[0]){
-                case "terbaru":
-                    $lowonganQuery->orderBy('batas', 'asc');
-                break;
-                case "terlama":
-                    $lowonganQuery->orderBy('batas', 'desc');
-                break;
-            }
-            // $orderBy = ($typeVacancy[0] === 'terbaru') ? 'asc' : 'desc';
-            // $lowonganQuery->orderBy('created_at', $orderBy);
+        if ($typeVacancy != 'semua') {
+            $orderBy = ($typeVacancy === 'terbaru') ? 'asc' : 'desc';
+            $lowonganQuery->orderBy('created_at', $orderBy);
         }
 
-        if ($Salary[0] != 'semua') {
-            switch ($Salary[0]) {
+        if ($Salary != 'semua') {
+            switch ($Salary) {
                 case 'gaji1':
                     $lowonganQuery->whereBetween('gaji', [100000, 2500000]);
                     break;
@@ -208,11 +249,8 @@ class DashboardUserController extends Controller
                     $lowonganQuery->where('gaji', '>', 100000);
             }
         }
-        $lowongan = $lowonganQuery->where('status', 'aktif')->get();
-
-        if($lowongan->count() < 1 && ($type[0] === 'semua' && $typeVacancy[0] === 'semua' && $Salary[0] === 'semua')){
-            $lowongan = Vacancy::where('status', 'aktif')->get();
-        }
+        $lowongan = $lowonganQuery->get();
+        dd($lowongan);
 
         return response()->json(['lowongan'=>$lowongan]);
 

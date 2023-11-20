@@ -204,7 +204,7 @@
             <div class="row">
                 <div class="col-12 col-sm-12">
                     <div class="form-group">
-                        <form class="search-form d-flex justify-content-between  row ">
+                        <form class="search-form d-flex justify-content-between  row " id="search-lowongan">
                             <div class="form-group col-5 ">
                                 <div class="d-flex" style="margin-top: 30px;">
                                     <input type="text" name="cari"
@@ -216,15 +216,13 @@
 
                             <div class="form-group col-3" style="margin-top: 30px;">
                                 <div>
-                                    <select class="select2 form-select" id="division-select" name="division"
-                                        style="width: 100%; margin-right: 10px;">
-                                        <option value="semua" @if (!$selectedDivision) selected @endif>Semua
-                                        </option>
+                                    <select class="select2 form-select" id="division-select" name="division" style="width: 100%; margin-right: 10px;">
+                                        <option disabled selected>Divisi</option>
+                                        <option value="semua" @if (!$selectedDivision) selected @endif>Semua</option>
                                         @foreach ($divisi as $item)
-                                            <option value="{{ $item->id }}"
-                                                @if (old('division', $selectedDivision) == $item->id) selected @endif>
-                                                {{ $item->divisi }}
-                                            </option>
+                                        <option value="{{ $item->id }}" @if (old('division', $selectedDivision)==$item->id) selected @endif>
+                                            {{ $item->divisi }}
+                                        </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -233,21 +231,23 @@
 
                             <div class="form-group col-3" style="margin-top: 30px;">
                                 <div>
-                                    <select class="select2" name="tipe" style="width: 100%; margin-right: 10px;">
-                                        <option value="kontrak" {{ $keywordTipe == 'kontrak' ? 'selected' : '' }}>
-                                            kontrak</option>
-                                        <option value="permanen" {{ $keywordTipe == 'permanen' ? 'selected' : '' }}>
-                                            permanen</option>
+                                    <select class="select2" name="lokasi" style="width: 100%; margin-right: 10px;">
+                                        <option disabled selected>Tempat Pekerjaan</option>
+                                        <option value="semua" @if (!$keywordLokasi) selected @endif>Semua</option>
+                                        @foreach ($lokasi as $item)
+                                        <option value="{{ $item->lokasi }}" {{ $item->lokasi == $keywordLokasi ? 'selected' : '' }}>
+                                            {{ $item->lokasi }}
+                                        </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="col-1 d-flex justify-content-end"
-                                style="align-items: center; margin-top: 15px;">
-                                <button class="btn btn-primary text-center ms-2" type="submit">
-                                    <p class="text-center"></p>Cari
+                            <div class="col-1 d-flex justify-content-end" style="align-items: center; margin-top: 15px;">
+                                <button class="btn btn-primary text-center ms-2" type="button" id="searchButton">
+                                 <p class="text-center"></p>Cari
                                 </button>
-                            </div>
+                             </div>
                             {{-- <button class="default-btn " type="submit"
                                 style="height: 15px; display: flex; align-items:;">
                                 <span style="font-size: 15px">Cari Divisi</span>
@@ -434,7 +434,7 @@
                                         <li class="mb-3" s>
                                             <i class="bx bx-envelope"></i>
                                             <span>Email:</span>
-                                            <a><span class="__cf_email__"
+                                            <a><span class="_cf_email_"
                                                     data-cfemail="f098959c9c9fb09a859299de939f9d">hummatechcareer@gmail.com</span></a>
                                         </li>
                                         <li class="location">
@@ -818,24 +818,24 @@
             });
         });
     </script>
-    <script>
-        function formatTanggalIndonesia(tanggal) {
-            const bulanIndonesia = [
-                'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-                'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-            ];
+   <script>
+    function formatTanggalIndonesia(tanggal) {
+        const bulanIndonesia = [
+            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+        ];
 
-            const [tahun, bulan, hari] = tanggal.split('-');
+        const [tahun, bulan, hari] = tanggal.split('-');
 
-            // Ambil nama bulan dalam bahasa Indonesia
-            const namaBulan = bulanIndonesia[parseInt(bulan, 10) - 1];
+        // Ambil nama bulan dalam bahasa Indonesia
+        const namaBulan = bulanIndonesia[parseInt(bulan, 10) - 1];
 
-            // Format tanggal sesuai keinginan
-            const formattedDate = `${hari} - ${namaBulan} - ${tahun}`;
+        // Format tanggal sesuai keinginan
+        const formattedDate = `${hari} - ${namaBulan} - ${tahun}`;
 
-            return formattedDate;
-        }
-    </script>
+        return formattedDate;
+   }
+</script>
     <script>
         $(document).ready(function() {
             var formUrl = "{{ route('Lowongan/Lowongan') }}"; // Changed 'Route' to 'route'
@@ -960,9 +960,7 @@
                         console.log();
                         $.each(response.lowongan, function(index, item) {
                             console.log(response.lowongan);
-                            if(response.lowongan === []) {
-                                alert("p");
-                            }
+                         
                             var route = "{{ route('detailLowongan', ':id') }}".replace(':id', item.id);
                             var routeSimpan = "simpan-lowongan/" + item.id;
                             var gaji = "Rp " + Number(item.gaji).toLocaleString('id-ID');
@@ -1029,6 +1027,131 @@
             });
         })
     </script>
+    <script>
+    $(document).ready(function() {
+        $('#searchButton').click(function() {
+            // Dapatkan nilai elemen filter yang terpilih
+            var keyword = $('input[name="cari"]').val();
+            var selectedDivision = $('#division-select').val();
+            var keywordLokasi = $('select[name="lokasi"]').val();
+
+            $('input[name="cari"]:checked').each(function() {
+                keyword.push(this.value);
+            });
+            $('input[name="division"]:checked').each(function() {
+                selectedDivision.push(this.value);
+            });
+            $('input[name="lokasi"]:checked').each(function() {
+                keywordLokasi.push(this.value);
+            });
+
+            console.log(keyword);
+            console.log(selectedDivision);
+            console.log(keywordLokasi);
+
+            if (keyword === null){
+                keyword = ['semua'];
+            }
+            if (selectedDivision === null){
+                selectedDivision = ['semua'];
+            }
+            if (keywordLokasi === null){
+                keywordLokasi = ['semua'];
+            }
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            var formData = [ keyword, selectedDivision, keywordLokasi ];
+                var formUrl =  "{{route('searchlowongan')}}";
+                console.log(formData);
+
+            // Kirim permintaan AJAX ke server
+            $.ajax({
+                url: '{{ route("searchlowongan") }}',
+                type: 'POST',
+                data: {
+                    keyword: keyword,
+                    selectedDivision: selectedDivision,
+                    keywordLokasi: keywordLokasi
+                },
+                success: function(response) {
+                    // Proses respons dan perbarui tampilan
+                    var lowongan = response.lowongan;
+                    var divisi = response.divisi;
+
+                    $('#LowonganUser').empty();
+                        console.log();
+                        $.each(response.lowongan, function(index, item) {
+                            console.log(response.lowongan);
+                         
+                            var route = "{{ route('detailLowongan', ':id') }}".replace(':id', item.id);
+                            var routeSimpan = "simpan-lowongan/" + item.id;
+                            var gaji = "Rp " + Number(item.gaji).toLocaleString('id-ID');
+                            var tanggalTengat = item.batas;
+                            var formattedDate = formatTanggalIndonesia(tanggalTengat);
+                            // alert(formattedDate);
+                            var id = item.id;
+                            let lowongan = `
+                                <div class="col-md-6 col-12 mix a s c" id="card2">
+                                    <div class="hot-jobs-list col-12">
+                                        <div class="row align-items-center">
+                                            <div class="col-12">
+                                                <a href="${route}">
+                                                    <div class="hot-jobs-content">
+                                                        <div class="row d-flex justify-content-between mb-3" style="color: black">
+                                                            <h4 class="col-12 col-md-12 col-xl-6 tengah">${item.judul}</h4>
+                                                            <p class="col-12 col-md-12 col-lg-12 col-xl-6 tanggal justify-content-lg-endcustom justify-content-xl-endcustom">
+                                                                ${item.status ? '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">' + gaji + '</span>' : '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>'}
+                                                            </p>
+                                                        </div>
+                                                        <ul>
+                                                            <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">${item.slot}</span></li>
+                                                            <li class="fs-3"><span>Posisi : </span><span class="fw-medium">${item.pekerja}</span></li>
+                                                            <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">${item.tipe}</span></li>
+                                                            <hr>
+                                                        </ul>
+                                                    </div>
+                                                </a>
+                                                <div class="card-footer">
+                                                    <div class="d-flex justify-content-between">
+                                                        <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: ${formattedDate}</p>
+                                                        <form id="saveForm${id}" action="${routeSimpan}" method="post">
+                                                            @method('PATCH')
+                                                            @csrf
+                                                            <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="${id}">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                                                </svg>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            // alert(lowongan);
+                            $('#LowonganUser').append(lowongan);
+                            $.each(response.simpan, function(index, item) {
+                                $('.buttonSimpan[data-vacancie-id="' + item.vacancie_id + '"]')
+                                    .addClass('text-warning');
+                                $('.labelSimpan[data-label-id="' + item.vacancie_id + '"]').removeClass(
+                                    'hidden');
+                            });
+                        });
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
 </body>
 
 </html>
