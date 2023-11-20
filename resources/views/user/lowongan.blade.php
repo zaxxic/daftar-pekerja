@@ -888,7 +888,7 @@
                                                     <form id="saveForm${id}" action="${routeSimpan}" method="post">
                                                         @method('PATCH')
                                                         @csrf
-                                                        <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="${id}">
+                                                        <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan " data-vacancie-id="${id}">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
                                                                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
                                                             </svg>
@@ -1008,6 +1008,12 @@
                             `;
                             // alert(lowongan);
                             $('#LowonganUser').append(lowongan);
+                            $.each(response.simpan, function(index, item) {
+                                $('.buttonSimpan[data-vacancie-id="' + item.vacancie_id + '"]')
+                                    .addClass('text-warning');
+                                $('.labelSimpan[data-label-id="' + item.vacancie_id + '"]').removeClass(
+                                    'hidden');
+                            });
                         });
 
 
