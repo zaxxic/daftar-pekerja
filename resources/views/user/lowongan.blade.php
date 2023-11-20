@@ -959,6 +959,10 @@
                         $('#LowonganUser').empty();
                         console.log();
                         $.each(response.lowongan, function(index, item) {
+                            console.log(response.lowongan);
+                            if(response.lowongan === []) {
+                                alert("p");
+                            }
                             var route = "{{ route('detailLowongan', ':id') }}".replace(':id', item.id);
                             var routeSimpan = "simpan-lowongan/" + item.id;
                             var gaji = "Rp " + Number(item.gaji).toLocaleString('id-ID');
