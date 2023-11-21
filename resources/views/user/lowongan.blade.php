@@ -207,7 +207,7 @@
                         <form class="search-form d-flex justify-content-between  row " id="search-lowongan">
                             <div class="form-group col-5 ">
                                 <div class="d-flex" style="margin-top: 30px;">
-                                    <input type="text" name="cari"
+                                    <input type="text" name="cari" id="cari"
                                         style="border: 1px solid #549bff; height: 35px; border-radius: 5px; width: 100%; padding: 8px;"
                                         value="{{ $keyword }}" placeholder="Cari Lowongan..">
 
@@ -216,13 +216,16 @@
 
                             <div class="form-group col-3" style="margin-top: 30px;">
                                 <div>
-                                    <select class="select2 form-select" id="division-select" name="division" style="width: 100%; margin-right: 10px;">
+                                    <select class="select2 form-select" id="divisionSelect" name="division"
+                                        style="width: 100%; margin-right: 10px;">
                                         <option disabled selected>Divisi</option>
-                                        <option value="semua" @if (!$selectedDivision) selected @endif>Semua</option>
-                                        @foreach ($divisi as $item)
-                                        <option value="{{ $item->id }}" @if (old('division', $selectedDivision)==$item->id) selected @endif>
-                                            {{ $item->divisi }}
+                                        <option value="semua" @if (!$selectedDivision) selected @endif>Semua
                                         </option>
+                                        @foreach ($divisi as $item)
+                                            <option value="{{ $item->id }}"
+                                                @if (old('division', $selectedDivision) == $item->id) selected @endif>
+                                                {{ $item->divisi }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -231,23 +234,26 @@
 
                             <div class="form-group col-3" style="margin-top: 30px;">
                                 <div>
-                                    <select class="select2" name="lokasi" style="width: 100%; margin-right: 10px;">
+                                    <select class="select2" name="lokasi" style="width: 100%; margin-right: 10px;" id="locationSelect">
                                         <option disabled selected>Tempat Pekerjaan</option>
-                                        <option value="semua" @if (!$keywordLokasi) selected @endif>Semua</option>
-                                        @foreach ($lokasi as $item)
-                                        <option value="{{ $item->lokasi }}" {{ $item->lokasi == $keywordLokasi ? 'selected' : '' }}>
-                                            {{ $item->lokasi }}
+                                        <option value="semua" @if (!$keywordLokasi) selected @endif>Semua
                                         </option>
+                                        @foreach ($lokasi as $item)
+                                            <option value="{{ $item->lokasi }}"
+                                                {{ $item->lokasi == $keywordLokasi ? 'selected' : '' }}>
+                                                {{ $item->lokasi }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="col-1 d-flex justify-content-end" style="align-items: center; margin-top: 15px;">
+                            <div class="col-1 d-flex justify-content-end"
+                                style="align-items: center; margin-top: 15px;">
                                 <button class="btn btn-primary text-center ms-2" type="button" id="searchButton">
-                                 <p class="text-center"></p>Cari
+                                    <p class="text-center"></p>Cari
                                 </button>
-                             </div>
+                            </div>
                             {{-- <button class="default-btn " type="submit"
                                 style="height: 15px; display: flex; align-items:;">
                                 <span style="font-size: 15px">Cari Divisi</span>
@@ -282,7 +288,7 @@
                 </style>
 
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-3 sticky-top">
                         <div class="employers-listing-sidebar1"
                             style="box-shadow: 0px 10px 10px rgba(245, 246, 253, 1); border-radius:5px">
                             <h4 class="text-white">Filter Tambahan</h4>
@@ -297,8 +303,8 @@
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input permanen" type="checkbox" name="tipe" value="Permanen"
-                                        id="flexCheckDefaultTipe"  />
+                                    <input class="form-check-input permanen" type="checkbox" name="tipe"
+                                        value="Permanen" id="flexCheckDefaultTipe" />
                                     <label class="form-check-label" for="flexCheckDefaultTipe">
                                         Permanen
                                     </label>
@@ -307,7 +313,7 @@
                                 <p class="fw-semibold fs-4 mb-2" style="color: black;">Tipe Lowongan</p>
                                 <div class="form-check mb-2">
                                     <input class="form-check-input" type="radio" name="tipeVacancy"
-                                        id="exampleRadios1" value="terbaru"  />
+                                        id="exampleRadios1" value="terbaru" />
                                     <label class="form-check-label" for="exampleRadios1">
                                         Lowongan Terbaru
                                     </label>
@@ -330,28 +336,28 @@
                                 </div>
                                 <div class="form-check mb-2">
                                     <input class="form-check-input" name="Salary" type="radio" value="gaji2"
-                                        id="flexCheckDefault"  />
+                                        id="flexCheckDefault" />
                                     <label class="form-check-label" for="flexCheckDefault">
                                         Rp 2.500.000-5.000.000
                                     </label>
                                 </div>
                                 <div class="form-check mb-2">
                                     <input class="form-check-input" name="Salary" type="radio" value="gaji3"
-                                        id="flexCheckDefault"  />
+                                        id="flexCheckDefault" />
                                     <label class="form-check-label" for="flexCheckDefault">
                                         Rp 5.000.000-7.500.000
                                     </label>
                                 </div>
                                 <div class="form-check mb-2">
                                     <input class="form-check-input" name="Salary" type="radio" value="gaji4"
-                                        id="flexCheckDefault"  />
+                                        id="flexCheckDefault" />
                                     <label class="form-check-label" for="flexCheckDefault">
                                         Rp 7.500.000-10.000.000
                                     </label>
                                 </div>
                                 <div class="form-check mb-2">
                                     <input class="form-check-input" name="Salary" type="radio" value="gaji5"
-                                        id="flexCheckDefault"  />
+                                        id="flexCheckDefault" />
                                     <label class="form-check-label" for="flexCheckDefault">
                                         Rp 10.000.000++
                                     </label>
@@ -366,7 +372,7 @@
                         </div>
                         <div class="col-12">
                             <div class="pagination-area">
-                                {{ $lowongan->appends(['cari' => request('cari')])->onEachSide(1)->links() }}
+                              {{-- <div id="paginate"></div> --}}
                             </div>
                         </div>
                     </div>
@@ -597,8 +603,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
         src="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ">
     </script>
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
@@ -818,24 +824,25 @@
             });
         });
     </script>
-   <script>
-    function formatTanggalIndonesia(tanggal) {
-        const bulanIndonesia = [
-            'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-            'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-        ];
+    <script>
+        function formatTanggalIndonesia(tanggal) {
+            const bulanIndonesia = [
+                'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+                'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+            ];
 
-        const [tahun, bulan, hari] = tanggal.split('-');
+            const [tahun, bulan, hari] = tanggal.split('-');
 
-        // Ambil nama bulan dalam bahasa Indonesia
-        const namaBulan = bulanIndonesia[parseInt(bulan, 10) - 1];
+            // Ambil nama bulan dalam bahasa Indonesia
+            const namaBulan = bulanIndonesia[parseInt(bulan, 10) - 1];
 
-        // Format tanggal sesuai keinginan
-        const formattedDate = `${hari} - ${namaBulan} - ${tahun}`;
+            // Format tanggal sesuai keinginan
+            const formattedDate = `${hari} - ${namaBulan} - ${tahun}`;
 
-        return formattedDate;
-   }
-</script>
+            return formattedDate;
+        }
+    </script>
+
     <script>
         $(document).ready(function() {
             var formUrl = "{{ route('Lowongan/Lowongan') }}"; // Changed 'Route' to 'route'
@@ -852,9 +859,9 @@
                 success: function(response) {
                     console.log(response.lowongan);
                     $('LowonganUser').empty();
+
                     $.each(response.lowongan, function(index, item) {
-                        var route = "{{ route('detailLowongan', ':id') }}".replace(':id', item
-                            .id);
+                        var route = "{{ route('detailLowongan', ':id') }}".replace(':id', item.id);
                         var routeSimpan = "simpan-lowongan/" + item.id;
                         var gaji = "Rp " + Number(item.gaji).toLocaleString('id-ID');
                         var tanggalTengat = item.batas;
@@ -901,9 +908,19 @@
                                 </div>
                             </div>
                         `;
-                        // alert(lowongan);
+
                         $('#LowonganUser').append(lowongan);
+
+
                     });
+                    $.each(response.simpan, function(index, item) {
+                            $('.buttonSimpan[data-vacancie-id="' + item.vacancie_id + '"]').addClass('text-warning');
+
+                            $('.labelSimpan[data-label-id="' + item.vacancie_id + '"]')
+                                .removeClass('hidden');
+                    });
+
+
 
 
                 },
@@ -916,9 +933,17 @@
     <script>
         $(document).ready(function() {
             $('#SideFilter').change(function() {
+           // Dapatkan nilai elemen filter yang terpilih
                 var selectType = new Array();
                 var selectTypeVacancy = new Array();
                 var selectSalary = new Array();
+                var keyword = $('#cari').val();
+                var selectedDivision = $('#divisionSelect').val();
+                var keywordLokasi = $('#locationSelect').val();
+                if(keyword === ''){
+                    keyword = "semua";
+                };
+
                 $('input[name="tipe"]:checked').each(function() {
                     selectType.push(this.value);
                 });
@@ -928,42 +953,45 @@
                 $('input[name="Salary"]:checked').each(function() {
                     selectSalary.push(this.value);
                 });
-                console.log(selectType);
-                console.log(selectTypeVacancy);
-                console.log(selectSalary);
 
-                if (selectType.length < 1){
+
+                if (selectType.length < 1) {
                     selectType.push('semua');
                 }
-                if (selectTypeVacancy.length < 1){
+                if (selectTypeVacancy.length < 1) {
                     selectTypeVacancy.push('semua');
                 }
-                if (selectSalary.length < 1){
+                if (selectSalary.length < 1) {
                     selectSalary.push('semua');
                 }
-                   $.ajaxSetup({
+
+                $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
 
-                var formData = [ selectType, selectTypeVacancy, selectSalary ];
-                var formUrl =  "{{route('SideFilter')}}";
+                var formData = [keyword, selectedDivision, keywordLokasi, selectType, selectTypeVacancy, selectSalary];
+                var formUrl = "{{ route('SideFilter') }}";
                 console.log(formData);
                 $.ajax({
                     url: formUrl,
                     type: 'POST',
-                    data: {data : formData},
+                    data: {
+                        data: formData
+                    },
                     success: function(response) {
 
                         $('#LowonganUser').empty();
                         console.log();
                         $.each(response.lowongan, function(index, item) {
                             console.log(response.lowongan);
-                         
-                            var route = "{{ route('detailLowongan', ':id') }}".replace(':id', item.id);
+
+                            var route = "{{ route('detailLowongan', ':id') }}".replace(
+                                ':id', item.id);
                             var routeSimpan = "simpan-lowongan/" + item.id;
-                            var gaji = "Rp " + Number(item.gaji).toLocaleString('id-ID');
+                            var gaji = "Rp " + Number(item.gaji).toLocaleString(
+                            'id-ID');
                             var tanggalTengat = item.batas;
                             var formattedDate = formatTanggalIndonesia(tanggalTengat);
                             // alert(formattedDate);
@@ -1010,14 +1038,15 @@
                             `;
                             // alert(lowongan);
                             $('#LowonganUser').append(lowongan);
-                            $.each(response.simpan, function(index, item) {
-                                $('.buttonSimpan[data-vacancie-id="' + item.vacancie_id + '"]')
-                                    .addClass('text-warning');
-                                $('.labelSimpan[data-label-id="' + item.vacancie_id + '"]').removeClass(
-                                    'hidden');
-                            });
                         });
-
+                        $.each(response.lowongan, function(index, item) {
+                            $('.buttonSimpan[data-vacancie-id="' + item.id + '"]')
+                                .addClass('text-warning');
+                            console.log($('.buttonSimpan[data-vacancie-id="' + item.id +
+                                '"]'));
+                            $('.labelSimpan[data-label-id="' + item.id + '"]')
+                                .removeClass('hidden');
+                        });
 
                     },
                     error: function(error) {
@@ -1028,69 +1057,74 @@
         })
     </script>
     <script>
-    $(document).ready(function() {
-        $('#searchButton').click(function() {
-            // Dapatkan nilai elemen filter yang terpilih
-            var keyword = $('input[name="cari"]').val();
-            var selectedDivision = $('#division-select').val();
-            var keywordLokasi = $('select[name="lokasi"]').val();
+        $(document).ready(function() {
+            $('#searchButton').click(function() {
+                // Dapatkan nilai elemen filter yang terpilih
+                var selectType = new Array();
+                var selectTypeVacancy = new Array();
+                var selectSalary = new Array();
+                var keyword = $('#cari').val();
+                var selectedDivision = $('#divisionSelect').val();
+                var keywordLokasi = $('#locationSelect').val();
+                if(keyword === ''){
+                    keyword = "semua";
+                };
 
-            $('input[name="cari"]:checked').each(function() {
-                keyword.push(this.value);
-            });
-            $('input[name="division"]:checked').each(function() {
-                selectedDivision.push(this.value);
-            });
-            $('input[name="lokasi"]:checked').each(function() {
-                keywordLokasi.push(this.value);
-            });
+                $('input[name="tipe"]:checked').each(function() {
+                    selectType.push(this.value);
+                });
+                $('input[name="tipeVacancy"]:checked').each(function() {
+                    selectTypeVacancy.push(this.value);
+                });
+                $('input[name="Salary"]:checked').each(function() {
+                    selectSalary.push(this.value);
+                });
 
-            console.log(keyword);
-            console.log(selectedDivision);
-            console.log(keywordLokasi);
 
-            if (keyword === null){
-                keyword = ['semua'];
-            }
-            if (selectedDivision === null){
-                selectedDivision = ['semua'];
-            }
-            if (keywordLokasi === null){
-                keywordLokasi = ['semua'];
-            }
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                if (selectType.length < 1) {
+                    selectType.push('semua');
                 }
-            });
+                if (selectTypeVacancy.length < 1) {
+                    selectTypeVacancy.push('semua');
+                }
+                if (selectSalary.length < 1) {
+                    selectSalary.push('semua');
+                }
 
-            var formData = [ keyword, selectedDivision, keywordLokasi ];
-                var formUrl =  "{{route('searchlowongan')}}";
-                console.log(formData);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
 
-            // Kirim permintaan AJAX ke server
-            $.ajax({
-                url: '{{ route("searchlowongan") }}',
-                type: 'POST',
-                data: {
-                    keyword: keyword,
-                    selectedDivision: selectedDivision,
-                    keywordLokasi: keywordLokasi
-                },
-                success: function(response) {
-                    // Proses respons dan perbarui tampilan
-                    var lowongan = response.lowongan;
-                    var divisi = response.divisi;
+                var formData = [keyword, selectedDivision, keywordLokasi, selectType, selectTypeVacancy,
+                    selectSalary
+                ];
+                var formUrl = "{{ route('searchlowongan') }}";
 
-                    $('#LowonganUser').empty();
+                // Kirim permintaan AJAX ke server
+                $.ajax({
+                    url: '{{ route('searchlowongan') }}',
+                    type: 'POST',
+                    data: {
+                        data: formData
+                    },
+                    success: function(response) {
+                        // Proses respons dan perbarui tampilan
+                        var lowongan = response.lowongan;
+                        var divisi = response.divisi;
+
+                        $('#LowonganUser').empty();
                         console.log();
                         $.each(response.lowongan, function(index, item) {
                             console.log(response.lowongan);
-                         
-                            var route = "{{ route('detailLowongan', ':id') }}".replace(':id', item.id);
+
+                            var route = "{{ route('detailLowongan', ':id') }}".replace(
+                                ':id', item.id);
                             var routeSimpan = "simpan-lowongan/" + item.id;
-                            var gaji = "Rp " + Number(item.gaji).toLocaleString('id-ID');
+                            var gaji = "Rp " + Number(item.gaji).toLocaleString(
+                            'id-ID');
                             var tanggalTengat = item.batas;
                             var formattedDate = formatTanggalIndonesia(tanggalTengat);
                             // alert(formattedDate);
@@ -1137,21 +1171,54 @@
                             `;
                             // alert(lowongan);
                             $('#LowonganUser').append(lowongan);
-                            $.each(response.simpan, function(index, item) {
-                                $('.buttonSimpan[data-vacancie-id="' + item.vacancie_id + '"]')
-                                    .addClass('text-warning');
-                                $('.labelSimpan[data-label-id="' + item.vacancie_id + '"]').removeClass(
-                                    'hidden');
-                            });
+
                         });
-                },
-                error: function(error) {
-                    console.log(error);
-                }
+                        $.each(response.lowongan, function(index, item) {
+                            $('.buttonSimpan[data-vacancie-id="' + item.id + '"]')
+                                .addClass('text-warning');
+                            console.log($('.buttonSimpan[data-vacancie-id="' + item.id +
+                                '"]'));
+                            $('.labelSimpan[data-label-id="' + item.id + '"]')
+                                .removeClass('hidden');
+                        });
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
+     {{-- <script>
+        function LowonganDataContainer(item) {
+           const data = item;
+           console.log(data);
+            var count = data.length/2;
+            for (var i = 1; i <= count; i++) {
+                console.log(i);
+                let paginate = `<li class="page-item" style="text-decoration: none;" onclick="Paginate(${i})"><a class="page-link" >${i}</a></li>`;
+                $('#paginate').append(paginate);
+            };
+            var lowongan = item
+
+            return data;
+
+
+        }
+    </script>
+    <script>
+        function Paginate(id){
+            $('#LowonganUser').empty();
+            var dataAkhir = id*2;
+            var dataAwal =dataAkhir-2;
+            var data = LowonganDataContainer();
+            alert(data);
+            for (let index = dataAwal; index < dataAkhir; index++) {
+
+
+            }
+        }
+    </script> --}}
 </body>
 
 </html>
