@@ -176,6 +176,19 @@
             margin-bottom: 30px;
             border-color: #cccccc;
         }
+
+        .filter2 {
+            display: none;
+        }
+
+        @media (min-width:992px) {
+
+            .filter2 {
+                display: block;
+            }
+        }
+
+        ;
     </style>
 
     <!-- Start Page Title Area -->
@@ -202,19 +215,18 @@
     <section class="employers-listing-area ptb-100" style="direction: ltr;">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-sm-12">
+                <div class="col-12 col-sm-12 filter1 " style="background-color: #fff">
                     <div class="form-group">
                         <form class="search-form d-flex justify-content-between  row " id="search-lowongan">
-                            <div class="form-group col-5 ">
+                            <div class="form-group col-md-5 col-4 ">
                                 <div class="d-flex" style="margin-top: 30px;">
                                     <input type="text" name="cari" id="cari"
                                         style="border: 1px solid #549bff; height: 35px; border-radius: 5px; width: 100%; padding: 8px;"
                                         value="{{ $keyword }}" placeholder="Cari Lowongan..">
-
                                 </div>
                             </div>
 
-                            <div class="form-group col-3" style="margin-top: 30px;">
+                            <div class="form-group col-md-3 col-4" style="margin-top: 30px;">
                                 <div>
                                     <select class="select2 form-select" id="divisionSelect" name="division"
                                         style="width: 100%; margin-right: 10px;">
@@ -232,9 +244,10 @@
                             </div>
 
 
-                            <div class="form-group col-3" style="margin-top: 30px;">
+                            <div class="form-group col-md-3 col-4" style="margin-top: 30px;">
                                 <div>
-                                    <select class="select2" name="lokasi" style="width: 100%; margin-right: 10px;" id="locationSelect">
+                                    <select class="select2" name="lokasi" style="width: 100%; margin-right: 10px;"
+                                        id="locationSelect">
                                         <option disabled selected>Tempat Pekerjaan</option>
                                         <option value="semua" @if (!$keywordLokasi) selected @endif>Semua
                                         </option>
@@ -248,9 +261,10 @@
                                 </div>
                             </div>
 
-                            <div class="col-1 d-flex justify-content-end"
+                            <div class="col-12 col-lg-1 d-flex justify-content-end"
                                 style="align-items: center; margin-top: 15px;">
-                                <button class="btn btn-primary text-center ms-2" type="button" id="searchButton">
+                                <button class="btn btn-primary w-full border-1 text-center ms-2" type="button"
+                                    id="searchButton">
                                     <p class="text-center"></p>Cari
                                 </button>
                             </div>
@@ -287,8 +301,8 @@
                     }
                 </style>
 
-                <div class="row">
-                    <div class="col-3 sticky-top">
+                <div class="col-12 row p-0" style="margin-left: 3px">
+                    <div class="col-12 col-lg-3 filter2 ">
                         <div class="employers-listing-sidebar1"
                             style="box-shadow: 0px 10px 10px rgba(245, 246, 253, 1); border-radius:5px">
                             <h4 class="text-white">Filter Tambahan</h4>
@@ -366,13 +380,14 @@
 
                         </div>
                     </div>
-                    <div class="col-9" id="card">
-                        <div class="row">
-                            <div id="LowonganUser" class="row"></div>
-                        </div>
+                    <div class="col-lg-9 col-12" id="card">
+
+                        <div id="lowonganKosong" class=" w-full "></div>
+                        <div id="LowonganUser" class="row w-full "></div>
+
                         <div class="col-12">
                             <div class="pagination-area">
-                              {{-- <div id="paginate"></div> --}}
+                                {{-- <div id="paginate"></div> --}}
                             </div>
                         </div>
                     </div>
@@ -603,8 +618,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
         src="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ">
     </script>
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
@@ -858,67 +873,84 @@
                 type: 'GET',
                 success: function(response) {
                     console.log(response.lowongan);
-                    $('LowonganUser').empty();
+                    $('#LowonganUser').empty();
+                    $('#lowonganKosong').empty();
 
-                    $.each(response.lowongan, function(index, item) {
-                        var route = "{{ route('detailLowongan', ':id') }}".replace(':id', item.id);
-                        var routeSimpan = "simpan-lowongan/" + item.id;
-                        var gaji = "Rp " + Number(item.gaji).toLocaleString('id-ID');
-                        var tanggalTengat = item.batas;
-                        var formattedDate = formatTanggalIndonesia(tanggalTengat);
-                        // alert(formattedDate);
-                        var id = item.id;
+                    if (response.lowongan === 'kosong') {
                         let lowongan = `
-                            <div class="col-md-6 col-12 mix a s c" id="card2">
-                                <div class="hot-jobs-list col-12">
-                                    <div class="row align-items-center">
-                                        <div class="col-12">
-                                            <a href="${route}">
-                                                <div class="hot-jobs-content">
-                                                    <div class="row d-flex justify-content-between mb-3" style="color: black">
-                                                        <h4 class="col-12 col-md-12 col-xl-6 tengah">${item.judul}</h4>
-                                                        <p class="col-12 col-md-12 col-lg-12 col-xl-6 tanggal justify-content-lg-endcustom justify-content-xl-endcustom">
-                                                            ${item.status ? '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">' + gaji + '</span>' : '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>'}
-                                                        </p>
-                                                    </div>
-                                                    <ul>
-                                                        <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">${item.slot}</span></li>
-                                                        <li class="fs-3"><span>Posisi : </span><span class="fw-medium">${item.pekerja}</span></li>
-                                                        <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">${item.tipe}</span></li>
-                                                        <hr>
-                                                    </ul>
-                                                </div>
-                                            </a>
-                                            <div class="card-footer">
-                                                <div class="d-flex justify-content-between">
-                                                    <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: ${formattedDate}</p>
-                                                    <form id="saveForm${id}" action="${routeSimpan}" method="post">
-                                                        @method('PATCH')
-                                                        @csrf
-                                                        <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan " data-vacancie-id="${id}">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-                                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
-                                                            </svg>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="row">
+                                <div class="col-lg-12 mt-5 text-center" id="lowongan">
+                                    <img src="{{ asset('assets/nodatas.png') }}" alt="" width="350px">
                                 </div>
                             </div>
-                        `;
+                                `;
+                        // alert(lowongan);
+                        $('#lowonganKosong').append(lowongan);
+                    } else {
+                        $.each(response.lowongan, function(index, item) {
+                            console.log(response.lowongan);
 
-                        $('#LowonganUser').append(lowongan);
-
-
-                    });
-                    $.each(response.simpan, function(index, item) {
-                            $('.buttonSimpan[data-vacancie-id="' + item.vacancie_id + '"]').addClass('text-warning');
+                            var route = "{{ route('detailLowongan', ':id') }}".replace(
+                                ':id', item.id);
+                            var routeSimpan = "simpan-lowongan/" + item.id;
+                            var gaji = "Rp " + Number(item.gaji).toLocaleString(
+                                'id-ID');
+                            var tanggalTengat = item.batas;
+                            var formattedDate = formatTanggalIndonesia(tanggalTengat);
+                            // alert(formattedDate);
+                            var id = item.id;
+                            let lowongan = `
+                                    <div class="col-md-6 col-12 mix a s c" id="card2">
+                                        <div class="hot-jobs-list w-full">
+                                            <div class="row align-items-center">
+                                                <div class="col-12">
+                                                    <a href="${route}">
+                                                        <div class="hot-jobs-content">
+                                                            <div class="row d-flex justify-content-between mb-3" style="color: black">
+                                                                <h4 class="col-12 col-md-12 col-xl-6 tengah">${item.judul}</h4>
+                                                                <p class="col-12 col-md-12 col-lg-12 col-xl-6 tanggal justify-content-lg-endcustom justify-content-xl-endcustom">
+                                                                    ${item.status ? '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">' + gaji + '</span>' : '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>'}
+                                                                </p>
+                                                            </div>
+                                                            <ul>
+                                                                <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">${item.slot}</span></li>
+                                                                <li class="fs-3"><span>Posisi : </span><span class="fw-medium">${item.pekerja}</span></li>
+                                                                <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">${item.tipe}</span></li>
+                                                                <hr>
+                                                            </ul>
+                                                        </div>
+                                                    </a>
+                                                    <div class="card-footer">
+                                                        <div class="d-flex justify-content-between">
+                                                            <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: ${formattedDate}</p>
+                                                            <form id="saveForm${id}" action="${routeSimpan}" method="post">
+                                                                @method('PATCH')
+                                                                @csrf
+                                                                <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="${id}">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                                                    </svg>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <span id=""  class="featured  labelSimpan hidden" data-label-id="${id}" style="background-color:#ffad1e">Tersimpan</span>
+                                        </div>
+                                    </div>
+                                `;
+                            // alert(lowongan);
+                            $('#LowonganUser').append(lowongan);
+                        });
+                        $.each(response.simpan, function(index, item) {
+                            $('.buttonSimpan[data-vacancie-id="' + item.vacancie_id + '"]')
+                                .addClass('text-warning');
 
                             $('.labelSimpan[data-label-id="' + item.vacancie_id + '"]')
                                 .removeClass('hidden');
-                    });
+                        });
+                    }
 
 
 
@@ -933,14 +965,14 @@
     <script>
         $(document).ready(function() {
             $('#SideFilter').change(function() {
-           // Dapatkan nilai elemen filter yang terpilih
+                // Dapatkan nilai elemen filter yang terpilih
                 var selectType = new Array();
                 var selectTypeVacancy = new Array();
                 var selectSalary = new Array();
                 var keyword = $('#cari').val();
                 var selectedDivision = $('#divisionSelect').val();
                 var keywordLokasi = $('#locationSelect').val();
-                if(keyword === ''){
+                if (keyword === '') {
                     keyword = "semua";
                 };
 
@@ -971,7 +1003,9 @@
                     }
                 });
 
-                var formData = [keyword, selectedDivision, keywordLokasi, selectType, selectTypeVacancy, selectSalary];
+                var formData = [keyword, selectedDivision, keywordLokasi, selectType, selectTypeVacancy,
+                    selectSalary
+                ];
                 var formUrl = "{{ route('SideFilter') }}";
                 console.log(formData);
                 $.ajax({
@@ -983,70 +1017,87 @@
                     success: function(response) {
 
                         $('#LowonganUser').empty();
-                        console.log();
-                        $.each(response.lowongan, function(index, item) {
-                            console.log(response.lowongan);
+                        $('#lowonganKosong').empty();
 
-                            var route = "{{ route('detailLowongan', ':id') }}".replace(
-                                ':id', item.id);
-                            var routeSimpan = "simpan-lowongan/" + item.id;
-                            var gaji = "Rp " + Number(item.gaji).toLocaleString(
-                            'id-ID');
-                            var tanggalTengat = item.batas;
-                            var formattedDate = formatTanggalIndonesia(tanggalTengat);
-                            // alert(formattedDate);
-                            var id = item.id;
+                        if (response.lowongan === 'kosong') {
                             let lowongan = `
-                                <div class="col-md-6 col-12 mix a s c" id="card2">
-                                    <div class="hot-jobs-list col-12">
-                                        <div class="row align-items-center">
-                                            <div class="col-12">
-                                                <a href="${route}">
-                                                    <div class="hot-jobs-content">
-                                                        <div class="row d-flex justify-content-between mb-3" style="color: black">
-                                                            <h4 class="col-12 col-md-12 col-xl-6 tengah">${item.judul}</h4>
-                                                            <p class="col-12 col-md-12 col-lg-12 col-xl-6 tanggal justify-content-lg-endcustom justify-content-xl-endcustom">
-                                                                ${item.status ? '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">' + gaji + '</span>' : '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>'}
-                                                            </p>
+                            <div class="row">
+                                <div class="col-lg-12 mt-5 text-center" id="lowongan">
+                                    <img src="{{ asset('assets/nodatas.png') }}" alt="" width="350px">
+                                </div>
+                            </div>
+                                `;
+                            // alert(lowongan);
+                            $('#lowonganKosong').append(lowongan);
+                        } else {
+                            $.each(response.lowongan, function(index, item) {
+                                console.log(response.lowongan);
+
+                                var route = "{{ route('detailLowongan', ':id') }}"
+                                    .replace(
+                                        ':id', item.id);
+                                var routeSimpan = "simpan-lowongan/" + item.id;
+                                var gaji = "Rp " + Number(item.gaji).toLocaleString(
+                                    'id-ID');
+                                var tanggalTengat = item.batas;
+                                var formattedDate = formatTanggalIndonesia(
+                                    tanggalTengat);
+                                // alert(formattedDate);
+                                var id = item.id;
+                                let lowongan = `
+                                    <div class="col-md-6 col-12 mix a s c" id="card2">
+                                        <div class="hot-jobs-list w-full">
+                                            <div class="row align-items-center">
+                                                <div class="col-12">
+                                                    <a href="${route}">
+                                                        <div class="hot-jobs-content">
+                                                            <div class="row d-flex justify-content-between mb-3" style="color: black">
+                                                                <h4 class="col-12 col-md-12 col-xl-6 tengah">${item.judul}</h4>
+                                                                <p class="col-12 col-md-12 col-lg-12 col-xl-6 tanggal justify-content-lg-endcustom justify-content-xl-endcustom">
+                                                                    ${item.status ? '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">' + gaji + '</span>' : '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>'}
+                                                                </p>
+                                                            </div>
+                                                            <ul>
+                                                                <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">${item.slot}</span></li>
+                                                                <li class="fs-3"><span>Posisi : </span><span class="fw-medium">${item.pekerja}</span></li>
+                                                                <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">${item.tipe}</span></li>
+                                                                <hr>
+                                                            </ul>
                                                         </div>
-                                                        <ul>
-                                                            <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">${item.slot}</span></li>
-                                                            <li class="fs-3"><span>Posisi : </span><span class="fw-medium">${item.pekerja}</span></li>
-                                                            <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">${item.tipe}</span></li>
-                                                            <hr>
-                                                        </ul>
-                                                    </div>
-                                                </a>
-                                                <div class="card-footer">
-                                                    <div class="d-flex justify-content-between">
-                                                        <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: ${formattedDate}</p>
-                                                        <form id="saveForm${id}" action="${routeSimpan}" method="post">
-                                                            @method('PATCH')
-                                                            @csrf
-                                                            <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="${id}">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-                                                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
-                                                                </svg>
-                                                            </button>
-                                                        </form>
+                                                    </a>
+                                                    <div class="card-footer">
+                                                        <div class="d-flex justify-content-between">
+                                                            <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: ${formattedDate}</p>
+                                                            <form id="saveForm${id}" action="${routeSimpan}" method="post">
+                                                                @method('PATCH')
+                                                                @csrf
+                                                                <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="${id}">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                                                    </svg>
+                                                                </button>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <span id=""  class="featured  labelSimpan hidden" data-label-id="${id}" style="background-color:#ffad1e">Tersimpan</span>
                                         </div>
                                     </div>
-                                </div>
-                            `;
-                            // alert(lowongan);
-                            $('#LowonganUser').append(lowongan);
-                        });
-                        $.each(response.lowongan, function(index, item) {
-                            $('.buttonSimpan[data-vacancie-id="' + item.id + '"]')
-                                .addClass('text-warning');
-                            console.log($('.buttonSimpan[data-vacancie-id="' + item.id +
-                                '"]'));
-                            $('.labelSimpan[data-label-id="' + item.id + '"]')
-                                .removeClass('hidden');
-                        });
+                                `;
+                                // alert(lowongan);
+                                $('#LowonganUser').append(lowongan);
+                            });
+                            $.each(response.simpan, function(index, item) {
+                                $('.buttonSimpan[data-vacancie-id="' + item
+                                    .vacancie_id + '"]').addClass('text-warning');
+
+                                $('.labelSimpan[data-label-id="' + item.vacancie_id +
+                                    '"]').removeClass('hidden');
+                            });
+                        }
+
+
 
                     },
                     error: function(error) {
@@ -1066,7 +1117,7 @@
                 var keyword = $('#cari').val();
                 var selectedDivision = $('#divisionSelect').val();
                 var keywordLokasi = $('#locationSelect').val();
-                if(keyword === ''){
+                if (keyword === '') {
                     keyword = "semua";
                 };
 
@@ -1116,71 +1167,85 @@
                         var divisi = response.divisi;
 
                         $('#LowonganUser').empty();
-                        console.log();
-                        $.each(response.lowongan, function(index, item) {
-                            console.log(response.lowongan);
+                        $('#lowonganKosong').empty();
 
-                            var route = "{{ route('detailLowongan', ':id') }}".replace(
-                                ':id', item.id);
-                            var routeSimpan = "simpan-lowongan/" + item.id;
-                            var gaji = "Rp " + Number(item.gaji).toLocaleString(
-                            'id-ID');
-                            var tanggalTengat = item.batas;
-                            var formattedDate = formatTanggalIndonesia(tanggalTengat);
-                            // alert(formattedDate);
-                            var id = item.id;
+                        if (response.lowongan === 'kosong') {
                             let lowongan = `
-                                <div class="col-md-6 col-12 mix a s c" id="card2">
-                                    <div class="hot-jobs-list col-12">
-                                        <div class="row align-items-center">
-                                            <div class="col-12">
-                                                <a href="${route}">
-                                                    <div class="hot-jobs-content">
-                                                        <div class="row d-flex justify-content-between mb-3" style="color: black">
-                                                            <h4 class="col-12 col-md-12 col-xl-6 tengah">${item.judul}</h4>
-                                                            <p class="col-12 col-md-12 col-lg-12 col-xl-6 tanggal justify-content-lg-endcustom justify-content-xl-endcustom">
-                                                                ${item.status ? '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">' + gaji + '</span>' : '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>'}
-                                                            </p>
+                            <div class="row">
+                                <div class="col-lg-12 mt-5 text-center" id="lowongan">
+                                    <img src="{{ asset('assets/nodatas.png') }}" alt="" width="350px">
+                                </div>
+                            </div>
+                                `;
+                            // alert(lowongan);
+                            $('#lowonganKosong').append(lowongan);
+                        } else {
+                            $.each(response.lowongan, function(index, item) {
+                                console.log(response.lowongan);
+
+                                var route = "{{ route('detailLowongan', ':id') }}"
+                                    .replace(
+                                        ':id', item.id);
+                                var routeSimpan = "simpan-lowongan/" + item.id;
+                                var gaji = "Rp " + Number(item.gaji).toLocaleString(
+                                    'id-ID');
+                                var tanggalTengat = item.batas;
+                                var formattedDate = formatTanggalIndonesia(
+                                    tanggalTengat);
+                                // alert(formattedDate);
+                                var id = item.id;
+                                let lowongan = `
+                                    <div class="col-md-6 col-12 mix a s c" id="card2">
+                                        <div class="hot-jobs-list w-full">
+                                            <div class="row align-items-center">
+                                                <div class="col-12">
+                                                    <a href="${route}">
+                                                        <div class="hot-jobs-content">
+                                                            <div class="row d-flex justify-content-between mb-3" style="color: black">
+                                                                <h4 class="col-12 col-md-12 col-xl-6 tengah">${item.judul}</h4>
+                                                                <p class="col-12 col-md-12 col-lg-12 col-xl-6 tanggal justify-content-lg-endcustom justify-content-xl-endcustom">
+                                                                    ${item.status ? '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">' + gaji + '</span>' : '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>'}
+                                                                </p>
+                                                            </div>
+                                                            <ul>
+                                                                <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">${item.slot}</span></li>
+                                                                <li class="fs-3"><span>Posisi : </span><span class="fw-medium">${item.pekerja}</span></li>
+                                                                <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">${item.tipe}</span></li>
+                                                                <hr>
+                                                            </ul>
                                                         </div>
-                                                        <ul>
-                                                            <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">${item.slot}</span></li>
-                                                            <li class="fs-3"><span>Posisi : </span><span class="fw-medium">${item.pekerja}</span></li>
-                                                            <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">${item.tipe}</span></li>
-                                                            <hr>
-                                                        </ul>
-                                                    </div>
-                                                </a>
-                                                <div class="card-footer">
-                                                    <div class="d-flex justify-content-between">
-                                                        <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: ${formattedDate}</p>
-                                                        <form id="saveForm${id}" action="${routeSimpan}" method="post">
-                                                            @method('PATCH')
-                                                            @csrf
-                                                            <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="${id}">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-                                                                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
-                                                                </svg>
-                                                            </button>
-                                                        </form>
+                                                    </a>
+                                                    <div class="card-footer">
+                                                        <div class="d-flex justify-content-between">
+                                                            <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: ${formattedDate}</p>
+                                                            <form id="saveForm${id}" action="${routeSimpan}" method="post">
+                                                                @method('PATCH')
+                                                                @csrf
+                                                                <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="${id}">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                                                    </svg>
+                                                                </button>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <span id=""  class="featured  labelSimpan hidden" data-label-id="${id}" style="background-color:#ffad1e">Tersimpan</span>
                                         </div>
                                     </div>
-                                </div>
-                            `;
-                            // alert(lowongan);
-                            $('#LowonganUser').append(lowongan);
+                                `;
+                                // alert(lowongan);
+                                $('#LowonganUser').append(lowongan);
+                            });
+                            $.each(response.simpan, function(index, item) {
+                                $('.buttonSimpan[data-vacancie-id="' + item
+                                    .vacancie_id + '"]').addClass('text-warning');
 
-                        });
-                        $.each(response.lowongan, function(index, item) {
-                            $('.buttonSimpan[data-vacancie-id="' + item.id + '"]')
-                                .addClass('text-warning');
-                            console.log($('.buttonSimpan[data-vacancie-id="' + item.id +
-                                '"]'));
-                            $('.labelSimpan[data-label-id="' + item.id + '"]')
-                                .removeClass('hidden');
-                        });
+                                $('.labelSimpan[data-label-id="' + item.vacancie_id +
+                                    '"]').removeClass('hidden');
+                            });
+                        }
                     },
                     error: function(error) {
                         console.log(error);
@@ -1189,7 +1254,7 @@
             });
         });
     </script>
-     {{-- <script>
+    {{-- <script>
         function LowonganDataContainer(item) {
            const data = item;
            console.log(data);

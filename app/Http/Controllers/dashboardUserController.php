@@ -121,6 +121,9 @@ class DashboardUserController extends Controller
             ->latest()
             ->limit(8)->get();
         $simpan = VacancieSave::where('user_id', Auth()->User()->id)->get();
+        if($lowongan->count() < 1){
+            $lowongan = 'kosong';
+        };
 
         return response()->json(['lowongan' => $lowongan, 'simpan' => $simpan]);
     }
@@ -181,6 +184,8 @@ class DashboardUserController extends Controller
         $type = $request->data[3];
         $typeVacancy = $request->data[4];
         $Salary = $request->data[5];
+        $simpan = VacancieSave::where('user_id', Auth()->User()->id)->get();
+
         // dd($Salary);
 
 
@@ -253,9 +258,11 @@ class DashboardUserController extends Controller
             $lokasi ===  'semua'
         ){
             $lowongan = Vacancy::where('status', 'aktif')->get();
+        }elseif($lowongan->count() < 1){
+            $lowongan = 'kosong';
         }
 
-        return response()->json(['lowongan'=>$lowongan]);
+        return response()->json(['lowongan'=>$lowongan, 'simpan' => $simpan]);
 
     }
 
@@ -269,6 +276,7 @@ class DashboardUserController extends Controller
         $type = $request->data[3];
         $typeVacancy = $request->data[4];
         $Salary = $request->data[5];
+        $simpan = VacancieSave::where('user_id', Auth()->User()->id)->get();
         // dd($Salary);
 
 
@@ -329,7 +337,7 @@ class DashboardUserController extends Controller
             }
             // dd($Salary[0]);
         }
-        $lowongan = $lowonganQuery->where('status', 'aktif')->get()->withQueryString();
+        $lowongan = $lowonganQuery->where('status', 'aktif')->get();
         // dd($lowongan);
         if(
             $lowongan->count() < 1 &&
@@ -341,9 +349,11 @@ class DashboardUserController extends Controller
             $lokasi ===  'semua'
         ){
             $lowongan = Vacancy::where('status', 'aktif')->get();
+        }elseif($lowongan->count() < 1){
+            $lowongan = 'kosong';
         }
 
-        return response()->json(['lowongan'=>$lowongan]);
+        return response()->json(['lowongan'=>$lowongan, 'simpan' => $simpan]);
 
     }
 }

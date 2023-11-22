@@ -27,7 +27,7 @@
                 </div>
                 <div class="mb-3 d-flex justify-content-end col-md-6 lg-6">
                     <form id="form_filter">
-                        <div class="mb-3 mt-5 d-flex align-items-center justify-content-end">
+                        <div class="mb-3 mt-5 d-flex align-items-cener justify-content-end">
                             <div style="max-width: 30%;">
                                 <span class="mb-2 fw-semibold" style="font-size: 13px;">Filter Divisi</span>
                                 <select id="filter_divisi" name="filter_divisi" class="form-select me-3">
