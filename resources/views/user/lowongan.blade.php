@@ -42,9 +42,7 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/logo.png">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Title -->
     <title>Lowongan-user</title>
@@ -208,8 +206,8 @@
     <!-- End Page Title Area -->
 
     @php
-        use Carbon\Carbon;
-    @endphp
+    use Carbon\Carbon;
+    @endphp1
 
     <!-- Start Employers Listing Area -->
     <section class="employers-listing-area ptb-100" style="direction: ltr;">
@@ -217,8 +215,8 @@
             <div class="row">
                 <div class="col-12 col-sm-12 filter1 " style="background-color: #fff">
                     <div class="form-group">
-                        <form class="search-form d-flex justify-content-between  row " id="search-lowongan">
-                            <div class="form-group col-md-5 col-4 ">
+                        <form class="search-form d-flex justify-content-between row col-12" id="search-lowongan">
+                            <div class="form-group col-md-5 col-lg-5 col-sm-12">
                                 <div class="d-flex" style="margin-top: 30px;">
                                     <input type="text" name="cari" id="cari"
                                         style="border: 1px solid #549bff; height: 35px; border-radius: 5px; width: 100%; padding: 8px;"
@@ -226,7 +224,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group col-md-3 col-4" style="margin-top: 30px;">
+                            <div class="form-group col-md-3 col-lg-3 col-sm-4" style="margin-top: 30px;">
                                 <div>
                                     <select class="select2 form-select" id="divisionSelect" name="division"
                                         style="width: 100%; margin-right: 10px;">
@@ -243,8 +241,7 @@
                                 </div>
                             </div>
 
-
-                            <div class="form-group col-md-3 col-4" style="margin-top: 30px;">
+                            <div class="form-group col-md-3 col-lg-3 col-sm-4" style="margin-top: 30px;">
                                 <div>
                                     <select class="select2" name="lokasi" style="width: 100%; margin-right: 10px;"
                                         id="locationSelect">
@@ -261,8 +258,8 @@
                                 </div>
                             </div>
 
-                            <div class="col-12 col-lg-1 d-flex justify-content-end"
-                                style="align-items: center; margin-top: 15px;">
+                            <div class="form-group col-lg-1 col-md-1 col-sm-4"
+                                style="align-items: center; margin-top: 30px;">
                                 <button class="btn btn-primary w-full border-1 text-center ms-2" type="button"
                                     id="searchButton">
                                     <p class="text-center"></p>Cari
@@ -310,8 +307,7 @@
                             <form style="padding: 20px;" id="SideFilter">
                                 <p class="fw-semibold fs-4 mb-2" style="color: black;">Tipe Pekerjaan</p>
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" name="tipe" value="Kontrak"
-                                        id="flexCheckDefaultTipe" />
+                                    <input class="form-check-input" type="checkbox" name="tipe" value="Kontrak" id="flexCheckDefaultTipe" />
                                     <label class="form-check-label" for="flexCheckDefaultTipe">
                                         Kontrak
                                     </label>
@@ -333,8 +329,7 @@
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipeVacancy"
-                                        id="exampleRadios2" value="terlama" />
+                                    <input class="form-check-input" type="radio" name="tipeVacancy" id="exampleRadios2" value="terlama" />
                                     <label class="form-check-label" for="exampleRadios2">
                                         Lowongan Terlama
                                     </label>
@@ -342,8 +337,7 @@
                                 <hr>
                                 <p class="fw-semibold fs-4 mb-2" style="color: black;">Rentang Gaji</p>
                                 <div class="form-check mb-2">
-                                    <input class="form-check-input" name="Salary" type="radio" value="gaji1"
-                                        id="flexCheckDefault" />
+                                    <input class="form-check-input" name="Salary" type="radio" value="gaji1" id="flexCheckDefault" />
                                     <label class="form-check-label" for="flexCheckDefault">
                                         Rp 100.000-2.500.000
                                     </label>
@@ -384,6 +378,13 @@
 
                         <div id="lowonganKosong" class=" w-full "></div>
                         <div id="LowonganUser" class="row w-full "></div>
+                        @if ($limit < 10)
+
+                            @else
+                            <div class="lihatSelengkapnya btn btn-primary w-100" style="cursor: pointer" id="lihatSelengkapnya">Lihat Selengkapnya
+                            </div>
+                            <div class="lihatSedikit btn btn-primary w-100" style="display: none" id="lihatSedikit">Lihat Sedikit</div>
+                            @endif
 
                         <div class="col-12">
                             <div class="pagination-area">
@@ -428,8 +429,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="https://id.linkedin.com/in/hummasoft-technology-2476a8241"
-                                                target="_blank">
+                                            <a href="https://id.linkedin.com/in/hummasoft-technology-2476a8241" target="_blank">
                                                 <i class="bx bxl-linkedin-square"></i>
                                             </a>
                                         </li>
@@ -455,8 +455,7 @@
                                         <li class="mb-3" s>
                                             <i class="bx bx-envelope"></i>
                                             <span>Email:</span>
-                                            <a><span class="_cf_email_"
-                                                    data-cfemail="f098959c9c9fb09a859299de939f9d">hummatechcareer@gmail.com</span></a>
+                                            <a><span class="_cf_email_" data-cfemail="f098959c9c9fb09a859299de939f9d">hummatechcareer@gmail.com</span></a>
                                         </li>
                                         <li class="location">
                                             <i class="bx bx-location-plus"></i>
@@ -624,6 +623,7 @@
     <link href="
     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
     " rel="stylesheet">
+
     <script>
         $(document).ready(function() {
             $.ajaxSetup({
@@ -881,6 +881,42 @@
                             <div class="row">
                                 <div class="col-lg-12 mt-5 text-center" id="lowongan">
                                     <img src="{{ asset('assets/nodatas.png') }}" alt="" width="350px">
+                            <div class="col-md-6 col-12 mix a s c" id="card2">
+                                <div class="hot-jobs-list col-12">
+                                    <div class="row align-items-center">
+                                        <div class="col-12">
+                                            <a href="${route}">
+                                                <div class="hot-jobs-content">
+                                                    <div class="row d-flex justify-content-between mb-3" style="color: black">
+                                                        <h4 class="col-12 col-md-12 col-xl-6 tengah">${item.judul}</h4>
+                                                        <p class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex tanggal justify-content-center  justify-content-lg-end justify-content-xl-end">
+                                                            ${item.status ? '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">' + gaji + '</span>' : '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>'}
+                                                        </p>
+                                                    </div>
+                                                    <ul>
+                                                        <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">${item.slot}</span></li>
+                                                        <li class="fs-3"><span>Posisi : </span><span class="fw-medium">${item.pekerja}</span></li>
+                                                        <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">${item.tipe}</span></li>
+                                                        <hr>
+                                                    </ul>
+                                                </div>
+                                            </a>
+                                            <div class="card-footer">
+                                                <div class="d-flex justify-content-between">
+                                                    <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: ${formattedDate}</p>
+                                                    <form id="saveForm${id}" action="${routeSimpan}" method="post">
+                                                        @method('PATCH')
+                                                        @csrf
+                                                        <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan " data-vacancie-id="${id}">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                                            </svg>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                                 `;
@@ -908,7 +944,7 @@
                                                         <div class="hot-jobs-content">
                                                             <div class="row d-flex justify-content-between mb-3" style="color: black">
                                                                 <h4 class="col-12 col-md-12 col-xl-6 tengah">${item.judul}</h4>
-                                                                <p class="col-12 col-md-12 col-lg-12 col-xl-6 tanggal justify-content-lg-endcustom justify-content-xl-endcustom">
+                                                                <p class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex tanggal justify-content-center  justify-content-lg-end justify-content-xl-end">
                                                                     ${item.status ? '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">' + gaji + '</span>' : '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>'}
                                                                 </p>
                                                             </div>
@@ -964,6 +1000,185 @@
     </script>
     <script>
         $(document).ready(function() {
+            $('#lihatSelengkapnya').click(function() {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                var url = "{{route('lihat-selengkapnya-user')}}";
+
+                $.ajax({
+                    type: 'Get',
+                    url: url,
+                    success: function(response) {
+                        // alert(response);
+                        $('.lihatSedikit').show();
+                        $('.lihatSelengkapnya').hide();
+                        // alert(response);
+                        // Kosongkan kontainer sebelum menambahkan data baru
+                        $('#LowonganUser').empty();
+                        console.log(response.lowongan);
+
+                    $.each(response.lowongan, function(index, item) {
+                        var route = "{{ route('detailLowongan', ':id') }}".replace(':id', item.id);
+                        var routeSimpan = "simpan-lowongan/" + item.id;
+                        var gaji = "Rp " + Number(item.gaji).toLocaleString('id-ID');
+                        var tanggalTengat = item.batas;
+                        var formattedDate = formatTanggalIndonesia(tanggalTengat);
+                        // alert(formattedDate);
+                        var id = item.id;
+                        let lowongan = `
+                            <div class="col-md-6 col-12 mix a s c" id="card2">
+                                <div class="hot-jobs-list col-12">
+                                    <div class="row align-items-center">
+                                        <div class="col-12">
+                                            <a href="${route}">
+                                                <div class="hot-jobs-content">
+                                                    <div class="row d-flex justify-content-between mb-3" style="color: black">
+                                                        <h4 class="col-12 col-md-12 col-xl-6 tengah">${item.judul}</h4>
+                                                        <p class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex tanggal justify-content-center  justify-content-lg-end justify-content-xl-end">
+                                                            ${item.status ? '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">' + gaji + '</span>' : '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>'}
+                                                        </p>
+                                                    </div>
+                                                    <ul>
+                                                        <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">${item.slot}</span></li>
+                                                        <li class="fs-3"><span>Posisi : </span><span class="fw-medium">${item.pekerja}</span></li>
+                                                        <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">${item.tipe}</span></li>
+                                                        <hr>
+                                                    </ul>
+                                                </div>
+                                            </a>
+                                            <div class="card-footer">
+                                                <div class="d-flex justify-content-between">
+                                                    <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: ${formattedDate}</p>
+                                                    <form id="saveForm${id}" action="${routeSimpan}" method="post">
+                                                        @method('PATCH')
+                                                        @csrf
+                                                        <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan " data-vacancie-id="${id}">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                                            </svg>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                        $('#LowonganUser').append(lowongan);
+
+
+                    });
+                    $.each(response.simpan, function(index, item) {
+                            $('.buttonSimpan[data-vacancie-id="' + item.vacancie_id + '"]').addClass('text-warning');
+
+                            $('.labelSimpan[data-label-id="' + item.vacancie_id + '"]')
+                                .removeClass('hidden');
+                    });
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+     <script>
+        $(document).ready(function() {
+            $('#lihatSedikit').click(function() {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                var url = "{{route('Lowongan/Lowongan')}}";
+
+                $.ajax({
+                    type: 'Get',
+                    url: url,
+
+                    success: function(response) {
+                        // alert(response);
+                        $('#lihatSedikit').hide();
+                        $('#lihatSelengkapnya').show();
+                        // alert(response);
+                        console.log(response.lowongan);
+                        $('#LowonganUser').empty();
+
+                    $.each(response.lowongan, function(index, item) {
+                        var route = "{{ route('detailLowongan', ':id') }}".replace(':id', item.id);
+                        var routeSimpan = "simpan-lowongan/" + item.id;
+                        var gaji = "Rp " + Number(item.gaji).toLocaleString('id-ID');
+                        var tanggalTengat = item.batas;
+                        var formattedDate = formatTanggalIndonesia(tanggalTengat);
+                        // alert(formattedDate);
+                        var id = item.id;
+                        let lowongan = `
+                            <div class="col-md-6 col-12 mix a s c" id="card2">
+                                <div class="hot-jobs-list col-12">
+                                    <div class="row align-items-center">
+                                        <div class="col-12">
+                                            <a href="${route}">
+                                                <div class="hot-jobs-content">
+                                                    <div class="row d-flex justify-content-between mb-3" style="color: black">
+                                                        <h4 class="col-12 col-md-12 col-xl-6 tengah">${item.judul}</h4>
+                                                        <p class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex tanggal justify-content-center  justify-content-lg-end justify-content-xl-end">
+                                                            ${item.status ? '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">' + gaji + '</span>' : '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>'}
+                                                        </p>
+                                                    </div>
+                                                    <ul>
+                                                        <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">${item.slot}</span></li>
+                                                        <li class="fs-3"><span>Posisi : </span><span class="fw-medium">${item.pekerja}</span></li>
+                                                        <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">${item.tipe}</span></li>
+                                                        <hr>
+                                                    </ul>
+                                                </div>
+                                            </a>
+                                            <div class="card-footer">
+                                                <div class="d-flex justify-content-between">
+                                                    <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: ${formattedDate}</p>
+                                                    <form id="saveForm${id}" action="${routeSimpan}" method="post">
+                                                        @method('PATCH')
+                                                        @csrf
+                                                        <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan " data-vacancie-id="${id}">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                                            </svg>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                        $('#LowonganUser').append(lowongan);
+
+
+                    });
+                    $.each(response.simpan, function(index, item) {
+                            $('.buttonSimpan[data-vacancie-id="' + item.vacancie_id + '"]').addClass('text-warning');
+
+                            $('.labelSimpan[data-label-id="' + item.vacancie_id + '"]')
+                                .removeClass('hidden');
+                    });
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
             $('#SideFilter').change(function() {
                 // Dapatkan nilai elemen filter yang terpilih
                 var selectType = new Array();
@@ -986,7 +1201,6 @@
                     selectSalary.push(this.value);
                 });
 
-
                 if (selectType.length < 1) {
                     selectType.push('semua');
                 }
@@ -996,7 +1210,6 @@
                 if (selectSalary.length < 1) {
                     selectSalary.push('semua');
                 }
-
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1053,7 +1266,7 @@
                                                         <div class="hot-jobs-content">
                                                             <div class="row d-flex justify-content-between mb-3" style="color: black">
                                                                 <h4 class="col-12 col-md-12 col-xl-6 tengah">${item.judul}</h4>
-                                                                <p class="col-12 col-md-12 col-lg-12 col-xl-6 tanggal justify-content-lg-endcustom justify-content-xl-endcustom">
+                                                                <p class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex tanggal justify-content-center  justify-content-lg-end justify-content-xl-end">
                                                                     ${item.status ? '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">' + gaji + '</span>' : '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>'}
                                                                 </p>
                                                             </div>
@@ -1203,7 +1416,7 @@
                                                         <div class="hot-jobs-content">
                                                             <div class="row d-flex justify-content-between mb-3" style="color: black">
                                                                 <h4 class="col-12 col-md-12 col-xl-6 tengah">${item.judul}</h4>
-                                                                <p class="col-12 col-md-12 col-lg-12 col-xl-6 tanggal justify-content-lg-endcustom justify-content-xl-endcustom">
+                                                                <p class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex tanggal justify-content-center  justify-content-lg-end justify-content-xl-end">
                                                                     ${item.status ? '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">' + gaji + '</span>' : '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>'}
                                                                 </p>
                                                             </div>
