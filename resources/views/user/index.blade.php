@@ -338,7 +338,7 @@
     <section class="employers-listing-area ptb-100" style="direction: ltr;">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-lg-6 d-flex">
+                <!-- <div class="col-12 col-lg-6 d-flex">
                     @if (count($registration) > 0)
 
                     @endif
@@ -357,7 +357,6 @@
                                                     <h3>{{ $item->Vacancy->judul }}</h3>
                                                     <span class="fw-semibold fs-4 mt-2" style="color: #5d87ff;">{{ 'Rp ' . number_format($item->Vacancy->gaji, 0, ',', '.') }}</span>
                                                 </div>
-                                                <!-- <span class="sub-title">Conzio construction</span> -->
                                                 <ul>
                                                     <li><span>Slot Tersedia:</span> <span class="fw-medium"> {{ $item->Vacancy->slot }}</span></li>
                                                     <li><span>Divisi: </span> <span class="fw-medium"> {{ $item->Vacancy->Division->divisi }} </span> </li>
@@ -378,12 +377,6 @@
                                                 </p>
                                             </div>
                                         </div>
-
-                                        <!-- <div class="col-lg-5">
-									<div class="hot-jobs-btn">
-
-									</div>
-								</div> -->
                                     </div>
                                     <span class="featured green">Terdaftar</span>
                                 </div>
@@ -400,7 +393,82 @@
 
 
 
-                </div>
+                </div> -->
+                <div class="col-lg-6">
+                        <div class="card position-relative overflow-hidden mb-4" style="height: 279px;">
+                            <div class="card-header bg-info d-flex align-items-center justify-content-between">
+                                <div class="col-12 d-flex justify-content-between" style="padding: 0;">
+                                    <h4 class="card-title text-white mb-0 me-3" style="font-size: 22px;">{{ $item->Vacancy->judul }}</h4>
+                                    </h4>
+                                </div>
+
+                            </div>
+                            <div style="padding: 15px 20px 15px 20px;">
+                                <div class=" col-12 row">
+                                    <div class="col-3 mb-2 p-0">
+                                        <span class="fw-semibold fs-4" style="color: black;">Slot Tersedia</span>
+                                    </div>
+                                    <div class="col-1 p-0">
+                                        <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                    </div>
+                                    <div class="col-8 p-0">
+                                        <span class="fs-4" style="color: black;">{{ $item->Vacancy->slot }}</span>
+                                    </div>
+                                    <!-- <div class="col-3 mb-2">
+                                        <span class="fw-semibold fs-4" style="color: black;">Divisi</span>
+                                    </div>
+                                    <div class="col-1">
+                                        <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                    </div>
+                                    <div class="col-8">
+                                        <span class="fs-4" style="color: black;">{{ $item->Vacancy->Division->divisi }}</span>
+                                    </div> -->
+                                    <div class="col-3 mb-2 p-0">
+                                        <span class="fw-semibold fs-4" style="color: black;">Posisi</span>
+                                    </div>
+                                    <div class="col-1 p-0">
+                                        <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                    </div>
+                                    <div class="col-8 p-0">
+                                        <span class="fs-4" style="color: black;">{{ $item->Vacancy->pekerja }}</span>
+                                    </div>
+                                    <div class="col-3 mb-2 p-0">
+                                        <span class="fw-semibold fs-4" style="color: black;">Tipe Pekerjaan</span>
+                                    </div>
+                                    <div class="col-1 p-0">
+                                        <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                    </div>
+                                    <div class="col-8 p-0">
+                                        <span class="fs-4" style="color: black;">{{ $item->Vacancy->tipe }}</span>
+                                    </div>
+                                    <div class="col-3 mb-3 p-0">
+                                        <span class="fw-semibold fs-4" style="color: black;">Gaji</span>
+                                    </div>
+                                    <div class="col-1 p-0">
+                                        <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                    </div>
+                                    <div class="col-8 p-0">
+                                        <span class="fw-semibold fs-4" style="color: black;">{{ 'Rp ' . number_format($item->Vacancy->gaji, 0, ',', '.') }}</span>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between p-0">
+                                        <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: {{ \Carbon\Carbon::parse($item->batas)->locale('id')->isoFormat('D MMMM Y ') }}
+                                        </p>
+                                        <span class="status1">Terdaftar</span>
+                                        @if ($item->status === 'diterima')
+                                        <span class="status bg-success" style="width: 79px;">{{ $item->status }}</span>
+                                        @elseif($item->status === 'lulus')
+                                        <span class="status bg-primary" style="width: 75px;">{{ $item->status }}</span>
+                                        @else($item->status === 'menunggu')
+                                        <span class="status bg-warning" style="width: 100px;"><span>{{ $item->status }}</span></span>
+                                        @endif
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
                 <div class="col-lg-6">
                     <div class="card position-relative overflow-hidden mb-4" style="height: 94%;">
                         <div class="card-header bg-info d-flex align-items-center justify-content-between">
