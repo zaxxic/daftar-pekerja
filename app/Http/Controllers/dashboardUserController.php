@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\LowonganResource;
+use App\Models\Certificate;
 use App\Models\Divisi;
 use App\Models\Division;
+use App\Models\Experience;
 use App\Models\Register;
 use App\Models\Registration;
+use App\Models\School;
+use App\Models\Skill;
 use App\Models\User;
 use App\Models\VacancieSave;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Vacancy;
+use App\Models\Worker;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Http\Request;
@@ -17,15 +23,15 @@ use Mockery\Undefined;
 
 class DashboardUserController extends Controller
 {
-
-
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $selectedDivision = 'semua';
         $user = User::where(Auth()->user()->id);
+        $kelengkapanUser = User::find(auth()->user()->id);
+        $userProges = User::find(auth()->user()->id);
         // Ambil semua pendaftaran yang terkait dengan pengguna saat ini
         $registration = Registration::where('users_id', Auth()->user()->id)
             ->whereIn('status', ['menunggu', 'diterima', 'ditolak', 'nonaktif', 'lulus'])
@@ -64,7 +70,35 @@ class DashboardUserController extends Controller
 
         $cek = Vacancy::where('status', 'aktif')->count();
 
-        return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration', 'cek', 'user'));
+            $selectedDivision = $request->input('division');
+        $limit = Vacancy::all()->count();
+        $lowonganQuery = Vacancy::query();
+        $keyword = $request->input('cari');
+        $keywordLokasi = $request->input('lokasi');
+
+        // Check and apply filters based on the input
+        if ($selectedDivision && $selectedDivision !== 'semua') {
+            $lowonganQuery->where('devisi_id', $selectedDivision);
+        }
+
+        if ($keyword) {
+            $lowonganQuery->where('judul', 'LIKE', '%' . $keyword . '%');
+        }
+
+        if ($keywordLokasi) {
+            $lowonganQuery->where('lokasi', 'LIKE', '%' . $keywordLokasi . '%');
+        }
+
+        if (!$selectedDivision && !$keyword && !$keywordLokasi) {
+            $lowonganQuery->where('status', 'aktif');
+        }
+
+        $lokasi = Vacancy::where('status', 'aktif')
+            ->select('lokasi')
+            ->distinct()
+            ->get();
+
+        return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration', 'cek', 'user', 'kelengkapanUser', 'selectedDivision', 'keyword', 'keywordLokasi', 'lokasi', 'limit'));
     }
 
 
@@ -145,7 +179,7 @@ class DashboardUserController extends Controller
                 ->orderByRaw('ABS(DATEDIFF(batas, CURDATE()))')->where('status', 'aktif')
                 ->whereNotIn('id', [$qq])
                 ->latest()
-                ->paginate(3);
+                ->paginate(2);
         } else {
             $lowongan = Vacancy::when($selectedDivision, function ($query) use ($selectedDivision) {
                 return $query->whereHas('division', function ($subQuery) use ($selectedDivision) {
@@ -155,7 +189,7 @@ class DashboardUserController extends Controller
                 ->whereDate('batas', '>=', Carbon::today()->toDateString()) // Memastikan hanya lowongan yang berakhir pada hari ini dan seterusnya yang ditampilkan
                 ->orderByRaw('ABS(DATEDIFF(batas, CURDATE()))')->where('status', 'aktif')
                 ->latest()
-                ->paginate(3);
+                ->paginate(2);
         };
 
 
