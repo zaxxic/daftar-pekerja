@@ -801,31 +801,7 @@
     </script>
     @endif
     <script>
-        $(document).ready(function() {
-
-            // $('.simpan').on('click', function() {
-            //     var formUrl = $('#saveForm').attr('action');
-            //     $.ajax({
-            //         url: formUrl,
-            //         type: 'PATCH',
-            //         data: $('#saveForm').serialize(),
-            //         success: function(response) {
-
-            //             if (response.suksesBatal) {
-            //                 alert('berhasil batal');
-            //                 $('#simpan').removeClass('text-info');
-            //             } else {
-            //                 $('#simpan').addClass('text-info');
-            //                 alert('berhasil simpan');
-            //             }
-            //             // console.log(response.success);
-            //         },
-            //         error: function(error) {
-            //             console.log(error);
-            //         }
-            //     });
-            // });
-        });
+       
 
         function Simpan(id) {
 

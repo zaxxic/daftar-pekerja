@@ -55,7 +55,7 @@ class LowonganController extends Controller
         } else {
             $data = Vacancy::whereIn('status', ['aktif', 'nonaktif'])
                 ->latest()
-                ->paginate(8);
+                ->paginate(9);
         }
 
         return view('admin-lowongan.lowongan', compact('data', 'divisi', 'user', 'keyword', 'value_filter'));
@@ -244,7 +244,7 @@ class LowonganController extends Controller
             $lowongan = Vacancy::findOrFail($id);
             $lowongan->delete();
 
-            return redirect()->back();  
+            return redirect()->back();
         }
 
 }

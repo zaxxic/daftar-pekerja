@@ -516,7 +516,7 @@
                                     <div id="progress2"></div>
 
                                     @if ($jumlahData == '7')
-                                        <span>Anda telah melangkapi semua data</span>
+                                        <span >Anda telah melangkapi semua data</span>
                                     @elseif ($jumlahData >= '2' && $jumlahData < '7')
                                         @if (
                                             $user->cv !== 'default/default.png' &&
@@ -3203,29 +3203,36 @@
                         var lowonganHtml = `
                         <div
                                     style="padding-left: 20px; padding-right: 20px; padding-top: 10px; padding bottom: 10px;">
-                                    <div class="d-flex justify-content-between px-2 py-1 rounded">
-                                        <div class="d-flex">
-                                            <div>
+                                    <div class="">
+                                            <div class="d-flex justify-content-between ">
                                                 <h5 for="exampleInputPassword1" class="fw-semibold mb-2"
                                                     style="margin-bottom: 0">
                                                     ${item.vacancy.judul}
                                                 </h5>
-                                                <p for="exampleInputPassword1" class="mb-2"
-                                                    style="margin-bottom: 0">
-                                                    Tenggat Lowongan :
-                                                    ${formattedDate}
-                                                </p>
-                                                <p for="exampleInputPassword1" class="mb-2"
-                                                    style="margin-bottom: 0">
-                                                    Divisi : <span
-                                                        style="color: #5d87ff">${item.vacancy.division.divisi}</span>
-                                                </p>
-                                                <p for="exampleInputPassword1" class="mb-2"
-                                                    style="margin-bottom: 0">
-                                                    Posisi : ${ item.vacancy.pekerja }
-                                                </p>
+
+                                                <button style="background-color:transparent; border:none;" id="" class="text-warning" onclick="batalSimpan('${item.id}')">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                        <path   fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                                    </svg>
+                                                </button>
                                             </div>
-                                        </div>
+
+                                                <span for="exampleInputPassword1" class="mb-2 d-flex"
+                                                    style="margin-bottom: 0">
+                                                    <p class="fw-bold mb-0">Tenggat Lowongan : </p>
+                                                    ${formattedDate}
+                                                </span>
+                                                <spam for="exampleInputPassword1" class="mb-2 d-flex"
+                                                    style="margin-bottom: 0">
+                                                    <p class="fw-bold mb-0">Divisi  : </p>
+                                                    <span
+                                                        style="color: #5d87ff">${item.vacancy.division.divisi}</span>
+                                                </spam>
+                                                <span for="exampleInputPassword1" class="mb-2 d-flex "
+                                                    style="margin-bottom: 0">
+                                                    <p class="fw-bold mb-0"> Posisi : </p>
+                                                    ${ item.vacancy.pekerja }
+                                                </span>
                                     </div>
                                     <hr style="margin-top: 10px;">
                                 </div>
@@ -3238,6 +3245,64 @@
                 }
             });
         });
+    </script>
+
+    <script>
+        function batalSimpan(id){
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "mr-2 btn btn-danger",
+                },
+                buttonsStyling: false,
+            });
+
+            swalWithBootstrapButtons.fire({
+                title: "Konfirmasi",
+                text: "Apakah anda yakin ingin merubah status lowongan ini?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Iya!",
+                cancelButtonText: "Tidak!",
+                reverseButtons: true,
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger me-3",
+                },
+                buttonsStyling: false,
+                width: "25rem",
+                padding: "1rem",
+                customContainerClass: "swal-custom",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var route = "{{ route('delete/simpan', ':id') }}".replace(':id', id);
+                    // Jika pengguna menekan "Iya", lakukan AJAX request
+                    $.ajax({
+                        url: route,
+                        type: 'DELETE',
+                        success: function(response) {
+                            swalWithBootstrapButtons.fire({
+                                icon: 'success',
+                                title: 'Berhasil di Rubabh',
+                                text: 'berhasil merubah status simpan lowongan.',
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                            // console.log(response.success);
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire(
+                        "Batal",
+                        "Pengajuan penerimaan dibatalkan.",
+                        "error"
+                    );
+                }
+            });
+        }
     </script>
 @endsection
 

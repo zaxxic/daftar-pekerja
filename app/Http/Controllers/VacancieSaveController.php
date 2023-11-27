@@ -80,8 +80,14 @@ class VacancieSaveController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $data = VacancieSave::findOrFail($id);
+        if($data->user_id === Auth()->User()->id){
+            $data->delete();
+        }else{
+            abort(403,'anda tidak mempunyai akses');
+        }
+        return response()->json();
     }
 }
