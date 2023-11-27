@@ -3,8 +3,7 @@
 
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
+<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap Min CSS -->
@@ -30,12 +29,20 @@
     <link rel="stylesheet" href="assets1/css/style.css">
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="assets1/css/responsive.css">
-    <!-- Rtl CSS -->
-    <!-- <link rel="stylesheet" href="assets1/css/rtl.css"> -->
+
+    <link id="themeColors" rel="stylesheet" href="assets/dist/css/style.min.css" />
+    <link rel="stylesheet" href="assets/dist/libs/select2/dist/css/select2.min.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/logo.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
     <!-- Title -->
     <title>Dashboard User</title>
@@ -61,6 +68,63 @@
             border-radius: 4px;
             text-align: center;
         }
+
+        .status-terdaftar {
+            display: inline-block;
+            width: 92px;
+            height: 28px;
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-top: 2px;
+            padding-bottom: 1px;
+            color: #13DEB9;
+            background-color: #E6FFFA;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .status-menunggu {
+            display: inline-block;
+            width: 92px;
+            height: 28px;
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-top: 2px;
+            padding-bottom: 1px;
+            color: #ffae1f;
+            background-color: #FEF5E5;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .status-diterima {
+            display: inline-block;
+            width: 92px;
+            height: 28px;
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-top: 2px;
+            padding-bottom: 1px;
+            color: #67E6E6;
+            background-color: #E6FFFA;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .status-lulus {
+            display: inline-block;
+            width: 92px;
+            height: 28px;
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-top: 2px;
+            padding-bottom: 1px;
+            color: #5D87FF;
+            background-color: #ECF2FF;
+            border-radius: 4px;
+            text-align: center;
+        }
+
 
         #pp {
 
@@ -394,86 +458,131 @@
 
 
                 </div> -->
+                @if (count($registration) > 0)
+
+                    @endif
                 <div class="col-lg-6">
-                        <div class="card position-relative overflow-hidden mb-4" style="height: 279px;">
-                            <div class="card-header bg-info d-flex align-items-center justify-content-between">
-                                <div class="col-12 d-flex justify-content-between" style="padding: 0;">
-                                    <h4 class="card-title text-white mb-0 me-3" style="font-size: 22px;">{{ $item->Vacancy->judul }}</h4>
-                                    </h4>
-                                </div>
-
+                @forelse ($registration as $item)
+                <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
+                    <div class="card position-relative overflow-hidden mb-4" style="height: 279px;">
+                        <div class="card-header bg-info d-flex align-items-center justify-content-between">
+                            <div class="col-12 d-flex justify-content-between" style="padding: 0;">
+                                <h4 class="card-title text-white mb-0 me-3" style="font-size: 22px;">{{ $item->Vacancy->judul }}</h4>
                             </div>
-                            <div style="padding: 15px 20px 15px 20px;">
-                                <div class=" col-12 row">
-                                    <div class="col-3 mb-2 p-0">
-                                        <span class="fw-semibold fs-4" style="color: black;">Slot Tersedia</span>
-                                    </div>
-                                    <div class="col-1 p-0">
-                                        <span class="fw-semibold fs-4" style="color: black;">:</span>
-                                    </div>
-                                    <div class="col-8 p-0">
-                                        <span class="fs-4" style="color: black;">{{ $item->Vacancy->slot }}</span>
-                                    </div>
-                                    <!-- <div class="col-3 mb-2">
-                                        <span class="fw-semibold fs-4" style="color: black;">Divisi</span>
-                                    </div>
-                                    <div class="col-1">
-                                        <span class="fw-semibold fs-4" style="color: black;">:</span>
-                                    </div>
-                                    <div class="col-8">
-                                        <span class="fs-4" style="color: black;">{{ $item->Vacancy->Division->divisi }}</span>
-                                    </div> -->
-                                    <div class="col-3 mb-2 p-0">
-                                        <span class="fw-semibold fs-4" style="color: black;">Posisi</span>
-                                    </div>
-                                    <div class="col-1 p-0">
-                                        <span class="fw-semibold fs-4" style="color: black;">:</span>
-                                    </div>
-                                    <div class="col-8 p-0">
-                                        <span class="fs-4" style="color: black;">{{ $item->Vacancy->pekerja }}</span>
-                                    </div>
-                                    <div class="col-3 mb-2 p-0">
-                                        <span class="fw-semibold fs-4" style="color: black;">Tipe Pekerjaan</span>
-                                    </div>
-                                    <div class="col-1 p-0">
-                                        <span class="fw-semibold fs-4" style="color: black;">:</span>
-                                    </div>
-                                    <div class="col-8 p-0">
-                                        <span class="fs-4" style="color: black;">{{ $item->Vacancy->tipe }}</span>
-                                    </div>
-                                    <div class="col-3 mb-3 p-0">
-                                        <span class="fw-semibold fs-4" style="color: black;">Gaji</span>
-                                    </div>
-                                    <div class="col-1 p-0">
-                                        <span class="fw-semibold fs-4" style="color: black;">:</span>
-                                    </div>
-                                    <div class="col-8 p-0">
-                                        <span class="fw-semibold fs-4" style="color: black;">{{ 'Rp ' . number_format($item->Vacancy->gaji, 0, ',', '.') }}</span>
-                                    </div>
-                                    <hr>
-                                    <div class="d-flex justify-content-between p-0">
-                                        <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: {{ \Carbon\Carbon::parse($item->batas)->locale('id')->isoFormat('D MMMM Y ') }}
-                                        </p>
-                                        <span class="status1">Terdaftar</span>
-                                        @if ($item->status === 'diterima')
-                                        <span class="status bg-success" style="width: 79px;">{{ $item->status }}</span>
-                                        @elseif($item->status === 'lulus')
-                                        <span class="status bg-primary" style="width: 75px;">{{ $item->status }}</span>
-                                        @else($item->status === 'menunggu')
-                                        <span class="status bg-warning" style="width: 100px;"><span>{{ $item->status }}</span></span>
-                                        @endif
-                                    </div>
+                        </div>
+                        <div style="padding: 15px 20px 15px 20px;">
+                            <div class=" col-12 row">
+                                <div class="col-3 mb-2 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">Slot Tersedia</span>
                                 </div>
-
-
+                                <div class="col-1 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                </div>
+                                <div class="col-8 p-0">
+                                    <span class="fs-4" style="color: black;">{{ $item->Vacancy->slot }}</span>
+                                </div>
+                                <div class="col-3 mb-2 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">Posisi</span>
+                                </div>
+                                <div class="col-1 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                </div>
+                                <div class="col-8 p-0">
+                                    <span class="fs-4" style="color: black;">{{ $item->Vacancy->pekerja }}</span>
+                                </div>
+                                <div class="col-3 mb-2 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">Tipe Pekerjaan</span>
+                                </div>
+                                <div class="col-1 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                </div>
+                                <div class="col-8 p-0">
+                                    <span class="fs-4" style="color: black;">{{ $item->Vacancy->tipe }}</span>
+                                </div>
+                                <div class="col-3 mb-3 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">Gaji</span>
+                                </div>
+                                <div class="col-1 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                </div>
+                                <div class="col-8 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">{{ 'Rp ' . number_format($item->Vacancy->gaji, 0, ',', '.') }}</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between p-0">
+                                    <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: {{ \Carbon\Carbon::parse($item->batas)->locale('id')->isoFormat('D MMMM Y ') }}
+                                    </p>
+                                    <span class="status-terdaftar">Terdaftar</span>
+                                    @if ($item->status === 'diterima')
+                                        <span class="status-diterima" style="width: 79px;">{{ $item->status }}</span>
+                                    @elseif($item->status === 'lulus')
+                                        <span class="status-lulus" style="width: 75px;">{{ $item->status }}</span>
+                                    @else($item->status === 'menunggu')
+                                        <span class="status-menunggu" style="width: 100px;"><span>{{ $item->status }}</span></span>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
+                </a>
+                @empty
+                    <div class="card position-relative overflow-hidden mb-4" style="height: 279px;">
+                       
+                    @if (Auth()->user()->status === 'ditolak')
+                        <div class="card-header bg-info d-flex align-items-center justify-content-between">
+                            <div class="col-12 d-flex justify-content-between" style="padding: 0;">
+                                <h4 class="card-title text-white mb-0 me-3" style="font-size: 22px;">Ditolak</h4>
+                            </div>
+                        </div>
+                        <div class="" style="padding: 60px 30px 60px 30px;"><span class="mb-2">Anda telah
+                            menerima pemberitahuan bahwa pendaftaran Anda telah ditolak. Mohon periksa
+                            email Anda untuk informasi lebih lanjut.</span>
+                            <div class="d-flex justify-content-end mt-2">
+                                <a href="https://mail.google.com/" target="_blank">
+                                    <button class="btn btn-primary">
+                                        Cek Email
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    @elseif (Auth()->user()->status === 'gagal')
+                        <div class="card-header bg-info d-flex align-items-center justify-content-between">
+                            <div class="col-12 d-flex justify-content-between" style="padding: 0;">
+                                <h4 class="card-title text-white mb-0 me-3" style="font-size: 22px;">Tidak Lulus</h4>
+                            </div>
+                        </div>
+                        <div class="" style="padding: 60px 30px 60px 30px;"><span class="mb-2">Anda telah
+                            menerima pemberitahuan bahwa pendaftaran Anda tidak memnuhi kriteria. Mohon
+                            periksa email Anda untuk informasi lebih lanjut.</span>
+                            <div class="d-flex justify-content-end mt-2">
+                                <a href="https://mail.google.com/" target="_blank">
+                                    <button class="btn btn-primary">
+                                        Cek Email
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    @else
+                        <div class="card-header bg-info d-flex align-items-center justify-content-between">
+                            <div class="col-12 d-flex justify-content-between" style="padding: 0;">
+                                <h4 class="card-title text-white mb-0 me-3" style="font-size: 22px;">Belum Terdapat Lowongan Yang Terdaftar</h4>
+                            </div>
+                        </div>
+                    
+                        <div style="padding: 15px 20px 15px 20px;">
+                            <div class="col-lg-12 text-center" id="lowongan">
+                                <img src="{{ asset('assets/nodatas.png') }}" alt="" width="180px">
+                            </div>
+                        </div>
+                    @endif
+                    </div>
+                @endforelse
+                </div>
                 <div class="col-lg-6">
                     <div class="card position-relative overflow-hidden mb-4" style="height: 94%;">
                         <div class="card-header bg-info d-flex align-items-center justify-content-between">
                             <div class="col-12 d-flex justify-content-between" style="padding: 0;">
-                                <h4 class="card-title text-white mb-0 me-3">Kelengkapan Data</h4>
+                                <h4 class="card-title text-white mb-0 me-3" style="font-size: 22px;">Kelengkapan Data</h4>
                                 <h4 class="text-white mb-0 fs-4" style="margin-top: 2px;">{{$jumlahData}}/7
                                 </h4>
                             </div>
@@ -659,11 +768,10 @@
                                         <div class="modal-header d-flex align-items-center">
                                             <h4 class="modal-title" id="exampleModalLabel1">
                                                 Data Wajib
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20"
-                                                        height="20" viewBox="0 0 24 24">
-                                                        <path fill="#13deb9"
-                                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
-                                                    </svg>
+                                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" class="ms-2" style="float: right; margin-top: 6px;" xmlns="http://www.w3.org/2000/svg">
+                                               <circle cx="10.0898" cy="10.897" r="10" fill="#5D87FF"/>
+                                               <path d="M16.0898 6.84328L7.86127 14.897L4.08984 11.2057L5.0567 10.2594L7.86127 12.9976L15.123 5.89697L16.0898 6.84328Z" fill="white"/>
+                                               </svg>
                                             </h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
@@ -690,11 +798,19 @@
                                         <div class="modal-header d-flex align-items-center">
                                             <h4 class="modal-title" id="exampleModalLabel1">
                                                 Kelengkapan Data
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20"
-                                                        height="20" viewBox="0 0 24 24">
-                                                        <path fill="#13deb9"
-                                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
+                                                @if (!empty($DataProfile['FotoDanFile'] != null))
+                                               
+                                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" class="ms-2" style="float: right; margin-top: 6px;" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="10.0898" cy="10.897" r="10" fill="#5D87FF"/>
+                                                <path d="M16.0898 6.84328L7.86127 14.897L4.08984 11.2057L5.0567 10.2594L7.86127 12.9976L15.123 5.89697L16.0898 6.84328Z" fill="white"/>
                                                 </svg>
+                                                @else
+                                                <svg style="float:right; margin-top: 6px;" class="ms-2" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="10" cy="10" r="10" fill="#DF2121"/>
+                                                <path d="M7.66958 6.66455L10.5002 9.49522L13.3162 6.67922C13.3785 6.61301 13.4534 6.56005 13.5366 6.52351C13.6197 6.48696 13.7094 6.46759 13.8003 6.46655C13.9947 6.46655 14.1813 6.54381 14.3188 6.68134C14.4563 6.81887 14.5336 7.00539 14.5336 7.19989C14.5353 7.28979 14.5186 7.3791 14.4846 7.46233C14.4505 7.54556 14.3998 7.62096 14.3356 7.68389L11.4829 10.4999L14.3356 13.3526C14.4564 13.4708 14.5273 13.6309 14.5336 13.7999C14.5336 13.9944 14.4563 14.1809 14.3188 14.3184C14.1813 14.456 13.9947 14.5332 13.8003 14.5332C13.7068 14.5371 13.6135 14.5215 13.5264 14.4874C13.4393 14.4533 13.3603 14.4015 13.2943 14.3352L10.5002 11.5046L7.67692 14.3279C7.61495 14.3919 7.54093 14.443 7.45912 14.4782C7.37731 14.5135 7.28932 14.5322 7.20025 14.5332C7.00576 14.5332 6.81923 14.456 6.6817 14.3184C6.54418 14.1809 6.46692 13.9944 6.46692 13.7999C6.46521 13.71 6.48189 13.6207 6.51594 13.5374C6.54998 13.4542 6.60068 13.3788 6.66492 13.3159L9.51758 10.4999L6.66492 7.64722C6.54405 7.52898 6.47318 7.36886 6.46692 7.19989C6.46692 7.00539 6.54418 6.81887 6.6817 6.68134C6.81923 6.54381 7.00576 6.46655 7.20025 6.46655C7.37625 6.46875 7.54492 6.53989 7.66958 6.66455Z" fill="white"/>
+                                                </svg>
+
+                                                @endif
                                             </h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
@@ -721,11 +837,19 @@
                                         <div class="modal-header d-flex align-items-center">
                                             <h4 class="modal-title" id="exampleModalLabel1">
                                                 Keterangan Diri
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20"
-                                                        height="20" viewBox="0 0 24 24">
-                                                        <path fill="#13deb9"
-                                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
+                                                @if (!empty($DataProfile['Tentang'] != null))
+                                               
+                                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" class="ms-2" style="float: right; margin-top: 6px;" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="10.0898" cy="10.897" r="10" fill="#5D87FF"/>
+                                                <path d="M16.0898 6.84328L7.86127 14.897L4.08984 11.2057L5.0567 10.2594L7.86127 12.9976L15.123 5.89697L16.0898 6.84328Z" fill="white"/>
                                                 </svg>
+                                                @else
+                                                <svg style="float:right; margin-top: 6px;" class="ms-2" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="10" cy="10" r="10" fill="#DF2121"/>
+                                                <path d="M7.66958 6.66455L10.5002 9.49522L13.3162 6.67922C13.3785 6.61301 13.4534 6.56005 13.5366 6.52351C13.6197 6.48696 13.7094 6.46759 13.8003 6.46655C13.9947 6.46655 14.1813 6.54381 14.3188 6.68134C14.4563 6.81887 14.5336 7.00539 14.5336 7.19989C14.5353 7.28979 14.5186 7.3791 14.4846 7.46233C14.4505 7.54556 14.3998 7.62096 14.3356 7.68389L11.4829 10.4999L14.3356 13.3526C14.4564 13.4708 14.5273 13.6309 14.5336 13.7999C14.5336 13.9944 14.4563 14.1809 14.3188 14.3184C14.1813 14.456 13.9947 14.5332 13.8003 14.5332C13.7068 14.5371 13.6135 14.5215 13.5264 14.4874C13.4393 14.4533 13.3603 14.4015 13.2943 14.3352L10.5002 11.5046L7.67692 14.3279C7.61495 14.3919 7.54093 14.443 7.45912 14.4782C7.37731 14.5135 7.28932 14.5322 7.20025 14.5332C7.00576 14.5332 6.81923 14.456 6.6817 14.3184C6.54418 14.1809 6.46692 13.9944 6.46692 13.7999C6.46521 13.71 6.48189 13.6207 6.51594 13.5374C6.54998 13.4542 6.60068 13.3788 6.66492 13.3159L9.51758 10.4999L6.66492 7.64722C6.54405 7.52898 6.47318 7.36886 6.46692 7.19989C6.46692 7.00539 6.54418 6.81887 6.6817 6.68134C6.81923 6.54381 7.00576 6.46655 7.20025 6.46655C7.37625 6.46875 7.54492 6.53989 7.66958 6.66455Z" fill="white"/>
+                                                </svg>
+
+                                                @endif
                                             </h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
@@ -753,11 +877,19 @@
                                         <div class="modal-header d-flex align-items-center">
                                             <h4 class="modal-title" id="exampleModalLabel1">
                                                 Pendidikan
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20"
-                                                        height="20" viewBox="0 0 24 24">
-                                                        <path fill="#13deb9"
-                                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
-                                                </svg>
+                                                @if (!empty($DataProfile['school'] != null))
+                                               
+                                               <svg width="21" height="21" viewBox="0 0 21 21" fill="none" class="ms-2" style="float: right; margin-top: 6px;" xmlns="http://www.w3.org/2000/svg">
+                                               <circle cx="10.0898" cy="10.897" r="10" fill="#5D87FF"/>
+                                               <path d="M16.0898 6.84328L7.86127 14.897L4.08984 11.2057L5.0567 10.2594L7.86127 12.9976L15.123 5.89697L16.0898 6.84328Z" fill="white"/>
+                                               </svg>
+                                               @else
+                                               <svg style="float:right; margin-top: 6px;" class="ms-2" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                               <circle cx="10" cy="10" r="10" fill="#DF2121"/>
+                                               <path d="M7.66958 6.66455L10.5002 9.49522L13.3162 6.67922C13.3785 6.61301 13.4534 6.56005 13.5366 6.52351C13.6197 6.48696 13.7094 6.46759 13.8003 6.46655C13.9947 6.46655 14.1813 6.54381 14.3188 6.68134C14.4563 6.81887 14.5336 7.00539 14.5336 7.19989C14.5353 7.28979 14.5186 7.3791 14.4846 7.46233C14.4505 7.54556 14.3998 7.62096 14.3356 7.68389L11.4829 10.4999L14.3356 13.3526C14.4564 13.4708 14.5273 13.6309 14.5336 13.7999C14.5336 13.9944 14.4563 14.1809 14.3188 14.3184C14.1813 14.456 13.9947 14.5332 13.8003 14.5332C13.7068 14.5371 13.6135 14.5215 13.5264 14.4874C13.4393 14.4533 13.3603 14.4015 13.2943 14.3352L10.5002 11.5046L7.67692 14.3279C7.61495 14.3919 7.54093 14.443 7.45912 14.4782C7.37731 14.5135 7.28932 14.5322 7.20025 14.5332C7.00576 14.5332 6.81923 14.456 6.6817 14.3184C6.54418 14.1809 6.46692 13.9944 6.46692 13.7999C6.46521 13.71 6.48189 13.6207 6.51594 13.5374C6.54998 13.4542 6.60068 13.3788 6.66492 13.3159L9.51758 10.4999L6.66492 7.64722C6.54405 7.52898 6.47318 7.36886 6.46692 7.19989C6.46692 7.00539 6.54418 6.81887 6.6817 6.68134C6.81923 6.54381 7.00576 6.46655 7.20025 6.46655C7.37625 6.46875 7.54492 6.53989 7.66958 6.66455Z" fill="white"/>
+                                               </svg>
+
+                                               @endif
                                             </h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
@@ -786,11 +918,19 @@
                                         <div class="modal-header d-flex align-items-center">
                                             <h4 class="modal-title" id="exampleModalLabel1">
                                                 Pengalaman
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20"
-                                                        height="20" viewBox="0 0 24 24">
-                                                        <path fill="#13deb9"
-                                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
-                                                </svg>
+                                                @if (!empty($DataProfile['pengalaman'] != null))
+                                               
+                                               <svg width="21" height="21" viewBox="0 0 21 21" fill="none" class="ms-2" style="float: right; margin-top: 6px;" xmlns="http://www.w3.org/2000/svg">
+                                               <circle cx="10.0898" cy="10.897" r="10" fill="#5D87FF"/>
+                                               <path d="M16.0898 6.84328L7.86127 14.897L4.08984 11.2057L5.0567 10.2594L7.86127 12.9976L15.123 5.89697L16.0898 6.84328Z" fill="white"/>
+                                               </svg>
+                                               @else
+                                               <svg style="float:right; margin-top: 6px;" class="ms-2" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                               <circle cx="10" cy="10" r="10" fill="#DF2121"/>
+                                               <path d="M7.66958 6.66455L10.5002 9.49522L13.3162 6.67922C13.3785 6.61301 13.4534 6.56005 13.5366 6.52351C13.6197 6.48696 13.7094 6.46759 13.8003 6.46655C13.9947 6.46655 14.1813 6.54381 14.3188 6.68134C14.4563 6.81887 14.5336 7.00539 14.5336 7.19989C14.5353 7.28979 14.5186 7.3791 14.4846 7.46233C14.4505 7.54556 14.3998 7.62096 14.3356 7.68389L11.4829 10.4999L14.3356 13.3526C14.4564 13.4708 14.5273 13.6309 14.5336 13.7999C14.5336 13.9944 14.4563 14.1809 14.3188 14.3184C14.1813 14.456 13.9947 14.5332 13.8003 14.5332C13.7068 14.5371 13.6135 14.5215 13.5264 14.4874C13.4393 14.4533 13.3603 14.4015 13.2943 14.3352L10.5002 11.5046L7.67692 14.3279C7.61495 14.3919 7.54093 14.443 7.45912 14.4782C7.37731 14.5135 7.28932 14.5322 7.20025 14.5332C7.00576 14.5332 6.81923 14.456 6.6817 14.3184C6.54418 14.1809 6.46692 13.9944 6.46692 13.7999C6.46521 13.71 6.48189 13.6207 6.51594 13.5374C6.54998 13.4542 6.60068 13.3788 6.66492 13.3159L9.51758 10.4999L6.66492 7.64722C6.54405 7.52898 6.47318 7.36886 6.46692 7.19989C6.46692 7.00539 6.54418 6.81887 6.6817 6.68134C6.81923 6.54381 7.00576 6.46655 7.20025 6.46655C7.37625 6.46875 7.54492 6.53989 7.66958 6.66455Z" fill="white"/>
+                                               </svg>
+
+                                               @endif
                                             </h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
@@ -820,11 +960,19 @@
                                         <div class="modal-header d-flex align-items-center">
                                             <h4 class="modal-title" id="exampleModalLabel1">
                                                 Keahlian
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20"
-                                                        height="20" viewBox="0 0 24 24">
-                                                        <path fill="#13deb9"
-                                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
-                                                </svg>
+                                                @if (!empty($DataProfile['Skill'] != null))
+                                               
+                                               <svg width="21" height="21" viewBox="0 0 21 21" fill="none" class="ms-2" style="float: right; margin-top: 6px;" xmlns="http://www.w3.org/2000/svg">
+                                               <circle cx="10.0898" cy="10.897" r="10" fill="#5D87FF"/>
+                                               <path d="M16.0898 6.84328L7.86127 14.897L4.08984 11.2057L5.0567 10.2594L7.86127 12.9976L15.123 5.89697L16.0898 6.84328Z" fill="white"/>
+                                               </svg>
+                                               @else
+                                               <svg style="float:right; margin-top: 6px;" class="ms-2" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                               <circle cx="10" cy="10" r="10" fill="#DF2121"/>
+                                               <path d="M7.66958 6.66455L10.5002 9.49522L13.3162 6.67922C13.3785 6.61301 13.4534 6.56005 13.5366 6.52351C13.6197 6.48696 13.7094 6.46759 13.8003 6.46655C13.9947 6.46655 14.1813 6.54381 14.3188 6.68134C14.4563 6.81887 14.5336 7.00539 14.5336 7.19989C14.5353 7.28979 14.5186 7.3791 14.4846 7.46233C14.4505 7.54556 14.3998 7.62096 14.3356 7.68389L11.4829 10.4999L14.3356 13.3526C14.4564 13.4708 14.5273 13.6309 14.5336 13.7999C14.5336 13.9944 14.4563 14.1809 14.3188 14.3184C14.1813 14.456 13.9947 14.5332 13.8003 14.5332C13.7068 14.5371 13.6135 14.5215 13.5264 14.4874C13.4393 14.4533 13.3603 14.4015 13.2943 14.3352L10.5002 11.5046L7.67692 14.3279C7.61495 14.3919 7.54093 14.443 7.45912 14.4782C7.37731 14.5135 7.28932 14.5322 7.20025 14.5332C7.00576 14.5332 6.81923 14.456 6.6817 14.3184C6.54418 14.1809 6.46692 13.9944 6.46692 13.7999C6.46521 13.71 6.48189 13.6207 6.51594 13.5374C6.54998 13.4542 6.60068 13.3788 6.66492 13.3159L9.51758 10.4999L6.66492 7.64722C6.54405 7.52898 6.47318 7.36886 6.46692 7.19989C6.46692 7.00539 6.54418 6.81887 6.6817 6.68134C6.81923 6.54381 7.00576 6.46655 7.20025 6.46655C7.37625 6.46875 7.54492 6.53989 7.66958 6.66455Z" fill="white"/>
+                                               </svg>
+
+                                               @endif
                                             </h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
@@ -852,11 +1000,19 @@
                                         <div class="modal-header d-flex align-items-center">
                                             <h4 class="modal-title" id="exampleModalLabel1">
                                                 Sertifikat
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20"
-                                                        height="20" viewBox="0 0 24 24">
-                                                        <path fill="#13deb9"
-                                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
-                                                </svg>
+                                                @if (!empty($DataProfile['sertifikat'] != null))
+                                               
+                                               <svg width="21" height="21" viewBox="0 0 21 21" fill="none" class="ms-2" style="float: right; margin-top: 6px;" xmlns="http://www.w3.org/2000/svg">
+                                               <circle cx="10.0898" cy="10.897" r="10" fill="#5D87FF"/>
+                                               <path d="M16.0898 6.84328L7.86127 14.897L4.08984 11.2057L5.0567 10.2594L7.86127 12.9976L15.123 5.89697L16.0898 6.84328Z" fill="white"/>
+                                               </svg>
+                                               @else
+                                               <svg style="float:right; margin-top: 6px;" class="ms-2" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                               <circle cx="10" cy="10" r="10" fill="#DF2121"/>
+                                               <path d="M7.66958 6.66455L10.5002 9.49522L13.3162 6.67922C13.3785 6.61301 13.4534 6.56005 13.5366 6.52351C13.6197 6.48696 13.7094 6.46759 13.8003 6.46655C13.9947 6.46655 14.1813 6.54381 14.3188 6.68134C14.4563 6.81887 14.5336 7.00539 14.5336 7.19989C14.5353 7.28979 14.5186 7.3791 14.4846 7.46233C14.4505 7.54556 14.3998 7.62096 14.3356 7.68389L11.4829 10.4999L14.3356 13.3526C14.4564 13.4708 14.5273 13.6309 14.5336 13.7999C14.5336 13.9944 14.4563 14.1809 14.3188 14.3184C14.1813 14.456 13.9947 14.5332 13.8003 14.5332C13.7068 14.5371 13.6135 14.5215 13.5264 14.4874C13.4393 14.4533 13.3603 14.4015 13.2943 14.3352L10.5002 11.5046L7.67692 14.3279C7.61495 14.3919 7.54093 14.443 7.45912 14.4782C7.37731 14.5135 7.28932 14.5322 7.20025 14.5332C7.00576 14.5332 6.81923 14.456 6.6817 14.3184C6.54418 14.1809 6.46692 13.9944 6.46692 13.7999C6.46521 13.71 6.48189 13.6207 6.51594 13.5374C6.54998 13.4542 6.60068 13.3788 6.66492 13.3159L9.51758 10.4999L6.66492 7.64722C6.54405 7.52898 6.47318 7.36886 6.46692 7.19989C6.46692 7.00539 6.54418 6.81887 6.6817 6.68134C6.81923 6.54381 7.00576 6.46655 7.20025 6.46655C7.37625 6.46875 7.54492 6.53989 7.66958 6.66455Z" fill="white"/>
+                                               </svg>
+
+                                               @endif
                                             </h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
@@ -883,68 +1039,71 @@
             <section class="employers-listing-area ptb-100" style="direction: ltr;">
                 <div class="container">
                     <div class="row">
-                        <div class="col-12 col-sm-12 filter1 " style="background-color: #fff">
-                            <div class="form-group">
-                                <form class="search-form d-flex justify-content-between row col-12" id="search-lowongan">
-                                    <div class="form-group col-md-5 col-lg-5 col-sm-12">
-                                        <div class="d-flex" style="margin-top: 30px;">
-                                            <input type="text" name="cari" id="cari"
-                                                style="border: 1px solid #549bff; height: 35px; border-radius: 5px; width: 100%; padding: 8px;"
-                                                value="{{ $keyword }}" placeholder="Cari Lowongan..">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group col-md-3 col-lg-3 col-sm-4" style="margin-top: 30px;">
-                                        <div>
-                                            <select class="select2 form-select" id="divisionSelect" name="division"
-                                                style="width: 100%; margin-right: 10px;">
-                                                <option disabled selected>Divisi</option>
-                                                <option value="semua" @if (!$selectedDivision) selected @endif>Semua
-                                                </option>
-                                                @foreach ($divisi as $item)
-                                                    <option value="{{ $item->id }}"
-                                                        @if (old('division', $selectedDivision) == $item->id) selected @endif>
-                                                        {{ $item->divisi }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group col-md-3 col-lg-3 col-sm-4" style="margin-top: 30px;">
-                                        <div>
-                                            <select class="select2" name="lokasi" style="width: 100%; margin-right: 10px;"
-                                                id="locationSelect">
-                                                <option disabled selected>Tempat Pekerjaan</option>
-                                                <option value="semua" @if (!$keywordLokasi) selected @endif>Semua
-                                                </option>
-                                                @foreach ($lokasi as $item)
-                                                    <option value="{{ $item->lokasi }}"
-                                                        {{ $item->lokasi == $keywordLokasi ? 'selected' : '' }}>
-                                                        {{ $item->lokasi }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group col-lg-1 col-md-1 col-sm-4"
-                                        style="align-items: center; margin-top: 30px;">
-                                        <button class="btn btn-primary w-full border-1 text-center ms-2" type="button"
-                                            id="searchButton">
-                                            <p class="text-center"></p>Cari
-                                        </button>
-                                    </div>
-                                    {{-- <button class="default-btn " type="submit"
-                                        style="height: 15px; display: flex; align-items:;">
-                                        <span style="font-size: 15px">Cari Divisi</span>
-                                    </button> --}}
-
-                                </form>
+                    <div class="col-12 col-sm-12 filter1 " style="background-color: #fff">
+                    <div class="form-group">
+                        <form class="search-form d-flex justify-content-between  row " id="search-lowongan">
+                            <div class="form-group col-md-5 col-12 mb-0">
+                                <div class="d-flex" style="margin-top: 10px;">
+                                    <input type="text" name="cari" id="cari"
+                                        style="border: 1px solid #549bff; height: 35px; border-radius: 5px; width: 100%; padding: 8px;"
+                                        value="{{ $keyword }}" placeholder="Cari Lowongan..">
+                                </div>
                             </div>
-                        </div>
+
+                            <div class="form-group col-md-3 col-4" style="margin-top: 10px;">
+                                <div>
+                                    <select class="select2 form-select" id="divisionSelect" name="division"
+                                        style="width: 100%; margin-right: 10px;">
+                                        <option disabled value="" selected>Divisi</option>
+                                        <option value="semua">Semua
+                                        </option>
+                                        @foreach ($divisi as $item)
+                                            <option value="{{ $item->id }}"
+                                                @if (old('division', $selectedDivision) == $item->id) selected @endif>
+                                                {{ $item->divisi }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
 
 
+                            <div class="form-group col-md-3 col-4" style="margin-top: 10px;">
+                                <div>
+                                    <select class="select2" name="lokasi" style="width: 100%; margin-right: 10px;"
+                                        id="locationSelect">
+                                        <option disabled value="" selected>Tempat Pekerjaan</option>
+                                        <option value="semua" >Semua
+                                        </option>
+                                        @foreach ($lokasi as $item)
+                                            <option value="{{ $item->lokasi }}"
+                                                {{ $item->lokasi == $keywordLokasi ? 'selected' : '' }}>
+                                                {{ $item->lokasi }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-4 col-lg-1 d-flex justify-content-end"
+                                style="align-items: center; margin-top: 0px;">
+                                <button class="btn btn-primary w-full border-1 text-center ms-2" type="button"
+                                    id="searchButton">
+                                    <p class="text-center"></p>Cari
+                                </button>
+                            </div>
+                            <div class="col-12 mx-auto addFIlter"
+                                style="align-items: center;  ">
+                                <button  data-bs-toggle="modal" data-bs-target="#filter-Open" class=" w-full  text-center " style="width: 100%;border:1px solid #549bff; background-color:transparent; color:gray; height:30px; border-radius:5px" type="button"
+                                    id="searchButton">
+                                    <span class="text-center d-flex justify-content-center align-items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 21 21"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M6.5 4a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V5a1 1 0 0 1 1-1zm12 2h-11m-2 0h-3m4 8a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zm12 2h-11m-2 0h-3m12-7a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zm-1 2h-11m16 0h-3"/></svg> <p>Filter</p> </span>
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                
                         {{-- <script>
                             $(document).ready(function() {
                                 $("#division-select").on("click", function() {
@@ -970,21 +1129,21 @@
 
                         <div class="col-12 row p-0" style="margin-left: 3px">
                             <div class="col-12 col-lg-3 filter2 ">
-                            <div class="p-3 my-2 mb-3 rounded-2 py-3" style="background-color: #E6FFFA">
+                            <div class="p-3 my-2 mb-3 rounded-2 py-3" style="background-color: #ECF2FF">
                             <div class="d-flex gap-2">
-                                <div class="p-1 align-self-center rounded" style="background-color: #13DEB9">
+                                <div class="p-1 align-self-center rounded" style="background-color: #5D87FF"">
                                     <svg xmlns="http://www.w3.org/2000/svg" style="color: #ffff;" width="32" height="32"
                                     viewBox="0 0 24 24">
                                         <path fill="currentColor"
                                         d="m11.99 18.54l-7.37-5.73L3 14.07l9 7l9-7l-1.63-1.27zM12 16l7.36-5.73L21 9l-9-7l-9 7l1.63 1.27L12 16zm0-11.47L17.74 9L12 13.47L6.26 9L12 4.53z" />
                                     </svg>
                                 </div>
-                                <div class="" style="font-size: 15px">
-                                    Lowongan <br> Disimpan
+                                <div class="" style="font-size: 16px">
+                                    Lowongan Yang <br> Disimpan
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-end mt-2">
-                                <span style="" class="fw-bold">12</span>
+                            <div class="d-flex justify-content-end mt-2" >
+                                <span id="jumlah-lowongan" class="fw-bold fs-7">{{ $simpan }}</span>
                             </div>
                         </div>
                                 <div class="employers-listing-sidebar1"
@@ -1083,6 +1242,7 @@
                     </div>
                 </div>
             </section>
+            
         </div>
     </section>
     <!-- End Employers Listing Area -->
@@ -1266,7 +1426,6 @@
 
 
     <!-- Jquery Min JS -->
-
     <script src="assets1/js/jquery.min.js"></script>
     <!-- Popper Min JS -->
     <script src="assets1/js/popper.min.js"></script>
@@ -1298,16 +1457,22 @@
     <script src="assets1/js/contact-form-script.js"></script>
     <!-- Ajaxchimp Min JS -->
     <script src="assets1/js/ajaxchimp.min.js"></script>
-    <!-- Custom JS -->
+
+    <script src="assets/dist/libs/select2/dist/js/select2.full.min.js"></script>
+    <script src="assets/dist/libs/select2/dist/js/select2.min.js"></script>
+    <script src="assets/dist/js/forms/select2.init.js"></script>
+
     <script src="assets1/js/custom.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ">
+    <script
+        src="
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ">
     </script>
+    <link href="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
+    " rel="stylesheet">
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css" rel="stylesheet">
     @if (session('tidakAda'))
     <script>
         Swal.fire({
@@ -1320,7 +1485,33 @@
     @endif
 
     <script>
+      $(document).ready(function() {
+    var formUrl = "{{ route('dashboard-user') }}";
 
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    // Fungsi untuk memperbarui jumlah lowongan
+    function updateJumlahLowongan() {
+        $.ajax({
+            url: formUrl,
+            type: 'GET',
+            success: function(response) {
+                var simpan = response.simpan;
+                $('#jumlah-lowongan').text(simpan);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+
+    // Memanggil fungsi updateJumlahLowongan saat halaman dimuat
+    updateJumlahLowongan();
+});
 
         function Simpan(id) {
 
@@ -1382,6 +1573,7 @@
 
                             }
                             // console.log(response.success);
+                            updateJumlahLowongan();
                         },
                         error: function(error) {
                             console.log(error);
@@ -1509,7 +1701,69 @@
 
         });
     </script>
-        <script>
+   <script>
+    $(document).ready(function() {
+        var formUrl = "{{ route('jumlah-lowongan') }}";
+
+        // Fungsi untuk memperbarui jumlah lowongan
+        function updateJumlahLowongan() {
+            $.get(formUrl, function(response) {
+                var simpan = response.simpan;
+                $('#jumlah-lowongan').text(simpan.length);
+
+                $.each(simpan, function(index, item) {
+                    $('.buttonSimpan[data-vacancie-id="' + item.vacancie_id + '"]').addClass('text-warning');
+                    $('.labelSimpan[data-label-id="' + item.vacancie_id + '"]').removeClass('hidden');
+                });
+            }).fail(function(error) {
+                console.log(error);
+            });
+        }
+
+        // Memanggil fungsi updateJumlahLowongan saat halaman dimuat
+        updateJumlahLowongan();
+
+        $('.simpan').on('click', function() {
+            var formUrl = $('#saveForm').attr('action');
+            $('#saveForm').submit();
+        });
+
+        function Simpan(id) {
+            const formId = 'saveForm' + id;
+            const formUrl = $('#' + formId).attr('action');
+            $('#' + formId).submit();
+        }
+    });
+</script>
+    <script>
+            $(document).ready(function() {
+            var formUrl = "{{ route('jumlah-lowongan') }}";
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            // Fungsi untuk memperbarui jumlah lowongan
+            function simpanLowongan() {
+                $.ajax({
+                    url: formUrl,
+                    type: 'GET',
+                    success: function(response) {
+                        var simpan = response.simpan;
+                        $('#jumlah-lowongan').text(simpan);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+
+            // Memanggil fungsi simpanLowongan saat halaman dimuat
+            simpanLowongan();
+        });
+
         $(document).ready(function() {
 
             // $('.simpan').on('click', function() {
@@ -1596,6 +1850,8 @@
 
                             }
                             // console.log(response.success);
+
+                            simpanLowongan();
                         },
                         error: function(error) {
                             console.log(error);
