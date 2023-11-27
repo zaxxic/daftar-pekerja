@@ -305,8 +305,8 @@
         }
 
         .tepiborder {
-            border: 1px solid #E1E1E1;
-            border-radius: 5px;
+            border: 1px solid #5D87FF;
+            border-radius: 10px;
             height: auto;
             padding: 9px;
             font-size: 12px;
@@ -338,11 +338,11 @@
     <section class="employers-listing-area ptb-100" style="direction: ltr;">
         <div class="container">
             <div class="row">
-                <div class="col-12 d-flex">
+                <div class="col-12 col-lg-6 d-flex">
                     @if (count($registration) > 0)
 
                     @endif
-                    <div class="shorting col-lg-6">
+                    <div class="shorting col-12">
                         <div class="row">
                             @forelse ($registration as $item)
 
@@ -398,841 +398,623 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
-                        <div class="card position-relative overflow-hidden mb-4" style="height: 94%;">
-                            <div class="card-header bg-info d-flex align-items-center justify-content-between">
-                                <div class="col-12 d-flex justify-content-between" style="padding: 0;">
-                                    <h4 class="card-title text-white mb-0 me-3">Kelengkapan Data</h4>
-                                    <h4 class="text-white mb-0 fs-4" style="margin-top: 2px;">9/7
-                                    </h4>
-                                </div>
-
-                            </div>
-                            <div class="p-2">
-                                <div class="col-12 row">
-                                    <div class="col-6" style="margin-top:5px" data-bs-toggle="modal" data-bs-target="#dataWajib">
-                                        <div class="tepiborder"><span class="fw-semibold">Data Wajib</span> <span class="text-danger fw-semibold">(Wajib)</span>
-                                            @if (!empty($kelengkapanUser->Experience->count() > 0))
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="ms-2" style="float: right;" width="20" height="20" viewBox="0 0 24 24">
-                                                <path fill="#13deb9" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
-                                            </svg>
-                                            @else
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="justify-content-end" style="float: right;" width="20" height="20" viewBox="0 0 24 24">
-                                                <path fill="#fa896b" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm3.59-13L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41z" />
-                                            </svg>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-6" style="margin-top:5px" data-bs-toggle="modal" data-bs-target="#kelengkapanData">
-                                        <div class="tepiborder"><span class="fw-semibold">Kelengkapan Data</span> <span class="text-danger fw-semibold">(Wajib)</span>
-                                            @if (!empty($kelengkapanUser->Experience->count() > 0))
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="ms-2" style="float: right;" width="20" height="20" viewBox="0 0 24 24">
-                                                <path fill="#13deb9" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
-                                            </svg>
-                                            @else
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="justify-content-end" style="float: right;" width="20" height="20" viewBox="0 0 24 24">
-                                                <path fill="#fa896b" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm3.59-13L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41z" />
-                                            </svg>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-6" style="margin-top:5px" data-bs-toggle="modal" data-bs-target="#keteranganDiri">
-                                        <div class="tepiborder"><span class="fw-semibold">Keterangan Diri</span> <span class="text-info fw-semibold">(Opsional)</span>
-                                            @if (!empty($kelengkapanUser->deskripsi))
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="ms-2" style="float: right;" width="20" height="20" viewBox="0 0 24 24">
-                                                <path fill="#13deb9" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
-                                            </svg>
-                                            @else
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="justify-content-end" style="float: right;" width="20" height="20" viewBox="0 0 24 24">
-                                                <path fill="#fa896b" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm3.59-13L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41z" />
-                                            </svg>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-6" style="margin-top:5px" data-bs-toggle="modal" data-bs-target="#pendidikan">
-                                        <div class="tepiborder"><span class="fw-semibold">Pendidikan</span> <span class="text-info fw-semibold">(Opsional)</span>
-                                            @if (!empty($kelengkapanUser->School->count() > 0))
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="ms-2" style="float: right;" width="20" height="20" viewBox="0 0 24 24">
-                                                <path fill="#13deb9" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
-                                            </svg>
-                                            @else
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="justify-content-end" style="float: right;" width="20" height="20" viewBox="0 0 24 24">
-                                                <path fill="#fa896b" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm3.59-13L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41z" />
-                                            </svg>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-6" style="margin-top:5px" data-bs-toggle="modal" data-bs-target="#pengalaman">
-                                        <div class="tepiborder"><span class="fw-semibold">Pengalaman Kerja</span> <span class="text-info fw-semibold">(Opsional)</span>
-                                            @if (!empty($kelengkapanUser->Experience->count() > 0))
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="ms-2" style="float: right;" width="20" height="20" viewBox="0 0 24 24">
-                                                <path fill="#13deb9" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
-                                            </svg>
-                                            @else
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="justify-content-end" style="float: right;" width="20" height="20" viewBox="0 0 24 24">
-                                                <path fill="#fa896b" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm3.59-13L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41z" />
-                                            </svg>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-6" style="margin-top:5px" data-bs-toggle="modal" data-bs-target="#keahlian">
-                                        <div class="tepiborder"><span class="fw-semibold">Keahlian</span> <span class="text-info fw-semibold">(Opsional)</span>
-                                            @if (!empty($kelengkapanUser->Skill->count() > 0))
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="ms-2" style="float: right;" width="20" height="20" viewBox="0 0 24 24">
-                                                <path fill="#13deb9" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
-                                            </svg>
-                                            @else
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="justify-content-end" style="float: right;" width="20" height="20" viewBox="0 0 24 24">
-                                                <path fill="#fa896b" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm3.59-13L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41z" />
-                                            </svg>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-12" style="margin-top:5px" data-bs-toggle="modal" data-bs-target="#sertifikat">
-                                        <div class="tepiborder"><span class="fw-semibold">Sertifikat</span> <span class="text-info fw-semibold">(Opsional)</span>
-                                            @if (!empty($kelengkapanUser->Certificate->count() > 0))
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="ms-2" style="float: right;" width="20" height="20" viewBox="0 0 24 24">
-                                                <path fill="#13deb9" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
-                                            </svg>
-                                            @else
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="justify-content-end" style="float: right;" width="20" height="20" viewBox="0 0 24 24">
-                                                <path fill="#fa896b" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm3.59-13L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41z" />
-                                            </svg>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- modal -->
-                                <div class="modal fade" id="dataWajib" tabindex="-1" aria-labelledby="exampleModalLabel1">
-                                    <div class="modal-dialog" role="document">
-
-                                        <!-- Tambahkan input hidden untuk status deskripsi -->
-                                        <input type="hidden" name="deskripsi">
-
-                                        <div class="modal-content">
-                                            <div class="modal-header d-flex align-items-center">
-                                                <h4 class="modal-title" id="exampleModalLabel1">
-                                                    Data Wajib
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20"
-                                                            height="20" viewBox="0 0 24 24">
-                                                            <path fill="#13deb9"
-                                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
-                                                        </svg>
-                                                </h4>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
-                                            <div class="modal-body" style="max-height: 490px; overflow-y: auto;">
-                                                <div class="mb-3">
-                                                    <p class="bg-info p-2 text-white text-center mb-4 fs-4"
-                                                        style="border-radius: 10px;">Wajib</p>
-                                                    <p>Bagian data wajib mencakup nama, alamat email, nomor telepon, dan alamat, yang sebelumnya sudah anda masukkan saat anda melakukan register.</p>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal fade" id="kelengkapanData" tabindex="-1" aria-labelledby="exampleModalLabel1">
-                                    <div class="modal-dialog" role="document">
-
-                                        <!-- Tambahkan input hidden untuk status deskripsi -->
-                                        <input type="hidden" name="deskripsi">
-
-                                        <div class="modal-content">
-                                            <div class="modal-header d-flex align-items-center">
-                                                <h4 class="modal-title" id="exampleModalLabel1">
-                                                    Kelengkapan Data
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20"
-                                                            height="20" viewBox="0 0 24 24">
-                                                            <path fill="#13deb9"
-                                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
-                                                    </svg>
-                                                </h4>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
-                                            <div class="modal-body" style="max-height: 490px; overflow-y: auto;">
-                                                <div class="mb-3">
-                                                    <p class="bg-info p-2 text-white text-center mb-4 fs-4"
-                                                        style="border-radius: 10px;">Wajib</p>
-                                                    <p>Bagian kelengkapan data mencakup foto, cv, lamaran, profile LinkedIn, dan profile Github.</p>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal fade" id="keteranganDiri" tabindex="-1" aria-labelledby="exampleModalLabel1">
-                                    <div class="modal-dialog" role="document">
-
-                                        <!-- Tambahkan input hidden untuk status deskripsi -->
-                                        <input type="hidden" name="deskripsi">
-
-                                        <div class="modal-content">
-                                            <div class="modal-header d-flex align-items-center">
-                                                <h4 class="modal-title" id="exampleModalLabel1">
-                                                    Keterangan Diri
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20"
-                                                            height="20" viewBox="0 0 24 24">
-                                                            <path fill="#13deb9"
-                                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
-                                                    </svg>
-                                                </h4>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
-                                            <div class="modal-body" style="max-height: 490px; overflow-y: auto;">
-                                                <div class="mb-3">
-                                                    <p class="bg-info p-2 text-white text-center mb-4 fs-4"
-                                                        style="border-radius: 10px;">Opsional</p>
-                                                    <p>Keterangan diri berisi informasi singkat mengenai Anda atau latar belakang
-                                                    Anda.</p>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal fade" id="pendidikan" tabindex="-1" aria-labelledby="exampleModalLabel1">
-                                    <div class="modal-dialog" role="document">
-
-                                        <!-- Tambahkan input hidden untuk status deskripsi -->
-                                        <input type="hidden" name="deskripsi">
-
-                                        <div class="modal-content">
-                                            <div class="modal-header d-flex align-items-center">
-                                                <h4 class="modal-title" id="exampleModalLabel1">
-                                                    Pendidikan
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20"
-                                                            height="20" viewBox="0 0 24 24">
-                                                            <path fill="#13deb9"
-                                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
-                                                    </svg>
-                                                </h4>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
-                                            <div class="modal-body" style="max-height: 490px; overflow-y: auto;">
-                                                <div class="mb-3">
-                                                    <p class="bg-info p-2 text-white text-center mb-4 fs-4"
-                                                        style="border-radius: 10px;">Opsional</p>
-                                                    <p>Pendidikan mencakup riwayat pendidikan Anda mulai dari sekolah dasar hingga
-                                                    perguruan tinggi. Jika Anda belum menyelesaikan pendidikan tertinggi Anda, Anda
-                                                    dapat mencantumkan pendidikan terakhir Anda.</p>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal fade" id="pengalaman" tabindex="-1" aria-labelledby="exampleModalLabel1">
-                                    <div class="modal-dialog" role="document">
-
-                                        <!-- Tambahkan input hidden untuk status deskripsi -->
-                                        <input type="hidden" name="deskripsi">
-
-                                        <div class="modal-content">
-                                            <div class="modal-header d-flex align-items-center">
-                                                <h4 class="modal-title" id="exampleModalLabel1">
-                                                    Pengalaman
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20"
-                                                            height="20" viewBox="0 0 24 24">
-                                                            <path fill="#13deb9"
-                                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
-                                                    </svg>
-                                                </h4>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
-                                            <div class="modal-body" style="max-height: 490px; overflow-y: auto;">
-                                                <div class="mb-3">
-                                                    <p class="bg-info p-2 text-white text-center mb-4 fs-4"
-                                                        style="border-radius: 10px;">Opsional</p>
-                                                    <p>Pengalaman berisi informasi mengenai tempat dan waktu pengalaman kerja
-                                                    Anda. Anda akan mencantumkan jenis pekerjaan Anda (kontrak atau permanen), nama
-                                                    proyek yang pernah Anda kerjakan, deskripsi proyek, tanggal mulai, tanggal
-                                                    selesai, dan juga mengunggah bukti pengalaman dalam format JPG, PNG, atau JPEG.</p>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal fade" id="keahlian" tabindex="-1" aria-labelledby="exampleModalLabel1">
-                                    <div class="modal-dialog" role="document">
-
-                                        <!-- Tambahkan input hidden untuk status deskripsi -->
-                                        <input type="hidden" name="deskripsi">
-
-                                        <div class="modal-content">
-                                            <div class="modal-header d-flex align-items-center">
-                                                <h4 class="modal-title" id="exampleModalLabel1">
-                                                    Keahlian
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20"
-                                                            height="20" viewBox="0 0 24 24">
-                                                            <path fill="#13deb9"
-                                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
-                                                    </svg>
-                                                </h4>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
-                                            <div class="modal-body" style="max-height: 490px; overflow-y: auto;">
-                                                <div class="mb-3">
-                                                    <p class="bg-info p-2 text-white text-center mb-4 fs-4"
-                                                        style="border-radius: 10px;">Opsional</p>
-                                                    <p>Keahlian berisi judul-judul keahlian Anda dan deskripsi tentang
-                                                    keahlian-keahlian tersebut.</p>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal fade" id="sertifikat" tabindex="-1" aria-labelledby="exampleModalLabel1">
-                                    <div class="modal-dialog" role="document">
-
-                                        <!-- Tambahkan input hidden untuk status deskripsi -->
-                                        <input type="hidden" name="deskripsi">
-
-                                        <div class="modal-content">
-                                            <div class="modal-header d-flex align-items-center">
-                                                <h4 class="modal-title" id="exampleModalLabel1">
-                                                    Sertifikat
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20"
-                                                            height="20" viewBox="0 0 24 24">
-                                                            <path fill="#13deb9"
-                                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
-                                                    </svg>
-                                                </h4>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
-                                            <div class="modal-body" style="max-height: 490px; overflow-y: auto;">
-                                                <div class="mb-3">
-                                                    <p class="bg-info p-2 text-white text-center mb-4 fs-4"
-                                                        style="border-radius: 10px;">Opsional</p>
-                                                    <p>Sertifikat berisi judul-judul sertifikat yang Anda miliki dan deskripsi tentang
-                                                    sertifikat tersebut. Jika Anda memiliki sertifikat dari pengalaman sebelumnya,
-                                                    Anda dapat menambahkannya ke profil Andat.</p>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
 
 
+                </div>
+                <div class="col-lg-6">
+                    <div class="card position-relative overflow-hidden mb-4" style="height: 94%;">
+                        <div class="card-header bg-info d-flex align-items-center justify-content-between">
+                            <div class="col-12 d-flex justify-content-between" style="padding: 0;">
+                                <h4 class="card-title text-white mb-0 me-3">Kelengkapan Data</h4>
+                                <h4 class="text-white mb-0 fs-4" style="margin-top: 2px;">{{$jumlahData}}/7
+                                </h4>
                             </div>
 
                         </div>
+                        <div class="p-2">
+                            <div class="col-12 row">
+                                <div class="col-6" style="margin-top:5px" data-bs-toggle="modal" data-bs-target="#dataWajib">
+                                    <div class="tepiborder"><span class="fw-semibold">Data Diri</span> <span class="text-danger fw-semibold">(Wajib)</span>
+                                        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" style="float: right" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="10.0898" cy="10.897" r="10" fill="#5D87FF"/>
+                                            <path d="M16.0898 6.84328L7.86127 14.897L4.08984 11.2057L5.0567 10.2594L7.86127 12.9976L15.123 5.89697L16.0898 6.84328Z" fill="white"/>
+                                        </svg>
+
+                                    </div>
+                                </div>
+                                <div class="col-6" style="margin-top:5px" data-bs-toggle="modal" data-bs-target="#kelengkapanData">
+                                    <div class="tepiborder kelengkapan"><span class="fw-semibold">Kelengkapan Dokumen</span> <span class="text-danger fw-semibold">(Wajib)</span>
+                                        @if (!empty($DataProfile['FotoDanFile'] != null))
+                                        <style>
+                                            .kelengkapan{
+                                                border: 1px solid #5D87FF;
+                                            }
+                                        </style>
+                                            <svg width="21" height="21" viewBox="0 0 21 21" fill="none" style="float: right" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="10.0898" cy="10.897" r="10" fill="#5D87FF"/>
+                                            <path d="M16.0898 6.84328L7.86127 14.897L4.08984 11.2057L5.0567 10.2594L7.86127 12.9976L15.123 5.89697L16.0898 6.84328Z" fill="white"/>
+                                        </svg>
+                                        @else
+                                        <style>
+                                             .kelengkapan{
+                                                border: 1px solid #DF2121;
+                                            }
+                                        </style>
+
+                                     <svg style="float:right " width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="10" cy="10" r="10" fill="#DF2121"/>
+                                    <path d="M7.66958 6.66455L10.5002 9.49522L13.3162 6.67922C13.3785 6.61301 13.4534 6.56005 13.5366 6.52351C13.6197 6.48696 13.7094 6.46759 13.8003 6.46655C13.9947 6.46655 14.1813 6.54381 14.3188 6.68134C14.4563 6.81887 14.5336 7.00539 14.5336 7.19989C14.5353 7.28979 14.5186 7.3791 14.4846 7.46233C14.4505 7.54556 14.3998 7.62096 14.3356 7.68389L11.4829 10.4999L14.3356 13.3526C14.4564 13.4708 14.5273 13.6309 14.5336 13.7999C14.5336 13.9944 14.4563 14.1809 14.3188 14.3184C14.1813 14.456 13.9947 14.5332 13.8003 14.5332C13.7068 14.5371 13.6135 14.5215 13.5264 14.4874C13.4393 14.4533 13.3603 14.4015 13.2943 14.3352L10.5002 11.5046L7.67692 14.3279C7.61495 14.3919 7.54093 14.443 7.45912 14.4782C7.37731 14.5135 7.28932 14.5322 7.20025 14.5332C7.00576 14.5332 6.81923 14.456 6.6817 14.3184C6.54418 14.1809 6.46692 13.9944 6.46692 13.7999C6.46521 13.71 6.48189 13.6207 6.51594 13.5374C6.54998 13.4542 6.60068 13.3788 6.66492 13.3159L9.51758 10.4999L6.66492 7.64722C6.54405 7.52898 6.47318 7.36886 6.46692 7.19989C6.46692 7.00539 6.54418 6.81887 6.6817 6.68134C6.81923 6.54381 7.00576 6.46655 7.20025 6.46655C7.37625 6.46875 7.54492 6.53989 7.66958 6.66455Z" fill="white"/>
+                                    </svg>
+
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-6" style="margin-top:5px" data-bs-toggle="modal" data-bs-target="#keteranganDiri">
+                                    <div class="tepiborder deskripsi"><span class="fw-semibold">Keterangan Diri</span> <span class="text-info fw-semibold">(Opsional)</span>
+                                        @if (!empty($DataProfile['Tentang'] != null))
+                                        <style>
+                                            .deskripsi{
+                                                border: 1px solid #5D87FF;
+                                            }
+                                        </style>
+                                            <svg width="21" height="21" viewBox="0 0 21 21" fill="none" style="float: right" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="10.0898" cy="10.897" r="10" fill="#5D87FF"/>
+                                            <path d="M16.0898 6.84328L7.86127 14.897L4.08984 11.2057L5.0567 10.2594L7.86127 12.9976L15.123 5.89697L16.0898 6.84328Z" fill="white"/>
+                                        </svg>
+                                        @else
+                                        <style>
+                                            .deskripsi{
+                                                border: 1px solid #DF2121;
+                                            }
+                                        </style>
+                                     <svg style="float:right " width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="10" cy="10" r="10" fill="#DF2121"/>
+                                    <path d="M7.66958 6.66455L10.5002 9.49522L13.3162 6.67922C13.3785 6.61301 13.4534 6.56005 13.5366 6.52351C13.6197 6.48696 13.7094 6.46759 13.8003 6.46655C13.9947 6.46655 14.1813 6.54381 14.3188 6.68134C14.4563 6.81887 14.5336 7.00539 14.5336 7.19989C14.5353 7.28979 14.5186 7.3791 14.4846 7.46233C14.4505 7.54556 14.3998 7.62096 14.3356 7.68389L11.4829 10.4999L14.3356 13.3526C14.4564 13.4708 14.5273 13.6309 14.5336 13.7999C14.5336 13.9944 14.4563 14.1809 14.3188 14.3184C14.1813 14.456 13.9947 14.5332 13.8003 14.5332C13.7068 14.5371 13.6135 14.5215 13.5264 14.4874C13.4393 14.4533 13.3603 14.4015 13.2943 14.3352L10.5002 11.5046L7.67692 14.3279C7.61495 14.3919 7.54093 14.443 7.45912 14.4782C7.37731 14.5135 7.28932 14.5322 7.20025 14.5332C7.00576 14.5332 6.81923 14.456 6.6817 14.3184C6.54418 14.1809 6.46692 13.9944 6.46692 13.7999C6.46521 13.71 6.48189 13.6207 6.51594 13.5374C6.54998 13.4542 6.60068 13.3788 6.66492 13.3159L9.51758 10.4999L6.66492 7.64722C6.54405 7.52898 6.47318 7.36886 6.46692 7.19989C6.46692 7.00539 6.54418 6.81887 6.6817 6.68134C6.81923 6.54381 7.00576 6.46655 7.20025 6.46655C7.37625 6.46875 7.54492 6.53989 7.66958 6.66455Z" fill="white"/>
+                                    </svg>
+
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-6" style="margin-top:5px" data-bs-toggle="modal" data-bs-target="#pendidikan">
+                                    <div class="tepiborder school"><span class="fw-semibold">Pendidikan</span> <span class="text-info fw-semibold">(Opsional)</span>
+                                        @if (!empty($DataProfile['school'] != null))
+                                        <style>
+                                            .school{
+                                                border: 1px solid #5D87FF;
+                                            }
+                                        </style>
+                                            <svg width="21" height="21" viewBox="0 0 21 21" fill="none" style="float: right" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="10.0898" cy="10.897" r="10" fill="#5D87FF"/>
+                                            <path d="M16.0898 6.84328L7.86127 14.897L4.08984 11.2057L5.0567 10.2594L7.86127 12.9976L15.123 5.89697L16.0898 6.84328Z" fill="white"/>
+                                        </svg>
+                                        @else
+                                        <style>
+                                            .school{
+                                                border: 1px solid #DF2121;
+                                            }
+                                        </style>
+                                     <svg style="float:right " width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="10" cy="10" r="10" fill="#DF2121"/>
+                                    <path d="M7.66958 6.66455L10.5002 9.49522L13.3162 6.67922C13.3785 6.61301 13.4534 6.56005 13.5366 6.52351C13.6197 6.48696 13.7094 6.46759 13.8003 6.46655C13.9947 6.46655 14.1813 6.54381 14.3188 6.68134C14.4563 6.81887 14.5336 7.00539 14.5336 7.19989C14.5353 7.28979 14.5186 7.3791 14.4846 7.46233C14.4505 7.54556 14.3998 7.62096 14.3356 7.68389L11.4829 10.4999L14.3356 13.3526C14.4564 13.4708 14.5273 13.6309 14.5336 13.7999C14.5336 13.9944 14.4563 14.1809 14.3188 14.3184C14.1813 14.456 13.9947 14.5332 13.8003 14.5332C13.7068 14.5371 13.6135 14.5215 13.5264 14.4874C13.4393 14.4533 13.3603 14.4015 13.2943 14.3352L10.5002 11.5046L7.67692 14.3279C7.61495 14.3919 7.54093 14.443 7.45912 14.4782C7.37731 14.5135 7.28932 14.5322 7.20025 14.5332C7.00576 14.5332 6.81923 14.456 6.6817 14.3184C6.54418 14.1809 6.46692 13.9944 6.46692 13.7999C6.46521 13.71 6.48189 13.6207 6.51594 13.5374C6.54998 13.4542 6.60068 13.3788 6.66492 13.3159L9.51758 10.4999L6.66492 7.64722C6.54405 7.52898 6.47318 7.36886 6.46692 7.19989C6.46692 7.00539 6.54418 6.81887 6.6817 6.68134C6.81923 6.54381 7.00576 6.46655 7.20025 6.46655C7.37625 6.46875 7.54492 6.53989 7.66958 6.66455Z" fill="white"/>
+                                    </svg>
+
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-6" style="margin-top:5px" data-bs-toggle="modal" data-bs-target="#pengalaman">
+                                    <div class="tepiborder pengalaman"><span class="fw-semibold">Pengalaman Kerja</span> <span class="text-info fw-semibold">(Opsional)</span>
+                                        @if (!empty($DataProfile['pengalaman'] != null))
+                                        <style>
+                                            .pengalaman{
+                                                border: 1px solid #5D87FF;
+                                            }
+                                        </style>
+                                            <svg width="21" height="21" viewBox="0 0 21 21" fill="none" style="float: right" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="10.0898" cy="10.897" r="10" fill="#5D87FF"/>
+                                            <path d="M16.0898 6.84328L7.86127 14.897L4.08984 11.2057L5.0567 10.2594L7.86127 12.9976L15.123 5.89697L16.0898 6.84328Z" fill="white"/>
+                                        </svg>
+                                        @else
+                                        <style>
+                                            .pengalaman{
+                                                border: 1px solid #DF2121;
+                                            }
+                                        </style>
+                                     <svg style="float:right " width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="10" cy="10" r="10" fill="#DF2121"/>
+                                    <path d="M7.66958 6.66455L10.5002 9.49522L13.3162 6.67922C13.3785 6.61301 13.4534 6.56005 13.5366 6.52351C13.6197 6.48696 13.7094 6.46759 13.8003 6.46655C13.9947 6.46655 14.1813 6.54381 14.3188 6.68134C14.4563 6.81887 14.5336 7.00539 14.5336 7.19989C14.5353 7.28979 14.5186 7.3791 14.4846 7.46233C14.4505 7.54556 14.3998 7.62096 14.3356 7.68389L11.4829 10.4999L14.3356 13.3526C14.4564 13.4708 14.5273 13.6309 14.5336 13.7999C14.5336 13.9944 14.4563 14.1809 14.3188 14.3184C14.1813 14.456 13.9947 14.5332 13.8003 14.5332C13.7068 14.5371 13.6135 14.5215 13.5264 14.4874C13.4393 14.4533 13.3603 14.4015 13.2943 14.3352L10.5002 11.5046L7.67692 14.3279C7.61495 14.3919 7.54093 14.443 7.45912 14.4782C7.37731 14.5135 7.28932 14.5322 7.20025 14.5332C7.00576 14.5332 6.81923 14.456 6.6817 14.3184C6.54418 14.1809 6.46692 13.9944 6.46692 13.7999C6.46521 13.71 6.48189 13.6207 6.51594 13.5374C6.54998 13.4542 6.60068 13.3788 6.66492 13.3159L9.51758 10.4999L6.66492 7.64722C6.54405 7.52898 6.47318 7.36886 6.46692 7.19989C6.46692 7.00539 6.54418 6.81887 6.6817 6.68134C6.81923 6.54381 7.00576 6.46655 7.20025 6.46655C7.37625 6.46875 7.54492 6.53989 7.66958 6.66455Z" fill="white"/>
+                                    </svg>
+
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-6" style="margin-top:5px" data-bs-toggle="modal" data-bs-target="#keahlian">
+                                    <div class="tepiborder skills"><span class="fw-semibold">Keahlian</span> <span class="text-info fw-semibold">(Opsional)</span>
+                                        @if (!empty($DataProfile['Skill'] != null))
+                                        <style>
+                                            .skills{
+                                                border: 1px solid #5D87FF;
+                                            }
+                                        </style>
+                                            <svg width="21" height="21" viewBox="0 0 21 21" fill="none" style="float: right" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="10.0898" cy="10.897" r="10" fill="#5D87FF"/>
+                                            <path d="M16.0898 6.84328L7.86127 14.897L4.08984 11.2057L5.0567 10.2594L7.86127 12.9976L15.123 5.89697L16.0898 6.84328Z" fill="white"/>
+                                        </svg>
+                                        @else
+                                        <style>
+                                            .skills{
+                                                border: 1px solid #DF2121;
+                                            }
+                                        </style>
+                                     <svg style="float:right " width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="10" cy="10" r="10" fill="#DF2121"/>
+                                    <path d="M7.66958 6.66455L10.5002 9.49522L13.3162 6.67922C13.3785 6.61301 13.4534 6.56005 13.5366 6.52351C13.6197 6.48696 13.7094 6.46759 13.8003 6.46655C13.9947 6.46655 14.1813 6.54381 14.3188 6.68134C14.4563 6.81887 14.5336 7.00539 14.5336 7.19989C14.5353 7.28979 14.5186 7.3791 14.4846 7.46233C14.4505 7.54556 14.3998 7.62096 14.3356 7.68389L11.4829 10.4999L14.3356 13.3526C14.4564 13.4708 14.5273 13.6309 14.5336 13.7999C14.5336 13.9944 14.4563 14.1809 14.3188 14.3184C14.1813 14.456 13.9947 14.5332 13.8003 14.5332C13.7068 14.5371 13.6135 14.5215 13.5264 14.4874C13.4393 14.4533 13.3603 14.4015 13.2943 14.3352L10.5002 11.5046L7.67692 14.3279C7.61495 14.3919 7.54093 14.443 7.45912 14.4782C7.37731 14.5135 7.28932 14.5322 7.20025 14.5332C7.00576 14.5332 6.81923 14.456 6.6817 14.3184C6.54418 14.1809 6.46692 13.9944 6.46692 13.7999C6.46521 13.71 6.48189 13.6207 6.51594 13.5374C6.54998 13.4542 6.60068 13.3788 6.66492 13.3159L9.51758 10.4999L6.66492 7.64722C6.54405 7.52898 6.47318 7.36886 6.46692 7.19989C6.46692 7.00539 6.54418 6.81887 6.6817 6.68134C6.81923 6.54381 7.00576 6.46655 7.20025 6.46655C7.37625 6.46875 7.54492 6.53989 7.66958 6.66455Z" fill="white"/>
+                                    </svg>
+
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-12" style="margin-top:5px" data-bs-toggle="modal" data-bs-target="#sertifikat">
+                                    <div class="tepiborder sertifikat"><span class="fw-semibold">Sertifikat</span> <span class="text-info fw-semibold">(Opsional)</span>
+                                        @if (!empty($DataProfile['sertifikat'] != null))
+                                        <style>
+                                            .sertifikat{
+                                                border: 1px solid #5D87FF;
+                                            }
+                                        </style>
+                                            <svg width="21" height="21" viewBox="0 0 21 21" fill="none" style="float: right" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="10.0898" cy="10.897" r="10" fill="#5D87FF"/>
+                                            <path d="M16.0898 6.84328L7.86127 14.897L4.08984 11.2057L5.0567 10.2594L7.86127 12.9976L15.123 5.89697L16.0898 6.84328Z" fill="white"/>
+                                        </svg>
+                                        @else
+                                        <style>
+                                            .sertifikat{
+                                                border: 1px solid #DF2121;
+                                            }
+                                        </style>
+                                     <svg style="float:right " width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="10" cy="10" r="10" fill="#DF2121"/>
+                                    <path d="M7.66958 6.66455L10.5002 9.49522L13.3162 6.67922C13.3785 6.61301 13.4534 6.56005 13.5366 6.52351C13.6197 6.48696 13.7094 6.46759 13.8003 6.46655C13.9947 6.46655 14.1813 6.54381 14.3188 6.68134C14.4563 6.81887 14.5336 7.00539 14.5336 7.19989C14.5353 7.28979 14.5186 7.3791 14.4846 7.46233C14.4505 7.54556 14.3998 7.62096 14.3356 7.68389L11.4829 10.4999L14.3356 13.3526C14.4564 13.4708 14.5273 13.6309 14.5336 13.7999C14.5336 13.9944 14.4563 14.1809 14.3188 14.3184C14.1813 14.456 13.9947 14.5332 13.8003 14.5332C13.7068 14.5371 13.6135 14.5215 13.5264 14.4874C13.4393 14.4533 13.3603 14.4015 13.2943 14.3352L10.5002 11.5046L7.67692 14.3279C7.61495 14.3919 7.54093 14.443 7.45912 14.4782C7.37731 14.5135 7.28932 14.5322 7.20025 14.5332C7.00576 14.5332 6.81923 14.456 6.6817 14.3184C6.54418 14.1809 6.46692 13.9944 6.46692 13.7999C6.46521 13.71 6.48189 13.6207 6.51594 13.5374C6.54998 13.4542 6.60068 13.3788 6.66492 13.3159L9.51758 10.4999L6.66492 7.64722C6.54405 7.52898 6.47318 7.36886 6.46692 7.19989C6.46692 7.00539 6.54418 6.81887 6.6817 6.68134C6.81923 6.54381 7.00576 6.46655 7.20025 6.46655C7.37625 6.46875 7.54492 6.53989 7.66958 6.66455Z" fill="white"/>
+                                    </svg>
+
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- modal -->
+                            <div class="modal fade" id="dataWajib" tabindex="-1" aria-labelledby="exampleModalLabel1">
+                                <div class="modal-dialog" role="document">
+
+                                    <!-- Tambahkan input hidden untuk status deskripsi -->
+                                    <input type="hidden" name="deskripsi">
+
+                                    <div class="modal-content">
+                                        <div class="modal-header d-flex align-items-center">
+                                            <h4 class="modal-title" id="exampleModalLabel1">
+                                                Data Wajib
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20"
+                                                        height="20" viewBox="0 0 24 24">
+                                                        <path fill="#13deb9"
+                                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
+                                                    </svg>
+                                            </h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                        <div class="modal-body" style="max-height: 490px; overflow-y: auto;">
+                                            <div class="mb-3">
+                                                <p class="bg-info p-2 text-white text-center mb-4 fs-4"
+                                                    style="border-radius: 10px;">Wajib</p>
+                                                <p>Bagian data wajib mencakup nama, alamat email, nomor telepon, dan alamat, yang sebelumnya sudah anda masukkan saat anda melakukan register.</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="kelengkapanData" tabindex="-1" aria-labelledby="exampleModalLabel1">
+                                <div class="modal-dialog" role="document">
+
+                                    <!-- Tambahkan input hidden untuk status deskripsi -->
+                                    <input type="hidden" name="deskripsi">
+
+                                    <div class="modal-content">
+                                        <div class="modal-header d-flex align-items-center">
+                                            <h4 class="modal-title" id="exampleModalLabel1">
+                                                Kelengkapan Data
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20"
+                                                        height="20" viewBox="0 0 24 24">
+                                                        <path fill="#13deb9"
+                                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
+                                                </svg>
+                                            </h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                        <div class="modal-body" style="max-height: 490px; overflow-y: auto;">
+                                            <div class="mb-3">
+                                                <p class="bg-info p-2 text-white text-center mb-4 fs-4"
+                                                    style="border-radius: 10px;">Wajib</p>
+                                                <p>Bagian kelengkapan data mencakup foto, cv, lamaran, profile LinkedIn, dan profile Github.</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="keteranganDiri" tabindex="-1" aria-labelledby="exampleModalLabel1">
+                                <div class="modal-dialog" role="document">
+
+                                    <!-- Tambahkan input hidden untuk status deskripsi -->
+                                    <input type="hidden" name="deskripsi">
+
+                                    <div class="modal-content">
+                                        <div class="modal-header d-flex align-items-center">
+                                            <h4 class="modal-title" id="exampleModalLabel1">
+                                                Keterangan Diri
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20"
+                                                        height="20" viewBox="0 0 24 24">
+                                                        <path fill="#13deb9"
+                                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
+                                                </svg>
+                                            </h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                        <div class="modal-body" style="max-height: 490px; overflow-y: auto;">
+                                            <div class="mb-3">
+                                                <p class="bg-info p-2 text-white text-center mb-4 fs-4"
+                                                    style="border-radius: 10px;">Opsional</p>
+                                                <p>Keterangan diri berisi informasi singkat mengenai Anda atau latar belakang
+                                                Anda.</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="pendidikan" tabindex="-1" aria-labelledby="exampleModalLabel1">
+                                <div class="modal-dialog" role="document">
+
+                                    <!-- Tambahkan input hidden untuk status deskripsi -->
+                                    <input type="hidden" name="deskripsi">
+
+                                    <div class="modal-content">
+                                        <div class="modal-header d-flex align-items-center">
+                                            <h4 class="modal-title" id="exampleModalLabel1">
+                                                Pendidikan
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20"
+                                                        height="20" viewBox="0 0 24 24">
+                                                        <path fill="#13deb9"
+                                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
+                                                </svg>
+                                            </h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                        <div class="modal-body" style="max-height: 490px; overflow-y: auto;">
+                                            <div class="mb-3">
+                                                <p class="bg-info p-2 text-white text-center mb-4 fs-4"
+                                                    style="border-radius: 10px;">Opsional</p>
+                                                <p>Pendidikan mencakup riwayat pendidikan Anda mulai dari sekolah dasar hingga
+                                                perguruan tinggi. Jika Anda belum menyelesaikan pendidikan tertinggi Anda, Anda
+                                                dapat mencantumkan pendidikan terakhir Anda.</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="pengalaman" tabindex="-1" aria-labelledby="exampleModalLabel1">
+                                <div class="modal-dialog" role="document">
+
+                                    <!-- Tambahkan input hidden untuk status deskripsi -->
+                                    <input type="hidden" name="deskripsi">
+
+                                    <div class="modal-content">
+                                        <div class="modal-header d-flex align-items-center">
+                                            <h4 class="modal-title" id="exampleModalLabel1">
+                                                Pengalaman
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20"
+                                                        height="20" viewBox="0 0 24 24">
+                                                        <path fill="#13deb9"
+                                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
+                                                </svg>
+                                            </h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                        <div class="modal-body" style="max-height: 490px; overflow-y: auto;">
+                                            <div class="mb-3">
+                                                <p class="bg-info p-2 text-white text-center mb-4 fs-4"
+                                                    style="border-radius: 10px;">Opsional</p>
+                                                <p>Pengalaman berisi informasi mengenai tempat dan waktu pengalaman kerja
+                                                Anda. Anda akan mencantumkan jenis pekerjaan Anda (kontrak atau permanen), nama
+                                                proyek yang pernah Anda kerjakan, deskripsi proyek, tanggal mulai, tanggal
+                                                selesai, dan juga mengunggah bukti pengalaman dalam format JPG, PNG, atau JPEG.</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="keahlian" tabindex="-1" aria-labelledby="exampleModalLabel1">
+                                <div class="modal-dialog" role="document">
+
+                                    <!-- Tambahkan input hidden untuk status deskripsi -->
+                                    <input type="hidden" name="deskripsi">
+
+                                    <div class="modal-content">
+                                        <div class="modal-header d-flex align-items-center">
+                                            <h4 class="modal-title" id="exampleModalLabel1">
+                                                Keahlian
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20"
+                                                        height="20" viewBox="0 0 24 24">
+                                                        <path fill="#13deb9"
+                                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
+                                                </svg>
+                                            </h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                        <div class="modal-body" style="max-height: 490px; overflow-y: auto;">
+                                            <div class="mb-3">
+                                                <p class="bg-info p-2 text-white text-center mb-4 fs-4"
+                                                    style="border-radius: 10px;">Opsional</p>
+                                                <p>Keahlian berisi judul-judul keahlian Anda dan deskripsi tentang
+                                                keahlian-keahlian tersebut.</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="sertifikat" tabindex="-1" aria-labelledby="exampleModalLabel1">
+                                <div class="modal-dialog" role="document">
+
+                                    <!-- Tambahkan input hidden untuk status deskripsi -->
+                                    <input type="hidden" name="deskripsi">
+
+                                    <div class="modal-content">
+                                        <div class="modal-header d-flex align-items-center">
+                                            <h4 class="modal-title" id="exampleModalLabel1">
+                                                Sertifikat
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="20"
+                                                        height="20" viewBox="0 0 24 24">
+                                                        <path fill="#13deb9"
+                                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4l8-8z" />
+                                                </svg>
+                                            </h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                                        <div class="modal-body" style="max-height: 490px; overflow-y: auto;">
+                                            <div class="mb-3">
+                                                <p class="bg-info p-2 text-white text-center mb-4 fs-4"
+                                                    style="border-radius: 10px;">Opsional</p>
+                                                <p>Sertifikat berisi judul-judul sertifikat yang Anda miliki dan deskripsi tentang
+                                                sertifikat tersebut. Jika Anda memiliki sertifikat dari pengalaman sebelumnya,
+                                                Anda dapat menambahkannya ke profil Andat.</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-
                 </div>
-                <!-- <div class="col-lg-4">
-                    <div class="employers-listing-sidebar" style="box-shadow: 0px 10px 10px rgba(245, 246, 253, 1); border-radius:5px">
-                        <h4 class="text-white">Cari Divisi</h4>
-
-                        <form class="search-form" action="{{ route('dashboard-filter') }}" method="POST">
-                            @csrf
+            </div>
+            <section class="employers-listing-area ptb-100" style="direction: ltr;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 filter1 " style="background-color: #fff">
                             <div class="form-group">
-                                <select name="division">
-                                    <option value="" @if (!$selectedDivision) selected @endif>Semua
-                                    </option>
-                                    @foreach ($divisi as $item)
-                                    <option value="{{ $item->divisi }}" @if ($selectedDivision===$item->divisi) selected @endif>
-                                        {{ $item->divisi }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary">
-                                Cari Divisi
-                            </button>
-                        </form>
-                    </div>
-
-
-                    <style>
-                        .status {
-                            display: inline-block;
-                            width: 92px;
-                            height: 28px;
-                            padding-left: 12px;
-                            padding-right: 12px;
-                            padding-top: 2px;
-                            padding-bottom: 1px;
-                            color: white;
-                            border-radius: 4px;
-                            text-align: center;
-                        }
-
-                        #pp {
-
-                            /* border-top-right-radius: 30px;
-                            border-bottom-right-radius: 30px; */
-                            border-radius: 5px;
-                            background-color: #fff;
-                            box-shadow: 0px 10px 10px rgba(245, 246, 253, 1);
-                        }
-
-                        /* Gaya untuk tampilan desktop (lebar layar lebih dari 767px) */
-                        @media (min-width: 768px) {
-
-                            /* Teks berakhir pada tanggal akan diatur ke kanan */
-                        }
-
-                        .detail {
-                            text-align: right;
-                        }
-                    </style>
-                    
-                    <div class="employers-listing-sidebar mt-5 mb-5" id="pp">
-                        <h4 class="text-white">Lamaran Ditampung</h4>
-                        @forelse ($registration as $item)
-                        <div class="col-lg-12 mt-3" id="lowongan">
-                            <div class="d-flex justify-content-between mb-3">
-                                @if (!in_array($item->status, ['nonaktif', 'dipecat']))
-                                <h5><a href="" style="color: black">{{ $item->Vacancy->judul }}</a></h5>
-                                @endif
-                                @if (!in_array($item->status, ['nonaktif', 'dipecat']))
-                                <div>
-                                    @if ($item->status === 'diterima')
-                                    <span class="status bg-success" style="width: 79px;">{{ $item->status }}</span>
-                                    @elseif(in_array($item->status, ['lulus']))
-                                    <span class="status bg-primary" style="width: 75px;">{{ $item->status }}</span>
-                                    @else
-                                    <span class="status bg-warning"><span>{{ $item->status }}</span></span>
-                                    @endif
-                                </div>
-                                @endif
-                            </div>
-                            <ul>
-                                @if (!in_array($item->status, ['nonaktif', 'lulus', 'ditolak', 'menunggu']))
-                                <li class="mb-2 mt-2"><span>Tanggal Wawancara :</span>
-                                    {{ \Carbon\Carbon::parse($item->User->tanggal_wawancara)->locale('id')->isoFormat('D MMMM Y') }}
-                                </li>
-                                <li class="mb-2 mt-2"><span>Jam Wawancara :</span>
-                                    {{ \Carbon\Carbon::parse($item->User->tanggal_wawancara)->locale('id')->isoFormat('h:m') }}
-                                </li>
-                                @endif
-                                @if ($item->status === 'diterima')
-                                <li class="mb-2"><span>Lokasi Wawancara : </span>
-                                    {{ $item->User->lokasi_wawancara }}
-                                </li>
-                                @endif
-
-                                @if (!in_array($item->status, ['nonaktif', 'dipecat']))
-                                <li class="mb-2"><span>Posisi :</span>{{ $item->Vacancy->pekerja }}</li>
-                                <li class="mb-2"><span>Divisi :</span>{{ $item->Vacancy->Division->divisi }}
-                                </li>
-                                @endif
-                                @if (!in_array($item->status, ['lulus', 'nonaktif']))
-                                <li class="mb-2"><span>Slot Tersedia : </span> {{ $item->Vacancy->slot }}
-                                </li>
-                                @endif
-                                <div class="d-flex justify-content-between">
-                                    @if (!in_array($item->status, ['nonaktif', 'dipecat']))
-                                    <li class="mb-2"><span>Tipe Kerja : </span>{{ $item->Vacancy->tipe }}
-                                    </li>
-                                    @endif
-                                    @if ($item->status === 'menunggu')
-                                    <div class="d-flex justify-content-end">
-                                        <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
-                                            <button class="btn btn-primary mb-4">
-                                                Detail
-                                            </button>
-                                        </a>
-                                        <li class="ml-1" id="batal">
-                                            <button class="btn btn-danger mb-4">Batal</button>
-                                        </li>
-                                    </div>
-                                    @else
-
-                                    <li class="ml-auto" style="margin-left: 300px;">
-                                        <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
-                                            <button class="btn btn-primary mb-4" style="background-color: #2042e3">
-                                                Detail
-                                            </button>
-                                        </a>
-                                    </li>
-                                    @endif
-                                </div>
-                            </ul>
-                        </div>
-                        @empty
-                        @if (Auth()->user()->status === 'ditolak')
-                        <div class="mb-2" style="padding: 10%;"><span class="mb-2">Anda telah menerima
-                                pemberitahuan bahwa pendaftaran Anda telah ditolak. Mohon periksa email Anda
-                                untuk informasi lebih lanjut.</span>
-                            <div class="d-flex justify-content-end">
-                                <a href="https://mail.google.com/" target="_blank">
-                                    <button class="btn btn-primary mb-4">
-                                        Cek Email
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                        @elseif (Auth()->user()->status === 'gagal')
-                        <div class="mb-2" style="padding: 10%;"><span class="mb-2">Anda telah menerima
-                                pemberitahuan bahwa pendaftaran Anda tidak memnuhi kriteria. Mohon periksa email
-                                Anda untuk informasi lebih lanjut.</span>
-                            <div class="d-flex justify-content-end">
-                                <a href="https://mail.google.com/" target="_blank">
-                                    <button class="btn btn-primary mb-4">
-                                        Cek Email
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                        @else
-                        <div class="col-lg-12 text-center" id="lowongan">
-                            <img src="{{ asset('assets/nodatas.png') }}" alt="" width="180px">
-                        </div>
-                        @endif
-                        @endforelse
-
-                    </div>
-                </div> -->
-                <!-- <div class="col-lg-8">
-
-                    @if (count($registration) > 0)
-                    
-                    @endif
-                    <div class="shorting">
-                        <div class="row">
-                            @forelse ($registration as $item)
-                            <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
-                            <div class="hot-jobs-list">
-							<div class="row align-items-center">
-
-
-								<div class="col-lg-12">
-									<div class="hot-jobs-content ms-4">
-                                        <div class="d-flex justify-content-between">
-										<h3>{{ $item->Vacancy->judul }}</h3>
-                                        <span class="fw-semibold fs-4 mt-2" style="color: #5d87ff;">{{ 'Rp ' . number_format($item->Vacancy->gaji, 0, ',', '.') }}</span>
-                                        </div>
-										<ul>
-											<li><span>Slot Tersedia:</span> <span class="fw-medium"> {{ $item->Vacancy->slot }}</span></li>
-											<li><span>Divisi: </span> <span class="fw-medium"> {{ $item->Vacancy->Division->divisi }} </span> </li>
-											<li><span>Posisi: </span> <span class="fw-medium"> {{ $item->Vacancy->pekerja }} </span> </li>
-                                            <li><span>Tipe Kerja: </span> <span class="fw-medium"> {{ $item->Vacancy->tipe }} </span> </li>
-										</ul>
-									</div>
-                                    <hr>
-                                        <div class="d-flex">
-                                            @if ($item->status === 'diterima')
-                                            <span class="status bg-success" style="width: 79px;">{{ $item->status }}</span>
-                                            @elseif($item->status === 'lulus')
-                                            <span class="status bg-primary" style="width: 75px;">{{ $item->status }}</span>
-                                            @else($item->status === 'menunggu')
-                                            <span class="status bg-warning"><span>{{ $item->status }}</span></span>
-                                            @endif
-                                             <p class="ms-3 fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: {{ \Carbon\Carbon::parse($item->batas)->locale('id')->isoFormat('D MMMM Y ') }}
-                                             </p>
-                                        </div>
-								</div>
-							</div>
-							<span class="featured green">Terdaftar</span>
-						</div>
-                        </a>
-
-
-                            @empty
-                            @endforelse
-                        </div>
-
-                        @if (count($lowongan) > 0)
-                        @endif
-                        <div class="row">
-                            @forelse ($lowongan as $item)
-                            <div id="card2">
-                                <div class="hot-jobs-list col-md-12 col-12 col-lg-12">
-                                    <div class="row align-items-center">
-                                        <div class="col-12 col-lg-12">
-                                            <a href="{{ route('detailLowongan', $item->id) }}">
-                                                <div class="hot-jobs-content">
-                                                    <div class="row d-flex justify-content-between mb-3" style="color: black">
-                                                        <h4 class="col-12 col-md-12 col-xl-6 tengah">
-                                                            {{ $item->judul }}
-                                                        </h4>
-                                                        <p class="col-12 col-md-12 col-lg-12  col-xl-6 tanggal  justify-content-lg-endcustom justify-content-xl-endcustom">
-                                                            @if ($item->status)
-                                                            <span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}</span>
-                                                            @else
-                                                            <span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji
-                                                                Tidak Ditambahkan</span>
-                                                            @endif
-                                                        </p>
-
-                                                    </div>
-                                                    <ul>
-                                                        <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">{{ $item->slot }}</span></li>
-                                                        <li class="fs-3"><span>Divisi : </span><span class="fw-medium">{{ $item->Division->divisi }}</span>
-                                                        </li>
-                                                        <li class="fs-3"><span>Posisi : </span><span class="fw-medium">{{ $item->pekerja }}</span></li>
-                                                        <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">{{ $item->tipe }}</span></li>
-                                                        <hr>
-                                                    </ul>
-                                                </div>
-                                            </a>
-                                            <div class="card-footer">
-                                                <div class="d-flex justify-content-between">
-
-                                                    <p class="fs-3" style="color: #7c8fac;">Berakhir Pada
-                                                        Tanggal: {{ \Carbon\Carbon::parse($item->batas)->locale('id')->isoFormat('D MMMM Y ') }}
-                                                    </p>
-                                                    <form id="saveForm{{ $item->id }}" action="simpan-lowongan/{{ $item->id }}" method="post">
-                                                        @method('PATCH')
-                                                        @csrf
-                                                        <button type="button" id="simpan{{$item->id}}" onclick="Simpan('{{$item->id}}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="{{$item->id}}">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-                                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
-                                                            </svg>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
+                                <form class="search-form d-flex justify-content-between row col-12" id="search-lowongan">
+                                    <div class="form-group col-md-5 col-lg-5 col-sm-12">
+                                        <div class="d-flex" style="margin-top: 30px;">
+                                            <input type="text" name="cari" id="cari"
+                                                style="border: 1px solid #549bff; height: 35px; border-radius: 5px; width: 100%; padding: 8px;"
+                                                value="{{ $keyword }}" placeholder="Cari Lowongan..">
                                         </div>
                                     </div>
-                                    <span id=""  class="featured  labelSimpan hidden" data-label-id="{{$item->id}}" style="background-color:#ffad1e">Tersimpan</span>
-                                </div>
-                            </div>
 
+                                    <div class="form-group col-md-3 col-lg-3 col-sm-4" style="margin-top: 30px;">
+                                        <div>
+                                            <select class="select2 form-select" id="divisionSelect" name="division"
+                                                style="width: 100%; margin-right: 10px;">
+                                                <option disabled selected>Divisi</option>
+                                                <option value="semua" @if (!$selectedDivision) selected @endif>Semua
+                                                </option>
+                                                @foreach ($divisi as $item)
+                                                    <option value="{{ $item->id }}"
+                                                        @if (old('division', $selectedDivision) == $item->id) selected @endif>
+                                                        {{ $item->divisi }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
 
+                                    <div class="form-group col-md-3 col-lg-3 col-sm-4" style="margin-top: 30px;">
+                                        <div>
+                                            <select class="select2" name="lokasi" style="width: 100%; margin-right: 10px;"
+                                                id="locationSelect">
+                                                <option disabled selected>Tempat Pekerjaan</option>
+                                                <option value="semua" @if (!$keywordLokasi) selected @endif>Semua
+                                                </option>
+                                                @foreach ($lokasi as $item)
+                                                    <option value="{{ $item->lokasi }}"
+                                                        {{ $item->lokasi == $keywordLokasi ? 'selected' : '' }}>
+                                                        {{ $item->lokasi }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
 
-                            @empty
-                            <div class="row">
-                                <div class="col-lg-12 mt-5 text-center" id="lowongan">
-                                    <img src="{{ asset('assets/nodatas.png') }}" alt="" width="350px">
-                                </div>
-                            </div>
-                            @endforelse
-                            <div class="col-12">
-                                <div class="pagination-area">
-                                    @if ($cek > 2)
-                                    <button class="default-btn"><a href="{{ route('lowongan-user', $item->id) }}" class="text-white">Lihat Selengkapnya</a></button>
-                                    @endif
-                                    {{-- {{ $lowongan->links() }} --}}
-                                </div>
+                                    <div class="form-group col-lg-1 col-md-1 col-sm-4"
+                                        style="align-items: center; margin-top: 30px;">
+                                        <button class="btn btn-primary w-full border-1 text-center ms-2" type="button"
+                                            id="searchButton">
+                                            <p class="text-center"></p>Cari
+                                        </button>
+                                    </div>
+                                    {{-- <button class="default-btn " type="submit"
+                                        style="height: 15px; display: flex; align-items:;">
+                                        <span style="font-size: 15px">Cari Divisi</span>
+                                    </button> --}}
+
+                                </form>
                             </div>
                         </div>
-                    </div>
-                </div> -->
-                <section class="employers-listing-area ptb-100" style="direction: ltr;">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-sm-12 filter1 " style="background-color: #fff">
-                    <div class="form-group">
-                        <form class="search-form d-flex justify-content-between row col-12" id="search-lowongan">
-                            <div class="form-group col-md-5 col-lg-5 col-sm-12">
-                                <div class="d-flex" style="margin-top: 30px;">
-                                    <input type="text" name="cari" id="cari"
-                                        style="border: 1px solid #549bff; height: 35px; border-radius: 5px; width: 100%; padding: 8px;"
-                                        value="{{ $keyword }}" placeholder="Cari Lowongan..">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-3 col-lg-3 col-sm-4" style="margin-top: 30px;">
-                                <div>
-                                    <select class="select2 form-select" id="divisionSelect" name="division"
-                                        style="width: 100%; margin-right: 10px;">
-                                        <option disabled selected>Divisi</option>
-                                        <option value="semua" @if (!$selectedDivision) selected @endif>Semua
-                                        </option>
-                                        @foreach ($divisi as $item)
-                                            <option value="{{ $item->id }}"
-                                                @if (old('division', $selectedDivision) == $item->id) selected @endif>
-                                                {{ $item->divisi }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-3 col-lg-3 col-sm-4" style="margin-top: 30px;">
-                                <div>
-                                    <select class="select2" name="lokasi" style="width: 100%; margin-right: 10px;"
-                                        id="locationSelect">
-                                        <option disabled selected>Tempat Pekerjaan</option>
-                                        <option value="semua" @if (!$keywordLokasi) selected @endif>Semua
-                                        </option>
-                                        @foreach ($lokasi as $item)
-                                            <option value="{{ $item->lokasi }}"
-                                                {{ $item->lokasi == $keywordLokasi ? 'selected' : '' }}>
-                                                {{ $item->lokasi }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-lg-1 col-md-1 col-sm-4"
-                                style="align-items: center; margin-top: 30px;">
-                                <button class="btn btn-primary w-full border-1 text-center ms-2" type="button"
-                                    id="searchButton">
-                                    <p class="text-center"></p>Cari
-                                </button>
-                            </div>
-                            {{-- <button class="default-btn " type="submit"
-                                style="height: 15px; display: flex; align-items:;">
-                                <span style="font-size: 15px">Cari Divisi</span>
-                            </button> --}}
-
-                        </form>
-                    </div>
-                </div>
 
 
-                {{-- <script>
-                    $(document).ready(function() {
-                        $("#division-select").on("click", function() {
-                            var value = $(this).val();
-                            $("#card #card2").filter(function() {
-                                $(this).toggle($(this).text().indexOf(value) > -1)
+                        {{-- <script>
+                            $(document).ready(function() {
+                                $("#division-select").on("click", function() {
+                                    var value = $(this).val();
+                                    $("#card #card2").filter(function() {
+                                        $(this).toggle($(this).text().indexOf(value) > -1)
+                                    });
+                                });
                             });
-                        });
-                    });
-                </script> --}}
-                <style>
-                    @media (min-width: 768px) {
-                        .tanggal {
-                            text-align: right;
-                            /* Teks berakhir pada tanggal akan diatur ke kanan */
-                        }
+                        </script> --}}
+                        <style>
+                            @media (min-width: 768px) {
+                                .tanggal {
+                                    text-align: right;
+                                    /* Teks berakhir pada tanggal akan diatur ke kanan */
+                                }
 
-                        .detail {
-                            text-align: right;
-                        }
-                    }
-                </style>
+                                .detail {
+                                    text-align: right;
+                                }
+                            }
+                        </style>
 
-                <div class="col-12 row p-0" style="margin-left: 3px">
-                    <div class="col-12 col-lg-3 filter2 ">
-                    <div class="p-3 my-2 mb-3 rounded-2 py-3" style="background-color: #E6FFFA">
-                    <div class="d-flex gap-2">
-                        <div class="p-1 align-self-center rounded" style="background-color: #13DEB9">
-                            <svg xmlns="http://www.w3.org/2000/svg" style="color: #ffff;" width="32" height="32"
-                            viewBox="0 0 24 24">
-                                <path fill="currentColor"
-                                d="m11.99 18.54l-7.37-5.73L3 14.07l9 7l9-7l-1.63-1.27zM12 16l7.36-5.73L21 9l-9-7l-9 7l1.63 1.27L12 16zm0-11.47L17.74 9L12 13.47L6.26 9L12 4.53z" />
-                            </svg>
-                        </div>
-                        <div class="" style="font-size: 15px">
-                            Lowongan <br> Disimpan
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-end mt-2">
-                        <span style="" class="fw-bold">12</span>
-                    </div>
-                </div>
-                        <div class="employers-listing-sidebar1"
-                            style="box-shadow: 0px 10px 10px rgba(245, 246, 253, 1); border-radius:5px">
-                            <h4 class="text-white">Filter Tambahan</h4>
-
-                            <form style="padding: 20px;" id="SideFilter">
-                                <p class="fw-semibold fs-4 mb-2" style="color: black;">Tipe Pekerjaan</p>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="checkbox" name="tipe" value="Kontrak" id="flexCheckDefaultTipe" />
-                                    <label class="form-check-label" for="flexCheckDefaultTipe">
-                                        Kontrak
-                                    </label>
+                        <div class="col-12 row p-0" style="margin-left: 3px">
+                            <div class="col-12 col-lg-3 filter2 ">
+                            <div class="p-3 my-2 mb-3 rounded-2 py-3" style="background-color: #E6FFFA">
+                            <div class="d-flex gap-2">
+                                <div class="p-1 align-self-center rounded" style="background-color: #13DEB9">
+                                    <svg xmlns="http://www.w3.org/2000/svg" style="color: #ffff;" width="32" height="32"
+                                    viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                        d="m11.99 18.54l-7.37-5.73L3 14.07l9 7l9-7l-1.63-1.27zM12 16l7.36-5.73L21 9l-9-7l-9 7l1.63 1.27L12 16zm0-11.47L17.74 9L12 13.47L6.26 9L12 4.53z" />
+                                    </svg>
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input permanen" type="checkbox" name="tipe"
-                                        value="Permanen" id="flexCheckDefaultTipe" />
-                                    <label class="form-check-label" for="flexCheckDefaultTipe">
-                                        Permanen
-                                    </label>
+                                <div class="" style="font-size: 15px">
+                                    Lowongan <br> Disimpan
                                 </div>
-                                <hr>
-                                <p class="fw-semibold fs-4 mb-2" style="color: black;">Tipe Lowongan</p>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" type="radio" name="tipeVacancy"
-                                        id="exampleRadios1" value="terbaru" />
-                                    <label class="form-check-label" for="exampleRadios1">
-                                        Lowongan Terbaru
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="tipeVacancy" id="exampleRadios2" value="terlama" />
-                                    <label class="form-check-label" for="exampleRadios2">
-                                        Lowongan Terlama
-                                    </label>
-                                </div>
-                                <hr>
-                                <p class="fw-semibold fs-4 mb-2" style="color: black;">Rentang Gaji</p>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" name="Salary" type="radio" value="gaji1" id="flexCheckDefault" />
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Rp 100.000-2.500.000
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" name="Salary" type="radio" value="gaji2"
-                                        id="flexCheckDefault" />
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Rp 2.500.000-5.000.000
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" name="Salary" type="radio" value="gaji3"
-                                        id="flexCheckDefault" />
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Rp 5.000.000-7.500.000
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" name="Salary" type="radio" value="gaji4"
-                                        id="flexCheckDefault" />
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Rp 7.500.000-10.000.000
-                                    </label>
-                                </div>
-                                <div class="form-check mb-2">
-                                    <input class="form-check-input" name="Salary" type="radio" value="gaji5"
-                                        id="flexCheckDefault" />
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        Rp 10.000.000++
-                                    </label>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
-                    <div class="col-lg-9 col-12" id="card">
-
-                        <div id="lowonganKosong" class=" w-full "></div>
-                        <div id="LowonganUser" class="row w-full "></div>
-                        @if ($limit < 1)
-
-                            @else
-                            <div class="lihatSelengkapnya btn btn-primary w-100" style="cursor: pointer" id="lihatSelengkapnya">Lihat Selengkapnya
                             </div>
-                            <div class="lihatSedikit btn btn-primary w-100" style="display: none" id="lihatSedikit">Lihat Sedikit</div>
-                            @endif
-
-                        <div class="col-12">
-                            <div class="pagination-area">
-                                {{-- <div id="paginate"></div> --}}
+                            <div class="d-flex justify-content-end mt-2">
+                                <span style="" class="fw-bold">12</span>
                             </div>
                         </div>
+                                <div class="employers-listing-sidebar1"
+                                    style="box-shadow: 0px 10px 10px rgba(245, 246, 253, 1); border-radius:5px">
+                                    <h4 class="text-white">Filter Tambahan</h4>
+
+                                    <form style="padding: 20px;" id="SideFilter">
+                                        <p class="fw-semibold fs-4 mb-2" style="color: black;">Tipe Pekerjaan</p>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" name="tipe" value="Kontrak" id="flexCheckDefaultTipe" />
+                                            <label class="form-check-label" for="flexCheckDefaultTipe">
+                                                Kontrak
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input permanen" type="checkbox" name="tipe"
+                                                value="Permanen" id="flexCheckDefaultTipe" />
+                                            <label class="form-check-label" for="flexCheckDefaultTipe">
+                                                Permanen
+                                            </label>
+                                        </div>
+                                        <hr>
+                                        <p class="fw-semibold fs-4 mb-2" style="color: black;">Tipe Lowongan</p>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="radio" name="tipeVacancy"
+                                                id="exampleRadios1" value="terbaru" />
+                                            <label class="form-check-label" for="exampleRadios1">
+                                                Lowongan Terbaru
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="tipeVacancy" id="exampleRadios2" value="terlama" />
+                                            <label class="form-check-label" for="exampleRadios2">
+                                                Lowongan Terlama
+                                            </label>
+                                        </div>
+                                        <hr>
+                                        <p class="fw-semibold fs-4 mb-2" style="color: black;">Rentang Gaji</p>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" name="Salary" type="radio" value="gaji1" id="flexCheckDefault" />
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Rp 100.000-2.500.000
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" name="Salary" type="radio" value="gaji2"
+                                                id="flexCheckDefault" />
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Rp 2.500.000-5.000.000
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" name="Salary" type="radio" value="gaji3"
+                                                id="flexCheckDefault" />
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Rp 5.000.000-7.500.000
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" name="Salary" type="radio" value="gaji4"
+                                                id="flexCheckDefault" />
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Rp 7.500.000-10.000.000
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" name="Salary" type="radio" value="gaji5"
+                                                id="flexCheckDefault" />
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Rp 10.000.000++
+                                            </label>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-12" id="card">
+
+                                <div id="lowonganKosong" class=" w-full "></div>
+                                <div id="LowonganUser" class="row w-full "></div>
+                                @if ($limit < 1)
+
+                                    @else
+                                    <div class="lihatSelengkapnya btn btn-primary w-100" style="cursor: pointer" id="lihatSelengkapnya">Lihat Selengkapnya
+                                    </div>
+                                    <div class="lihatSedikit btn btn-primary w-100" style="display: none" id="lihatSedikit">Lihat Sedikit</div>
+                                    @endif
+
+                                <div class="col-12">
+                                    <div class="pagination-area">
+                                        {{-- <div id="paginate"></div> --}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-            </div>
+            </section>
         </div>
     </section>
     <!-- End Employers Listing Area -->
@@ -1468,8 +1250,9 @@
         });
     </script>
     @endif
+
     <script>
-       
+
 
         function Simpan(id) {
 

@@ -29,7 +29,8 @@ class DashboardUserController extends Controller
     public function index(Request $request)
     {
         $selectedDivision = 'semua';
-        $user = User::where(Auth()->user()->id);
+        $user = User::findOrFail(Auth()->user()->id);
+
         $kelengkapanUser = User::find(auth()->user()->id);
         $userProges = User::find(auth()->user()->id);
         // Ambil semua pendaftaran yang terkait dengan pengguna saat ini
@@ -97,8 +98,36 @@ class DashboardUserController extends Controller
             ->select('lokasi')
             ->distinct()
             ->get();
+        $skill = Skill::where('user_id', $user->id)->get();
+        $experience = Experience::where('user_id', $user->id)->get();
+        $School = School::where('user_id', Auth()->user()->id)->get();
+        $certificate = Certificate::where('user_id', $user->id)->get();
+        $DataProfile = [
+            'dataUser' => $user,
+            'FotoDanFile' => (
+                ((isset($user->foto) && $user->foto !== 'default/default.png') &&
+                    (isset($user->cv) && $user->cv !== 'default/default.png') &&
+                    (isset($user->lamaran) && $user->lamaran !== 'default/default.png')) ?
+                ($user->foto . $user->cv . $user->lamaran) :
+                null
+            ),
+            'Tentang' => $user->deskripsi,
+            'Skill' => (count($skill) >= 1 ? $skill : null),
+            'school' =>(count($School) >= 1 ? $School : null),
+            'sertifikat' => (count($certificate) >= 1 ? $certificate : null),
+            'pengalaman' =>(count($experience) >= 1 ? $experience : null),
+        ];
 
-        return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration', 'cek', 'user', 'kelengkapanUser', 'selectedDivision', 'keyword', 'keywordLokasi', 'lokasi', 'limit'));
+        $jumlahData = 0;
+        foreach ($DataProfile as $key => $value) {
+            if (!is_null($value)) {
+                $jumlahData++;
+            }
+        }
+
+
+
+        return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration', 'cek', 'user', 'kelengkapanUser', 'selectedDivision', 'keyword', 'keywordLokasi', 'lokasi', 'limit','jumlahData','DataProfile'));
     }
 
 

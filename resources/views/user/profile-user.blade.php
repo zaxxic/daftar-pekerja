@@ -3080,10 +3080,18 @@
                                     <div class="d-flex justify-content-between px-2 py-1 rounded">
                                         <div class="d-flex">
                                             <div>
-                                                <h5 for="exampleInputPassword1" class="fw-semibold mb-2"
-                                                    style="margin-bottom: 0">
-                                                    ${item.vacancy.judul}
-                                                </h5>
+                                                <div class="d-flex justify-content-between ">
+                                                    <h5 for="exampleInputPassword1" class="fw-semibold mb-2"
+                                                        style="margin-bottom: 0">
+                                                        ${item.vacancy.judul}
+                                                    </h5>
+
+                                                    <button style="background-color:transparent; border:none;" id="" class="text-warning" onclick="batalSimpan('${item.id}')">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                            <path   fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
                                                 <p for="exampleInputPassword1" class="mb-2"
                                                     style="margin-bottom: 0">
                                                     Tenggat Lowongan :
@@ -3144,10 +3152,18 @@
                                     <div class="d-flex justify-content-between px-2 py-1 rounded">
                                         <div class="d-flex">
                                             <div>
+                                                <div class="d-flex justify-content-between ">
                                                 <h5 for="exampleInputPassword1" class="fw-semibold mb-2"
                                                     style="margin-bottom: 0">
                                                     ${item.vacancy.judul}
                                                 </h5>
+
+                                                <button style="background-color:transparent; border:none;" id="" class="text-warning" onclick="batalSimpan('${item.id}')">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                        <path   fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                                    </svg>
+                                                </button>
+                                            </div>
                                                 <p for="exampleInputPassword1" class="mb-2"
                                                     style="margin-bottom: 0">
                                                     Tenggat Lowongan :
