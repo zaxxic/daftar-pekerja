@@ -48,6 +48,13 @@
     <title>Dashboard User</title>
 
     <style>
+        .employers-listing-area .employers-listing-sidebar1 h4 {
+            background-color: #5d87ff;
+            padding: 15px 20px;
+            border-radius: 5px 5px 0 0;
+            margin-bottom: 0;
+        }
+
         .highlight-box {
             display: inline-block;
             width: 10px;
@@ -1613,7 +1620,7 @@
 
     <script>
       $(document).ready(function() {
-    var formUrl = "{{ route('dashboard-user') }}";
+    var formUrl = "{{ route('jumlah-lowongan') }}";
 
     $.ajaxSetup({
         headers: {
@@ -1829,170 +1836,130 @@
         });
     </script>
    <script>
-    $(document).ready(function() {
-        var formUrl = "{{ route('jumlah-lowongan') }}";
+    // $(document).ready(function() {
+    //     var formUrl = "{{ route('jumlah-lowongan') }}";
 
-        // Fungsi untuk memperbarui jumlah lowongan
-        function updateJumlahLowongan() {
-            $.get(formUrl, function(response) {
-                var simpan = response.simpan;
-                $('#jumlah-lowongan').text(simpan.length);
+    //     // Fungsi untuk memperbarui jumlah lowongan
+    //     function updateJumlahLowongan() {
+    //         $.get(formUrl, function(response) {
+    //             var simpan = response.simpan;
+    //             $('#jumlah-lowongan').text(simpan.length);
 
-                $.each(simpan, function(index, item) {
-                    $('.buttonSimpan[data-vacancie-id="' + item.vacancie_id + '"]').addClass('text-warning');
-                    $('.labelSimpan[data-label-id="' + item.vacancie_id + '"]').removeClass('hidden');
-                });
-            }).fail(function(error) {
-                console.log(error);
-            });
-        }
+    //             $.each(simpan, function(index, item) {
+    //                 $('.buttonSimpan[data-vacancie-id="' + item.vacancie_id + '"]').addClass('text-warning');
+    //                 $('.labelSimpan[data-label-id="' + item.vacancie_id + '"]').removeClass('hidden');
+    //             });
+    //         }).fail(function(error) {
+    //             console.log(error);
+    //         });
+    //     }
 
-        // Memanggil fungsi updateJumlahLowongan saat halaman dimuat
-        updateJumlahLowongan();
+    //     // Memanggil fungsi updateJumlahLowongan saat halaman dimuat
+    //     updateJumlahLowongan();
 
-        $('.simpan').on('click', function() {
-            var formUrl = $('#saveForm').attr('action');
-            $('#saveForm').submit();
-        });
+    //     $('.simpan').on('click', function() {
+    //         var formUrl = $('#saveForm').attr('action');
+    //         $('#saveForm').submit();
+    //     });
 
-        function Simpan(id) {
-            const formId = 'saveForm' + id;
-            const formUrl = $('#' + formId).attr('action');
-            $('#' + formId).submit();
-        }
-    });
+    //     function Simpan(id) {
+    //         const formId = 'saveForm' + id;
+    //         const formUrl = $('#' + formId).attr('action');
+    //         $('#' + formId).submit();
+    //     }
+    // });
 </script>
     <script>
             $(document).ready(function() {
-            var formUrl = "{{ route('jumlah-lowongan') }}";
+    var formUrl = "{{ route('jumlah-lowongan') }}";
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+    function updateJumlahLowongan() {
+        $.get(formUrl, function(response) {
+            var simpan = response.simpan;
+            var jumlahLowongan = simpan.length;
+            $('#jumlah-lowongan').text(jumlahLowongan);
+        }).fail(function(error) {
+            console.log(error);
+        });
+    }
+    updateJumlahLowongan();
 
-            // Fungsi untuk memperbarui jumlah lowongan
-            function simpanLowongan() {
+    $('.simpan').on('click', function() {
+        var formUrl = $('#saveForm').attr('action');
+        $('#saveForm').submit();
+    });
+
+    function Simpan(id) {
+        const formId = 'saveForm' + id;
+        const formUrl = $('#' + formId).attr('action');
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "mr-2 btn btn-danger",
+            },
+            buttonsStyling: false,
+        });
+
+        swalWithBootstrapButtons.fire({
+            title: "Konfirmasi",
+            text: "Apakah anda yakin ingin merubah status lowongan ini?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Iya!",
+            cancelButtonText: "Tidak!",
+            reverseButtons: true,
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger me-3",
+            },
+            buttonsStyling: false,
+            width: "25rem",
+            padding: "1rem",
+            customContainerClass: "swal-custom",
+        }).then((result) => {
+            if (result.isConfirmed) {
                 $.ajax({
                     url: formUrl,
-                    type: 'GET',
+                    type: 'PATCH',
+                    data: $('#' + formId).serialize(),
                     success: function(response) {
-                        var simpan = response.simpan;
-                        $('#jumlah-lowongan').text(simpan);
+                        if (response.suksesBatal) {
+                            swalWithBootstrapButtons.fire({
+                                icon: 'success',
+                                title: 'Berhasil Batal',
+                                text: 'Berhasil batal, simpan lowongan.',
+                            });
+                            updateJumlahLowongan(-1);
+                        } else {
+                            swalWithBootstrapButtons.fire({
+                                icon: 'success',
+                                title: 'Berhasil Simpan',
+                                text: 'Berhasil simpan lowongan.',
+                            });
+                            updateJumlahLowongan(1);
+                        }
                     },
                     error: function(error) {
                         console.log(error);
                     }
                 });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                swalWithBootstrapButtons.fire(
+                    "Batal",
+                    "Pengajuan penerimaan dibatalkan.",
+                    "error"
+                );
             }
-
-            // Memanggil fungsi simpanLowongan saat halaman dimuat
-            simpanLowongan();
         });
+    }
 
-        $(document).ready(function() {
-
-            // $('.simpan').on('click', function() {
-            //     var formUrl = $('#saveForm').attr('action');
-            //     $.ajax({
-            //         url: formUrl,
-            //         type: 'PATCH',
-            //         data: $('#saveForm').serialize(),
-            //         success: function(response) {
-
-            //             if (response.suksesBatal) {
-            //                 alert('berhasil batal');
-            //                 $('#simpan').removeClass('text-info');
-            //             } else {
-            //                 $('#simpan').addClass('text-info');
-            //                 alert('berhasil simpan');
-            //             }
-            //             // console.log(response.success);
-            //         },
-            //         error: function(error) {
-            //             console.log(error);
-            //         }
-            //     });
-            // });
-        });
-
-        function Simpan(id) {
-
-            const formId = 'saveForm' + id;
-            const formUrl = $('#' + formId).attr('action');
-
-            const formData = $('#' + formId).serialize();
-
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: "btn btn-success",
-                    cancelButton: "mr-2 btn btn-danger",
-                },
-                buttonsStyling: false,
-            });
-
-            swalWithBootstrapButtons.fire({
-                title: "Konfirmasi",
-                text: "Apakah anda yakin ingin merubah status lowongan ini?",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Iya!",
-                cancelButtonText: "Tidak!",
-                reverseButtons: true,
-                customClass: {
-                    confirmButton: "btn btn-success",
-                    cancelButton: "btn btn-danger me-3",
-                },
-                buttonsStyling: false,
-                width: "25rem",
-                padding: "1rem",
-                customContainerClass: "swal-custom",
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Jika pengguna menekan "Iya", lakukan AJAX request
-                    $.ajax({
-                        url: formUrl,
-                        type: 'PATCH',
-                        data: formData,
-                        success: function(response) {
-
-                            if (response.suksesBatal) {
-                                swalWithBootstrapButtons.fire({
-                                    icon: 'success',
-                                    title: 'Berhasil Batal',
-                                    text: 'Berhasil batal, simpan lowongan.',
-                                });
-                                $('#simpan' + id).removeClass('text-warning');
-                                $('.labelSimpan[data-label-id="' + id + '"]').addClass('hidden');
-
-                            } else {
-                                swalWithBootstrapButtons.fire({
-                                    icon: 'success',
-                                    title: 'Berhasil Simpan',
-                                    text: 'Berhasil simpan lowongan.',
-                                });
-                                $('#simpan' + id).addClass('text-warning');
-                                $('.labelSimpan[data-label-id="' + id + '"]').removeClass('hidden');
-
-                            }
-                            // console.log(response.success);
-
-                            simpanLowongan();
-                        },
-                        error: function(error) {
-                            console.log(error);
-                        }
-                    });
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    swalWithBootstrapButtons.fire(
-                        "Batal",
-                        "Pengajuan penerimaan dibatalkan.",
-                        "error"
-                    );
-                }
-            });
-        }
+    function updateJumlahLowongan(delta) {
+        var jumlahLowongan = parseInt($('#jumlah-lowongan').text());
+        jumlahLowongan += delta;
+        $('#jumlah-lowongan').text(jumlahLowongan);
+    }
+});
     </script>
 
     <script>
