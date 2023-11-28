@@ -647,6 +647,8 @@
                                     @endif
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                 </a>
@@ -1161,7 +1163,7 @@
                     </div>
                 </div>
             </div>
-            <section class="employers-listing-area ptb-100" style="direction: ltr;">
+            <section class="employers-listing-area ptb-50" style="direction: ltr;">
                 <div class="container">
                     <div class="row">
 
@@ -1285,7 +1287,7 @@
                             <div class="col-lg-9 col-12" id="card">
                                 <div class="col-12 col-sm-12 filter1 " style="background-color: #fff">
                                     <div class="form-group">
-                                        <form class="search-form d-flex justify-content-between  row " id="search-lowongan">
+                                        <form class="search-form d-flex justify-content-between  row " id="">
                                             <div class="form-group col-md-5 col-12 mb-0">
                                                 <div class="d-flex" style="margin-top: 10px;">
                                                     <input type="text" name="cari" id="cari"
@@ -2042,7 +2044,7 @@
 
     <script>
         $(document).ready(function() {
-            var formUrl = "{{ route('Lowongan/Lowongan') }}"; // Changed 'Route' to 'route'
+            var formUrl = "{{ route('Tampil/lowongan/Dashboard') }}"; // Changed 'Route' to 'route'
 
             $.ajaxSetup({
                 headers: {
@@ -2118,52 +2120,82 @@
                             // alert(formattedDate);
                             var id = item.id;
                             let lowongan = `
-                                    <div class="col-md-6 col-12 mix a s c" id="card2">
-                                        <div class="hot-jobs-list w-full">
-                                            <div class="row align-items-center">
-                                                <div class="col-12">
-                                                    <a href="${route}">
-                                                        <div class="hot-jobs-content">
-                                                            <div class="row d-flex justify-content-between mb-3" style="color: black">
-                                                                <h4 class="col-12 col-md-12 col-xl-6 tengah">${item.judul}</h4>
-                                                                <p class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex tanggal justify-content-center  justify-content-lg-end justify-content-xl-end">
-                                                                    ${item.status ? '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">' + gaji + '</span>' : '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>'}
-                                                                </p>
-                                                            </div>
-                                                            <ul>
-                                                                <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">${item.slot}</span></li>
-                                                                <li class="fs-3"><span>Posisi : </span><span class="fw-medium">${item.pekerja}</span></li>
-                                                                <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">${item.tipe}</span></li>
-                                                                <hr>
-                                                            </ul>
-                                                        </div>
-                                                    </a>
-                                                    <div class="card-footer">
-                                                        <div class="d-flex justify-content-between">
-                                                            <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: ${formattedDate}</p>
-                                                            <form id="saveForm${id}" action="${routeSimpan}" method="post">
-                                                                @method('PATCH')
-                                                                @csrf
-                                                                <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="${id}">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-                                                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
-                                                                    </svg>
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <span id=""  class="featured  labelSimpan hidden" data-label-id="${id}" style="background-color:#ffad1e">Tersimpan</span>
-                                        </div>
-                                    </div>
+                            <div class="col-lg-6">
+                    <div class="card position-relative overflow-hidden mb-4" style="height: auto;">
+                        <div class="card-header bg-info d-flex align-items-center justify-content-between">
+                            <div class="col-12 d-flex justify-content-between" style="padding: 0;">
+                                <h4 class="card-title text-white mb-0 me-3" style="font-size: 22px;">${item.judul}</h4>
+                                </h4>
+                            </div>
+
+                        </div>
+                        <div style="padding: 15px 20px 15px 20px;">
+                            <div class=" col-12 row">
+                                <div class="col-4 mb-2 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">Slot Tersedia</span>
+                                </div>
+                                <div class="col-1 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                </div>
+                                <div class="col-7 p-0">
+                                    <span class="fs-4" style="color: black;">${item.slot}</span>
+                                </div>
+
+                                <div class="col-4 mb-2 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">Posisi</span>
+                                </div>
+                                <div class="col-1 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                </div>
+                                <div class="col-7 p-0">
+                                    <span class="fs-4" style="color: black;">${item.pekerja}</span>
+                                </div>
+                                <div class="col-4 mb-2 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">Tipe Pekerjaan</span>
+                                </div>
+                                <div class="col-1 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                </div>
+                                <div class="col-7 p-0">
+                                    <span class="fs-4" style="color: black;">${item.tipe}</span>
+                                </div>
+                                <div class="col-4 mb-3 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">Gaji</span>
+                                </div>
+                                <div class="col-1 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                </div>
+                                <div class="col-7 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">${gaji}</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between p-0">
+                                    <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: ${formattedDate}
+                                    </p>
+                                    <form id="saveForm${id}" action="${routeSimpan}" method="post">
+                                        @method('PATCH')
+                                        @csrf
+                                        <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="${id}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                <path class="svgSimpan"  data-vacancie-id="${id}" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                            </svg>
+                                        </button>
+                                    </form>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
                                 `;
                             // alert(lowongan);
                             $('#LowonganUser').append(lowongan);
                         });
                         $.each(response.simpan, function(index, item) {
-                            $('.buttonSimpan[data-vacancie-id="' + item.vacancie_id + '"]')
-                                .addClass('text-warning');
+                            $('.svgSimpan[data-vacancie-id="' + item.vacancie_id + '"]').attr('fill', 'currentColor').addClass('text-warning');
+
 
                             $('.labelSimpan[data-label-id="' + item.vacancie_id + '"]')
                                 .removeClass('hidden');
@@ -2180,7 +2212,7 @@
             });
         });
     </script>
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('#lihatSelengkapnya').click(function() {
                 $.ajaxSetup({
@@ -2212,44 +2244,83 @@
                         // alert(formattedDate);
                         var id = item.id;
                         let lowongan = `
-                            <div class="col-md-6 col-12 mix a s c" id="card2">
-                                <div class="hot-jobs-list col-12">
-                                    <div class="row align-items-center">
-                                        <div class="col-12">
-                                            <a href="${route}">
-                                                <div class="hot-jobs-content">
-                                                    <div class="row d-flex justify-content-between mb-3" style="color: black">
-                                                        <h4 class="col-12 col-md-12 col-xl-6 tengah">${item.judul}</h4>
-                                                        <p class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex tanggal justify-content-center  justify-content-lg-end justify-content-xl-end">
-                                                            ${item.status ? '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">' + gaji + '</span>' : '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>'}
-                                                        </p>
-                                                    </div>
-                                                    <ul>
-                                                        <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">${item.slot}</span></li>
-                                                        <li class="fs-3"><span>Posisi : </span><span class="fw-medium">${item.pekerja}</span></li>
-                                                        <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">${item.tipe}</span></li>
-                                                        <hr>
-                                                    </ul>
-                                                </div>
-                                            </a>
-                                            <div class="card-footer">
-                                                <div class="d-flex justify-content-between">
-                                                    <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: ${formattedDate}</p>
-                                                    <form id="saveForm${id}" action="${routeSimpan}" method="post">
-                                                        @method('PATCH')
-                                                        @csrf
-                                                        <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan " data-vacancie-id="${id}">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-                                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
-                                                            </svg>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="col-lg-6">
+                    <div class="card position-relative overflow-hidden mb-4" style="height: auto;">
+                        <div class="card-header bg-info d-flex align-items-center justify-content-between">
+                            <div class="col-12 d-flex justify-content-between" style="padding: 0;">
+                                <h4 class="card-title text-white mb-0 me-3" style="font-size: 22px;">${item.judul}</h4>
+                                </h4>
+                            </div>
+
+                        </div>
+                        <div style="padding: 15px 20px 15px 20px;">
+                            <div class=" col-12 row">
+                                <div class="col-4 mb-2 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">Slot Tersedia</span>
+                                </div>
+                                <div class="col-1 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                </div>
+                                <div class="col-7 p-0">
+                                    <span class="fs-4" style="color: black;">${item.slot}</span>
+                                </div>
+                                <!-- <div class="col-3 mb-2">
+                                    <span class="fw-semibold fs-4" style="color: black;">Divisi</span>
+                                </div>
+                                <div class="col-1">
+                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                </div>
+                                <div class="col-8">
+                                    <span class="fs-4" style="color: black;">${item.division.divisi }</span>
+                                </div> -->
+                                <div class="col-4 mb-2 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">Posisi</span>
+                                </div>
+                                <div class="col-1 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                </div>
+                                <div class="col-7 p-0">
+                                    <span class="fs-4" style="color: black;">${item.pekerja}</span>
+                                </div>
+                                <div class="col-4 mb-2 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">Tipe Pekerjaan</span>
+                                </div>
+                                <div class="col-1 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                </div>
+                                <div class="col-7 p-0">
+                                    <span class="fs-4" style="color: black;">${item.tipe}</span>
+                                </div>
+                                <div class="col-4 mb-3 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">Gaji</span>
+                                </div>
+                                <div class="col-1 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                </div>
+                                <div class="col-7 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">${gaji}</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between p-0">
+                                    <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: ${formattedDate}
+                                    </p>
+                                    <form id="saveForm${id}" action="${routeSimpan}" method="post">
+                                        @method('PATCH')
+                                        @csrf
+                                        <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="${id}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                <path class="svgSimpan"  data-vacancie-id="${id}" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                            </svg>
+                                        </button>
+                                    </form>
+
                                 </div>
                             </div>
+
+
+                        </div>
+                    </div>
+                </div>
                         `;
 
                         $('#LowonganUser').append(lowongan);
@@ -2269,8 +2340,8 @@
                 });
             });
         });
-    </script>
-     <script>
+    </script> --}}
+     {{-- <script>
         $(document).ready(function() {
             $('#lihatSedikit').click(function() {
                 $.ajaxSetup({
@@ -2358,11 +2429,10 @@
                 });
             });
         });
-    </script>
+    </script> --}}
     <script>
         $(document).ready(function() {
             $('#SideFilter').change(function() {
-                // Dapatkan nilai elemen filter yang terpilih
                 var selectType = new Array();
                 var selectTypeVacancy = new Array();
                 var selectSalary = new Array();
@@ -2371,6 +2441,12 @@
                 var keywordLokasi = $('#locationSelect').val();
                 if (keyword === '') {
                     keyword = "semua";
+                };
+                if (selectedDivision === null) {
+                    selectedDivision = "semua";
+                };
+                if (keywordLokasi === null) {
+                    keywordLokasi = "semua";
                 };
 
                 $('input[name="tipe"]:checked').each(function() {
@@ -2401,7 +2477,7 @@
                 var formData = [keyword, selectedDivision, keywordLokasi, selectType, selectTypeVacancy,
                     selectSalary
                 ];
-                var formUrl = "{{ route('SideFilter') }}";
+                var formUrl = "{{ route('Dashboard/SideFilter') }}";
                 console.log(formData);
                 $.ajax({
                     url: formUrl,
@@ -2413,7 +2489,6 @@
 
                         $('#LowonganUser').empty();
                         $('#lowonganKosong').empty();
-
                         if (response.lowongan === 'kosong') {
                             let lowongan = `
                             <div class="row">
@@ -2428,68 +2503,94 @@
                             $.each(response.lowongan, function(index, item) {
                                 console.log(response.lowongan);
 
-                                var route = "{{ route('detailLowongan', ':id') }}"
-                                    .replace(
-                                        ':id', item.id);
+                                var route = "{{ route('detailLowongan', ':id') }}".replace(':id', item.id);
                                 var routeSimpan = "simpan-lowongan/" + item.id;
-                                var gaji = "Rp " + Number(item.gaji).toLocaleString(
-                                    'id-ID');
+                                var gaji = "Rp " + Number(item.gaji).toLocaleString('id-ID');
                                 var tanggalTengat = item.batas;
-                                var formattedDate = formatTanggalIndonesia(
-                                    tanggalTengat);
+                                var formattedDate = formatTanggalIndonesia(tanggalTengat);
                                 // alert(formattedDate);
                                 var id = item.id;
                                 let lowongan = `
-                                    <div class="col-md-6 col-12 mix a s c" id="card2">
-                                        <div class="hot-jobs-list w-full">
-                                            <div class="row align-items-center">
-                                                <div class="col-12">
-                                                    <a href="${route}">
-                                                        <div class="hot-jobs-content">
-                                                            <div class="row d-flex justify-content-between mb-3" style="color: black">
-                                                                <h4 class="col-12 col-md-12 col-xl-6 tengah">${item.judul}</h4>
-                                                                <p class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex tanggal justify-content-center  justify-content-lg-end justify-content-xl-end">
-                                                                    ${item.status ? '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">' + gaji + '</span>' : '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>'}
-                                                                </p>
-                                                            </div>
-                                                            <ul>
-                                                                <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">${item.slot}</span></li>
-                                                                <li class="fs-3"><span>Posisi : </span><span class="fw-medium">${item.pekerja}</span></li>
-                                                                <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">${item.tipe}</span></li>
-                                                                <hr>
-                                                            </ul>
-                                                        </div>
-                                                    </a>
-                                                    <div class="card-footer">
-                                                        <div class="d-flex justify-content-between">
-                                                            <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: ${formattedDate}</p>
-                                                            <form id="saveForm${id}" action="${routeSimpan}" method="post">
-                                                                @method('PATCH')
-                                                                @csrf
-                                                                <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="${id}">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-                                                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
-                                                                    </svg>
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
+                                <div class="col-lg-6">
+                                    <div class="card position-relative overflow-hidden mb-4" style="height: auto;">
+                                        <div class="card-header bg-info d-flex align-items-center justify-content-between">
+                                            <div class="col-12 d-flex justify-content-between" style="padding: 0;">
+                                                <h4 class="card-title text-white mb-0 me-3" style="font-size: 22px;">${item.judul}</h4>
+                                                </h4>
+                                            </div>
+
+                                        </div>
+                                        <div style="padding: 15px 20px 15px 20px;">
+                                            <div class=" col-12 row">
+                                                <div class="col-4 mb-2 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">Slot Tersedia</span>
+                                                </div>
+                                                <div class="col-1 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                                </div>
+                                                <div class="col-7 p-0">
+                                                    <span class="fs-4" style="color: black;">${item.slot}</span>
+                                                </div>
+
+                                                <div class="col-4 mb-2 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">Posisi</span>
+                                                </div>
+                                                <div class="col-1 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                                </div>
+                                                <div class="col-7 p-0">
+                                                    <span class="fs-4" style="color: black;">${item.pekerja}</span>
+                                                </div>
+                                                <div class="col-4 mb-2 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">Tipe Pekerjaan</span>
+                                                </div>
+                                                <div class="col-1 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                                </div>
+                                                <div class="col-7 p-0">
+                                                    <span class="fs-4" style="color: black;">${item.tipe}</span>
+                                                </div>
+                                                <div class="col-4 mb-3 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">Gaji</span>
+                                                </div>
+                                                <div class="col-1 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                                </div>
+                                                <div class="col-7 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">${gaji}</span>
+                                                </div>
+                                                <hr>
+                                                <div class="d-flex justify-content-between p-0">
+                                                    <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: ${formattedDate}
+                                                    </p>
+                                                    <form id="saveForm${id}" action="${routeSimpan}" method="post">
+                                                        @method('PATCH')
+                                                        @csrf
+                                                        <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="${id}">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                                <path class="svgSimpan"  data-vacancie-id="${id}" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                                            </svg>
+                                                        </button>
+                                                    </form>
+
                                                 </div>
                                             </div>
-                                            <span id=""  class="featured  labelSimpan hidden" data-label-id="${id}" style="background-color:#ffad1e">Tersimpan</span>
+
+
                                         </div>
                                     </div>
+                                </div>
                                 `;
-                                // alert(lowongan);
+
                                 $('#LowonganUser').append(lowongan);
                             });
                             $.each(response.simpan, function(index, item) {
-                                $('.buttonSimpan[data-vacancie-id="' + item
-                                    .vacancie_id + '"]').addClass('text-warning');
+                            $('.svgSimpan[data-vacancie-id="' + item.vacancie_id + '"]').attr('fill', 'currentColor').addClass('text-warning');
 
-                                $('.labelSimpan[data-label-id="' + item.vacancie_id +
-                                    '"]').removeClass('hidden');
-                            });
+
+                            $('.labelSimpan[data-label-id="' + item.vacancie_id + '"]')
+                                .removeClass('hidden');
+                        });
                         }
 
 
@@ -2506,7 +2607,8 @@
         $(document).ready(function() {
             $('#searchButton').click(function() {
                 // Dapatkan nilai elemen filter yang terpilih
-                var selectType = new Array();
+               // Dapatkan nilai elemen filter yang terpilih
+               var selectType = new Array();
                 var selectTypeVacancy = new Array();
                 var selectSalary = new Array();
                 var keyword = $('#cari').val();
@@ -2515,6 +2617,14 @@
                 if (keyword === '') {
                     keyword = "semua";
                 };
+
+                if (selectedDivision === null) {
+                    selectedDivision = "semua";
+                };
+                if (keywordLokasi === null) {
+                    keywordLokasi = "semua";
+                };
+
 
                 $('input[name="tipe"]:checked').each(function() {
                     selectType.push(this.value);
@@ -2547,11 +2657,11 @@
                 var formData = [keyword, selectedDivision, keywordLokasi, selectType, selectTypeVacancy,
                     selectSalary
                 ];
-                var formUrl = "{{ route('searchlowongan') }}";
+                var formUrl = "{{ route('Dashboard/searchlowongan') }}";
 
                 // Kirim permintaan AJAX ke server
                 $.ajax({
-                    url: '{{ route('searchlowongan') }}',
+                    url: '{{ route('Dashboard/searchlowongan') }}',
                     type: 'POST',
                     data: {
                         data: formData
@@ -2563,7 +2673,7 @@
 
                         $('#LowonganUser').empty();
                         $('#lowonganKosong').empty();
-
+                        // alert(response.lowonganKosong);
                         if (response.lowongan === 'kosong') {
                             let lowongan = `
                             <div class="row">
@@ -2575,70 +2685,94 @@
                             // alert(lowongan);
                             $('#lowonganKosong').append(lowongan);
                         } else {
+                            // alert(response.lowongan);
                             $.each(response.lowongan, function(index, item) {
                                 console.log(response.lowongan);
-
-                                var route = "{{ route('detailLowongan', ':id') }}"
-                                    .replace(
-                                        ':id', item.id);
+                                // alert(response.lowongan);
+                                var route = "{{ route('detailLowongan', ':id') }}".replace(':id', item.id);
                                 var routeSimpan = "simpan-lowongan/" + item.id;
-                                var gaji = "Rp " + Number(item.gaji).toLocaleString(
-                                    'id-ID');
+                                var gaji = "Rp " + Number(item.gaji).toLocaleString('id-ID');
                                 var tanggalTengat = item.batas;
-                                var formattedDate = formatTanggalIndonesia(
-                                    tanggalTengat);
+                                var formattedDate = formatTanggalIndonesia(tanggalTengat);
                                 // alert(formattedDate);
                                 var id = item.id;
                                 let lowongan = `
-                                    <div class="col-md-6 col-12 mix a s c" id="card2">
-                                        <div class="hot-jobs-list w-full">
-                                            <div class="row align-items-center">
-                                                <div class="col-12">
-                                                    <a href="${route}">
-                                                        <div class="hot-jobs-content">
-                                                            <div class="row d-flex justify-content-between mb-3" style="color: black">
-                                                                <h4 class="col-12 col-md-12 col-xl-6 tengah">${item.judul}</h4>
-                                                                <p class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex tanggal justify-content-center  justify-content-lg-end justify-content-xl-end">
-                                                                    ${item.status ? '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">' + gaji + '</span>' : '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>'}
-                                                                </p>
-                                                            </div>
-                                                            <ul>
-                                                                <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">${item.slot}</span></li>
-                                                                <li class="fs-3"><span>Posisi : </span><span class="fw-medium">${item.pekerja}</span></li>
-                                                                <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">${item.tipe}</span></li>
-                                                                <hr>
-                                                            </ul>
-                                                        </div>
-                                                    </a>
-                                                    <div class="card-footer">
-                                                        <div class="d-flex justify-content-between">
-                                                            <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: ${formattedDate}</p>
-                                                            <form id="saveForm${id}" action="${routeSimpan}" method="post">
-                                                                @method('PATCH')
-                                                                @csrf
-                                                                <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="${id}">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-                                                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
-                                                                    </svg>
-                                                                </button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
+                                <div class="col-lg-6">
+                                    <div class="card position-relative overflow-hidden mb-4" style="height: auto;">
+                                        <div class="card-header bg-info d-flex align-items-center justify-content-between">
+                                            <div class="col-12 d-flex justify-content-between" style="padding: 0;">
+                                                <h4 class="card-title text-white mb-0 me-3" style="font-size: 22px;">${item.judul}</h4>
+                                                </h4>
+                                            </div>
+
+                                        </div>
+                                        <div style="padding: 15px 20px 15px 20px;">
+                                            <div class=" col-12 row">
+                                                <div class="col-4 mb-2 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">Slot Tersedia</span>
+                                                </div>
+                                                <div class="col-1 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                                </div>
+                                                <div class="col-7 p-0">
+                                                    <span class="fs-4" style="color: black;">${item.slot}</span>
+                                                </div>
+
+                                                <div class="col-4 mb-2 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">Posisi</span>
+                                                </div>
+                                                <div class="col-1 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                                </div>
+                                                <div class="col-7 p-0">
+                                                    <span class="fs-4" style="color: black;">${item.pekerja}</span>
+                                                </div>
+                                                <div class="col-4 mb-2 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">Tipe Pekerjaan</span>
+                                                </div>
+                                                <div class="col-1 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                                </div>
+                                                <div class="col-7 p-0">
+                                                    <span class="fs-4" style="color: black;">${item.tipe}</span>
+                                                </div>
+                                                <div class="col-4 mb-3 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">Gaji</span>
+                                                </div>
+                                                <div class="col-1 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                                </div>
+                                                <div class="col-7 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">${gaji}</span>
+                                                </div>
+                                                <hr>
+                                                <div class="d-flex justify-content-between p-0">
+                                                    <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: ${formattedDate}
+                                                    </p>
+                                                    <form id="saveForm${id}" action="${routeSimpan}" method="post">
+                                                        @method('PATCH')
+                                                        @csrf
+                                                        <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="${id}">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                                <path class="svgSimpan"  data-vacancie-id="${id}" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                                            </svg>
+                                                        </button>
+                                                    </form>
+
                                                 </div>
                                             </div>
-                                            <span id=""  class="featured  labelSimpan hidden" data-label-id="${id}" style="background-color:#ffad1e">Tersimpan</span>
+
+
                                         </div>
                                     </div>
+                                </div>
                                 `;
                                 // alert(lowongan);
                                 $('#LowonganUser').append(lowongan);
                             });
                             $.each(response.simpan, function(index, item) {
-                                $('.buttonSimpan[data-vacancie-id="' + item
-                                    .vacancie_id + '"]').addClass('text-warning');
-
-                                $('.labelSimpan[data-label-id="' + item.vacancie_id +
-                                    '"]').removeClass('hidden');
+                                $('.svgSimpan[data-vacancie-id="' + item.vacancie_id + '"]').attr('fill', 'currentColor').addClass('text-warning');
+                                $('.labelSimpan[data-label-id="' + item.vacancie_id + '"]').removeClass('hidden');
                             });
                         }
                     },
