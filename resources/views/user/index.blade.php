@@ -46,6 +46,7 @@
 
     <!-- Title -->
     <title>Dashboard User</title>
+
     <style>
         .highlight-box {
             display: inline-block;
@@ -284,6 +285,130 @@
         @include('layouts1.app')
     </div>
     <!-- End Header Area -->
+    <style>
+        @media (max-width: 600px) {
+            .judul {
+                font-size: small;
+                /* padding-left: 90px; */
+            }
+        }
+
+        .kerja {
+            background-image: url("assets1/images/banner/banner-bg.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+
+            padding-top: 150px;
+            padding-right: 150px;
+            padding-bottom: 150px;
+            padding-left: 90px;
+            /* Sesuaikan ukuran padding sesuai keinginan */
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 640px) {
+
+            /* Atur breakpoint sesuai kebutuhan */
+            .kerja h1 {
+                background-size: contain;
+                /* Gambar akan menyesuaikan ukuran sesuai lebar */
+                padding: 60px 15px;
+                display: none;
+                /* Ubah ukuran padding sesuai keinginan */
+            }
+
+            .lowongan {
+                font-size: 10px;
+            }
+
+            .banner-content h1 {
+                font-size: 5px;
+            }
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            height: 120px;
+            /* Sesuaikan tinggi sesuai kebutuhan Anda */
+        }
+
+        .select2-container--default .select2-selection--single {
+            background-color: #fff;
+            border-radius: 4px;
+            display: flex;
+            font-size: 15px;
+            font-style: thin;
+            height: 35px;
+            border: 1px solid #549bff;
+            padding-top: 2px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 26px;
+            position: absolute;
+            top: 5px;
+            right: 1px;
+            width: 20px;
+            color: #549bff;
+        }
+
+        .select2-results {
+            display: block;
+            border: 1px solid #549bff;
+        }
+
+        .select2-search--dropdown {
+            display: block;
+            padding: 4px;
+            border: 1px solid #549bff;
+        }
+
+        .select2-container--default .select2-search--dropdown .select2-search__field {
+            border: 1px solid #549bff;
+        }
+
+
+        .employers-listing-area .nice-select {
+            width: 100%;
+            border-radius: 5px;
+            height: 29px;
+            margin-bottom: 30px;
+            border-color: #cccccc;
+        }
+
+        .filter2 {
+            display: none;
+        }
+
+        @media (min-width:992px) {
+
+            .filter2 {
+                display: block;
+            }
+        }
+        @media (min-width:992px) {
+
+            .addFIlter {
+                display: none;
+            }
+        }
+        .labelSimpan{
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .hot-jobs-list .featured {
+            position: absolute;
+            top:10px;
+            left: -45px;
+            background-color: #2042e3;
+            color: #ffffff;
+            padding: 5px 40px;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            font-size: 12px;
+        }
+
+    </style>
 
     <style>
         @media (max-width: 600px) {
@@ -527,7 +652,7 @@
                 </a>
                 @empty
                     <div class="card position-relative overflow-hidden mb-4" style="height: 279px;">
-                       
+
                     @if (Auth()->user()->status === 'ditolak')
                         <div class="card-header bg-info d-flex align-items-center justify-content-between">
                             <div class="col-12 d-flex justify-content-between" style="padding: 0;">
@@ -568,7 +693,7 @@
                                 <h4 class="card-title text-white mb-0 me-3" style="font-size: 22px;">Belum Terdapat Lowongan Yang Terdaftar</h4>
                             </div>
                         </div>
-                    
+
                         <div style="padding: 15px 20px 15px 20px;">
                             <div class="col-lg-12 text-center" id="lowongan">
                                 <img src="{{ asset('assets/nodatas.png') }}" alt="" width="180px">
@@ -799,7 +924,7 @@
                                             <h4 class="modal-title" id="exampleModalLabel1">
                                                 Kelengkapan Data
                                                 @if (!empty($DataProfile['FotoDanFile'] != null))
-                                               
+
                                                 <svg width="21" height="21" viewBox="0 0 21 21" fill="none" class="ms-2" style="float: right; margin-top: 6px;" xmlns="http://www.w3.org/2000/svg">
                                                 <circle cx="10.0898" cy="10.897" r="10" fill="#5D87FF"/>
                                                 <path d="M16.0898 6.84328L7.86127 14.897L4.08984 11.2057L5.0567 10.2594L7.86127 12.9976L15.123 5.89697L16.0898 6.84328Z" fill="white"/>
@@ -838,7 +963,7 @@
                                             <h4 class="modal-title" id="exampleModalLabel1">
                                                 Keterangan Diri
                                                 @if (!empty($DataProfile['Tentang'] != null))
-                                               
+
                                                 <svg width="21" height="21" viewBox="0 0 21 21" fill="none" class="ms-2" style="float: right; margin-top: 6px;" xmlns="http://www.w3.org/2000/svg">
                                                 <circle cx="10.0898" cy="10.897" r="10" fill="#5D87FF"/>
                                                 <path d="M16.0898 6.84328L7.86127 14.897L4.08984 11.2057L5.0567 10.2594L7.86127 12.9976L15.123 5.89697L16.0898 6.84328Z" fill="white"/>
@@ -878,7 +1003,7 @@
                                             <h4 class="modal-title" id="exampleModalLabel1">
                                                 Pendidikan
                                                 @if (!empty($DataProfile['school'] != null))
-                                               
+
                                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" class="ms-2" style="float: right; margin-top: 6px;" xmlns="http://www.w3.org/2000/svg">
                                                <circle cx="10.0898" cy="10.897" r="10" fill="#5D87FF"/>
                                                <path d="M16.0898 6.84328L7.86127 14.897L4.08984 11.2057L5.0567 10.2594L7.86127 12.9976L15.123 5.89697L16.0898 6.84328Z" fill="white"/>
@@ -919,7 +1044,7 @@
                                             <h4 class="modal-title" id="exampleModalLabel1">
                                                 Pengalaman
                                                 @if (!empty($DataProfile['pengalaman'] != null))
-                                               
+
                                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" class="ms-2" style="float: right; margin-top: 6px;" xmlns="http://www.w3.org/2000/svg">
                                                <circle cx="10.0898" cy="10.897" r="10" fill="#5D87FF"/>
                                                <path d="M16.0898 6.84328L7.86127 14.897L4.08984 11.2057L5.0567 10.2594L7.86127 12.9976L15.123 5.89697L16.0898 6.84328Z" fill="white"/>
@@ -961,7 +1086,7 @@
                                             <h4 class="modal-title" id="exampleModalLabel1">
                                                 Keahlian
                                                 @if (!empty($DataProfile['Skill'] != null))
-                                               
+
                                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" class="ms-2" style="float: right; margin-top: 6px;" xmlns="http://www.w3.org/2000/svg">
                                                <circle cx="10.0898" cy="10.897" r="10" fill="#5D87FF"/>
                                                <path d="M16.0898 6.84328L7.86127 14.897L4.08984 11.2057L5.0567 10.2594L7.86127 12.9976L15.123 5.89697L16.0898 6.84328Z" fill="white"/>
@@ -1001,7 +1126,7 @@
                                             <h4 class="modal-title" id="exampleModalLabel1">
                                                 Sertifikat
                                                 @if (!empty($DataProfile['sertifikat'] != null))
-                                               
+
                                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" class="ms-2" style="float: right; margin-top: 6px;" xmlns="http://www.w3.org/2000/svg">
                                                <circle cx="10.0898" cy="10.897" r="10" fill="#5D87FF"/>
                                                <path d="M16.0898 6.84328L7.86127 14.897L4.08984 11.2057L5.0567 10.2594L7.86127 12.9976L15.123 5.89697L16.0898 6.84328Z" fill="white"/>
@@ -1039,71 +1164,8 @@
             <section class="employers-listing-area ptb-100" style="direction: ltr;">
                 <div class="container">
                     <div class="row">
-                    <div class="col-12 col-sm-12 filter1 " style="background-color: #fff">
-                    <div class="form-group">
-                        <form class="search-form d-flex justify-content-between  row " id="search-lowongan">
-                            <div class="form-group col-md-5 col-12 mb-0">
-                                <div class="d-flex" style="margin-top: 10px;">
-                                    <input type="text" name="cari" id="cari"
-                                        style="border: 1px solid #549bff; height: 35px; border-radius: 5px; width: 100%; padding: 8px;"
-                                        value="{{ $keyword }}" placeholder="Cari Lowongan..">
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-3 col-4" style="margin-top: 10px;">
-                                <div>
-                                    <select class="select2 form-select" id="divisionSelect" name="division"
-                                        style="width: 100%; margin-right: 10px;">
-                                        <option disabled value="" selected>Divisi</option>
-                                        <option value="semua">Semua
-                                        </option>
-                                        @foreach ($divisi as $item)
-                                            <option value="{{ $item->id }}"
-                                                @if (old('division', $selectedDivision) == $item->id) selected @endif>
-                                                {{ $item->divisi }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
 
 
-                            <div class="form-group col-md-3 col-4" style="margin-top: 10px;">
-                                <div>
-                                    <select class="select2" name="lokasi" style="width: 100%; margin-right: 10px;"
-                                        id="locationSelect">
-                                        <option disabled value="" selected>Tempat Pekerjaan</option>
-                                        <option value="semua" >Semua
-                                        </option>
-                                        @foreach ($lokasi as $item)
-                                            <option value="{{ $item->lokasi }}"
-                                                {{ $item->lokasi == $keywordLokasi ? 'selected' : '' }}>
-                                                {{ $item->lokasi }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-4 col-lg-1 d-flex justify-content-end"
-                                style="align-items: center; margin-top: 0px;">
-                                <button class="btn btn-primary w-full border-1 text-center ms-2" type="button"
-                                    id="searchButton">
-                                    <p class="text-center"></p>Cari
-                                </button>
-                            </div>
-                            <div class="col-12 mx-auto addFIlter"
-                                style="align-items: center;  ">
-                                <button  data-bs-toggle="modal" data-bs-target="#filter-Open" class=" w-full  text-center " style="width: 100%;border:1px solid #549bff; background-color:transparent; color:gray; height:30px; border-radius:5px" type="button"
-                                    id="searchButton">
-                                    <span class="text-center d-flex justify-content-center align-items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 21 21"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M6.5 4a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V5a1 1 0 0 1 1-1zm12 2h-11m-2 0h-3m4 8a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zm12 2h-11m-2 0h-3m12-7a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zm-1 2h-11m16 0h-3"/></svg> <p>Filter</p> </span>
-                                </button>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-                
                         {{-- <script>
                             $(document).ready(function() {
                                 $("#division-select").on("click", function() {
@@ -1221,16 +1283,79 @@
                                 </div>
                             </div>
                             <div class="col-lg-9 col-12" id="card">
+                                <div class="col-12 col-sm-12 filter1 " style="background-color: #fff">
+                                    <div class="form-group">
+                                        <form class="search-form d-flex justify-content-between  row " id="search-lowongan">
+                                            <div class="form-group col-md-5 col-12 mb-0">
+                                                <div class="d-flex" style="margin-top: 10px;">
+                                                    <input type="text" name="cari" id="cari"
+                                                        style="border: 1px solid #549bff; height: 35px; border-radius: 5px; width: 100%; padding: 8px;"
+                                                        value="{{ $keyword }}" placeholder="Cari Lowongan..">
+                                                </div>
+                                            </div>
 
+                                            <div class="form-group col-md-3 col-4" style="margin-top: 10px;">
+                                                <div>
+                                                    <select class="select2 form-select" id="divisionSelect" name="division"
+                                                        style="width: 100%; margin-right: 10px;">
+                                                        <option disabled value="" selected>Divisi</option>
+                                                        <option value="semua">Semua
+                                                        </option>
+                                                        @foreach ($divisi as $item)
+                                                            <option value="{{ $item->id }}"
+                                                                @if (old('division', $selectedDivision) == $item->id) selected @endif>
+                                                                {{ $item->divisi }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group col-md-3 col-4" style="margin-top: 10px;">
+                                                <div>
+                                                    <select class="select2" name="lokasi" style="width: 100%; margin-right: 10px;"
+                                                        id="locationSelect">
+                                                        <option disabled value="" selected>Tempat Pekerjaan</option>
+                                                        <option value="semua" >Semua
+                                                        </option>
+                                                        @foreach ($lokasi as $item)
+                                                            <option value="{{ $item->lokasi }}"
+                                                                {{ $item->lokasi == $keywordLokasi ? 'selected' : '' }}>
+                                                                {{ $item->lokasi }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-4 col-lg-1 d-flex justify-content-end"
+                                                style="align-items: center; margin-top: 0px;">
+                                                <button class="btn btn-primary w-full border-1 text-center ms-2" type="button"
+                                                    id="searchButton">
+                                                    <p class="text-center"></p>Cari
+                                                </button>
+                                            </div>
+                                            <div class="col-12 mx-auto addFIlter"
+                                                style="align-items: center;  ">
+                                                <button  data-bs-toggle="modal" data-bs-target="#filter-Open" class=" w-full  text-center " style="width: 100%;border:1px solid #549bff; background-color:transparent; color:gray; height:30px; border-radius:5px" type="button"
+                                                    id="searchButton">
+                                                    <span class="text-center d-flex justify-content-center align-items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 21 21"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M6.5 4a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V5a1 1 0 0 1 1-1zm12 2h-11m-2 0h-3m4 8a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zm12 2h-11m-2 0h-3m12-7a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zm-1 2h-11m16 0h-3"/></svg> <p>Filter</p> </span>
+                                                </button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
                                 <div id="lowonganKosong" class=" w-full "></div>
                                 <div id="LowonganUser" class="row w-full "></div>
-                                @if ($limit < 1)
+                                {{-- @if ($limit < 1)
 
                                     @else
                                     <div class="lihatSelengkapnya btn btn-primary w-100" style="cursor: pointer" id="lihatSelengkapnya">Lihat Selengkapnya
                                     </div>
                                     <div class="lihatSedikit btn btn-primary w-100" style="display: none" id="lihatSedikit">Lihat Sedikit</div>
-                                    @endif
+                                    @endif --}}
 
                                 <div class="col-12">
                                     <div class="pagination-area">
@@ -1242,7 +1367,7 @@
                     </div>
                 </div>
             </section>
-            
+
         </div>
     </section>
     <!-- End Employers Listing Area -->
