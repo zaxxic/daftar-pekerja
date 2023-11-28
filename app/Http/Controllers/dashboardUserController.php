@@ -185,12 +185,15 @@ class DashboardUserController extends Controller
     public function LowonganUser()
     {
         $lowonganQuery = Vacancy::query();
-        $limit = Vacancy::all()->count();
         $lowongan = $lowonganQuery
             ->orderByRaw('ABS(DATEDIFF(batas, CURDATE()))')
             ->where('status', 'aktif')
             ->latest()
-            ->limit(10)->get();
+            ->limit(20)->get();
+        $limit = Vacancy::orderByRaw('ABS(DATEDIFF(batas, CURDATE()))')
+        ->where('status', 'aktif')
+        ->latest()
+        ->count();
         $simpan = VacancieSave::where('user_id', Auth()->User()->id)->get();
 
         return response()->json(['lowongan' => $lowongan, 'simpan' => $simpan, 'limit' => $limit]);
@@ -329,7 +332,7 @@ class DashboardUserController extends Controller
             }
             // dd($Salary[0]);
         }
-        $lowongan = $lowonganQuery->where('status', 'aktif')->limit(10)->get();
+        $lowongan = $lowonganQuery->where('status', 'aktif')->limit(20)->get();
         // dd($lowongan);
         if(
             $lowongan->count() < 1 &&
@@ -345,7 +348,9 @@ class DashboardUserController extends Controller
             $lowongan = 'kosong';
         }
 
-        return response()->json(['lowongan'=>$lowongan, 'simpan' => $simpan]);
+        $limit = $lowongan->count();
+
+        return response()->json(['lowongan'=>$lowongan, 'simpan' => $simpan, 'limit' => $limit]);
 
     }
     public function DashboardSideFilter(Request $request)
@@ -513,7 +518,7 @@ class DashboardUserController extends Controller
             }
             // dd($Salary[0]);
         }
-        $lowongan = $lowonganQuery->where('status', 'aktif')->limit(10)->get();
+        $lowongan = $lowonganQuery->where('status', 'aktif')->limit(20)->get();
         // dd($lowongan);
         if(
             $lowongan->count() < 1 &&
@@ -528,8 +533,9 @@ class DashboardUserController extends Controller
         }elseif($lowongan->count() < 1){
             $lowongan = 'kosong';
         }
+        $limit = 'p';
 
-        return response()->json(['lowongan'=>$lowongan, 'simpan' => $simpan]);
+        return response()->json(['lowongan'=>$lowongan, 'simpan' => $simpan, 'limit'=>$limit]);
 
     }
     public function Dashboardsearchlowongan(Request $request)

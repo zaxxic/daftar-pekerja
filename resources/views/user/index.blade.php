@@ -596,7 +596,7 @@
                 <div class="col-lg-6">
                 @forelse ($registration as $item)
                 <a href="{{ route('detailLowongan', $item->Vacancy->id) }}">
-                    <div class="card position-relative overflow-hidden mb-4" style="height: 279px;">
+                    <div class="card position-relative overflow-hidden mb-4" style="height: auto;">
                         <div class="card-header bg-info d-flex align-items-center justify-content-between">
                             <div class="col-12 d-flex justify-content-between" style="padding: 0;">
                                 <h4 class="card-title text-white mb-0 me-3" style="font-size: 22px;">{{ $item->Vacancy->judul }}</h4>
@@ -644,7 +644,7 @@
                                 <div class="d-flex justify-content-between p-0">
                                     <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: {{ \Carbon\Carbon::parse($item->batas)->locale('id')->isoFormat('D MMMM Y ') }}
                                     </p>
-                                    <span class="status-terdaftar">Terdaftar</span>
+                                    {{-- <span class="status-terdaftar">Terdaftar</span> --}}
                                     @if ($item->status === 'diterima')
                                         <span class="status-diterima" style="width: 79px;">{{ $item->status }}</span>
                                     @elseif($item->status === 'lulus')
@@ -734,7 +734,7 @@
                                     </div>
                                 </div>
                                 <div class="col-6" style="margin-top:5px" data-bs-toggle="modal" data-bs-target="#kelengkapanData">
-                                    <div class="tepiborder kelengkapan"><span class="fw-semibold">Kelengkapan Dokumen</span> <span class="text-danger fw-semibold">(Wajib)</span>
+                                    <div class="tepiborder kelengkapan"><span class="fw-semibold">Dokumen</span> <span class="text-danger fw-semibold">(Wajib)</span>
                                         @if (!empty($DataProfile['FotoDanFile'] != null))
                                         <style>
                                             .kelengkapan{
@@ -761,7 +761,7 @@
                                     </div>
                                 </div>
                                 <div class="col-6" style="margin-top:5px" data-bs-toggle="modal" data-bs-target="#keteranganDiri">
-                                    <div class="tepiborder deskripsi"><span class="fw-semibold">Keterangan Diri</span> <span class="text-info fw-semibold">(Opsional)</span>
+                                    <div class="tepiborder deskripsi"><span class="fw-semibold">Keterangan Pelamar</span> <span class="text-info fw-semibold">(Opsional)</span>
                                         @if (!empty($DataProfile['Tentang'] != null))
                                         <style>
                                             .deskripsi{
@@ -787,7 +787,7 @@
                                     </div>
                                 </div>
                                 <div class="col-6" style="margin-top:5px" data-bs-toggle="modal" data-bs-target="#pendidikan">
-                                    <div class="tepiborder school"><span class="fw-semibold">Pendidikan</span> <span class="text-info fw-semibold">(Opsional)</span>
+                                    <div class="tepiborder school"><span class="fw-semibold"> Keterangan Pendidikan</span> <span class="text-info fw-semibold">(Opsional)</span>
                                         @if (!empty($DataProfile['school'] != null))
                                         <style>
                                             .school{
@@ -839,7 +839,7 @@
                                     </div>
                                 </div>
                                 <div class="col-6" style="margin-top:5px" data-bs-toggle="modal" data-bs-target="#keahlian">
-                                    <div class="tepiborder skills"><span class="fw-semibold">Keahlian</span> <span class="text-info fw-semibold">(Opsional)</span>
+                                    <div class="tepiborder skills"><span class="fw-semibold">Keahlian Pelamar</span> <span class="text-info fw-semibold">(Opsional)</span>
                                         @if (!empty($DataProfile['Skill'] != null))
                                         <style>
                                             .skills{
@@ -1295,7 +1295,7 @@
                                 <div class="col-12 col-sm-12 filter1 " style="background-color: #fff">
                                     <div class="form-group">
                                         <form class="search-form d-flex justify-content-between  row " id="">
-                                            <div class="form-group col-md-5 col-12 mb-0">
+                                            <div class="form-group col-md-4 col-12 mb-0">
                                                 <div class="d-flex" style="margin-top: 10px;">
                                                     <input type="text" name="cari" id="cari"
                                                         style="border: 1px solid #549bff; height: 35px; border-radius: 5px; width: 100%; padding: 8px;"
@@ -1338,7 +1338,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-4 col-lg-1 d-flex justify-content-end"
+                                            <div class="col-4 col-md-2 col-lg-1 d-flex justify-content-end"
                                                 style="align-items: center; margin-top: 0px;">
                                                 <button class="btn btn-primary w-full border-1 text-center ms-2" type="button"
                                                     id="searchButton">
@@ -1379,6 +1379,106 @@
 
         </div>
     </section>
+    <div class="modal fade" id="filter-Open" tabindex="-1" aria-labelledby="exampleModalLabel1">
+        <div class="modal-dialog" role="document">
+
+            <form >
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-header d-flex align-items-center">
+                        <h4 class="modal-title" id="exampleModalLabel1">
+                            Tambah Filter
+                        </h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <hr style="width: 100%; border-top: 1px solid #000000;" class="mt-0">
+                    <div class="modal-body" style="max-height: 490px; overflow-y: auto;">
+                       <div class="mb-3">
+                        <form style="padding: 20px;" id="SideFilter">
+                            <p class="fw-semibold fs-4 mb-2" style="color: black;">Tipe Pekerjaan</p>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" name="tipe" value="Kontrak"
+                                    id="flexCheckDefaultTipe" />
+                                <label class="form-check-label" for="flexCheckDefaultTipe">
+                                    Kontrak
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input permanen" type="checkbox" name="tipe"
+                                    value="Permanen" id="flexCheckDefaultTipe" />
+                                <label class="form-check-label" for="flexCheckDefaultTipe">
+                                    Permanen
+                                </label>
+                            </div>
+                            <hr>
+                            <p class="fw-semibold fs-4 mb-2" style="color: black;">Tipe Lowongan</p>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="tipeVacancy"
+                                    id="exampleRadios1" value="terbaru" />
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Lowongan Terbaru
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="tipeVacancy"
+                                    id="exampleRadios2" value="terlama" />
+                                <label class="form-check-label" for="exampleRadios2">
+                                    Lowongan Terlama
+                                </label>
+                            </div>
+                            <hr>
+                            <p class="fw-semibold fs-4 mb-2" style="color: black;">Rentang Gaji</p>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" name="Salary" type="radio" value="gaji1"
+                                    id="flexCheckDefault" />
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Rp 100.000-2.500.000
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" name="Salary" type="radio" value="gaji2"
+                                    id="flexCheckDefault" />
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Rp 2.500.000-5.000.000
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" name="Salary" type="radio" value="gaji3"
+                                    id="flexCheckDefault" />
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Rp 5.000.000-7.500.000
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" name="Salary" type="radio" value="gaji4"
+                                    id="flexCheckDefault" />
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Rp 7.500.000-10.000.000
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" name="Salary" type="radio" value="gaji5"
+                                    id="flexCheckDefault" />
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Rp 10.000.000++
+                                </label>
+                            </div>
+                        </form>
+
+                       </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" data-bs-dismiss="modal" onclick="SaveFIlterSIde()"
+                        aria-label="Close" class="btn btn-success">
+                            Simpan
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <!-- End Employers Listing Area -->
 
     <!-- Start Subscribe Area -->
@@ -1617,35 +1717,234 @@
         });
     </script>
     @endif
+    <script>
+        function JumlahLowonganSimpan(){
+            var formUrl = "{{ route('jumlah-lowongan') }}";
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            // Fungsi untuk memperbarui jumlah lowongan
+            function updateJumlahLowongan() {
+                $.ajax({
+                    url: formUrl,
+                    type: 'GET',
+                    success: function(response) {
+                        var simpan = response.simpan;
+                        $('#jumlah-lowongan').text(simpan);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+
+            // Memanggil fungsi updateJumlahLowongan saat halaman dimuat
+            // updateJumlahLowongan();
+        }
+    </script>
+    <script>
+        function Get(){
+            var formUrl = "{{ route('Tampil/lowongan/Dashboard') }}"; // Changed 'Route' to 'route'
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                url: formUrl,
+                type: 'GET',
+                success: function(response) {
+                    console.log(response.lowongan);
+                    $('#LowonganUser').empty();
+                    $('#lowonganKosong').empty();
+
+                    if (response.lowongan === 'kosong') {
+                        let lowongan = `
+                            <div class="row">
+                                <div class="col-lg-12 mt-5 text-center" id="lowongan">
+                                    <img src="{{ asset('assets/nodatas.png') }}" alt="" width="350px">
+                            <div class="col-md-6 col-12 mix a s c" id="card2">
+                                <div class="hot-jobs-list col-12">
+                                    <div class="row align-items-center">
+                                        <div class="col-12">
+                                            <a href="${route}">
+                                                <div class="hot-jobs-content">
+                                                    <div class="row d-flex justify-content-between mb-3" style="color: black">
+                                                        <h4 class="col-12 col-md-12 col-xl-6 tengah">${item.judul}</h4>
+                                                        <p class="col-12 col-md-12 col-lg-12 col-xl-6 d-flex tanggal justify-content-center  justify-content-lg-end justify-content-xl-end">
+                                                            ${item.status ? '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">' + gaji + '</span>' : '<span class="fw-semibold fs-4" style="float: right; color: #5d87ff;">Gaji Tidak Ditambahkan</span>'}
+                                                        </p>
+                                                    </div>
+                                                    <ul>
+                                                        <li class="fs-3"><span>Slot Tersedia : </span><span class="fw-medium">${item.slot}</span></li>
+                                                        <li class="fs-3"><span>Posisi : </span><span class="fw-medium">${item.pekerja}</span></li>
+                                                        <li class="fs-3"><span>Tipe Kerja :</span><span class="fw-medium">${item.tipe}</span></li>
+                                                        <hr>
+                                                    </ul>
+                                                </div>
+                                            </a>
+                                            <div class="card-footer">
+                                                <div class="d-flex justify-content-between">
+                                                    <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: ${formattedDate}</p>
+                                                    <form id="saveForm${id}" action="${routeSimpan}" method="post">
+                                                        @method('PATCH')
+                                                        @csrf
+                                                        <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan " data-vacancie-id="${id}">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                                            </svg>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                `;
+                        // alert(lowongan);
+                        $('#lowonganKosong').append(lowongan);
+                    } else {
+                        $.each(response.lowongan, function(index, item) {
+                            console.log(response.lowongan);
+
+                            var route = "{{ route('detailLowongan', ':id') }}".replace(
+                                ':id', item.id);
+                            var routeSimpan = "simpan-lowongan/" + item.id;
+                            var gaji = "Rp " + Number(item.gaji).toLocaleString(
+                                'id-ID');
+                            var tanggalTengat = item.batas;
+                            var formattedDate = formatTanggalIndonesia(tanggalTengat);
+                            // alert(formattedDate);
+                            var id = item.id;
+                            let lowongan = `
+                            <div class="col-lg-6">
+                    <div class="card position-relative overflow-hidden mb-4" style="height: auto;">
+                        <div class="card-header bg-info d-flex align-items-center justify-content-between">
+                            <div class="col-12 d-flex justify-content-between" style="padding: 0;">
+                                <h4 class="card-title text-white mb-0 me-3" style="font-size: 22px;">${item.judul}</h4>
+                                </h4>
+                            </div>
+
+                        </div>
+                        <div style="padding: 15px 20px 15px 20px;">
+                            <div class=" col-12 row">
+                                <div class="col-4 mb-2 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">Slot Tersedia</span>
+                                </div>
+                                <div class="col-1 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                </div>
+                                <div class="col-7 p-0">
+                                    <span class="fs-4" style="color: black;">${item.slot}</span>
+                                </div>
+
+                                <div class="col-4 mb-2 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">Posisi</span>
+                                </div>
+                                <div class="col-1 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                </div>
+                                <div class="col-7 p-0">
+                                    <span class="fs-4" style="color: black;">${item.pekerja}</span>
+                                </div>
+                                <div class="col-4 mb-2 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">Tipe Pekerjaan</span>
+                                </div>
+                                <div class="col-1 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                </div>
+                                <div class="col-7 p-0">
+                                    <span class="fs-4" style="color: black;">${item.tipe}</span>
+                                </div>
+                                <div class="col-4 mb-3 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">Gaji</span>
+                                </div>
+                                <div class="col-1 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                </div>
+                                <div class="col-7 p-0">
+                                    <span class="fw-semibold fs-4" style="color: black;">${gaji}</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between p-0">
+                                    <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: ${formattedDate}
+                                    </p>
+                                    <form id="saveForm${id}" action="${routeSimpan}" method="post">
+                                        @method('PATCH')
+                                        @csrf
+                                        <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="${id}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                <path class="svgSimpan"  data-vacancie-id="${id}" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                            </svg>
+                                        </button>
+                                    </form>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                                `;
+                            // alert(lowongan);
+                            $('#LowonganUser').append(lowongan);
+                        });
+                        $.each(response.simpan, function(index, item) {
+                            $('.svgSimpan[data-vacancie-id="' + item.vacancie_id + '"]').attr('fill', 'currentColor').addClass('text-warning');
+
+
+                            $('.labelSimpan[data-label-id="' + item.vacancie_id + '"]')
+                                .removeClass('hidden');
+                        });
+                    }
+
+
+
+
+                },
+                error: function(error) {
+                    console.log(error);
+                } // Removed unnecessary semicolon
+            });
+                    }
+    </script>
 
     <script>
       $(document).ready(function() {
-    var formUrl = "{{ route('jumlah-lowongan') }}";
+            var formUrl = "{{ route('jumlah-lowongan') }}";
 
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
-    // Fungsi untuk memperbarui jumlah lowongan
-    function updateJumlahLowongan() {
-        $.ajax({
-            url: formUrl,
-            type: 'GET',
-            success: function(response) {
-                var simpan = response.simpan;
-                $('#jumlah-lowongan').text(simpan);
-            },
-            error: function(error) {
-                console.log(error);
+            // Fungsi untuk memperbarui jumlah lowongan
+            function updateJumlahLowongan() {
+                $.ajax({
+                    url: formUrl,
+                    type: 'GET',
+                    success: function(response) {
+                        var simpan = response.simpan;
+                        $('#jumlah-lowongan').text(simpan);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
             }
-        });
-    }
 
-    // Memanggil fungsi updateJumlahLowongan saat halaman dimuat
-    updateJumlahLowongan();
-});
+            // Memanggil fungsi updateJumlahLowongan saat halaman dimuat
+            updateJumlahLowongan();
+        });
 
         function Simpan(id) {
 
@@ -1693,8 +1992,9 @@
                                     title: 'Berhasil Batal',
                                     text: 'Berhasil batal, simpan lowongan.',
                                 });
-                                $('#simpan' + id).removeClass('text-warning');
-                                $('.labelSimpan[data-label-id="' + id + '"]').addClass('hidden');
+                                var count =  document.getElementById('jumlah-lowongan').innerHTML;
+                                document.getElementById('jumlah-lowongan').innerHTML = count-1;
+                                Get();
 
                             } else {
                                 swalWithBootstrapButtons.fire({
@@ -1706,8 +2006,7 @@
                                 $('.labelSimpan[data-label-id="' + id + '"]').removeClass('hidden');
 
                             }
-                            // console.log(response.success);
-                            updateJumlahLowongan();
+
                         },
                         error: function(error) {
                             console.log(error);
@@ -1835,40 +2134,177 @@
 
         });
     </script>
-   <script>
-    // $(document).ready(function() {
-    //     var formUrl = "{{ route('jumlah-lowongan') }}";
+    <script>
+        function SaveFIlterSIde(){
+            var selectType = new Array();
+                var selectTypeVacancy = new Array();
+                var selectSalary = new Array();
+                var keyword = $('#cari').val();
+                var selectedDivision = $('#divisionSelect').val();
+                var keywordLokasi = $('#locationSelect').val();
+                if (keyword === '') {
+                    keyword = "semua";
+                };
+                if (selectedDivision === null) {
+                    selectedDivision = "semua";
+                };
+                if (keywordLokasi === null) {
+                    keywordLokasi = "semua";
+                };
 
-    //     // Fungsi untuk memperbarui jumlah lowongan
-    //     function updateJumlahLowongan() {
-    //         $.get(formUrl, function(response) {
-    //             var simpan = response.simpan;
-    //             $('#jumlah-lowongan').text(simpan.length);
+                $('input[name="tipe"]:checked').each(function() {
+                    selectType.push(this.value);
+                });
+                $('input[name="tipeVacancy"]:checked').each(function() {
+                    selectTypeVacancy.push(this.value);
+                });
+                $('input[name="Salary"]:checked').each(function() {
+                    selectSalary.push(this.value);
+                });
 
-    //             $.each(simpan, function(index, item) {
-    //                 $('.buttonSimpan[data-vacancie-id="' + item.vacancie_id + '"]').addClass('text-warning');
-    //                 $('.labelSimpan[data-label-id="' + item.vacancie_id + '"]').removeClass('hidden');
-    //             });
-    //         }).fail(function(error) {
-    //             console.log(error);
-    //         });
-    //     }
+                if (selectType.length < 1) {
+                    selectType.push('semua');
+                }
+                if (selectTypeVacancy.length < 1) {
+                    selectTypeVacancy.push('semua');
+                }
+                if (selectSalary.length < 1) {
+                    selectSalary.push('semua');
+                }
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
 
-    //     // Memanggil fungsi updateJumlahLowongan saat halaman dimuat
-    //     updateJumlahLowongan();
+                var formData = [keyword, selectedDivision, keywordLokasi, selectType, selectTypeVacancy,
+                    selectSalary
+                ];
+                var formUrl = "{{ route('Dashboard/SideFilter') }}";
+                console.log(formData);
+                $.ajax({
+                    url: formUrl,
+                    type: 'POST',
+                    data: {
+                        data: formData
+                    },
+                    success: function(response) {
 
-    //     $('.simpan').on('click', function() {
-    //         var formUrl = $('#saveForm').attr('action');
-    //         $('#saveForm').submit();
-    //     });
+                        $('#LowonganUser').empty();
+                        $('#lowonganKosong').empty();
+                        if (response.lowongan === 'kosong') {
+                            let lowongan = `
+                            <div class="row">
+                                <div class="col-lg-12 mt-5 text-center" id="lowongan">
+                                    <img src="{{ asset('assets/nodatas.png') }}" alt="" width="350px">
+                                </div>
+                            </div>
+                                `;
+                            // alert(lowongan);
+                            $('#lowonganKosong').append(lowongan);
+                        } else {
+                            $.each(response.lowongan, function(index, item) {
+                                console.log(response.lowongan);
 
-    //     function Simpan(id) {
-    //         const formId = 'saveForm' + id;
-    //         const formUrl = $('#' + formId).attr('action');
-    //         $('#' + formId).submit();
-    //     }
-    // });
-</script>
+                                var route = "{{ route('detailLowongan', ':id') }}".replace(':id', item.id);
+                                var routeSimpan = "simpan-lowongan/" + item.id;
+                                var gaji = "Rp " + Number(item.gaji).toLocaleString('id-ID');
+                                var tanggalTengat = item.batas;
+                                var formattedDate = formatTanggalIndonesia(tanggalTengat);
+                                // alert(formattedDate);
+                                var id = item.id;
+                                let lowongan = `
+                                <div class="col-lg-6">
+                                    <div class="card position-relative overflow-hidden mb-4" style="height: auto;">
+                                        <div class="card-header bg-info d-flex align-items-center justify-content-between">
+                                            <div class="col-12 d-flex justify-content-between" style="padding: 0;">
+                                                <h4 class="card-title text-white mb-0 me-3" style="font-size: 22px;">${item.judul}</h4>
+                                                </h4>
+                                            </div>
+
+                                        </div>
+                                        <div style="padding: 15px 20px 15px 20px;">
+                                            <div class=" col-12 row">
+                                                <div class="col-4 mb-2 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">Slot Tersedia</span>
+                                                </div>
+                                                <div class="col-1 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                                </div>
+                                                <div class="col-7 p-0">
+                                                    <span class="fs-4" style="color: black;">${item.slot}</span>
+                                                </div>
+
+                                                <div class="col-4 mb-2 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">Posisi</span>
+                                                </div>
+                                                <div class="col-1 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                                </div>
+                                                <div class="col-7 p-0">
+                                                    <span class="fs-4" style="color: black;">${item.pekerja}</span>
+                                                </div>
+                                                <div class="col-4 mb-2 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">Tipe Pekerjaan</span>
+                                                </div>
+                                                <div class="col-1 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                                </div>
+                                                <div class="col-7 p-0">
+                                                    <span class="fs-4" style="color: black;">${item.tipe}</span>
+                                                </div>
+                                                <div class="col-4 mb-3 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">Gaji</span>
+                                                </div>
+                                                <div class="col-1 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">:</span>
+                                                </div>
+                                                <div class="col-7 p-0">
+                                                    <span class="fw-semibold fs-4" style="color: black;">${gaji}</span>
+                                                </div>
+                                                <hr>
+                                                <div class="d-flex justify-content-between p-0">
+                                                    <p class="fs-3" style="color: #7c8fac;">Berakhir Pada Tanggal: ${formattedDate}
+                                                    </p>
+                                                    <form id="saveForm${id}" action="${routeSimpan}" method="post">
+                                                        @method('PATCH')
+                                                        @csrf
+                                                        <button type="button" id="simpan${id}" onclick="Simpan('${id}')" style="background-color: transparent;" class="buttonSimpan" data-vacancie-id="${id}">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                                                <path class="svgSimpan"  data-vacancie-id="${id}" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3V6a2 2 0 0 1 2-2" />
+                                                            </svg>
+                                                        </button>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                `;
+
+                                $('#LowonganUser').append(lowongan);
+                            });
+                            $.each(response.simpan, function(index, item) {
+                            $('.svgSimpan[data-vacancie-id="' + item.vacancie_id + '"]').attr('fill', 'currentColor').addClass('text-warning');
+
+
+                            $('.labelSimpan[data-label-id="' + item.vacancie_id + '"]')
+                                .removeClass('hidden');
+                        });
+                        }
+
+
+
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    } // Removed unnecessary semicolon
+                });
+        }
+    </script>
     <script>
             $(document).ready(function() {
     var formUrl = "{{ route('jumlah-lowongan') }}";
@@ -1929,7 +2365,10 @@
                                 icon: 'success',
                                 title: 'Berhasil Batal',
                                 text: 'Berhasil batal, simpan lowongan.',
-                            });
+                            })
+                            Get();
+
+                            // updateJumlahLowongan()
                             updateJumlahLowongan(-1);
                         } else {
                             swalWithBootstrapButtons.fire({
@@ -1937,8 +2376,10 @@
                                 title: 'Berhasil Simpan',
                                 text: 'Berhasil simpan lowongan.',
                             });
-                            updateJumlahLowongan(1);
+
+                            // updateJumlahLowongan(1);
                         }
+
                     },
                     error: function(error) {
                         console.log(error);
@@ -1954,11 +2395,11 @@
         });
     }
 
-    function updateJumlahLowongan(delta) {
-        var jumlahLowongan = parseInt($('#jumlah-lowongan').text());
-        jumlahLowongan += delta;
-        $('#jumlah-lowongan').text(jumlahLowongan);
-    }
+    // function updateJumlahLowongan(delta) {
+    //     var jumlahLowongan = parseInt($('#jumlah-lowongan').text());
+    //     jumlahLowongan += delta;
+    //     $('#jumlah-lowongan').text(jumlahLowongan);
+    // }
 });
     </script>
 
