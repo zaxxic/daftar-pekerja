@@ -56,7 +56,7 @@ class DashboardUserController extends Controller
                 ->paginate(5);
         };
 
-        $simpan = VacancieSave::where('user_id', Auth()->user()->id)->get();
+        $simpan = VacancieSave::where('user_id', Auth()->user()->id)->count();
 
         $data = Vacancy::where('status', 'aktif')
             ->whereDate('batas', '<', Carbon::today())
@@ -71,7 +71,7 @@ class DashboardUserController extends Controller
 
         $cek = Vacancy::where('status', 'aktif')->count();
 
-            $selectedDivision = $request->input('division');
+        $selectedDivision = $request->input('division');
         $limit = Vacancy::all()->count();
         $lowonganQuery = Vacancy::query();
         $keyword = $request->input('cari');
@@ -127,7 +127,14 @@ class DashboardUserController extends Controller
 
 
 
-        return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration', 'cek', 'user', 'kelengkapanUser', 'selectedDivision', 'keyword', 'keywordLokasi', 'lokasi', 'limit','jumlahData','DataProfile'));
+        return view('user.index', compact('lowongan', 'divisi', 'selectedDivision', 'registration', 'cek', 'user', 'kelengkapanUser', 'selectedDivision', 'keyword', 'keywordLokasi', 'lokasi', 'limit','jumlahData','DataProfile','simpan'));
+    }
+
+    public function jumlah()
+    {
+        $simpan = VacancieSave::where('user_id', Auth()->user()->id)->count();
+
+        return response()->json(['simpan' => $simpan]);
     }
 
 
