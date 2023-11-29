@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\UpdateLowonganRequest;
 use App\Mail\Tolak;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Str;
 
 class LowonganController extends Controller
 {
@@ -119,7 +120,7 @@ class LowonganController extends Controller
         ]);
 
         Vacancy::create([
-            'judul' => $request->judul,
+            'judul' => $request->judul ,
             'devisi_id' => $request->devisi,
             'batas' => $request->batas,
             'pekerja' => $request->pekerjaan,
@@ -131,6 +132,7 @@ class LowonganController extends Controller
             'status' => 'aktif',
             'pembuat' => 'admin'
         ]);
+
         return redirect()->route('lowongan.index');
     }
 

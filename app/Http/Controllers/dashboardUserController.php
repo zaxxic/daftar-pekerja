@@ -210,6 +210,9 @@ class DashboardUserController extends Controller
             ->get();
         // dd($lowongan);
         $simpan = VacancieSave::where('user_id', Auth()->User()->id)->get();
+        if($lowongan->count() < 1 ){
+            $lowongan = 'kosong';
+        };
 
         return response()->json(['lowongan' => $lowongan, 'simpan' => $simpan, 'limit' => $limit]);
     }
@@ -348,7 +351,7 @@ class DashboardUserController extends Controller
             $lowongan = 'kosong';
         }
 
-        $limit = $lowongan->count();
+        $limit = 'p';
 
         return response()->json(['lowongan'=>$lowongan, 'simpan' => $simpan, 'limit' => $limit]);
 

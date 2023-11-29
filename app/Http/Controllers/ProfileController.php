@@ -363,6 +363,10 @@ class ProfileController extends Controller
 
         return response()->json(['pesan'=> 'berhasil Menghapus pendidikan', 'status' => 'berhasil']);
     }
+    public function DataUser(){
+        $data = User::get();
+        return response()->json(['user' => $data]);
+    }
 
 
 
