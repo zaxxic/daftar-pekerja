@@ -47,7 +47,7 @@ class ApprovalController extends Controller
                 $user->appends(['cari' => $keyword]);
                 // dd($user);
 
-        } else if ($request->has('filter')) {
+            } else if ($request->has('filter')) {
             $keyword = $request->filter;
             // $dataDivisi = Division::find($keyword);
             $user = Registration::whereHas('vacancy', function ($query) use ($keyword) {
@@ -87,22 +87,17 @@ class ApprovalController extends Controller
         $this->validate(
             $request,
             [
-                'tanggal_wawancara' => [
-                    'required',
-                    'date_format:Y-m-d\TH:i', // Format tanggal dan waktu
-                    function ($attribute, $value, $fail) {
-                        if (Carbon::parse($value)->isBefore(Carbon::now())) {
-                            $fail('Tanggal dan Waktu Wawancara tidak boleh hari dan jam kemarin');
-                        }
-                    },
-                ],
+                'tanggal_wawancara' => 'required|date_format:Y-m-d\TH:i|after_or_equal:today',
                 'lokasi' => 'required',
             ],
             [
+                'tanggal_wawancara.date_format' => 'Format Tanggal Wawancara Tidak Valid',
                 'tanggal_wawancara.required' => 'Tanggal Wawancara Wajib Diisi',
-                'lokasi.required' => 'lokasi Wawancara Wajib Diisi',
+                'tanggal_wawancara.after_or_equal' => 'Tanggal Wawancara harus setelah atau sama dengan hari ini',
+                'lokasi.required' => 'Lokasi Wawancara Wajib Diisi',
             ]
         );
+        
 
         // $data = User::findOrFail($id);
         // $item = Registration::where('users_id', $id)->first();

@@ -594,6 +594,9 @@
                                                 <span style="color: black;" for="recipient-name" class="control-label">Apakah anda
                                                     yakin untuk menerima
                                                     {{ $item->name }}?</span>
+                                                    <div style="background-color: #549bff; border-radius:2px; padding:5px; " class="mt-2">
+                                                        <small  class="text-muted  text-white" style="font-weight:bold">Setelah Anda yakin, kirimkan tanggal dan lokasi untuk jadwal wawancara dengan pelamar    </small>
+                                                    </div>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="recipient-name" class="control-label" style="color: black;">Tanggal Wawancara
@@ -603,12 +606,10 @@
                                                 <label for="recipient-name" class="control-label mt-2" style="color: black;">Lokasi
                                                     Wawancara
                                                     <span style="color: red;">*</span></label>
-                                                <input type="text" class="form-control" id="Lokasi{{ $item->id }}" name="lokasi" />
+                                                <input type="text" class="form-control" id="Lokasi{{ $item->id }}" name="lokasi" placeholder="Masukkan lokasi wawancara"/>
                                                 <p class="text-danger fs-3" style="color: red; height:5px" id="errorLokasi{{ $item->id }}"></p>
 
-                                                <div style="background-color: #549bff; border-radius:2px; padding:5px; ">
-                                                    <small  class="text-muted  text-white" style="font-weight:bold">Setelah Anda yakin, kirimkan tanggal dan lokasi untuk jadwal wawancara dengan pelamar    </small>
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -999,7 +1000,9 @@
 
         var hasilFormat = tahun + "-" + bulan + '-' + tanggalKedua + 'T' + jam + ':' + menit;
 
-        if (tanggal.trim() !== "" && (lokasi.trim() !== "" && tanggal.trim() > hasilFormat)) {
+        var isValidDate = !isNaN(Date.parse(tanggal));
+
+        if (tanggal.trim() !== "" && isValidDate && (lokasi.trim() !== "" && tanggal.trim() > hasilFormat)) {
             error.innerHTML = '';
             errorLokasi.innerHTML = '';
 
@@ -1007,16 +1010,23 @@
             form.submit();
         } else {
             if (new Date(tanggal) <= yesterday && lokasi === "") {
-                error.innerHTML = "tanggal tidak boleh tanggal kemarin";
+                error.innerHTML = "Tanggal tidak boleh tanggal kemarin";
                 errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
+            } else if (!isValidDate) {
+                error.innerHTML = "Tanggal wawancara tidak valid";
+                if (lokasi === "") {
+                errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
+                } else {
+                    errorLokasi.innerHTML = "";
+                }
             } else if (new Date(tanggal) <= yesterday) {
-                error.innerHTML = "tanggal tidak boleh tanggal kemarin";
+                error.innerHTML = "Tanggal tidak boleh tanggal kemarin";
                 errorLokasi.innerHTML = "";
             } else if (tanggal === "" && lokasi === "") {
-                error.innerHTML = "pesan harus di isi";
+                error.innerHTML = "Pesan harus di isi";
                 errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
             } else if (tanggal === "") {
-                error.innerHTML = "pesan harus di isi";
+                error.innerHTML = "Pesan harus di isi";
                 errorLokasi.innerHTML = "";
             } else if (lokasi === "") {
                 error.innerHTML = "";

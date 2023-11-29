@@ -230,6 +230,9 @@
                         <span style="color: black;" for="recipient-name" class="control-label">Apakah anda
                             yakin untuk menerima
                             {{ $item->User->name }}?</span>
+                            <div style="background-color: #549bff; border-radius:2px; padding:5px; " class="mt-2">
+                                <small  class="text-muted  text-white" style="font-weight:bold">Setelah Anda yakin, kirimkan tanggal dan lokasi untuk jadwal wawancara dengan pelamar.</small>
+                            </div>
                     </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="control-label" style="color: black;">Tanggal Wawancara
@@ -240,11 +243,9 @@
                         <label for="recipient-name" class="control-label mt-2" style="color: black;">lokasi
                             Wawancara
                             <span style="color: red;">*</span></label>
-                        <input type="text" class="form-control" id="Lokasi{{ $item->id }}" name="lokasi" />
+                        <input type="text" class="form-control" id="Lokasi{{ $item->id }}" name="lokasi" placeholder="Masukkan lokasi wawancara"/>
                         <p class="text-danger fs-3" id="errorLokasi{{ $item->id }}"></p>
-                        <div style="background-color: #549bff; border-radius:2px; padding:5px; ">
-                            <small  class="text-muted  text-white" style="font-weight:bold">Setelah Anda yakin, kirimkan tanggal dan lokasi untuk jadwal wawancara dengan pelamar    </small>
-                        </div>
+                        
 
                     </div>
                 </div>
@@ -530,48 +531,58 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css
 }
 </script>
 <script>
-   function Terima(data) {
-    var today = new Date();
-    var yesterday = new Date(today);
-    yesterday.setDate(today.getDate() - 1);
-    var tanggal = document.getElementById('Tanggal' + data).value;
-    var lokasi = document.getElementById('Lokasi' + data).value;
-    const error = document.getElementById('error' + data);
-    const errorLokasi = document.getElementById('errorLokasi' + data);
-    var tahun = today.getFullYear();
-    var bulan = String(today.getMonth() + 1).padStart(2, "0");
-    var tanggalKedua = String(today.getDate()).padStart(2, "0");
-    var jam = String(today.getHours()).padStart(2, "0");
-    var menit = String(today.getMinutes()).padStart(2, "0");
+    function Terima(data) {
+        var today = new Date();
+        var yesterday = new Date(today);
+        yesterday.setDate(today.getDate() - 1);
+        var tanggal = document.getElementById('Tanggal' + data).value;
+        var lokasi = document.getElementById('Lokasi' + data).value;
+        const error = document.getElementById('error' + data);
+        const errorLokasi = document.getElementById('errorLokasi' + data);
+        var tahun = today.getFullYear();
+        var bulan = String(today.getMonth() + 1).padStart(2, "0");
+        var tanggalKedua = String(today.getDate()).padStart(2, "0");
+        var jam = String(today.getHours()).padStart(2, "0");
+        var menit = String(today.getMinutes()).padStart(2, "0");
 
-    var hasilFormat = tahun + "-" + bulan + '-' + tanggalKedua + 'T' + jam + ':' + menit;
+        var hasilFormat = tahun + "-" + bulan + '-' + tanggalKedua + 'T' + jam + ':' + menit;
 
-    if (tanggal.trim() !== "" && (lokasi.trim() !== "" && tanggal.trim() > hasilFormat)) {
-        error.innerHTML = '';
-        errorLokasi.innerHTML = '';
+        var isValidDate = !isNaN(Date.parse(tanggal));
 
-        var form = document.getElementById("pesanTerima" + data);
-        form.submit();
-    } else {
-        if (new Date(tanggal) <= yesterday && lokasi === "") {
-            error.innerHTML = "tanggal tidak boleh tanggal kemarin";
-            errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
-        } else if (new Date(tanggal) <= yesterday) {
-            error.innerHTML = "tanggal tidak boleh tanggal kemarin";
-            errorLokasi.innerHTML = "";
-        } else if (tanggal === "" && lokasi === "") {
-            error.innerHTML = "pesan harus di isi";
-            errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
-        } else if (tanggal === "") {
-            error.innerHTML = "pesan harus di isi";
-            errorLokasi.innerHTML = "";
-        } else if (lokasi === "") {
-            error.innerHTML = "";
-            errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
+        if (tanggal.trim() !== "" && isValidDate && (lokasi.trim() !== "" && tanggal.trim() > hasilFormat)) {
+            error.innerHTML = '';
+            errorLokasi.innerHTML = '';
+
+            var form = document.getElementById("pesanTerima" + data);
+            form.submit();
+        } else {
+            if (new Date(tanggal) <= yesterday && lokasi === "") {
+                error.innerHTML = "Tanggal tidak boleh tanggal kemarin";
+                errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
+            } else if (!isValidDate) {
+                error.innerHTML = "Tanggal wawancara tidak valid";
+                if (lokasi === "") {
+                errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
+                } else {
+                    errorLokasi.innerHTML = "";
+                }
+            } else if (new Date(tanggal) <= yesterday) {
+                error.innerHTML = "Tanggal tidak boleh tanggal kemarin";
+                errorLokasi.innerHTML = "";
+            } else if (tanggal === "" && lokasi === "") {
+                error.innerHTML = "Pesan harus di isi";
+                errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
+            } else if (tanggal === "") {
+                error.innerHTML = "Pesan harus di isi";
+                errorLokasi.innerHTML = "";
+            } else if (lokasi === "") {
+                error.innerHTML = "";
+                errorLokasi.innerHTML = "Lokasi wawancara harus di isi";
+            }
         }
     }
-}
 </script>
+
 <script>
     // Ambil elemen input pencarian
     const searchInput = document.querySelector('input[name="cari"]');

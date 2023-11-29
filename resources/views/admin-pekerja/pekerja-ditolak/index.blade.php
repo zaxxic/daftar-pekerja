@@ -54,15 +54,7 @@
                 <div class="row">
                     <div class="mb-3 d-flex mt-5 justify-content-between col-md-12 lg-12">
 
-                        <form action="">
-                            @csrf
-                            <div class="input-group mt-2" >
-                                <input type="text" name="date" class="form-control p-1 showdropdowns" style="height: 4%"  />
-                                <button type="submit" style="width: 40px; height:auto; background-color:#549bff; border-radius: 0px 5px 5px 0px;" class="text-white">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 21 21"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5"/><path d="M17.571 17.5L12 12"/></g></svg>
-                                </button>
-                              </div>
-                        </form>
+                        
                         <form action="">
                             <div class="mb-3 d-flex  input-group">
                                 <input type="search" class="form-control mt-0" name="cari" placeholder="Cari Pekerja..."
@@ -240,10 +232,10 @@
                                                             <span class="nama d-flex justify-content-center mt-2">
                                                                 {{ $row->User->name }}
                                                             </span>
-                                                            <span class="email d-flex justify-content-center mt-1">
+                                                            <span class="email d-flex justify-content-center mt-1 fs-3">
                                                                 {{ $row->User->email }}
                                                             </span>
-                                                            <div class=" row mt-2 gap-3 ">
+                                                            <div class=" row gap-3 " style="margin-top: 23%;">
                                                                 @if ($row->User->LinkedIn)
                                                                 <a href="{{$row->User->LinkedIn}}" target="blank" class="col-6 tepiborder d-flex text-white"
                                                                 style=" align-items: center; background: #0A66C2;">
@@ -298,39 +290,39 @@
                                                             <div class="pr-0 col-12  judul">Profile User</div>
 
                                                             <div class="pr-0 col-6"  style="margin-top:5px">
-                                                                <label for="" class="fontlabel"
+                                                                <label for="" class="fontlabel fs-2"
                                                                     style="margin-bottom: 2px;">Jenis kelamin</label>
                                                                 <div class="tepiborder">{{ $row->User->jenis_kelamin }}</div>
                                                             </div>
                                                             <div class="pr-0 col-6"  style="margin-top:5px">
-                                                                <label for="" class="fontlabel"
+                                                                <label for="" class="fontlabel fs-2"
                                                                     style="margin-bottom: 2px;">No.Telephone</label>
                                                                 <div class="tepiborder">{{ $row->User->no_telp }}</div>
                                                             </div>
                                                             <div class="pr-0 col-6"  style="margin-top:5px">
-                                                                <label for="" class="fontlabel"
+                                                                <label for="" class="fontlabel fs-2"
                                                                     style="margin-bottom: 2px;">Divisi</label>
                                                                 <div class="tepiborder">{{ $row->divisi }}</div>
                                                             </div>
                                                             <div class="pr-0 col-6"  style="margin-top:5px">
-                                                                <label for="" class="fontlabel"
+                                                                <label for="" class="fontlabel fs-2"
                                                                     style="margin-bottom: 2px;">Posisi</label>
                                                                 <div class="tepiborder">{{ $row->posisi }}</div>
                                                             </div>
                                                             <div class="pr-0 col-12 " style="margin-top:5px">
-                                                                <label for="" class="fontlabel"
+                                                                <label for="" class="fontlabel fs-2"
                                                                     style="margin-bottom: 2px;">Alamat</label>
                                                                 <div class="tepiborder">{{ $row->User->alamat }}</div>
                                                             </div>
                                                             <div class="pr-0 col-12 " style="margin-top:5px">
-                                                                <label for="" class="fontlabel"
+                                                                <label for="" class="fontlabel fs-2"
                                                                     style="margin-bottom: 2px;">Tanggal Penolakan </label>
                                                                 <div class="tepiborder">{{ \Carbon\Carbon::parse($row->created_at)->locale('id')->isoFormat('D MMMM Y ') }}</div>
                                                             </div>
                                                             <div class="pr-0 col-12 " style="margin-top:5px">
-                                                                <label for="" class="fontlabel"
+                                                                <label for="" class="fontlabel fs-2"
                                                                     style="margin-bottom: 2px;">Alasan Penolakan</label>
-                                                                <div class="tepiborder">{{$row->pesan}}</div>
+                                                                <div class="tepiborder" style="height: 70px;">{{$row->pesan}}</div>
                                                             </div>
                                                             <div class="pr-0 col-12  d-flex justify-content-end py-2">
                                                                 <button type="button"
